@@ -13,10 +13,10 @@ export function SiteFooter() {
         <p className="footer-note">Marka {site.legalName}</p>
       </div>
 
-      <div className="footer-links" aria-label="Kontakt i informacje">
+      <nav className="footer-links" aria-label="Kontakt i informacje">
         <a href={`mailto:${site.email}`}>{site.email}</a>
         <span>leadflowai.pl</span>
-      </div>
+      </nav>
     </footer>
   );
 }

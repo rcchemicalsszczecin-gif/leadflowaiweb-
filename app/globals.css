@@ -175,10 +175,6 @@
     color: var(--white);
   }
 
-  .site-header > .button {
-    justify-self: end;
-  }
-
   .button {
     display: inline-flex;
     align-items: center;
@@ -194,6 +190,10 @@
       transform 180ms ease,
       background 180ms ease,
       color 180ms ease;
+  }
+
+  .site-header > .button {
+    justify-self: end;
   }
 
   .button:hover {
@@ -947,12 +947,14 @@
       scroll-behavior: auto;
     }
 
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
+    .flow-links path,
+    .flow-node-halo {
+      animation: none;
+    }
+
+    .button,
+    .site-nav a {
+      transition: none;
     }
   }
 }

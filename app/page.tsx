@@ -88,7 +88,7 @@ export default function HomePage() {
               </ul>
             </div>
 
-            <div className="hero-visual" role="group" aria-label="Wizualizacja systemu Averiq">
+            <div className="hero-visual">
               <SystemFlow />
             </div>
           </div>

@@ -7,13 +7,12 @@ const nodes = [
   { x: 502, y: 150, label: "CRM", className: "node-crm" },
 ] as const;
 
+const verticalGridLines = [0, 52, 104, 156, 208, 260, 312, 364, 416, 468, 520] as const;
+const horizontalGridLines = [0, 46, 92, 138, 184, 230, 276] as const;
+
 export function SystemFlow() {
   return (
-    <div
-      className="system-flow"
-      role="group"
-      aria-label="Schemat przepływu: wyszukiwanie, strona WWW, SEO AEO GEO, chatbot, lead i CRM"
-    >
+    <div className="system-flow">
       <div className="flow-toolbar" aria-hidden="true">
         <span>SYSTEM / LIVE</span>
         <span className="flow-status">ONLINE</span>
@@ -33,12 +32,12 @@ export function SystemFlow() {
           </linearGradient>
         </defs>
 
-        <g className="flow-grid" aria-hidden="true">
-          {Array.from({ length: 12 }, (_, index) => (
-            <line key={`v-${index}`} x1={index * 52} y1="0" x2={index * 52} y2="320" />
+        <g className="flow-grid">
+          {verticalGridLines.map((x) => (
+            <line key={`v-${x}`} x1={x} y1="0" x2={x} y2="320" />
           ))}
-          {Array.from({ length: 8 }, (_, index) => (
-            <line key={`h-${index}`} x1="0" y1={index * 46} x2="566" y2={index * 46} />
+          {horizontalGridLines.map((y) => (
+            <line key={`h-${y}`} x1="0" y1={y} x2="566" y2={y} />
           ))}
         </g>
 
