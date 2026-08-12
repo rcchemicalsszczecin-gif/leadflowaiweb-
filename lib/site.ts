@@ -8,10 +8,10 @@ export const site = {
 } as const;
 
 export const navigation = [
-  { href: "#create", label: "WWW" },
-  { href: "#discover", label: "SEO · AEO · GEO" },
-  { href: "#intelligence", label: "Chatboty" },
-  { href: "#process", label: "Proces" },
+  { href: "/strony-internetowe", label: "WWW" },
+  { href: "/#system", label: "System" },
+  { href: "/#intelligence", label: "Chatboty" },
+  { href: "/#process", label: "Proces" },
 ] as const;
 
 export const systemStages = [

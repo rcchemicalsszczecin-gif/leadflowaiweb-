@@ -1,10 +1,11 @@
+import { coreServiceLinks } from "@/lib/services";
 import { site } from "@/lib/site";
 
 export function SiteFooter() {
   return (
     <footer className="site-footer">
       <div>
-        <a className="brand footer-brand" href="#top" aria-label="LeadFlowAI — wróć na początek">
+        <a className="brand footer-brand" href="/" aria-label="LeadFlowAI — strona główna">
           <span className="brand-mark" aria-hidden="true">
             L/
           </span>
@@ -13,10 +14,19 @@ export function SiteFooter() {
         <p className="footer-note">Marka {site.legalName}</p>
       </div>
 
-      <nav className="footer-links" aria-label="Kontakt i informacje">
-        <a href={`mailto:${site.email}`}>{site.email}</a>
-        <span>leadflowai.pl</span>
-      </nav>
+      <div className="footer-meta">
+        <nav className="footer-service-links" aria-label="Główne usługi WWW">
+          {coreServiceLinks.map((item) => (
+            <a key={item.slug} href={`/${item.slug}`}>
+              {item.label}
+            </a>
+          ))}
+        </nav>
+        <nav className="footer-links" aria-label="Kontakt i informacje">
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+          <span>leadflowai.pl</span>
+        </nav>
+      </div>
     </footer>
   );
 }

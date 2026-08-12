@@ -3,7 +3,7 @@ import { navigation } from "@/lib/site";
 export function SiteHeader() {
   return (
     <header className="site-header">
-      <a className="brand" href="#top" aria-label="LeadFlowAI — strona główna">
+      <a className="brand" href="/" aria-label="LeadFlowAI — strona główna">
         <span className="brand-mark" aria-hidden="true">
           L/
         </span>
@@ -18,7 +18,7 @@ export function SiteHeader() {
         ))}
       </nav>
 
-      <a className="button button-small button-ghost" href="#contact">
+      <a className="button button-small button-ghost" href="/#contact">
         Wycena strony
       </a>
     </header>
