@@ -11,11 +11,11 @@ DESIGN_SYSTEM=IMPLEMENTED_V1
 HOMEPAGE=IMPLEMENTED_V1
 QUALITY_WORKFLOW=PASS
 CORE_MONEY_PAGES=PASS
-SEO_AEO_GEO_DEEP_FOUNDATION=IN_PROGRESS
-LEAD_BACKEND=NOT_STARTED
+SEO_AEO_GEO_DEEP_FOUNDATION=PASS
+LEAD_BACKEND=IN_PROGRESS
 CHATBOT_BACKEND=NOT_STARTED
 PRODUCTION_PUBLISHED=NO
 MAIN_MUTATED=NO
 WORK_BRANCH=build/leadflowai
 
-Stage 5 core money pages are implemented and validated. Active routes now include `/strony-internetowe`, `/landing-pages`, `/sklepy-internetowe`, `/web-development`, `/modernizacja-stron` and `/audyt-strony`, with shared service architecture, route metadata, responsive styling and internal linking. Quality workflow run 31621936913 passed retired-brand residue check, dependency install, TypeScript typecheck, Biome lint and Next.js production build. Stage 6 SEO/AEO/GEO foundation is the active next stage. Production and `main` remain untouched.
+Stage 5 core money pages are implemented and validated. Stage 6 SEO/AEO/GEO foundation is also implemented and validated: public search routes, canonical metadata, sitemap, robots policy, internal linking registry, global Organization/WebSite structured data, per-page WebPage/Service/BreadcrumbList/FAQPage structured data, and the LeadFlowAI brand relationship to Tervyxa Systems sp. z o.o. are now encoded as one public-truth architecture. Quality workflow run 31622673269 passed retired-brand residue check, dependency install, Search architecture contracts, TypeScript typecheck, Biome lint and Next.js production build. Stage 7 lead/contact system is active. Production and `main` remain untouched.
