@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { type FormEvent, useState } from "react";
 import { site } from "@/lib/site";
 
 type ChatLine = {
@@ -98,13 +98,13 @@ export function SiteAssistant() {
             {busy ? <p className="assistant-thinking">Sprawdzam zatwierdzone informacje…</p> : null}
           </div>
 
-          <div className="assistant-suggestions" aria-label="Przykładowe pytania">
+          <nav className="assistant-suggestions" aria-label="Przykładowe pytania">
             {suggestions.map((suggestion) => (
               <button key={suggestion} type="button" onClick={() => void ask(suggestion)} disabled={busy}>
                 {suggestion}
               </button>
             ))}
-          </div>
+          </nav>
 
           <form className="assistant-form" onSubmit={submit}>
             <label htmlFor="assistant-message">Twoje pytanie</label>
