@@ -41,7 +41,7 @@ if (!robots.includes("sitemap.xml") || !robots.includes('allow: "/"')) {
 
 const schema = requireFile("lib/structured-data.ts");
 for (const type of ["Organization", "WebSite", "WebPage", "Service", "BreadcrumbList", "FAQPage"]) {
-  if (!schema.includes(`\"@type\": \"${type}\"`)) fail(`missing structured-data type ${type}`);
+  if (!schema.includes(`"@type": "${type}"`)) fail(`missing structured-data type ${type}`);
 }
 
 const site = requireFile("lib/site.ts");
