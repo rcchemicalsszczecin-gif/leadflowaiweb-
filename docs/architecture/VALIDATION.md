@@ -1,6 +1,6 @@
 # LEADFLOWAI VALIDATION RECORD
 
-STATUS: PASS_THROUGH_STAGE_9
+STATUS: PASS_THROUGH_STAGE_10
 DATE: 2026-08-12
 BRANCH: build/leadflowai
 
@@ -20,28 +20,38 @@ Validated chat contracts, local knowledge, public-truth guardrails, optional pro
 
 ## Stage 9 — real portfolio / knowledge
 Quality workflow run 31625528515 — PASS.
+Validated real-only portfolio disclosure, four original knowledge articles, Article structured data, sitemap discovery, build and runtime content smoke.
+
+## Stage 10 — care / operations baseline
+Quality workflow run 31626085882 — PASS.
 Validated:
-- real-only portfolio disclosure;
-- own-project status without fabricated client attribution;
-- four original knowledge articles;
-- Article structured-data contract;
-- content routes in sitemap and footer discovery;
+- operations contract;
+- `/api/health` HTTP/JSON contract;
+- five low-risk response security headers;
+- explicit deferment of HSTS until verified HTTPS deployment;
+- explicit deferment of production CSP until final runtime/provider inventory;
+- monitoring/runbook/recovery/deployment-readiness records;
 - TypeScript and Biome;
 - production build;
-- lead/chat runtime regression smokes;
-- runtime content smoke for `/realizacje`, `/wiedza`, one article and sitemap.
+- runtime lead/chat/content regression smokes;
+- runtime operations smoke including headers and health.
 
-## Current Stage 10 boundary
-Provider-neutral operations baseline may be implemented on the work branch. It does not authorize hosting selection, DNS changes, production secrets, merge to `main` or deployment.
+## Stage 11 acceptance boundary
+Production acceptance may classify repository/runtime evidence as PASS, but must not turn unresolved external requirements into PASS.
 
-## Persistent unresolved production items
-- production hosting/runtime provider;
-- DNS/TLS cutover procedure;
-- real lead-delivery destination and end-to-end success proof;
-- optional remote AI provider proof if enabled;
-- durable distributed rate limiting where required by deployment topology;
-- final legal/privacy/cookie/analytics decisions tied to the actual production setup;
-- live browser/performance/security acceptance.
+Current unresolved production items:
+- production hosting/runtime provider — BLOCKER;
+- DNS/TLS cutover procedure — BLOCKER;
+- real lead-delivery destination and successful end-to-end proof — BLOCKER for relying on web form delivery;
+- durable distributed rate limiting — NOT_SAFELY_TESTABLE until deployment topology is selected;
+- final legal/privacy/cookie texts and confirmed company identifiers — BLOCKER for final public/legal acceptance;
+- live cross-browser/mobile visual acceptance — NOT_SAFELY_TESTABLE from repository CI alone;
+- live Core Web Vitals/network performance — NOT_SAFELY_TESTABLE before deployment;
+- final CSP/HSTS policy — BLOCKER until HTTPS/runtime/provider inventory exists;
+- analytics/consent — unresolved, but production may choose to launch without analytics if legal/content review permits;
+- remote AI provider success proof — required only if provider mode will be enabled at launch.
 
-PRODUCTION_READINESS=STAGES_0_TO_9_VALIDATED_ON_WORK_BRANCH
-NEXT_STAGE=STAGE_10_CARE_AND_OPERATIONS_BASELINE
+`main` remains unchanged and production deployment is not authorized.
+
+PRODUCTION_READINESS=STAGES_0_TO_10_VALIDATED_ON_WORK_BRANCH
+NEXT_STAGE=STAGE_11_FULL_PRODUCTION_ACCEPTANCE
