@@ -12,6 +12,8 @@ LOCKED:
 - Core: websites, landing pages, e-commerce, redesign/modernization, custom web development.
 - SEO + AEO + GEO / AI Search are part of the WWW offer.
 - AI chatbots are part of the WWW offer.
+- Public chatbot widget on LeadFlowAI itself: DISABLED until explicit Owner configuration/enablement.
+- Dormant chatbot implementation may remain in the repository for later local-AI integration, but it must not be rendered publicly before that decision.
 - CRO, analytics, integrations and website-connected automation are in scope.
 - Hosting, monitoring and maintenance are in scope.
 - Unrelated Tervyxa services remain separate verticals.
@@ -24,5 +26,5 @@ PENDING:
 - final wordmark/logo asset;
 - public pricing model;
 - final legal identifiers when company registration data is complete;
-- final hosting/deployment target;
+- local chatbot runtime/model configuration if/when Owner enables the public chatbot;
 - production launch authorization.
