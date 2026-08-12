@@ -36,6 +36,19 @@ const faqs = [
   },
 ] as const;
 
+function getStageSectionId(stageKey: (typeof systemStages)[number]["key"]) {
+  switch (stageKey) {
+    case "CREATE":
+      return "create";
+    case "DISCOVER":
+      return "discover";
+    case "INTELLIGENCE":
+      return "intelligence";
+    default:
+      return undefined;
+  }
+}
+
 export default function HomePage() {
   return (
     <main id="top">
@@ -75,7 +88,7 @@ export default function HomePage() {
               </ul>
             </div>
 
-            <div className="hero-visual" aria-label="Interaktywna koncepcja systemu Averiq">
+            <div className="hero-visual" role="group" aria-label="Wizualizacja systemu Averiq">
               <SystemFlow />
             </div>
           </div>
@@ -113,19 +126,11 @@ export default function HomePage() {
       <section className="system-stages" aria-label="System pracy Averiq">
         {systemStages.map((stage, index) => {
           const dark = index === 1 || index === 3 || index === 5;
-          const sectionId =
-            stage.key === "CREATE"
-              ? "create"
-              : stage.key === "DISCOVER"
-                ? "discover"
-                : stage.key === "INTELLIGENCE"
-                  ? "intelligence"
-                  : undefined;
 
           return (
             <article
               key={stage.key}
-              id={sectionId}
+              id={getStageSectionId(stage.key)}
               className={`stage-section ${dark ? "section-dark" : "section-light"}`}
             >
               <div className="page-shell stage-grid">

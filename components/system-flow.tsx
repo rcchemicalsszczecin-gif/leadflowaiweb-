@@ -9,7 +9,11 @@ const nodes = [
 
 export function SystemFlow() {
   return (
-    <div className="system-flow" aria-label="Schemat przepływu: wyszukiwanie, strona WWW, SEO AEO GEO, chatbot, lead i CRM">
+    <div
+      className="system-flow"
+      role="group"
+      aria-label="Schemat przepływu: wyszukiwanie, strona WWW, SEO AEO GEO, chatbot, lead i CRM"
+    >
       <div className="flow-toolbar" aria-hidden="true">
         <span>SYSTEM / LIVE</span>
         <span className="flow-status">ONLINE</span>
@@ -18,7 +22,8 @@ export function SystemFlow() {
       <svg viewBox="0 0 566 320" role="img" aria-labelledby="flow-title flow-desc">
         <title id="flow-title">Averiq system flow</title>
         <desc id="flow-desc">
-          Wizualizacja pokazująca przepływ użytkownika od wyszukiwania przez stronę i warstwy widoczności do kontaktu oraz CRM.
+          Wizualizacja pokazująca przepływ użytkownika od wyszukiwania przez stronę i warstwy
+          widoczności do kontaktu oraz CRM.
         </desc>
         <defs>
           <linearGradient id="flowGradient" x1="0" y1="0" x2="1" y2="1">

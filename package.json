@@ -9,8 +9,8 @@
     "typecheck": "tsc --noEmit",
     "lint": "biome lint .",
     "format": "biome format --write .",
-    "check": "biome check .",
-    "verify": "npm run typecheck && npm run check && npm run build"
+    "check": "npm run typecheck && npm run lint",
+    "verify": "npm run check && npm run build"
   },
   "engines": {
     "node": ">=20.9.0"
