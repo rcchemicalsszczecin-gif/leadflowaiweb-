@@ -1,16 +1,40 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
+import { site } from "@/lib/site";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://leadflowai.pl"),
+  metadataBase: new URL(site.url),
   title: {
     default: "Averiq — profesjonalne strony internetowe",
     template: "%s | Averiq",
   },
-  description:
-    "Averiq projektuje i buduje profesjonalne strony internetowe z SEO, AEO, GEO / AI Search, CRO i inteligentnymi funkcjami WWW.",
-  applicationName: "Averiq",
+  description: site.description,
+  applicationName: site.name,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "pl_PL",
+    url: site.url,
+    siteName: site.name,
+    title: "Averiq — strony internetowe zaprojektowane do wzrostu",
+    description: site.description,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f3f1eb" },
+    { media: "(prefers-color-scheme: dark)", color: "#080b0f" },
+  ],
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
