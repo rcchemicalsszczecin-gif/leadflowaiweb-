@@ -1,13 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { JsonLd } from "@/components/json-ld";
-import { SiteAssistant } from "@/components/site-assistant";
 import { site } from "@/lib/site";
 import { getGlobalStructuredData } from "@/lib/structured-data";
 import "./globals.css";
 import "./services.css";
 import "./contact.css";
-import "./chat.css";
 import "./knowledge.css";
 
 export const metadata: Metadata = {
@@ -50,7 +48,6 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
       <body>
         <JsonLd data={getGlobalStructuredData()} />
         {children}
-        <SiteAssistant />
       </body>
     </html>
   );
