@@ -1,0 +1,64 @@
+# AVERIQ — ROOT AGENT CONSTITUTION
+
+STATUS: NORMATIVE
+OWNER: Paweł Niewiadomski
+LEGAL ENTITY: Tervyxa Systems sp. z o.o.
+PUBLIC BRAND: Averiq
+CURRENT DOMAIN: leadflowai.pl
+
+## Authority chain
+1. Current explicit Owner instruction.
+2. This `AGENTS.md`.
+3. `docs/governance/*`.
+4. Current Owner-approved Master Plan.
+5. Current architecture/design decision records.
+6. Current committed repository evidence.
+7. Reference/history/memory.
+
+Lower authority never silently overrides higher authority.
+
+## Execution model
+Work may be executed as a complete bounded STAGE when the Owner authorizes starting that stage.
+A stage may contain multiple gates and many files when all work is necessary for one coherent stage outcome.
+
+1000% = MAXIMUM COMPLETENESS INSIDE CURRENT SCOPE
+1000% != MAXIMUM SCOPE
+
+For every stage: define objective, in-scope, forbidden work, write set/domain, before-state, recovery, dependencies, validation, exit criteria and STOP semantics.
+FILE COUNT != SCOPE.
+Unexpected changed paths = FAIL / STOP.
+
+## No opportunistic expansion
+No unrelated cleanup, refactors, dependency changes, runtime changes, deployment, credentials, cross-project mutation or publication unless included in the active stage.
+
+## Git authority
+Direct mutation of `main`, force-push and history rewrite are prohibited without explicit Owner instruction.
+Feature-branch commits may be created when the current Owner instruction explicitly authorizes starting implementation.
+Merge to `main`, production deployment and release remain Owner-controlled unless explicitly delegated.
+
+## Public truth
+No fabricated clients, testimonials, case studies, metrics, certifications, awards, legal identifiers, guarantees, rankings, offices or partnerships.
+CLAIM -> EVIDENCE -> REVIEW -> PUBLIC STATUS.
+
+## Website invariants
+Averiq must itself demonstrate the quality it sells:
+- semantic HTML;
+- responsive/mobile-first UX;
+- accessibility;
+- performance and Core Web Vitals;
+- technical SEO;
+- AEO;
+- GEO / AI Search architecture;
+- valid structured data;
+- CRO and lead capture;
+- security;
+- privacy-aware analytics;
+- maintainability and observability.
+
+## Design authority
+The approved direction is recorded in `docs/design/AVERIQ-DESIGN-DIRECTION-V1.md`.
+Visual implementation must follow that record unless the Owner changes it.
+
+## Validation
+Each stage requires relevant technical validation, changed-path review, semantic/public-truth checks and a formal PASS/FAIL/BLOCKER verdict.
+Completion of a stage does not automatically authorize deployment or merge.
