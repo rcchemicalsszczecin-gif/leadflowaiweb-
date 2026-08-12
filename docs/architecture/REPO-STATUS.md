@@ -12,18 +12,45 @@ DESIGN_SYSTEM=IMPLEMENTED_V1
 HOMEPAGE=IMPLEMENTED_V1
 CORE_MONEY_PAGES=PASS
 SEO_AEO_GEO_DEEP_FOUNDATION=PASS
-LEAD_SYSTEM=PASS
-LEAD_BACKEND=IMPLEMENTED_V1
+CONTACT_UI=PASS
 CHATBOT_UI=PASS
-CHATBOT_BACKEND=PASS_V1
 PORTFOLIO_KNOWLEDGE=PASS
-OPERATIONS_BASELINE=PASS
-PRODUCTION_ACCEPTANCE=IN_PROGRESS
-PRODUCTION_HOSTING=UNSELECTED
+STATIC_FRONTEND=PASS
+GITHUB_PAGES_ARTIFACT=PASS
+GITHUB_PAGES_WORKFLOW=READY_NOT_DEPLOYED
+FRONTEND_API_ORIGIN=https://api.leadflowai.pl
+LOCAL_API=NOT_STARTED_IN_CURRENT_STAGE
+CLOUDFLARE_DNS_TLS=PENDING
+CLOUDFLARE_TUNNEL=PENDING
+EMAIL_ROUTING=PENDING_CONFIGURATION
+ANALYTICS=PENDING_CONFIGURATION
+LEGAL_FINALIZATION=PENDING_COMPANY_REGISTRATION
 PRODUCTION_PUBLISHED=NO
 MAIN_MUTATED=NO
 WORK_BRANCH=build/leadflowai
 
-Stage 10 provider-neutral care/operations baseline passed Quality workflow run 31626085882. Validated operations contract, `/api/health`, five low-risk security headers, TypeScript, Biome, production build and lead/chat/content/operations runtime smoke regression. HSTS and CSP remain intentionally deferred until final HTTPS/runtime/provider inventory is known and tested.
+## Stage 11A/B — static frontend + GitHub Pages
+Quality workflow run `31628230187` — PASS.
 
-Stage 11 production acceptance is active. Repository-only technical evidence may pass, but live/deployment/legal dependencies must remain explicit BLOCKER or NOT_SAFELY_TESTABLE until resolved. Production and `main` remain untouched.
+Validated on commit `b69cf053f8520ee48b152ba03fed9d66397b6fbc`:
+- Next.js static export with `output: "export"`;
+- dynamic frontend Route Handlers removed from `app/api/**`;
+- lead and assistant browser requests target `https://api.leadflowai.pl`;
+- `out/` generated successfully;
+- `out/CNAME` contains `leadflowai.pl`;
+- `out/.nojekyll` exists;
+- sitemap and robots export statically;
+- static artifact contains no lead/chat/health API routes;
+- GitHub Pages Actions workflow is prepared for `main` / explicit dispatch and does not auto-deploy `build/leadflowai`;
+- representative public routes passed static HTTP smoke tests.
+
+## Current architecture boundary
+
+Public frontend target: GitHub Pages.
+DNS/TLS/edge target: Cloudflare.
+Dynamic API target: `api.leadflowai.pl` on Owner-controlled local hardware through Cloudflare Tunnel.
+Public mail: `kontakt@leadflowai.pl`, planned through Cloudflare Email Routing to the existing Gmail destination.
+
+The previous in-repository lead/chat server implementations were validated as behavior during earlier stages but are no longer claimed to execute on GitHub Pages. Their required behavior is preserved in `docs/architecture/LOCAL-API-BOUNDARY.md` for the local backend stage.
+
+Production and `main` remain untouched.
