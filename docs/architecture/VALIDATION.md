@@ -1,23 +1,41 @@
 # LEADFLOWAI VALIDATION RECORD
 
-STATUS: PASS
+STATUS: PASS_THROUGH_STAGE_6
 DATE: 2026-08-12
 BRANCH: build/leadflowai
 
-## Required checks
+## Foundation / homepage checks
 - retired-brand residue check — PASS;
 - dependency install — PASS;
 - TypeScript typecheck — PASS;
 - Biome lint — PASS;
 - Next.js production build — PASS.
 
-## Current evidence
-Quality workflow run 31620969797 completed successfully on the corrected LeadFlowAI branch state. The active repository contains no retired-brand residue detected by CI, dependencies installed cleanly, TypeScript typecheck passed, Biome passed and the Next.js production build passed.
+## Stage 5 — core money pages
+Quality workflow run 31621936913 — PASS.
+Validated six core commercial routes with shared service-page architecture, route metadata, responsive styling and internal linking.
+
+## Stage 6 — SEO / AEO / GEO foundation
+Quality workflow run 31622673269 — PASS.
+Validated:
+- retired-brand residue check;
+- dependency install;
+- Search architecture contracts;
+- 11 required public routes;
+- route metadata presence;
+- sitemap registry contract;
+- robots contract;
+- Organization, WebSite, WebPage, Service, BreadcrumbList and FAQPage structured-data contracts;
+- LeadFlowAI / Tervyxa Systems sp. z o.o. / leadflowai.pl identity contract;
+- TypeScript typecheck;
+- Biome lint;
+- Next.js production build.
 
 ## Boundaries
 - `main` remains unchanged;
 - production deployment is not authorized and has not occurred;
-- next implementation stage is not started by this validation record.
+- no guaranteed search ranking or AI citation claim is treated as validated;
+- Stage 7 lead/contact system may be implemented on the work branch, but production delivery configuration still requires a real destination/credential decision.
 
-PRODUCTION_READINESS=FOUNDATION_AND_HOMEPAGE_VALIDATED
-NEXT_STAGE=STAGE_5_CORE_MONEY_PAGES_AFTER_OWNER_REVIEW
+PRODUCTION_READINESS=STAGES_0_TO_6_VALIDATED
+NEXT_STAGE=STAGE_7_LEAD_CONTACT_SYSTEM
