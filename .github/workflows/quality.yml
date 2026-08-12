@@ -73,6 +73,7 @@ jobs:
           fi
 
           grep -q "Opisz stronę" /tmp/contact.html
+          grep -q "kontakt@leadflowai.pl" /tmp/contact.html
 
           foreign_status="$(curl -sS -o /tmp/foreign.json -w '%{http_code}' \
             -X POST http://127.0.0.1:3000/api/leads \
@@ -90,6 +91,6 @@ jobs:
             --data "$payload")"
           test "$fallback_status" = "503"
           grep -q 'DELIVERY_UNCONFIGURED' /tmp/fallback.json
-          grep -q 'kontakt@tervyxa.pl' /tmp/fallback.json
+          grep -q 'kontakt@leadflowai.pl' /tmp/fallback.json
 
           echo "LEAD_RUNTIME_SMOKE_PASS contact=200 foreign-origin=403 unconfigured-delivery=503"

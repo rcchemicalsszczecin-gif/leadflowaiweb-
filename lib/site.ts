@@ -2,7 +2,7 @@ export const site = {
   name: "LeadFlowAI",
   legalName: "Tervyxa Systems sp. z o.o.",
   url: "https://leadflowai.pl",
-  email: "kontakt@tervyxa.pl",
+  email: "kontakt@leadflowai.pl",
   description:
     "LeadFlowAI projektuje i buduje profesjonalne strony internetowe z SEO, AEO, GEO / AI Search, CRO, chatbotami i integracjami WWW.",
 } as const;

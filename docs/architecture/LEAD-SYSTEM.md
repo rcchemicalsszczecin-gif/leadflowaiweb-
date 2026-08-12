@@ -49,7 +49,7 @@ Server-only environment variables:
 
 Production webhook URLs must use HTTPS.
 
-When delivery is not configured, the API returns a controlled `503 DELIVERY_UNCONFIGURED` response with the public fallback address `kontakt@tervyxa.pl`. The UI must not claim that a lead was sent successfully in this state.
+When delivery is not configured, the API returns a controlled `503 DELIVERY_UNCONFIGURED` response with the public fallback address `kontakt@leadflowai.pl`. The UI must not claim that a lead was sent successfully in this state.
 
 When the configured destination fails, the API returns `502 DELIVERY_FAILED` and the same fallback contact path.
 
@@ -78,8 +78,9 @@ Static contract: `scripts/lead-contract.mjs`.
 
 CI runtime smoke after production build verifies:
 - `/kontakt` returns a usable page;
+- public contact `kontakt@leadflowai.pl` is rendered;
 - foreign Origin POST is rejected with 403;
 - a valid same-origin submission without configured webhook returns controlled 503;
-- fallback response contains `DELIVERY_UNCONFIGURED` and `kontakt@tervyxa.pl`.
+- fallback response contains `DELIVERY_UNCONFIGURED` and `kontakt@leadflowai.pl`.
 
 A real delivery success test requires an explicitly configured non-production webhook destination and is intentionally outside the current repository-only stage.

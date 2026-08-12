@@ -49,10 +49,11 @@ const site = requireFile("lib/site.ts");
 if (!site.includes('name: "LeadFlowAI"')) fail("LeadFlowAI brand identity missing");
 if (!site.includes('legalName: "Tervyxa Systems sp. z o.o."')) fail("legal operator identity missing");
 if (!site.includes('url: "https://leadflowai.pl"')) fail("canonical public domain missing");
+if (!site.includes('email: "kontakt@leadflowai.pl"')) fail("public contact e-mail mismatch");
 
 const search = requireFile("lib/search-pages.ts");
 for (const phrase of ["SEO", "AEO", "GEO / AI Search", "public", "structured data"]) {
   if (!search.toLowerCase().includes(phrase.toLowerCase())) fail(`search architecture content missing ${phrase}`);
 }
 
-console.log(`SEARCH_CONTRACT_PASS routes=${routes.length} schema=6 identity=PASS`);
+console.log(`SEARCH_CONTRACT_PASS routes=${routes.length} schema=6 identity=PASS contact=PASS`);

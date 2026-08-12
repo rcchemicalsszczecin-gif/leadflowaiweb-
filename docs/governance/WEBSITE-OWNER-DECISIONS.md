@@ -7,6 +7,7 @@ LOCKED:
 - Legal/invoicing entity: Tervyxa Systems sp. z o.o.
 - Public brand name: LeadFlowAI.
 - Primary domain: leadflowai.pl.
+- Public contact e-mail: kontakt@leadflowai.pl.
 - Positioning: professional WWW production first.
 - Core: websites, landing pages, e-commerce, redesign/modernization, custom web development.
 - SEO + AEO + GEO / AI Search are part of the WWW offer.

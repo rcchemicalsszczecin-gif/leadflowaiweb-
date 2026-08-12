@@ -17,10 +17,11 @@ const route = read("app/api/leads/route.ts");
 const env = read(".env.example");
 const sitemap = read("app/sitemap.ts");
 const header = read("components/site-header.tsx");
+const site = read("lib/site.ts");
 
 if (!contactPage.includes("LeadForm") || !contactPage.includes("metadata")) fail("contact route contract incomplete");
 if (!form.includes('fetch("/api/leads"') || !form.includes('name="website"')) fail("client form endpoint/honeypot missing");
-if (!form.includes("fallbackEmail") || !form.includes("kontakt@tervyxa.pl") && !form.includes("site.email")) fail("client fallback missing");
+if (!form.includes("fallbackEmail") || !form.includes("site.email")) fail("client fallback missing");
 if (!validation.includes("parseLeadPayload") || !validation.includes("contactPermission")) fail("server validation contract missing");
 
 for (const token of ["sameOrigin", "rateLimited", "DELIVERY_UNCONFIGURED", "LEAD_WEBHOOK_URL", "LEAD_WEBHOOK_TOKEN", "MAX_BODY_CHARS", "FORM_TIMING_REJECTED"]) {
@@ -32,5 +33,6 @@ if (!env.includes("LEAD_WEBHOOK_URL=") || !env.includes("LEAD_WEBHOOK_TOKEN=")) 
 if (env.includes("NEXT_PUBLIC_LEAD_WEBHOOK")) fail("lead delivery secret exposed as public env");
 if (!sitemap.includes('"kontakt"')) fail("contact route missing from sitemap");
 if (!header.includes('href="/kontakt"')) fail("primary header CTA does not point to contact route");
+if (!site.includes('email: "kontakt@leadflowai.pl"')) fail("public LeadFlowAI contact e-mail mismatch");
 
-console.log("LEAD_CONTRACT_PASS contact=PASS validation=PASS security=PASS fallback=PASS");
+console.log("LEAD_CONTRACT_PASS contact=PASS validation=PASS security=PASS fallback=PASS identity=PASS");

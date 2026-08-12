@@ -12,7 +12,7 @@ LeadFlowAI treats SEO, AEO and GEO / AI Search as connected layers over one publ
 - Public brand: LeadFlowAI.
 - Primary domain: https://leadflowai.pl.
 - Legal/operator/provider entity: Tervyxa Systems sp. z o.o.
-- Public contact currently used by the project: kontakt@tervyxa.pl.
+- Public contact currently used by the project: kontakt@leadflowai.pl.
 - Unconfirmed registration identifiers must not be invented or published.
 
 ## SEO layer
@@ -100,7 +100,7 @@ Future routes must not be added to the sitemap before they are real public-quali
 - sitemap uses both registries;
 - robots declares sitemap and crawl allowance;
 - required structured-data types exist;
-- brand/legal/domain identity remains correct;
+- brand/legal/domain/contact identity remains correct;
 - search content includes SEO/AEO/GEO/public-truth/structured-data concepts.
 
 This contract supplements, not replaces, typecheck/lint/build and later browser/crawl validation.
