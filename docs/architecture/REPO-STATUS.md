@@ -17,12 +17,13 @@ LEAD_BACKEND=IMPLEMENTED_V1
 CHATBOT_UI=PASS
 CHATBOT_BACKEND=PASS_V1
 PORTFOLIO_KNOWLEDGE=PASS
-OPERATIONS_BASELINE=IN_PROGRESS
+OPERATIONS_BASELINE=PASS
+PRODUCTION_ACCEPTANCE=IN_PROGRESS
 PRODUCTION_HOSTING=UNSELECTED
 PRODUCTION_PUBLISHED=NO
 MAIN_MUTATED=NO
 WORK_BRANCH=build/leadflowai
 
-Stage 9 real-only portfolio and knowledge hub passed Quality workflow run 31625528515. Validated content/portfolio contracts, Article schema, TypeScript, Biome, production build, lead/chat regression smokes and runtime content smoke for `/realizacje`, `/wiedza`, an article route and sitemap.
+Stage 10 provider-neutral care/operations baseline passed Quality workflow run 31626085882. Validated operations contract, `/api/health`, five low-risk security headers, TypeScript, Biome, production build and lead/chat/content/operations runtime smoke regression. HSTS and CSP remain intentionally deferred until final HTTPS/runtime/provider inventory is known and tested.
 
-Stage 10 provider-neutral care/operations baseline is active. It adds health, low-risk security headers, monitoring/runbook/recovery and deployment-readiness evidence without selecting or claiming a production hosting provider. Production and `main` remain untouched.
+Stage 11 production acceptance is active. Repository-only technical evidence may pass, but live/deployment/legal dependencies must remain explicit BLOCKER or NOT_SAFELY_TESTABLE until resolved. Production and `main` remain untouched.
