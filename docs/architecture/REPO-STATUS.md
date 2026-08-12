@@ -1,0 +1,20 @@
+# LEADFLOWAI REPOSITORY STATUS
+
+DATE: 2026-08-12
+
+BRAND=LEADFLOWAI
+DOMAIN=leadflowai.pl
+FOUNDATION_STAGE=COMMITTED
+DESIGN_DIRECTION=APPROVED_V1
+APPLICATION_SCAFFOLD=COMMITTED
+DESIGN_SYSTEM=IMPLEMENTED_V1
+HOMEPAGE=IMPLEMENTED_V1
+CORE_MONEY_PAGES=NOT_STARTED
+SEO_AEO_GEO_DEEP_FOUNDATION=NOT_STARTED
+LEAD_BACKEND=NOT_STARTED
+CHATBOT_BACKEND=NOT_STARTED
+PRODUCTION_PUBLISHED=NO
+MAIN_MUTATED=NO
+WORK_BRANCH=build/leadflowai
+
+The active clean branch contains the governance foundation, technical scaffold, approved Precision Flow Architecture design system and complete responsive homepage V1. CI must be green on this branch before the stage is marked PASS.

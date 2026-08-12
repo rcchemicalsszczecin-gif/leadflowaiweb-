@@ -1,0 +1,46 @@
+import type { Metadata, Viewport } from "next";
+import type { ReactNode } from "react";
+import { site } from "@/lib/site";
+import "./globals.css";
+
+export const metadata: Metadata = {
+  metadataBase: new URL(site.url),
+  title: {
+    default: "LeadFlowAI — profesjonalne strony internetowe",
+    template: "%s | LeadFlowAI",
+  },
+  description: site.description,
+  applicationName: site.name,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "pl_PL",
+    url: site.url,
+    siteName: site.name,
+    title: "LeadFlowAI — strony internetowe zaprojektowane do wzrostu",
+    description: site.description,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f3f1eb" },
+    { media: "(prefers-color-scheme: dark)", color: "#080b0f" },
+  ],
+};
+
+export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
+  return (
+    <html lang="pl">
+      <body>{children}</body>
+    </html>
+  );
+}
