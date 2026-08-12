@@ -42,6 +42,9 @@ jobs:
       - name: Lead system contracts
         run: npm run lead:contract
 
+      - name: Chat system contracts
+        run: npm run chat:contract
+
       - name: Typecheck
         run: npm run typecheck
 
@@ -94,3 +97,53 @@ jobs:
           grep -q 'kontakt@leadflowai.pl' /tmp/fallback.json
 
           echo "LEAD_RUNTIME_SMOKE_PASS contact=200 foreign-origin=403 unconfigured-delivery=503"
+
+      - name: Runtime chat smoke
+        shell: bash
+        run: |
+          npm run start -- -H 127.0.0.1 -p 3001 >/tmp/leadflowai-chat.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+
+          ready=0
+          for attempt in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:3001/ >/tmp/home.html; then
+              ready=1
+              break
+            fi
+            sleep 0.5
+          done
+          if [ "$ready" -ne 1 ]; then
+            cat /tmp/leadflowai-chat.log
+            echo "LeadFlowAI chat smoke server did not become ready"
+            exit 1
+          fi
+
+          grep -q "Zapytaj LeadFlowAI" /tmp/home.html
+
+          foreign_status="$(curl -sS -o /tmp/chat-foreign.json -w '%{http_code}' \
+            -X POST http://127.0.0.1:3001/api/chat \
+            -H 'Content-Type: application/json' \
+            -H 'Origin: https://invalid.example' \
+            --data '{"message":"Czy robicie strony?"}')"
+          test "$foreign_status" = "403"
+
+          knowledge_status="$(curl -sS -o /tmp/chat-knowledge.json -w '%{http_code}' \
+            -X POST http://127.0.0.1:3001/api/chat \
+            -H 'Content-Type: application/json' \
+            -H 'Origin: http://127.0.0.1:3001' \
+            --data '{"message":"Czy robicie sklepy internetowe?"}')"
+          test "$knowledge_status" = "200"
+          grep -q '"mode":"knowledge"' /tmp/chat-knowledge.json
+          grep -qi 'sklep' /tmp/chat-knowledge.json
+
+          fallback_status="$(curl -sS -o /tmp/chat-fallback.json -w '%{http_code}' \
+            -X POST http://127.0.0.1:3001/api/chat \
+            -H 'Content-Type: application/json' \
+            -H 'Origin: http://127.0.0.1:3001' \
+            --data '{"message":"Opowiedz o hipotetycznym systemie kwantowym."}')"
+          test "$fallback_status" = "200"
+          grep -q '"mode":"fallback"' /tmp/chat-fallback.json
+          grep -q 'kontakt@leadflowai.pl' /tmp/chat-fallback.json
+
+          echo "CHAT_RUNTIME_SMOKE_PASS ui=200 foreign-origin=403 knowledge=200 fallback=200"
