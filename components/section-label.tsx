@@ -8,7 +8,7 @@ export function SectionLabel({ index, label, inverted = false }: SectionLabelPro
   return (
     <p className={`section-label${inverted ? " section-label-inverted" : ""}`}>
       <span>{index}</span>
-      <span>AVERIQ / {label}</span>
+      <span>LEADFLOWAI / {label}</span>
     </p>
   );
 }
