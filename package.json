@@ -13,8 +13,9 @@
     "lead:contract": "node scripts/lead-contract.mjs",
     "chat:contract": "node scripts/chat-contract.mjs",
     "content:contract": "node scripts/content-contract.mjs",
+    "operations:contract": "node scripts/operations-contract.mjs",
     "check": "npm run typecheck && npm run lint",
-    "verify": "npm run search:contract && npm run lead:contract && npm run chat:contract && npm run content:contract && npm run check && npm run build"
+    "verify": "npm run search:contract && npm run lead:contract && npm run chat:contract && npm run content:contract && npm run operations:contract && npm run check && npm run build"
   },
   "engines": {
     "node": ">=20.9.0"

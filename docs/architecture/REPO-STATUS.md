@@ -16,13 +16,13 @@ LEAD_SYSTEM=PASS
 LEAD_BACKEND=IMPLEMENTED_V1
 CHATBOT_UI=PASS
 CHATBOT_BACKEND=PASS_V1
-PORTFOLIO_KNOWLEDGE=IN_PROGRESS
+PORTFOLIO_KNOWLEDGE=PASS
+OPERATIONS_BASELINE=IN_PROGRESS
+PRODUCTION_HOSTING=UNSELECTED
 PRODUCTION_PUBLISHED=NO
 MAIN_MUTATED=NO
 WORK_BRANCH=build/leadflowai
 
-Stage 7 lead/contact system passed Quality workflow run 31623584861, including runtime lead smoke and public-contact identity `kontakt@leadflowai.pl`.
+Stage 9 real-only portfolio and knowledge hub passed Quality workflow run 31625528515. Validated content/portfolio contracts, Article schema, TypeScript, Biome, production build, lead/chat regression smokes and runtime content smoke for `/realizacje`, `/wiedza`, an article route and sitemap.
 
-Stage 8 site assistant/chat system passed Quality workflow run 31624891642. Validated search, lead and chat contracts, TypeScript, Biome, production build, runtime lead smoke and runtime chat smoke. V1 provides controlled local knowledge plus an optional server-only provider adapter. No external AI provider configuration is assumed or claimed.
-
-Stage 9 real portfolio + knowledge architecture is the active next stage. Production and `main` remain untouched.
+Stage 10 provider-neutral care/operations baseline is active. It adds health, low-risk security headers, monitoring/runbook/recovery and deployment-readiness evidence without selecting or claiming a production hosting provider. Production and `main` remain untouched.

@@ -48,6 +48,9 @@ jobs:
       - name: Content and portfolio contracts
         run: npm run content:contract
 
+      - name: Operations contracts
+        run: npm run operations:contract
+
       - name: Typecheck
         run: npm run typecheck
 
@@ -187,3 +190,41 @@ jobs:
           grep -q '/wiedza/jak-zaplanowac-strone-firmowa' /tmp/sitemap.xml
 
           echo "CONTENT_RUNTIME_SMOKE_PASS portfolio=200 knowledge=200 article=200 sitemap=PASS"
+
+      - name: Runtime operations smoke
+        shell: bash
+        run: |
+          npm run start -- -H 127.0.0.1 -p 3003 >/tmp/leadflowai-ops.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+
+          ready=0
+          for attempt in $(seq 1 30); do
+            status="$(curl -sS -D /tmp/health-headers.txt -o /tmp/health.json -w '%{http_code}' http://127.0.0.1:3003/api/health || true)"
+            if [ "$status" = "200" ]; then
+              ready=1
+              break
+            fi
+            sleep 0.5
+          done
+          if [ "$ready" -ne 1 ]; then
+            cat /tmp/leadflowai-ops.log
+            echo "LeadFlowAI operations smoke server did not become ready"
+            exit 1
+          fi
+
+          grep -q '"status":"ok"' /tmp/health.json
+          grep -q '"service":"leadflowai-web"' /tmp/health.json
+          grep -qi '^cache-control: no-store' /tmp/health-headers.txt
+          grep -qi '^x-content-type-options: nosniff' /tmp/health-headers.txt
+          grep -qi '^x-frame-options: DENY' /tmp/health-headers.txt
+          grep -qi '^referrer-policy: strict-origin-when-cross-origin' /tmp/health-headers.txt
+          grep -qi '^permissions-policy: camera=(), microphone=(), geolocation=()' /tmp/health-headers.txt
+          grep -qi '^cross-origin-opener-policy: same-origin' /tmp/health-headers.txt
+
+          if grep -qi '^strict-transport-security:' /tmp/health-headers.txt; then
+            echo "Premature HSTS header detected"
+            exit 1
+          fi
+
+          echo "OPERATIONS_RUNTIME_SMOKE_PASS health=200 headers=5 hsts=DEFERRED"
