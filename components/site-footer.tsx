@@ -22,8 +22,11 @@ export function SiteFooter() {
               {item.label}
             </a>
           ))}
+          <a href="/realizacje">Realizacje</a>
+          <a href="/wiedza">Wiedza</a>
         </nav>
         <nav className="footer-links" aria-label="Kontakt i informacje">
+          <a href="/kontakt">Kontakt</a>
           <a href={`mailto:${site.email}`}>{site.email}</a>
           <span>leadflowai.pl</span>
         </nav>

@@ -1,3 +1,4 @@
+import type { KnowledgeArticle } from "@/lib/knowledge";
 import type { ServicePageData } from "@/lib/services";
 import { site } from "@/lib/site";
 
@@ -90,6 +91,62 @@ export function getPageStructuredData(page: ServicePageData): Record<string, unk
             text: item.answer,
           },
         })),
+      },
+    ],
+  };
+}
+
+export function getArticleStructuredData(article: KnowledgeArticle): Record<string, unknown> {
+  const url = `${site.url}/wiedza/${article.slug}`;
+  const webPageId = `${url}#webpage`;
+  const articleId = `${url}#article`;
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": webPageId,
+        url,
+        name: article.title,
+        description: article.description,
+        inLanguage: "pl-PL",
+        isPartOf: { "@id": websiteId },
+        mainEntity: { "@id": articleId },
+      },
+      {
+        "@type": "Article",
+        "@id": articleId,
+        headline: article.title,
+        description: article.description,
+        url,
+        inLanguage: "pl-PL",
+        mainEntityOfPage: { "@id": webPageId },
+        author: { "@id": organizationId },
+        publisher: { "@id": organizationId },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: site.name,
+            item: site.url,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Wiedza",
+            item: `${site.url}/wiedza`,
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: article.title,
+            item: url,
+          },
+        ],
       },
     ],
   };

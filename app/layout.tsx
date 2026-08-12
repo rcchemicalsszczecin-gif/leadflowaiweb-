@@ -8,6 +8,7 @@ import "./globals.css";
 import "./services.css";
 import "./contact.css";
 import "./chat.css";
+import "./knowledge.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),

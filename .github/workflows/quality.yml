@@ -45,6 +45,9 @@ jobs:
       - name: Chat system contracts
         run: npm run chat:contract
 
+      - name: Content and portfolio contracts
+        run: npm run content:contract
+
       - name: Typecheck
         run: npm run typecheck
 
@@ -147,3 +150,40 @@ jobs:
           grep -q 'kontakt@leadflowai.pl' /tmp/chat-fallback.json
 
           echo "CHAT_RUNTIME_SMOKE_PASS ui=200 foreign-origin=403 knowledge=200 fallback=200"
+
+      - name: Runtime content smoke
+        shell: bash
+        run: |
+          npm run start -- -H 127.0.0.1 -p 3002 >/tmp/leadflowai-content.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+
+          ready=0
+          for attempt in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:3002/realizacje >/tmp/portfolio.html; then
+              ready=1
+              break
+            fi
+            sleep 0.5
+          done
+          if [ "$ready" -ne 1 ]; then
+            cat /tmp/leadflowai-content.log
+            echo "LeadFlowAI content smoke server did not become ready"
+            exit 1
+          fi
+
+          grep -q "PROJEKT WŁASNY" /tmp/portfolio.html
+          grep -q "AKTYWNIE ROZWIJANY" /tmp/portfolio.html
+
+          curl -fsS http://127.0.0.1:3002/wiedza >/tmp/knowledge.html
+          grep -q "Wiedza, która pomaga" /tmp/knowledge.html
+
+          curl -fsS http://127.0.0.1:3002/wiedza/jak-zaplanowac-strone-firmowa >/tmp/article.html
+          grep -q "Jak zaplanować stronę firmową" /tmp/article.html
+          grep -q 'Article' /tmp/article.html
+
+          curl -fsS http://127.0.0.1:3002/sitemap.xml >/tmp/sitemap.xml
+          grep -q '/realizacje' /tmp/sitemap.xml
+          grep -q '/wiedza/jak-zaplanowac-strone-firmowa' /tmp/sitemap.xml
+
+          echo "CONTENT_RUNTIME_SMOKE_PASS portfolio=200 knowledge=200 article=200 sitemap=PASS"
