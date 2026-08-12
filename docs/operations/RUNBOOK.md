@@ -1,79 +1,72 @@
-# LEADFLOWAI — OPERATIONS RUNBOOK V1
+# LEADFLOWAI — OPERATIONS RUNBOOK V2
 
-STATUS: PROVIDER-NEUTRAL BASELINE
+STATUS: STATIC FRONTEND TARGET LOCKED / PRODUCTION NOT AUTHORIZED
 DATE: 2026-08-12
 
-## Scope
+## Current architecture
 
-This runbook defines operational behavior that can be validated before choosing a production hosting provider. It does not authorize deployment.
-
-## Current production boundary
-
-- Production deployment: NOT AUTHORIZED.
-- Hosting provider: UNSELECTED.
-- DNS cutover: NOT AUTHORIZED.
-- `main`: must remain unchanged until Owner approval.
-- Public domain target: `https://leadflowai.pl`.
+- Public frontend: GitHub Pages static export at `https://leadflowai.pl`.
+- DNS/TLS/edge: Cloudflare — configuration pending.
+- Dynamic API: `https://api.leadflowai.pl` on local Owner-controlled hardware through Cloudflare Tunnel — deployment pending.
 - Public contact: `kontakt@leadflowai.pl`.
+- Production deployment: NOT AUTHORIZED until final acceptance.
+- `main`: remains Owner-controlled release authority.
 
-## Runtime health
+## Frontend health
 
-Endpoint: `GET /api/health`.
+Static frontend availability is validated by HTTP checks for:
+- `/`;
+- `/kontakt/`;
+- core commercial routes;
+- `/realizacje/`;
+- `/wiedza/`;
+- `/sitemap.xml`;
+- `/robots.txt`.
 
-Expected healthy response:
-- HTTP 200;
-- JSON `status=ok`;
-- service `leadflowai-web`;
-- `Cache-Control: no-store`.
+GitHub Pages has no application server health endpoint in this architecture.
 
-The health endpoint intentionally does not expose secrets, environment values, Git hashes, hostnames, user data or provider configuration.
+## API health
 
-## Required production secrets
-
-Server-only values where the corresponding feature is enabled:
-- `LEAD_WEBHOOK_URL`;
-- `LEAD_WEBHOOK_TOKEN`;
-- `CHAT_PROVIDER_URL`;
-- `CHAT_PROVIDER_TOKEN`;
-- `CHAT_PROVIDER_MODEL`.
-
-Secrets must live in the deployment secret store/environment, never in Git or browser-exposed `NEXT_PUBLIC_*` variables.
+The local API stage must provide `GET https://api.leadflowai.pl/health` with a minimal non-sensitive health response. That endpoint belongs to the local backend, not the GitHub Pages artifact.
 
 ## Pre-deploy minimum checks
 
-1. Clean target commit and Owner-approved release identity.
-2. Quality workflow green on that exact commit.
-3. Production build green.
-4. Required environment variables configured for features being enabled.
-5. `/api/health` verified in the target environment.
-6. `/kontakt` tested with a non-production or controlled delivery target before accepting real leads.
-7. Chat provider success path tested separately if remote AI is enabled.
-8. Domain/TLS/DNS configuration verified before traffic cutover.
-9. Legal/public company data reviewed before production publication.
+1. Owner-approved release identity on `main`.
+2. Quality workflow green on the exact release commit.
+3. Static export artifact contains `CNAME`, `.nojekyll`, sitemap and robots.
+4. GitHub Pages repository setting enabled for GitHub Actions.
+5. Cloudflare DNS/TLS change plan recorded before traffic cutover.
+6. Local API and Cloudflare Tunnel validated before relying on form/chat.
+7. Lead delivery tested end-to-end to a controlled destination.
+8. Local AI/RAG success and fallback tested if enabled.
+9. Analytics/consent and legal/public company data reviewed.
 10. Rollback target recorded before release.
 
 ## Incident triage
 
-### Site unavailable
-- check hosting/runtime status;
-- check `/api/health`;
-- inspect deployment logs without exposing submitted PII;
-- compare current release identity with last known-good release;
-- rollback when the current release is the suspected cause.
+### Static site unavailable
+- check GitHub Pages status/deployment;
+- check Cloudflare DNS/TLS/proxy state;
+- compare deployed Pages artifact/release with last known-good release;
+- use rollback/redeploy without rewriting Git history.
 
 ### Lead form unavailable
-- verify `/kontakt` page;
-- verify `/api/leads` same-origin behavior;
-- verify server-only webhook configuration;
-- use `kontakt@leadflowai.pl` as the public fallback channel;
-- do not claim successful lead delivery when webhook proof is absent.
+- verify `/kontakt/` still renders;
+- verify `https://api.leadflowai.pl/health`;
+- verify Tunnel/API service and narrow CORS allow-list;
+- use `kontakt@leadflowai.pl` as the public fallback;
+- never claim successful delivery without end-to-end proof.
 
 ### Assistant unavailable
-- core website/navigation/contact must remain usable;
-- local knowledge/fallback should work without a remote provider;
-- if remote provider fails, do not block the site;
-- verify provider credentials/endpoint only in the deployment secret environment.
+- core site and contact remain usable independently;
+- verify `api.leadflowai.pl` and local AI service;
+- preserve deterministic fallback behavior;
+- API/AI outage must not take down GitHub Pages.
+
+## Security boundary
+
+Final HSTS/CSP and production response headers are owned by the Cloudflare edge stage after live HTTPS and script/provider inventory are verified. They are not simulated in static Next.js configuration.
 
 ## Rollback principle
 
-Rollback means restoring the last known-good application release/configuration without rewriting repository history. DNS and deployment rollback procedures must be finalized for the chosen provider before launch.
+Restore the last known-good frontend artifact/release and, independently, the last known-good local API configuration. DNS/Tunnel rollback procedures must be recorded before launch.

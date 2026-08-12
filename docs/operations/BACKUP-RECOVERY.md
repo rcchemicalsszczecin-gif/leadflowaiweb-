@@ -1,43 +1,59 @@
-# LEADFLOWAI — BACKUP / RECOVERY BASELINE V1
+# LEADFLOWAI — BACKUP / RECOVERY BASELINE V2
 
 STATUS: PRE-PRODUCTION DESIGN
 DATE: 2026-08-12
 
 ## Recovery domains
 
-### Source code
-Authoritative application source is Git. Recovery uses an explicitly recorded **last known-good** commit/release; no force-push or history rewrite is required for normal rollback.
+### Static frontend source
+Authoritative application source is Git. Frontend rollback means redeploying the **last known-good** commit/artifact to GitHub Pages; normal rollback does not require force-push or history rewrite.
 
 ### Content
-Current public service/knowledge content is repository-managed and follows the same source recovery path.
+Current public service/knowledge content is repository-managed and follows the same Git/static artifact recovery path.
+
+### Cloudflare edge
+DNS/TLS/Tunnel configuration becomes a separate recovery domain when configured. Before launch record the previous working DNS/Tunnel state and rollback procedure.
+
+### Local API
+`api.leadflowai.pl` is a separate service/recovery domain. Record its application release, service configuration and last known-good deployment independently from the frontend.
 
 ### Secrets
-Production Secrets must not be backed up in Git. The selected hosting/provider process must document secret-store export/recovery or secure manual reconstruction before launch.
+Production secrets must not be backed up in Git. Cloudflare and local API secrets require secure provider/host recovery or reconstruction procedures.
 
 ### Lead data
-The current repository does not contain a lead database. Lead data will belong to the selected webhook/CRM destination, which becomes a separate data-recovery domain and must have its own retention/backup policy.
+The frontend repository contains no lead database. The selected lead delivery destination/CRM becomes a separate data-recovery domain and requires its own retention/backup policy.
 
 ### Chat data
-V1 has no persistent conversation database. If persistence is introduced later, it requires a separate privacy, retention, access and recovery decision.
+No persistent conversation database is assumed. If persistence is introduced later, it requires separate privacy, retention, access and recovery decisions.
 
 ## Pre-release recovery evidence
 
-Before production launch record:
-- release commit/revision;
-- last known-good revision;
-- deployment configuration identity;
-- environment variable inventory by name only, never secret values in Git evidence;
-- DNS/TLS provider and rollback method;
-- lead destination and test proof;
-- backup/retention responsibility for any persistent external data.
+Before launch record:
+- frontend release commit/revision and Pages artifact identity;
+- frontend last known-good revision;
+- Cloudflare DNS/TLS/Tunnel configuration identity and rollback method;
+- local API release and last known-good revision;
+- environment variable inventory by name only, never secret values;
+- lead destination and successful controlled delivery proof;
+- backup/retention responsibility for persistent external data.
 
 ## Restore validation
 
-A rollback/restore is not considered successful solely because deployment completes. Re-check:
-- `/api/health`;
-- homepage;
-- `/kontakt`;
-- lead fallback/delivery path as appropriate;
-- assistant local/fallback mode;
-- sitemap/robots;
-- critical security headers.
+Frontend rollback validation:
+- homepage and critical routes;
+- `/kontakt/`;
+- sitemap and robots;
+- static asset loading and canonical domain.
+
+API rollback validation after that service exists:
+- `https://api.leadflowai.pl/health`;
+- lead delivery path;
+- chat controlled knowledge/fallback;
+- CORS allow-list;
+- local AI mode if enabled.
+
+Edge rollback validation:
+- DNS resolution;
+- TLS;
+- redirects/canonical host;
+- final response security headers.

@@ -1,55 +1,72 @@
-# LEADFLOWAI — DEPLOYMENT READINESS V1
+# LEADFLOWAI — DEPLOYMENT READINESS V2
 
-STATUS: NOT READY FOR PRODUCTION LAUNCH
+STATUS: FRONTEND TARGET LOCKED / PRODUCTION NOT YET AUTHORIZED
 DATE: 2026-08-12
+
+## Locked deployment architecture
+
+Frontend:
+- GitHub repository source;
+- Next.js static export;
+- GitHub Pages;
+- public domain `leadflowai.pl`;
+- GitHub Actions deployment artifact `out/`.
+
+Network / edge:
+- Cloudflare DNS/TLS for `leadflowai.pl`;
+- Cloudflare stage is pending and must follow static frontend acceptance.
+
+Dynamic API:
+- `api.leadflowai.pl`;
+- Owner-controlled local hardware;
+- Cloudflare Tunnel;
+- exact local machine not yet selected.
+
+Mail:
+- `kontakt@leadflowai.pl`;
+- Cloudflare Email Routing to the existing Gmail destination, configured in the Cloudflare stage.
+
+Analytics:
+- production analytics are authorized in principle;
+- GA4/Search Console/Bing identifiers and consent implementation remain pending production setup.
 
 ## Already proven on work branch
 
-- governance / source-of-truth foundation;
-- design system and homepage;
-- core commercial routes;
-- SEO/AEO/GEO technical foundation;
-- sitemap / robots / structured-data contracts;
-- lead/contact route and controlled no-webhook fallback;
-- site assistant local/fallback runtime behavior;
+- governance and design system;
+- homepage and commercial routes;
+- SEO/AEO/GEO architecture;
+- sitemap / robots / structured data;
+- contact UI and public e-mail identity;
+- assistant UI and controlled fallback behavior;
 - real-only portfolio and knowledge architecture;
-- TypeScript / Biome / production build CI;
-- provider-neutral health endpoint and operations documentation.
+- TypeScript / Biome / production builds;
+- provider-neutral operations/runbook/recovery documentation.
 
-## Still unresolved before production launch
+## Architecture changes in Stage 11A/B
 
-### Hosting / runtime
-- production hosting provider — UNSELECTED;
-- deployment method — UNSELECTED;
-- production environment identity — UNSELECTED;
-- durable distributed rate-limit solution — UNSELECTED where required.
+The frontend no longer owns dynamic Route Handlers. `app/api/**` is removed from the static frontend because GitHub Pages cannot execute POST/server logic.
 
-### Domain / TLS
-- DNS cutover procedure — NOT AUTHORIZED;
-- TLS termination/provider — NOT RECORDED;
-- HSTS — intentionally NOT enabled before verified HTTPS deployment.
+Frontend network calls target `https://api.leadflowai.pl` through `NEXT_PUBLIC_API_BASE_URL`.
 
-### Security policy
-A baseline of low-risk response headers is implemented.
-A production Content-Security-Policy is intentionally deferred until the final runtime/script/provider inventory is known and tested. A guessed CSP must not be shipped merely to satisfy a checklist.
+Previous lead/chat server behavior remains a behavioral requirement for the local API stage, not a claim that GitHub Pages runs a backend.
 
-### Lead delivery
-- real destination/webhook — NOT CONFIGURED BY REPOSITORY EVIDENCE;
-- successful end-to-end non-production delivery proof — REQUIRED before relying on the form for production leads.
+## Remaining production blockers
 
-### Remote AI provider
-- provider — OPTIONAL / UNSELECTED;
-- credentials — NOT IN REPOSITORY;
-- successful provider-mode smoke — REQUIRED only if provider mode will be enabled at launch.
-
-### Legal/public company data
-Final required company registration/legal details and privacy/cookie texts must be reviewed against the actual production setup before launch. Unconfirmed identifiers must not be invented.
-
-### Analytics / consent
-Analytics and consent technology must be selected and validated against the actual deployment/legal basis before enabling production tracking.
+- final GitHub Pages repository setting / custom-domain activation;
+- Cloudflare DNS cutover and TLS validation;
+- Cloudflare response security layer, including final HSTS/CSP after live validation;
+- local API machine selection and service deployment;
+- Cloudflare Tunnel for `api.leadflowai.pl`;
+- real lead-delivery path and end-to-end success proof;
+- local chatbot/RAG service proof;
+- durable rate limiting at the chosen API topology;
+- GA4/Search Console/Bing setup and consent layer;
+- final legal/privacy data after company registration is completed;
+- live browser/CWV/accessibility/security acceptance.
 
 ## Launch decision
 
-Stage 10 operational baseline does **not** constitute GO-LIVE approval.
+Current status remains **NOT READY FOR PRODUCTION LAUNCH**.
 
-Owner-authorized Stage 11 production acceptance must reconcile all unresolved items and issue explicit GO / NO-GO evidence.
+Stage 11A/B may produce a deployable static artifact and deployment workflow without authorizing a live production deployment.
+Final GO / NO-GO remains an Owner-controlled Stage 12 decision.

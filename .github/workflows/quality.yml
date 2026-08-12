@@ -17,7 +17,7 @@ jobs:
     timeout-minutes: 15
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Reject retired brand residue
         shell: bash
@@ -29,202 +29,70 @@ jobs:
           fi
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 22
 
       - name: Install dependencies
         run: npm install --no-audit --no-fund
 
-      - name: Search architecture contracts
-        run: npm run search:contract
+      - name: Full repository verification
+        run: npm run verify
+        env:
+          NEXT_PUBLIC_SITE_URL: https://leadflowai.pl
+          NEXT_PUBLIC_API_BASE_URL: https://api.leadflowai.pl
 
-      - name: Lead system contracts
-        run: npm run lead:contract
-
-      - name: Chat system contracts
-        run: npm run chat:contract
-
-      - name: Content and portfolio contracts
-        run: npm run content:contract
-
-      - name: Operations contracts
-        run: npm run operations:contract
-
-      - name: Typecheck
-        run: npm run typecheck
-
-      - name: Biome
-        run: npm run check
-
-      - name: Build
-        run: npm run build
-
-      - name: Runtime lead smoke
+      - name: Static export artifact contract
         shell: bash
         run: |
-          npm run start -- -H 127.0.0.1 -p 3000 >/tmp/leadflowai-next.log 2>&1 &
+          test -f out/index.html
+          test -f out/CNAME
+          test "$(tr -d '\r\n' < out/CNAME)" = "leadflowai.pl"
+          test -f out/.nojekyll
+          test -f out/sitemap.xml
+          test -f out/robots.txt
+          test ! -e out/api/leads
+          test ! -e out/api/chat
+          test ! -e out/api/health
+          grep -Rqs 'https://api.leadflowai.pl' out/_next
+          echo "STATIC_ARTIFACT_PASS html=PASS cname=PASS nojekyll=PASS api-origin=PASS"
+
+      - name: Static route smoke
+        shell: bash
+        run: |
+          python3 -m http.server 3000 -d out >/tmp/leadflowai-static.log 2>&1 &
           server_pid=$!
           trap 'kill "$server_pid" 2>/dev/null || true' EXIT
 
           ready=0
           for attempt in $(seq 1 30); do
-            if curl -fsS http://127.0.0.1:3000/kontakt >/tmp/contact.html; then
+            if curl -fsS http://127.0.0.1:3000/ >/tmp/home.html; then
               ready=1
               break
             fi
-            sleep 0.5
+            sleep 0.3
           done
           if [ "$ready" -ne 1 ]; then
-            cat /tmp/leadflowai-next.log
-            echo "LeadFlowAI production server did not become ready"
+            cat /tmp/leadflowai-static.log
             exit 1
           fi
 
-          grep -q "Opisz stronę" /tmp/contact.html
-          grep -q "kontakt@leadflowai.pl" /tmp/contact.html
-
-          foreign_status="$(curl -sS -o /tmp/foreign.json -w '%{http_code}' \
-            -X POST http://127.0.0.1:3000/api/leads \
-            -H 'Content-Type: application/json' \
-            -H 'Origin: https://invalid.example' \
-            --data '{}')"
-          test "$foreign_status" = "403"
-
-          started_at="$(node -e 'process.stdout.write(String(Date.now()-2000))')"
-          payload="$(printf '%s' "{\"name\":\"Test Lead\",\"email\":\"test@example.com\",\"phone\":\"\",\"company\":\"\",\"projectType\":\"strona-firmowa\",\"currentUrl\":\"\",\"goal\":\"Potrzebuję nowej strony firmowej do testu walidacji.\",\"scope\":\"\",\"budget\":\"nie-wiem\",\"deadline\":\"\",\"website\":\"\",\"contactPermission\":true,\"startedAt\":${started_at}}")"
-          fallback_status="$(curl -sS -o /tmp/fallback.json -w '%{http_code}' \
-            -X POST http://127.0.0.1:3000/api/leads \
-            -H 'Content-Type: application/json' \
-            -H 'Origin: http://127.0.0.1:3000' \
-            --data "$payload")"
-          test "$fallback_status" = "503"
-          grep -q 'DELIVERY_UNCONFIGURED' /tmp/fallback.json
-          grep -q 'kontakt@leadflowai.pl' /tmp/fallback.json
-
-          echo "LEAD_RUNTIME_SMOKE_PASS contact=200 foreign-origin=403 unconfigured-delivery=503"
-
-      - name: Runtime chat smoke
-        shell: bash
-        run: |
-          npm run start -- -H 127.0.0.1 -p 3001 >/tmp/leadflowai-chat.log 2>&1 &
-          server_pid=$!
-          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
-
-          ready=0
-          for attempt in $(seq 1 30); do
-            if curl -fsS http://127.0.0.1:3001/ >/tmp/home.html; then
-              ready=1
-              break
-            fi
-            sleep 0.5
+          for route in \
+            /kontakt/ \
+            /strony-internetowe/ \
+            /landing-pages/ \
+            /sklepy-internetowe/ \
+            /web-development/ \
+            /modernizacja-stron/ \
+            /audyt-strony/ \
+            /seo-aeo-geo/ \
+            /realizacje/ \
+            /wiedza/ \
+            /wiedza/jak-zaplanowac-strone-firmowa/; do
+            curl -fsS "http://127.0.0.1:3000${route}" >/dev/null
           done
-          if [ "$ready" -ne 1 ]; then
-            cat /tmp/leadflowai-chat.log
-            echo "LeadFlowAI chat smoke server did not become ready"
-            exit 1
-          fi
 
-          grep -q "Zapytaj LeadFlowAI" /tmp/home.html
-
-          foreign_status="$(curl -sS -o /tmp/chat-foreign.json -w '%{http_code}' \
-            -X POST http://127.0.0.1:3001/api/chat \
-            -H 'Content-Type: application/json' \
-            -H 'Origin: https://invalid.example' \
-            --data '{"message":"Czy robicie strony?"}')"
-          test "$foreign_status" = "403"
-
-          knowledge_status="$(curl -sS -o /tmp/chat-knowledge.json -w '%{http_code}' \
-            -X POST http://127.0.0.1:3001/api/chat \
-            -H 'Content-Type: application/json' \
-            -H 'Origin: http://127.0.0.1:3001' \
-            --data '{"message":"Czy robicie sklepy internetowe?"}')"
-          test "$knowledge_status" = "200"
-          grep -q '"mode":"knowledge"' /tmp/chat-knowledge.json
-          grep -qi 'sklep' /tmp/chat-knowledge.json
-
-          fallback_status="$(curl -sS -o /tmp/chat-fallback.json -w '%{http_code}' \
-            -X POST http://127.0.0.1:3001/api/chat \
-            -H 'Content-Type: application/json' \
-            -H 'Origin: http://127.0.0.1:3001' \
-            --data '{"message":"Opowiedz o hipotetycznym systemie kwantowym."}')"
-          test "$fallback_status" = "200"
-          grep -q '"mode":"fallback"' /tmp/chat-fallback.json
-          grep -q 'kontakt@leadflowai.pl' /tmp/chat-fallback.json
-
-          echo "CHAT_RUNTIME_SMOKE_PASS ui=200 foreign-origin=403 knowledge=200 fallback=200"
-
-      - name: Runtime content smoke
-        shell: bash
-        run: |
-          npm run start -- -H 127.0.0.1 -p 3002 >/tmp/leadflowai-content.log 2>&1 &
-          server_pid=$!
-          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
-
-          ready=0
-          for attempt in $(seq 1 30); do
-            if curl -fsS http://127.0.0.1:3002/realizacje >/tmp/portfolio.html; then
-              ready=1
-              break
-            fi
-            sleep 0.5
-          done
-          if [ "$ready" -ne 1 ]; then
-            cat /tmp/leadflowai-content.log
-            echo "LeadFlowAI content smoke server did not become ready"
-            exit 1
-          fi
-
-          grep -q "PROJEKT WŁASNY" /tmp/portfolio.html
-          grep -q "AKTYWNIE ROZWIJANY" /tmp/portfolio.html
-
-          curl -fsS http://127.0.0.1:3002/wiedza >/tmp/knowledge.html
-          grep -q "Wiedza, która pomaga" /tmp/knowledge.html
-
-          curl -fsS http://127.0.0.1:3002/wiedza/jak-zaplanowac-strone-firmowa >/tmp/article.html
-          grep -q "Jak zaplanować stronę firmową" /tmp/article.html
-          grep -q 'Article' /tmp/article.html
-
-          curl -fsS http://127.0.0.1:3002/sitemap.xml >/tmp/sitemap.xml
-          grep -q '/realizacje' /tmp/sitemap.xml
-          grep -q '/wiedza/jak-zaplanowac-strone-firmowa' /tmp/sitemap.xml
-
-          echo "CONTENT_RUNTIME_SMOKE_PASS portfolio=200 knowledge=200 article=200 sitemap=PASS"
-
-      - name: Runtime operations smoke
-        shell: bash
-        run: |
-          npm run start -- -H 127.0.0.1 -p 3003 >/tmp/leadflowai-ops.log 2>&1 &
-          server_pid=$!
-          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
-
-          ready=0
-          for attempt in $(seq 1 30); do
-            status="$(curl -sS -D /tmp/health-headers.txt -o /tmp/health.json -w '%{http_code}' http://127.0.0.1:3003/api/health || true)"
-            if [ "$status" = "200" ]; then
-              ready=1
-              break
-            fi
-            sleep 0.5
-          done
-          if [ "$ready" -ne 1 ]; then
-            cat /tmp/leadflowai-ops.log
-            echo "LeadFlowAI operations smoke server did not become ready"
-            exit 1
-          fi
-
-          grep -q '"status":"ok"' /tmp/health.json
-          grep -q '"service":"leadflowai-web"' /tmp/health.json
-          grep -qi '^cache-control: no-store' /tmp/health-headers.txt
-          grep -qi '^x-content-type-options: nosniff' /tmp/health-headers.txt
-          grep -qi '^x-frame-options: DENY' /tmp/health-headers.txt
-          grep -qi '^referrer-policy: strict-origin-when-cross-origin' /tmp/health-headers.txt
-          grep -qi '^permissions-policy: camera=(), microphone=(), geolocation=()' /tmp/health-headers.txt
-          grep -qi '^cross-origin-opener-policy: same-origin' /tmp/health-headers.txt
-
-          if grep -qi '^strict-transport-security:' /tmp/health-headers.txt; then
-            echo "Premature HSTS header detected"
-            exit 1
-          fi
-
-          echo "OPERATIONS_RUNTIME_SMOKE_PASS health=200 headers=5 hsts=DEFERRED"
+          curl -fsS http://127.0.0.1:3000/sitemap.xml | grep -q 'leadflowai.pl'
+          curl -fsS http://127.0.0.1:3000/robots.txt | grep -q 'sitemap.xml'
+          grep -q 'kontakt@leadflowai.pl' /tmp/home.html
+          echo "STATIC_ROUTE_SMOKE_PASS routes=12 sitemap=PASS robots=PASS"

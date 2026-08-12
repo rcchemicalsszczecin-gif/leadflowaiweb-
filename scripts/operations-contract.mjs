@@ -10,36 +10,25 @@ const read = (path) => {
   return readFileSync(path, "utf8");
 };
 
-const health = read("app/api/health/route.ts");
 const nextConfig = read("next.config.ts");
 const runbook = read("docs/operations/RUNBOOK.md");
 const monitoring = read("docs/operations/MONITORING.md");
 const recovery = read("docs/operations/BACKUP-RECOVERY.md");
 const readiness = read("docs/operations/DEPLOYMENT-READINESS.md");
+const frontend = read("docs/architecture/FRONTEND-DEPLOYMENT.md");
+const apiBoundary = read("docs/architecture/LOCAL-API-BOUNDARY.md");
 
-if (!health.includes('status: "ok"') || !health.includes('service: "leadflowai-web"') || !health.includes('"Cache-Control": "no-store"')) {
-  fail("health endpoint contract incomplete");
+if (!nextConfig.includes('output: "export"') || !nextConfig.includes("trailingSlash: true")) fail("static frontend output contract incomplete");
+if (nextConfig.includes("async headers") || nextConfig.includes("Strict-Transport-Security") || nextConfig.includes("Content-Security-Policy")) fail("server/edge headers incorrectly owned by static Next frontend");
+
+for (const phrase of ["GitHub Pages", "Cloudflare", "api.leadflowai.pl", "NOT READY FOR PRODUCTION LAUNCH"]) {
+  if (!readiness.includes(phrase) && !frontend.includes(phrase)) fail(`deployment architecture missing ${phrase}`);
 }
 
-for (const header of [
-  "X-Content-Type-Options",
-  "X-Frame-Options",
-  "Referrer-Policy",
-  "Permissions-Policy",
-  "Cross-Origin-Opener-Policy",
-]) {
-  if (!nextConfig.includes(header)) fail(`security header missing ${header}`);
-}
-
-if (nextConfig.includes("Strict-Transport-Security")) fail("HSTS enabled before verified production HTTPS decision");
-if (nextConfig.includes("Content-Security-Policy")) fail("CSP enabled before final runtime/provider inventory validation");
-
-for (const phrase of ["NOT AUTHORIZED", "UNSELECTED", "/api/health", "kontakt@leadflowai.pl"]) {
-  if (!runbook.includes(phrase) && !readiness.includes(phrase)) fail(`operations boundary missing ${phrase}`);
-}
-
-if (!monitoring.includes("Core Web Vitals") || !monitoring.includes("synthetic") && !monitoring.includes("Synthetic")) fail("monitoring baseline incomplete");
+if (!apiBoundary.includes("POST /leads") || !apiBoundary.includes("POST /chat") || !apiBoundary.includes("GET /health") || !apiBoundary.includes("Cloudflare Tunnel")) fail("local API boundary incomplete");
+if (!apiBoundary.includes("https://leadflowai.pl") || !apiBoundary.includes("CORS")) fail("local API origin contract incomplete");
+if (!monitoring.includes("Core Web Vitals") || (!monitoring.includes("synthetic") && !monitoring.includes("Synthetic"))) fail("monitoring baseline incomplete");
 if (!recovery.includes("last known-good") || !recovery.includes("Secrets") || !recovery.includes("Lead data")) fail("recovery domains incomplete");
-if (!readiness.includes("NOT READY FOR PRODUCTION LAUNCH") || !readiness.includes("GO / NO-GO")) fail("deployment readiness boundary incomplete");
+if (!runbook.includes("NOT AUTHORIZED") && !readiness.includes("PRODUCTION NOT YET AUTHORIZED")) fail("production authorization boundary missing");
 
-console.log("OPERATIONS_CONTRACT_PASS health=PASS headers=5 monitoring=PASS recovery=PASS production=NOT_AUTHORIZED");
+console.log("OPERATIONS_CONTRACT_PASS static-frontend=PASS api-boundary=PASS monitoring=PASS recovery=PASS production=NOT_AUTHORIZED");
