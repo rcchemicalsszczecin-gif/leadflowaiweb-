@@ -11,6 +11,7 @@ const requireFile = (path) => {
 };
 
 const routes = [
+  "kontakt",
   "strony-internetowe",
   "landing-pages",
   "sklepy-internetowe",
@@ -30,8 +31,8 @@ for (const route of routes) {
 }
 
 const sitemap = requireFile("app/sitemap.ts");
-if (!sitemap.includes("coreServiceLinks") || !sitemap.includes("searchServiceLinks")) {
-  fail("sitemap is not derived from both public registries");
+if (!sitemap.includes("coreServiceLinks") || !sitemap.includes("searchServiceLinks") || !sitemap.includes('"kontakt"')) {
+  fail("sitemap is not derived from public registries/contact route");
 }
 
 const robots = requireFile("app/robots.ts");

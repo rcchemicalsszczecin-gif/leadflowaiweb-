@@ -18,7 +18,7 @@ export function SiteHeader() {
         ))}
       </nav>
 
-      <a className="button button-small button-ghost" href="/#contact">
+      <a className="button button-small button-ghost" href="/kontakt">
         Wycena strony
       </a>
     </header>

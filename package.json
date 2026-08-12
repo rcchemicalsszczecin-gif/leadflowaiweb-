@@ -10,8 +10,9 @@
     "lint": "biome lint .",
     "format": "biome format --write .",
     "search:contract": "node scripts/search-contract.mjs",
+    "lead:contract": "node scripts/lead-contract.mjs",
     "check": "npm run typecheck && npm run lint",
-    "verify": "npm run search:contract && npm run check && npm run build"
+    "verify": "npm run search:contract && npm run lead:contract && npm run check && npm run build"
   },
   "engines": {
     "node": ">=20.9.0"

@@ -39,6 +39,9 @@ jobs:
       - name: Search architecture contracts
         run: npm run search:contract
 
+      - name: Lead system contracts
+        run: npm run lead:contract
+
       - name: Typecheck
         run: npm run typecheck
 
@@ -47,3 +50,46 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      - name: Runtime lead smoke
+        shell: bash
+        run: |
+          npm run start -- -H 127.0.0.1 -p 3000 >/tmp/leadflowai-next.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+
+          ready=0
+          for attempt in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:3000/kontakt >/tmp/contact.html; then
+              ready=1
+              break
+            fi
+            sleep 0.5
+          done
+          if [ "$ready" -ne 1 ]; then
+            cat /tmp/leadflowai-next.log
+            echo "LeadFlowAI production server did not become ready"
+            exit 1
+          fi
+
+          grep -q "Opisz stronę" /tmp/contact.html
+
+          foreign_status="$(curl -sS -o /tmp/foreign.json -w '%{http_code}' \
+            -X POST http://127.0.0.1:3000/api/leads \
+            -H 'Content-Type: application/json' \
+            -H 'Origin: https://invalid.example' \
+            --data '{}')"
+          test "$foreign_status" = "403"
+
+          started_at="$(node -e 'process.stdout.write(String(Date.now()-2000))')"
+          payload="$(printf '%s' "{\"name\":\"Test Lead\",\"email\":\"test@example.com\",\"phone\":\"\",\"company\":\"\",\"projectType\":\"strona-firmowa\",\"currentUrl\":\"\",\"goal\":\"Potrzebuję nowej strony firmowej do testu walidacji.\",\"scope\":\"\",\"budget\":\"nie-wiem\",\"deadline\":\"\",\"website\":\"\",\"contactPermission\":true,\"startedAt\":${started_at}}")"
+          fallback_status="$(curl -sS -o /tmp/fallback.json -w '%{http_code}' \
+            -X POST http://127.0.0.1:3000/api/leads \
+            -H 'Content-Type: application/json' \
+            -H 'Origin: http://127.0.0.1:3000' \
+            --data "$payload")"
+          test "$fallback_status" = "503"
+          grep -q 'DELIVERY_UNCONFIGURED' /tmp/fallback.json
+          grep -q 'kontakt@tervyxa.pl' /tmp/fallback.json
+
+          echo "LEAD_RUNTIME_SMOKE_PASS contact=200 foreign-origin=403 unconfigured-delivery=503"
