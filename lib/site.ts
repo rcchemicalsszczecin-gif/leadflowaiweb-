@@ -9,7 +9,7 @@ export const site = {
 
 export const navigation = [
   { href: "/strony-internetowe", label: "WWW" },
-  { href: "/#system", label: "System" },
+  { href: "/seo-aeo-geo", label: "SEO · AEO · GEO" },
   { href: "/#intelligence", label: "Chatboty" },
   { href: "/#process", label: "Proces" },
 ] as const;

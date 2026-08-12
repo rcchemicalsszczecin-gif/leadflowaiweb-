@@ -1,7 +1,10 @@
+import { JsonLd } from "@/components/json-ld";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { coreServiceLinks, type ServicePageData, type ServiceSlug, servicePages } from "@/lib/services";
+import { getPublicPage, primaryPublicLinks } from "@/lib/page-registry";
+import type { ServicePageData } from "@/lib/services";
 import { site } from "@/lib/site";
+import { getPageStructuredData } from "@/lib/structured-data";
 
 type ServicePageProps = {
   page: ServicePageData;
@@ -10,6 +13,8 @@ type ServicePageProps = {
 export function ServicePage({ page }: ServicePageProps) {
   return (
     <main className="service-page">
+      <JsonLd data={getPageStructuredData(page)} />
+
       <section className="service-hero section-dark blueprint-surface">
         <div className="page-shell">
           <SiteHeader />
@@ -141,11 +146,12 @@ export function ServicePage({ page }: ServicePageProps) {
         <div className="page-shell section-pad">
           <div className="service-section-head">
             <p className="service-index">05 / RELATED</p>
-            <h2>Zobacz powiązane obszary WWW.</h2>
+            <h2>Zobacz powiązane obszary WWW i widoczności.</h2>
           </div>
           <nav className="related-grid" aria-label="Powiązane usługi">
             {page.related.map((slug) => {
-              const related = servicePages[slug as ServiceSlug];
+              const related = getPublicPage(slug);
+              if (!related) return null;
               return (
                 <a key={slug} href={`/${slug}`}>
                   <span>{related.code}</span>
@@ -155,8 +161,8 @@ export function ServicePage({ page }: ServicePageProps) {
               );
             })}
           </nav>
-          <nav className="service-directory" aria-label="Wszystkie główne usługi WWW">
-            {coreServiceLinks.map((item) => (
+          <nav className="service-directory" aria-label="Główne usługi LeadFlowAI">
+            {primaryPublicLinks.map((item) => (
               <a key={item.slug} href={`/${item.slug}`} aria-current={item.slug === page.slug ? "page" : undefined}>
                 {item.label}
               </a>

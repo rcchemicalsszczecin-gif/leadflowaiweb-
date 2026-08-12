@@ -36,6 +36,9 @@ jobs:
       - name: Install dependencies
         run: npm install --no-audit --no-fund
 
+      - name: Search architecture contracts
+        run: npm run search:contract
+
       - name: Typecheck
         run: npm run typecheck
 

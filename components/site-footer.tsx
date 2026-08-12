@@ -1,3 +1,4 @@
+import { searchServiceLinks } from "@/lib/search-pages";
 import { coreServiceLinks } from "@/lib/services";
 import { site } from "@/lib/site";
 
@@ -15,8 +16,8 @@ export function SiteFooter() {
       </div>
 
       <div className="footer-meta">
-        <nav className="footer-service-links" aria-label="Główne usługi WWW">
-          {coreServiceLinks.map((item) => (
+        <nav className="footer-service-links" aria-label="Główne usługi LeadFlowAI">
+          {[...coreServiceLinks, ...searchServiceLinks].map((item) => (
             <a key={item.slug} href={`/${item.slug}`}>
               {item.label}
             </a>

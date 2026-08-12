@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
+import { JsonLd } from "@/components/json-ld";
 import { site } from "@/lib/site";
+import { getGlobalStructuredData } from "@/lib/structured-data";
 import "./globals.css";
 import "./services.css";
 
@@ -41,7 +43,10 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="pl">
-      <body>{children}</body>
+      <body>
+        <JsonLd data={getGlobalStructuredData()} />
+        {children}
+      </body>
     </html>
   );
 }
