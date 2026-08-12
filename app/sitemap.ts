@@ -4,6 +4,8 @@ import { searchServiceLinks } from "@/lib/search-pages";
 import { coreServiceLinks } from "@/lib/services";
 import { site } from "@/lib/site";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
     "",
