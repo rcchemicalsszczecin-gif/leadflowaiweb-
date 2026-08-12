@@ -13,7 +13,9 @@ HOMEPAGE=IMPLEMENTED_V1
 CORE_MONEY_PAGES=PASS
 SEO_AEO_GEO_DEEP_FOUNDATION=PASS
 CONTACT_UI=PASS
-CHATBOT_UI=PASS
+CHATBOT_OFFER=YES
+CHATBOT_PUBLIC_UI=OFF
+CHATBOT_CODE=DORMANT_READY
 PORTFOLIO_KNOWLEDGE=PASS
 STATIC_FRONTEND=PASS
 GITHUB_PAGES_ARTIFACT=PASS
@@ -35,7 +37,7 @@ Quality workflow run `31628230187` — PASS.
 Validated on commit `b69cf053f8520ee48b152ba03fed9d66397b6fbc`:
 - Next.js static export with `output: "export"`;
 - dynamic frontend Route Handlers removed from `app/api/**`;
-- lead and assistant browser requests target `https://api.leadflowai.pl`;
+- browser integrations use external service origins instead of GitHub Pages Route Handlers;
 - `out/` generated successfully;
 - `out/CNAME` contains `leadflowai.pl`;
 - `out/.nojekyll` exists;
@@ -44,13 +46,15 @@ Validated on commit `b69cf053f8520ee48b152ba03fed9d66397b6fbc`:
 - GitHub Pages Actions workflow is prepared for `main` / explicit dispatch and does not auto-deploy `build/leadflowai`;
 - representative public routes passed static HTTP smoke tests.
 
+## Chatbot owner decision
+
+AI chatbots remain part of the LeadFlowAI commercial offer. The LeadFlowAI site chatbot itself is intentionally disabled until explicit Owner configuration/enablement. The dormant component and future local-AI boundary stay in the repository, but `app/layout.tsx` must not mount `SiteAssistant` or load `chat.css` while this decision remains active.
+
 ## Current architecture boundary
 
 Public frontend target: GitHub Pages.
 DNS/TLS/edge target: Cloudflare.
-Dynamic API target: `api.leadflowai.pl` on Owner-controlled local hardware through Cloudflare Tunnel.
+Future dynamic chatbot API target: `api.leadflowai.pl` on Owner-controlled local hardware through Cloudflare Tunnel, only if/when the public chatbot is enabled.
 Public mail: `kontakt@leadflowai.pl`, planned through Cloudflare Email Routing to the existing Gmail destination.
-
-The previous in-repository lead/chat server implementations were validated as behavior during earlier stages but are no longer claimed to execute on GitHub Pages. Their required behavior is preserved in `docs/architecture/LOCAL-API-BOUNDARY.md` for the local backend stage.
 
 Production and `main` remain untouched.
