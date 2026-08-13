@@ -49,9 +49,9 @@ export function SearchVisibilityExplainerV13() {
               <small>{view.code}</small>
               <h3>{view.title}</h3>
               <p>{view.description}</p>
-              <div className="search-signal-list-v13" role="list" aria-label="Najważniejsze sygnały">
-                {view.signals.map((signal) => <span key={signal} role="listitem">{signal}</span>)}
-              </div>
+              <ul className="search-signal-list-v13" aria-label="Najważniejsze sygnały">
+                {view.signals.map((signal) => <li key={signal}>{signal}</li>)}
+              </ul>
             </article>
           ))}
         </div>
@@ -87,9 +87,9 @@ export function SearchVisibilityExplainerV13() {
                 widoczności SEO/AEO/GEO i systemach internetowych. Zakres można zweryfikować na
                 stronach usług, w bazie wiedzy i realizacjach własnych.
               </p>
-              <div className="ai-preview-links-v13" role="list" aria-label="Publiczne źródła informacji">
-                <span role="listitem">/uslugi</span><span role="listitem">/wiedza</span><span role="listitem">/realizacje</span>
-              </div>
+              <ul className="ai-preview-links-v13" aria-label="Publiczne źródła informacji">
+                <li>/uslugi</li><li>/wiedza</li><li>/realizacje</li>
+              </ul>
             </div>
             <p className="ai-preview-disclaimer-v13">
               To demonstracja architektury informacji, nie symulacja konkretnego modelu i nie gwarancja
