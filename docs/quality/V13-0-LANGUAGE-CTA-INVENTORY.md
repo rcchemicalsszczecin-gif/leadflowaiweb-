@@ -1,6 +1,8 @@
 # V13.0 — language and CTA inventory
 
-STATUS: ACTIVE INVENTORY
+STATUS: HISTORICAL V13.0 SNAPSHOT — SUPERSEDED BY V13.10 PUBLIC GLOSSARY + LANGUAGE GATES
+
+> Ten dokument zachowuje stan wejściowy V13.0 jako evidence. Nie jest bieżącym source of truth dla publicznego języka ani CTA. Aktualne reguły: `docs/quality/V13-10-PUBLIC-GLOSSARY.md` oraz aktywne kontrakty V13.
 
 ## Public English residue — translate/remove
 
