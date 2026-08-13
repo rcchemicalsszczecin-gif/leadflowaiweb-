@@ -58,10 +58,11 @@ LeadFlowAI must itself demonstrate the quality it sells:
 - maintainability and observability.
 
 ## Design authority
-The current homepage art direction is recorded in `docs/design/LEADFLOWAI-PREMIUM-ART-DIRECTION-V9.md`.
-V9 supersedes V8 for homepage composition, typography hierarchy, cinematic stage presentation, premium material language and signature interaction.
-V7 remains authoritative for the dedicated Live Lab and interactive service routes; V6 remains fallback frame grammar outside V9 overrides; V5 remains authoritative for the realistic hardware background and bounded water renderer.
-Premium direction means fewer closed frames, stronger editorial scale, cinematic whitespace, restrained signal green and interactions with explicit roles.
+The current homepage calibration direction is recorded in `docs/design/LEADFLOWAI-PREMIUM-CALIBRATION-V9-2.md`.
+V9.2 supersedes V9 only for homepage width calibration, clipping control, cinematic composition variety, progress/navigation detail, reveal timing, browser-native 3D centerpiece and the closing scene.
+V9 remains the underlying premium art-direction language and keeps Liquid Circuit plus first-party proof authoritative.
+V7 remains authoritative for the dedicated Live Lab and interactive service routes; V6 remains fallback frame grammar outside premium overrides; V5 remains authoritative for the realistic hardware background and bounded water renderer.
+Premium direction means broad safe compositions, deliberate whitespace, strong editorial scale, restrained signal green, selective interaction and no accidental clipping.
 Interactive additions must remain bounded, accessible and performance-aware. Heavy third-party 3D dependencies are not justified for decorative homepage effects.
 Visual implementation must follow the current Owner-approved design record unless the Owner changes it.
 
