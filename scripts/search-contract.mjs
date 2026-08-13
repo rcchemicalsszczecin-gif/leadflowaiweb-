@@ -74,7 +74,7 @@ for (const phrase of ["strony-3d-webgl", "interaktywne-strony", "motion-design",
 }
 
 const intentMap = requireFile("docs/quality/V13-10-SEARCH-INTENT-MAP.md");
-const intentRows = [...intentMap.matchAll(/^\|\s*(\/[^|\s]+)\s*\|\s*([^|]+?)\s*\|$/gm)]
+const intentRows = [...intentMap.matchAll(/^\|\s*(\/(?:[^|\s]+)?)\s*\|\s*([^|]+?)\s*\|$/gm)]
   .map((match) => ({ url: match[1], intent: match[2].trim() }));
 if (intentRows.length !== 63) fail(`intent map must contain 63 public URLs, found ${intentRows.length}`);
 
