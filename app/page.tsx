@@ -1,22 +1,18 @@
+import { BeforeAfterDemo, ProjectCommandCenter } from "@/components/interactive-experience";
 import {
-  BeforeAfterDemo,
-  BrowserDemo,
-  CapabilityConstellation,
-  InteractiveServiceCards,
-  Live3DShowcase,
-  ProjectCommandCenter,
-  SignalDivider,
-  SystemAssembly,
-} from "@/components/interactive-experience";
-import {
-  HeroSystemV8,
-  StageVisualV8,
-  SystemSpineV8,
-} from "@/components/premium-composition-v8";
+  LiquidCircuitV9,
+  MagneticLinkV9,
+  PremiumHeroV9,
+  PremiumInteractionLayerV9,
+  PremiumProofV9,
+  PremiumStageJourneyV9,
+  ScrollStoryV9,
+  WhatWeBuildV9,
+} from "@/components/premium-art-direction-v9";
 import { SectionLabel } from "@/components/section-label";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { site, systemStages } from "@/lib/site";
+import { site } from "@/lib/site";
 
 const qualitySignals = [
   ["SEMANTIC", "HTML i struktura informacji projektowane jako fundament, nie kosmetyka."],
@@ -50,98 +46,64 @@ const faqs = [
   },
 ] as const;
 
-const stageTitles = {
-  CREATE: ["Projektujemy", "i budujemy."],
-  DISCOVER: ["Budujemy widoczność", "od fundamentów."],
-  CONVERT: ["Projektujemy drogę", "do kontaktu."],
-  INTELLIGENCE: ["Dodajemy inteligencję", "tam, gdzie ma sens."],
-  CONNECT: ["Łączymy stronę", "z biznesem."],
-  CARE: ["Utrzymujemy", "i rozwijamy."],
-} as const satisfies Record<(typeof systemStages)[number]["key"], readonly [string, string]>;
-
-function getStageSectionId(stageKey: (typeof systemStages)[number]["key"]) {
-  switch (stageKey) {
-    case "CREATE":
-      return "create";
-    case "DISCOVER":
-      return "discover";
-    case "CONVERT":
-      return "convert";
-    case "INTELLIGENCE":
-      return "intelligence";
-    case "CONNECT":
-      return "connect";
-    case "CARE":
-      return "care";
-  }
-}
-
 export default function HomePage() {
   return (
-    <main id="top">
-      <section className="hero hero-v8 section-dark blueprint-surface" aria-labelledby="hero-title">
+    <main id="top" className="premium-page-v9">
+      <PremiumInteractionLayerV9 />
+
+      <section className="hero hero-v9 section-dark" aria-labelledby="hero-title">
         <div className="page-shell">
           <SiteHeader />
 
           <div className="hero-grid">
             <div className="hero-copy">
-              <p className="eyebrow">LEADFLOWAI / WEB ENGINEERING</p>
-              <div className="hero-status-v8" aria-hidden="true">
-                <span>SYSTEM / LIVE</span>
-                <span>DESIGN</span>
-                <span>DEVELOPMENT</span>
-                <span>SEARCH</span>
-                <span>3D / INTERACTION</span>
-              </div>
+              <p className="eyebrow">LEADFLOWAI / DIGITAL EXPERIENCE STUDIO</p>
               <h1 id="hero-title">
                 Strony internetowe
                 <span>zaprojektowane do wzrostu.</span>
               </h1>
               <p className="hero-lead">
-                Projektujemy i budujemy nowoczesne WWW, łącząc design, development, SEO, AEO,
-                GEO / AI Search, konwersję i inteligentne funkcje w jeden spójny system.
+                Projektujemy cyfrowe doświadczenia, które łączą design, development, 3D,
+                SEO, AEO, GEO / AI Search, konwersję i inteligentne funkcje w jeden spójny produkt.
               </p>
 
               <div className="hero-actions">
-                <a className="button button-primary" href="#contact">
-                  Wyceń stronę
-                  <span aria-hidden="true">↗</span>
-                </a>
-                <a className="text-link" href="/lab">
-                  Otwórz Live Lab <span aria-hidden="true">↗</span>
-                </a>
+                <MagneticLinkV9 href="#contact" className="hero-primary-v9" cursor="START">
+                  Porozmawiajmy o projekcie <span aria-hidden="true">↗</span>
+                </MagneticLinkV9>
+                <MagneticLinkV9 href="/lab" className="hero-secondary-v9" cursor="OPEN">
+                  Wejdź do Live Lab <span aria-hidden="true">↗</span>
+                </MagneticLinkV9>
               </div>
 
               <ul className="capability-line" aria-label="Główne kompetencje">
-                <li>WWW</li>
+                <li>WEB</li>
                 <li>3D</li>
-                <li>SEO</li>
-                <li>AEO</li>
-                <li>GEO</li>
-                <li>AI</li>
+                <li>SEARCH</li>
                 <li>CRO</li>
+                <li>AI</li>
               </ul>
             </div>
 
             <div className="hero-visual">
-              <HeroSystemV8 />
+              <PremiumHeroV9 />
             </div>
           </div>
 
           <div className="hero-bottomline" aria-hidden="true">
-            <span>SCROLL TO ARCHITECTURE</span>
-            <span>LIVE / INTERACTIVE / SYSTEM</span>
+            <span>SCROLL / EXPERIENCE</span>
+            <span>LEADFLOW / 2026</span>
           </div>
         </div>
       </section>
 
-      <section id="system" className="section-light editorial-intro">
+      <section id="system" className="premium-intro-v9">
         <div className="page-shell section-pad">
-          <SectionLabel index="00" label="SYSTEM" />
-          <div className="editorial-grid content-frame content-frame-wide">
+          <SectionLabel index="00" label="PHILOSOPHY" />
+          <div className="editorial-grid">
             <h2>
               Nie składamy stron.
-              <span>Projektujemy systemy WWW.</span>
+              <span>Projektujemy doświadczenia.</span>
             </h2>
             <div className="editorial-copy">
               <p>
@@ -150,71 +112,29 @@ export default function HomePage() {
                 mierzyć oraz rozwijać.
               </p>
               <p>
-                Dlatego design, kod, widoczność, konwersję i interakcję traktujemy jako warstwy
-                jednego produktu.
+                Dlatego design, kod, widoczność, konwersję, motion i inteligencję traktujemy
+                jako warstwy jednego produktu.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="system-stages system-stages-v8" aria-label="System pracy LeadFlowAI">
-        <SystemSpineV8 />
-        {systemStages.map((stage, index) => {
-          const [titleLead, titleAccent] = stageTitles[stage.key];
-          const reverse = index % 2 === 1;
+      <PremiumStageJourneyV9 />
+      <WhatWeBuildV9 />
+      <ScrollStoryV9 />
+      <LiquidCircuitV9 />
+      <PremiumProofV9 />
 
-          return (
-            <article
-              key={stage.key}
-              id={getStageSectionId(stage.key)}
-              data-v8-stage={index}
-              className="stage-section section-dark v8-stage-section"
-            >
-              <div className={`page-shell content-frame stage-module-v8 ${reverse ? "is-reverse-v8" : ""}`}>
-                <div className="stage-meta-v8">
-                  <SectionLabel index={stage.id} label={stage.key} inverted />
-                  <span className="stage-runtime-v8">SYSTEM / ACTIVE</span>
-                </div>
-
-                <div className="stage-copy-v8">
-                  <h2>
-                    <span>{titleLead}</span>
-                    <em>{titleAccent}</em>
-                  </h2>
-                  <p>{stage.description}</p>
-                  <ul className="tag-list" aria-label={`Zakres ${stage.key}`}>
-                    {stage.tags.map((tag) => (
-                      <li key={tag}>{tag}</li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="stage-visual-v8">
-                  <StageVisualV8 stageKey={stage.key} />
-                </div>
-              </div>
-            </article>
-          );
-        })}
-      </section>
-
-      <div className="experience-zone-v8">
-        <SignalDivider label="LIVE CAPABILITIES / START" />
-        <Live3DShowcase />
-        <InteractiveServiceCards />
-        <SystemAssembly />
-        <SignalDivider label="INTERFACE / PROOF" />
-        <BrowserDemo />
+      <div className="premium-before-after-zone-v9" data-cursor="SLIDE">
         <BeforeAfterDemo />
-        <CapabilityConstellation />
       </div>
 
-      <section id="process" className="section-light process-section">
+      <section id="process" className="section-light process-section premium-process-v9">
         <div className="page-shell section-pad">
           <SectionLabel index="07" label="PROCESS" />
-          <div className="process-head content-frame content-frame-split">
-            <h2>Od celu biznesowego do działającego systemu.</h2>
+          <div className="process-head">
+            <h2>Od celu biznesowego do działającego produktu.</h2>
             <p>
               Zakres dobieramy do projektu. Nie każdy klient potrzebuje chatbota, sklepu, 3D czy
               zaawansowanej automatyzacji — ale każdy projekt potrzebuje świadomej architektury.
@@ -231,12 +151,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="quality-section section-dark blueprint-surface">
+      <section className="quality-section section-dark premium-quality-v9">
         <div className="page-shell section-pad">
-          <SectionLabel index="08" label="QUALITY SIGNAL" inverted />
-          <div className="quality-head content-frame content-frame-split">
-            <h2>Nasza własna strona ma spełniać standard, który sprzedajemy.</h2>
-            <p>Bez skrótów typu „naprawimy SEO później”. Jakość jest częścią architektury.</p>
+          <SectionLabel index="08" label="QUALITY" inverted />
+          <div className="quality-head">
+            <h2>Nasza strona ma spełniać standard, który sprzedajemy.</h2>
+            <p>Jakość nie jest etapem na końcu. Jest częścią architektury od pierwszej decyzji.</p>
           </div>
 
           <div className="quality-grid">
@@ -251,33 +171,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section-light proof-section">
-        <div className="page-shell section-pad proof-grid content-frame content-frame-proof">
-          <SectionLabel index="09" label="PROOF" />
-          <div>
-            <p className="proof-kicker">REAL WORK + LIVE DEMOS</p>
-            <h2>Portfolio bez fikcji.</h2>
-          </div>
-          <div className="proof-copy">
-            <p>
-              Pokazujemy wyłącznie prawdziwe realizacje i dane, które możemy udokumentować.
-              Demonstracje interaktywne na tej stronie są jawnie oznaczone jako Live Lab lub demo
-              koncepcyjne, a nie jako projekty klientów.
-            </p>
-            <a className="text-link text-link-dark" href="/lab">
-              Otwórz wszystkie demonstracje <span aria-hidden="true">↗</span>
-            </a>
-          </div>
-        </div>
-      </section>
+      <div className="premium-command-zone-v9">
+        <ProjectCommandCenter />
+      </div>
 
-      <SignalDivider label="PROJECT / CONFIGURATION" />
-      <ProjectCommandCenter />
-
-      <section className="section-light faq-section">
+      <section className="section-light faq-section premium-faq-v9">
         <div className="page-shell section-pad">
-          <SectionLabel index="10" label="FAQ" />
-          <div className="faq-grid content-frame content-frame-faq">
+          <SectionLabel index="09" label="FAQ" />
+          <div className="faq-grid">
             <h2>Najważniejsze pytania.</h2>
             <div className="faq-list">
               {faqs.map((item) => (
@@ -291,19 +192,19 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="contact" className="contact-section section-dark">
-        <div className="page-shell contact-grid content-frame content-frame-contact">
-          <SectionLabel index="11" label="START" inverted />
+      <section id="contact" className="contact-section section-dark premium-contact-v9">
+        <div className="page-shell contact-grid">
+          <SectionLabel index="10" label="START" inverted />
           <div>
             <p className="contact-kicker">MASZ PROJEKT?</p>
-            <h2>Porozmawiajmy o stronie, która ma konkretną pracę do wykonania.</h2>
+            <h2>Zbudujmy stronę, którą da się zapamiętać.</h2>
           </div>
           <div className="contact-actions">
-            <a className="button button-primary button-large" href={`mailto:${site.email}`}>
+            <MagneticLinkV9 href={`mailto:${site.email}`} className="button button-primary button-large" cursor="MAIL">
               {site.email}
               <span aria-hidden="true">↗</span>
-            </a>
-            <p>WWW · 3D / WebGL · Interactive · E-commerce · SEO · AEO · GEO · Chatboty · Integracje</p>
+            </MagneticLinkV9>
+            <p>WEB · 3D / WEBGL · INTERACTIVE · E-COMMERCE · SEARCH · AI · INTEGRACJE</p>
           </div>
         </div>
 
