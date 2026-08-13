@@ -1,5 +1,6 @@
 import { PublicServicePage } from "@/components/public-service-page";
 import { getSearchMetadata, getSearchPage } from "@/lib/search-pages";
+import { withV13SocialMetadata } from "@/lib/social-metadata-v13";
 
 const page = {
   ...getSearchPage("seo-aeo-geo"),
@@ -10,11 +11,7 @@ const page = {
   capabilities: ["SEO techniczne", "SEO on-page", "AEO", "GEO", "Architektura treści", "Encje", "Dane strukturalne", "Linkowanie wewnętrzne", "Publiczna prawda", "Pomiar"],
 };
 
-export const metadata = {
-  ...getSearchMetadata("seo-aeo-geo"),
-  title: page.title,
-  description: page.lead,
-};
+export const metadata = withV13SocialMetadata(getSearchMetadata("seo-aeo-geo"), page.title, page.lead);
 
 export default function SeoAeoGeoPage() {
   return <PublicServicePage page={page} />;
