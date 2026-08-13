@@ -1,4 +1,5 @@
 import { JsonLd } from "@/components/json-ld";
+import { ServiceKnowledgeLinks } from "@/components/service-knowledge-links";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { getPublicPage, primaryPublicLinks } from "@/lib/page-registry";
@@ -146,10 +147,12 @@ export function ServicePage({ page }: ServicePageProps) {
         </div>
       </section>
 
+      <ServiceKnowledgeLinks slug={publicPage.slug} />
+
       <section className="section-light related-services">
         <div className="page-shell section-pad">
           <div className="service-section-head">
-            <p className="service-index">05 / POWIĄZANE</p>
+            <p className="service-index">06 / POWIĄZANE</p>
             <h2>Zobacz powiązane usługi i obszary rozwoju.</h2>
           </div>
           <nav className="related-grid" aria-label="Powiązane usługi">
@@ -177,7 +180,7 @@ export function ServicePage({ page }: ServicePageProps) {
 
       <section className="contact-section section-dark">
         <div className="page-shell contact-grid">
-          <p className="section-label section-label-inverted"><span>06</span><span>LEADFLOWAI / KONTAKT</span></p>
+          <p className="section-label section-label-inverted"><span>07</span><span>LEADFLOWAI / KONTAKT</span></p>
           <div>
             <p className="contact-kicker">MASZ PROJEKT?</p>
             <h2>Opisz cel. Dobierzemy zakres strony do realnej pracy, którą ma wykonywać.</h2>
