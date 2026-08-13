@@ -12,6 +12,7 @@ export const navigation = [
   { href: "/realizacje", label: "Realizacje" },
   { href: "/wiedza", label: "Wiedza" },
   { href: "/o-nas", label: "O nas" },
+  { href: "/lab", label: "Demo" },
   { href: "/#process", label: "Jak pracujemy" },
 ] as const;
 
