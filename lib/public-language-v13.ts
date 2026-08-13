@@ -5,6 +5,8 @@ const terms: Record<string, string> = {
   INTELLIGENCE: "INTELIGENCJA",
   CONNECT: "INTEGRACJE",
   CARE: "OPIEKA",
+  SEARCH: "WIDOCZNOŚĆ",
+  WWW: "WWW",
 };
 
 export function publicLabel(value: string): string {
