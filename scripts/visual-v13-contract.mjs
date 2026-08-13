@@ -10,6 +10,7 @@ const read = (path) => {
   return readFileSync(path, "utf8");
 };
 
+const owner = read("docs/governance/WEBSITE-OWNER-DECISION-V13.md");
 const home = read("app/page.tsx");
 const hero = read("components/premium-v9-interactions.tsx");
 const css = read("app/v13-visual-authority.css");
@@ -18,6 +19,7 @@ const sitemap = read("app/sitemap.ts");
 const portfolio = read("app/realizacje/page.tsx");
 const packageJson = read("package.json");
 
+if (!owner.includes("STATUS: ACTIVE OWNER AUTHORITY")) fail("V13 owner authority missing");
 for (const required of ["Wyceń projekt", "Zobacz realizacje", "STRONY WWW · WIDOCZNOŚĆ · SYSTEMY"]) {
   if (!home.includes(required)) fail(`buyer-first homepage signal missing: ${required}`);
 }
@@ -35,4 +37,4 @@ if (!portfolio.includes("PortfolioProjectVisual") || !existsSync("components/por
 if (css.includes("images.unsplash.com") || layout.includes("images.unsplash.com")) fail("V13 public visual layer still depends on Unsplash");
 if (packageJson.includes('"three"') || packageJson.includes("@react-three") || packageJson.includes("babylon")) fail("heavy 3D dependency introduced");
 
-console.log("VISUAL_V13_PASS hero=PRODUCT_SHOWCASE mobile=DEDICATED reduced-motion=PASS og=FIRST_PARTY trust=PASS portfolio=VISUAL stock=ABSENT heavy-3d=ABSENT");
+console.log("VISUAL_V13_PASS authority=PASS hero=PRODUCT_SHOWCASE mobile=DEDICATED reduced-motion=PASS og=FIRST_PARTY trust=PASS portfolio=VISUAL stock=ABSENT heavy-3d=ABSENT");
