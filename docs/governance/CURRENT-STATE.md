@@ -22,14 +22,16 @@ This file is the authoritative current-state checkpoint for release status, acti
 ## Active work branch
 
 - Branch: `content/full-offer-v11`.
-- Latest fully validated PR head before this documentation-only checkpoint update: `fe9792fe876385947f0630154d865042da217a46` with Quality #136 SUCCESS.
+- Latest fully validated product/CI head before this documentation cleanup: `17cb932eeb85f104ad204f5f5fc0434002eaa60e` with Quality #147 SUCCESS.
+- Subsequent cleanup commit `675575011e73b1f7bc4c1bdc924883162e36889b` removes the inactive standalone governance checker only.
 - The branch contains Full Offer V11 plus the bounded Portfolio V12 foundation and bounded repository-hardening corrections.
 - It is not production authority until Owner-controlled promotion to `main`.
 
 ## Current validated product state
 
-The latest complete PR Quality validation for the validated branch head against current `main` passed the complete repository verification chain:
+The latest complete Quality validation for the validated branch head against current `main` passed the complete repository verification chain:
 
+- deterministic dependency installation: PASS with committed `package-lock.json` and `npm ci`;
 - search contract: PASS;
 - Full Offer V11: PASS, including 20 expanded services across six pillars;
 - Portfolio V12: PASS, three first-party/own projects, zero fabricated external client case studies;
@@ -60,6 +62,10 @@ Completed and validated on the work branch:
 - The `services.css` related-service selector warning was removed without altering visual declarations.
 - Biome specificity warnings were reduced from 35 to 21 while preserving the visual freeze boundary.
 - Repository scan returned no TODO/FIXME/HACK/XXX markers, no debug `console.*`/`debugger` residue and no hits for common secret-token variable names.
+- `package-lock.json` was generated under GitHub Actions Node 22.23.1 / npm 10.9.8 and committed.
+- Quality and GitHub Pages workflows now use `npm ci --no-audit --no-fund`.
+- Temporary lockfile bootstrap logic and `contents: write` permission were removed; Quality is back to `contents: read`.
+- The inactive standalone `scripts/governance-contract.mjs` residue was removed.
 
 ## Current visual authority
 
@@ -86,11 +92,9 @@ Completed and validated on the work branch:
 The following are known and must not be misreported as resolved:
 
 1. `main` is currently unprotected at GitHub repository settings level; required status checks are not enforced by branch protection.
-2. No committed `package-lock.json` exists, so dependency installation is not fully reproducible and CI currently uses `npm install` rather than `npm ci`.
-3. The latest fully validated Biome run reports 21 non-blocking CSS `noDescendingSpecificity` warnings. The remaining warnings are in `globals.css` plus legacy/frozen visual layers; V8/V9/V9.2 and the water layer must not be opportunistically rewritten merely to reach zero warnings.
-4. Performance remains within budget but has limited JavaScript headroom; future heavy dependencies/effects require explicit budget review.
-5. Historical documents may contain superseded status statements. Their historical evidence remains valid, but current status is determined by this file plus higher-authority governance and Owner decisions.
-6. `scripts/governance-contract.mjs` exists as a bounded consistency checker but is not part of `npm run verify`; it must not be represented as an active CI gate unless explicitly wired and validated later.
+2. The latest fully validated Biome run reports 21 non-blocking CSS `noDescendingSpecificity` warnings. The remaining warnings are in `globals.css` plus legacy/frozen visual layers; V8/V9/V9.2 and the water layer must not be opportunistically rewritten merely to reach zero warnings.
+3. Performance remains within budget but has limited JavaScript headroom; future heavy dependencies/effects require explicit budget review.
+4. Historical documents may contain superseded status statements. Their historical evidence remains valid, but current status is determined by this file plus higher-authority governance and Owner decisions.
 
 ## Current STOP boundary
 
