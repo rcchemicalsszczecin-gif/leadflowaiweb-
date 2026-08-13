@@ -64,7 +64,7 @@ export function MagneticLinkV9({
   href,
   children,
   className = "",
-  cursor = "OPEN",
+  cursor = "OTWÓRZ",
 }: {
   href: string;
   children: React.ReactNode;
@@ -127,21 +127,21 @@ export function PremiumHeroV9() {
       ref={sceneRef}
       onPointerMove={onMove}
       onPointerLeave={reset}
-      data-cursor="MOVE"
+      data-cursor="PORUSZ"
       role="img"
       aria-label="Interaktywna kompozycja systemu LeadFlowAI"
     >
       <div className="hero-orb-v9" />
       <div className="hero-plane-v9 hero-plane-a-v9">
-        <span>EXPERIENCE</span>
-        <strong>WEB</strong>
+        <span>DOŚWIADCZENIE</span>
+        <strong>WWW</strong>
       </div>
       <div className="hero-plane-v9 hero-plane-b-v9">
-        <span>DISCOVER</span>
-        <strong>SEARCH</strong>
+        <span>WIDOCZNOŚĆ</span>
+        <strong>SEO / AEO / GEO</strong>
       </div>
       <div className="hero-plane-v9 hero-plane-c-v9">
-        <span>INTELLIGENCE</span>
+        <span>INTELIGENCJA</span>
         <strong>AI</strong>
       </div>
       <svg className="hero-circuit-v9" viewBox="0 0 800 620" aria-hidden="true">
@@ -155,9 +155,9 @@ export function PremiumHeroV9() {
         <circle cx="720" cy="390" r="5" />
       </svg>
       <div className="hero-core-v9">
-        <small>LEADFLOW</small>
-        <strong>ONE SYSTEM</strong>
-        <span>design × code × search × intelligence</span>
+        <small>LEADFLOWAI</small>
+        <strong>JEDEN SYSTEM</strong>
+        <span>projekt × kod × widoczność × inteligencja</span>
       </div>
     </div>
   );
