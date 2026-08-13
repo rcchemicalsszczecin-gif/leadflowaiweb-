@@ -25,9 +25,6 @@ const SERVICE_KNOWLEDGE: Readonly<Record<string, readonly { href: string; label:
   "rag-bazy-wiedzy": [
     { href: "/wiedza/rag-na-stronie-jak-zaprojektowac", label: "Jak zaprojektować RAG na stronie" },
   ],
-  "core-web-vitals": [
-    { href: "/wiedza/core-web-vitals-co-poprawiac", label: "Core Web Vitals — co warto poprawiać" },
-  ],
   "dostepnosc-wcag": [
     { href: "/wiedza/wcag-22-co-sprawdzic-na-stronie", label: "WCAG 2.2 — co sprawdzić na stronie" },
   ],
