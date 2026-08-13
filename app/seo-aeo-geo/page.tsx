@@ -18,7 +18,7 @@ export default function SeoAeoGeoPage() {
   return (
     <>
       <PublicServicePage page={page} />
-      <SearchVisibilityExplainerV13 />
+      <SearchVisibilityExplainerV13 active />
     </>
   );
 }
