@@ -1,7 +1,7 @@
 # LEADFLOWAI — AUTHORITATIVE MASTER PLAN V1
 
 STATUS: ACTIVE
-DATE: 2026-08-12
+DATE: 2026-08-13
 LEGAL ENTITY: Tervyxa Systems sp. z o.o.
 PUBLIC BRAND: LeadFlowAI
 PRIMARY DOMAIN: leadflowai.pl
@@ -45,7 +45,7 @@ Header -> WWW-first hero -> immediate value/proof -> CREATE -> DISCOVER/GROW -> 
 Mobile-first, strong hierarchy, clear CTA, controlled motion, usable forms, keyboard support, focus states, reduced motion, readable typography and no decoration that damages conversion/performance.
 
 ## Approved design
-Follow `docs/design/LEADFLOWAI-DESIGN-DIRECTION-V1.md`.
+Current homepage visual authority is Premium Art Direction V9 plus the bounded Premium Calibration V9.2 layer. `docs/design/LEADFLOWAI-DESIGN-DIRECTION-V1.md` remains the historical design foundation, not the current homepage authority. Visual design is frozen after V9.2 except for corrections permitted by V10 responsive/performance governance.
 
 ## SEO
 Semantic HTML, metadata, canonical, sitemap, robots, redirects/statuses, internal links, breadcrumbs, hreflang when relevant, image SEO, crawl/index controls and truthful structured data.
@@ -60,10 +60,10 @@ Entity clarity, consistent public truth, machine-readable organization/service f
 Use Organization, WebSite, WebPage, Service, BreadcrumbList, Article and other types only where semantically valid. No schema spam.
 
 ## CRO / lead system
-Build deliberate CTA architecture, low-friction quote/contact flows, trust/evidence placement, mobile conversion and measurable events.
+Build deliberate CTA architecture, low-friction quote/contact flows, trust/evidence placement, mobile conversion and measurable events. Current Owner decision keeps online form delivery disabled; direct e-mail through `kontakt@leadflowai.pl` is active.
 
 ## Chatbot
-Chatbots support the site rather than obstruct it. Advanced tiers may include qualification, RAG and connected workflows.
+Chatbots support the site rather than obstruct it. Advanced tiers may include qualification, RAG and connected workflows. Current Owner decision keeps the public LeadFlowAI chatbot widget disabled until a separately authorized activation stage.
 
 ## Analytics/privacy
 Plan for Search Console, Bing Webmaster Tools, conversion/event analytics and consent-aware measurement appropriate to the deployment and legal basis.
@@ -78,7 +78,7 @@ Contracts/invoices: Tervyxa Systems sp. z o.o.
 Do not publish unconfirmed registration identifiers.
 
 ## Technical target
-Modern Next.js App Router + React + TypeScript, server-first rendering where appropriate, CSS/design tokens, componentized design system and minimal unnecessary client state. The implementation should use a currently supported security-patched Next.js line and a patched React 19.2 line.
+Modern Next.js App Router + React + TypeScript, static-first public frontend under the locked GitHub Pages architecture, CSS/design tokens, componentized design system and minimal unnecessary client state. Dynamic behavior belongs to separately authorized backend/runtime boundaries.
 
 ## Delivery stages
 STAGE 0 — Governance + authority + Master Plan.
@@ -102,6 +102,15 @@ Complete bounded stages are permitted. Each stage still requires scope, evidence
 1000% != MAXIMUM SCOPE
 
 ## Current sequence
-STAGE_0_TO_4=IMPLEMENTED_ON_WORK_BRANCH
-NEXT=STAGE_5_CORE_MONEY_PAGES_AFTER_OWNER_REVIEW
-PRODUCTION_RELEASE=NOT_AUTHORIZED
+Current operational status is defined by `docs/governance/CURRENT-STATE.md`.
+
+As of 2026-08-13:
+- initial GitHub Pages production launch: COMPLETE;
+- `main`: V10 responsive/mobile/performance production baseline;
+- active work branch `content/full-offer-v11`: Full Offer V11 plus bounded Portfolio V12 foundation;
+- latest audited PR validation: PASS;
+- V11/V12 production promotion: NOT AUTHORIZED by this plan;
+- public chatbot: OFF by Owner;
+- online lead form delivery: OFF by Owner;
+- direct e-mail contact: ACTIVE;
+- next bounded work: governance/reproducibility/release-safety reconciliation and final Owner review.
