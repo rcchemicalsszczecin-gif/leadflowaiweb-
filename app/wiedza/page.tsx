@@ -4,9 +4,9 @@ import { SiteHeader } from "@/components/site-header";
 import { knowledgeArticles } from "@/lib/knowledge-registry";
 
 export const metadata: Metadata = {
-  title: "Wiedza o stronach WWW, SEO, AEO, GEO, AI i konwersji",
+  title: "Baza wiedzy o stronach WWW, SEO, AEO, GEO i konwersji",
   description:
-    "Praktyczna wiedza LeadFlowAI o projektowaniu i budowie stron, SEO, AEO, GEO / AI Search, CRO, analityce, dostępności, performance, AI, integracjach i utrzymaniu WWW.",
+    "Praktyczna baza wiedzy LeadFlowAI o projektowaniu i budowie stron internetowych, SEO, AEO, GEO, widoczności w wyszukiwaniu AI, CRO, analityce, dostępności, wydajności, integracjach i utrzymaniu WWW.",
   alternates: { canonical: "/wiedza" },
 };
 
@@ -17,10 +17,10 @@ export default function KnowledgePage() {
         <div className="page-shell">
           <SiteHeader />
           <div className="knowledge-hero-copy">
-            <p className="eyebrow">LEADFLOWAI / WIEDZA</p>
-            <h1>Wiedza, która pomaga podejmować decyzje o stronie i całym systemie wokół niej.</h1>
+            <p className="eyebrow">LEADFLOWAI / BAZA WIEDZY</p>
+            <h1>Wiedza, która pomaga podejmować lepsze decyzje o stronie internetowej.</h1>
             <p>
-              Bez produkowania artykułów dla samej liczby adresów URL. Każdy materiał odpowiada na odrębny problem związany z architekturą WWW, widocznością, konwersją, AI, integracjami, jakością lub utrzymaniem.
+              Zebraliśmy materiały o architekturze WWW, widoczności, SEO, AEO, GEO, konwersji, AI, integracjach i jakości technicznej. Każdy artykuł odpowiada na konkretny problem zamiast istnieć wyłącznie dla kolejnego adresu URL.
             </p>
           </div>
         </div>
@@ -29,8 +29,8 @@ export default function KnowledgePage() {
       <section className="section-light">
         <div className="page-shell section-pad knowledge-index">
           <div className="knowledge-index-head">
-            <p className="service-index">01 / ARTYKUŁY</p>
-            <h2>Najpierw fundamenty i decyzje, potem narzędzia.</h2>
+            <p className="service-index">01 / MATERIAŁY</p>
+            <h2>Najpierw problem i decyzja. Potem technologia.</h2>
           </div>
 
           <div className="knowledge-cards">
@@ -41,7 +41,7 @@ export default function KnowledgePage() {
                 <h2>{article.title}</h2>
                 <p>{article.description}</p>
                 <a href={`/wiedza/${article.slug}`}>
-                  Czytaj artykuł <span aria-hidden="true">↗</span>
+                  Czytaj materiał <span aria-hidden="true">↗</span>
                 </a>
               </article>
             ))}
@@ -52,7 +52,7 @@ export default function KnowledgePage() {
       <section className="section-dark knowledge-truth">
         <div className="page-shell section-pad">
           <p className="service-index">02 / ZASADA REDAKCYJNA</p>
-          <h2>Nie publikujemy fikcyjnego doświadczenia ani treści tworzonych tylko po to, żeby zwiększyć liczbę podstron.</h2>
+          <h2>Publikujemy treści, które mają pomagać użytkownikowi i dają się obronić źródłami lub rzeczywistą praktyką.</h2>
           <p>
             Materiały opisują nasze podejście, praktyki projektowe i możliwe do zweryfikowania standardy. Gdy temat wymaga danych klienta, wyników, prawa albo regulowanych twierdzeń, informacja musi pochodzić z rzeczywistego źródła i przejść odpowiednią weryfikację.
           </p>
