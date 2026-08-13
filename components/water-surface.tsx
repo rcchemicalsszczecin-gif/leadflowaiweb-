@@ -253,6 +253,7 @@ export function WaterSurface() {
       return;
     }
 
+    const bindGpuProgram = gl.useProgram.bind(gl);
     const positionLocation = gl.getAttribLocation(program, "aPosition");
     const resolutionLocation = uniform(gl, program, "uResolution");
     const timeLocation = uniform(gl, program, "uTime");
@@ -271,7 +272,7 @@ export function WaterSurface() {
       gl.STATIC_DRAW,
     );
 
-    gl.useProgram(program);
+    bindGpuProgram(program);
     gl.enableVertexAttribArray(positionLocation);
     gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
 
@@ -368,7 +369,7 @@ export function WaterSurface() {
     };
 
     const render = (now: number) => {
-      gl.useProgram(program);
+      bindGpuProgram(program);
       gl.uniform2f(resolutionLocation, canvas.width, canvas.height);
       gl.uniform1f(timeLocation, reducedMotion.matches ? 0 : now / 1000);
       gl.uniform1f(scrollLocation, scrollY * dpr);
