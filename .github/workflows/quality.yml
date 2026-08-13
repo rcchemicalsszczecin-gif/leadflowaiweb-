@@ -8,6 +8,7 @@ on:
       - design/circuit-water-v3
       - design/hardware-board-v4
       - performance/realistic-board-v5
+      - design/content-frames-v6
   pull_request:
     branches:
       - main
