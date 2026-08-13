@@ -7,4 +7,14 @@
       repeating-linear-gradient(0deg, rgba(110, 190, 216, 0.014) 0 1px, transparent 1px 72px),
       linear-gradient(135deg, #02070b 0%, #061017 48%, #02070b 100%);
   }
+
+  .premium-stage-v9::before {
+    background-image:
+      radial-gradient(circle at 68% 38%, rgba(155, 231, 255, 0.1), transparent 21rem),
+      repeating-linear-gradient(0deg, rgba(155, 231, 255, 0.022) 0 1px, transparent 1px 58px),
+      repeating-linear-gradient(90deg, rgba(155, 231, 255, 0.018) 0 1px, transparent 1px 58px),
+      linear-gradient(135deg, rgba(2, 8, 13, 0.92), rgba(6, 18, 25, 0.72));
+    background-size: cover;
+    filter: none;
+  }
 }
