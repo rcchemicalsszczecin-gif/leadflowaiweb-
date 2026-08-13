@@ -18,15 +18,15 @@ export function SiteFooter() {
 
       <div className="footer-meta">
         <nav className="footer-service-links" aria-label="Główne usługi LeadFlowAI">
-          <a href="/uslugi">Pełna oferta</a>
+          <a href="/uslugi">Wszystkie usługi</a>
           {[...coreServiceLinks, ...experienceServiceLinks, ...searchServiceLinks].map((item) => (
             <a key={item.slug} href={`/${item.slug}`}>
               {item.label}
             </a>
           ))}
-          <a href="/lab">Live Lab</a>
+          <a href="/lab">Laboratorium</a>
           <a href="/realizacje">Realizacje</a>
-          <a href="/wiedza">Wiedza</a>
+          <a href="/wiedza">Baza wiedzy</a>
         </nav>
         <nav className="footer-links" aria-label="Kontakt i informacje">
           <a href="/kontakt">Kontakt</a>
