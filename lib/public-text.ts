@@ -1,4 +1,10 @@
 const REPLACEMENTS: readonly [RegExp, string][] = [
+  [/\bcheckout \+ payments\b/gi, "koszyk, zamówienie i płatności"],
+  [/\bbuild \+ integrations\b/gi, "wdrożenie i integracje"],
+  [/\blaunch \+ rozwój\b/gi, "publikacja i rozwój"],
+  [/\bdesign \+ build\b/gi, "projekt i wdrożenie"],
+  [/\bsearch \+ data\b/gi, "widoczność i dane"],
+  [/\bproduct data\b/gi, "dane produktowe"],
   [/\bsearch architecture\b/gi, "architektura widoczności"],
   [/\bdesign system\b/gi, "system projektowy"],
   [/\bweb development\b/gi, "programowanie webowe"],
@@ -17,7 +23,9 @@ const REPLACEMENTS: readonly [RegExp, string][] = [
   [/\bcheckout\b/gi, "proces zakupu"],
   [/\bpayments\b/gi, "płatności"],
   [/\bcatalog\b/gi, "katalog"],
+  [/\bshipping\b/gi, "dostawa"],
   [/\bintegrations\b/gi, "integracje"],
+  [/\bautomation\b/gi, "automatyzacja"],
   [/\bcustom\b/gi, "dedykowane"],
   [/\blaunch\b/gi, "publikacja"],
   [/\bbuild\b/gi, "wdrożenie"],
@@ -29,6 +37,12 @@ const REPLACEMENTS: readonly [RegExp, string][] = [
   [/\bevents\b/gi, "zdarzenia"],
   [/\bfunnel\b/gi, "lejek"],
   [/\bforms\b/gi, "formularze"],
+  [/\bsource of truth\b/gi, "źródło prawdy"],
+  [/\bpublic truth\b/gi, "publiczna prawda"],
+  [/\bstructured data\b/gi, "dane strukturalne"],
+  [/\btechnical seo\b/gi, "SEO techniczne"],
+  [/\binternal linking\b/gi, "linkowanie wewnętrzne"],
+  [/\bcontent architecture\b/gi, "architektura treści"],
 ];
 
 export function publicText(value: string) {
