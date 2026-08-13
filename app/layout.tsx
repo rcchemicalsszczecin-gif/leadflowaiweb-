@@ -15,6 +15,7 @@ import "./realistic-board-v5.css";
 import "./content-frames-v6.css";
 import "./interactive-v7.css";
 import "./premium-composition-v8.css";
+import "./premium-composition-v8-themes.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
