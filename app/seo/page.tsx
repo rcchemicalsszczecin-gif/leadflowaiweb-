@@ -1,4 +1,4 @@
-import { ServicePage } from "@/components/service-page";
+import { PublicServicePage } from "@/components/public-service-page";
 import { getSearchMetadata, getSearchPage } from "@/lib/search-pages";
 
 const seoPage = {
@@ -17,5 +17,5 @@ export const metadata = {
 };
 
 export default function SeoPage() {
-  return <ServicePage page={seoPage} />;
+  return <PublicServicePage page={seoPage} />;
 }
