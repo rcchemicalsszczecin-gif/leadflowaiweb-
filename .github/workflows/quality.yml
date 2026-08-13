@@ -98,7 +98,7 @@ jobs:
           test -f out/wiedza/rag-na-stronie-jak-zaprojektowac/index.html
           grep -q 'kontakt@leadflowai.pl' out/kontakt/index.html
           grep -q 'Formularz online jest obecnie wyłączony' out/kontakt/index.html
-          grep -q 'Pełna oferta' out/uslugi/index.html
+          grep -q 'LEADFLOWAI / PEŁNA OFERTA' out/uslugi/index.html
           grep -q 'RAG' out/uslugi/index.html
           grep -q 'Monitoring' out/uslugi/index.html
           grep -q 'Źródła i standardy' out/wiedza/ai-search-google-co-robic-2026/index.html
@@ -109,7 +109,7 @@ jobs:
             echo "Disabled lead endpoint leaked into static artifact"
             exit 1
           fi
-          echo "STATIC_ARTIFACT_PASS html=PASS full-offer-v11=PASS expanded-services=20 knowledge=20plus sources=PASS responsive-v10=PASS proof=REAL_ONLY contact-direct-email=PASS lead-api=ABSENT"
+          echo "STATIC_ARTIFACT_PASS html=PASS full-offer-v13=PASS expanded-services=20 knowledge=20plus sources=PASS responsive-v10=PASS proof=REAL_ONLY contact-direct-email=PASS lead-api=ABSENT"
 
       - name: Static route smoke
         shell: bash
@@ -188,4 +188,4 @@ jobs:
           grep -q 'DIGITAL EXPERIENCE STUDIO' /tmp/home.html
           grep -q 'Liquid Circuit' /tmp/home.html
           grep -q 'Nawigacja mobilna' /tmp/home.html
-          echo "STATIC_ROUTE_SMOKE_PASS routes=43 sitemap=PASS full-offer-v11=PASS expanded-services=20 knowledge=20plus responsive-v10=PASS robots=PASS"
+          echo "STATIC_ROUTE_SMOKE_PASS routes=43 sitemap=PASS full-offer-v13=PASS expanded-services=20 knowledge=20plus responsive-v10=PASS robots=PASS"
