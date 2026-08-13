@@ -8,10 +8,14 @@ import {
   SignalDivider,
   SystemAssembly,
 } from "@/components/interactive-experience";
+import {
+  HeroSystemV8,
+  StageVisualV8,
+  SystemSpineV8,
+} from "@/components/premium-composition-v8";
 import { SectionLabel } from "@/components/section-label";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { SystemFlow } from "@/components/system-flow";
 import { site, systemStages } from "@/lib/site";
 
 const qualitySignals = [
@@ -46,29 +50,49 @@ const faqs = [
   },
 ] as const;
 
+const stageTitles = {
+  CREATE: ["Projektujemy", "i budujemy."],
+  DISCOVER: ["Budujemy widoczność", "od fundamentów."],
+  CONVERT: ["Projektujemy drogę", "do kontaktu."],
+  INTELLIGENCE: ["Dodajemy inteligencję", "tam, gdzie ma sens."],
+  CONNECT: ["Łączymy stronę", "z biznesem."],
+  CARE: ["Utrzymujemy", "i rozwijamy."],
+} as const satisfies Record<(typeof systemStages)[number]["key"], readonly [string, string]>;
+
 function getStageSectionId(stageKey: (typeof systemStages)[number]["key"]) {
   switch (stageKey) {
     case "CREATE":
       return "create";
     case "DISCOVER":
       return "discover";
+    case "CONVERT":
+      return "convert";
     case "INTELLIGENCE":
       return "intelligence";
-    default:
-      return undefined;
+    case "CONNECT":
+      return "connect";
+    case "CARE":
+      return "care";
   }
 }
 
 export default function HomePage() {
   return (
     <main id="top">
-      <section className="hero section-dark blueprint-surface" aria-labelledby="hero-title">
+      <section className="hero hero-v8 section-dark blueprint-surface" aria-labelledby="hero-title">
         <div className="page-shell">
           <SiteHeader />
 
           <div className="hero-grid">
             <div className="hero-copy">
               <p className="eyebrow">LEADFLOWAI / WEB ENGINEERING</p>
+              <div className="hero-status-v8" aria-label="Zakres LeadFlowAI">
+                <span>SYSTEM / LIVE</span>
+                <span>DESIGN</span>
+                <span>DEVELOPMENT</span>
+                <span>SEARCH</span>
+                <span>3D / INTERACTION</span>
+              </div>
               <h1 id="hero-title">
                 Strony internetowe
                 <span>zaprojektowane do wzrostu.</span>
@@ -100,13 +124,13 @@ export default function HomePage() {
             </div>
 
             <div className="hero-visual">
-              <SystemFlow />
+              <HeroSystemV8 />
             </div>
           </div>
 
           <div className="hero-bottomline" aria-hidden="true">
             <span>SCROLL TO ARCHITECTURE</span>
-            <span>LIVE / INTERACTIVE</span>
+            <span>LIVE / INTERACTIVE / SYSTEM</span>
           </div>
         </div>
       </section>
@@ -134,22 +158,30 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="system-stages" aria-label="System pracy LeadFlowAI">
+      <section className="system-stages system-stages-v8" aria-label="System pracy LeadFlowAI">
+        <SystemSpineV8 />
         {systemStages.map((stage, index) => {
-          const dark = index === 1 || index === 3 || index === 5;
+          const [titleLead, titleAccent] = stageTitles[stage.key];
+          const reverse = index % 2 === 1;
 
           return (
             <article
               key={stage.key}
               id={getStageSectionId(stage.key)}
-              className={`stage-section ${dark ? "section-dark" : "section-light"}`}
+              data-v8-stage={index}
+              className="stage-section section-dark v8-stage-section"
             >
-              <div className="page-shell stage-grid content-frame stage-module">
-                <SectionLabel index={stage.id} label={stage.key} inverted={dark} />
-                <div className="stage-heading">
-                  <h2>{stage.title}</h2>
+              <div className={`page-shell content-frame stage-module-v8 ${reverse ? "is-reverse-v8" : ""}`}>
+                <div className="stage-meta-v8">
+                  <SectionLabel index={stage.id} label={stage.key} inverted />
+                  <span className="stage-runtime-v8">SYSTEM / ACTIVE</span>
                 </div>
-                <div className="stage-detail">
+
+                <div className="stage-copy-v8">
+                  <h2>
+                    <span>{titleLead}</span>
+                    <em>{titleAccent}</em>
+                  </h2>
                   <p>{stage.description}</p>
                   <ul className="tag-list" aria-label={`Zakres ${stage.key}`}>
                     {stage.tags.map((tag) => (
@@ -157,20 +189,26 @@ export default function HomePage() {
                     ))}
                   </ul>
                 </div>
+
+                <div className="stage-visual-v8">
+                  <StageVisualV8 stageKey={stage.key} />
+                </div>
               </div>
             </article>
           );
         })}
       </section>
 
-      <SignalDivider label="LIVE CAPABILITIES / START" />
-      <Live3DShowcase />
-      <InteractiveServiceCards />
-      <SystemAssembly />
-      <SignalDivider label="INTERFACE / PROOF" />
-      <BrowserDemo />
-      <BeforeAfterDemo />
-      <CapabilityConstellation />
+      <div className="experience-zone-v8">
+        <SignalDivider label="LIVE CAPABILITIES / START" />
+        <Live3DShowcase />
+        <InteractiveServiceCards />
+        <SystemAssembly />
+        <SignalDivider label="INTERFACE / PROOF" />
+        <BrowserDemo />
+        <BeforeAfterDemo />
+        <CapabilityConstellation />
+      </div>
 
       <section id="process" className="section-light process-section">
         <div className="page-shell section-pad">
