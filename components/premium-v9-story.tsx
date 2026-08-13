@@ -29,7 +29,7 @@ export function WhatWeBuildV9() {
       data-v92-reveal="mask"
     >
       <div className="what-build-head-v9">
-        <p>WHAT WE BUILD</p>
+        <p>CO BUDUJEMY</p>
         <h2 id="what-build-title">Nie jeden typ strony.<br /><span>Jeden spójny system WWW.</span></h2>
       </div>
       <div className="what-build-layout-v9">
@@ -52,7 +52,7 @@ export function WhatWeBuildV9() {
         <div
           className={`what-build-art-v9 mode-${active.toLowerCase().replace(" ", "-")}`}
           data-mode={active}
-          data-cursor="EXPLORE"
+          data-cursor="ODKRYJ"
         >
           <span className="what-build-ghost-v9">{current.label}</span>
           <div className="what-build-object-v9"><i /><i /><i /><b /></div>
@@ -154,7 +154,7 @@ export function LiquidCircuitV9() {
       data-v92-reveal="wipe"
     >
       <div className="liquid-copy-v9">
-        <p>SIGNATURE EXPERIENCE</p>
+        <p>DOŚWIADCZENIE AUTORSKIE</p>
         <h2 id="liquid-title">LeadFlow<br /><span>Liquid Circuit.</span></h2>
         <p>Woda, warstwa sprzętowa i interfejs reagują jak jeden system. Ruch wzbudza powierzchnię, a impuls budzi pobliskie ścieżki danych.</p>
         <a href="/lab" data-cursor="OTWÓRZ">Zobacz możliwości <span aria-hidden="true">↗</span></a>
@@ -184,7 +184,7 @@ export function LiquidCircuitV9() {
 
 export function PremiumProofV9() {
   const proofs = [
-    { code: "01", title: "Liquid Hardware", note: "Interaktywna woda i własna warstwa sprzętowa", href: "/lab" },
+    { code: "01", title: "Warstwa sprzętowa", note: "Interaktywna woda i własna warstwa sprzętowa", href: "/lab" },
     { code: "02", title: "Rdzeń 3D", note: "Przestrzeń 3D działająca bezpośrednio w przeglądarce", href: "/strony-3d-webgl" },
     { code: "03", title: "Prototyp responsywny", note: "Rzeczywiste stany desktop/mobile bez filmu", href: "/lab" },
   ] as const;
@@ -197,7 +197,7 @@ export function PremiumProofV9() {
       data-v92-reveal="rise"
     >
       <div className="premium-proof-head-v9">
-        <p>FIRST-PARTY PROOF</p>
+        <p>WŁASNY DOWÓD</p>
         <h2 id="proof-v9-title">Mniej obietnic.<br /><span>Więcej działającego kodu.</span></h2>
         <p>To są demonstracje LeadFlowAI, nie fikcyjne realizacje klientów. Każdy moduł można uruchomić i sprawdzić bezpośrednio w przeglądarce.</p>
       </div>
