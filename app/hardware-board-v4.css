@@ -1,0 +1,213 @@
+@layer tokens {
+  :root {
+    --hardware-section: rgba(3, 8, 13, 0.28);
+    --hardware-section-alt: rgba(5, 11, 17, 0.36);
+    --hardware-panel: rgba(6, 15, 23, 0.72);
+    --hardware-panel-soft: rgba(6, 15, 23, 0.58);
+  }
+}
+
+@layer base {
+  body,
+  body > main {
+    background: transparent;
+  }
+}
+
+@layer components {
+  .circuit-water-glass {
+    background:
+      radial-gradient(circle at 52% -10%, rgba(190, 230, 255, 0.035), transparent 44%),
+      linear-gradient(180deg, rgba(1, 5, 9, 0.01), rgba(1, 4, 8, 0.07));
+  }
+
+  main > section,
+  .service-page,
+  .section-dark,
+  .section-light,
+  .editorial-intro,
+  .process-section,
+  .proof-section,
+  .faq-section,
+  .service-answer,
+  .service-deliverables,
+  .service-outcomes,
+  .service-process,
+  .service-faq,
+  .related-services,
+  .contact-form-section,
+  .contact-section,
+  .knowledge-index,
+  .portfolio-current,
+  .knowledge-article-body,
+  .stage-section,
+  .site-footer {
+    background: var(--hardware-section);
+  }
+
+  .stage-section:nth-child(even),
+  .service-outcomes,
+  .service-faq,
+  .knowledge-index,
+  .portfolio-current,
+  .related-services,
+  .site-footer {
+    background: var(--hardware-section-alt);
+  }
+
+  .hero,
+  .service-hero,
+  .contact-hero,
+  .knowledge-hero,
+  .portfolio-hero,
+  .knowledge-article-hero {
+    background:
+      radial-gradient(circle at 68% 42%, rgba(31, 139, 181, 0.045), transparent 31rem),
+      rgba(2, 7, 11, 0.18);
+  }
+
+  .blueprint-surface::before {
+    opacity: 0.045;
+  }
+
+  .site-header {
+    background: linear-gradient(180deg, rgba(2, 7, 12, 0.68), rgba(2, 7, 12, 0.22));
+  }
+
+  .system-flow,
+  .service-capability-panel,
+  .quality-item,
+  .outcome-grid article,
+  .knowledge-cards article,
+  .portfolio-scope-grid article,
+  .lead-form,
+  .contact-aside,
+  .service-process li,
+  .service-faq-grid details,
+  .related-grid a,
+  .knowledge-article-grid > aside,
+  .contact-direct,
+  .deliverable-list article {
+    background:
+      linear-gradient(145deg, rgba(10, 22, 31, 0.76), rgba(4, 11, 17, 0.64)),
+      transparent;
+    backdrop-filter: blur(9px) saturate(1.12);
+  }
+
+  .system-flow,
+  .service-capability-panel {
+    background:
+      radial-gradient(circle at 52% 38%, rgba(23, 110, 143, 0.065), transparent 70%),
+      linear-gradient(145deg, rgba(8, 19, 28, 0.7), rgba(3, 9, 15, 0.57));
+  }
+
+  .process-list,
+  .faq-list,
+  .deliverable-list,
+  .service-process ol,
+  .service-faq-grid,
+  .related-grid,
+  .knowledge-cards,
+  .outcome-grid,
+  .quality-grid {
+    background: rgba(4, 11, 17, 0.22);
+  }
+
+  .process-list li,
+  .faq-list details {
+    background: rgba(5, 13, 20, 0.42);
+    backdrop-filter: blur(5px);
+  }
+
+  .stage-heading,
+  .stage-detail,
+  .editorial-grid,
+  .process-head,
+  .quality-head,
+  .proof-grid,
+  .faq-grid,
+  .service-section-head,
+  .knowledge-index-head,
+  .portfolio-method,
+  .contact-grid {
+    position: relative;
+    z-index: 2;
+  }
+
+  @media (max-width: 1080px) {
+    main > section,
+    .service-page,
+    .section-dark,
+    .section-light,
+    .editorial-intro,
+    .process-section,
+    .proof-section,
+    .faq-section,
+    .service-answer,
+    .service-deliverables,
+    .service-outcomes,
+    .service-process,
+    .service-faq,
+    .related-services,
+    .contact-form-section,
+    .contact-section,
+    .knowledge-index,
+    .portfolio-current,
+    .knowledge-article-body,
+    .stage-section,
+    .site-footer {
+      background: rgba(3, 8, 13, 0.42);
+    }
+  }
+
+  @media (max-width: 760px) {
+    main > section,
+    .service-page,
+    .section-dark,
+    .section-light,
+    .editorial-intro,
+    .process-section,
+    .proof-section,
+    .faq-section,
+    .service-answer,
+    .service-deliverables,
+    .service-outcomes,
+    .service-process,
+    .service-faq,
+    .related-services,
+    .contact-form-section,
+    .contact-section,
+    .knowledge-index,
+    .portfolio-current,
+    .knowledge-article-body,
+    .stage-section,
+    .site-footer {
+      background: rgba(3, 8, 13, 0.61);
+    }
+
+    .system-flow,
+    .service-capability-panel,
+    .quality-item,
+    .outcome-grid article,
+    .knowledge-cards article,
+    .portfolio-scope-grid article,
+    .lead-form,
+    .contact-aside,
+    .service-process li,
+    .service-faq-grid details,
+    .related-grid a,
+    .knowledge-article-grid > aside {
+      background: rgba(5, 13, 20, 0.8);
+      backdrop-filter: blur(5px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    main > section,
+    .service-page,
+    .section-dark,
+    .section-light {
+      background: rgba(3, 8, 13, 0.66);
+    }
+  }
+}
