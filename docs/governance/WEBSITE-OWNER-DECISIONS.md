@@ -22,14 +22,17 @@ LOCKED:
 - Unrelated Tervyxa services remain separate verticals.
 - Real evidence only; no fake case studies/testimonials.
 - Work may be executed as complete bounded stages.
-- Current approved visual direction: `Circuit Water V3`, recorded in `docs/design/LEADFLOWAI-DESIGN-DIRECTION-V3.md`.
-- V3 supersedes V2 where visual-effect and background-system statements conflict; the dark editorial language and restrained typography of V2 remain.
-- The entire public site remains a coherent dark technical environment; general-purpose light sections remain retired.
-- The global background is a procedural electronic system rather than a static wallpaper: PCB traces, chip-like structures, nodes and continuously travelling energy/data pulses are generated in the WebGL shader.
-- Water and electronics are rendered by one visual engine so surface displacement refracts the procedural circuit and flowing energy beneath it.
+- Current approved visual direction: `Hardware Board V4 / Living Motherboard`, recorded in `docs/design/LEADFLOWAI-DESIGN-DIRECTION-V4.md`.
+- V4 supersedes V3 where motherboard recognizability and whole-site visibility conflict; the V3 refractive-water interaction remains authoritative.
+- The global procedural background must read as a living motherboard rather than an abstract network.
+- Recognizable generated hardware includes CPU package/die, VRM stages, capacitor banks, RAM/DIMM slots, PCIe-style expansion slots/lanes, M.2-like storage connector and a chipset-like secondary processor.
+- Energy/data movement is routed between hardware regions: green for power distribution and cyan for data/interconnect traffic.
+- The motherboard remains visible through the whole public site; desktop sections must not become large opaque dark bands that hide the shader.
+- Content cards/panels may remain darker and glassier for readability; mobile may increase surface opacity.
+- Water and electronics remain one visual system so surface displacement refracts the motherboard and flowing energy underneath it.
 - Cursor movement creates subtle brush-like water disturbance; click/tap creates a stronger multi-wave stone impact.
-- The electronic world continues through scrolling by using page scroll as part of shader world-space instead of repeating a fixed hero-only effect.
-- Foreground copy, navigation and CTA remain optically stable and readable; water refraction primarily affects the animated environment beneath translucent technical surfaces.
+- The electronic world continues through scrolling by using page scroll as part of shader world-space instead of a hero-only visual.
+- Foreground copy, navigation and CTA remain optically stable and readable.
 - WebGL2 is the preferred visual renderer; a static technical fallback remains available when WebGL2 is unavailable.
 - `prefers-reduced-motion` must stop continuous animation and interactive disturbance while keeping the site readable and visually coherent.
 - Headline scale remains intentionally reduced versus the first production visual while retaining editorial hierarchy.
