@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "typecheck": "tsc --noEmit",
-    "lint": "biome lint .",
+    "lint": "biome lint --max-diagnostics=100 .",
     "format": "biome format --write .",
     "search:contract": "node scripts/search-contract.mjs",
     "lead:contract": "node scripts/lead-contract.mjs",
