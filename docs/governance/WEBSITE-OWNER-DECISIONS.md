@@ -1,7 +1,7 @@
 # LEADFLOWAI — OWNER DECISIONS
 
 STATUS: CURRENT
-DATE: 2026-08-12
+DATE: 2026-08-13
 
 LOCKED:
 - Legal/invoicing entity: Tervyxa Systems sp. z o.o.
@@ -14,6 +14,9 @@ LOCKED:
 - AI chatbots are part of the WWW offer.
 - Public chatbot widget on LeadFlowAI itself: DISABLED until explicit Owner configuration/enablement.
 - Dormant chatbot implementation may remain in the repository for later local-AI integration, but it must not be rendered publicly before that decision.
+- Online lead/contact form delivery: DISABLED until explicit Owner reactivation.
+- Current contact path: direct e-mail only through kontakt@leadflowai.pl.
+- Do not add Cloudflare Email Sending, Apps Script mail relay, webhook mail delivery or another outgoing-mail stack without explicit Owner decision.
 - CRO, analytics, integrations and website-connected automation are in scope.
 - Hosting, monitoring and maintenance are in scope.
 - Unrelated Tervyxa services remain separate verticals.
@@ -27,4 +30,5 @@ PENDING:
 - public pricing model;
 - final legal identifiers when company registration data is complete;
 - local chatbot runtime/model configuration if/when Owner enables the public chatbot;
+- optional online lead form only if Owner explicitly reopens that stage;
 - production launch authorization.
