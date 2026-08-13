@@ -1,0 +1,296 @@
+@layer components {
+  .premium-page-v9 {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .premium-page-v9::after {
+    content: "";
+    position: fixed;
+    z-index: 0;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+      circle 18rem at var(--v9-pointer-x, 65vw) var(--v9-pointer-y, 40vh),
+      rgba(155, 231, 255, 0.045),
+      transparent 72%
+    );
+    mix-blend-mode: screen;
+  }
+
+  .premium-page-v9 > section,
+  .premium-page-v9 > div:not(.premium-cursor-v9) {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Art-directed local crops of the same photographic hardware source.
+     The image is cached once; each stage receives a controlled crop and mask. */
+  .premium-stage-v9::before {
+    content: "";
+    position: absolute;
+    z-index: -2;
+    inset: 9% -8%;
+    pointer-events: none;
+    opacity: 0.095;
+    background-image:
+      linear-gradient(90deg, rgba(0, 6, 10, 0.16), rgba(0, 6, 10, 0.56)),
+      url("https://images.unsplash.com/photo-1741392078190-d263a71291cd?auto=format&fit=crop&w=2400&q=78");
+    background-size: 135% auto;
+    background-repeat: no-repeat;
+    filter: saturate(0.7) contrast(1.08);
+    mask-image: linear-gradient(90deg, transparent, black 18%, black 82%, transparent);
+  }
+
+  .premium-stage-v9::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    width: 36rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0.28;
+    filter: blur(44px);
+    background: rgba(72, 164, 198, 0.16);
+    animation: v9-ambient-drift 16s ease-in-out infinite alternate;
+  }
+
+  .premium-stage-v9:nth-of-type(odd)::after {
+    right: 4%;
+    top: 22%;
+  }
+
+  .premium-stage-v9:nth-of-type(even)::after {
+    left: 4%;
+    top: 24%;
+  }
+
+  .premium-stage-v9[data-premium-stage="0"]::before { background-position: 50% 45%; }
+  .premium-stage-v9[data-premium-stage="1"]::before { background-position: 12% 34%; }
+  .premium-stage-v9[data-premium-stage="2"]::before { background-position: 85% 60%; }
+  .premium-stage-v9[data-premium-stage="3"]::before { background-position: 42% 72%; }
+  .premium-stage-v9[data-premium-stage="4"]::before { background-position: 72% 22%; }
+  .premium-stage-v9[data-premium-stage="5"]::before { background-position: 18% 76%; }
+
+  .premium-stage-v9.is-active::before {
+    opacity: 0.135;
+  }
+
+  .premium-stage-v9.is-active::after {
+    opacity: 0.42;
+  }
+
+  .premium-stage-v9 .cinematic-visual-v9 {
+    transform: translate3d(0, 0, 0);
+    transition: transform 700ms cubic-bezier(0.2, 0.8, 0.2, 1), opacity 500ms ease;
+    opacity: 0.72;
+  }
+
+  .premium-stage-v9.is-active .cinematic-visual-v9 {
+    transform: translate3d(0, -0.6rem, 0) scale(1.015);
+    opacity: 1;
+  }
+
+  /* Transition grammar: a visual signal exits one stage and becomes the next. */
+  .stage-transition-v9::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 7rem;
+    height: 1px;
+    translate: -50% -50%;
+    background: linear-gradient(90deg, transparent, rgba(184, 255, 56, 0.34), transparent);
+    transform-origin: center;
+    animation: v9-bridge-breathe 5s ease-in-out infinite;
+  }
+
+  /* Calm down legacy interactive modules retained on homepage. */
+  .premium-before-after-zone-v9 {
+    width: min(100% - 2 * var(--pad), 94rem);
+    margin-inline: auto;
+    padding-block: clamp(6rem, 11vw, 10rem);
+  }
+
+  .premium-before-after-zone-v9 .before-after {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .premium-before-after-zone-v9 .before-after::before,
+  .premium-before-after-zone-v9 .before-after::after {
+    display: none;
+  }
+
+  .premium-before-after-zone-v9 .before-after-head {
+    max-width: 44rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .premium-before-after-zone-v9 .before-after-head h2 {
+    max-width: 12ch;
+    font-size: clamp(3rem, 6vw, 6rem);
+    line-height: 0.94;
+    letter-spacing: -0.06em;
+  }
+
+  .premium-before-after-zone-v9 .comparison-stage {
+    min-height: min(38rem, 72svh);
+    border-color: rgba(155, 231, 255, 0.12);
+    box-shadow: 0 3rem 8rem rgba(0, 0, 0, 0.24);
+  }
+
+  .premium-command-zone-v9 .command-copy h2 {
+    max-width: 10ch;
+    font-size: clamp(2.8rem, 5vw, 5.2rem);
+    line-height: 0.94;
+    letter-spacing: -0.055em;
+  }
+
+  .premium-command-zone-v9 .command-row button {
+    border-color: rgba(155, 231, 255, 0.1);
+    color: rgba(226, 238, 243, 0.42);
+  }
+
+  .premium-command-zone-v9 .command-row button.is-active {
+    border-color: rgba(155, 231, 255, 0.34);
+    background: rgba(155, 231, 255, 0.055);
+    color: var(--v9-white);
+  }
+
+  .premium-command-zone-v9 .command-status i {
+    background: var(--v9-green);
+    box-shadow: 0 0 14px rgba(184, 255, 56, 0.38);
+  }
+
+  /* Material system: glass / graphite / luminous are used by function. */
+  .premium-before-after-zone-v9 .comparison-stage {
+    background: var(--v9-graphite);
+  }
+
+  .premium-command-zone-v9 .command-center {
+    background: var(--v9-luminous);
+  }
+
+  .premium-proof-v9 .proof-card-v9:nth-child(2) {
+    background: var(--v9-graphite);
+  }
+
+  .premium-proof-v9 .proof-card-v9:nth-child(3) {
+    background: var(--v9-glass);
+  }
+
+  /* Slow light is preferred over more decorative widgets. */
+  .what-build-art-v9::after,
+  .liquid-field-v9::after,
+  .premium-hero-scene-v9::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    width: 22rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    pointer-events: none;
+    background: rgba(155, 231, 255, 0.08);
+    filter: blur(48px);
+    animation: v9-light-travel 13s ease-in-out infinite alternate;
+  }
+
+  .what-build-art-v9::after {
+    left: 15%;
+    top: 12%;
+  }
+
+  .liquid-field-v9::after {
+    right: -5%;
+    top: 20%;
+  }
+
+  .premium-hero-scene-v9::after {
+    right: 4%;
+    bottom: 8%;
+  }
+
+  /* Green is now a signal, not a general UI color. */
+  .premium-page-v9 .button-primary:not(.premium-contact-v9 .button-primary),
+  .premium-page-v9 .experience-kicker,
+  .premium-page-v9 .command-status span,
+  .premium-page-v9 .comparison-before > span,
+  .premium-page-v9 .comparison-after > span {
+    color: var(--v9-cyan);
+  }
+
+  .premium-page-v9 .button-primary:not(.premium-contact-v9 .button-primary) {
+    background: rgba(155, 231, 255, 0.1);
+    border-color: rgba(155, 231, 255, 0.22);
+  }
+
+  /* Make old microcopy less dominant. */
+  .premium-page-v9 .panel-label,
+  .premium-page-v9 .service-index,
+  .premium-page-v9 .browser-toolbar b,
+  .premium-page-v9 .demo-nav span,
+  .premium-page-v9 .processor-readout,
+  .premium-page-v9 .command-status span {
+    opacity: 0.58;
+  }
+
+  @keyframes v9-ambient-drift {
+    0% { transform: translate3d(-2rem, -1rem, 0) scale(0.92); }
+    100% { transform: translate3d(3rem, 2rem, 0) scale(1.08); }
+  }
+
+  @keyframes v9-bridge-breathe {
+    0%, 100% { transform: scaleX(0.45); opacity: 0.18; }
+    50% { transform: scaleX(1); opacity: 0.62; }
+  }
+
+  @keyframes v9-light-travel {
+    0% { transform: translate3d(-2rem, -1rem, 0) scale(0.85); opacity: 0.35; }
+    100% { transform: translate3d(4rem, 3rem, 0) scale(1.15); opacity: 0.75; }
+  }
+
+  @media (max-width: 1040px) {
+    .premium-stage-v9::before {
+      opacity: 0.07;
+      background-size: cover;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .premium-page-v9::after,
+    .premium-stage-v9::after,
+    .what-build-art-v9::after,
+    .liquid-field-v9::after,
+    .premium-hero-scene-v9::after {
+      display: none;
+    }
+
+    .premium-stage-v9::before {
+      inset: 10% -20%;
+      opacity: 0.055;
+      mask-image: linear-gradient(180deg, transparent, black 18%, black 76%, transparent);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .premium-stage-v9::after,
+    .stage-transition-v9::after,
+    .what-build-art-v9::after,
+    .liquid-field-v9::after,
+    .premium-hero-scene-v9::after {
+      animation: none;
+    }
+
+    .premium-stage-v9 .cinematic-visual-v9 {
+      transition: none;
+      transform: none;
+      opacity: 1;
+    }
+  }
+}
