@@ -12,6 +12,7 @@ on:
       - experience/interactive-v7
       - design/premium-composition-v8
       - design/premium-art-direction-v9
+      - design/premium-calibration-v9-2
   pull_request:
     branches:
       - main
@@ -73,13 +74,16 @@ jobs:
           grep -q 'Live Lab' out/lab/index.html
           grep -q '3D' out/strony-3d-webgl/index.html
           grep -q 'DIGITAL EXPERIENCE STUDIO' out/index.html
+          grep -q 'STUDIO PRINCIPLE' out/index.html
+          grep -q 'BROWSER-NATIVE 3D' out/index.html
+          grep -q 'ONE CONNECTED EXPERIENCE' out/index.html
           grep -q 'FIRST-PARTY PROOF' out/index.html
           grep -q 'Liquid Circuit' out/index.html
           if grep -Rqs 'api.leadflowai.pl/leads' out; then
             echo "Disabled lead endpoint leaked into static artifact"
             exit 1
           fi
-          echo "STATIC_ARTIFACT_PASS html=PASS v9-premium=PASS liquid-circuit=PASS proof=REAL_ONLY lab=PASS experience-routes=4 contact-direct-email=PASS lead-api=ABSENT"
+          echo "STATIC_ARTIFACT_PASS html=PASS v9-2-calibration=PASS improvements=20 3d-core=PASS liquid-circuit=PASS proof=REAL_ONLY lab=PASS experience-routes=4 contact-direct-email=PASS lead-api=ABSENT"
 
       - name: Static route smoke
         shell: bash
@@ -127,5 +131,7 @@ jobs:
           curl -fsS http://127.0.0.1:3000/robots.txt | grep -q 'sitemap.xml'
           grep -q 'kontakt@leadflowai.pl' /tmp/home.html
           grep -q 'DIGITAL EXPERIENCE STUDIO' /tmp/home.html
+          grep -q 'STUDIO PRINCIPLE' /tmp/home.html
+          grep -q 'BROWSER-NATIVE 3D' /tmp/home.html
           grep -q 'Liquid Circuit' /tmp/home.html
-          echo "STATIC_ROUTE_SMOKE_PASS routes=17 sitemap=PASS interactive=PASS v9-premium=PASS robots=PASS"
+          echo "STATIC_ROUTE_SMOKE_PASS routes=17 sitemap=PASS interactive=PASS v9-2-calibration=PASS robots=PASS"
