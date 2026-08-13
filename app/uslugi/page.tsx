@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { AudiencePathsV13 } from "@/components/audience-paths-v13";
+import { OfferLevelsV13 } from "@/components/offer-levels-v13";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { experienceServiceLinks } from "@/lib/experience-services";
@@ -51,6 +52,7 @@ export default function UslugiPage() {
       </section>
 
       <AudiencePathsV13 />
+      <OfferLevelsV13 />
 
       {pillars.map((pillar, index) => {
         const items = all.filter((item) => item.pillar === pillar.key);
