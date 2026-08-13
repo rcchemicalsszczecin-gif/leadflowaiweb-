@@ -41,6 +41,20 @@ export const metadata: Metadata = {
     siteName: site.name,
     title: "LeadFlowAI — strony internetowe zaprojektowane do wzrostu",
     description: site.description,
+    images: [
+      {
+        url: "/og-leadflowai.svg",
+        width: 1200,
+        height: 630,
+        alt: "LeadFlowAI — strony internetowe, SEO, AEO i GEO",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "LeadFlowAI — strony internetowe zaprojektowane do wzrostu",
+    description: site.description,
+    images: ["/og-leadflowai.svg"],
   },
   robots: {
     index: true,
