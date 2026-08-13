@@ -68,21 +68,39 @@ jobs:
           test -f out/kontakt/index.html
           test -f out/lab/index.html
           test -f out/uslugi/index.html
-          test -f out/ux-ui-design/index.html
-          test -f out/aplikacje-webowe/index.html
-          test -f out/cro-optymalizacja-konwersji/index.html
-          test -f out/analityka-webowa/index.html
-          test -f out/integracje-ai/index.html
-          test -f out/integracje-api/index.html
-          test -f out/core-web-vitals/index.html
-          test -f out/dostepnosc-wcag/index.html
-          test -f out/bezpieczenstwo-stron/index.html
-          test -f out/opieka-utrzymanie-stron/index.html
+
+          for route in \
+            ux-ui-design \
+            aplikacje-webowe \
+            cms-headless \
+            pwa \
+            strony-wielojezyczne \
+            copywriting-content \
+            cro-optymalizacja-konwersji \
+            analityka-webowa \
+            formularze-lead-generation \
+            integracje-ai \
+            integracje-api \
+            automatyzacje-www \
+            core-web-vitals \
+            dostepnosc-wcag \
+            bezpieczenstwo-stron \
+            hosting-deploy \
+            opieka-utrzymanie-stron \
+            rag-bazy-wiedzy \
+            agenci-ai-www \
+            monitoring-www; do
+            test -f "out/${route}/index.html"
+          done
+
           test -f out/wiedza/ai-search-google-co-robic-2026/index.html
           test -f out/wiedza/wcag-22-co-sprawdzic-na-stronie/index.html
+          test -f out/wiedza/rag-na-stronie-jak-zaprojektowac/index.html
           grep -q 'kontakt@leadflowai.pl' out/kontakt/index.html
           grep -q 'Formularz online jest obecnie wyłączony' out/kontakt/index.html
           grep -q 'Pełna oferta' out/uslugi/index.html
+          grep -q 'RAG' out/uslugi/index.html
+          grep -q 'Monitoring' out/uslugi/index.html
           grep -q 'Źródła i standardy' out/wiedza/ai-search-google-co-robic-2026/index.html
           grep -q 'DIGITAL EXPERIENCE STUDIO' out/index.html
           grep -q 'Liquid Circuit' out/index.html
@@ -91,7 +109,7 @@ jobs:
             echo "Disabled lead endpoint leaked into static artifact"
             exit 1
           fi
-          echo "STATIC_ARTIFACT_PASS html=PASS full-offer-v11=PASS expanded-services=17 knowledge=20 sources=PASS responsive-v10=PASS proof=REAL_ONLY contact-direct-email=PASS lead-api=ABSENT"
+          echo "STATIC_ARTIFACT_PASS html=PASS full-offer-v11=PASS expanded-services=20 knowledge=20plus sources=PASS responsive-v10=PASS proof=REAL_ONLY contact-direct-email=PASS lead-api=ABSENT"
 
       - name: Static route smoke
         shell: bash
@@ -126,24 +144,48 @@ jobs:
             /motion-design/ \
             /chatboty-ai/ \
             /lab/ \
+            /seo/ \
+            /aeo/ \
+            /geo-ai-search/ \
             /seo-aeo-geo/ \
+            /local-seo/ \
             /uslugi/ \
+            /ux-ui-design/ \
+            /aplikacje-webowe/ \
+            /cms-headless/ \
+            /pwa/ \
+            /strony-wielojezyczne/ \
+            /copywriting-content/ \
+            /cro-optymalizacja-konwersji/ \
             /analityka-webowa/ \
-            /dostepnosc-wcag/ \
+            /formularze-lead-generation/ \
             /integracje-ai/ \
+            /integracje-api/ \
+            /automatyzacje-www/ \
+            /core-web-vitals/ \
+            /dostepnosc-wcag/ \
+            /bezpieczenstwo-stron/ \
+            /hosting-deploy/ \
+            /opieka-utrzymanie-stron/ \
+            /rag-bazy-wiedzy/ \
+            /agenci-ai-www/ \
+            /monitoring-www/ \
             /realizacje/ \
             /wiedza/ \
             /wiedza/jak-zaplanowac-strone-firmowa/ \
-            /wiedza/ai-search-google-co-robic-2026/; do
+            /wiedza/ai-search-google-co-robic-2026/ \
+            /wiedza/rag-na-stronie-jak-zaprojektowac/; do
             curl -fsS "http://127.0.0.1:3000${route}" >/dev/null
           done
 
           curl -fsS http://127.0.0.1:3000/sitemap.xml | grep -q 'leadflowai.pl'
           curl -fsS http://127.0.0.1:3000/sitemap.xml | grep -q 'analityka-webowa'
+          curl -fsS http://127.0.0.1:3000/sitemap.xml | grep -q 'rag-bazy-wiedzy'
+          curl -fsS http://127.0.0.1:3000/sitemap.xml | grep -q 'monitoring-www'
           curl -fsS http://127.0.0.1:3000/sitemap.xml | grep -q 'ai-search-google-co-robic-2026'
           curl -fsS http://127.0.0.1:3000/robots.txt | grep -q 'sitemap.xml'
           grep -q 'kontakt@leadflowai.pl' /tmp/home.html
           grep -q 'DIGITAL EXPERIENCE STUDIO' /tmp/home.html
           grep -q 'Liquid Circuit' /tmp/home.html
           grep -q 'Nawigacja mobilna' /tmp/home.html
-          echo "STATIC_ROUTE_SMOKE_PASS routes=21 sitemap=PASS full-offer-v11=PASS knowledge=20 responsive-v10=PASS robots=PASS"
+          echo "STATIC_ROUTE_SMOKE_PASS routes=43 sitemap=PASS full-offer-v11=PASS expanded-services=20 knowledge=20plus responsive-v10=PASS robots=PASS"
