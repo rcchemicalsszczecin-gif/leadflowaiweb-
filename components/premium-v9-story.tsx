@@ -22,14 +22,19 @@ export function WhatWeBuildV9() {
   const current = buildModes.find((item) => item.key === active) ?? buildModes[0];
 
   return (
-    <section className="what-build-v9" aria-labelledby="what-build-title">
+    <section
+      id="what-we-build"
+      className="what-build-v9 what-build-v92"
+      aria-labelledby="what-build-title"
+      data-v92-reveal="mask"
+    >
       <div className="what-build-head-v9">
         <p>WHAT WE BUILD</p>
         <h2 id="what-build-title">Nie jeden typ strony.<br /><span>Jedno studio doświadczeń.</span></h2>
       </div>
       <div className="what-build-layout-v9">
         <nav aria-label="Obszary projektowe LeadFlowAI">
-          {buildModes.map((item) => (
+          {buildModes.map((item, index) => (
             <a
               href={item.href}
               key={item.key}
@@ -38,13 +43,27 @@ export function WhatWeBuildV9() {
               onFocus={() => setActive(item.key)}
               data-cursor="VIEW"
             >
-              <strong>{item.key}</strong><span>{item.note}</span>
+              <small>0{index + 1}</small>
+              <strong>{item.key}</strong>
+              <span>{item.note}</span>
             </a>
           ))}
         </nav>
-        <div className={`what-build-art-v9 mode-${active.toLowerCase().replace(" ", "-")}`} data-cursor="EXPLORE">
+        <div
+          className={`what-build-art-v9 mode-${active.toLowerCase().replace(" ", "-")}`}
+          data-mode={active}
+          data-cursor="EXPLORE"
+        >
           <span className="what-build-ghost-v9">{active}</span>
           <div className="what-build-object-v9"><i /><i /><i /><b /></div>
+          <div className="capability-live-stage-v92" aria-hidden="true">
+            <i className="capability-plane-v92 capability-plane-a-v92" />
+            <i className="capability-plane-v92 capability-plane-b-v92" />
+            <i className="capability-plane-v92 capability-plane-c-v92" />
+            <b className="capability-core-v92">{active}</b>
+            <span className="capability-orbit-v92 capability-orbit-a-v92" />
+            <span className="capability-orbit-v92 capability-orbit-b-v92" />
+          </div>
           <p>{current.note}</p>
         </div>
       </div>
@@ -72,7 +91,13 @@ export function ScrollStoryV9() {
   }, []);
 
   return (
-    <section className="scroll-story-v9" ref={rootRef} aria-labelledby="story-title">
+    <section
+      id="system-story"
+      className="scroll-story-v9 scroll-story-v92"
+      ref={rootRef}
+      aria-labelledby="story-title"
+      data-v92-reveal="depth"
+    >
       <div className="story-sticky-v9">
         <div className="story-copy-v9">
           <p>ONE SYSTEM / FOUR STATES</p>
@@ -85,6 +110,7 @@ export function ScrollStoryV9() {
           <div className="story-ring-v9 story-ring-a-v9" />
           <div className="story-ring-v9 story-ring-b-v9" />
           <div className="story-beam-v9" />
+          <div className="story-depth-plane-v92" />
           <span>WWW</span><span>SEARCH</span><span>CRO</span><span>AI</span>
         </div>
       </div>
@@ -121,7 +147,12 @@ export function LiquidCircuitV9() {
   };
 
   return (
-    <section className="liquid-signature-v9" aria-labelledby="liquid-title">
+    <section
+      id="liquid-circuit"
+      className="liquid-signature-v9 liquid-signature-v92"
+      aria-labelledby="liquid-title"
+      data-v92-reveal="wipe"
+    >
       <div className="liquid-copy-v9">
         <p>SIGNATURE EXPERIENCE</p>
         <h2 id="liquid-title">LeadFlow<br /><span>Liquid Circuit.</span></h2>
@@ -159,7 +190,12 @@ export function PremiumProofV9() {
   ] as const;
 
   return (
-    <section className="premium-proof-v9" aria-labelledby="proof-v9-title">
+    <section
+      id="proof"
+      className="premium-proof-v9 premium-proof-v92"
+      aria-labelledby="proof-v9-title"
+      data-v92-reveal="rise"
+    >
       <div className="premium-proof-head-v9">
         <p>FIRST-PARTY PROOF</p>
         <h2 id="proof-v9-title">Mniej obietnic.<br /><span>Więcej działającego kodu.</span></h2>
