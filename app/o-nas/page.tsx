@@ -24,6 +24,14 @@ const principles = [
   ["04", "Jakość musi być mierzalna", "Kod, statyczny build, routing, wydajność, dostępność i publiczne granice funkcji przechodzą automatyczne kontrole przed wydaniem."],
 ] as const;
 
+const methodology = [
+  ["01", "Diagnoza", "Ustalamy cel biznesowy, odbiorcę, problem, stan obecny, ograniczenia i wynik, który da się później ocenić."],
+  ["02", "Architektura", "Projektujemy informację, ścieżki użytkownika, konwersję, widoczność, dane i granice techniczne przed budową interfejsu."],
+  ["03", "Projekt i wdrożenie", "Budujemy interfejs i kod. Interakcje, 3D, AI i integracje trafiają do zakresu tylko wtedy, gdy mają konkretną pracę."],
+  ["04", "Walidacja", "Sprawdzamy funkcje, urządzenia mobilne, dostępność, SEO/AEO/GEO, wydajność, bezpieczeństwo i publiczną zgodność informacji."],
+  ["05", "Publikacja i rozwój", "Wydanie przechodzi Quality gates. Dalsze decyzje mają wynikać z rzeczywistych danych i zweryfikowanych potrzeb, nie z losowego dokładania funkcji."],
+] as const;
+
 export default function AboutPage() {
   return (
     <main className="about-page">
@@ -80,7 +88,25 @@ export default function AboutPage() {
       <section className="section-light">
         <div className="page-shell section-pad">
           <div className="service-section-head">
-            <p className="service-index">03 / PUBLICZNA PRAWDA</p>
+            <p className="service-index">03 / METODOLOGIA LEADFLOW</p>
+            <h2>Pięć etapów od problemu biznesowego do zweryfikowanego wydania.</h2>
+            <p>To nazwa naszego rzeczywistego sposobu pracy, nie osobny produkt ani obietnica wyniku.</p>
+          </div>
+          <div className="deliverable-list">
+            {methodology.map(([index, title, description]) => (
+              <article key={index}>
+                <span className="deliverable-index">{index}</span>
+                <div><h3>{title}</h3><p>{description}</p></div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-light">
+        <div className="page-shell section-pad">
+          <div className="service-section-head">
+            <p className="service-index">04 / PUBLICZNA PRAWDA</p>
             <h2>To, co publikuje strona, musi odpowiadać temu, co naprawdę istnieje.</h2>
           </div>
           <p>
@@ -91,7 +117,7 @@ export default function AboutPage() {
 
       <section className="contact-section section-dark">
         <div className="page-shell contact-grid">
-          <p className="section-label section-label-inverted"><span>04</span><span>LEADFLOWAI / KONTAKT</span></p>
+          <p className="section-label section-label-inverted"><span>05</span><span>LEADFLOWAI / KONTAKT</span></p>
           <div>
             <p className="contact-kicker">MASZ PROJEKT?</p>
             <h2>Opisz cel strony. Dobierzemy zakres do realnej pracy, którą ma wykonywać.</h2>
