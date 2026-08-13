@@ -8,11 +8,11 @@ export const site = {
 } as const;
 
 export const navigation = [
-  { href: "/strony-internetowe", label: "WWW" },
+  { href: "/strony-internetowe", label: "Strony WWW" },
   { href: "/strony-3d-webgl", label: "3D / WebGL" },
-  { href: "/seo-aeo-geo", label: "SEO · AEO · GEO" },
-  { href: "/lab", label: "Live Lab" },
-  { href: "/#process", label: "Proces" },
+  { href: "/seo-aeo-geo", label: "Widoczność" },
+  { href: "/lab", label: "Możliwości" },
+  { href: "/#process", label: "Jak pracujemy" },
 ] as const;
 
 export const systemStages = [
