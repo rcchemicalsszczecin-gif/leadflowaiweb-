@@ -30,7 +30,12 @@ const expandedSlugs = [
   "opieka-utrzymanie-stron",
 ];
 
+const extraSlugs = ["rag-bazy-wiedzy", "agenci-ai-www", "monitoring-www"];
+const allNewSlugs = [...expandedSlugs, ...extraSlugs];
+
 const expanded = read("lib/expanded-services.ts");
+const extra = read("lib/extra-services.ts");
+const combined = `${expanded}\n${extra}`;
 const hub = read("app/uslugi/page.tsx");
 const hubLower = hub.toLowerCase();
 const registry = read("lib/page-registry.ts");
@@ -38,9 +43,19 @@ const sitemap = read("app/sitemap.ts");
 const footer = read("components/site-footer.tsx");
 
 for (const slug of expandedSlugs) {
-  if (!expanded.includes(`slug: "${slug}"`)) fail(`brak usługi ${slug} w registry`);
+  if (!expanded.includes(`slug: "${slug}"`)) fail(`brak usługi ${slug} w expanded registry`);
   const route = read(`app/${slug}/page.tsx`);
   if (!route.includes("metadata") || !route.includes("ServicePage")) fail(`route ${slug} nie ma metadata/ServicePage`);
+}
+
+for (const slug of extraSlugs) {
+  if (!extra.includes(`slug: "${slug}"`)) fail(`brak usługi ${slug} w extra registry`);
+  const route = read(`app/${slug}/page.tsx`);
+  if (!route.includes("metadata") || !route.includes("ServicePage")) fail(`route ${slug} nie ma metadata/ServicePage`);
+}
+
+if (existsSync("app/uslugi/[slug]/page.tsx") || existsSync("lib/extended-services.ts")) {
+  fail("wykryto zduplikowaną nested warstwę usług");
 }
 
 for (const phrase of [
@@ -48,17 +63,25 @@ for (const phrase of [
   "tworzenie i rozwój produktów webowych",
   "widoczność i architektura informacji",
   "konwersja i pomiar",
+  "inteligencja",
   "integracje i automatyzacje",
   "jakość, bezpieczeństwo i utrzymanie",
 ]) {
   if (!hubLower.includes(phrase)) fail(`hub usług nie zawiera: ${phrase}`);
 }
 
-if (!registry.includes("expandedServicePages") || !registry.includes("experienceServices") || !registry.includes("allPublicServiceLinks")) {
+if (!registry.includes("expandedServicePages") || !registry.includes("extraServicePages") || !registry.includes("experienceServices") || !registry.includes("allPublicServiceLinks")) {
   fail("publiczny graf usług nie obejmuje wszystkich registries");
 }
-if (!sitemap.includes("expandedServiceLinks") || !sitemap.includes('"uslugi"')) fail("sitemap nie obejmuje pełnej oferty");
+if (!sitemap.includes("expandedServiceLinks") || !sitemap.includes("extraServiceLinks") || !sitemap.includes('"uslugi"')) {
+  fail("sitemap nie obejmuje pełnej oferty");
+}
 if (!footer.includes('href="/uslugi"')) fail("footer nie prowadzi do pełnej oferty");
+
+for (const slug of allNewSlugs) {
+  const source = slug in Object.create(null) ? "" : combined;
+  if (!source.includes(`slug: "${slug}"`)) fail(`brak ${slug} w source of truth`);
+}
 
 const forbiddenClaims = [
   "gwarantujemy pozycję",
@@ -67,7 +90,7 @@ const forbiddenClaims = [
   "100% skuteczności",
 ];
 for (const claim of forbiddenClaims) {
-  if (expanded.toLowerCase().includes(claim)) fail(`niedozwolony claim: ${claim}`);
+  if (combined.toLowerCase().includes(claim)) fail(`niedozwolony claim: ${claim}`);
 }
 
-console.log(`OFFER_V11_PASS expanded=${expandedSlugs.length} hub=PASS registry=CONNECTED sitemap=PASS language=PL public-truth=PASS`);
+console.log(`OFFER_V11_PASS expanded=${allNewSlugs.length} pillars=6 hub=PASS registry=CONNECTED sitemap=PASS duplicate-intent=ABSENT language=PL public-truth=PASS`);
