@@ -56,8 +56,8 @@ LeadFlowAI must itself demonstrate the quality it sells:
 - maintainability and observability.
 
 ## Design authority
-The current approved direction is recorded in `docs/design/LEADFLOWAI-DESIGN-DIRECTION-V5.md`.
-V5 supersedes V4 where background realism, scroll comfort and rendering cost conflict, while retaining the approved dark editorial hierarchy and interactive water behavior.
+The current approved direction is recorded in `docs/design/LEADFLOWAI-DESIGN-DIRECTION-V6.md`.
+V6 supersedes V5 only for foreground typography, section numbering and content framing. V5 remains authoritative for the realistic hardware background, interactive water behavior and rendering-performance architecture.
 Visual implementation must follow the current Owner-approved design record unless the Owner changes it.
 
 ## Validation
