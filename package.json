@@ -15,8 +15,10 @@
     "operations:contract": "node scripts/operations-contract.mjs",
     "static:contract": "node scripts/static-deploy-contract.mjs",
     "design:contract": "node scripts/design-v9-2-contract.mjs",
+    "responsive:contract": "node scripts/responsive-performance-v10-contract.mjs",
+    "performance:budget": "node scripts/performance-budget-v10.mjs",
     "check": "npm run typecheck && npm run lint",
-    "verify": "npm run search:contract && npm run lead:contract && npm run chat:contract && npm run content:contract && npm run operations:contract && npm run static:contract && npm run design:contract && npm run check && npm run build"
+    "verify": "npm run search:contract && npm run lead:contract && npm run chat:contract && npm run content:contract && npm run operations:contract && npm run static:contract && npm run design:contract && npm run responsive:contract && npm run check && npm run build && npm run performance:budget"
   },
   "engines": {
     "node": ">=20.9.0"
