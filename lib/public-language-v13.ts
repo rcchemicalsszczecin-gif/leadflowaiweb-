@@ -20,9 +20,9 @@ const terms: Record<string, string> = {
 };
 
 export function publicLabel(value: string): string {
-  return terms[value] ?? value;
+  return terms[value] ?? terms[value.toUpperCase()] ?? value;
 }
 
 export function publicCode(value: string): string {
-  return value.split(" / ").map((part) => terms[part] ?? part).join(" / ");
+  return value.split(" / ").map((part) => publicLabel(part)).join(" / ");
 }
