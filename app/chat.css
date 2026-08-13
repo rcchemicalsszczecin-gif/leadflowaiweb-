@@ -1,0 +1,196 @@
+@layer components {
+  .assistant-launcher {
+    position: fixed;
+    right: clamp(1rem, 2.5vw, 2rem);
+    bottom: clamp(1rem, 2.5vw, 2rem);
+    z-index: 60;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-height: 3.25rem;
+    padding: 0.7rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: var(--obsidian);
+    color: var(--white);
+    box-shadow: 0 18px 55px rgba(0, 0, 0, 0.28);
+    cursor: pointer;
+    font-weight: 700;
+  }
+
+  .assistant-launcher > span {
+    display: inline-grid;
+    place-items: center;
+    width: 1.8rem;
+    height: 1.8rem;
+    border: 1px solid var(--signal);
+    color: var(--signal);
+    font: 0.62rem/1 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+
+  .site-assistant {
+    position: fixed;
+    right: clamp(1rem, 2.5vw, 2rem);
+    bottom: clamp(5rem, 8vw, 6rem);
+    z-index: 59;
+    width: min(26rem, calc(100vw - 2rem));
+    max-height: min(42rem, calc(100svh - 7rem));
+    display: grid;
+    grid-template-rows: auto minmax(10rem, 1fr) auto auto auto;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: var(--obsidian-2);
+    color: var(--white);
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.42);
+  }
+
+  .assistant-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: start;
+    padding: 1rem;
+    border-bottom: 1px solid var(--line-dark);
+  }
+
+  .assistant-head p,
+  .assistant-footnote,
+  .assistant-thinking,
+  .assistant-line > span {
+    font: 0.62rem/1.45 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    letter-spacing: 0.08em;
+  }
+
+  .assistant-head p {
+    color: var(--signal);
+    margin-bottom: 0.35rem;
+  }
+
+  .assistant-head strong {
+    font-size: 0.9rem;
+  }
+
+  .assistant-head button {
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid var(--line-dark);
+    background: transparent;
+    color: var(--white);
+    cursor: pointer;
+  }
+
+  .assistant-lines {
+    overflow-y: auto;
+    display: grid;
+    align-content: start;
+    gap: 0.8rem;
+    padding: 1rem;
+  }
+
+  .assistant-line {
+    display: grid;
+    grid-template-columns: 2rem 1fr;
+    gap: 0.65rem;
+    padding: 0.8rem;
+    border: 1px solid var(--line-dark);
+    color: rgba(248, 250, 252, 0.82);
+    line-height: 1.5;
+  }
+
+  .assistant-line > span {
+    color: var(--signal);
+  }
+
+  .assistant-line-user {
+    background: rgba(255, 255, 255, 0.045);
+  }
+
+  .assistant-thinking {
+    color: rgba(248, 250, 252, 0.5);
+  }
+
+  .assistant-suggestions {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding: 0 1rem 0.8rem;
+  }
+
+  .assistant-suggestions button {
+    flex: 0 0 auto;
+    border: 1px solid var(--line-dark);
+    background: transparent;
+    color: rgba(248, 250, 252, 0.72);
+    padding: 0.55rem 0.7rem;
+    cursor: pointer;
+    font-size: 0.72rem;
+  }
+
+  .assistant-suggestions button:disabled,
+  .assistant-form button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+
+  .assistant-form {
+    padding: 0 1rem 0.8rem;
+  }
+
+  .assistant-form > label {
+    display: block;
+    margin-bottom: 0.45rem;
+    color: rgba(248, 250, 252, 0.55);
+    font-size: 0.72rem;
+  }
+
+  .assistant-form > div {
+    display: grid;
+    grid-template-columns: 1fr auto;
+  }
+
+  .assistant-form input {
+    min-width: 0;
+    min-height: 3rem;
+    border: 1px solid var(--line-dark);
+    border-right: 0;
+    background: rgba(255, 255, 255, 0.035);
+    color: var(--white);
+    padding: 0 0.8rem;
+  }
+
+  .assistant-form input::placeholder {
+    color: rgba(248, 250, 252, 0.35);
+  }
+
+  .assistant-form button {
+    border: 0;
+    background: var(--signal);
+    color: var(--ink);
+    padding-inline: 1rem;
+    font-weight: 800;
+    cursor: pointer;
+  }
+
+  .assistant-footnote {
+    padding: 0.8rem 1rem 1rem;
+    border-top: 1px solid var(--line-dark);
+    color: rgba(248, 250, 252, 0.44);
+  }
+
+  .assistant-footnote a {
+    color: var(--signal);
+  }
+}
+
+@media (max-width: 640px) {
+  .assistant-launcher {
+    right: 0.75rem;
+    bottom: 0.75rem;
+  }
+
+  .site-assistant {
+    right: 0.75rem;
+    bottom: 4.8rem;
+    width: calc(100vw - 1.5rem);
+    max-height: calc(100svh - 5.75rem);
+  }
+}
