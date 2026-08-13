@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { experienceServiceLinks } from "@/lib/experience-services";
 import { expandedServiceLinks } from "@/lib/expanded-services";
+import { extraServiceLinks } from "@/lib/extra-services";
 import { knowledgeArticles } from "@/lib/knowledge-registry";
 import { searchServiceLinks } from "@/lib/search-pages";
 import { coreServiceLinks } from "@/lib/services";
@@ -20,6 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...experienceServiceLinks.map((item) => item.slug),
     ...searchServiceLinks.map((item) => item.slug),
     ...expandedServiceLinks.map((item) => item.slug),
+    ...extraServiceLinks.map((item) => item.slug),
     ...knowledgeArticles.map((article) => `wiedza/${article.slug}`),
   ];
 
