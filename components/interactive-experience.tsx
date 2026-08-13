@@ -208,11 +208,29 @@ export function BrowserDemo() {
         <p className="experience-kicker">LIVE / BROWSER PROTOTYPE</p>
         <h2 id="browser-demo-title">Nie opisujemy tylko interfejsów. Pokazujemy ich zachowanie.</h2>
         <p>Przełącz scenariusz i szerokość. Demo pozostaje lekkie, ale prezentuje responsive, hierarchię, CTA i stany produktu w jednym module.</p>
-        <div className="demo-controls" role="group" aria-label="Wybór scenariusza demo">
+        <fieldset
+          className="demo-controls"
+          style={{ border: 0, padding: 0, margin: 0, minInlineSize: 0 }}
+        >
+          <legend
+            style={{
+              position: "absolute",
+              width: 1,
+              height: 1,
+              padding: 0,
+              margin: -1,
+              overflow: "hidden",
+              clip: "rect(0, 0, 0, 0)",
+              whiteSpace: "nowrap",
+              border: 0,
+            }}
+          >
+            Wybór scenariusza demo
+          </legend>
           {(["landing", "commerce", "dashboard"] as const).map((item) => (
             <button type="button" key={item} onClick={() => setPanel(item)} className={panel === item ? "is-active" : ""}>{item}</button>
           ))}
-        </div>
+        </fieldset>
       </div>
       <div className={`browser-shell browser-${viewport}`}>
         <div className="browser-toolbar"><span /><span /><span /><b>leadflowai://live-demo</b>
