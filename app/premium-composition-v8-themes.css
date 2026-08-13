@@ -1,0 +1,52 @@
+@layer components {
+  .create-live-v8 {
+    background:
+      radial-gradient(circle at 20% 20%, rgba(145, 230, 255, 0.07), transparent 17rem),
+      linear-gradient(rgba(145, 230, 255, 0.022) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(145, 230, 255, 0.022) 1px, transparent 1px),
+      rgba(1, 7, 11, 0.54);
+    background-size: auto, 34px 34px, 34px 34px, auto;
+  }
+
+  .discover-live-v8 {
+    background:
+      radial-gradient(circle at 42% 50%, rgba(184, 255, 56, 0.065), transparent 16rem),
+      radial-gradient(circle at 76% 25%, rgba(145, 230, 255, 0.055), transparent 12rem),
+      rgba(1, 7, 11, 0.56);
+  }
+
+  .convert-live-v8 {
+    background:
+      linear-gradient(120deg, rgba(145, 230, 255, 0.025), transparent 46%),
+      radial-gradient(circle at 74% 60%, rgba(184, 255, 56, 0.055), transparent 15rem),
+      rgba(1, 7, 11, 0.56);
+  }
+
+  .intelligence-live-v8 {
+    background:
+      radial-gradient(circle at 50% 50%, rgba(145, 230, 255, 0.075), transparent 18rem),
+      radial-gradient(circle at 50% 52%, rgba(184, 255, 56, 0.035), transparent 10rem),
+      rgba(1, 7, 11, 0.58);
+  }
+
+  .connect-live-v8 {
+    background:
+      radial-gradient(circle at 50% 50%, rgba(184, 255, 56, 0.055), transparent 13rem),
+      repeating-linear-gradient(45deg, rgba(145, 230, 255, 0.012) 0 1px, transparent 1px 28px),
+      rgba(1, 7, 11, 0.58);
+  }
+
+  .care-live-v8 {
+    background:
+      linear-gradient(180deg, rgba(145, 230, 255, 0.035), transparent 42%),
+      radial-gradient(circle at 80% 20%, rgba(184, 255, 56, 0.045), transparent 13rem),
+      rgba(1, 7, 11, 0.6);
+  }
+
+  .v8-stage-section:nth-child(2) .stage-module-v8 { border-color: rgba(145, 230, 255, 0.2); }
+  .v8-stage-section:nth-child(3) .stage-module-v8 { border-color: rgba(184, 255, 56, 0.16); }
+  .v8-stage-section:nth-child(4) .stage-module-v8 { border-color: rgba(145, 230, 255, 0.18); }
+  .v8-stage-section:nth-child(5) .stage-module-v8 { border-color: rgba(180, 208, 255, 0.16); }
+  .v8-stage-section:nth-child(6) .stage-module-v8 { border-color: rgba(145, 230, 255, 0.17); }
+  .v8-stage-section:nth-child(7) .stage-module-v8 { border-color: rgba(184, 255, 56, 0.14); }
+}
