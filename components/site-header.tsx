@@ -22,7 +22,7 @@ export function SiteHeader() {
         {navigation.map((item) => {
           const [code, note] = navigationPreview[item.href];
           return (
-            <a key={item.href} href={item.href} className="site-nav-link-v92" data-cursor="OPEN">
+            <a key={item.href} href={item.href} className="site-nav-link-v92" data-cursor="OTWÓRZ">
               <span>{item.label}</span>
               <span className="nav-preview-v92" aria-hidden="true">
                 <small>{code}</small>
@@ -58,7 +58,7 @@ export function SiteHeader() {
         </nav>
       </details>
 
-      <a className="button button-small button-ghost header-cta-v92" href="/kontakt" data-cursor="START">
+      <a className="button button-small button-ghost header-cta-v92" href="/kontakt" data-cursor="ZACZNIJ">
         Wyceń projekt
       </a>
     </header>
