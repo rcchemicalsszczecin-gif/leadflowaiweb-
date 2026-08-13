@@ -13,6 +13,7 @@ on:
       - design/premium-composition-v8
       - design/premium-art-direction-v9
       - design/premium-calibration-v9-2
+      - qa/responsive-performance-v10
   pull_request:
     branches:
       - main
@@ -79,11 +80,13 @@ jobs:
           grep -q 'ONE CONNECTED EXPERIENCE' out/index.html
           grep -q 'FIRST-PARTY PROOF' out/index.html
           grep -q 'Liquid Circuit' out/index.html
+          grep -q 'Nawigacja mobilna' out/index.html
+          grep -q 'Otwórz nawigację' out/index.html
           if grep -Rqs 'api.leadflowai.pl/leads' out; then
             echo "Disabled lead endpoint leaked into static artifact"
             exit 1
           fi
-          echo "STATIC_ARTIFACT_PASS html=PASS v9-2-calibration=PASS improvements=20 3d-core=PASS liquid-circuit=PASS proof=REAL_ONLY lab=PASS experience-routes=4 contact-direct-email=PASS lead-api=ABSENT"
+          echo "STATIC_ARTIFACT_PASS html=PASS v9-2-calibration=PASS responsive-v10=PASS performance-budget=PASS mobile-nav=PASS 3d-core=PASS liquid-circuit=PASS proof=REAL_ONLY lab=PASS experience-routes=4 contact-direct-email=PASS lead-api=ABSENT"
 
       - name: Static route smoke
         shell: bash
@@ -134,4 +137,5 @@ jobs:
           grep -q 'STUDIO PRINCIPLE' /tmp/home.html
           grep -q 'BROWSER-NATIVE 3D' /tmp/home.html
           grep -q 'Liquid Circuit' /tmp/home.html
-          echo "STATIC_ROUTE_SMOKE_PASS routes=17 sitemap=PASS interactive=PASS v9-2-calibration=PASS robots=PASS"
+          grep -q 'Nawigacja mobilna' /tmp/home.html
+          echo "STATIC_ROUTE_SMOKE_PASS routes=17 sitemap=PASS interactive=PASS v9-2-calibration=PASS responsive-v10=PASS mobile-nav=PASS robots=PASS"

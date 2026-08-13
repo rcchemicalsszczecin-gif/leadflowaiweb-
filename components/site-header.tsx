@@ -34,6 +34,30 @@ export function SiteHeader() {
         })}
       </nav>
 
+      <details className="mobile-nav-v10">
+        <summary aria-label="Otwórz nawigację">
+          <span>MENU</span>
+          <i aria-hidden="true" />
+        </summary>
+        <nav className="mobile-nav-panel-v10" aria-label="Nawigacja mobilna">
+          {navigation.map((item) => {
+            const [code, note] = navigationPreview[item.href];
+            return (
+              <a key={item.href} href={item.href}>
+                <small>{code}</small>
+                <span>{item.label}</span>
+                <em>{note}</em>
+              </a>
+            );
+          })}
+          <a className="mobile-nav-contact-v10" href="/kontakt">
+            <small>START</small>
+            <span>Wycena strony</span>
+            <em>Kontakt bezpośredni</em>
+          </a>
+        </nav>
+      </details>
+
       <a className="button button-small button-ghost header-cta-v92" href="/kontakt" data-cursor="START">
         Wycena strony
       </a>

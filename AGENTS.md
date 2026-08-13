@@ -66,6 +66,8 @@ Premium direction means broad safe compositions, deliberate whitespace, strong e
 Interactive additions must remain bounded, accessible and performance-aware. Heavy third-party 3D dependencies are not justified for decorative homepage effects.
 Visual implementation must follow the current Owner-approved design record unless the Owner changes it.
 
+The Owner has frozen visual design after V9.2. Responsive/Performance V10 may correct responsive defects, navigation access, touch ergonomics, rendering cost, asset delivery and measurable performance regressions only. It must not alter V9.2 art direction, visual hierarchy, palette, cinematic composition or service/content positioning.
+
 ## Validation
 Each stage requires relevant technical validation, changed-path review, semantic/public-truth checks and a formal PASS/FAIL/BLOCKER verdict.
 Completion of a stage does not automatically authorize deployment or merge.
