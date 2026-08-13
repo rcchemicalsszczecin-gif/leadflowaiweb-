@@ -1,4 +1,5 @@
 import type { KnowledgeArticle } from "@/lib/knowledge";
+import { knowledgeEditorialV13 } from "@/lib/knowledge-editorial-v13";
 import type { ServicePageData } from "@/lib/services";
 import { site } from "@/lib/site";
 
@@ -112,6 +113,7 @@ export function getArticleStructuredData(article: KnowledgeArticle): Record<stri
         name: article.title,
         description: article.description,
         inLanguage: "pl-PL",
+        dateModified: knowledgeEditorialV13.reviewedAt,
         isPartOf: { "@id": websiteId },
         mainEntity: { "@id": articleId },
       },
@@ -122,6 +124,7 @@ export function getArticleStructuredData(article: KnowledgeArticle): Record<stri
         description: article.description,
         url,
         inLanguage: "pl-PL",
+        dateModified: knowledgeEditorialV13.reviewedAt,
         mainEntityOfPage: { "@id": webPageId },
         author: { "@id": organizationId },
         publisher: { "@id": organizationId },
