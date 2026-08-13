@@ -10,7 +10,7 @@ export function ServiceKnowledgeLinks({ slug }: Props) {
     <section className="section-light related-services" aria-labelledby="service-knowledge-title">
       <div className="page-shell section-pad">
         <div className="service-section-head">
-          <p className="service-index">05 / WIEDZA POWIĄZANA</p>
+          <p className="service-index">06 / WIEDZA POWIĄZANA</p>
           <h2 id="service-knowledge-title">Materiały, które wyjaśniają ten temat szerzej.</h2>
         </div>
         <nav className="related-grid" aria-label="Wiedza powiązana z usługą">
