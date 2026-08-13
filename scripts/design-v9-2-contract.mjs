@@ -55,19 +55,19 @@ for (const viewport of ["@media (min-width: 1800px)", "@media (max-width: 1599px
 
 // 6-10 cinematic composition
 for (let index = 1; index <= 6; index += 1) {
-  if (!css.includes(`data-v92-layout=\"scene-${index}\"`)) fail(`missing unique scene-${index} layout`);
+  if (!css.includes(`data-v92-layout="scene-${index}"`)) fail(`missing unique scene-${index} layout`);
 }
 for (const visual of ["stage-ambient-plane-v92", "search-depth-ring-v92", "conversion-depth-v92", "ai-depth-mesh-v92", "connect-depth-grid-v92", "care-scan-v92"]) {
   if (!journey.includes(visual) || !css.includes(`.${visual}`)) fail(`missing strengthened stage depth visual ${visual}`);
 }
 if (!css.includes("premium-stage-v92::before") || !css.includes("background-size: 121% auto")) fail("dynamic stage crop/active zoom missing");
 if (!home.includes("ManifestSceneV92") || !css.includes(".manifest-scene-v92") || !enhancements.includes("INTELLIGENCE.")) fail("dark-void typography manifest missing");
-if (!story.includes("capability-live-stage-v92") || !css.includes(".what-build-v92") || !css.includes("data-mode=\"3D\"")) fail("full WHAT WE BUILD capability scene missing");
+if (!story.includes("capability-live-stage-v92") || !css.includes(".what-build-v92") || !css.includes('data-mode="3D"')) fail("full WHAT WE BUILD capability scene missing");
 
 // 11-16 interaction / motion
 if (!journey.includes("stage-transition-v92") || !css.includes("v92-transition-flow")) fail("connected stage transition grammar missing");
 for (const reveal of ["rise", "depth", "wipe", "mask"]) {
-  if (!css.includes(`data-v92-reveal=\"${reveal}\"`)) fail(`reveal language missing ${reveal}`);
+  if (!css.includes(`data-v92-reveal="${reveal}"`)) fail(`reveal language missing ${reveal}`);
 }
 if (!enhancements.includes("experience-rail-v92") || !css.includes(".experience-rail-v92")) fail("sticky progress rail missing");
 if (!header.includes("nav-preview-v92") || !css.includes(".nav-preview-v92")) fail("cinematic navigation previews missing");
