@@ -1,11 +1,11 @@
 import { navigation } from "@/lib/site";
 
 const navigationPreview: Record<(typeof navigation)[number]["href"], readonly [string, string]> = {
-  "/strony-internetowe": ["WEB", "Design + development"],
-  "/strony-3d-webgl": ["3D", "WebGL + interaction"],
-  "/seo-aeo-geo": ["SEARCH", "SEO + AEO + GEO"],
-  "/lab": ["LAB", "Live browser demos"],
-  "/#process": ["PROCESS", "Strategy → launch"],
+  "/strony-internetowe": ["STRONY", "Projekt i wdrożenie"],
+  "/strony-3d-webgl": ["3D", "WebGL i interakcje"],
+  "/seo-aeo-geo": ["WIDOCZNOŚĆ", "SEO + AEO + GEO"],
+  "/lab": ["MOŻLIWOŚCI", "Interaktywne demo"],
+  "/#process": ["PROCES", "Od strategii do publikacji"],
 };
 
 export function SiteHeader() {
@@ -51,15 +51,15 @@ export function SiteHeader() {
             );
           })}
           <a className="mobile-nav-contact-v10" href="/kontakt">
-            <small>START</small>
-            <span>Wycena strony</span>
-            <em>Kontakt bezpośredni</em>
+            <small>KONTAKT</small>
+            <span>Wyceń projekt</span>
+            <em>Napisz bezpośrednio</em>
           </a>
         </nav>
       </details>
 
       <a className="button button-small button-ghost header-cta-v92" href="/kontakt" data-cursor="START">
-        Wycena strony
+        Wyceń projekt
       </a>
     </header>
   );
