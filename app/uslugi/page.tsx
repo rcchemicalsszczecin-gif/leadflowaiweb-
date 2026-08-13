@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { AudiencePathsV13 } from "@/components/audience-paths-v13";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { experienceServiceLinks } from "@/lib/experience-services";
@@ -18,7 +19,7 @@ const pillars = [
   { key: "CREATE", label: "PROJEKT I BUDOWA", title: "Tworzenie i rozwój produktów webowych", description: "Od architektury i UX/UI przez strony, sklepy internetowe, aplikacje, CMS, PWA i doświadczenia interaktywne." },
   { key: "DISCOVER", label: "WIDOCZNOŚĆ", title: "Widoczność i architektura informacji", description: "SEO, AEO, GEO / AI Search, lokalne SEO i treść źródłowa projektowane jako jeden system informacji." },
   { key: "CONVERT", label: "KONWERSJA", title: "Konwersja i pomiar", description: "Strony sprzedażowe, CRO, formularze, pozyskiwanie zapytań i analityka połączone z rzeczywistym celem biznesowym." },
-  { key: "INTELLIGENCE", label: "INTELIGENCJA", title: "Inteligencja", description: "Chatboty, RAG, agenci i integracje AI z jasno określoną rolą, źródłami wiedzy, ograniczeniami i bezpiecznym fallbackiem." },
+  { key: "INTELLIGENCE", label: "INTELIGENCJA", title: "Inteligencja", description: "Chatboty, RAG, agenci i integracje AI z jasno określoną rolą, źródłami wiedzy, ograniczeniami i bezpiecznym trybem awaryjnym." },
   { key: "CONNECT", label: "INTEGRACJE", title: "Integracje i automatyzacje", description: "API, webhooki, CRM, kalendarze i automatyzacje łączące stronę z dalszym procesem firmy." },
   { key: "CARE", label: "OPIEKA", title: "Jakość, bezpieczeństwo i utrzymanie", description: "Core Web Vitals, WCAG, bezpieczeństwo, hosting, publikacja, monitoring i dalszy rozwój." },
 ] as const;
@@ -48,6 +49,8 @@ export default function UslugiPage() {
           </div>
         </div>
       </section>
+
+      <AudiencePathsV13 />
 
       {pillars.map((pillar, index) => {
         const items = all.filter((item) => item.pillar === pillar.key);
