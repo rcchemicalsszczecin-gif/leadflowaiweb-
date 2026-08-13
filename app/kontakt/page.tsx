@@ -52,7 +52,7 @@ export default function KontaktPage() {
             <p className="service-index">00 / BRIEF</p>
             <h2>Krótki brief wystarczy, żeby zacząć.</h2>
             <p>
-              Formularz służy wyłącznie do rozpoczęcia rozmowy o projekcie. Nie wpisuj haseł,
+              Kontakt służy wyłącznie do rozpoczęcia rozmowy o projekcie. Nie wysyłaj haseł,
               danych kart płatniczych ani innych poufnych sekretów technicznych.
             </p>
             <div className="contact-direct">
@@ -71,7 +71,7 @@ export default function KontaktPage() {
           <h2>Po zapytaniu najpierw ustalamy zakres i ryzyka. Dopiero potem rozwiązanie.</h2>
           <p>
             Jeżeli projekt wymaga dodatkowych integracji, hostingu, dostępu do obecnej strony lub
-            danych analitycznych, ustalamy to jako osobny bezpieczny etap — nie przez publiczny formularz.
+            danych analitycznych, ustalamy to jako osobny bezpieczny etap — nie przez publiczną wiadomość.
           </p>
         </div>
         <div className="page-shell">
