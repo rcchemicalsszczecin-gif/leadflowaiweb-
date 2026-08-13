@@ -22,7 +22,7 @@ export const systemStages = [
     key: "CREATE",
     title: "Projektujemy i budujemy.",
     description:
-      "Strony firmowe, landing pages, e-commerce, interaktywne WWW, 3D/WebGL, redesign i dedykowane systemy internetowe — od architektury informacji po produkcyjny kod.",
+      "Strony firmowe, strony kampanijne, sprzedaż internetowa, interaktywne WWW, 3D/WebGL, przebudowa i dedykowane systemy internetowe — od architektury informacji po produkcyjny kod.",
     tags: ["UX/UI", "Responsywność", "Wdrożenie", "3D / WebGL"],
   },
   {
