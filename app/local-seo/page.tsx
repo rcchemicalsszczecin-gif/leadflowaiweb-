@@ -1,8 +1,20 @@
 import { ServicePage } from "@/components/service-page";
 import { getSearchMetadata, getSearchPage } from "@/lib/search-pages";
 
-export const metadata = getSearchMetadata("local-seo");
+const page = {
+  ...getSearchPage("local-seo"),
+  eyebrow: "LEADFLOWAI / SEO LOKALNE",
+  title: "SEO lokalne dla firm, których klienci szukają usług w konkretnym miejscu.",
+  lead: "Łączymy realny obszar działania firmy, spójne dane, lokalne strony usługowe i profil firmy tam, gdzie zapytanie rzeczywiście ma lokalną intencję.",
+  directAnswer: "SEO lokalne służy firmom obsługującym konkretną lokalizację lub obszar. Nie polega na tworzeniu dziesiątek kopii stron z podmienioną nazwą miasta. Fundamentem są prawdziwe informacje lokalne, spójne dane firmy, właściwe strony usługowe i czytelne powiązanie między firmą, usługą oraz miejscem.",
+};
+
+export const metadata = {
+  ...getSearchMetadata("local-seo"),
+  title: page.title,
+  description: page.lead,
+};
 
 export default function LocalSeoPage() {
-  return <ServicePage page={getSearchPage("local-seo")} />;
+  return <ServicePage page={page} />;
 }
