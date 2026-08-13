@@ -42,7 +42,7 @@ for (const required of [
 ]) {
   if (!searchEducation.includes(required)) fail(`V13 search education visual missing: ${required}`);
 }
-if (!visibilityHub.includes("<SearchVisibilityExplainerV13 active />")) fail("V13 search education module is not active on visibility hub");
+if (!visibilityHub.includes("<SearchVisibilityExplainerV13 />")) fail("V13 search education module is not mounted on visibility hub");
 if (!layout.includes('import "./v13-search-education.css"')) fail("V13 search education stylesheet is not mounted");
 if (!searchEducationCss.includes(".search-view-grid-v13") || !searchEducationCss.includes(".entity-graph-stage-v13") || !searchEducationCss.includes("@media (max-width: 620px)")) {
   fail("V13 search education visual/mobile contract incomplete");
