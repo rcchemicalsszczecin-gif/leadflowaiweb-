@@ -156,10 +156,6 @@
     mix-blend-mode: screen;
   }
 
-  main {
-    background: transparent;
-  }
-
   main > section,
   .service-page,
   .section-dark,
@@ -168,10 +164,6 @@
       linear-gradient(180deg, rgba(8, 11, 15, 0.96), rgba(8, 11, 15, 0.985)),
       var(--obsidian);
     color: var(--white);
-  }
-
-  main > section {
-    border-color: var(--line-dark) !important;
   }
 
   .blueprint-surface::before {
@@ -221,13 +213,22 @@
   .knowledge-cards article,
   .portfolio-scope-grid article,
   .lead-form,
-  .contact-aside,
   .service-process li,
   .service-faq-grid details,
   .related-grid a {
     background: rgba(255, 255, 255, 0.018);
     border-color: var(--line-dark);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.018);
+  }
+
+  .system-flow,
+  .service-capability-panel,
+  .quality-item,
+  .outcome-grid article,
+  .knowledge-cards article,
+  .related-grid a {
+    position: relative;
+    overflow: hidden;
   }
 
   .system-flow {
@@ -249,16 +250,6 @@
     transition: transform 700ms cubic-bezier(0.2, 0.75, 0.2, 1);
   }
 
-  .system-flow,
-  .service-capability-panel,
-  .quality-item,
-  .outcome-grid article,
-  .knowledge-cards article,
-  .related-grid a {
-    position: relative;
-    overflow: hidden;
-  }
-
   .system-flow:hover::after,
   .service-capability-panel:hover::after,
   .quality-item:hover::after,
@@ -277,8 +268,8 @@
     box-shadow: 0 0 32px rgba(184, 255, 56, 0.14);
   }
 
-  .text-link-dark,
-  .text-link {
+  .text-link,
+  .text-link-dark {
     color: rgba(248, 250, 252, 0.82);
     border-bottom-color: rgba(248, 250, 252, 0.26);
   }
@@ -288,10 +279,6 @@
   .service-index,
   .proof-kicker,
   .form-kicker,
-  .form-section-head > span,
-  .contact-direct > span,
-  .knowledge-cards article > span,
-  .portfolio-scope-grid article > span,
   .portfolio-status,
   .breadcrumb,
   .panel-label {
@@ -307,7 +294,6 @@
   .proof-copy,
   .faq-list details p,
   .stage-detail > p,
-  .service-answer > .page-shell > p:last-child,
   .outcome-grid p,
   .service-process li p,
   .service-faq-grid details p,
@@ -323,7 +309,28 @@
   }
 
   .stage-section.section-light,
-  .stage-section.section-dark {
+  .stage-section.section-dark,
+  .process-list,
+  .process-list li,
+  .faq-list,
+  .faq-list details,
+  .site-footer,
+  .contact-section,
+  .service-answer,
+  .service-deliverables,
+  .knowledge-prose > section,
+  .knowledge-article-grid > aside,
+  .contact-direct,
+  .form-section-head,
+  .lead-form,
+  .outcome-grid,
+  .knowledge-cards,
+  .service-faq-grid,
+  .related-grid,
+  .deliverable-list,
+  .deliverable-list article,
+  .service-process ol,
+  .service-process li {
     border-color: var(--line-dark);
   }
 
@@ -344,26 +351,6 @@
     background: rgba(255, 255, 255, 0.014);
   }
 
-  .process-list,
-  .process-list li,
-  .faq-list,
-  .faq-list details,
-  .site-footer,
-  .contact-section,
-  .service-answer,
-  .service-deliverables,
-  .knowledge-prose > section,
-  .knowledge-article-grid > aside,
-  .contact-direct,
-  .form-section-head,
-  .lead-form,
-  .outcome-grid,
-  .knowledge-cards,
-  .service-faq-grid,
-  .related-grid {
-    border-color: var(--line-dark);
-  }
-
   .quality-head p,
   .quality-item p,
   .section-dark .stage-detail > p,
@@ -372,7 +359,8 @@
   .portfolio-hero-copy > p:last-child,
   .knowledge-article-head > p:last-child,
   .contact-hero-copy,
-  .service-lead {
+  .service-lead,
+  .service-answer > .page-shell > p:last-child {
     color: rgba(248, 250, 252, 0.62);
   }
 
@@ -426,28 +414,26 @@
 
   .outcome-grid article > span,
   .knowledge-cards article > p:first-of-type,
-  .portfolio-scope-grid article > span {
-    color: rgba(248, 250, 252, 0.36);
-  }
-
-  .service-process ol,
-  .deliverable-list {
-    border-color: var(--line-dark);
-  }
-
-  .service-process li,
-  .deliverable-list article {
-    border-color: var(--line-dark);
+  .portfolio-scope-grid article > span,
+  .form-section-head > span,
+  .contact-direct > span,
+  .knowledge-cards article > span {
+    color: rgba(248, 250, 252, 0.38);
   }
 
   .service-faq-grid details,
-  .related-grid a {
+  .related-grid a,
+  .contact-direct a {
     color: var(--white);
+  }
+
+  .service-directory a,
+  .contact-direct a {
+    border-color: var(--line-dark);
   }
 
   .service-directory a {
     color: rgba(248, 250, 252, 0.55);
-    border-color: var(--line-dark);
   }
 
   .contact-hero {
@@ -470,11 +456,6 @@
 
   .contact-aside h2 {
     font-size: clamp(1.85rem, 2.9vw, 3.1rem);
-  }
-
-  .contact-direct a {
-    color: var(--white);
-    border-bottom-color: var(--line-dark);
   }
 
   .lead-form {
@@ -525,11 +506,6 @@
     line-height: 0.95;
   }
 
-  .knowledge-cards a,
-  .portfolio-scope-grid a {
-    border-color: var(--line-dark);
-  }
-
   .knowledge-truth h2,
   .knowledge-index-head h2,
   .portfolio-method h2,
@@ -539,6 +515,11 @@
 
   .knowledge-prose h2 {
     font-size: clamp(1.85rem, 3.15vw, 3rem);
+  }
+
+  .knowledge-cards a,
+  .portfolio-scope-grid a {
+    border-color: var(--line-dark);
   }
 
   .site-header {
@@ -665,7 +646,7 @@
     .ambient-scan,
     .ambient-orbit,
     .ambient-node {
-      animation: none !important;
+      animation: none;
     }
 
     .ambient-scan,
