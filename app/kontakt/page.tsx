@@ -5,16 +5,16 @@ import { SiteHeader } from "@/components/site-header";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Kontakt i wycena strony",
+  title: "Kontakt i wycena strony internetowej",
   description:
-    "Opisz projekt WWW, cel biznesowy i potrzebny zakres. LeadFlowAI przygotuje właściwy kierunek realizacji strony, sklepu, landing page, modernizacji lub search architecture.",
+    "Opisz projekt WWW, cel biznesowy i potrzebny zakres. LeadFlowAI pomoże uporządkować kierunek realizacji strony, sklepu, strony kampanijnej, modernizacji lub architektury widoczności SEO/AEO/GEO.",
   alternates: { canonical: "/kontakt" },
   openGraph: {
     type: "website",
     locale: "pl_PL",
     url: `${site.url}/kontakt`,
     siteName: site.name,
-    title: "Kontakt i wycena strony | LeadFlowAI",
+    title: "Kontakt i wycena strony internetowej | LeadFlowAI",
     description: "Opisz projekt WWW i cel, który strona ma realizować.",
   },
 };
@@ -33,12 +33,12 @@ export default function KontaktPage() {
             <div className="contact-hero-copy">
               <p>
                 Nie potrzebujesz gotowej specyfikacji. Wystarczy cel, obecna sytuacja i zakres,
-                który już znasz. Resztę możemy uporządkować w procesie.
+                który już znasz. Resztę możemy uporządkować razem przed rozpoczęciem realizacji.
               </p>
               <ul>
-                <li>WWW / landing pages / e-commerce</li>
+                <li>strony WWW / strony kampanijne / sklepy internetowe</li>
                 <li>modernizacja / migracja</li>
-                <li>SEO + AEO + GEO / AI Search</li>
+                <li>SEO + AEO + GEO / widoczność w wyszukiwaniu AI</li>
                 <li>chatboty / integracje WWW</li>
               </ul>
             </div>
@@ -50,7 +50,7 @@ export default function KontaktPage() {
         <div className="page-shell section-pad contact-form-grid">
           <aside className="contact-aside">
             <p className="service-index">00 / BRIEF</p>
-            <h2>Krótki brief wystarczy, żeby zacząć.</h2>
+            <h2>Krótki opis projektu wystarczy, żeby zacząć.</h2>
             <p>
               Kontakt służy wyłącznie do rozpoczęcia rozmowy o projekcie. Nie wysyłaj haseł,
               danych kart płatniczych ani innych poufnych sekretów technicznych.
@@ -67,8 +67,8 @@ export default function KontaktPage() {
 
       <section className="contact-next section-dark">
         <div className="page-shell contact-next-grid">
-          <p className="section-label section-label-inverted"><span>03</span><span>LEADFLOWAI / NEXT</span></p>
-          <h2>Po zapytaniu najpierw ustalamy zakres i ryzyka. Dopiero potem rozwiązanie.</h2>
+          <p className="section-label section-label-inverted"><span>03</span><span>LEADFLOWAI / CO DALEJ</span></p>
+          <h2>Najpierw ustalamy cel, zakres i ryzyka. Dopiero potem dobieramy rozwiązanie.</h2>
           <p>
             Jeżeli projekt wymaga dodatkowych integracji, hostingu, dostępu do obecnej strony lub
             danych analitycznych, ustalamy to jako osobny bezpieczny etap — nie przez publiczną wiadomość.
