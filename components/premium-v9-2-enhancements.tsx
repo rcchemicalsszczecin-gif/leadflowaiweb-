@@ -50,8 +50,12 @@ export function PremiumExperienceControllerV92() {
       { rootMargin: "-28% 0px -58%", threshold: [0.04, 0.16, 0.32] },
     );
 
-    revealNodes.forEach((node) => revealObserver.observe(node));
-    sectionNodes.forEach((node) => sectionObserver.observe(node));
+    revealNodes.forEach((node) => {
+      revealObserver.observe(node);
+    });
+    sectionNodes.forEach((node) => {
+      sectionObserver.observe(node);
+    });
 
     return () => {
       revealObserver.disconnect();
@@ -178,7 +182,8 @@ export function ClosingVisualV92() {
     <div className="closing-visual-v92" aria-hidden="true">
       <div className="closing-orbit-v92"><i /><i /><i /></div>
       <div className="closing-core-v92">LF</div>
-      <svg viewBox="0 0 700 380">
+      <svg viewBox="0 0 700 380" aria-hidden="true">
+        <title>Decoracyjna ścieżka sygnału</title>
         <path d="M15 190 C155 95 205 285 340 190 S545 95 685 190" />
         <path d="M90 285 C205 205 260 330 360 265 S535 190 625 245" />
       </svg>
