@@ -1,86 +1,66 @@
-# LEADFLOWAI — LEAD / CONTACT SYSTEM V1
+# LEADFLOWAI — LEAD / CONTACT SYSTEM
 
-STATUS: IMPLEMENTED FOR VALIDATION
-DATE: 2026-08-12
+STATUS: DIRECT E-MAIL MODE / ONLINE FORM DISABLED BY OWNER
+DATE: 2026-08-13
 
 ## Public route
 
-`/kontakt` provides a structured project brief for website-related enquiries.
+`/kontakt` remains the public contact and project-brief route.
 
-Collected fields are limited to project qualification/contact needs:
-- contact name;
-- e-mail;
-- optional phone;
-- optional company/brand;
-- project type;
-- optional current URL;
-- project goal;
-- optional scope/details;
-- budget range;
-- optional deadline;
-- confirmation that submitted data may be used to answer the enquiry.
+The site currently does **not** submit lead data to any HTTP endpoint, Worker, webhook, Apps Script, mail-sending service or local backend.
 
-The form explicitly tells users not to submit passwords, card details or technical secrets.
+The online form delivery path is intentionally disabled by Owner decision. The public UI must not pretend that a form submission is available while no delivery backend exists.
 
-## API
+## Active contact path
 
-`POST /api/leads`
+Public contact address:
 
-Route Handler uses native Request/Response APIs and runs on Node runtime.
+`kontakt@leadflowai.pl`
 
-Server checks:
-- same-origin request;
-- best-effort request rate limiting;
-- JSON content type;
-- bounded request body;
-- JSON parsing;
-- honeypot;
-- server-side field validation;
-- basic form timing check;
-- controlled delivery configuration.
+Cloudflare Email Routing is configured and independently tested for inbound mail. Messages addressed to the public LeadFlowAI mailbox are routed to the Owner's existing Gmail destination.
 
-Submitted PII is not intentionally written to console logs by the route.
+The website exposes a direct `mailto:` CTA and a short checklist describing what is useful to include in the first message.
 
-## Delivery
+## Explicitly not active
 
-Server-only environment variables:
-- `LEAD_WEBHOOK_URL`;
-- `LEAD_WEBHOOK_TOKEN` (optional bearer token).
+The following are not part of the current production contact path:
+- `POST /api/leads`;
+- `POST /leads` on `api.leadflowai.pl`;
+- `forms.leadflowai.pl`;
+- Cloudflare Email Sending;
+- Google Apps Script relay;
+- webhook delivery;
+- any server-side form mailer.
 
-Production webhook URLs must use HTTPS.
+No public form may call any of these paths until Owner explicitly reopens the lead-delivery stage.
 
-When delivery is not configured, the API returns a controlled `503 DELIVERY_UNCONFIGURED` response with the public fallback address `kontakt@leadflowai.pl`. The UI must not claim that a lead was sent successfully in this state.
+## Privacy / security posture
 
-When the configured destination fails, the API returns `502 DELIVERY_FAILED` and the same fallback contact path.
+Because the online form is disabled, the current public frontend does not collect or transmit contact-form PII.
 
-## Abuse controls
+The contact page explicitly tells users not to send passwords, card data or other technical secrets in the initial message. Access credentials and sensitive implementation data are handled only in a later appropriate project stage.
 
-V1 includes:
-- hidden honeypot;
-- minimum/maximum form age;
-- same-origin request validation;
-- body-size limit;
-- in-process rate limiter when client IP is available.
+## Future reactivation gate
 
-### Important production limitation
+If Owner later decides to enable an online form, the implementation must first define and validate:
+- a real delivery destination;
+- server-side validation;
+- bounded payload handling;
+- origin/CORS policy;
+- abuse/rate-limit controls;
+- privacy/legal disclosures;
+- failure and fallback behavior;
+- end-to-end delivery evidence.
 
-The in-process rate limiter is **best-effort only**. It is not a durable distributed rate-limit authority across multiple serverless/runtime instances. A production hosting decision must define a durable edge/store-backed rate limit if deployment architecture requires it.
-
-This limitation must not be misrepresented as solved by V1.
-
-## Privacy minimization
-
-The webhook payload intentionally excludes IP address and user-agent data. Network-derived IP may be used transiently for best-effort abuse limiting but is not included in the outbound lead object by this implementation.
+Until those gates pass, direct e-mail remains the only active lead path.
 
 ## Validation
 
 Static contract: `scripts/lead-contract.mjs`.
 
-CI runtime smoke after production build verifies:
-- `/kontakt` returns a usable page;
-- public contact `kontakt@leadflowai.pl` is rendered;
-- foreign Origin POST is rejected with 403;
-- a valid same-origin submission without configured webhook returns controlled 503;
-- fallback response contains `DELIVERY_UNCONFIGURED` and `kontakt@leadflowai.pl`.
-
-A real delivery success test requires an explicitly configured non-production webhook destination and is intentionally outside the current repository-only stage.
+The contract fails if the disabled contact component:
+- calls `fetch` or `apiUrl`;
+- exposes a submit form;
+- omits the explicit disabled-state copy;
+- omits the direct `mailto:` path;
+- changes the authoritative public e-mail identity.
