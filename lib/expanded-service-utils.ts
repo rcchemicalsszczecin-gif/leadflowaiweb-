@@ -2,6 +2,13 @@ import type { Metadata } from "next";
 import { expandedServicePages, type ExpandedServiceSlug } from "@/lib/expanded-services";
 import { site } from "@/lib/site";
 
+const SOCIAL_IMAGE = {
+  url: "/og-leadflowai.svg",
+  width: 1200,
+  height: 630,
+  alt: "LeadFlowAI — strony internetowe, SEO, AEO i GEO",
+};
+
 export function getExpandedServiceMetadata(slug: ExpandedServiceSlug): Metadata {
   const page = expandedServicePages[slug];
   return {
@@ -15,6 +22,13 @@ export function getExpandedServiceMetadata(slug: ExpandedServiceSlug): Metadata 
       siteName: site.name,
       title: page.title,
       description: page.lead,
+      images: [SOCIAL_IMAGE],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: page.title,
+      description: page.lead,
+      images: [SOCIAL_IMAGE.url],
     },
   };
 }
