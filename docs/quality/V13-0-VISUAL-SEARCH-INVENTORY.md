@@ -1,6 +1,8 @@
 # V13.0 — visual, asset and search inventory
 
-STATUS: ACTIVE INVENTORY
+STATUS: HISTORICAL V13.0 SNAPSHOT — SUPERSEDED BY V13.10 ACCEPTANCE + VISUAL/SEARCH GATES
+
+> Ten dokument zachowuje stan wejściowy V13.0 jako evidence. Nie opisuje bieżącego stanu assetów ani search architecture. Aktualne źródła prawdy: `docs/quality/V13-10-ACCEPTANCE-MATRIX.md`, `docs/quality/V13-10-SEARCH-INTENT-MAP.md` oraz aktywne kontrakty V13.
 
 ## Visual decisions
 
