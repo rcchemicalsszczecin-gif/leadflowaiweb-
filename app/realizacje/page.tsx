@@ -17,10 +17,10 @@ export default function PortfolioPage() {
         <div className="page-shell">
           <SiteHeader />
           <div className="portfolio-hero-copy">
-            <p className="eyebrow">LEADFLOWAI / REAL WORK</p>
+            <p className="eyebrow">LEADFLOWAI / REALNE PROJEKTY</p>
             <h1>Realne projekty. Jawny zakres. Jawny status.</h1>
             <p>
-              Pokazujemy wyłącznie projekty, których kod, domenę albo stan wdrożenia możemy potwierdzić. Poniższe realizacje są projektami własnymi ekosystemu Tervyxa Systems — nie przedstawiamy ich jako zewnętrznych case studies ani nie dopisujemy im niezmierzonych wyników biznesowych.
+              Pokazujemy wyłącznie projekty, których kod, domenę albo stan wdrożenia możemy potwierdzić. Poniższe realizacje są projektami własnymi ekosystemu Tervyxa Systems — nie przedstawiamy ich jako zewnętrznych realizacji klientów ani nie dopisujemy im niezmierzonych wyników biznesowych.
             </p>
           </div>
         </div>
@@ -70,13 +70,13 @@ export default function PortfolioPage() {
 
       <section className="section-dark portfolio-method">
         <div className="page-shell section-pad">
-          <p className="service-index">04 / CASE STUDY RULE</p>
-          <h2>Dowód przed claimem. Status przed marketingiem.</h2>
+          <p className="service-index">04 / ZASADA REALIZACJI</p>
+          <h2>Dowód przed deklaracją. Status przed marketingiem.</h2>
           <ol>
             <li><span>01</span><div><h3>Problem</h3><p>Co rzeczywiście miało zostać rozwiązane i dla kogo?</p></div></li>
             <li><span>02</span><div><h3>Zakres</h3><p>Co zostało zaprojektowane, zbudowane albo wdrożone?</p></div></li>
             <li><span>03</span><div><h3>Technologia</h3><p>Jakie decyzje techniczne są potwierdzone przez kod lub wdrożenie?</p></div></li>
-            <li><span>04</span><div><h3>Evidence</h3><p>Jakie testy, publiczne artefakty albo wyniki można realnie zweryfikować?</p></div></li>
+            <li><span>04</span><div><h3>Dowody</h3><p>Jakie testy, publiczne artefakty albo wyniki można realnie zweryfikować?</p></div></li>
           </ol>
         </div>
         <div className="page-shell"><SiteFooter /></div>
