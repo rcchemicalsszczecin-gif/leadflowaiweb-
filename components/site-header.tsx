@@ -5,6 +5,7 @@ const navigationPreview: Record<(typeof navigation)[number]["href"], readonly [s
   "/realizacje": ["DOWODY", "Projekty własne i zakres"],
   "/wiedza": ["WIEDZA", "Praktyka WWW i widoczności"],
   "/o-nas": ["O NAS", "LeadFlowAI i Tervyxa Systems"],
+  "/lab": ["DEMO", "Interaktywne możliwości"],
   "/#process": ["PROCES", "Od strategii do publikacji"],
 };
 
