@@ -1,5 +1,6 @@
 import { PublicServicePage } from "@/components/public-service-page";
 import { getSearchMetadata, getSearchPage } from "@/lib/search-pages";
+import { withV13SocialMetadata } from "@/lib/social-metadata-v13";
 
 const seoPage = {
   ...getSearchPage("seo"),
@@ -10,11 +11,7 @@ const seoPage = {
   capabilities: ["SEO techniczne", "Indeksowanie", "Architektura treści", "Linkowanie wewnętrzne", "Metadane", "Core Web Vitals", "Semantyczny HTML"],
 };
 
-export const metadata = {
-  ...getSearchMetadata("seo"),
-  title: seoPage.title,
-  description: seoPage.lead,
-};
+export const metadata = withV13SocialMetadata(getSearchMetadata("seo"), seoPage.title, seoPage.lead);
 
 export default function SeoPage() {
   return <PublicServicePage page={seoPage} />;
