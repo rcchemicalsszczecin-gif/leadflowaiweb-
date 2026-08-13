@@ -48,7 +48,7 @@ function CreateVisual() {
 
 function DiscoverVisual() {
   return (
-    <div className="cinematic-visual-v9 visual-discover-v9" data-cursor="EXPLORE">
+    <div className="cinematic-visual-v9 visual-discover-v9" data-cursor="ODKRYJ">
       <div className="search-orbit-v9"><strong>WIDOCZNOŚĆ</strong><small>encja / odpowiedź / kontekst</small></div>
       {[
         ["SEO", "15%", "22%"], ["AEO", "76%", "18%"], ["GEO", "82%", "70%"], ["SCHEMA", "24%", "78%"],
