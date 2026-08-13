@@ -1,6 +1,6 @@
 # Website Owner Decision — Premium Calibration V9.2
 
-STATUS: ACTIVE CANDIDATE UNTIL PRODUCTION MERGE
+STATUS: ACTIVE PRODUCTION FOUNDATION
 OWNER DIRECTION: implement all 20 approved visual improvements after V9 production QA.
 
 ## Decision
@@ -29,4 +29,6 @@ The approved direction is:
 - No online form delivery activation.
 
 ## Production authority
-Implementation and validation on a work branch are authorized by the Owner. Merge to `main` and production publication remain separately Owner-controlled.
+V9.2 has completed Owner-controlled promotion through the production release chain and is part of the current V10 production baseline on `main`.
+
+This record does not authorize later V11/V12 work for production. Further visual/content releases still require normal branch validation and Owner-controlled promotion to `main`.
