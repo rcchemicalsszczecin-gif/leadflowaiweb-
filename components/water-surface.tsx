@@ -49,6 +49,39 @@ float sdBox(vec2 p, vec2 b) {
   return length(max(d, 0.0)) + min(max(d.x, d.y), 0.0);
 }
 
+float boxFill(vec2 p, vec2 halfSize, float feather) {
+  return 1.0 - smoothstep(0.0, feather, sdBox(p, halfSize));
+}
+
+float boxEdge(vec2 p, vec2 halfSize, float thickness) {
+  return 1.0 - smoothstep(thickness, thickness + 1.4, abs(sdBox(p, halfSize)));
+}
+
+float circleFill(vec2 p, float radius, float feather) {
+  return 1.0 - smoothstep(radius, radius + feather, length(p));
+}
+
+float segmentMask(vec2 p, vec2 a, vec2 b, float width) {
+  vec2 pa = p - a;
+  vec2 ba = b - a;
+  float denom = max(dot(ba, ba), 0.0001);
+  float h = clamp(dot(pa, ba) / denom, 0.0, 1.0);
+  float distanceToSegment = length(pa - ba * h);
+  return 1.0 - smoothstep(width, width + 1.35, distanceToSegment);
+}
+
+float segmentPulse(vec2 p, vec2 a, vec2 b, float width, float speed, float phase) {
+  vec2 pa = p - a;
+  vec2 ba = b - a;
+  float denom = max(dot(ba, ba), 0.0001);
+  float h = clamp(dot(pa, ba) / denom, 0.0, 1.0);
+  float mask = segmentMask(p, a, b, width);
+  float head = fract(uTime * speed + phase);
+  float delta = abs(h - head);
+  delta = min(delta, 1.0 - delta);
+  return mask * exp(-pow(delta * 17.0, 2.0));
+}
+
 float waterHeight(vec2 uv) {
   float h = 0.0;
   float aspect = uResolution.x / max(uResolution.y, 1.0);
@@ -71,85 +104,204 @@ float waterHeight(vec2 uv) {
   return h;
 }
 
-vec3 circuitBoard(vec2 uv, vec2 waterNormal) {
-  vec2 distortedUv = uv + waterNormal * 0.021;
+vec3 hardwareBoard(vec2 uv, vec2 waterNormal) {
+  vec2 distortedUv = uv + waterNormal * 0.027;
   vec2 world = distortedUv * uResolution;
-  world.y += uScroll * 0.34;
+  world.y += uScroll * 0.36;
 
-  vec2 p = world / 72.0;
-  vec2 cell = floor(p);
-  vec2 fp = fract(p);
+  vec2 tileSize = vec2(760.0, 520.0);
+  vec2 tileId = floor((world + tileSize * 0.5) / tileSize);
+  vec2 q = mod(world + tileSize * 0.5, tileSize) - tileSize * 0.5;
+  q.x += (mod(tileId.y, 2.0) - 0.5) * 54.0;
 
-  vec3 board = vec3(0.012, 0.028, 0.044);
+  float seed = hash21(tileId + 4.7);
+  vec3 board = mix(vec3(0.006, 0.023, 0.036), vec3(0.008, 0.033, 0.047), seed);
 
-  float microGridX = 1.0 - smoothstep(0.008, 0.024, abs(fp.x - 0.5));
-  float microGridY = 1.0 - smoothstep(0.008, 0.024, abs(fp.y - 0.5));
-  board += vec3(0.015, 0.055, 0.076) * (microGridX + microGridY) * 0.42;
+  vec2 fineCell = fract(world / 34.0);
+  float fineX = 1.0 - smoothstep(0.015, 0.045, abs(fineCell.x - 0.5));
+  float fineY = 1.0 - smoothstep(0.015, 0.045, abs(fineCell.y - 0.5));
+  board += vec3(0.018, 0.075, 0.095) * (fineX + fineY) * 0.16;
 
-  float rowSeed = hash11(cell.y * 2.71 + 1.3);
-  float colSeed = hash11(cell.x * 3.17 + 4.9);
-  float laneY = mix(0.16, 0.84, hash11(cell.y * 6.13));
-  float laneX = mix(0.16, 0.84, hash11(cell.x * 7.91));
+  vec3 copper = vec3(0.035, 0.22, 0.28);
+  vec3 copperHot = vec3(0.08, 0.43, 0.5);
+  vec3 cyanEnergy = vec3(0.12, 0.72, 1.0);
+  vec3 greenEnergy = vec3(0.7, 1.0, 0.17);
+  vec3 metal = vec3(0.17, 0.27, 0.31);
 
-  float hTrace = (1.0 - smoothstep(0.018, 0.052, abs(fp.y - laneY))) * step(0.27, rowSeed);
-  float vTrace = (1.0 - smoothstep(0.018, 0.052, abs(fp.x - laneX))) * step(0.29, colSeed);
+  vec2 cpu = vec2(-42.0, -12.0);
+  float cpuPackage = boxFill(q - cpu, vec2(104.0, 92.0), 3.0);
+  float cpuPackageEdge = boxEdge(q - cpu, vec2(104.0, 92.0), 2.2);
+  float cpuSubstrate = boxFill(q - cpu, vec2(87.0, 75.0), 2.4);
+  float cpuDie = boxFill(q - cpu, vec2(45.0, 38.0), 2.0);
+  float cpuDieEdge = boxEdge(q - cpu, vec2(45.0, 38.0), 1.8);
 
-  float diagonalCoord = fract((p.x + p.y) * 0.5);
-  float diagonalGate = step(0.72, hash21(floor(p * 0.5)));
-  float dTrace = (1.0 - smoothstep(0.012, 0.038, abs(diagonalCoord - 0.5))) * diagonalGate * 0.42;
+  board = mix(board, vec3(0.018, 0.055, 0.062), cpuPackage * 0.94);
+  board = mix(board, vec3(0.028, 0.075, 0.072), cpuSubstrate * 0.92);
+  board = mix(board, vec3(0.055, 0.105, 0.12), cpuDie * 0.96);
+  board += metal * cpuPackageEdge * 0.58;
+  board += vec3(0.12, 0.5, 0.52) * cpuDieEdge * 0.72;
 
-  float baseTrace = clamp(hTrace + vTrace + dTrace, 0.0, 1.0);
-  vec3 traceColor = mix(vec3(0.03, 0.16, 0.21), vec3(0.05, 0.25, 0.31), hash21(cell));
-  board += traceColor * baseTrace;
+  float cpuBeat = 0.58 + 0.42 * sin(uTime * 1.4 + seed * 6.2831);
+  float cpuCoreGlow = exp(-length(q - cpu) * 0.026) * cpuDie;
+  board += mix(cyanEnergy, greenEnergy, 0.42) * cpuCoreGlow * (0.12 + cpuBeat * 0.12);
 
-  float horizontalPhase = fract(p.x * 0.115 - uTime * (0.19 + rowSeed * 0.18) + rowSeed);
-  float verticalPhase = fract(p.y * 0.12 + uTime * (0.15 + colSeed * 0.16) + colSeed);
-  float hPulse = exp(-pow((horizontalPhase - 0.5) * 8.5, 2.0)) * hTrace;
-  float vPulse = exp(-pow((verticalPhase - 0.5) * 8.5, 2.0)) * vTrace;
-  float signalPulse = max(hPulse, vPulse);
+  float cpuContactGrid = 0.0;
+  vec2 packageUv = (q - cpu + vec2(104.0, 92.0)) / vec2(208.0, 184.0);
+  vec2 contacts = fract(packageUv * vec2(18.0, 15.0));
+  float dotContact = circleFill(contacts - 0.5, 0.1, 0.055);
+  cpuContactGrid = dotContact * cpuPackage * (1.0 - cpuSubstrate);
+  board += vec3(0.15, 0.34, 0.31) * cpuContactGrid * 0.35;
 
-  vec3 cyanEnergy = vec3(0.16, 0.72, 1.0);
-  vec3 greenEnergy = vec3(0.68, 1.0, 0.18);
-  vec3 energyColor = mix(cyanEnergy, greenEnergy, smoothstep(0.25, 0.8, hash21(cell + 11.0)));
-  board += energyColor * signalPulse * 1.65;
-  board += energyColor * signalPulse * signalPulse * 1.2;
+  float vrmMask = 0.0;
+  float vrmPulse = 0.0;
+  for (int i = 0; i < 7; i++) {
+    float fi = float(i);
+    vec2 vrmPos = vec2(-285.0 + fi * 42.0, -174.0);
+    float block = boxFill(q - vrmPos, vec2(15.0, 28.0), 2.0);
+    float blockEdge = boxEdge(q - vrmPos, vec2(15.0, 28.0), 1.3);
+    vrmMask += block;
+    board = mix(board, vec3(0.035, 0.058, 0.066), block * 0.94);
+    board += metal * blockEdge * 0.42;
+    float phase = fract(uTime * 0.7 + fi * 0.13 + seed);
+    vrmPulse += block * exp(-pow((phase - 0.5) * 4.2, 2.0));
+  }
 
-  vec2 nodePos = vec2(laneX, laneY);
-  float nodeDistance = length(fp - nodePos);
-  float nodeGate = step(0.56, hash21(cell + 3.4));
-  float node = (1.0 - smoothstep(0.035, 0.085, nodeDistance)) * nodeGate;
-  float nodeGlow = exp(-nodeDistance * 18.0) * nodeGate;
-  float nodeBeat = 0.48 + 0.52 * sin(uTime * (1.7 + hash21(cell) * 2.0) + hash21(cell) * 8.0);
-  board += energyColor * (node * 1.7 + nodeGlow * 0.22 * nodeBeat);
+  for (int i = 0; i < 5; i++) {
+    float fi = float(i);
+    vec2 vrmPos = vec2(-286.0, -112.0 + fi * 45.0);
+    float block = boxFill(q - vrmPos, vec2(28.0, 15.0), 2.0);
+    float blockEdge = boxEdge(q - vrmPos, vec2(28.0, 15.0), 1.3);
+    vrmMask += block;
+    board = mix(board, vec3(0.035, 0.058, 0.066), block * 0.94);
+    board += metal * blockEdge * 0.42;
+    float phase = fract(uTime * 0.65 + fi * 0.17 + seed * 0.7);
+    vrmPulse += block * exp(-pow((phase - 0.5) * 4.2, 2.0));
+  }
+  board += greenEnergy * vrmPulse * 0.22;
 
-  vec2 macroSize = vec2(350.0, 250.0);
-  vec2 macroCell = floor(world / macroSize);
-  vec2 macroLocal = fract(world / macroSize) - 0.5;
-  float chipSeed = hash21(macroCell * 1.37 + 9.2);
-  float chipGate = step(0.38, chipSeed);
-  vec2 chipHalf = vec2(0.205 + hash11(chipSeed * 8.0) * 0.055, 0.135 + hash11(chipSeed * 13.0) * 0.045);
-  float chipSdf = sdBox(macroLocal, chipHalf);
-  float chipFill = (1.0 - smoothstep(-0.012, 0.015, chipSdf)) * chipGate;
-  float chipEdge = (1.0 - smoothstep(0.003, 0.012, abs(chipSdf))) * chipGate;
+  for (int i = 0; i < 12; i++) {
+    float fi = float(i);
+    float angle = fi * 0.5235987 + seed * 0.35;
+    vec2 capPos = cpu + vec2(cos(angle) * 142.0, sin(angle) * 120.0);
+    float cap = circleFill(q - capPos, 7.2, 1.7);
+    float capCore = circleFill(q - capPos, 3.1, 1.1);
+    board = mix(board, vec3(0.06, 0.095, 0.105), cap * 0.88);
+    board += vec3(0.22, 0.34, 0.34) * capCore * 0.34;
+  }
 
-  vec3 chipColor = vec3(0.018, 0.037, 0.054);
-  board = mix(board, chipColor, chipFill * 0.93);
-  board += vec3(0.09, 0.34, 0.42) * chipEdge * 0.7;
+  float ramTrace = 0.0;
+  float ramEnergy = 0.0;
+  for (int i = 0; i < 4; i++) {
+    float fi = float(i);
+    float slotX = 188.0 + fi * 31.0;
+    vec2 slotPos = vec2(slotX, -12.0);
+    float slot = boxFill(q - slotPos, vec2(7.0, 145.0), 1.6);
+    float slotEdge = boxEdge(q - slotPos, vec2(7.0, 145.0), 1.0);
+    float latchTop = boxFill(q - (slotPos + vec2(0.0, -158.0)), vec2(10.0, 6.0), 1.0);
+    float latchBottom = boxFill(q - (slotPos + vec2(0.0, 158.0)), vec2(10.0, 6.0), 1.0);
+    board = mix(board, vec3(0.022, 0.045, 0.054), slot * 0.96);
+    board += metal * slotEdge * 0.42;
+    board += vec3(0.17, 0.26, 0.27) * (latchTop + latchBottom) * 0.7;
 
-  float pinBandsY = 1.0 - smoothstep(0.06, 0.16, abs(fract((macroLocal.y + 0.5) * 12.0) - 0.5));
-  float pinBandsX = 1.0 - smoothstep(0.06, 0.16, abs(fract((macroLocal.x + 0.5) * 14.0) - 0.5));
-  float sidePins = (1.0 - smoothstep(0.012, 0.035, abs(abs(macroLocal.x) - chipHalf.x - 0.025))) * pinBandsY;
-  float topPins = (1.0 - smoothstep(0.012, 0.035, abs(abs(macroLocal.y) - chipHalf.y - 0.025))) * pinBandsX;
-  float pins = clamp(sidePins + topPins, 0.0, 1.0) * chipGate;
-  board += vec3(0.11, 0.42, 0.5) * pins * 0.78;
+    float contactBands = 1.0 - smoothstep(0.18, 0.38, abs(fract((q.y + 165.0) / 10.0) - 0.5));
+    float contactsMask = slot * contactBands;
+    board += vec3(0.16, 0.3, 0.21) * contactsMask * 0.24;
 
-  float innerMark = 1.0 - smoothstep(0.008, 0.025, abs(length(macroLocal * vec2(1.0, 1.35)) - 0.075));
-  board += energyColor * innerMark * chipFill * (0.08 + signalPulse * 0.18);
+    float busOffset = (fi - 1.5) * 8.0;
+    vec2 a = cpu + vec2(104.0, busOffset);
+    vec2 b = vec2(128.0, cpu.y + busOffset);
+    vec2 c = vec2(128.0, -112.0 + fi * 34.0);
+    vec2 d = vec2(slotX - 14.0, -112.0 + fi * 34.0);
+    ramTrace += segmentMask(q, a, b, 1.2);
+    ramTrace += segmentMask(q, b, c, 1.2);
+    ramTrace += segmentMask(q, c, d, 1.2);
+    ramEnergy += segmentPulse(q, a, b, 2.4, 0.22, fi * 0.21 + seed);
+    ramEnergy += segmentPulse(q, b, c, 2.4, 0.18, fi * 0.19 + seed * 0.6);
+    ramEnergy += segmentPulse(q, c, d, 2.4, 0.24, fi * 0.17 + seed * 0.4);
+  }
+  board += copperHot * clamp(ramTrace, 0.0, 1.0) * 0.9;
+  board += cyanEnergy * ramEnergy * 1.5;
+
+  float powerTrace = 0.0;
+  float powerEnergy = 0.0;
+  for (int i = 0; i < 7; i++) {
+    float fi = float(i);
+    float offset = (fi - 3.0) * 6.2;
+    vec2 a = vec2(-255.0, -130.0 + fi * 18.0);
+    vec2 b = vec2(-194.0, -130.0 + fi * 18.0);
+    vec2 c = cpu + vec2(-104.0, offset);
+    powerTrace += segmentMask(q, a, b, 1.4);
+    powerTrace += segmentMask(q, b, c, 1.4);
+    powerEnergy += segmentPulse(q, a, b, 2.8, 0.2, fi * 0.11 + seed);
+    powerEnergy += segmentPulse(q, b, c, 2.8, 0.16, fi * 0.09 + seed * 0.8);
+  }
+  board += copper * clamp(powerTrace, 0.0, 1.0) * 1.15;
+  board += greenEnergy * powerEnergy * 1.8;
+
+  float pcieTrace = 0.0;
+  float pcieEnergy = 0.0;
+  for (int i = 0; i < 3; i++) {
+    float fi = float(i);
+    float slotY = 128.0 + fi * 48.0;
+    vec2 slotPos = vec2(28.0, slotY);
+    float slot = boxFill(q - slotPos, vec2(205.0, 6.5), 1.2);
+    float slotEdge = boxEdge(q - slotPos, vec2(205.0, 6.5), 0.9);
+    board = mix(board, vec3(0.022, 0.04, 0.05), slot * 0.95);
+    board += metal * slotEdge * 0.36;
+
+    for (int lane = 0; lane < 5; lane++) {
+      float fl = float(lane);
+      float xOffset = (fl - 2.0) * 7.0;
+      vec2 a = cpu + vec2(xOffset, 92.0);
+      vec2 b = vec2(cpu.x + xOffset, 102.0 + fi * 17.0);
+      vec2 c = vec2(-136.0 + fl * 16.0, 102.0 + fi * 17.0);
+      vec2 d = vec2(-136.0 + fl * 16.0, slotY - 12.0);
+      pcieTrace += segmentMask(q, a, b, 0.9);
+      pcieTrace += segmentMask(q, b, c, 0.9);
+      pcieTrace += segmentMask(q, c, d, 0.9);
+      pcieEnergy += segmentPulse(q, b, c, 2.0, 0.25, fi * 0.23 + fl * 0.07 + seed);
+    }
+  }
+  board += copper * clamp(pcieTrace, 0.0, 1.0) * 0.82;
+  board += cyanEnergy * pcieEnergy * 1.25;
+
+  vec2 m2Pos = vec2(-205.0, 112.0);
+  float m2 = boxFill(q - m2Pos, vec2(68.0, 9.0), 1.4);
+  float m2Edge = boxEdge(q - m2Pos, vec2(68.0, 9.0), 1.0);
+  float m2Screw = circleFill(q - (m2Pos + vec2(-78.0, 0.0)), 5.0, 1.2);
+  board = mix(board, vec3(0.026, 0.052, 0.058), m2 * 0.9);
+  board += metal * m2Edge * 0.42;
+  board += vec3(0.19, 0.28, 0.3) * m2Screw * 0.6;
+
+  vec2 chipsetPos = vec2(250.0, 174.0);
+  float chipset = boxFill(q - chipsetPos, vec2(45.0, 45.0), 2.0);
+  float chipsetEdge = boxEdge(q - chipsetPos, vec2(45.0, 45.0), 1.4);
+  float chipsetCore = boxFill(q - chipsetPos, vec2(25.0, 25.0), 1.4);
+  board = mix(board, vec3(0.022, 0.048, 0.055), chipset * 0.94);
+  board += copperHot * chipsetEdge * 0.42;
+  board += cyanEnergy * chipsetCore * (0.035 + 0.025 * sin(uTime * 1.8 + seed * 7.0));
+
+  float edgeTrace = 0.0;
+  float edgeEnergy = 0.0;
+  for (int i = 0; i < 9; i++) {
+    float fi = float(i);
+    float y = -220.0 + fi * 55.0;
+    vec2 a = vec2(315.0, y);
+    vec2 b = vec2(370.0, y);
+    edgeTrace += segmentMask(q, a, b, 1.0);
+    edgeEnergy += segmentPulse(q, a, b, 2.0, 0.18 + hash11(fi + seed) * 0.08, fi * 0.13 + seed);
+  }
+  board += copper * edgeTrace * 0.75;
+  board += mix(cyanEnergy, greenEnergy, 0.35) * edgeEnergy * 1.1;
+
+  float tileBoundaryX = 1.0 - smoothstep(1.0, 2.2, abs(abs(q.x) - tileSize.x * 0.5 + 8.0));
+  float tileBoundaryY = 1.0 - smoothstep(1.0, 2.2, abs(abs(q.y) - tileSize.y * 0.5 + 8.0));
+  board += vec3(0.05, 0.14, 0.17) * (tileBoundaryX + tileBoundaryY) * 0.18;
 
   vec2 pointerDelta = uv - uPointer;
   pointerDelta.x *= uResolution.x / max(uResolution.y, 1.0);
-  float pointerGlow = exp(-length(pointerDelta) * 7.0) * uPointerActive;
-  board += mix(cyanEnergy, greenEnergy, 0.55) * pointerGlow * 0.055;
+  float pointerGlow = exp(-length(pointerDelta) * 7.5) * uPointerActive;
+  board += mix(cyanEnergy, greenEnergy, 0.48) * pointerGlow * 0.065;
 
   return board;
 }
@@ -166,7 +318,7 @@ void main() {
   float height = waterHeight(uv);
   vec2 gradient = vec2(hR - hL, hU - hD) * 1.35;
 
-  vec3 color = circuitBoard(uv, gradient);
+  vec3 color = hardwareBoard(uv, gradient);
 
   vec3 normal = normalize(vec3(-gradient * 30.0, 1.0));
   vec3 lightDirection = normalize(vec3(-0.28, -0.38, 0.88));
@@ -178,10 +330,10 @@ void main() {
   color += vec3(0.14, 0.46, 0.62) * crest * 0.24;
   color += vec3(0.07, 0.18, 0.23) * waterShade * 0.18;
 
-  float vignette = smoothstep(0.92, 0.28, length((uv - 0.5) * vec2(0.82, 1.0)));
-  color *= 0.7 + vignette * 0.48;
+  float vignette = smoothstep(0.98, 0.22, length((uv - 0.5) * vec2(0.78, 0.96)));
+  color *= 0.78 + vignette * 0.38;
 
-  float scan = 0.008 * sin((uv.y * uResolution.y + uTime * 34.0) * 0.075);
+  float scan = 0.006 * sin((uv.y * uResolution.y + uTime * 34.0) * 0.075);
   color += vec3(scan * 0.35, scan * 0.72, scan);
 
   outColor = vec4(color, 1.0);
@@ -293,7 +445,7 @@ export function WaterSurface() {
     const resize = () => {
       width = Math.max(1, window.innerWidth);
       height = Math.max(1, window.innerHeight);
-      dpr = Math.min(window.devicePixelRatio || 1, width < 760 ? 1.05 : 1.35);
+      dpr = Math.min(window.devicePixelRatio || 1, width < 760 ? 1.0 : 1.25);
       canvas.width = Math.round(width * dpr);
       canvas.height = Math.round(height * dpr);
       canvas.style.width = `${width}px`;
