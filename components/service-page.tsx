@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/site-header";
 import { getPublicPage, primaryPublicLinks } from "@/lib/page-registry";
 import { publicCode } from "@/lib/public-language-v13";
 import { toPublicServicePage } from "@/lib/public-service-page";
+import { getServiceDecisionGuidance } from "@/lib/service-decision-guidance";
 import type { ServicePageData } from "@/lib/services";
 import { site } from "@/lib/site";
 import { getPageStructuredData } from "@/lib/structured-data";
@@ -15,6 +16,8 @@ type ServicePageProps = {
 
 export function ServicePage({ page }: ServicePageProps) {
   const publicPage = toPublicServicePage(page);
+  const decision = getServiceDecisionGuidance(publicPage.slug);
+  const [comparisonTitle, comparisonA, comparisonB] = decision.compare;
 
   return (
     <main className="service-page">
@@ -147,12 +150,48 @@ export function ServicePage({ page }: ServicePageProps) {
         </div>
       </section>
 
+      <section className="section-dark service-deliverables service-decision-v13">
+        <div className="page-shell section-pad">
+          <div className="service-section-head service-section-head-dark">
+            <p className="service-index">05 / DECYZJA</p>
+            <h2>Czy ten zakres pasuje do Twojego projektu?</h2>
+          </div>
+          <div className="deliverable-list">
+            <article>
+              <span className="deliverable-index">01</span>
+              <div><h3>Ma sens, gdy</h3><p>{decision.fit[0]}</p></div>
+              <ul className="tag-list" aria-label="Drugi warunek dopasowania"><li>{decision.fit[1]}</li></ul>
+            </article>
+            <article>
+              <span className="deliverable-index">02</span>
+              <div><h3>Nie musi mieć sensu, gdy</h3><p>{decision.noFit[0]}</p></div>
+              <ul className="tag-list" aria-label="Drugi warunek niedopasowania"><li>{decision.noFit[1]}</li></ul>
+            </article>
+            <article>
+              <span className="deliverable-index">03</span>
+              <div><h3>Co wpływa na koszt</h3><p>Nie publikujemy jednej ceny dla wszystkich projektów.</p></div>
+              <ul className="tag-list" aria-label="Czynniki kosztu">{decision.cost.map((item) => <li key={item}>{item}</li>)}</ul>
+            </article>
+            <article>
+              <span className="deliverable-index">04</span>
+              <div><h3>Co wpływa na czas</h3><p>Harmonogram wynika z rzeczywistego zakresu i zależności.</p></div>
+              <ul className="tag-list" aria-label="Czynniki czasu">{decision.time.map((item) => <li key={item}>{item}</li>)}</ul>
+            </article>
+            <article>
+              <span className="deliverable-index">05</span>
+              <div><h3>{comparisonTitle}</h3><p>{comparisonA}</p></div>
+              <ul className="tag-list" aria-label="Alternatywa"><li>{comparisonB}</li></ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <ServiceKnowledgeLinks slug={publicPage.slug} />
 
       <section className="section-light related-services">
         <div className="page-shell section-pad">
           <div className="service-section-head">
-            <p className="service-index">06 / POWIĄZANE</p>
+            <p className="service-index">07 / POWIĄZANE</p>
             <h2>Zobacz powiązane usługi i obszary rozwoju.</h2>
           </div>
           <nav className="related-grid" aria-label="Powiązane usługi">
@@ -180,7 +219,7 @@ export function ServicePage({ page }: ServicePageProps) {
 
       <section className="contact-section section-dark">
         <div className="page-shell contact-grid">
-          <p className="section-label section-label-inverted"><span>07</span><span>LEADFLOWAI / KONTAKT</span></p>
+          <p className="section-label section-label-inverted"><span>08</span><span>LEADFLOWAI / KONTAKT</span></p>
           <div>
             <p className="contact-kicker">MASZ PROJEKT?</p>
             <h2>Opisz cel. Dobierzemy zakres strony do realnej pracy, którą ma wykonywać.</h2>
