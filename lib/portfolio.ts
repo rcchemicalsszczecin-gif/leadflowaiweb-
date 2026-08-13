@@ -48,7 +48,7 @@ export const portfolioCases = [
       { label: "Status", value: "Marketing live · upload publiczny OFF" },
     ],
     scope: [
-      { title: "Static TypeScript", description: "Dependency-light frontend, performance budgets, Playwright i własne walidatory." },
+      { title: "Static TypeScript", description: "Dependency-light frontend, własne kontrakty jakości i kontrolowane bramki publikacji." },
       { title: "Search launch", description: "21 canonical routes, crawler access oraz sitemap zgłoszona do Google Search Console i Bing." },
       { title: "Lead pipeline", description: "Produkcyjna ścieżka formularzowa zweryfikowana E2E przez dedykowaną domenę formularzy." },
       { title: "Trial transcription", description: "Ograniczony backend trial z walidacją wejścia i realnym testem transkrypcji audio." },
@@ -75,7 +75,7 @@ export const portfolioCases = [
       { title: "Public platform", description: "Oferta, rozwiązania, technologie, centrum wiedzy, pytania, porównania i treści metodologiczne." },
       { title: "Entity + search", description: "Canonical, hreflang PL/EN oraz Organization, WebSite, WebPage i Service schema." },
       { title: "Flagship architecture", description: "Docelowa aplikacja Next.js 16 rozwijana jako platforma wiedzy, interakcji i sprzedaży." },
-      { title: "Data layer", description: "Repo docelowej platformy obejmuje Prisma/PostgreSQL i warstwę komunikacji e-mail." },
+      { title: "Data layer", description: "Repo docelowej platformy zawiera Prisma, PostgreSQL i warstwę komunikacji e-mail przez Resend." },
       { title: "Quality system", description: "Osobne audyty routingu, search, content quality, linking, AI-search readiness i public copy." },
       { title: "Governance", description: "Rozwój oparty na modelu CLAIM → EVIDENCE → REVIEW → PUBLIC STATUS." },
     ],
