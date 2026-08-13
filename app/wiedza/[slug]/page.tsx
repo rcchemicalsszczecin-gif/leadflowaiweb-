@@ -10,6 +10,29 @@ type PageProps = {
   params: Promise<{ slug: string }>;
 };
 
+const editorialTerms: Record<string, string> = {
+  STRATEGY: "STRATEGIA",
+  ARCHITECTURE: "ARCHITEKTURA",
+  WEBSITE: "STRONA WWW",
+  SEARCH: "WYSZUKIWANIE",
+  CONTENT: "TREŚĆ",
+  PERFORMANCE: "WYDAJNOŚĆ",
+  ACCESSIBILITY: "DOSTĘPNOŚĆ",
+  SECURITY: "BEZPIECZEŃSTWO",
+  ANALYTICS: "ANALITYKA",
+  CONVERSION: "KONWERSJA",
+  DESIGN: "PROJEKTOWANIE",
+  PROCESS: "PROCES",
+  MAINTENANCE: "UTRZYMANIE",
+};
+
+function publicEyebrow(value: string) {
+  return value
+    .split("/")
+    .map((part) => editorialTerms[part.trim()] ?? part.trim())
+    .join(" / ");
+}
+
 export function generateStaticParams() {
   return knowledgeArticles.map((article) => ({ slug: article.slug }));
 }
@@ -28,6 +51,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: article.title,
       description: article.description,
       url: `/wiedza/${article.slug}`,
+      images: ["/og-leadflowai.svg"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: article.title,
+      description: article.description,
+      images: ["/og-leadflowai.svg"],
     },
   };
 }
@@ -48,7 +78,7 @@ export default async function KnowledgeArticlePage({ params }: PageProps) {
             <nav className="breadcrumb" aria-label="Okruszki">
               <a href="/">LeadFlowAI</a><span aria-hidden="true">/</span><a href="/wiedza">Wiedza</a>
             </nav>
-            <p className="eyebrow">{article.eyebrow}</p>
+            <p className="eyebrow">{publicEyebrow(article.eyebrow)}</p>
             <h1>{article.title}</h1>
             <p>{article.summary}</p>
           </div>
