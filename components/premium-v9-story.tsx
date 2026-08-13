@@ -186,7 +186,7 @@ export function PremiumProofV9() {
   const proofs = [
     { code: "01", title: "Warstwa sprzętowa", note: "Interaktywna woda i własna warstwa sprzętowa", href: "/lab" },
     { code: "02", title: "Rdzeń 3D", note: "Przestrzeń 3D działająca bezpośrednio w przeglądarce", href: "/strony-3d-webgl" },
-    { code: "03", title: "Prototyp responsywny", note: "Rzeczywiste stany desktop/mobile bez filmu", href: "/lab" },
+    { code: "03", title: "Prototyp responsywny", note: "Rzeczywiste stany komputer/telefon bez filmu", href: "/lab" },
   ] as const;
 
   return (
