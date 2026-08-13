@@ -1,0 +1,22 @@
+@layer components {
+  :is(a, button, summary):focus-visible {
+    outline: 2px solid #b6ff4f;
+    outline-offset: 4px;
+  }
+
+  @media (hover: none), (pointer: coarse) {
+    .related-grid a,
+    .service-directory a,
+    .hero-actions a,
+    .contact-actions a {
+      min-height: 44px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-browser-v13,
+    .hero-mobile-v13 {
+      transform: none;
+    }
+  }
+}
