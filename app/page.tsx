@@ -15,7 +15,6 @@ import {
   ManifestSceneV92,
   PremiumExperienceControllerV92,
 } from "@/components/premium-v9-2-enhancements";
-import { SearchVisibilityExplainerV13 } from "@/components/search-visibility-explainer-v13";
 import { SectionLabel } from "@/components/section-label";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -130,7 +129,6 @@ export default function HomePage() {
       </section>
 
       <PremiumStageJourneyV9 />
-      <SearchVisibilityExplainerV13 />
       <ManifestSceneV92 />
       <WhatWeBuildV9 />
       <CinematicCoreV92 />
