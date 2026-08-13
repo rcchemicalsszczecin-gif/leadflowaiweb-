@@ -160,8 +160,18 @@ export function WaterSurface() {
         context.stroke();
 
         if (ripple.strength > 0.5 && progress < 0.42) {
-          const core = context.createRadialGradient(ripple.x, ripple.y, 0, ripple.x, ripple.y, 42 + radius * 0.18);
-          core.addColorStop(0, `rgba(248, 250, 252, ${0.08 * (1 - progress / 0.42)})`);
+          const core = context.createRadialGradient(
+            ripple.x,
+            ripple.y,
+            0,
+            ripple.x,
+            ripple.y,
+            42 + radius * 0.18,
+          );
+          core.addColorStop(
+            0,
+            `rgba(248, 250, 252, ${0.08 * (1 - progress / 0.42)})`,
+          );
           core.addColorStop(1, "rgba(248, 250, 252, 0)");
           context.fillStyle = core;
           context.fillRect(ripple.x - 100, ripple.y - 100, 200, 200);
@@ -199,7 +209,7 @@ export function WaterSurface() {
         <div className="ambient-node ambient-node-b" />
         <div className="ambient-node ambient-node-c" />
       </div>
-      <canvas ref={canvasRef} className="water-surface" aria-hidden="true" />
+      <canvas ref={canvasRef} className="water-surface" role="presentation" />
     </>
   );
 }
