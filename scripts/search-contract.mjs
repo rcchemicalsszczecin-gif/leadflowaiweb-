@@ -18,6 +18,11 @@ const routes = [
   "web-development",
   "modernizacja-stron",
   "audyt-strony",
+  "strony-3d-webgl",
+  "interaktywne-strony",
+  "motion-design",
+  "chatboty-ai",
+  "lab",
   "seo",
   "aeo",
   "geo-ai-search",
@@ -31,8 +36,14 @@ for (const route of routes) {
 }
 
 const sitemap = requireFile("app/sitemap.ts");
-if (!sitemap.includes("coreServiceLinks") || !sitemap.includes("searchServiceLinks") || !sitemap.includes('"kontakt"')) {
-  fail("sitemap is not derived from public registries/contact route");
+if (
+  !sitemap.includes("coreServiceLinks") ||
+  !sitemap.includes("experienceServiceLinks") ||
+  !sitemap.includes("searchServiceLinks") ||
+  !sitemap.includes('"kontakt"') ||
+  !sitemap.includes('"lab"')
+) {
+  fail("sitemap is not derived from public registries/contact/lab routes");
 }
 
 const robots = requireFile("app/robots.ts");
@@ -50,10 +61,16 @@ if (!site.includes('name: "LeadFlowAI"')) fail("LeadFlowAI brand identity missin
 if (!site.includes('legalName: "Tervyxa Systems sp. z o.o."')) fail("legal operator identity missing");
 if (!site.includes('url: "https://leadflowai.pl"')) fail("canonical public domain missing");
 if (!site.includes('email: "kontakt@leadflowai.pl"')) fail("public contact e-mail mismatch");
+if (!site.includes('href: "/lab"')) fail("Live Lab navigation missing");
 
 const search = requireFile("lib/search-pages.ts");
 for (const phrase of ["SEO", "AEO", "GEO / AI Search", "public", "structured data"]) {
   if (!search.toLowerCase().includes(phrase.toLowerCase())) fail(`search architecture content missing ${phrase}`);
 }
 
-console.log(`SEARCH_CONTRACT_PASS routes=${routes.length} schema=6 identity=PASS contact=PASS`);
+const experience = requireFile("lib/experience-services.ts");
+for (const phrase of ["strony-3d-webgl", "interaktywne-strony", "motion-design", "chatboty-ai"]) {
+  if (!experience.includes(phrase)) fail(`experience service missing ${phrase}`);
+}
+
+console.log(`SEARCH_CONTRACT_PASS routes=${routes.length} schema=6 identity=PASS experience=4 lab=PASS contact=PASS`);
