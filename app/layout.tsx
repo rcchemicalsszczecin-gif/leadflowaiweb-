@@ -9,6 +9,7 @@ import "./services.css";
 import "./contact.css";
 import "./knowledge.css";
 import "./precision-water.css";
+import "./circuit-water-v3.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -38,7 +39,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#080b0f",
+  themeColor: "#03070c",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {

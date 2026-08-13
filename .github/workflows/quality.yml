@@ -5,6 +5,7 @@ on:
     branches:
       - build/leadflowai
       - design/precision-water-v2
+      - design/circuit-water-v3
   pull_request:
     branches:
       - main
