@@ -1,3 +1,13 @@
+import {
+  BeforeAfterDemo,
+  BrowserDemo,
+  CapabilityConstellation,
+  InteractiveServiceCards,
+  Live3DShowcase,
+  ProjectCommandCenter,
+  SignalDivider,
+  SystemAssembly,
+} from "@/components/interactive-experience";
 import { SectionLabel } from "@/components/section-label";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -73,13 +83,14 @@ export default function HomePage() {
                   Wyceń stronę
                   <span aria-hidden="true">↗</span>
                 </a>
-                <a className="text-link" href="#system">
-                  Zobacz jak pracuje system <span aria-hidden="true">↓</span>
+                <a className="text-link" href="/lab">
+                  Otwórz Live Lab <span aria-hidden="true">↗</span>
                 </a>
               </div>
 
               <ul className="capability-line" aria-label="Główne kompetencje">
                 <li>WWW</li>
+                <li>3D</li>
                 <li>SEO</li>
                 <li>AEO</li>
                 <li>GEO</li>
@@ -95,7 +106,7 @@ export default function HomePage() {
 
           <div className="hero-bottomline" aria-hidden="true">
             <span>SCROLL TO ARCHITECTURE</span>
-            <span>01—06</span>
+            <span>LIVE / INTERACTIVE</span>
           </div>
         </div>
       </section>
@@ -115,8 +126,8 @@ export default function HomePage() {
                 mierzyć oraz rozwijać.
               </p>
               <p>
-                Dlatego design, kod, widoczność i konwersję traktujemy jako warstwy jednego
-                produktu.
+                Dlatego design, kod, widoczność, konwersję i interakcję traktujemy jako warstwy
+                jednego produktu.
               </p>
             </div>
           </div>
@@ -152,13 +163,22 @@ export default function HomePage() {
         })}
       </section>
 
+      <SignalDivider label="LIVE CAPABILITIES / START" />
+      <Live3DShowcase />
+      <InteractiveServiceCards />
+      <SystemAssembly />
+      <SignalDivider label="INTERFACE / PROOF" />
+      <BrowserDemo />
+      <BeforeAfterDemo />
+      <CapabilityConstellation />
+
       <section id="process" className="section-light process-section">
         <div className="page-shell section-pad">
           <SectionLabel index="07" label="PROCESS" />
           <div className="process-head content-frame content-frame-split">
             <h2>Od celu biznesowego do działającego systemu.</h2>
             <p>
-              Zakres dobieramy do projektu. Nie każdy klient potrzebuje chatbota, sklepu czy
+              Zakres dobieramy do projektu. Nie każdy klient potrzebuje chatbota, sklepu, 3D czy
               zaawansowanej automatyzacji — ale każdy projekt potrzebuje świadomej architektury.
             </p>
           </div>
@@ -166,7 +186,7 @@ export default function HomePage() {
           <ol className="process-list">
             <li><span>01</span><strong>Diagnoza</strong><p>Cel, odbiorca, obecna strona, konkurencja, wymagania i mierzalny rezultat.</p></li>
             <li><span>02</span><strong>Architektura</strong><p>Informacja, UX, search architecture, treść, dane i plan konwersji.</p></li>
-            <li><span>03</span><strong>Design + build</strong><p>Interfejs, komponenty, responsive, development i integracje.</p></li>
+            <li><span>03</span><strong>Design + build</strong><p>Interfejs, komponenty, responsive, development, motion, 3D i integracje tam, gdzie mają sens.</p></li>
             <li><span>04</span><strong>Validation</strong><p>Funkcje, mobile, accessibility, SEO/AEO/GEO, performance i security.</p></li>
             <li><span>05</span><strong>Launch + growth</strong><p>Publikacja, monitoring, pomiar i rozwój na podstawie rzeczywistych danych.</p></li>
           </ol>
@@ -197,21 +217,24 @@ export default function HomePage() {
         <div className="page-shell section-pad proof-grid content-frame content-frame-proof">
           <SectionLabel index="09" label="PROOF" />
           <div>
-            <p className="proof-kicker">REAL WORK ONLY</p>
+            <p className="proof-kicker">REAL WORK + LIVE DEMOS</p>
             <h2>Portfolio bez fikcji.</h2>
           </div>
           <div className="proof-copy">
             <p>
               Pokazujemy wyłącznie prawdziwe realizacje i dane, które możemy udokumentować.
-              Kolejne case studies pojawią się wraz z rzeczywistymi wdrożeniami LeadFlowAI i
-              projektami Tervyxa, które mogą zostać publicznie pokazane.
+              Demonstracje interaktywne na tej stronie są jawnie oznaczone jako Live Lab lub demo
+              koncepcyjne, a nie jako projekty klientów.
             </p>
-            <a className="text-link text-link-dark" href="#contact">
-              Zbudujmy pierwszy projekt <span aria-hidden="true">↗</span>
+            <a className="text-link text-link-dark" href="/lab">
+              Otwórz wszystkie demonstracje <span aria-hidden="true">↗</span>
             </a>
           </div>
         </div>
       </section>
+
+      <SignalDivider label="PROJECT / CONFIGURATION" />
+      <ProjectCommandCenter />
 
       <section className="section-light faq-section">
         <div className="page-shell section-pad">
@@ -242,7 +265,7 @@ export default function HomePage() {
               {site.email}
               <span aria-hidden="true">↗</span>
             </a>
-            <p>Strony WWW · Landing pages · E-commerce · SEO · AEO · GEO · Chatboty · Integracje</p>
+            <p>WWW · 3D / WebGL · Interactive · E-commerce · SEO · AEO · GEO · Chatboty · Integracje</p>
           </div>
         </div>
 
