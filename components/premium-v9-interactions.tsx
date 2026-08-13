@@ -132,18 +132,6 @@ export function PremiumHeroV9() {
       aria-label="Interaktywna wizualizacja strony internetowej LeadFlowAI na komputerze i telefonie"
     >
       <div className="hero-orb-v9" />
-      <div className="hero-plane-v9 hero-plane-a-v9">
-        <span>DOŚWIADCZENIE</span>
-        <strong>WWW</strong>
-      </div>
-      <div className="hero-plane-v9 hero-plane-b-v9">
-        <span>WIDOCZNOŚĆ</span>
-        <strong>SEO / AEO / GEO</strong>
-      </div>
-      <div className="hero-plane-v9 hero-plane-c-v9">
-        <span>INTELIGENCJA</span>
-        <strong>AI</strong>
-      </div>
 
       <div className="hero-browser-v13" aria-hidden="true">
         <div className="hero-browser-toolbar-v13">
@@ -176,22 +164,6 @@ export function PremiumHeroV9() {
         <strong>WWW</strong>
         <span>WIDOCZNOŚĆ</span>
         <i>↗</i>
-      </div>
-
-      <svg className="hero-circuit-v9" viewBox="0 0 800 620" aria-hidden="true">
-        <path d="M80 390 C210 300 275 455 390 330 S610 210 735 305" />
-        <path d="M125 205 C255 285 310 170 430 245 S605 430 720 390" />
-        <circle cx="80" cy="390" r="5" />
-        <circle cx="390" cy="330" r="5" />
-        <circle cx="735" cy="305" r="5" />
-        <circle cx="125" cy="205" r="5" />
-        <circle cx="430" cy="245" r="5" />
-        <circle cx="720" cy="390" r="5" />
-      </svg>
-      <div className="hero-core-v9 hero-core-v13">
-        <small>LEADFLOWAI</small>
-        <strong>SYSTEM WWW</strong>
-        <span>projekt × kod × widoczność × konwersja</span>
       </div>
     </div>
   );
