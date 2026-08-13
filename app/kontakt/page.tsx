@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ContactBriefBuilderV13 } from "@/components/contact-brief-builder-v13";
 import { LeadForm } from "@/components/lead-form";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -64,6 +65,10 @@ export default function KontaktPage() {
           <LeadForm />
         </div>
       </section>
+
+      <div className="premium-command-zone-v9" data-v92-reveal="wipe">
+        <ContactBriefBuilderV13 />
+      </div>
 
       <section className="contact-next section-dark">
         <div className="page-shell contact-next-grid">
