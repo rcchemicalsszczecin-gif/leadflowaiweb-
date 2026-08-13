@@ -7,6 +7,16 @@ const terms: Record<string, string> = {
   CARE: "OPIEKA",
   SEARCH: "WIDOCZNOŚĆ",
   WWW: "WWW",
+  BUILD: "BUDOWA",
+  DESIGN: "PROJEKT",
+  DEVELOPMENT: "PROGRAMOWANIE",
+  INTERACTIVE: "INTERAKCJA",
+  MOTION: "RUCH",
+  COMMERCE: "E-COMMERCE",
+  ANALYTICS: "ANALITYKA",
+  AUTOMATION: "AUTOMATYZACJA",
+  SECURITY: "BEZPIECZEŃSTWO",
+  PERFORMANCE: "WYDAJNOŚĆ",
 };
 
 export function publicLabel(value: string): string {
