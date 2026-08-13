@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PortfolioProjectVisual } from "@/components/portfolio-project-visual";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { portfolioCases } from "@/lib/portfolio";
@@ -45,14 +46,17 @@ export default function PortfolioPage() {
                   </a>
                 </p>
               </div>
-              <dl>
-                {project.facts.map((fact) => (
-                  <div key={fact.label}>
-                    <dt>{fact.label}</dt>
-                    <dd>{fact.value}</dd>
-                  </div>
-                ))}
-              </dl>
+              <div>
+                <PortfolioProjectVisual index={projectIndex} name={project.name} />
+                <dl style={{ marginTop: "1.4rem" }}>
+                  {project.facts.map((fact) => (
+                    <div key={fact.label}>
+                      <dt>{fact.label}</dt>
+                      <dd>{fact.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
             </div>
 
             <div className="portfolio-scope-grid">
