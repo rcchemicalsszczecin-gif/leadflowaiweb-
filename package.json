@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "typecheck": "tsc --noEmit",
-    "lint": "biome lint .",
+    "lint": "biome lint --max-diagnostics=100 .",
     "format": "biome format --write .",
     "search:contract": "node scripts/search-contract.mjs",
     "lead:contract": "node scripts/lead-contract.mjs",
@@ -14,8 +14,9 @@
     "content:contract": "node scripts/content-contract.mjs",
     "operations:contract": "node scripts/operations-contract.mjs",
     "static:contract": "node scripts/static-deploy-contract.mjs",
+    "design:contract": "node scripts/design-v2-contract.mjs",
     "check": "npm run typecheck && npm run lint",
-    "verify": "npm run search:contract && npm run lead:contract && npm run chat:contract && npm run content:contract && npm run operations:contract && npm run static:contract && npm run check && npm run build"
+    "verify": "npm run search:contract && npm run lead:contract && npm run chat:contract && npm run content:contract && npm run operations:contract && npm run static:contract && npm run design:contract && npm run check && npm run build"
   },
   "engines": {
     "node": ">=20.9.0"
