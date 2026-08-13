@@ -9,7 +9,7 @@ export type PortfolioCase = {
   scope: readonly { title: string; description: string }[];
 };
 
-export const portfolioCases = [
+export const portfolioCases: readonly PortfolioCase[] = [
   {
     id: "01 / LEADFLOWAI",
     status: "PROJEKT WŁASNY · PUBLICZNIE DZIAŁAJĄCY · AKTYWNIE ROZWIJANY",
@@ -80,4 +80,4 @@ export const portfolioCases = [
       { title: "Governance", description: "Rozwój oparty na modelu CLAIM → EVIDENCE → REVIEW → PUBLIC STATUS." },
     ],
   },
-] as const satisfies readonly PortfolioCase[];
+];
