@@ -93,6 +93,7 @@ export function Live3DShowcase() {
         ref={sceneRef}
         onPointerMove={onPointerMove}
         onPointerLeave={reset}
+        role="img"
         aria-label="Interaktywny model 3D procesora LeadFlowAI"
       >
         <div className="processor-orbit processor-orbit-a" />
@@ -160,7 +161,9 @@ export function SystemAssembly() {
       },
       { rootMargin: "-32% 0px -45%", threshold: 0.1 },
     );
-    nodes.forEach((node) => observer.observe(node));
+    nodes.forEach((node) => {
+      observer.observe(node);
+    });
     return () => observer.disconnect();
   }, []);
 
@@ -205,7 +208,7 @@ export function BrowserDemo() {
         <p className="experience-kicker">LIVE / BROWSER PROTOTYPE</p>
         <h2 id="browser-demo-title">Nie opisujemy tylko interfejsów. Pokazujemy ich zachowanie.</h2>
         <p>Przełącz scenariusz i szerokość. Demo pozostaje lekkie, ale prezentuje responsive, hierarchię, CTA i stany produktu w jednym module.</p>
-        <div className="demo-controls" aria-label="Wybór scenariusza demo">
+        <div className="demo-controls" role="group" aria-label="Wybór scenariusza demo">
           {(["landing", "commerce", "dashboard"] as const).map((item) => (
             <button type="button" key={item} onClick={() => setPanel(item)} className={panel === item ? "is-active" : ""}>{item}</button>
           ))}
