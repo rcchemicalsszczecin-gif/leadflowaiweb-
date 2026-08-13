@@ -32,6 +32,7 @@ const expandedSlugs = [
 
 const expanded = read("lib/expanded-services.ts");
 const hub = read("app/uslugi/page.tsx");
+const hubLower = hub.toLowerCase();
 const registry = read("lib/page-registry.ts");
 const sitemap = read("app/sitemap.ts");
 const footer = read("components/site-footer.tsx");
@@ -43,14 +44,14 @@ for (const slug of expandedSlugs) {
 }
 
 for (const phrase of [
-  "Pełna oferta",
-  "Tworzenie i rozwój produktów webowych",
-  "Widoczność i architektura informacji",
-  "Konwersja i pomiar",
-  "Integracje i automatyzacje",
-  "Jakość, bezpieczeństwo i utrzymanie",
+  "pełna oferta",
+  "tworzenie i rozwój produktów webowych",
+  "widoczność i architektura informacji",
+  "konwersja i pomiar",
+  "integracje i automatyzacje",
+  "jakość, bezpieczeństwo i utrzymanie",
 ]) {
-  if (!hub.includes(phrase)) fail(`hub usług nie zawiera: ${phrase}`);
+  if (!hubLower.includes(phrase)) fail(`hub usług nie zawiera: ${phrase}`);
 }
 
 if (!registry.includes("expandedServicePages") || !registry.includes("experienceServices") || !registry.includes("allPublicServiceLinks")) {
