@@ -14,13 +14,23 @@ type ServicePageProps = {
   page: ServicePageData;
 };
 
+const templateFlow = {
+  BUILD: { key: "build", href: "#scope", label: "Zobacz zakres" },
+  EXPERIENCE: { key: "experience", href: "/lab", label: "Zobacz demo" },
+  SEARCH: { key: "search", href: "#decision", label: "Sprawdź dopasowanie" },
+  AI: { key: "ai", href: "#decision", label: "Sprawdź kiedy ma sens" },
+  PLATFORM: { key: "platform", href: "#process", label: "Zobacz proces" },
+  CARE: { key: "care", href: "#decision", label: "Sprawdź ryzyka" },
+} as const;
+
 export function ServicePage({ page }: ServicePageProps) {
   const publicPage = toPublicServicePage(page);
   const decision = getServiceDecisionGuidance(publicPage.slug);
   const [comparisonTitle, comparisonA, comparisonB] = decision.compare;
+  const template = templateFlow[decision.group];
 
   return (
-    <main className="service-page">
+    <main className={`service-page service-template-${template.key}`} data-service-template={decision.group}>
       <JsonLd data={getPageStructuredData(publicPage)} />
 
       <section className="service-hero section-dark blueprint-surface">
@@ -41,14 +51,14 @@ export function ServicePage({ page }: ServicePageProps) {
                 <a className="button button-primary" href={`mailto:${site.email}?subject=${encodeURIComponent(`Wycena: ${publicPage.title}`)}`}>
                   Wyceń projekt <span aria-hidden="true">↗</span>
                 </a>
-                <a className="text-link" href="#scope">
-                  Zobacz zakres <span aria-hidden="true">↓</span>
+                <a className="text-link" href={template.href}>
+                  {template.label} <span aria-hidden="true">{template.href.startsWith("#") ? "↓" : "↗"}</span>
                 </a>
               </div>
             </div>
 
             <aside className="service-capability-panel" aria-label="Zakres usługi">
-              <p className="panel-label">MAPA ZAKRESU</p>
+              <p className="panel-label">{decision.label}</p>
               <ul>
                 {publicPage.capabilities.map((item, index) => (
                   <li key={item}>
@@ -113,7 +123,7 @@ export function ServicePage({ page }: ServicePageProps) {
         </div>
       </section>
 
-      <section className="section-light service-process">
+      <section id="process" className="section-light service-process">
         <div className="page-shell section-pad">
           <div className="service-section-head">
             <p className="service-index">03 / PROCES</p>
@@ -150,7 +160,7 @@ export function ServicePage({ page }: ServicePageProps) {
         </div>
       </section>
 
-      <section className="section-dark service-deliverables service-decision-v13">
+      <section id="decision" className="section-dark service-deliverables service-decision-v13">
         <div className="page-shell section-pad">
           <div className="service-section-head service-section-head-dark">
             <p className="service-index">05 / DECYZJA</p>
