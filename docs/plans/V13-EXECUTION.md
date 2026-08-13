@@ -12,7 +12,7 @@
 - final legal identifiers pending;
 - analytics/privacy activation pending;
 - Search Console/Bing measurement wyłącznie na realnych danych;
-- Unsplash dependency do zastąpienia własnym assetem;
+- historyczne/frozen V5/V9 nadal zawierają literal źródła Unsplash, ale publiczna kaskada V13 używa własnej warstwy wizualnej i nie wymaga tego zasobu; późniejsza konsolidacja legacy CSS pozostaje opcjonalnym długiem;
 - CSS V5–V10 do późniejszego controlled consolidation audit;
 - publiczny chatbot OFF;
 - online lead delivery OFF.
