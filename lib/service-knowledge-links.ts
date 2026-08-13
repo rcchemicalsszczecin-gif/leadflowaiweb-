@@ -14,6 +14,10 @@ const SERVICE_KNOWLEDGE: Readonly<Record<string, readonly { href: string; label:
     { href: "/wiedza/seo-aeo-geo-jedna-architektura", label: "SEO, AEO i GEO jako jedna architektura" },
     { href: "/wiedza/ai-search-google-co-robic-2026", label: "AI Search i Google — co robić w 2026" },
   ],
+  "seo-aeo-geo": [
+    { href: "/wiedza/seo-aeo-geo-jedna-architektura", label: "SEO, AEO i GEO jako jedna architektura" },
+    { href: "/wiedza/ai-search-google-co-robic-2026", label: "AI Search i Google — co robić w 2026" },
+  ],
 };
 
 export function getServiceKnowledgeLinks(slug: string) {
