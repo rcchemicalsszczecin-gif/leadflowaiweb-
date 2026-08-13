@@ -1,12 +1,11 @@
 # V13.10 — Acceptance matrix 1–60
 
-STATUS: ACTIVE FINAL-AUDIT MATRIX
+STATUS: FINAL AUDIT COMPLETE — RELEASE CANDIDATE WITH EXPLICIT BOUNDARIES
 
 Legenda:
 - `PASS` — zaimplementowane i objęte istniejącym lub V13 gate’em / audytem.
-- `PASS_WITH_BOUNDARY` — zaimplementowana bezpieczna wersja, ale rozszerzenie wymaga dodatkowej public truth / Owner data.
+- `PASS_WITH_BOUNDARY` — zaimplementowana bezpieczna wersja, ale rozszerzenie wymaga dodatkowej public truth / Owner data albo pozostaje poza zakresem statycznego frontendu.
 - `DEFERRED_TO_V13.11_BY_EVIDENCE` — nie wolno symulować danych; aktywacja po realnym pomiarze.
-- `IN_PROGRESS` — finalny gate całego wydania nie jest jeszcze zamknięty.
 
 ## Workstreams 1–15
 
@@ -78,7 +77,7 @@ Legenda:
 57. `PASS_WITH_BOUNDARY` — `/local-seo` ma evidence-safe przykład Szczecina i zakaz doorway; nie publikuje niepotwierdzonego adresu LeadFlowAI/NAP.
 58. `PASS` — Organization/Brand/WebSite/WebPage/Service/FAQ/Breadcrumb/Article graph i spójny public model.
 59. `DEFERRED_TO_V13.11_BY_EVIDENCE` — original research wymaga realnego datasetu; syntetyczne KPI/badanie są zabronione przez evidence boundary.
-60. `IN_PROGRESS` — final search + AI-readiness acceptance oraz pełny release audit muszą przejść na finalnym HEAD.
+60. `PASS_WITH_BOUNDARY` — finalny search + AI-readiness + release audit zakończony na finalnym technicznym checkpointcie: Quality #348 SUCCESS, PR ahead-only względem `main`, 63/63 intent map, rendered HTML gate, static/runtime boundaries, public chatbot OFF, lead backend OFF, frontend-only brief bez storage/network, brak nowych backend/API paths i brak nowych runtime dependencies. Granice zewnętrzne poniżej pozostają jawne i nie są ukrywane jako kodowy PASS.
 
 ## Carried release debt / external boundaries
 
@@ -92,7 +91,8 @@ Legenda:
 - public chatbot — OFF by Owner.
 - online lead delivery — OFF by Owner; kontakt i brief działają przez mailto.
 - public pricing — nie jest wymagane przez V13; zakres kosztu jest opisany czynnikami bez wymyślonej stawki.
+- workstream 59 / original research — świadomie V13.11 po realnym datasecie.
 
 ## Release gate
 
-V13 nie przechodzi do `main`, dopóki punkt 60 nie otrzyma `PASS` oraz Owner nie wyda jawnej decyzji merge. Punkt 59 nie może zostać sztucznie zmieniony na PASS bez realnego datasetu.
+V13.10 jest technicznie zamknięte jako release candidate z jawnymi boundary. PR #16 pozostaje Draft i nie przechodzi do `main`, dopóki Owner nie wyda osobnej, jawnej decyzji merge. Punkt 59 nie może zostać sztucznie zmieniony na PASS bez realnego datasetu.
