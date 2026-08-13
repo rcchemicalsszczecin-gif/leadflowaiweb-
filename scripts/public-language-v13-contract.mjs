@@ -62,7 +62,9 @@ for (const path of publicSources) {
 
 const home = read("app/page.tsx");
 for (const required of [
-  "STUDIO DOŚWIADCZEŃ CYFROWYCH",
+  "LEADFLOWAI / STRONY WWW · WIDOCZNOŚĆ · SYSTEMY",
+  "Wyceń projekt",
+  "Zobacz realizacje",
   'label="PODEJŚCIE"',
   'label="PROCES"',
   'label="JAKOŚĆ"',
@@ -86,4 +88,4 @@ for (const required of ["O LeadFlowAI", "Tervyxa Systems sp. z o.o.", "Dowód pr
   if (!about.includes(required)) fail(`about page missing trust/public-truth label: ${required}`);
 }
 
-console.log(`PUBLIC_LANGUAGE_V13_PASS sources=${publicSources.length} retired=${retiredPublicLiterals.length} homepage=PL premium=PL v92=PL trust=PL`);
+console.log(`PUBLIC_LANGUAGE_V13_PASS sources=${publicSources.length} retired=${retiredPublicLiterals.length} homepage=BUYER_FIRST_PL premium=PL v92=PL trust=PL`);
