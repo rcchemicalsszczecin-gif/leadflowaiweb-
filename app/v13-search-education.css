@@ -88,14 +88,17 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.45rem;
+    margin-bottom: 0;
+    padding: 0;
+    list-style: none;
   }
 
   .search-signal-list-v13 {
     margin-top: 2rem;
   }
 
-  .search-signal-list-v13 span,
-  .ai-preview-links-v13 span {
+  .search-signal-list-v13 li,
+  .ai-preview-links-v13 li {
     padding: 0.38rem 0.55rem;
     border: 1px solid rgba(155, 231, 255, 0.15);
     border-radius: 999px;
