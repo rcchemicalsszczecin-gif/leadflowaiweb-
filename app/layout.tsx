@@ -11,6 +11,7 @@ import "./knowledge.css";
 import "./precision-water.css";
 import "./circuit-water-v3.css";
 import "./hardware-board-v4.css";
+import "./realistic-board-v5.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -46,6 +47,9 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="pl">
+      <head>
+        <link rel="preconnect" href="https://images.unsplash.com" crossOrigin="anonymous" />
+      </head>
       <body>
         <JsonLd data={getGlobalStructuredData()} />
         <WaterSurface />

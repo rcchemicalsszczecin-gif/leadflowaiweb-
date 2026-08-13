@@ -7,6 +7,7 @@ on:
       - design/precision-water-v2
       - design/circuit-water-v3
       - design/hardware-board-v4
+      - performance/realistic-board-v5
   pull_request:
     branches:
       - main

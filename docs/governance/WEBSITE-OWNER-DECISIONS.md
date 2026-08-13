@@ -22,19 +22,19 @@ LOCKED:
 - Unrelated Tervyxa services remain separate verticals.
 - Real evidence only; no fake case studies/testimonials.
 - Work may be executed as complete bounded stages.
-- Current approved visual direction: `Hardware Board V4 / Living Motherboard`, recorded in `docs/design/LEADFLOWAI-DESIGN-DIRECTION-V4.md`.
-- V4 supersedes V3 where motherboard recognizability and whole-site visibility conflict; the V3 refractive-water interaction remains authoritative.
-- The global procedural background must read as a living motherboard rather than an abstract network.
-- Recognizable generated hardware includes CPU package/die, VRM stages, capacitor banks, RAM/DIMM slots, PCIe-style expansion slots/lanes, M.2-like storage connector and a chipset-like secondary processor.
-- Energy/data movement is routed between hardware regions: green for power distribution and cyan for data/interconnect traffic.
-- The motherboard remains visible through the whole public site; desktop sections must not become large opaque dark bands that hide the shader.
-- Content cards/panels may remain darker and glassier for readability; mobile may increase surface opacity.
-- Water and electronics remain one visual system so surface displacement refracts the motherboard and flowing energy underneath it.
-- Cursor movement creates subtle brush-like water disturbance; click/tap creates a stronger multi-wave stone impact.
-- The electronic world continues through scrolling by using page scroll as part of shader world-space instead of a hero-only visual.
-- Foreground copy, navigation and CTA remain optically stable and readable.
-- WebGL2 is the preferred visual renderer; a static technical fallback remains available when WebGL2 is unavailable.
-- `prefers-reduced-motion` must stop continuous animation and interactive disturbance while keeping the site readable and visually coherent.
+- Current approved visual direction: `Realistic Hardware Water V5`, recorded in `docs/design/LEADFLOWAI-DESIGN-DIRECTION-V5.md`.
+- V5 supersedes V4 where background realism, scroll comfort and rendering cost conflict.
+- The successful water interaction remains authoritative: cursor movement creates subtle brush-like disturbance and click/tap creates a stronger multi-wave stone impact.
+- The motherboard background is now photographic/realistic, not generated as illustrated procedural hardware.
+- The current photographic source is Brecht Corbeel / Unsplash (`https://unsplash.com/photos/Y2RuzisrEcs`), used under the Unsplash License.
+- WebGL renders a transparent water/highlight layer plus restrained cyan/green energy pulses over the real hardware photograph.
+- The background remains fixed through scrolling instead of moving in shader world-space; foreground text scrolls over a stable scene.
+- Maximum active ripple count is bounded to eight; WebGL DPR is capped; animation is capped near 45 FPS.
+- Bulk content cards must not use expensive backdrop-filter; only isolated UI such as the header may retain restrained blur.
+- Hero/stage/service/article copy receives localized dark reading lanes so text remains comfortable over detailed hardware.
+- Large desktop section bands remain highly transparent so the realistic hardware is visible across the whole public site.
+- Mobile may increase panel/section opacity for readability.
+- `prefers-reduced-motion` must disable the animated canvas while retaining the realistic static background and readable content.
 - Headline scale remains intentionally reduced versus the first production visual while retaining editorial hierarchy.
 - Brand and domain are intentionally aligned: LeadFlowAI on leadflowai.pl.
 - Initial GitHub Pages production launch is complete; further visual releases still require normal branch validation and Owner-controlled promotion to main.
