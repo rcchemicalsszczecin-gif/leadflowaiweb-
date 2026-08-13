@@ -1,10 +1,10 @@
 import { navigation } from "@/lib/site";
 
 const navigationPreview: Record<(typeof navigation)[number]["href"], readonly [string, string]> = {
-  "/strony-internetowe": ["STRONY", "Projekt i wdrożenie"],
-  "/strony-3d-webgl": ["3D", "WebGL i interakcje"],
-  "/seo-aeo-geo": ["WIDOCZNOŚĆ", "SEO + AEO + GEO"],
-  "/lab": ["MOŻLIWOŚCI", "Interaktywne demo"],
+  "/uslugi": ["OFERTA", "Pełny zakres usług"],
+  "/realizacje": ["DOWODY", "Projekty własne i zakres"],
+  "/wiedza": ["WIEDZA", "Praktyka WWW i widoczności"],
+  "/o-nas": ["O NAS", "LeadFlowAI i Tervyxa Systems"],
   "/#process": ["PROCES", "Od strategii do publikacji"],
 };
 
