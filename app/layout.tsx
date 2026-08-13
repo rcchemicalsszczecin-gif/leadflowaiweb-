@@ -10,6 +10,7 @@ import "./contact.css";
 import "./knowledge.css";
 import "./precision-water.css";
 import "./circuit-water-v3.css";
+import "./hardware-board-v4.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
