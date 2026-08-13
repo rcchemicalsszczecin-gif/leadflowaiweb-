@@ -7,6 +7,7 @@ export function toPublicServicePage(page: ServicePageData): ServicePageData {
     capabilities: page.capabilities.map(publicLabel),
     deliverables: page.deliverables.map((item) => ({
       ...item,
+      title: publicLabel(item.title),
       tags: item.tags.map(publicLabel),
     })),
     process: page.process.map((item) => ({
