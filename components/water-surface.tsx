@@ -10,8 +10,10 @@ type Ripple = {
 };
 
 const MAX_RIPPLES = 8;
+const COMPACT_MAX_RIPPLES = 5;
 const RIPPLE_LIFE_MS = 3200;
 const FRAME_INTERVAL_MS = 1000 / 45;
+const COMPACT_FRAME_INTERVAL_MS = 1000 / 30;
 
 const VERTEX_SHADER = `#version 300 es
 in vec2 aPosition;
@@ -186,13 +188,21 @@ export function WaterSurface() {
     if (!canvas) return;
 
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const finePointer = window.matchMedia("(pointer: fine)");
+    const compactRender = window.matchMedia("(max-width: 899px), (pointer: coarse)");
+
+    if (reducedMotion.matches) {
+      canvas.dataset.renderFallback = "reduced-motion";
+      return;
+    }
+
     const gl = canvas.getContext("webgl2", {
       alpha: true,
       antialias: false,
       depth: false,
       stencil: false,
       premultipliedAlpha: false,
-      powerPreference: "default",
+      powerPreference: compactRender.matches ? "low-power" : "default",
     });
 
     if (!gl) {
@@ -242,11 +252,12 @@ export function WaterSurface() {
     let lastBrushX = -1000;
     let lastBrushY = -1000;
     let lastFrameAt = 0;
+    let pageVisible = !document.hidden;
 
     const resize = () => {
       width = Math.max(1, window.innerWidth);
       height = Math.max(1, window.innerHeight);
-      dpr = Math.min(window.devicePixelRatio || 1, width < 900 ? 1 : 1.15);
+      dpr = Math.min(window.devicePixelRatio || 1, compactRender.matches ? 1 : 1.15);
       canvas.width = Math.round(width * dpr);
       canvas.height = Math.round(height * dpr);
       canvas.style.width = `${width}px`;
@@ -256,7 +267,8 @@ export function WaterSurface() {
 
     const addRipple = (x: number, y: number, strength: number, born = performance.now()) => {
       ripples.push({ x, y, born, strength });
-      while (ripples.length > MAX_RIPPLES) ripples.shift();
+      const rippleLimit = compactRender.matches ? COMPACT_MAX_RIPPLES : MAX_RIPPLES;
+      while (ripples.length > rippleLimit) ripples.shift();
     };
 
     const brush = (x: number, y: number, now: number) => {
@@ -276,8 +288,8 @@ export function WaterSurface() {
     };
 
     const onPointerMove = (event: PointerEvent) => {
+      if (event.pointerType === "touch") return;
       normalizePointer(event);
-      if (reducedMotion.matches || event.pointerType === "touch") return;
 
       const now = performance.now();
       const dx = event.clientX - lastBrushX;
@@ -292,7 +304,7 @@ export function WaterSurface() {
 
     const onPointerDown = (event: PointerEvent) => {
       normalizePointer(event);
-      if (!reducedMotion.matches) stone(pointerX, pointerY, performance.now());
+      stone(pointerX, pointerY, performance.now());
     };
 
     const onPointerLeave = () => {
@@ -318,7 +330,11 @@ export function WaterSurface() {
     };
 
     const render = (now: number) => {
-      if (!reducedMotion.matches && now - lastFrameAt < FRAME_INTERVAL_MS) {
+      frame = 0;
+      if (!pageVisible) return;
+
+      const frameInterval = compactRender.matches ? COMPACT_FRAME_INTERVAL_MS : FRAME_INTERVAL_MS;
+      if (now - lastFrameAt < frameInterval) {
         frame = window.requestAnimationFrame(render);
         return;
       }
@@ -327,30 +343,47 @@ export function WaterSurface() {
       bindGpuProgram(program);
       gl.clear(gl.COLOR_BUFFER_BIT);
       gl.uniform2f(resolutionLocation, canvas.width, canvas.height);
-      gl.uniform1f(timeLocation, reducedMotion.matches ? 0 : now / 1000);
+      gl.uniform1f(timeLocation, now / 1000);
       gl.uniform2f(pointerLocation, pointerX, pointerY);
       gl.uniform1f(pointerActiveLocation, pointerActive);
       uploadRipples(now);
       gl.drawArrays(gl.TRIANGLES, 0, 3);
 
-      if (!reducedMotion.matches) frame = window.requestAnimationFrame(render);
+      frame = window.requestAnimationFrame(render);
+    };
+
+    const startRendering = () => {
+      if (!pageVisible || frame) return;
+      lastFrameAt = 0;
+      frame = window.requestAnimationFrame(render);
+    };
+
+    const onVisibilityChange = () => {
+      pageVisible = !document.hidden;
+      if (!pageVisible) {
+        pointerActive = 0;
+        if (frame) window.cancelAnimationFrame(frame);
+        frame = 0;
+        return;
+      }
+      startRendering();
     };
 
     resize();
     window.addEventListener("resize", resize, { passive: true });
-    window.addEventListener("pointermove", onPointerMove, { passive: true });
+    if (finePointer.matches) window.addEventListener("pointermove", onPointerMove, { passive: true });
     window.addEventListener("pointerdown", onPointerDown, { passive: true });
     document.documentElement.addEventListener("mouseleave", onPointerLeave);
-
-    if (reducedMotion.matches) render(0);
-    else frame = window.requestAnimationFrame(render);
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    startRendering();
 
     return () => {
-      window.cancelAnimationFrame(frame);
+      if (frame) window.cancelAnimationFrame(frame);
       window.removeEventListener("resize", resize);
-      window.removeEventListener("pointermove", onPointerMove);
+      if (finePointer.matches) window.removeEventListener("pointermove", onPointerMove);
       window.removeEventListener("pointerdown", onPointerDown);
       document.documentElement.removeEventListener("mouseleave", onPointerLeave);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
       gl.deleteBuffer(buffer);
       gl.deleteProgram(program);
     };
