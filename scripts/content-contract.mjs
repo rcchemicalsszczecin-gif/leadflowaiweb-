@@ -13,7 +13,9 @@ const read = (path) => {
 const portfolio = read("app/realizacje/page.tsx");
 const knowledgeIndex = read("app/wiedza/page.tsx");
 const knowledgeArticle = read("app/wiedza/[slug]/page.tsx");
-const knowledge = read("lib/knowledge.ts");
+const knowledgeCore = read("lib/knowledge.ts");
+const knowledgeExpanded = read("lib/knowledge-expanded.ts");
+const knowledgeRegistry = read("lib/knowledge-registry.ts");
 const schema = read("lib/structured-data.ts");
 const sitemap = read("app/sitemap.ts");
 const footer = read("components/site-footer.tsx");
@@ -30,19 +32,37 @@ for (const phrase of [
   "chatbot-na-stronie-kiedy-ma-sens",
   "modernizacja-strony-bez-utraty-widocznosci",
 ]) {
-  if (!knowledge.includes(phrase)) fail(`knowledge article missing ${phrase}`);
+  if (!knowledgeCore.includes(phrase)) fail(`core knowledge article missing ${phrase}`);
 }
 
-if (!knowledgeIndex.includes("knowledgeArticles") || !knowledgeIndex.includes("metadata")) fail("knowledge index contract incomplete");
+for (const phrase of [
+  "ile-kosztuje-profesjonalna-strona-internetowa",
+  "core-web-vitals-lcp-inp-cls-praktycznie",
+  "wcag-22-co-sprawdzic-na-stronie",
+  "cro-jak-znalezc-problemy-z-konwersja",
+  "rag-na-stronie-jak-zaprojektowac",
+  "ai-search-google-co-robic-2026",
+  "structured-data-kiedy-schema-ma-sens",
+  "architektura-tresci-klastry-tematyczne",
+]) {
+  if (!knowledgeExpanded.includes(phrase)) fail(`expanded knowledge article missing ${phrase}`);
+}
+
+if (!knowledgeRegistry.includes("coreKnowledgeArticles") || !knowledgeRegistry.includes("expandedKnowledgeArticles")) {
+  fail("knowledge registry does not combine both clusters");
+}
+if (!knowledgeIndex.includes("knowledge-registry") || !knowledgeIndex.includes("metadata")) fail("knowledge index contract incomplete");
 if (!knowledgeArticle.includes("generateStaticParams") || !knowledgeArticle.includes("generateMetadata") || !knowledgeArticle.includes("getArticleStructuredData")) {
   fail("knowledge article route contract incomplete");
 }
+if (!knowledgeArticle.includes("Źródła i standardy")) fail("knowledge source rendering missing");
 if (!schema.includes('"@type": "Article"') || !schema.includes("getArticleStructuredData")) fail("Article structured-data contract missing");
-if (!sitemap.includes("knowledgeArticles") || !sitemap.includes('"realizacje"') || !sitemap.includes('"wiedza"')) fail("content routes missing from sitemap registry");
+if (!sitemap.includes("knowledge-registry") || !sitemap.includes('"realizacje"') || !sitemap.includes('"wiedza"')) fail("content routes missing from sitemap registry");
 if (!footer.includes('href="/realizacje"') || !footer.includes('href="/wiedza"')) fail("content discovery links missing from footer");
 
 for (const forbidden of ["gwarantujemy pierwsze miejsce", "setki zadowolonych klientow", "setki zadowolonych klientów"]) {
-  if (portfolio.toLowerCase().includes(forbidden) || knowledge.toLowerCase().includes(forbidden)) fail(`unsupported marketing claim found: ${forbidden}`);
+  const allKnowledge = `${knowledgeCore}\n${knowledgeExpanded}`.toLowerCase();
+  if (portfolio.toLowerCase().includes(forbidden) || allKnowledge.includes(forbidden)) fail(`unsupported marketing claim found: ${forbidden}`);
 }
 
-console.log("CONTENT_CONTRACT_PASS portfolio=REAL_ONLY knowledge=4 article-schema=PASS sitemap=PASS");
+console.log("CONTENT_CONTRACT_PASS portfolio=REAL_ONLY knowledge=20 sources=SUPPORTED article-schema=PASS sitemap=PASS language=PL");
