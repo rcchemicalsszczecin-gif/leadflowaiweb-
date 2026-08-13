@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { knowledgeArticles } from "@/lib/knowledge-registry";
+import { toPublicKnowledgeArticle } from "@/lib/public-knowledge-article";
 
 export const metadata: Metadata = {
   title: "Baza wiedzy o stronach WWW, SEO, AEO, GEO i konwersji",
@@ -11,6 +12,8 @@ export const metadata: Metadata = {
 };
 
 export default function KnowledgePage() {
+  const publicArticles = knowledgeArticles.map(toPublicKnowledgeArticle);
+
   return (
     <main className="knowledge-page">
       <section className="knowledge-hero section-dark blueprint-surface">
@@ -34,7 +37,7 @@ export default function KnowledgePage() {
           </div>
 
           <div className="knowledge-cards">
-            {knowledgeArticles.map((article, index) => (
+            {publicArticles.map((article, index) => (
               <article key={article.slug}>
                 <span>{String(index + 1).padStart(2, "0")}</span>
                 <p>{article.eyebrow}</p>
