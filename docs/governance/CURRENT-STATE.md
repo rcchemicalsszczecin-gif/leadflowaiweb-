@@ -22,8 +22,7 @@ This file is the authoritative current-state checkpoint for release status, acti
 ## Active work branch
 
 - Branch: `content/full-offer-v11`.
-- Current branch head immediately before this checkpoint update: `eba25874d2262dac592e2d54d4399d1de370c91f`.
-- Latest fully validated PR head: `89cca23f0b15bf88a2c0995db0b63254af96becf` with Quality #134 SUCCESS.
+- Latest fully validated PR head before this documentation-only checkpoint update: `fe9792fe876385947f0630154d865042da217a46` with Quality #136 SUCCESS.
 - The branch contains Full Offer V11 plus the bounded Portfolio V12 foundation and bounded repository-hardening corrections.
 - It is not production authority until Owner-controlled promotion to `main`.
 
@@ -41,7 +40,7 @@ The latest complete PR Quality validation for the validated branch head against 
 - V9.2 design contract: PASS;
 - V10 responsive/performance contract: PASS;
 - TypeScript: PASS;
-- Biome lint gate: PASS with 22 non-blocking CSS specificity warnings at the latest fully validated checkpoint;
+- Biome lint gate: PASS with 21 non-blocking CSS specificity warnings;
 - Next.js production build/static export: PASS;
 - performance budget: PASS;
 - static artifact contract: PASS;
@@ -51,14 +50,16 @@ The validated build generated 66 static pages. Dynamic API routes are absent fro
 
 ## Repository-hardening state
 
-Completed on the work branch:
+Completed and validated on the work branch:
 
 - Portfolio V12 optional-note TypeScript inference blocker fixed.
 - Source-of-truth/current-state governance synchronized with V9/V9.2 and current production reality.
 - Superseded 17-service V11 offer contract removed; the active V11 contract covers 20 expanded services.
 - Committed `tsconfig.json` normalized for Next.js 16 by including `.next/dev/types/**/*.ts`; subsequent validated builds no longer rewrite `tsconfig.json`.
-- CSS specificity debt in the new V11/V12 knowledge/portfolio layer reduced without changing visual values; warnings dropped from 35 to 22 at the fully validated checkpoint.
-- A further one-selector `services.css` cleanup exists at `eba25874d2262dac592e2d54d4399d1de370c91f`; it is intentionally not promoted to validated status until its own Quality evidence exists.
+- CSS specificity debt in the new V11/V12 knowledge/portfolio layer reduced without changing visual values.
+- The `services.css` related-service selector warning was removed without altering visual declarations.
+- Biome specificity warnings were reduced from 35 to 21 while preserving the visual freeze boundary.
+- Repository scan returned no TODO/FIXME/HACK/XXX markers, no debug `console.*`/`debugger` residue and no hits for common secret-token variable names.
 
 ## Current visual authority
 
@@ -86,7 +87,7 @@ The following are known and must not be misreported as resolved:
 
 1. `main` is currently unprotected at GitHub repository settings level; required status checks are not enforced by branch protection.
 2. No committed `package-lock.json` exists, so dependency installation is not fully reproducible and CI currently uses `npm install` rather than `npm ci`.
-3. The latest fully validated Biome run reports 22 non-blocking CSS `noDescendingSpecificity` warnings. The remaining warnings are in legacy/general or frozen visual layers; V8/V9/V9.2 and the water layer must not be opportunistically rewritten merely to reach zero warnings.
+3. The latest fully validated Biome run reports 21 non-blocking CSS `noDescendingSpecificity` warnings. The remaining warnings are in `globals.css` plus legacy/frozen visual layers; V8/V9/V9.2 and the water layer must not be opportunistically rewritten merely to reach zero warnings.
 4. Performance remains within budget but has limited JavaScript headroom; future heavy dependencies/effects require explicit budget review.
 5. Historical documents may contain superseded status statements. Their historical evidence remains valid, but current status is determined by this file plus higher-authority governance and Owner decisions.
 6. `scripts/governance-contract.mjs` exists as a bounded consistency checker but is not part of `npm run verify`; it must not be represented as an active CI gate unless explicitly wired and validated later.
