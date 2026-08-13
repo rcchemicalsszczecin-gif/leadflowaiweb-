@@ -21,24 +21,24 @@ import { SiteHeader } from "@/components/site-header";
 import { site } from "@/lib/site";
 
 const qualitySignals = [
-  ["SEMANTIC", "HTML i struktura informacji projektowane jako fundament, nie kosmetyka."],
-  ["PERFORMANCE", "Minimalny zbędny JavaScript, szybkie ładowanie i Core Web Vitals w procesie QA."],
-  ["ACCESSIBLE", "Klawiatura, focus, kontrast, redukcja ruchu i semantyka od początku projektu."],
-  ["SEARCH READY", "SEO, AEO, GEO / AI Search i structured data wpisane w architekturę strony."],
-  ["CONVERSION", "CTA, formularze i ścieżki użytkownika projektowane pod mierzalny cel biznesowy."],
-  ["SECURE", "Walidacja, hardening, ochrona formularzy i kontrola zależności jako standard techniczny."],
+  ["SEMANTYKA", "HTML i struktura informacji projektowane jako fundament, nie kosmetyka."],
+  ["WYDAJNOŚĆ", "Minimalny zbędny JavaScript, szybkie ładowanie i Core Web Vitals w procesie QA."],
+  ["DOSTĘPNOŚĆ", "Klawiatura, focus, kontrast, redukcja ruchu i semantyka od początku projektu."],
+  ["GOTOWOŚĆ NA WYSZUKIWANIE", "SEO, AEO, GEO / AI Search i dane strukturalne wpisane w architekturę strony."],
+  ["KONWERSJA", "CTA, formularze i ścieżki użytkownika projektowane pod mierzalny cel biznesowy."],
+  ["BEZPIECZEŃSTWO", "Walidacja, utwardzanie, ochrona formularzy i kontrola zależności jako standard techniczny."],
 ] as const;
 
 const faqs = [
   {
     question: "Czy SEO, AEO i GEO są osobną usługą czy częścią budowy strony?",
     answer:
-      "Mogą być rozwijane jako osobny zakres, ale w nowych projektach projektujemy ich fundament razem ze stroną: strukturę informacji, semantykę, metadata, structured data i treści odpowiadające na realne intencje użytkowników.",
+      "Mogą być rozwijane jako osobny zakres, ale w nowych projektach projektujemy ich fundament razem ze stroną: strukturę informacji, semantykę, metadane, dane strukturalne i treści odpowiadające na realne intencje użytkowników.",
   },
   {
     question: "Czy LeadFlowAI robi tylko nowe strony?",
     answer:
-      "Nie. Możemy przeprowadzić audyt, redesign, modernizację albo migrację istniejącego serwisu, zachowując ważne adresy URL i elementy wartościowe dla widoczności.",
+      "Nie. Możemy przeprowadzić audyt, przeprojektowanie, modernizację albo migrację istniejącego serwisu, zachowując ważne adresy URL i elementy wartościowe dla widoczności.",
   },
   {
     question: "Czy chatbot AI jest obowiązkowy?",
@@ -48,7 +48,7 @@ const faqs = [
   {
     question: "Czy zapewniacie utrzymanie po uruchomieniu?",
     answer:
-      "Tak. Zakres może obejmować monitoring, backup, bezpieczeństwo, performance, aktualizacje oraz dalszy rozwój SEO, AEO i GEO / AI Search.",
+      "Tak. Zakres może obejmować monitoring, kopie zapasowe, bezpieczeństwo, wydajność, aktualizacje oraz dalszy rozwój SEO, AEO i GEO / AI Search.",
   },
 ] as const;
 
@@ -64,29 +64,29 @@ export default function HomePage() {
 
           <div className="hero-grid">
             <div className="hero-copy">
-              <p className="eyebrow">LEADFLOWAI / DIGITAL EXPERIENCE STUDIO</p>
+              <p className="eyebrow">LEADFLOWAI / STUDIO DOŚWIADCZEŃ CYFROWYCH</p>
               <h1 id="hero-title">
                 Strony internetowe
                 <span>zaprojektowane do wzrostu.</span>
               </h1>
               <p className="hero-lead">
-                Projektujemy cyfrowe doświadczenia, które łączą design, development, 3D,
+                Projektujemy cyfrowe doświadczenia, które łączą projekt, programowanie, 3D,
                 SEO, AEO, GEO / AI Search, konwersję i inteligentne funkcje w jeden spójny produkt.
               </p>
 
               <div className="hero-actions">
-                <MagneticLinkV9 href="#contact" className="hero-primary-v9" cursor="START">
+                <MagneticLinkV9 href="#contact" className="hero-primary-v9" cursor="ZACZNIJ">
                   Porozmawiajmy o projekcie <span aria-hidden="true">↗</span>
                 </MagneticLinkV9>
-                <MagneticLinkV9 href="/lab" className="hero-secondary-v9" cursor="OPEN">
-                  Wejdź do Live Lab <span aria-hidden="true">↗</span>
+                <MagneticLinkV9 href="/lab" className="hero-secondary-v9" cursor="OTWÓRZ">
+                  Wejdź do Laboratorium <span aria-hidden="true">↗</span>
                 </MagneticLinkV9>
               </div>
 
               <ul className="capability-line" aria-label="Główne kompetencje">
-                <li>WEB</li>
+                <li>WWW</li>
                 <li>3D</li>
-                <li>SEARCH</li>
+                <li>WIDOCZNOŚĆ</li>
                 <li>CRO</li>
                 <li>AI</li>
               </ul>
@@ -98,7 +98,7 @@ export default function HomePage() {
           </div>
 
           <div className="hero-bottomline" aria-hidden="true">
-            <span>SCROLL / EXPERIENCE</span>
+            <span>PRZEWIJAJ / ODKRYWAJ</span>
             <span>LEADFLOW / 2026</span>
           </div>
         </div>
@@ -106,7 +106,7 @@ export default function HomePage() {
 
       <section id="system" className="premium-intro-v9" data-v92-reveal="mask">
         <div className="page-shell section-pad">
-          <SectionLabel index="00" label="PHILOSOPHY" />
+          <SectionLabel index="00" label="PODEJŚCIE" />
           <div className="editorial-grid">
             <h2>
               Nie składamy stron.
@@ -119,7 +119,7 @@ export default function HomePage() {
                 mierzyć oraz rozwijać.
               </p>
               <p>
-                Dlatego design, kod, widoczność, konwersję, motion i inteligencję traktujemy
+                Dlatego projekt, kod, widoczność, konwersję, ruch i inteligencję traktujemy
                 jako warstwy jednego produktu.
               </p>
             </div>
@@ -135,13 +135,13 @@ export default function HomePage() {
       <LiquidCircuitV9 />
       <PremiumProofV9 />
 
-      <div className="premium-before-after-zone-v9" data-cursor="SLIDE" data-v92-reveal="wipe">
+      <div className="premium-before-after-zone-v9" data-cursor="PRZESUŃ" data-v92-reveal="wipe">
         <BeforeAfterDemo />
       </div>
 
       <section id="process" className="section-light process-section premium-process-v9" data-v92-reveal="rise">
         <div className="page-shell section-pad">
-          <SectionLabel index="14" label="PROCESS" />
+          <SectionLabel index="14" label="PROCES" />
           <div className="process-head">
             <h2>Od celu biznesowego do działającego produktu.</h2>
             <p>
@@ -152,17 +152,17 @@ export default function HomePage() {
 
           <ol className="process-list">
             <li><span>01</span><strong>Diagnoza</strong><p>Cel, odbiorca, obecna strona, konkurencja, wymagania i mierzalny rezultat.</p></li>
-            <li><span>02</span><strong>Architektura</strong><p>Informacja, UX, search architecture, treść, dane i plan konwersji.</p></li>
-            <li><span>03</span><strong>Design + build</strong><p>Interfejs, komponenty, responsive, development, motion, 3D i integracje tam, gdzie mają sens.</p></li>
-            <li><span>04</span><strong>Validation</strong><p>Funkcje, mobile, accessibility, SEO/AEO/GEO, performance i security.</p></li>
-            <li><span>05</span><strong>Launch + growth</strong><p>Publikacja, monitoring, pomiar i rozwój na podstawie rzeczywistych danych.</p></li>
+            <li><span>02</span><strong>Architektura</strong><p>Informacja, UX, architektura wyszukiwania, treść, dane i plan konwersji.</p></li>
+            <li><span>03</span><strong>Projekt + wdrożenie</strong><p>Interfejs, komponenty, responsywność, programowanie, ruch, 3D i integracje tam, gdzie mają sens.</p></li>
+            <li><span>04</span><strong>Walidacja</strong><p>Funkcje, mobile, dostępność, SEO/AEO/GEO, wydajność i bezpieczeństwo.</p></li>
+            <li><span>05</span><strong>Publikacja + rozwój</strong><p>Uruchomienie, monitoring, pomiar i rozwój na podstawie rzeczywistych danych.</p></li>
           </ol>
         </div>
       </section>
 
       <section className="quality-section section-dark premium-quality-v9" data-v92-reveal="depth">
         <div className="page-shell section-pad">
-          <SectionLabel index="15" label="QUALITY" inverted />
+          <SectionLabel index="15" label="JAKOŚĆ" inverted />
           <div className="quality-head">
             <h2>Nasza strona ma spełniać standard, który sprzedajemy.</h2>
             <p>Jakość nie jest etapem na końcu. Jest częścią architektury od pierwszej decyzji.</p>
@@ -204,17 +204,17 @@ export default function HomePage() {
       <section id="contact" className="contact-section section-dark premium-contact-v9 premium-closing-v92" data-v92-reveal="depth">
         <ClosingVisualV92 />
         <div className="page-shell contact-grid">
-          <SectionLabel index="17" label="START" inverted />
+          <SectionLabel index="17" label="KONTAKT" inverted />
           <div>
             <p className="contact-kicker">MASZ PROJEKT?</p>
             <h2>Zbudujmy stronę, którą da się zapamiętać.</h2>
           </div>
           <div className="contact-actions">
-            <MagneticLinkV9 href={`mailto:${site.email}`} className="button button-primary button-large" cursor="MAIL">
+            <MagneticLinkV9 href={`mailto:${site.email}`} className="button button-primary button-large" cursor="E-MAIL">
               {site.email}
               <span aria-hidden="true">↗</span>
             </MagneticLinkV9>
-            <p>WEB · 3D / WEBGL · INTERACTIVE · E-COMMERCE · SEARCH · AI · INTEGRACJE</p>
+            <p>WWW · 3D / WEBGL · INTERAKCJE · E-COMMERCE · WIDOCZNOŚĆ · AI · INTEGRACJE</p>
           </div>
         </div>
 
