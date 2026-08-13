@@ -86,7 +86,7 @@ export default function HomePage() {
           <div className="hero-grid">
             <div className="hero-copy">
               <p className="eyebrow">LEADFLOWAI / WEB ENGINEERING</p>
-              <div className="hero-status-v8" aria-label="Zakres LeadFlowAI">
+              <div className="hero-status-v8" aria-hidden="true">
                 <span>SYSTEM / LIVE</span>
                 <span>DESIGN</span>
                 <span>DEVELOPMENT</span>
