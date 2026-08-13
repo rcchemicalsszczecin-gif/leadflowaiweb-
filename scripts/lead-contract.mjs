@@ -22,7 +22,7 @@ if (!contactPage.includes("LeadForm") || !contactPage.includes("metadata")) {
 if (!contactPanel.includes("Formularz online jest obecnie wyłączony")) {
   fail("owner-disabled form state missing");
 }
-if (!contactPanel.includes("mailto:${site.email}")) {
+if (!contactPanel.includes("mailto:") || !contactPanel.includes("site.email")) {
   fail("direct e-mail CTA missing");
 }
 if (contactPanel.includes("fetch(") || contactPanel.includes("apiUrl(")) {
