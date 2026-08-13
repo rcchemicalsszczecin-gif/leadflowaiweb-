@@ -23,6 +23,9 @@ export function PremiumExperienceControllerV92() {
   const [active, setActive] = useState("system");
 
   useEffect(() => {
+    const root = document.documentElement;
+    root.classList.add("v92-motion-ready");
+
     const revealNodes = Array.from(document.querySelectorAll<HTMLElement>("[data-v92-reveal]"));
     const sectionNodes = progressSections
       .map(([id]) => document.getElementById(id))
@@ -53,6 +56,7 @@ export function PremiumExperienceControllerV92() {
     return () => {
       revealObserver.disconnect();
       sectionObserver.disconnect();
+      root.classList.remove("v92-motion-ready");
     };
   }, []);
 
