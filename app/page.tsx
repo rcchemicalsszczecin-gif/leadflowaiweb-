@@ -103,7 +103,7 @@ export default function HomePage() {
       <section id="system" className="section-light editorial-intro">
         <div className="page-shell section-pad">
           <SectionLabel index="00" label="SYSTEM" />
-          <div className="editorial-grid">
+          <div className="editorial-grid content-frame content-frame-wide">
             <h2>
               Nie składamy stron.
               <span>Projektujemy systemy WWW.</span>
@@ -133,12 +133,9 @@ export default function HomePage() {
               id={getStageSectionId(stage.key)}
               className={`stage-section ${dark ? "section-dark" : "section-light"}`}
             >
-              <div className="page-shell stage-grid">
+              <div className="page-shell stage-grid content-frame stage-module">
                 <SectionLabel index={stage.id} label={stage.key} inverted={dark} />
                 <div className="stage-heading">
-                  <p className="stage-index" aria-hidden="true">
-                    {stage.id}
-                  </p>
                   <h2>{stage.title}</h2>
                 </div>
                 <div className="stage-detail">
@@ -158,7 +155,7 @@ export default function HomePage() {
       <section id="process" className="section-light process-section">
         <div className="page-shell section-pad">
           <SectionLabel index="07" label="PROCESS" />
-          <div className="process-head">
+          <div className="process-head content-frame content-frame-split">
             <h2>Od celu biznesowego do działającego systemu.</h2>
             <p>
               Zakres dobieramy do projektu. Nie każdy klient potrzebuje chatbota, sklepu czy
@@ -179,7 +176,7 @@ export default function HomePage() {
       <section className="quality-section section-dark blueprint-surface">
         <div className="page-shell section-pad">
           <SectionLabel index="08" label="QUALITY SIGNAL" inverted />
-          <div className="quality-head">
+          <div className="quality-head content-frame content-frame-split">
             <h2>Nasza własna strona ma spełniać standard, który sprzedajemy.</h2>
             <p>Bez skrótów typu „naprawimy SEO później”. Jakość jest częścią architektury.</p>
           </div>
@@ -197,7 +194,7 @@ export default function HomePage() {
       </section>
 
       <section className="section-light proof-section">
-        <div className="page-shell section-pad proof-grid">
+        <div className="page-shell section-pad proof-grid content-frame content-frame-proof">
           <SectionLabel index="09" label="PROOF" />
           <div>
             <p className="proof-kicker">REAL WORK ONLY</p>
@@ -219,7 +216,7 @@ export default function HomePage() {
       <section className="section-light faq-section">
         <div className="page-shell section-pad">
           <SectionLabel index="10" label="FAQ" />
-          <div className="faq-grid">
+          <div className="faq-grid content-frame content-frame-faq">
             <h2>Najważniejsze pytania.</h2>
             <div className="faq-list">
               {faqs.map((item) => (
@@ -234,7 +231,7 @@ export default function HomePage() {
       </section>
 
       <section id="contact" className="contact-section section-dark">
-        <div className="page-shell contact-grid">
+        <div className="page-shell contact-grid content-frame content-frame-contact">
           <SectionLabel index="11" label="START" inverted />
           <div>
             <p className="contact-kicker">MASZ PROJEKT?</p>
