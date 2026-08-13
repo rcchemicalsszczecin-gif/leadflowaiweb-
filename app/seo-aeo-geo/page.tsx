@@ -1,4 +1,5 @@
 import { PublicServicePage } from "@/components/public-service-page";
+import { SearchVisibilityExplainerV13 } from "@/components/search-visibility-explainer-v13";
 import { getSearchMetadata, getSearchPage } from "@/lib/search-pages";
 import { withV13SocialMetadata } from "@/lib/social-metadata-v13";
 
@@ -14,5 +15,10 @@ const page = {
 export const metadata = withV13SocialMetadata(getSearchMetadata("seo-aeo-geo"), page.title, page.lead);
 
 export default function SeoAeoGeoPage() {
-  return <PublicServicePage page={page} />;
+  return (
+    <>
+      <PublicServicePage page={page} />
+      <SearchVisibilityExplainerV13 />
+    </>
+  );
 }

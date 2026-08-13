@@ -30,7 +30,9 @@ const entityNodes = [
   ["Realizacje", "DOWODY"],
 ] as const;
 
-export function SearchVisibilityExplainerV13() {
+export function SearchVisibilityExplainerV13({ active = false }: { active?: boolean }) {
+  if (!active) return null;
+
   return (
     <section className="search-explainer-v13" aria-labelledby="search-explainer-title" data-v92-reveal="rise">
       <div className="page-shell section-pad">

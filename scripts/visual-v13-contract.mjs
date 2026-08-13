@@ -12,6 +12,7 @@ const read = (path) => {
 
 const owner = read("docs/governance/WEBSITE-OWNER-DECISION-V13.md");
 const home = read("app/page.tsx");
+const visibilityHub = read("app/seo-aeo-geo/page.tsx");
 const hero = read("components/premium-v9-interactions.tsx");
 const css = read("app/v13-visual-authority.css");
 const searchEducationCss = read("app/v13-search-education.css");
@@ -41,7 +42,7 @@ for (const required of [
 ]) {
   if (!searchEducation.includes(required)) fail(`V13 search education visual missing: ${required}`);
 }
-if (!home.includes("<SearchVisibilityExplainerV13 />")) fail("V13 search education module is not mounted on homepage");
+if (!visibilityHub.includes("<SearchVisibilityExplainerV13 active />")) fail("V13 search education module is not active on visibility hub");
 if (!layout.includes('import "./v13-search-education.css"')) fail("V13 search education stylesheet is not mounted");
 if (!searchEducationCss.includes(".search-view-grid-v13") || !searchEducationCss.includes(".entity-graph-stage-v13") || !searchEducationCss.includes("@media (max-width: 620px)")) {
   fail("V13 search education visual/mobile contract incomplete");
@@ -54,4 +55,4 @@ if (!portfolio.includes("PortfolioProjectVisual") || !existsSync("components/por
 if (css.includes("images.unsplash.com") || layout.includes("images.unsplash.com")) fail("V13 public visual layer still depends on Unsplash");
 if (packageJson.includes('"three"') || packageJson.includes("@react-three") || packageJson.includes("babylon")) fail("heavy 3D dependency introduced");
 
-console.log("VISUAL_V13_PASS authority=PASS hero=PRODUCT_SHOWCASE human-google-ai=SPLIT entity-graph=PASS ai-search-preview=EDUCATIONAL_NO_GUARANTEE mobile=DEDICATED reduced-motion=PASS og=FIRST_PARTY trust=PASS portfolio=VISUAL stock=ABSENT heavy-3d=ABSENT");
+console.log("VISUAL_V13_PASS authority=PASS hero=PRODUCT_SHOWCASE human-google-ai=SPLIT entity-graph=PASS ai-search-preview=EDUCATIONAL_NO_GUARANTEE route=SEO_AEO_GEO mobile=DEDICATED reduced-motion=PASS og=FIRST_PARTY trust=PASS portfolio=VISUAL stock=ABSENT heavy-3d=ABSENT");
