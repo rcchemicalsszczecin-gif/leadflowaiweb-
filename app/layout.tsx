@@ -57,9 +57,6 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="pl">
-      <head>
-        <link rel="preconnect" href="https://images.unsplash.com" crossOrigin="anonymous" />
-      </head>
       <body>
         <JsonLd data={getGlobalStructuredData()} />
         <WaterSurface />
