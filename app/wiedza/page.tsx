@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { knowledgeArticles } from "@/lib/knowledge-registry";
+import { knowledgeTopicsV13 } from "@/lib/knowledge-topics-v13";
 import { toPublicKnowledgeArticle } from "@/lib/public-knowledge-article";
 
 export const metadata: Metadata = {
@@ -32,23 +33,37 @@ export default function KnowledgePage() {
       <section className="section-light">
         <div className="page-shell section-pad knowledge-index">
           <div className="knowledge-index-head">
-            <p className="service-index">01 / MATERIAŁY</p>
+            <p className="service-index">01 / KLASTRY TEMATYCZNE</p>
             <h2>Najpierw problem i decyzja. Potem technologia.</h2>
+            <p>Materiały są pogrupowane według pytania, które pomagają rozwiązać. Nie tworzymy osobnych, cienkich hubów tylko po to, żeby zwiększać liczbę adresów URL.</p>
           </div>
 
-          <div className="knowledge-cards">
-            {publicArticles.map((article, index) => (
-              <article key={article.slug}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <p>{article.eyebrow}</p>
-                <h2>{article.title}</h2>
-                <p>{article.description}</p>
-                <a href={`/wiedza/${article.slug}`}>
-                  Czytaj materiał <span aria-hidden="true">↗</span>
-                </a>
-              </article>
-            ))}
-          </div>
+          {knowledgeTopicsV13.map((topic, topicIndex) => {
+            const articles = publicArticles.filter((article) => topic.slugs.some((slug) => slug === article.slug));
+
+            return (
+              <section key={topic.key} className="knowledge-topic-v13" aria-labelledby={`knowledge-topic-${topic.key.toLowerCase()}`}>
+                <div className="service-section-head">
+                  <p className="service-index">{String(topicIndex + 1).padStart(2, "0")} / {topic.label}</p>
+                  <h2 id={`knowledge-topic-${topic.key.toLowerCase()}`}>{topic.label}</h2>
+                  <p>{topic.description}</p>
+                </div>
+                <div className="knowledge-cards">
+                  {articles.map((article, index) => (
+                    <article key={article.slug}>
+                      <span>{String(index + 1).padStart(2, "0")}</span>
+                      <p>{article.eyebrow}</p>
+                      <h3>{article.title}</h3>
+                      <p>{article.description}</p>
+                      <a href={`/wiedza/${article.slug}`}>
+                        Czytaj materiał <span aria-hidden="true">↗</span>
+                      </a>
+                    </article>
+                  ))}
+                </div>
+              </section>
+            );
+          })}
         </div>
       </section>
 
