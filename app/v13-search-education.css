@@ -83,15 +83,19 @@
     line-height: 1.65;
   }
 
-  .search-view-grid-v13 article > div {
+  .search-signal-list-v13,
+  .ai-preview-links-v13 {
     display: flex;
     flex-wrap: wrap;
     gap: 0.45rem;
+  }
+
+  .search-signal-list-v13 {
     margin-top: 2rem;
   }
 
-  .search-view-grid-v13 article > div span,
-  .ai-preview-window-v13 div span {
+  .search-signal-list-v13 span,
+  .ai-preview-links-v13 span {
     padding: 0.38rem 0.55rem;
     border: 1px solid rgba(155, 231, 255, 0.15);
     border-radius: 999px;
@@ -190,12 +194,6 @@
 
   .ai-preview-window-v13 > p {
     margin: 0;
-  }
-
-  .ai-preview-window-v13 > div {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
   }
 
   .ai-preview-disclaimer-v13 {
