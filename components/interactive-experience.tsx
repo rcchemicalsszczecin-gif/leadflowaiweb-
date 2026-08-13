@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { site } from "@/lib/site";
 
 const serviceCards = [
   {
@@ -291,7 +292,7 @@ export function ProjectCommandCenter() {
         <div className="command-row"><span>TYP PROJEKTU</span><div>{projectOptions.map((option) => <button type="button" key={option} className={project === option ? "is-active" : ""} onClick={() => setProject(option)}>{option}</button>)}</div></div>
         <div className="command-row"><span>GŁÓWNY CEL</span><div>{goalOptions.map((option) => <button type="button" key={option} className={goal === option ? "is-active" : ""} onClick={() => setGoal(option)}>{option}</button>)}</div></div>
         <div className="command-status"><span>ZAKRES / GOTOWY</span><strong>{project} → {goal}</strong><i /></div>
-        <a className="button button-primary button-large" href={`mailto:kontakt@leadflowai.pl?subject=${subject}`}>ROZPOCZNIJ ROZMOWĘ <span aria-hidden="true">↗</span></a>
+        <a className="button button-primary button-large" href={`mailto:${site.email}?subject=${subject}`}>ROZPOCZNIJ ROZMOWĘ <span aria-hidden="true">↗</span></a>
       </div>
     </section>
   );
