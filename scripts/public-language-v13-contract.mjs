@@ -14,6 +14,7 @@ const publicSources = [
   "app/page.tsx",
   "components/premium-v9-story.tsx",
   "components/premium-v9-journey.tsx",
+  "components/premium-v9-2-enhancements.tsx",
   "components/interactive-experience.tsx",
   "components/site-header.tsx",
   "components/site-footer.tsx",
@@ -29,7 +30,11 @@ const retiredPublicLiterals = [
   "WHAT WE BUILD",
   "FIRST-PARTY PROOF",
   "SIGNATURE EXPERIENCE",
+  "INTELLIGENCE.",
   'data-cursor="EXPLORE"',
+  'data-cursor="DRAG"',
+  'data-cursor="OPEN"',
+  'data-cursor="START"',
   ">PHILOSOPHY<",
   'label="PHILOSOPHY"',
   'label="PROCESS"',
@@ -62,4 +67,9 @@ for (const required of ["CO BUDUJEMY", "WŁASNY DOWÓD", "DOŚWIADCZENIE AUTORSK
   if (!story.includes(required)) fail(`premium story missing Polish public label: ${required}`);
 }
 
-console.log(`PUBLIC_LANGUAGE_V13_PASS sources=${publicSources.length} retired=${retiredPublicLiterals.length} homepage=PL premium-story=PL`);
+const enhancements = read("components/premium-v9-2-enhancements.tsx");
+for (const required of ["INTELIGENCJA.", 'data-cursor="PRZESUŃ"']) {
+  if (!enhancements.includes(required)) fail(`V9.2 missing Polish public label: ${required}`);
+}
+
+console.log(`PUBLIC_LANGUAGE_V13_PASS sources=${publicSources.length} retired=${retiredPublicLiterals.length} homepage=PL premium=PL v92=PL`);
