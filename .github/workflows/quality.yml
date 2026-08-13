@@ -9,6 +9,7 @@ on:
       - design/hardware-board-v4
       - performance/realistic-board-v5
       - design/content-frames-v6
+      - experience/interactive-v7
   pull_request:
     branches:
       - main
@@ -60,13 +61,20 @@ jobs:
           test ! -e out/api/chat
           test ! -e out/api/health
           test -f out/kontakt/index.html
+          test -f out/lab/index.html
+          test -f out/strony-3d-webgl/index.html
+          test -f out/interaktywne-strony/index.html
+          test -f out/motion-design/index.html
+          test -f out/chatboty-ai/index.html
           grep -q 'kontakt@leadflowai.pl' out/kontakt/index.html
           grep -q 'Formularz online jest obecnie wyłączony' out/kontakt/index.html
+          grep -q 'Live Lab' out/lab/index.html
+          grep -q '3D' out/strony-3d-webgl/index.html
           if grep -Rqs 'api.leadflowai.pl/leads' out; then
             echo "Disabled lead endpoint leaked into static artifact"
             exit 1
           fi
-          echo "STATIC_ARTIFACT_PASS html=PASS cname=PASS nojekyll=PASS contact-direct-email=PASS lead-api=ABSENT"
+          echo "STATIC_ARTIFACT_PASS html=PASS lab=PASS experience-routes=4 contact-direct-email=PASS lead-api=ABSENT"
 
       - name: Static route smoke
         shell: bash
@@ -96,6 +104,11 @@ jobs:
             /web-development/ \
             /modernizacja-stron/ \
             /audyt-strony/ \
+            /strony-3d-webgl/ \
+            /interaktywne-strony/ \
+            /motion-design/ \
+            /chatboty-ai/ \
+            /lab/ \
             /seo-aeo-geo/ \
             /realizacje/ \
             /wiedza/ \
@@ -104,6 +117,9 @@ jobs:
           done
 
           curl -fsS http://127.0.0.1:3000/sitemap.xml | grep -q 'leadflowai.pl'
+          curl -fsS http://127.0.0.1:3000/sitemap.xml | grep -q 'strony-3d-webgl'
+          curl -fsS http://127.0.0.1:3000/sitemap.xml | grep -q '/lab'
           curl -fsS http://127.0.0.1:3000/robots.txt | grep -q 'sitemap.xml'
           grep -q 'kontakt@leadflowai.pl' /tmp/home.html
-          echo "STATIC_ROUTE_SMOKE_PASS routes=12 sitemap=PASS robots=PASS"
+          grep -q 'Live Lab' /tmp/home.html
+          echo "STATIC_ROUTE_SMOKE_PASS routes=17 sitemap=PASS interactive=PASS robots=PASS"

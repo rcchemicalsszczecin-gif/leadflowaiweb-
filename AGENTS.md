@@ -39,6 +39,7 @@ Merge to `main`, production deployment and release remain Owner-controlled unles
 ## Public truth
 No fabricated clients, testimonials, case studies, metrics, certifications, awards, legal identifiers, guarantees, rankings, offices or partnerships.
 CLAIM -> EVIDENCE -> REVIEW -> PUBLIC STATUS.
+Live demonstrations must be labeled as first-party demos/concepts and never implied to be client case studies.
 
 ## Website invariants
 LeadFlowAI must itself demonstrate the quality it sells:
@@ -56,8 +57,10 @@ LeadFlowAI must itself demonstrate the quality it sells:
 - maintainability and observability.
 
 ## Design authority
-The current approved direction is recorded in `docs/design/LEADFLOWAI-DESIGN-DIRECTION-V6.md`.
-V6 supersedes V5 only for foreground typography, section numbering and content framing. V5 remains authoritative for the realistic hardware background, interactive water behavior and rendering-performance architecture.
+The current approved extension is recorded in `docs/design/LEADFLOWAI-INTERACTIVE-V7.md`.
+V7 extends V6 with live interactive proof, Live Lab, 3D, motion and browser-native demonstrations.
+V6 remains authoritative for foreground typography/content framing; V5 remains authoritative for the realistic hardware background, interactive water behavior and rendering-performance architecture.
+Interactive additions must remain bounded, accessible and performance-aware. Heavy third-party 3D dependencies are not justified for decorative homepage effects.
 Visual implementation must follow the current Owner-approved design record unless the Owner changes it.
 
 ## Validation

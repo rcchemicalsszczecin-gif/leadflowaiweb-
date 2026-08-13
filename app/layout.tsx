@@ -13,6 +13,7 @@ import "./circuit-water-v3.css";
 import "./hardware-board-v4.css";
 import "./realistic-board-v5.css";
 import "./content-frames-v6.css";
+import "./interactive-v7.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),

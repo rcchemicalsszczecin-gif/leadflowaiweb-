@@ -1,3 +1,4 @@
+import { experienceServiceLinks } from "@/lib/experience-services";
 import { searchServiceLinks } from "@/lib/search-pages";
 import { coreServiceLinks } from "@/lib/services";
 import { site } from "@/lib/site";
@@ -17,11 +18,12 @@ export function SiteFooter() {
 
       <div className="footer-meta">
         <nav className="footer-service-links" aria-label="Główne usługi LeadFlowAI">
-          {[...coreServiceLinks, ...searchServiceLinks].map((item) => (
+          {[...coreServiceLinks, ...experienceServiceLinks, ...searchServiceLinks].map((item) => (
             <a key={item.slug} href={`/${item.slug}`}>
               {item.label}
             </a>
           ))}
+          <a href="/lab">Live Lab</a>
           <a href="/realizacje">Realizacje</a>
           <a href="/wiedza">Wiedza</a>
         </nav>
