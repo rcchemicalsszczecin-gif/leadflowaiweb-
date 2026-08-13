@@ -96,7 +96,7 @@ export function ManifestSceneV92() {
         <span>PROJEKT.</span>
         <span>KOD.</span>
         <span>WIDOCZNOŚĆ.</span>
-        <span>INTELLIGENCE.</span>
+        <span>INTELIGENCJA.</span>
       </h2>
       <div className="manifest-rule-v92" aria-hidden="true">
         <i />
@@ -151,7 +151,7 @@ export function CinematicCoreV92() {
         ref={sceneRef}
         onPointerMove={onMove}
         onPointerLeave={reset}
-        data-cursor="DRAG"
+        data-cursor="PRZESUŃ"
         role="img"
         aria-label="Interaktywny trójwymiarowy rdzeń LeadFlowAI"
       >
