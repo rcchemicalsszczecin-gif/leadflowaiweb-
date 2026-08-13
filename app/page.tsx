@@ -9,6 +9,12 @@ import {
   ScrollStoryV9,
   WhatWeBuildV9,
 } from "@/components/premium-art-direction-v9";
+import {
+  CinematicCoreV92,
+  ClosingVisualV92,
+  ManifestSceneV92,
+  PremiumExperienceControllerV92,
+} from "@/components/premium-v9-2-enhancements";
 import { SectionLabel } from "@/components/section-label";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -48,10 +54,11 @@ const faqs = [
 
 export default function HomePage() {
   return (
-    <main id="top" className="premium-page-v9">
+    <main id="top" className="premium-page-v9 premium-page-v92">
       <PremiumInteractionLayerV9 />
+      <PremiumExperienceControllerV92 />
 
-      <section className="hero hero-v9 section-dark" aria-labelledby="hero-title">
+      <section className="hero hero-v9 section-dark" aria-labelledby="hero-title" data-v92-reveal="depth">
         <div className="page-shell">
           <SiteHeader />
 
@@ -97,7 +104,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="system" className="premium-intro-v9">
+      <section id="system" className="premium-intro-v9" data-v92-reveal="mask">
         <div className="page-shell section-pad">
           <SectionLabel index="00" label="PHILOSOPHY" />
           <div className="editorial-grid">
@@ -121,18 +128,20 @@ export default function HomePage() {
       </section>
 
       <PremiumStageJourneyV9 />
+      <ManifestSceneV92 />
       <WhatWeBuildV9 />
+      <CinematicCoreV92 />
       <ScrollStoryV9 />
       <LiquidCircuitV9 />
       <PremiumProofV9 />
 
-      <div className="premium-before-after-zone-v9" data-cursor="SLIDE">
+      <div className="premium-before-after-zone-v9" data-cursor="SLIDE" data-v92-reveal="wipe">
         <BeforeAfterDemo />
       </div>
 
-      <section id="process" className="section-light process-section premium-process-v9">
+      <section id="process" className="section-light process-section premium-process-v9" data-v92-reveal="rise">
         <div className="page-shell section-pad">
-          <SectionLabel index="07" label="PROCESS" />
+          <SectionLabel index="14" label="PROCESS" />
           <div className="process-head">
             <h2>Od celu biznesowego do działającego produktu.</h2>
             <p>
@@ -151,9 +160,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="quality-section section-dark premium-quality-v9">
+      <section className="quality-section section-dark premium-quality-v9" data-v92-reveal="depth">
         <div className="page-shell section-pad">
-          <SectionLabel index="08" label="QUALITY" inverted />
+          <SectionLabel index="15" label="QUALITY" inverted />
           <div className="quality-head">
             <h2>Nasza strona ma spełniać standard, który sprzedajemy.</h2>
             <p>Jakość nie jest etapem na końcu. Jest częścią architektury od pierwszej decyzji.</p>
@@ -171,13 +180,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="premium-command-zone-v9">
+      <div className="premium-command-zone-v9" data-v92-reveal="wipe">
         <ProjectCommandCenter />
       </div>
 
-      <section className="section-light faq-section premium-faq-v9">
+      <section className="section-light faq-section premium-faq-v9" data-v92-reveal="rise">
         <div className="page-shell section-pad">
-          <SectionLabel index="09" label="FAQ" />
+          <SectionLabel index="16" label="FAQ" />
           <div className="faq-grid">
             <h2>Najważniejsze pytania.</h2>
             <div className="faq-list">
@@ -192,9 +201,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="contact" className="contact-section section-dark premium-contact-v9">
+      <section id="contact" className="contact-section section-dark premium-contact-v9 premium-closing-v92" data-v92-reveal="depth">
+        <ClosingVisualV92 />
         <div className="page-shell contact-grid">
-          <SectionLabel index="10" label="START" inverted />
+          <SectionLabel index="17" label="START" inverted />
           <div>
             <p className="contact-kicker">MASZ PROJEKT?</p>
             <h2>Zbudujmy stronę, którą da się zapamiętać.</h2>

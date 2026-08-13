@@ -14,6 +14,8 @@ const stageTitles: Record<StageKey, readonly [string, string]> = {
   CARE: ["Utrzymujemy", "i rozwijamy."],
 };
 
+const revealModes = ["depth", "wipe", "rise", "mask", "depth", "wipe"] as const;
+
 const careSpectrum = [
   ["bar-01", 28], ["bar-02", 45], ["bar-03", 62], ["bar-04", 79],
   ["bar-05", 38], ["bar-06", 55], ["bar-07", 72], ["bar-08", 31],
@@ -30,6 +32,7 @@ function CreateVisual() {
         <div className="floating-site-grid-v9"><i /><i /><i /></div>
       </div>
       <div className="code-ribbon-v9"><span>&lt;main&gt;</span><span>&lt;Experience /&gt;</span><span>&lt;SearchReady /&gt;</span><span>&lt;/main&gt;</span></div>
+      <div className="stage-ambient-plane-v92" aria-hidden="true" />
     </div>
   );
 }
@@ -42,6 +45,7 @@ function DiscoverVisual() {
         ["SEO", "15%", "22%"], ["AEO", "76%", "18%"], ["GEO", "82%", "70%"], ["SCHEMA", "24%", "78%"],
       ].map(([label, left, top]) => <span className="search-node-v9" style={{ left, top }} key={label}>{label}</span>)}
       <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 50 L15 22 M50 50 L76 18 M50 50 L82 70 M50 50 L24 78" /></svg>
+      <div className="search-depth-ring-v92" aria-hidden="true" />
     </div>
   );
 }
@@ -52,6 +56,7 @@ function ConvertVisual() {
       <div className="journey-line-v9"><span>VISIT</span><i /><span>VALUE</span><i /><span>ACTION</span><i /><span>LEAD</span></div>
       <div className="conversion-wave-v9"><b /><b /><b /><b /><b /></div>
       <strong className="conversion-word-v9">DECISION</strong>
+      <div className="conversion-depth-v92" aria-hidden="true"><i /><i /><i /></div>
     </div>
   );
 }
@@ -64,6 +69,7 @@ function IntelligenceVisual() {
       {[
         ["CONTEXT", "16%", "25%"], ["RAG", "76%", "20%"], ["FAQ", "84%", "70%"], ["ROUTING", "12%", "72%"],
       ].map(([label, left, top]) => <span className="ai-node-v9" style={{ left, top }} key={label}>{label}</span>)}
+      <div className="ai-depth-mesh-v92" aria-hidden="true"><i /><i /><i /></div>
     </div>
   );
 }
@@ -76,6 +82,7 @@ function ConnectVisual() {
         ["CRM", "10%", "15%"], ["MAIL", "78%", "12%"], ["API", "84%", "72%"], ["DATA", "8%", "75%"],
       ].map(([label, left, top]) => <span className="connect-node-v9" style={{ left, top }} key={label}>{label}</span>)}
       <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 50 L10 15 M50 50 L78 12 M50 50 L84 72 M50 50 L8 75" /></svg>
+      <div className="connect-depth-grid-v92" aria-hidden="true" />
     </div>
   );
 }
@@ -89,6 +96,7 @@ function CareVisual() {
         {careSpectrum.map(([id, height]) => <i key={id} style={{ height: `${height}%` }} />)}
       </div>
       <div className="care-labels-v9"><span>PERFORMANCE</span><span>SECURITY</span><span>SEARCH</span></div>
+      <div className="care-scan-v92" aria-hidden="true" />
     </div>
   );
 }
@@ -126,7 +134,7 @@ export function PremiumStageJourneyV9() {
   }, []);
 
   return (
-    <section className="premium-journey-v9" ref={rootRef} aria-label="System pracy LeadFlowAI">
+    <section className="premium-journey-v9 premium-journey-v92" ref={rootRef} aria-label="System pracy LeadFlowAI">
       <div className="journey-spine-v9" aria-hidden="true">
         <div className="journey-spine-track-v9"><i style={{ height: `${((active + 1) / systemStages.length) * 100}%` }} /></div>
         <span>{String(active + 1).padStart(2, "0")}</span>
@@ -138,7 +146,9 @@ export function PremiumStageJourneyV9() {
             id={stage.key.toLowerCase()}
             key={stage.key}
             data-premium-stage={index}
-            className={`premium-stage-v9 ${index % 2 ? "is-reverse" : ""} ${index === active ? "is-active" : ""}`}
+            data-v92-reveal={revealModes[index]}
+            data-v92-layout={`scene-${index + 1}`}
+            className={`premium-stage-v9 premium-stage-v92 ${index % 2 ? "is-reverse" : ""} ${index === active ? "is-active" : ""}`}
           >
             <div className="premium-stage-copy-v9">
               <p className="premium-stage-index-v9"><span>{stage.id}</span>{stage.key}</p>
@@ -147,7 +157,11 @@ export function PremiumStageJourneyV9() {
               <ul aria-label={`Zakres ${stage.key}`}>{stage.tags.map((tag) => <li key={tag}>{tag}</li>)}</ul>
             </div>
             <div className="premium-stage-art-v9"><StageVisual stage={stage.key} /></div>
-            {index < systemStages.length - 1 ? <div className="stage-transition-v9" aria-hidden="true"><i /><b /></div> : null}
+            {index < systemStages.length - 1 ? (
+              <div className={`stage-transition-v9 stage-transition-v92 transition-${stage.key.toLowerCase()}`} aria-hidden="true">
+                <i /><b /><span />
+              </div>
+            ) : null}
           </article>
         );
       })}

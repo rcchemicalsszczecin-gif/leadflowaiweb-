@@ -1,8 +1,16 @@
 import { navigation } from "@/lib/site";
 
+const navigationPreview: Record<(typeof navigation)[number]["href"], readonly [string, string]> = {
+  "/strony-internetowe": ["WEB", "Design + development"],
+  "/strony-3d-webgl": ["3D", "WebGL + interaction"],
+  "/seo-aeo-geo": ["SEARCH", "SEO + AEO + GEO"],
+  "/lab": ["LAB", "Live browser demos"],
+  "/#process": ["PROCESS", "Strategy → launch"],
+};
+
 export function SiteHeader() {
   return (
-    <header className="site-header">
+    <header className="site-header site-header-v92">
       <a className="brand" href="/" aria-label="LeadFlowAI — strona główna">
         <span className="brand-mark" aria-hidden="true">
           L/
@@ -10,15 +18,23 @@ export function SiteHeader() {
         <span>LeadFlowAI</span>
       </a>
 
-      <nav className="site-nav" aria-label="Główna nawigacja">
-        {navigation.map((item) => (
-          <a key={item.href} href={item.href}>
-            {item.label}
-          </a>
-        ))}
+      <nav className="site-nav site-nav-v92" aria-label="Główna nawigacja">
+        {navigation.map((item) => {
+          const [code, note] = navigationPreview[item.href];
+          return (
+            <a key={item.href} href={item.href} className="site-nav-link-v92" data-cursor="OPEN">
+              <span>{item.label}</span>
+              <span className="nav-preview-v92" aria-hidden="true">
+                <small>{code}</small>
+                <strong>{note}</strong>
+                <i />
+              </span>
+            </a>
+          );
+        })}
       </nav>
 
-      <a className="button button-small button-ghost" href="/kontakt">
+      <a className="button button-small button-ghost header-cta-v92" href="/kontakt" data-cursor="START">
         Wycena strony
       </a>
     </header>
