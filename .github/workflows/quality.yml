@@ -54,8 +54,14 @@ jobs:
           test ! -e out/api/leads
           test ! -e out/api/chat
           test ! -e out/api/health
-          grep -Rqs 'https://api.leadflowai.pl' out/_next
-          echo "STATIC_ARTIFACT_PASS html=PASS cname=PASS nojekyll=PASS api-origin=PASS"
+          test -f out/kontakt/index.html
+          grep -q 'kontakt@leadflowai.pl' out/kontakt/index.html
+          grep -q 'Formularz online jest obecnie wyłączony' out/kontakt/index.html
+          if grep -Rqs 'api.leadflowai.pl/leads' out; then
+            echo "Disabled lead endpoint leaked into static artifact"
+            exit 1
+          fi
+          echo "STATIC_ARTIFACT_PASS html=PASS cname=PASS nojekyll=PASS contact-direct-email=PASS lead-api=ABSENT"
 
       - name: Static route smoke
         shell: bash
