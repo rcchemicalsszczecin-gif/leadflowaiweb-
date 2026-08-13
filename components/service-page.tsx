@@ -2,6 +2,7 @@ import { JsonLd } from "@/components/json-ld";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { getPublicPage, primaryPublicLinks } from "@/lib/page-registry";
+import { publicLabel } from "@/lib/public-language";
 import { publicCode } from "@/lib/public-language-v13";
 import type { ServicePageData } from "@/lib/services";
 import { site } from "@/lib/site";
@@ -46,7 +47,7 @@ export function ServicePage({ page }: ServicePageProps) {
                 {page.capabilities.map((item, index) => (
                   <li key={item}>
                     <span>{String(index + 1).padStart(2, "0")}</span>
-                    <strong>{item}</strong>
+                    <strong>{publicLabel(item)}</strong>
                   </li>
                 ))}
               </ul>
@@ -97,7 +98,7 @@ export function ServicePage({ page }: ServicePageProps) {
                 </div>
                 <ul className="tag-list" aria-label={`Elementy: ${item.title}`}>
                   {item.tags.map((tag) => (
-                    <li key={tag}>{tag}</li>
+                    <li key={tag}>{publicLabel(tag)}</li>
                   ))}
                 </ul>
               </article>
@@ -117,7 +118,7 @@ export function ServicePage({ page }: ServicePageProps) {
               <li key={item.title}>
                 <span>{String(index + 1).padStart(2, "0")}</span>
                 <div>
-                  <h3>{item.title}</h3>
+                  <h3>{publicLabel(item.title)}</h3>
                   <p>{item.description}</p>
                 </div>
               </li>
