@@ -3,9 +3,8 @@ import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/json-ld";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { getKnowledgeEditorial, knowledgeArticles } from "@/lib/knowledge-registry";
 import { getKnowledgeMethodology, knowledgeEditorialV13 } from "@/lib/knowledge-editorial-v13";
-import { getKnowledgeArticle } from "@/lib/knowledge-registry";
+import { getKnowledgeArticle, knowledgeArticles } from "@/lib/knowledge-registry";
 import { toPublicKnowledgeArticle } from "@/lib/public-knowledge-article";
 import { getArticleStructuredData } from "@/lib/structured-data";
 
