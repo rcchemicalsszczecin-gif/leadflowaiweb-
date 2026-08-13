@@ -68,6 +68,7 @@ jobs:
           test -f out/kontakt/index.html
           test -f out/lab/index.html
           test -f out/uslugi/index.html
+          test -f out/o-nas/index.html
 
           for route in \
             ux-ui-design \
@@ -102,14 +103,15 @@ jobs:
           grep -q 'RAG' out/uslugi/index.html
           grep -q 'Monitoring' out/uslugi/index.html
           grep -q 'Źródła i standardy' out/wiedza/ai-search-google-co-robic-2026/index.html
-          grep -q 'STUDIO DOŚWIADCZEŃ CYFROWYCH' out/index.html
+          grep -q 'LEADFLOWAI / STRONY WWW · WIDOCZNOŚĆ · SYSTEMY' out/index.html
           grep -q 'Liquid Circuit' out/index.html
           grep -q 'Nawigacja mobilna' out/index.html
+          grep -q 'Tervyxa Systems sp. z o.o.' out/o-nas/index.html
           if grep -Rqs 'api.leadflowai.pl/leads' out; then
             echo "Disabled lead endpoint leaked into static artifact"
             exit 1
           fi
-          echo "STATIC_ARTIFACT_PASS html=PASS full-offer-v13=PASS expanded-services=20 knowledge=20plus sources=PASS responsive-v10=PASS proof=REAL_ONLY contact-direct-email=PASS lead-api=ABSENT"
+          echo "STATIC_ARTIFACT_PASS html=PASS full-offer-v13=PASS expanded-services=20 knowledge=20plus sources=PASS responsive-v10=PASS accessibility-v13=PASS trust=PASS proof=REAL_ONLY contact-direct-email=PASS lead-api=ABSENT"
 
       - name: Static route smoke
         shell: bash
@@ -171,6 +173,7 @@ jobs:
             /agenci-ai-www/ \
             /monitoring-www/ \
             /realizacje/ \
+            /o-nas/ \
             /wiedza/ \
             /wiedza/jak-zaplanowac-strone-firmowa/ \
             /wiedza/ai-search-google-co-robic-2026/ \
@@ -183,9 +186,10 @@ jobs:
           curl -fsS http://127.0.0.1:3000/sitemap.xml | grep -q 'rag-bazy-wiedzy'
           curl -fsS http://127.0.0.1:3000/sitemap.xml | grep -q 'monitoring-www'
           curl -fsS http://127.0.0.1:3000/sitemap.xml | grep -q 'ai-search-google-co-robic-2026'
+          curl -fsS http://127.0.0.1:3000/sitemap.xml | grep -q 'o-nas'
           curl -fsS http://127.0.0.1:3000/robots.txt | grep -q 'sitemap.xml'
           grep -q 'kontakt@leadflowai.pl' /tmp/home.html
-          grep -q 'STUDIO DOŚWIADCZEŃ CYFROWYCH' /tmp/home.html
+          grep -q 'LEADFLOWAI / STRONY WWW · WIDOCZNOŚĆ · SYSTEMY' /tmp/home.html
           grep -q 'Liquid Circuit' /tmp/home.html
           grep -q 'Nawigacja mobilna' /tmp/home.html
-          echo "STATIC_ROUTE_SMOKE_PASS routes=43 sitemap=PASS full-offer-v13=PASS expanded-services=20 knowledge=20plus responsive-v10=PASS robots=PASS"
+          echo "STATIC_ROUTE_SMOKE_PASS routes=44 sitemap=PASS full-offer-v13=PASS expanded-services=20 knowledge=20plus responsive-v10=PASS accessibility-v13=PASS trust=PASS robots=PASS"
