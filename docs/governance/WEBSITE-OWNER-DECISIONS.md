@@ -22,13 +22,16 @@ LOCKED:
 - Unrelated Tervyxa services remain separate verticals.
 - Real evidence only; no fake case studies/testimonials.
 - Work may be executed as complete bounded stages.
-- Approved visual direction: unified Precision Flow Architecture described in the design record.
+- Current approved visual direction: `Obsidian Precision Water`, recorded in `docs/design/LEADFLOWAI-DESIGN-DIRECTION-V2.md`.
+- The entire public site uses a coherent dark technical environment; general-purpose light sections are retired by V2.
+- Global water interaction: cursor movement creates subtle surface ripples; click/tap creates a stronger multi-wave stone impulse; reduced-motion disables the effect.
+- Headline scale is intentionally reduced versus the first production visual while retaining the editorial hierarchy.
 - Brand and domain are intentionally aligned: LeadFlowAI on leadflowai.pl.
+- Initial GitHub Pages production launch is complete; further visual releases still require normal branch validation and Owner-controlled promotion to main.
 
 PENDING:
 - final wordmark/logo asset;
 - public pricing model;
 - final legal identifiers when company registration data is complete;
 - local chatbot runtime/model configuration if/when Owner enables the public chatbot;
-- optional online lead form only if Owner explicitly reopens that stage;
-- production launch authorization.
+- optional online lead form only if Owner explicitly reopens that stage.
