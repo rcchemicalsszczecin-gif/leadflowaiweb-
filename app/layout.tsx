@@ -19,6 +19,7 @@ import "./premium-composition-v8-themes.css";
 import "./premium-art-direction-v9.css";
 import "./premium-art-direction-v9-polish.css";
 import "./premium-calibration-v9-2.css";
+import "./responsive-performance-v10.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
