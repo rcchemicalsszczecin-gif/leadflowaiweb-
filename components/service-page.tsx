@@ -2,6 +2,7 @@ import { JsonLd } from "@/components/json-ld";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { getPublicPage, primaryPublicLinks } from "@/lib/page-registry";
+import { publicCode } from "@/lib/public-language-v13";
 import type { ServicePageData } from "@/lib/services";
 import { site } from "@/lib/site";
 import { getPageStructuredData } from "@/lib/structured-data";
@@ -24,7 +25,7 @@ export function ServicePage({ page }: ServicePageProps) {
               <nav className="breadcrumb" aria-label="Okruszki">
                 <a href="/">LeadFlowAI</a>
                 <span aria-hidden="true">/</span>
-                <span>{page.code}</span>
+                <span>{publicCode(page.code)}</span>
               </nav>
               <p className="eyebrow">{page.eyebrow}</p>
               <h1>{page.title}</h1>
@@ -154,7 +155,7 @@ export function ServicePage({ page }: ServicePageProps) {
               if (!related) return null;
               return (
                 <a key={slug} href={`/${slug}`}>
-                  <span>{related.code}</span>
+                  <span>{publicCode(related.code)}</span>
                   <strong>{related.title}</strong>
                   <span aria-hidden="true">↗</span>
                 </a>
