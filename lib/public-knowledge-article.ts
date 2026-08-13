@@ -1,4 +1,5 @@
 import type { SourcedKnowledgeArticle } from "@/lib/knowledge-expanded";
+import { mergeKnowledgeSources } from "@/lib/knowledge-editorial-v13";
 import { publicText } from "@/lib/public-text";
 
 const editorialTerms: Readonly<Record<string, string>> = {
@@ -39,5 +40,6 @@ export function toPublicKnowledgeArticle(article: SourcedKnowledgeArticle): Sour
       bullets: section.bullets?.map(publicText),
     })),
     related: article.related.map((item) => ({ ...item, label: publicText(item.label) })),
+    sources: mergeKnowledgeSources(article.slug, article.sources),
   };
 }
