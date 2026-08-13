@@ -40,13 +40,27 @@ for (const phrase of [
   "core-web-vitals-lcp-inp-cls-praktycznie",
   "wcag-22-co-sprawdzic-na-stronie",
   "cro-jak-znalezc-problemy-z-konwersja",
+  "landing-page-jak-zaprojektowac",
+  "architektura-sklepu-internetowego-seo-cro",
   "rag-na-stronie-jak-zaprojektowac",
+  "integracja-api-checklista-produkcyjna",
+  "bezpieczenstwo-strony-powierzchnia-ataku",
+  "cms-czy-headless-cms",
+  "strona-wielojezyczna-hreflang-seo",
   "ai-search-google-co-robic-2026",
   "structured-data-kiedy-schema-ma-sens",
   "architektura-tresci-klastry-tematyczne",
+  "automatyzacja-formularz-crm-workflow",
 ]) {
   if (!knowledgeExpanded.includes(phrase)) fail(`expanded knowledge article missing ${phrase}`);
 }
+
+const coreCount = [...knowledgeCore.matchAll(/slug: "([^"]+)"/g)].length;
+const expandedCount = [...knowledgeExpanded.matchAll(/slug: "([^"]+)"/g)].length;
+const totalKnowledge = coreCount + expandedCount;
+if (coreCount !== 4) fail(`unexpected core knowledge count ${coreCount}`);
+if (expandedCount < 16) fail(`expanded knowledge too small ${expandedCount}`);
+if (totalKnowledge < 20) fail(`knowledge architecture too small ${totalKnowledge}`);
 
 if (!knowledgeRegistry.includes("coreKnowledgeArticles") || !knowledgeRegistry.includes("expandedKnowledgeArticles")) {
   fail("knowledge registry does not combine both clusters");
@@ -65,4 +79,4 @@ for (const forbidden of ["gwarantujemy pierwsze miejsce", "setki zadowolonych kl
   if (portfolio.toLowerCase().includes(forbidden) || allKnowledge.includes(forbidden)) fail(`unsupported marketing claim found: ${forbidden}`);
 }
 
-console.log("CONTENT_CONTRACT_PASS portfolio=REAL_ONLY knowledge=20 sources=SUPPORTED article-schema=PASS sitemap=PASS language=PL");
+console.log(`CONTENT_CONTRACT_PASS portfolio=REAL_ONLY knowledge=${totalKnowledge} core=${coreCount} expanded=${expandedCount} sources=SUPPORTED article-schema=PASS sitemap=PASS language=PL`);
