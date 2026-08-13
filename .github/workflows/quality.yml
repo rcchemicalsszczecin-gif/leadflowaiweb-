@@ -10,6 +10,7 @@ on:
       - performance/realistic-board-v5
       - design/content-frames-v6
       - experience/interactive-v7
+      - design/premium-composition-v8
   pull_request:
     branches:
       - main
@@ -70,11 +71,13 @@ jobs:
           grep -q 'Formularz online jest obecnie wyłączony' out/kontakt/index.html
           grep -q 'Live Lab' out/lab/index.html
           grep -q '3D' out/strony-3d-webgl/index.html
+          grep -q 'SYSTEM / ACTIVE' out/index.html
+          grep -q 'Budujemy widoczność' out/index.html
           if grep -Rqs 'api.leadflowai.pl/leads' out; then
             echo "Disabled lead endpoint leaked into static artifact"
             exit 1
           fi
-          echo "STATIC_ARTIFACT_PASS html=PASS lab=PASS experience-routes=4 contact-direct-email=PASS lead-api=ABSENT"
+          echo "STATIC_ARTIFACT_PASS html=PASS v8-composition=PASS lab=PASS experience-routes=4 contact-direct-email=PASS lead-api=ABSENT"
 
       - name: Static route smoke
         shell: bash
@@ -122,4 +125,5 @@ jobs:
           curl -fsS http://127.0.0.1:3000/robots.txt | grep -q 'sitemap.xml'
           grep -q 'kontakt@leadflowai.pl' /tmp/home.html
           grep -q 'Live Lab' /tmp/home.html
-          echo "STATIC_ROUTE_SMOKE_PASS routes=17 sitemap=PASS interactive=PASS robots=PASS"
+          grep -q 'SYSTEM / ACTIVE' /tmp/home.html
+          echo "STATIC_ROUTE_SMOKE_PASS routes=17 sitemap=PASS interactive=PASS v8-composition=PASS robots=PASS"
