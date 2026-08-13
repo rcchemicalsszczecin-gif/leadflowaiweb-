@@ -12,17 +12,22 @@ const read = (path) => {
 
 const publicSources = [
   "app/page.tsx",
-  "components/premium-v9-story.tsx",
-  "components/premium-v9-journey.tsx",
-  "components/premium-v9-2-enhancements.tsx",
-  "components/interactive-experience.tsx",
-  "components/site-header.tsx",
-  "components/site-footer.tsx",
-  "components/service-page.tsx",
+  "app/o-nas/page.tsx",
   "app/uslugi/page.tsx",
   "app/kontakt/page.tsx",
   "app/realizacje/page.tsx",
   "app/wiedza/page.tsx",
+  "app/wiedza/[slug]/page.tsx",
+  "app/lab/page.tsx",
+  "components/premium-v9-story.tsx",
+  "components/premium-v9-journey.tsx",
+  "components/premium-v9-2-enhancements.tsx",
+  "components/interactive-experience.tsx",
+  "components/portfolio-project-visual.tsx",
+  "components/site-header.tsx",
+  "components/site-footer.tsx",
+  "components/service-page.tsx",
+  "lib/site.ts",
 ];
 
 const retiredPublicLiterals = [
@@ -42,6 +47,10 @@ const retiredPublicLiterals = [
   'label="START"',
   "SCROLL / EXPERIENCE",
   "Liquid Hardware",
+  "landing pages",
+  "e-commerce",
+  "redesign",
+  "desktop/mobile",
 ];
 
 for (const path of publicSources) {
@@ -72,4 +81,9 @@ for (const required of ["INTELIGENCJA.", 'data-cursor="PRZESUŃ"']) {
   if (!enhancements.includes(required)) fail(`V9.2 missing Polish public label: ${required}`);
 }
 
-console.log(`PUBLIC_LANGUAGE_V13_PASS sources=${publicSources.length} retired=${retiredPublicLiterals.length} homepage=PL premium=PL v92=PL`);
+const about = read("app/o-nas/page.tsx");
+for (const required of ["O LeadFlowAI", "Tervyxa Systems sp. z o.o.", "Dowód przed deklaracją"]) {
+  if (!about.includes(required)) fail(`about page missing trust/public-truth label: ${required}`);
+}
+
+console.log(`PUBLIC_LANGUAGE_V13_PASS sources=${publicSources.length} retired=${retiredPublicLiterals.length} homepage=PL premium=PL v92=PL trust=PL`);
