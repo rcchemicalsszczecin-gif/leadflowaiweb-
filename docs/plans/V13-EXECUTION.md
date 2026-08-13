@@ -52,8 +52,8 @@ Mobile QA, keyboard/focus, reduced motion, ARIA/semantics, performance budget, C
 ### V13.10 — Final production acceptance
 Route smoke, public string audit, content truth, sitemap/robots/schema, visual matrix, portfolio links, mailto/brief flow, disabled runtime checks i Owner review.
 
-### V13.11 — Post-release measurement
-Search Console/Bing, indexed/submitted pages, non-branded/local queries, CTR/impressions/position, field CWV; conversion measurement dopiero po osobnej analytics/privacy authorization.
+### V13.11 — Post-release measurement + original research
+Search Console/Bing, indexed/submitted pages, non-branded/local queries, CTR/impressions/position i field CWV; conversion measurement dopiero po osobnej analytics/privacy authorization. Workstream original research aktywuje się dopiero po zebraniu realnego datasetu z jawną metodologią, okresem pomiaru, kryteriami próby i ograniczeniami badania — bez syntetycznych KPI udających dane rynku.
 
 ## STOP boundary
 Praca pozostaje na `v13/polish-production-rebuild`. `main` nie jest zmieniany bez finalnego Owner-authorized merge po PASS.
