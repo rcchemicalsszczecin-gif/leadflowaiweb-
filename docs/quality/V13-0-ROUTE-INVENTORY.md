@@ -1,10 +1,12 @@
 # V13.0 — public route inventory
 
-STATUS: ACTIVE INVENTORY
+STATUS: HISTORICAL V13.0 SNAPSHOT — SUPERSEDED BY V13.10 SEARCH INTENT MAP
+
+> Ten dokument zachowuje stan wejściowy routingu jako evidence. Nie jest bieżącym source of truth dla publicznego tree. Aktualna mapa 63 indeksowalnych URL-i i ich dominant intents: `docs/quality/V13-10-SEARCH-INTENT-MAP.md`.
 
 ## Public surfaces
 
-Jawne route z `app/`:
+Jawne route z `app/` w momencie V13.0:
 
 - `/`
 - `/aeo`
@@ -48,7 +50,7 @@ Jawne route z `app/`:
 - `/web-development`
 - `/wiedza`
 
-`/wiedza/[slug]` generuje dodatkowo 21 artykułów z registry.
+`/wiedza/[slug]` generowało dodatkowo 21 artykułów z registry.
 
 ## Generator model
 
