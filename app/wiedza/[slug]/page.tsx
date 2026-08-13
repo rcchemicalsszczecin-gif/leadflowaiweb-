@@ -4,34 +4,12 @@ import { JsonLd } from "@/components/json-ld";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { getKnowledgeArticle, knowledgeArticles } from "@/lib/knowledge-registry";
+import { toPublicKnowledgeArticle } from "@/lib/public-knowledge-article";
 import { getArticleStructuredData } from "@/lib/structured-data";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
 };
-
-const editorialTerms: Record<string, string> = {
-  STRATEGY: "STRATEGIA",
-  ARCHITECTURE: "ARCHITEKTURA",
-  WEBSITE: "STRONA WWW",
-  SEARCH: "WYSZUKIWANIE",
-  CONTENT: "TREŚĆ",
-  PERFORMANCE: "WYDAJNOŚĆ",
-  ACCESSIBILITY: "DOSTĘPNOŚĆ",
-  SECURITY: "BEZPIECZEŃSTWO",
-  ANALYTICS: "ANALITYKA",
-  CONVERSION: "KONWERSJA",
-  DESIGN: "PROJEKTOWANIE",
-  PROCESS: "PROCES",
-  MAINTENANCE: "UTRZYMANIE",
-};
-
-function publicEyebrow(value: string) {
-  return value
-    .split("/")
-    .map((part) => editorialTerms[part.trim()] ?? part.trim())
-    .join(" / ");
-}
 
 export function generateStaticParams() {
   return knowledgeArticles.map((article) => ({ slug: article.slug }));
@@ -39,8 +17,9 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const article = getKnowledgeArticle(slug);
-  if (!article) return {};
+  const sourceArticle = getKnowledgeArticle(slug);
+  if (!sourceArticle) return {};
+  const article = toPublicKnowledgeArticle(sourceArticle);
 
   return {
     title: article.title,
@@ -64,8 +43,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function KnowledgeArticlePage({ params }: PageProps) {
   const { slug } = await params;
-  const article = getKnowledgeArticle(slug);
-  if (!article) notFound();
+  const sourceArticle = getKnowledgeArticle(slug);
+  if (!sourceArticle) notFound();
+  const article = toPublicKnowledgeArticle(sourceArticle);
 
   return (
     <main className="knowledge-article-page">
@@ -78,7 +58,7 @@ export default async function KnowledgeArticlePage({ params }: PageProps) {
             <nav className="breadcrumb" aria-label="Okruszki">
               <a href="/">LeadFlowAI</a><span aria-hidden="true">/</span><a href="/wiedza">Wiedza</a>
             </nav>
-            <p className="eyebrow">{publicEyebrow(article.eyebrow)}</p>
+            <p className="eyebrow">{article.eyebrow}</p>
             <h1>{article.title}</h1>
             <p>{article.summary}</p>
           </div>
