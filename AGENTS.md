@@ -56,8 +56,9 @@ LeadFlowAI must itself demonstrate the quality it sells:
 - maintainability and observability.
 
 ## Design authority
-The approved direction is recorded in `docs/design/LEADFLOWAI-DESIGN-DIRECTION-V1.md`.
-Visual implementation must follow that record unless the Owner changes it.
+The current approved direction is recorded in `docs/design/LEADFLOWAI-DESIGN-DIRECTION-V2.md`.
+V2 supersedes V1 where visual-direction statements conflict.
+Visual implementation must follow the current Owner-approved design record unless the Owner changes it.
 
 ## Validation
 Each stage requires relevant technical validation, changed-path review, semantic/public-truth checks and a formal PASS/FAIL/BLOCKER verdict.
