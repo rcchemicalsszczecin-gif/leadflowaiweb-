@@ -21,6 +21,9 @@ import "./premium-art-direction-v9-polish.css";
 import "./premium-calibration-v9-2.css";
 import "./responsive-performance-v10.css";
 import "./runtime-performance-v10.css";
+import "./v13-visual-authority.css";
+import "./v13-accessibility.css";
+import "./v13-search-education.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -40,6 +43,20 @@ export const metadata: Metadata = {
     siteName: site.name,
     title: "LeadFlowAI — strony internetowe zaprojektowane do wzrostu",
     description: site.description,
+    images: [
+      {
+        url: "/og-leadflowai.svg",
+        width: 1200,
+        height: 630,
+        alt: "LeadFlowAI — strony internetowe, SEO, AEO i GEO",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "LeadFlowAI — strony internetowe zaprojektowane do wzrostu",
+    description: site.description,
+    images: ["/og-leadflowai.svg"],
   },
   robots: {
     index: true,
@@ -56,9 +73,6 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="pl">
-      <head>
-        <link rel="preconnect" href="https://images.unsplash.com" crossOrigin="anonymous" />
-      </head>
       <body>
         <JsonLd data={getGlobalStructuredData()} />
         <WaterSurface />

@@ -20,7 +20,7 @@ const schema = read("lib/structured-data.ts");
 const sitemap = read("app/sitemap.ts");
 const footer = read("components/site-footer.tsx");
 
-for (const phrase of ["portfolioCases", "Realne projekty", "Dowód przed claimem"]) {
+for (const phrase of ["portfolioCases", "Realne projekty", "Dowód przed deklaracją"]) {
   if (!portfolioPage.includes(phrase)) fail(`portfolio page missing ${phrase}`);
 }
 for (const phrase of [
@@ -28,13 +28,13 @@ for (const phrase of [
   "TranskrypcjaAI.pl",
   "Tervyxa.pl",
   "PROJEKT WŁASNY",
-  "upload publiczny OFF",
-  "CLAIM → EVIDENCE → REVIEW → PUBLIC STATUS",
+  "publiczne przesyłanie plików wyłączone",
+  "DEKLARACJA → DOWÓD → WERYFIKACJA → STATUS PUBLICZNY",
 ]) {
   if (!portfolioData.includes(phrase)) fail(`portfolio data missing ${phrase}`);
 }
 if (!portfolioPage.includes("projektami własnymi ekosystemu Tervyxa Systems")) fail("portfolio own-project disclosure missing");
-if (!portfolioPage.includes("nie przedstawiamy ich jako zewnętrznych case studies")) fail("portfolio client-case disclaimer missing");
+if (!portfolioPage.includes("nie przedstawiamy ich jako zewnętrznych realizacji klientów")) fail("portfolio client-case disclaimer missing");
 
 const coreCount = [...knowledgeCore.matchAll(/slug: "([^"]+)"/g)].length;
 const expandedCount = [...knowledgeExpanded.matchAll(/slug: "([^"]+)"/g)].length;
@@ -47,4 +47,4 @@ if (!schema.includes('"@type": "Article"')) fail("Article schema missing");
 if (!sitemap.includes("knowledge-registry") || !sitemap.includes('"realizacje"') || !sitemap.includes('"wiedza"')) fail("content sitemap incomplete");
 if (!footer.includes('href="/realizacje"') || !footer.includes('href="/wiedza"')) fail("content discovery links missing");
 
-console.log(`CONTENT_CONTRACT_PASS portfolio=3_REAL_OWN_PROJECTS transkrypcja-upload=OFF knowledge=${totalKnowledge} sources=SUPPORTED schema=PASS sitemap=PASS`);
+console.log(`CONTENT_CONTRACT_PASS portfolio=3_REAL_OWN_PROJECTS transkrypcja-upload=OFF knowledge=${totalKnowledge} sources=SUPPORTED schema=PASS sitemap=PASS language=PL`);

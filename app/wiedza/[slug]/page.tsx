@@ -3,7 +3,9 @@ import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/json-ld";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { getKnowledgeMethodology, knowledgeEditorialV13 } from "@/lib/knowledge-editorial-v13";
 import { getKnowledgeArticle, knowledgeArticles } from "@/lib/knowledge-registry";
+import { toPublicKnowledgeArticle } from "@/lib/public-knowledge-article";
 import { getArticleStructuredData } from "@/lib/structured-data";
 
 type PageProps = {
@@ -16,8 +18,9 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const article = getKnowledgeArticle(slug);
-  if (!article) return {};
+  const sourceArticle = getKnowledgeArticle(slug);
+  if (!sourceArticle) return {};
+  const article = toPublicKnowledgeArticle(sourceArticle);
 
   return {
     title: article.title,
@@ -28,14 +31,24 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: article.title,
       description: article.description,
       url: `/wiedza/${article.slug}`,
+      modifiedTime: knowledgeEditorialV13.reviewedAt,
+      images: ["/og-leadflowai.svg"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: article.title,
+      description: article.description,
+      images: ["/og-leadflowai.svg"],
     },
   };
 }
 
 export default async function KnowledgeArticlePage({ params }: PageProps) {
   const { slug } = await params;
-  const article = getKnowledgeArticle(slug);
-  if (!article) notFound();
+  const sourceArticle = getKnowledgeArticle(slug);
+  if (!sourceArticle) notFound();
+  const article = toPublicKnowledgeArticle(sourceArticle);
+  const methodology = getKnowledgeMethodology(Boolean(article.sources?.length));
 
   return (
     <main className="knowledge-article-page">
@@ -59,7 +72,9 @@ export default async function KnowledgeArticlePage({ params }: PageProps) {
         <div className="page-shell knowledge-article-grid">
           <aside aria-label="Informacja o materiale">
             <p className="service-index">LEADFLOWAI / WIEDZA</p>
-            <p>Materiał redakcyjny o architekturze i praktykach WWW. Bez fikcyjnych realizacji i bez gwarancji wyników.</p>
+            <p><strong>Redakcja:</strong> {knowledgeEditorialV13.editor}</p>
+            <p><strong>Zweryfikowano:</strong> {knowledgeEditorialV13.reviewedLabel}</p>
+            <p>{methodology}</p>
           </aside>
 
           <div className="knowledge-prose">

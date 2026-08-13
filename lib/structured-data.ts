@@ -1,4 +1,5 @@
 import type { KnowledgeArticle } from "@/lib/knowledge";
+import { knowledgeEditorialV13 } from "@/lib/knowledge-editorial-v13";
 import type { ServicePageData } from "@/lib/services";
 import { site } from "@/lib/site";
 
@@ -49,13 +50,14 @@ export function getPageStructuredData(page: ServicePageData): Record<string, unk
         description: page.lead,
         inLanguage: "pl-PL",
         isPartOf: { "@id": websiteId },
+        mainEntity: { "@id": serviceId },
         about: { "@id": serviceId },
       },
       {
         "@type": "Service",
         "@id": serviceId,
         name: page.title,
-        serviceType: page.code,
+        serviceType: page.title,
         description: page.directAnswer,
         url,
         provider: { "@id": organizationId },
@@ -76,7 +78,7 @@ export function getPageStructuredData(page: ServicePageData): Record<string, unk
           {
             "@type": "ListItem",
             position: 2,
-            name: page.code,
+            name: page.title,
             item: url,
           },
         ],
@@ -111,6 +113,7 @@ export function getArticleStructuredData(article: KnowledgeArticle): Record<stri
         name: article.title,
         description: article.description,
         inLanguage: "pl-PL",
+        dateModified: knowledgeEditorialV13.reviewedAt,
         isPartOf: { "@id": websiteId },
         mainEntity: { "@id": articleId },
       },
@@ -121,6 +124,7 @@ export function getArticleStructuredData(article: KnowledgeArticle): Record<stri
         description: article.description,
         url,
         inLanguage: "pl-PL",
+        dateModified: knowledgeEditorialV13.reviewedAt,
         mainEntityOfPage: { "@id": webPageId },
         author: { "@id": organizationId },
         publisher: { "@id": organizationId },

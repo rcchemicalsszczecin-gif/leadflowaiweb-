@@ -14,6 +14,15 @@ const stageTitles: Record<StageKey, readonly [string, string]> = {
   CARE: ["Utrzymujemy", "i rozwijamy."],
 };
 
+const stageLabels: Record<StageKey, string> = {
+  CREATE: "PROJEKT I BUDOWA",
+  DISCOVER: "WIDOCZNOŚĆ",
+  CONVERT: "KONWERSJA",
+  INTELLIGENCE: "INTELIGENCJA",
+  CONNECT: "INTEGRACJE",
+  CARE: "OPIEKA",
+};
+
 const revealModes = ["depth", "wipe", "rise", "mask", "depth", "wipe"] as const;
 
 const careSpectrum = [
@@ -25,13 +34,13 @@ const careSpectrum = [
 
 function CreateVisual() {
   return (
-    <div className="cinematic-visual-v9 visual-create-v9" data-cursor="VIEW">
+    <div className="cinematic-visual-v9 visual-create-v9" data-cursor="ZOBACZ">
       <div className="floating-site-v9">
         <div className="floating-site-nav-v9"><span /> <i /><i /><i /></div>
-        <div className="floating-site-copy-v9"><small>DESIGN / BUILD</small><strong>Digital product.</strong><b /></div>
+        <div className="floating-site-copy-v9"><small>PROJEKT / WDROŻENIE</small><strong>Produkt cyfrowy.</strong><b /></div>
         <div className="floating-site-grid-v9"><i /><i /><i /></div>
       </div>
-      <div className="code-ribbon-v9"><span>&lt;main&gt;</span><span>&lt;Experience /&gt;</span><span>&lt;SearchReady /&gt;</span><span>&lt;/main&gt;</span></div>
+      <div className="code-ribbon-v9"><span>&lt;main&gt;</span><span>&lt;Doswiadczenie /&gt;</span><span>&lt;GotoweNaWyszukiwanie /&gt;</span><span>&lt;/main&gt;</span></div>
       <div className="stage-ambient-plane-v92" aria-hidden="true" />
     </div>
   );
@@ -39,8 +48,8 @@ function CreateVisual() {
 
 function DiscoverVisual() {
   return (
-    <div className="cinematic-visual-v9 visual-discover-v9" data-cursor="EXPLORE">
-      <div className="search-orbit-v9"><strong>SEARCH</strong><small>entity / answer / context</small></div>
+    <div className="cinematic-visual-v9 visual-discover-v9" data-cursor="ODKRYJ">
+      <div className="search-orbit-v9"><strong>WIDOCZNOŚĆ</strong><small>encja / odpowiedź / kontekst</small></div>
       {[
         ["SEO", "15%", "22%"], ["AEO", "76%", "18%"], ["GEO", "82%", "70%"], ["SCHEMA", "24%", "78%"],
       ].map(([label, left, top]) => <span className="search-node-v9" style={{ left, top }} key={label}>{label}</span>)}
@@ -52,10 +61,10 @@ function DiscoverVisual() {
 
 function ConvertVisual() {
   return (
-    <div className="cinematic-visual-v9 visual-convert-v9" data-cursor="FOLLOW">
-      <div className="journey-line-v9"><span>VISIT</span><i /><span>VALUE</span><i /><span>ACTION</span><i /><span>LEAD</span></div>
+    <div className="cinematic-visual-v9 visual-convert-v9" data-cursor="ŚLEDŹ">
+      <div className="journey-line-v9"><span>ODWIEDZINY</span><i /><span>WARTOŚĆ</span><i /><span>DZIAŁANIE</span><i /><span>ZAPYTANIE</span></div>
       <div className="conversion-wave-v9"><b /><b /><b /><b /><b /></div>
-      <strong className="conversion-word-v9">DECISION</strong>
+      <strong className="conversion-word-v9">DECYZJA</strong>
       <div className="conversion-depth-v92" aria-hidden="true"><i /><i /><i /></div>
     </div>
   );
@@ -63,11 +72,11 @@ function ConvertVisual() {
 
 function IntelligenceVisual() {
   return (
-    <div className="cinematic-visual-v9 visual-intelligence-v9" data-cursor="INSPECT">
+    <div className="cinematic-visual-v9 visual-intelligence-v9" data-cursor="SPRAWDŹ">
       <div className="ai-halo-v9" />
       <strong className="ai-core-v9">AI</strong>
       {[
-        ["CONTEXT", "16%", "25%"], ["RAG", "76%", "20%"], ["FAQ", "84%", "70%"], ["ROUTING", "12%", "72%"],
+        ["KONTEKST", "16%", "25%"], ["RAG", "76%", "20%"], ["FAQ", "84%", "70%"], ["KIEROWANIE", "12%", "72%"],
       ].map(([label, left, top]) => <span className="ai-node-v9" style={{ left, top }} key={label}>{label}</span>)}
       <div className="ai-depth-mesh-v92" aria-hidden="true"><i /><i /><i /></div>
     </div>
@@ -76,10 +85,10 @@ function IntelligenceVisual() {
 
 function ConnectVisual() {
   return (
-    <div className="cinematic-visual-v9 visual-connect-v9" data-cursor="CONNECT">
+    <div className="cinematic-visual-v9 visual-connect-v9" data-cursor="POŁĄCZ">
       <div className="connect-core-v9">WWW</div>
       {[
-        ["CRM", "10%", "15%"], ["MAIL", "78%", "12%"], ["API", "84%", "72%"], ["DATA", "8%", "75%"],
+        ["CRM", "10%", "15%"], ["E-MAIL", "78%", "12%"], ["API", "84%", "72%"], ["DANE", "8%", "75%"],
       ].map(([label, left, top]) => <span className="connect-node-v9" style={{ left, top }} key={label}>{label}</span>)}
       <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 50 L10 15 M50 50 L78 12 M50 50 L84 72 M50 50 L8 75" /></svg>
       <div className="connect-depth-grid-v92" aria-hidden="true" />
@@ -89,13 +98,13 @@ function ConnectVisual() {
 
 function CareVisual() {
   return (
-    <div className="cinematic-visual-v9 visual-care-v9" data-cursor="MONITOR">
+    <div className="cinematic-visual-v9 visual-care-v9" data-cursor="MONITORUJ">
       <div className="care-rings-v9"><i /><i /><i /></div>
-      <strong>STABLE</strong>
+      <strong>STABILNIE</strong>
       <div className="care-spectrum-v9">
         {careSpectrum.map(([id, height]) => <i key={id} style={{ height: `${height}%` }} />)}
       </div>
-      <div className="care-labels-v9"><span>PERFORMANCE</span><span>SECURITY</span><span>SEARCH</span></div>
+      <div className="care-labels-v9"><span>WYDAJNOŚĆ</span><span>BEZPIECZEŃSTWO</span><span>WIDOCZNOŚĆ</span></div>
       <div className="care-scan-v92" aria-hidden="true" />
     </div>
   );
@@ -141,6 +150,7 @@ export function PremiumStageJourneyV9() {
       </div>
       {systemStages.map((stage, index) => {
         const [lead, accent] = stageTitles[stage.key];
+        const stageLabel = stageLabels[stage.key];
         return (
           <article
             id={stage.key.toLowerCase()}
@@ -151,10 +161,10 @@ export function PremiumStageJourneyV9() {
             className={`premium-stage-v9 premium-stage-v92 ${index % 2 ? "is-reverse" : ""} ${index === active ? "is-active" : ""}`}
           >
             <div className="premium-stage-copy-v9">
-              <p className="premium-stage-index-v9"><span>{stage.id}</span>{stage.key}</p>
+              <p className="premium-stage-index-v9"><span>{stage.id}</span>{stageLabel}</p>
               <h2><span>{lead}</span><em>{accent}</em></h2>
               <p>{stage.description}</p>
-              <ul aria-label={`Zakres ${stage.key}`}>{stage.tags.map((tag) => <li key={tag}>{tag}</li>)}</ul>
+              <ul aria-label={`Zakres: ${stageLabel}`}>{stage.tags.map((tag) => <li key={tag}>{tag}</li>)}</ul>
             </div>
             <div className="premium-stage-art-v9"><StageVisual stage={stage.key} /></div>
             {index < systemStages.length - 1 ? (

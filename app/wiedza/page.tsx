@@ -2,25 +2,29 @@ import type { Metadata } from "next";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { knowledgeArticles } from "@/lib/knowledge-registry";
+import { knowledgeTopicsV13 } from "@/lib/knowledge-topics-v13";
+import { toPublicKnowledgeArticle } from "@/lib/public-knowledge-article";
 
 export const metadata: Metadata = {
-  title: "Wiedza o stronach WWW, SEO, AEO, GEO, AI i konwersji",
+  title: "Baza wiedzy o stronach WWW, SEO, AEO, GEO i konwersji",
   description:
-    "Praktyczna wiedza LeadFlowAI o projektowaniu i budowie stron, SEO, AEO, GEO / AI Search, CRO, analityce, dostępności, performance, AI, integracjach i utrzymaniu WWW.",
+    "Praktyczna baza wiedzy LeadFlowAI o projektowaniu i budowie stron internetowych, SEO, AEO, GEO, widoczności w wyszukiwaniu AI, CRO, analityce, dostępności, wydajności, integracjach i utrzymaniu WWW.",
   alternates: { canonical: "/wiedza" },
 };
 
 export default function KnowledgePage() {
+  const publicArticles = knowledgeArticles.map(toPublicKnowledgeArticle);
+
   return (
     <main className="knowledge-page">
       <section className="knowledge-hero section-dark blueprint-surface">
         <div className="page-shell">
           <SiteHeader />
           <div className="knowledge-hero-copy">
-            <p className="eyebrow">LEADFLOWAI / WIEDZA</p>
-            <h1>Wiedza, która pomaga podejmować decyzje o stronie i całym systemie wokół niej.</h1>
+            <p className="eyebrow">LEADFLOWAI / BAZA WIEDZY</p>
+            <h1>Wiedza, która pomaga podejmować lepsze decyzje o stronie internetowej.</h1>
             <p>
-              Bez produkowania artykułów dla samej liczby adresów URL. Każdy materiał odpowiada na odrębny problem związany z architekturą WWW, widocznością, konwersją, AI, integracjami, jakością lub utrzymaniem.
+              Zebraliśmy materiały o architekturze WWW, widoczności, SEO, AEO, GEO, konwersji, AI, integracjach i jakości technicznej. Każdy artykuł odpowiada na konkretny problem zamiast istnieć wyłącznie dla kolejnego adresu URL.
             </p>
           </div>
         </div>
@@ -29,30 +33,44 @@ export default function KnowledgePage() {
       <section className="section-light">
         <div className="page-shell section-pad knowledge-index">
           <div className="knowledge-index-head">
-            <p className="service-index">01 / ARTYKUŁY</p>
-            <h2>Najpierw fundamenty i decyzje, potem narzędzia.</h2>
+            <p className="service-index">01 / KLASTRY TEMATYCZNE</p>
+            <h2>Najpierw problem i decyzja. Potem technologia.</h2>
+            <p>Materiały są pogrupowane według pytania, które pomagają rozwiązać. Nie tworzymy osobnych, cienkich hubów tylko po to, żeby zwiększać liczbę adresów URL.</p>
           </div>
 
-          <div className="knowledge-cards">
-            {knowledgeArticles.map((article, index) => (
-              <article key={article.slug}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <p>{article.eyebrow}</p>
-                <h2>{article.title}</h2>
-                <p>{article.description}</p>
-                <a href={`/wiedza/${article.slug}`}>
-                  Czytaj artykuł <span aria-hidden="true">↗</span>
-                </a>
-              </article>
-            ))}
-          </div>
+          {knowledgeTopicsV13.map((topic, topicIndex) => {
+            const articles = publicArticles.filter((article) => topic.slugs.some((slug) => slug === article.slug));
+
+            return (
+              <section key={topic.key} className="knowledge-topic-v13" aria-labelledby={`knowledge-topic-${topic.key.toLowerCase()}`}>
+                <div className="service-section-head">
+                  <p className="service-index">{String(topicIndex + 1).padStart(2, "0")} / {topic.label}</p>
+                  <h2 id={`knowledge-topic-${topic.key.toLowerCase()}`}>{topic.label}</h2>
+                  <p>{topic.description}</p>
+                </div>
+                <div className="knowledge-cards">
+                  {articles.map((article, index) => (
+                    <article key={article.slug}>
+                      <span>{String(index + 1).padStart(2, "0")}</span>
+                      <p>{article.eyebrow}</p>
+                      <h3>{article.title}</h3>
+                      <p>{article.description}</p>
+                      <a href={`/wiedza/${article.slug}`}>
+                        Czytaj materiał <span aria-hidden="true">↗</span>
+                      </a>
+                    </article>
+                  ))}
+                </div>
+              </section>
+            );
+          })}
         </div>
       </section>
 
       <section className="section-dark knowledge-truth">
         <div className="page-shell section-pad">
           <p className="service-index">02 / ZASADA REDAKCYJNA</p>
-          <h2>Nie publikujemy fikcyjnego doświadczenia ani treści tworzonych tylko po to, żeby zwiększyć liczbę podstron.</h2>
+          <h2>Publikujemy treści, które mają pomagać użytkownikowi i dają się obronić źródłami lub rzeczywistą praktyką.</h2>
           <p>
             Materiały opisują nasze podejście, praktyki projektowe i możliwe do zweryfikowania standardy. Gdy temat wymaga danych klienta, wyników, prawa albo regulowanych twierdzeń, informacja musi pochodzić z rzeczywistego źródła i przejść odpowiednią weryfikację.
           </p>

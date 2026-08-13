@@ -78,10 +78,10 @@ if (!interactions.includes("onPointerMove={onMove}") || !css.includes(".magnetic
 if (!story.includes("LeadFlow") || !story.includes("LiquidCircuitV9") || !css.includes(".liquid-signature-v9")) {
   fail("LeadFlow Liquid Circuit signature experience missing");
 }
-if (!story.includes("FIRST-PARTY PROOF") || !story.includes("demonstracje LeadFlowAI")) {
+if (!story.includes("WŁASNY DOWÓD") || !story.includes("demonstracje LeadFlowAI")) {
   fail("first-party proof/public-truth framing missing");
 }
-if (!story.includes("WHAT WE BUILD") || !story.includes("ScrollStoryV9")) {
+if (!story.includes("CO BUDUJEMY") || !story.includes("ScrollStoryV9")) {
   fail("cinematic capability/scroll storytelling missing");
 }
 

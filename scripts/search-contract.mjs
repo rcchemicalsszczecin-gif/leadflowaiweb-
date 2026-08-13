@@ -73,4 +73,33 @@ for (const phrase of ["strony-3d-webgl", "interaktywne-strony", "motion-design",
   if (!experience.includes(phrase)) fail(`experience service missing ${phrase}`);
 }
 
-console.log(`SEARCH_CONTRACT_PASS routes=${routes.length} schema=6 identity=PASS experience=4 lab=PASS contact=PASS`);
+const intentMap = requireFile("docs/quality/V13-10-SEARCH-INTENT-MAP.md");
+const intentRows = [...intentMap.matchAll(/^\|\s*(\/(?:[^|\s]+)?)\s*\|\s*([^|]+?)\s*\|$/gm)]
+  .map((match) => ({ url: match[1], intent: match[2].trim() }));
+if (intentRows.length !== 63) fail(`intent map must contain 63 public URLs, found ${intentRows.length}`);
+
+const mainUrls = [
+  "/", "/uslugi", "/kontakt", "/realizacje", "/o-nas", "/wiedza", "/lab",
+  "/strony-internetowe", "/landing-pages", "/sklepy-internetowe", "/web-development", "/modernizacja-stron", "/audyt-strony",
+  "/strony-3d-webgl", "/interaktywne-strony", "/motion-design", "/ux-ui-design", "/copywriting-content",
+  "/seo", "/aeo", "/geo-ai-search", "/seo-aeo-geo", "/local-seo", "/cro-optymalizacja-konwersji", "/analityka-webowa", "/formularze-lead-generation",
+  "/chatboty-ai", "/rag-bazy-wiedzy", "/agenci-ai-www", "/integracje-ai", "/integracje-api", "/automatyzacje-www",
+  "/aplikacje-webowe", "/cms-headless", "/pwa", "/strony-wielojezyczne",
+  "/core-web-vitals", "/dostepnosc-wcag", "/bezpieczenstwo-stron", "/hosting-deploy", "/opieka-utrzymanie-stron", "/monitoring-www",
+];
+
+const knowledgeCore = requireFile("lib/knowledge.ts");
+const knowledgeExpanded = requireFile("lib/knowledge-expanded.ts");
+const knowledgeSlugs = [...knowledgeCore.matchAll(/slug:\s*"([^"]+)"/g), ...knowledgeExpanded.matchAll(/slug:\s*"([^"]+)"/g)]
+  .map((match) => `/wiedza/${match[1]}`);
+if (knowledgeSlugs.length !== 21) fail(`expected 21 knowledge URLs, found ${knowledgeSlugs.length}`);
+
+const mappedUrls = new Set(intentRows.map((row) => row.url));
+for (const url of [...mainUrls, ...knowledgeSlugs]) {
+  if (!mappedUrls.has(url)) fail(`search intent map missing ${url}`);
+}
+if (mappedUrls.size !== intentRows.length) fail("duplicate URL in search intent map");
+const normalizedIntents = intentRows.map((row) => row.intent.toLocaleLowerCase("pl-PL"));
+if (new Set(normalizedIntents).size !== normalizedIntents.length) fail("duplicate dominant intent in search intent map");
+
+console.log(`SEARCH_CONTRACT_PASS routes=${routes.length} schema=6 identity=PASS experience=4 lab=PASS contact=PASS intent-map=${intentRows.length}_UNIQUE`);

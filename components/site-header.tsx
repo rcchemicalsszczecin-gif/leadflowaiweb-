@@ -1,11 +1,12 @@
 import { navigation } from "@/lib/site";
 
 const navigationPreview: Record<(typeof navigation)[number]["href"], readonly [string, string]> = {
-  "/strony-internetowe": ["WEB", "Design + development"],
-  "/strony-3d-webgl": ["3D", "WebGL + interaction"],
-  "/seo-aeo-geo": ["SEARCH", "SEO + AEO + GEO"],
-  "/lab": ["LAB", "Live browser demos"],
-  "/#process": ["PROCESS", "Strategy → launch"],
+  "/uslugi": ["OFERTA", "Pełny zakres usług"],
+  "/realizacje": ["DOWODY", "Projekty własne i zakres"],
+  "/wiedza": ["WIEDZA", "Praktyka WWW i widoczności"],
+  "/o-nas": ["O NAS", "LeadFlowAI i Tervyxa Systems"],
+  "/lab": ["DEMO", "Interaktywne możliwości"],
+  "/#process": ["PROCES", "Od strategii do publikacji"],
 };
 
 export function SiteHeader() {
@@ -22,7 +23,7 @@ export function SiteHeader() {
         {navigation.map((item) => {
           const [code, note] = navigationPreview[item.href];
           return (
-            <a key={item.href} href={item.href} className="site-nav-link-v92" data-cursor="OPEN">
+            <a key={item.href} href={item.href} className="site-nav-link-v92" data-cursor="OTWÓRZ">
               <span>{item.label}</span>
               <span className="nav-preview-v92" aria-hidden="true">
                 <small>{code}</small>
@@ -51,15 +52,15 @@ export function SiteHeader() {
             );
           })}
           <a className="mobile-nav-contact-v10" href="/kontakt">
-            <small>START</small>
-            <span>Wycena strony</span>
-            <em>Kontakt bezpośredni</em>
+            <small>KONTAKT</small>
+            <span>Wyceń projekt</span>
+            <em>Napisz bezpośrednio</em>
           </a>
         </nav>
       </details>
 
-      <a className="button button-small button-ghost header-cta-v92" href="/kontakt" data-cursor="START">
-        Wycena strony
+      <a className="button button-small button-ghost header-cta-v92" href="/kontakt" data-cursor="ZACZNIJ">
+        Wyceń projekt
       </a>
     </header>
   );

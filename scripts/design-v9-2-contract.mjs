@@ -44,7 +44,6 @@ if (!journey.includes("IntersectionObserver") || journey.includes('addEventListe
   fail("V9.2 journey regressed to scroll event loop");
 }
 
-// 1-5 layout calibration
 if (!css.includes("--max: 106rem") || !css.includes("overflow-x: clip")) fail("wide safe canvas/clipping calibration missing");
 if (!css.includes("0.94fr") || !css.includes("1.06fr")) fail("hero editorial/visual rebalance missing");
 if (!css.includes("min(43rem, 78svh)") || !css.includes("min(39rem, 72svh)")) fail("stage vertical density calibration missing");
@@ -53,7 +52,6 @@ for (const viewport of ["@media (min-width: 1800px)", "@media (max-width: 1599px
   if (!css.includes(viewport)) fail(`missing viewport calibration ${viewport}`);
 }
 
-// 6-10 cinematic composition
 for (let index = 1; index <= 6; index += 1) {
   if (!css.includes(`data-v92-layout="scene-${index}"`)) fail(`missing unique scene-${index} layout`);
 }
@@ -61,20 +59,18 @@ for (const visual of ["stage-ambient-plane-v92", "search-depth-ring-v92", "conve
   if (!journey.includes(visual) || !css.includes(`.${visual}`)) fail(`missing strengthened stage depth visual ${visual}`);
 }
 if (!css.includes("premium-stage-v92::before") || !css.includes("background-size: 121% auto")) fail("dynamic stage crop/active zoom missing");
-if (!home.includes("ManifestSceneV92") || !css.includes(".manifest-scene-v92") || !enhancements.includes("INTELLIGENCE.")) fail("dark-void typography manifest missing");
-if (!story.includes("capability-live-stage-v92") || !css.includes(".what-build-v92") || !css.includes('data-mode="3D"')) fail("full WHAT WE BUILD capability scene missing");
+if (!home.includes("ManifestSceneV92") || !css.includes(".manifest-scene-v92") || !enhancements.includes("INTELIGENCJA.")) fail("dark-void typography manifest missing");
+if (!story.includes("capability-live-stage-v92") || !css.includes(".what-build-v92") || !css.includes('data-mode="3D"') || !story.includes("CO BUDUJEMY")) fail("full capability scene missing");
 
-// 11-16 interaction / motion
 if (!journey.includes("stage-transition-v92") || !css.includes("v92-transition-flow")) fail("connected stage transition grammar missing");
 for (const reveal of ["rise", "depth", "wipe", "mask"]) {
   if (!css.includes(`data-v92-reveal="${reveal}"`)) fail(`reveal language missing ${reveal}`);
 }
 if (!enhancements.includes("experience-rail-v92") || !css.includes(".experience-rail-v92")) fail("sticky progress rail missing");
 if (!header.includes("nav-preview-v92") || !css.includes(".nav-preview-v92")) fail("cinematic navigation previews missing");
-if (!home.includes("MagneticLinkV9") || !enhancements.includes('data-cursor="DRAG"') || !story.includes('data-cursor="EXPLORE"')) fail("selective micro-interaction contract missing");
+if (!home.includes("MagneticLinkV9") || !enhancements.includes('data-cursor="PRZESUŃ"') || !story.includes('data-cursor="ODKRYJ"')) fail("selective micro-interaction contract missing");
 if (!css.includes("--v92-reveal: 820ms") || !css.includes("--v92-hover: 190ms") || !css.includes("17s ease-in-out")) fail("premium motion timing calibration missing");
 
-// 17-20 signature / closing / fallbacks
 if (!enhancements.includes("core-object-v92") || !css.includes("transform-style: preserve-3d") || !css.includes("core-face-front-v92")) fail("browser-native CSS 3D centerpiece missing");
 if (!css.includes("core-depth-plane-v92") || !story.includes("story-depth-plane-v92") || !css.includes("capability-plane-v92")) fail("foreground/background depth plane system missing");
 if (!home.includes("premium-closing-v92") || !enhancements.includes("closing-orbit-v92") || !css.includes(".closing-visual-v92")) fail("cinematic closing scene missing");
@@ -88,12 +84,12 @@ if (!water.includes("const MAX_RIPPLES = 8") || !water.includes("FRAME_INTERVAL_
   fail("V5 water performance bounds changed");
 }
 if (!v5.includes("images.unsplash.com/photo-1741392078190-d263a71291cd")) fail("V5 hardware background source changed");
-if (!story.includes("FIRST-PARTY PROOF") || !story.includes("demonstracje LeadFlowAI")) fail("first-party proof framing regressed");
+if (!story.includes("WŁASNY DOWÓD") || !story.includes("demonstracje LeadFlowAI")) fail("first-party proof framing regressed");
 if (!story.includes("LiquidCircuitV9") || !home.includes("<LiquidCircuitV9")) fail("V9 Liquid Circuit regressed");
 if (!existsSync("app/lab/page.tsx") || !existsSync("app/strony-3d-webgl/page.tsx")) fail("V7 Live Lab/3D service regressed");
 if (!direction.includes("Stage A — Layout Calibration") || !direction.includes("20. Reduced-motion")) fail("V9.2 design authority does not cover all 20 improvements");
 if (!decision.includes("implement all 20 approved visual improvements") || !agents.includes("PREMIUM-CALIBRATION-V9-2")) fail("V9.2 governance authority incomplete");
 
 console.log(
-  "DESIGN_V9_2_CONTRACT_PASS improvements=20 canvas=WIDE clipping=SAFE hero=REBALANCED density=CALIBRATED contrast=PASS viewports=5 stages=6 depth=PASS crop=DYNAMIC manifest=VOID what-we-build=LIVE transitions=CONNECTED reveals=4 progress-rail=PASS nav-preview=PASS micro-interactions=SELECTIVE timing=PREMIUM 3d-core=BROWSER_NATIVE closing=CINEMATIC reduced-motion=PASS v5-water=FROZEN v7-lab=FROZEN v9-liquid=FROZEN",
+  "DESIGN_V9_2_CONTRACT_PASS improvements=20 canvas=WIDE clipping=SAFE hero=REBALANCED density=CALIBRATED contrast=PASS viewports=5 stages=6 depth=PASS crop=DYNAMIC manifest=VOID what-we-build=LIVE transitions=CONNECTED reveals=4 progress-rail=PASS nav-preview=PASS micro-interactions=SELECTIVE timing=PREMIUM 3d-core=BROWSER_NATIVE closing=CINEMATIC reduced-motion=PASS v5-water=FROZEN v7-lab=FROZEN v9-liquid=FROZEN language=PL",
 );

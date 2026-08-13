@@ -8,11 +8,12 @@ export const site = {
 } as const;
 
 export const navigation = [
-  { href: "/strony-internetowe", label: "WWW" },
-  { href: "/strony-3d-webgl", label: "3D / WebGL" },
-  { href: "/seo-aeo-geo", label: "SEO · AEO · GEO" },
-  { href: "/lab", label: "Live Lab" },
-  { href: "/#process", label: "Proces" },
+  { href: "/uslugi", label: "Usługi" },
+  { href: "/realizacje", label: "Realizacje" },
+  { href: "/wiedza", label: "Wiedza" },
+  { href: "/o-nas", label: "O nas" },
+  { href: "/lab", label: "Demo" },
+  { href: "/#process", label: "Jak pracujemy" },
 ] as const;
 
 export const systemStages = [
@@ -21,8 +22,8 @@ export const systemStages = [
     key: "CREATE",
     title: "Projektujemy i budujemy.",
     description:
-      "Strony firmowe, landing pages, e-commerce, interaktywne WWW, 3D/WebGL, redesign i custom web development — od architektury informacji po produkcyjny kod.",
-    tags: ["UX/UI", "Responsive", "Development", "3D / WebGL"],
+      "Strony firmowe, strony kampanijne, sprzedaż internetowa, interaktywne WWW, 3D/WebGL, przebudowa i dedykowane systemy internetowe — od architektury informacji po produkcyjny kod.",
+    tags: ["UX/UI", "Responsywność", "Wdrożenie", "3D / WebGL"],
   },
   {
     id: "02",
@@ -38,7 +39,7 @@ export const systemStages = [
     title: "Projektujemy drogę do kontaktu.",
     description:
       "CTA, formularze, hierarchia treści i analityka tworzą mierzalny system konwersji zamiast przypadkowego zestawu sekcji.",
-    tags: ["CRO", "Leads", "Analytics", "Forms"],
+    tags: ["CRO", "Zapytania", "Analityka", "Formularze"],
   },
   {
     id: "04",
@@ -46,7 +47,7 @@ export const systemStages = [
     title: "Dodajemy inteligencję tam, gdzie ma sens.",
     description:
       "Chatbot może odpowiadać na pytania, kwalifikować zapytania i kierować użytkownika do właściwej usługi bez zasłaniania strony.",
-    tags: ["AI Chatbot", "RAG", "Qualification", "FAQ"],
+    tags: ["Chatbot AI", "RAG", "Kwalifikacja", "FAQ"],
   },
   {
     id: "05",
@@ -54,14 +55,14 @@ export const systemStages = [
     title: "Łączymy stronę z biznesem.",
     description:
       "Formularze, CRM, e-mail, kalendarze, API i automatyzacje mogą tworzyć jeden kontrolowany przepływ danych.",
-    tags: ["CRM", "API", "Webhooks", "Automation"],
+    tags: ["CRM", "API", "Webhooki", "Automatyzacja"],
   },
   {
     id: "06",
     key: "CARE",
     title: "Utrzymujemy i rozwijamy.",
     description:
-      "Monitoring, bezpieczeństwo, performance, backupy i dalszy rozwój widoczności pozwalają stronie pracować także po publikacji.",
-    tags: ["Monitoring", "Security", "CWV", "Maintenance"],
+      "Monitoring, bezpieczeństwo, wydajność, kopie zapasowe i dalszy rozwój widoczności pozwalają stronie pracować także po publikacji.",
+    tags: ["Monitoring", "Bezpieczeństwo", "CWV", "Utrzymanie"],
   },
 ] as const;

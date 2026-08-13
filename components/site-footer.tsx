@@ -13,22 +13,24 @@ export function SiteFooter() {
           </span>
           <span>LeadFlowAI</span>
         </a>
-        <p className="footer-note">Marka {site.legalName}</p>
+        <p className="footer-note">LeadFlowAI jest marką {site.legalName}</p>
+        <p className="footer-note">Strony WWW · widoczność SEO/AEO/GEO · interakcje · systemy internetowe</p>
       </div>
 
       <div className="footer-meta">
         <nav className="footer-service-links" aria-label="Główne usługi LeadFlowAI">
-          <a href="/uslugi">Pełna oferta</a>
+          <a href="/uslugi">Wszystkie usługi</a>
           {[...coreServiceLinks, ...experienceServiceLinks, ...searchServiceLinks].map((item) => (
             <a key={item.slug} href={`/${item.slug}`}>
               {item.label}
             </a>
           ))}
-          <a href="/lab">Live Lab</a>
-          <a href="/realizacje">Realizacje</a>
-          <a href="/wiedza">Wiedza</a>
+          <a href="/lab">Demo możliwości</a>
         </nav>
-        <nav className="footer-links" aria-label="Kontakt i informacje">
+        <nav className="footer-links" aria-label="Firma, wiedza i kontakt">
+          <a href="/realizacje">Realizacje</a>
+          <a href="/wiedza">Baza wiedzy</a>
+          <a href="/o-nas">O LeadFlowAI</a>
           <a href="/kontakt">Kontakt</a>
           <a href={`mailto:${site.email}`}>{site.email}</a>
           <span>leadflowai.pl</span>
