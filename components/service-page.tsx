@@ -31,7 +31,7 @@ export function ServicePage({ page }: ServicePageProps) {
               <p className="service-lead">{page.lead}</p>
               <div className="hero-actions">
                 <a className="button button-primary" href={`mailto:${site.email}?subject=${encodeURIComponent(`Wycena: ${page.title}`)}`}>
-                  Zapytaj o projekt <span aria-hidden="true">↗</span>
+                  Wyceń projekt <span aria-hidden="true">↗</span>
                 </a>
                 <a className="text-link" href="#scope">
                   Zobacz zakres <span aria-hidden="true">↓</span>
@@ -40,7 +40,7 @@ export function ServicePage({ page }: ServicePageProps) {
             </div>
 
             <aside className="service-capability-panel" aria-label="Zakres usługi">
-              <p className="panel-label">CAPABILITY MAP</p>
+              <p className="panel-label">MAPA ZAKRESU</p>
               <ul>
                 {page.capabilities.map((item, index) => (
                   <li key={item}>
@@ -56,7 +56,7 @@ export function ServicePage({ page }: ServicePageProps) {
 
       <section className="section-light service-answer">
         <div className="page-shell service-answer-grid">
-          <p className="service-index">00 / DIRECT ANSWER</p>
+          <p className="service-index">00 / ODPOWIEDŹ WPROST</p>
           <h2>Co dokładnie dostajesz?</h2>
           <p>{page.directAnswer}</p>
         </div>
@@ -65,7 +65,7 @@ export function ServicePage({ page }: ServicePageProps) {
       <section className="section-light service-outcomes">
         <div className="page-shell section-pad">
           <div className="service-section-head">
-            <p className="service-index">01 / BUSINESS VALUE</p>
+            <p className="service-index">01 / WARTOŚĆ DLA BIZNESU</p>
             <h2>Projekt ma rozwiązywać konkretny problem, nie tylko wyglądać nowocześnie.</h2>
           </div>
           <div className="outcome-grid">
@@ -83,7 +83,7 @@ export function ServicePage({ page }: ServicePageProps) {
       <section id="scope" className="section-dark service-deliverables">
         <div className="page-shell section-pad">
           <div className="service-section-head service-section-head-dark">
-            <p className="service-index">02 / SCOPE</p>
+            <p className="service-index">02 / ZAKRES</p>
             <h2>Zakres projektujemy jako spójny system.</h2>
           </div>
           <div className="deliverable-list">
@@ -108,7 +108,7 @@ export function ServicePage({ page }: ServicePageProps) {
       <section className="section-light service-process">
         <div className="page-shell section-pad">
           <div className="service-section-head">
-            <p className="service-index">03 / PROCESS</p>
+            <p className="service-index">03 / PROCES</p>
             <h2>Proces bez ukrywania ryzyk i zależności.</h2>
           </div>
           <ol>
@@ -128,7 +128,7 @@ export function ServicePage({ page }: ServicePageProps) {
       <section className="section-light service-faq">
         <div className="page-shell section-pad">
           <div className="service-section-head">
-            <p className="service-index">04 / FAQ</p>
+            <p className="service-index">04 / PYTANIA</p>
             <h2>Pytania, które warto wyjaśnić przed startem.</h2>
           </div>
           <div className="service-faq-grid">
@@ -145,8 +145,8 @@ export function ServicePage({ page }: ServicePageProps) {
       <section className="section-light related-services">
         <div className="page-shell section-pad">
           <div className="service-section-head">
-            <p className="service-index">05 / RELATED</p>
-            <h2>Zobacz powiązane obszary WWW i widoczności.</h2>
+            <p className="service-index">05 / POWIĄZANE</p>
+            <h2>Zobacz powiązane usługi i obszary rozwoju.</h2>
           </div>
           <nav className="related-grid" aria-label="Powiązane usługi">
             {page.related.map((slug) => {
@@ -173,7 +173,7 @@ export function ServicePage({ page }: ServicePageProps) {
 
       <section className="contact-section section-dark">
         <div className="page-shell contact-grid">
-          <p className="section-label section-label-inverted"><span>06</span><span>LEADFLOWAI / START</span></p>
+          <p className="section-label section-label-inverted"><span>06</span><span>LEADFLOWAI / KONTAKT</span></p>
           <div>
             <p className="contact-kicker">MASZ PROJEKT?</p>
             <h2>Opisz cel. Dobierzemy zakres strony do realnej pracy, którą ma wykonywać.</h2>
