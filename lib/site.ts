@@ -4,13 +4,14 @@ export const site = {
   url: "https://leadflowai.pl",
   email: "kontakt@leadflowai.pl",
   description:
-    "LeadFlowAI projektuje i buduje profesjonalne strony internetowe z SEO, AEO, GEO / AI Search, CRO, chatbotami i integracjami WWW.",
+    "LeadFlowAI projektuje i buduje profesjonalne strony internetowe, interaktywne doświadczenia 3D/WebGL, SEO, AEO, GEO / AI Search, CRO, chatboty i integracje WWW.",
 } as const;
 
 export const navigation = [
   { href: "/strony-internetowe", label: "WWW" },
+  { href: "/strony-3d-webgl", label: "3D / WebGL" },
   { href: "/seo-aeo-geo", label: "SEO · AEO · GEO" },
-  { href: "/#intelligence", label: "Chatboty" },
+  { href: "/lab", label: "Live Lab" },
   { href: "/#process", label: "Proces" },
 ] as const;
 
@@ -20,8 +21,8 @@ export const systemStages = [
     key: "CREATE",
     title: "Projektujemy i budujemy.",
     description:
-      "Strony firmowe, landing pages, e-commerce, redesign i custom web development — od architektury informacji po produkcyjny kod.",
-    tags: ["UX/UI", "Responsive", "Development", "CMS"],
+      "Strony firmowe, landing pages, e-commerce, interaktywne WWW, 3D/WebGL, redesign i custom web development — od architektury informacji po produkcyjny kod.",
+    tags: ["UX/UI", "Responsive", "Development", "3D / WebGL"],
   },
   {
     id: "02",
