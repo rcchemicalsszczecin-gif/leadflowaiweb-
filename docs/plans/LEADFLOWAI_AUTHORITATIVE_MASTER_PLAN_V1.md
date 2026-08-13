@@ -106,11 +106,17 @@ Current operational status is defined by `docs/governance/CURRENT-STATE.md`.
 
 As of 2026-08-13:
 - initial GitHub Pages production launch: COMPLETE;
-- `main`: V10 responsive/mobile/performance production baseline;
-- active work branch `content/full-offer-v11`: Full Offer V11 plus bounded Portfolio V12 foundation;
-- latest audited PR validation: PASS;
-- V11/V12 production promotion: NOT AUTHORIZED by this plan;
+- V11 Full Offer: PRODUCTION;
+- V11 Knowledge: PRODUCTION;
+- V12 Portfolio: PRODUCTION;
+- bounded release hardening: PRODUCTION;
+- production `main`: `30c0c3b35b611e44e974154ac1476eebbf81537f` after post-release Current State synchronization;
+- GitHub Pages production build/deploy for the V11/V12 release: PASS;
+- post-release Current State PR validation: PASS;
 - public chatbot: OFF by Owner;
 - online lead form delivery: OFF by Owner;
 - direct e-mail contact: ACTIVE;
-- next bounded work: governance/reproducibility/release-safety reconciliation and final Owner review.
+- Stage 12 post-launch measurement baseline: ACTIVE on `stage12/post-launch-measurement`;
+- independent external HTTP smoke from the assistant environments: UNAVAILABLE because those environments cannot resolve `leadflowai.pl`; no external-live PASS is claimed;
+- initial public-search discovery baseline immediately after release: no indexed `site:leadflowai.pl` results returned for the checked queries; this is a baseline, not a failure;
+- next bounded work: post-launch search/indexation, conversion and performance measurement without activating disabled runtime features.
