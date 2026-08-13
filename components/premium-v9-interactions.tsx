@@ -109,10 +109,10 @@ export function PremiumHeroV9() {
     const rect = event.currentTarget.getBoundingClientRect();
     const x = (event.clientX - rect.left) / rect.width - 0.5;
     const y = (event.clientY - rect.top) / rect.height - 0.5;
-    scene.style.setProperty("--v9-hero-rx", `${-y * 6}deg`);
-    scene.style.setProperty("--v9-hero-ry", `${x * 8}deg`);
-    scene.style.setProperty("--v9-hero-x", `${50 + x * 18}%`);
-    scene.style.setProperty("--v9-hero-y", `${45 + y * 16}%`);
+    scene.style.setProperty("--v9-hero-rx", `${-y * 5}deg`);
+    scene.style.setProperty("--v9-hero-ry", `${x * 7}deg`);
+    scene.style.setProperty("--v9-hero-x", `${50 + x * 14}%`);
+    scene.style.setProperty("--v9-hero-y", `${45 + y * 12}%`);
   };
 
   const reset = () => {
@@ -123,13 +123,13 @@ export function PremiumHeroV9() {
 
   return (
     <div
-      className="premium-hero-scene-v9"
+      className="premium-hero-scene-v9 hero-product-scene-v13"
       ref={sceneRef}
       onPointerMove={onMove}
       onPointerLeave={reset}
       data-cursor="PORUSZ"
       role="img"
-      aria-label="Interaktywna kompozycja systemu LeadFlowAI"
+      aria-label="Interaktywna wizualizacja strony internetowej LeadFlowAI na komputerze i telefonie"
     >
       <div className="hero-orb-v9" />
       <div className="hero-plane-v9 hero-plane-a-v9">
@@ -144,6 +144,40 @@ export function PremiumHeroV9() {
         <span>INTELIGENCJA</span>
         <strong>AI</strong>
       </div>
+
+      <div className="hero-browser-v13" aria-hidden="true">
+        <div className="hero-browser-toolbar-v13">
+          <span><i /><i /><i /></span>
+          <b>leadflowai.pl</b>
+          <em>HTTPS</em>
+        </div>
+        <div className="hero-browser-body-v13">
+          <div className="hero-browser-copy-v13">
+            <small>STRONY WWW / WIDOCZNOŚĆ</small>
+            <strong>Strona, która pracuje.</strong>
+            <span>Oferta → zaufanie → kontakt</span>
+            <i>WYCENA PROJEKTU ↗</i>
+          </div>
+          <div className="hero-browser-art-v13">
+            <span className="hero-browser-orbit-v13" />
+            <span className="hero-browser-core-v13">L/</span>
+            <span className="hero-browser-line-v13 line-a" />
+            <span className="hero-browser-line-v13 line-b" />
+          </div>
+        </div>
+        <div className="hero-browser-signals-v13">
+          <span>SEO</span><span>AEO</span><span>GEO</span><span>CWV</span><span>WCAG</span>
+        </div>
+      </div>
+
+      <div className="hero-mobile-v13" aria-hidden="true">
+        <div className="hero-mobile-speaker-v13" />
+        <small>LEADFLOWAI</small>
+        <strong>WWW</strong>
+        <span>WIDOCZNOŚĆ</span>
+        <i>↗</i>
+      </div>
+
       <svg className="hero-circuit-v9" viewBox="0 0 800 620" aria-hidden="true">
         <path d="M80 390 C210 300 275 455 390 330 S610 210 735 305" />
         <path d="M125 205 C255 285 310 170 430 245 S605 430 720 390" />
@@ -154,10 +188,10 @@ export function PremiumHeroV9() {
         <circle cx="430" cy="245" r="5" />
         <circle cx="720" cy="390" r="5" />
       </svg>
-      <div className="hero-core-v9">
+      <div className="hero-core-v9 hero-core-v13">
         <small>LEADFLOWAI</small>
-        <strong>JEDEN SYSTEM</strong>
-        <span>projekt × kod × widoczność × inteligencja</span>
+        <strong>SYSTEM WWW</strong>
+        <span>projekt × kod × widoczność × konwersja</span>
       </div>
     </div>
   );
