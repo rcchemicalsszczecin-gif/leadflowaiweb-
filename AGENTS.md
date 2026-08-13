@@ -56,8 +56,8 @@ LeadFlowAI must itself demonstrate the quality it sells:
 - maintainability and observability.
 
 ## Design authority
-The current approved direction is recorded in `docs/design/LEADFLOWAI-DESIGN-DIRECTION-V3.md`.
-V3 supersedes V2 where background-system and interaction-effect statements conflict while retaining the V2 dark editorial hierarchy and reduced typography.
+The current approved direction is recorded in `docs/design/LEADFLOWAI-DESIGN-DIRECTION-V4.md`.
+V4 supersedes V3 where motherboard recognizability and whole-site background visibility conflict, while retaining the V3 refractive-water interaction and the V2 dark editorial hierarchy/reduced typography.
 Visual implementation must follow the current Owner-approved design record unless the Owner changes it.
 
 ## Validation
