@@ -64,30 +64,31 @@ export default function HomePage() {
 
           <div className="hero-grid">
             <div className="hero-copy">
-              <p className="eyebrow">LEADFLOWAI / STUDIO DOŚWIADCZEŃ CYFROWYCH</p>
+              <p className="eyebrow">LEADFLOWAI / STRONY WWW · WIDOCZNOŚĆ · SYSTEMY</p>
               <h1 id="hero-title">
                 Strony internetowe
-                <span>zaprojektowane do wzrostu.</span>
+                <span>zaprojektowane do realnej pracy.</span>
               </h1>
               <p className="hero-lead">
-                Projektujemy cyfrowe doświadczenia, które łączą projekt, programowanie, 3D,
-                SEO, AEO, GEO / AI Search, konwersję i inteligentne funkcje w jeden spójny produkt.
+                Projektujemy i budujemy strony WWW, które jasno przedstawiają ofertę, prowadzą do
+                kontaktu i są przygotowane pod SEO, AEO oraz GEO / AI Search. Interakcje, 3D,
+                automatyzacje i AI dodajemy tylko wtedy, gdy wzmacniają konkretny cel biznesowy.
               </p>
 
               <div className="hero-actions">
-                <MagneticLinkV9 href="#contact" className="hero-primary-v9" cursor="ZACZNIJ">
-                  Porozmawiajmy o projekcie <span aria-hidden="true">↗</span>
+                <MagneticLinkV9 href="/kontakt" className="hero-primary-v9" cursor="ZACZNIJ">
+                  Wyceń projekt <span aria-hidden="true">↗</span>
                 </MagneticLinkV9>
-                <MagneticLinkV9 href="/lab" className="hero-secondary-v9" cursor="OTWÓRZ">
-                  Wejdź do Laboratorium <span aria-hidden="true">↗</span>
+                <MagneticLinkV9 href="/realizacje" className="hero-secondary-v9" cursor="OTWÓRZ">
+                  Zobacz realizacje <span aria-hidden="true">↗</span>
                 </MagneticLinkV9>
               </div>
 
               <ul className="capability-line" aria-label="Główne kompetencje">
-                <li>WWW</li>
-                <li>3D</li>
+                <li>STRONY WWW</li>
                 <li>WIDOCZNOŚĆ</li>
-                <li>CRO</li>
+                <li>KONWERSJA</li>
+                <li>INTERAKCJE</li>
                 <li>AI</li>
               </ul>
             </div>
@@ -154,7 +155,7 @@ export default function HomePage() {
             <li><span>01</span><strong>Diagnoza</strong><p>Cel, odbiorca, obecna strona, konkurencja, wymagania i mierzalny rezultat.</p></li>
             <li><span>02</span><strong>Architektura</strong><p>Informacja, UX, architektura wyszukiwania, treść, dane i plan konwersji.</p></li>
             <li><span>03</span><strong>Projekt + wdrożenie</strong><p>Interfejs, komponenty, responsywność, programowanie, ruch, 3D i integracje tam, gdzie mają sens.</p></li>
-            <li><span>04</span><strong>Walidacja</strong><p>Funkcje, mobile, dostępność, SEO/AEO/GEO, wydajność i bezpieczeństwo.</p></li>
+            <li><span>04</span><strong>Walidacja</strong><p>Funkcje, urządzenia mobilne, dostępność, SEO/AEO/GEO, wydajność i bezpieczeństwo.</p></li>
             <li><span>05</span><strong>Publikacja + rozwój</strong><p>Uruchomienie, monitoring, pomiar i rozwój na podstawie rzeczywistych danych.</p></li>
           </ol>
         </div>
@@ -214,7 +215,7 @@ export default function HomePage() {
               {site.email}
               <span aria-hidden="true">↗</span>
             </MagneticLinkV9>
-            <p>WWW · 3D / WEBGL · INTERAKCJE · E-COMMERCE · WIDOCZNOŚĆ · AI · INTEGRACJE</p>
+            <p>WWW · 3D / WEBGL · INTERAKCJE · SPRZEDAŻ INTERNETOWA · WIDOCZNOŚĆ · AI · INTEGRACJE</p>
           </div>
         </div>
 
