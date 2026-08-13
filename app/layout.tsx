@@ -23,6 +23,7 @@ import "./responsive-performance-v10.css";
 import "./runtime-performance-v10.css";
 import "./v13-visual-authority.css";
 import "./v13-accessibility.css";
+import "./v13-search-education.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
