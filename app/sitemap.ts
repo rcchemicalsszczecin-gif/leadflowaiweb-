@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "uslugi",
     "kontakt",
     "realizacje",
+    "o-nas",
     "wiedza",
     "lab",
     ...coreServiceLinks.map((item) => item.slug),
