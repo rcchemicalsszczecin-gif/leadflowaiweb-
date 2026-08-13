@@ -13,9 +13,9 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 
 export const metadata: Metadata = {
-  title: "Laboratorium — 3D, WebGL, motion i interaktywne WWW",
+  title: "Laboratorium — 3D, WebGL, ruch i interaktywne WWW",
   description:
-    "Laboratorium LeadFlowAI: działające w przeglądarce demonstracje 3D, interakcji, narracji przewijanej, UI, redesignu i architektury doświadczenia.",
+    "Laboratorium LeadFlowAI: działające w przeglądarce demonstracje 3D, interakcji, narracji przewijanej, UI, przebudowy stron i architektury doświadczenia.",
   alternates: { canonical: "/lab" },
 };
 
