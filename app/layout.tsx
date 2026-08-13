@@ -22,6 +22,7 @@ import "./premium-calibration-v9-2.css";
 import "./responsive-performance-v10.css";
 import "./runtime-performance-v10.css";
 import "./v13-visual-authority.css";
+import "./v13-accessibility.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
