@@ -59,7 +59,7 @@ for (const visual of ["stage-ambient-plane-v92", "search-depth-ring-v92", "conve
   if (!journey.includes(visual) || !css.includes(`.${visual}`)) fail(`missing strengthened stage depth visual ${visual}`);
 }
 if (!css.includes("premium-stage-v92::before") || !css.includes("background-size: 121% auto")) fail("dynamic stage crop/active zoom missing");
-if (!home.includes("ManifestSceneV92") || !css.includes(".manifest-scene-v92") || !enhancements.includes("INTELLIGENCE.")) fail("dark-void typography manifest missing");
+if (!home.includes("ManifestSceneV92") || !css.includes(".manifest-scene-v92") || !enhancements.includes("INTELIGENCJA.")) fail("dark-void typography manifest missing");
 if (!story.includes("capability-live-stage-v92") || !css.includes(".what-build-v92") || !css.includes('data-mode="3D"') || !story.includes("CO BUDUJEMY")) fail("full capability scene missing");
 
 if (!journey.includes("stage-transition-v92") || !css.includes("v92-transition-flow")) fail("connected stage transition grammar missing");
@@ -68,7 +68,7 @@ for (const reveal of ["rise", "depth", "wipe", "mask"]) {
 }
 if (!enhancements.includes("experience-rail-v92") || !css.includes(".experience-rail-v92")) fail("sticky progress rail missing");
 if (!header.includes("nav-preview-v92") || !css.includes(".nav-preview-v92")) fail("cinematic navigation previews missing");
-if (!home.includes("MagneticLinkV9") || !enhancements.includes('data-cursor="DRAG"') || !story.includes('data-cursor="ODKRYJ"')) fail("selective micro-interaction contract missing");
+if (!home.includes("MagneticLinkV9") || !enhancements.includes('data-cursor="PRZESUŃ"') || !story.includes('data-cursor="ODKRYJ"')) fail("selective micro-interaction contract missing");
 if (!css.includes("--v92-reveal: 820ms") || !css.includes("--v92-hover: 190ms") || !css.includes("17s ease-in-out")) fail("premium motion timing calibration missing");
 
 if (!enhancements.includes("core-object-v92") || !css.includes("transform-style: preserve-3d") || !css.includes("core-face-front-v92")) fail("browser-native CSS 3D centerpiece missing");
@@ -91,5 +91,5 @@ if (!direction.includes("Stage A — Layout Calibration") || !direction.includes
 if (!decision.includes("implement all 20 approved visual improvements") || !agents.includes("PREMIUM-CALIBRATION-V9-2")) fail("V9.2 governance authority incomplete");
 
 console.log(
-  "DESIGN_V9_2_CONTRACT_PASS improvements=20 canvas=WIDE clipping=SAFE hero=REBALANCED density=CALIBRATED contrast=PASS viewports=5 stages=6 depth=PASS crop=DYNAMIC manifest=VOID what-we-build=LIVE transitions=CONNECTED reveals=4 progress-rail=PASS nav-preview=PASS micro-interactions=SELECTIVE timing=PREMIUM 3d-core=BROWSER_NATIVE closing=CINEMATIC reduced-motion=PASS v5-water=FROZEN v7-lab=FROZEN v9-liquid=FROZEN",
+  "DESIGN_V9_2_CONTRACT_PASS improvements=20 canvas=WIDE clipping=SAFE hero=REBALANCED density=CALIBRATED contrast=PASS viewports=5 stages=6 depth=PASS crop=DYNAMIC manifest=VOID what-we-build=LIVE transitions=CONNECTED reveals=4 progress-rail=PASS nav-preview=PASS micro-interactions=SELECTIVE timing=PREMIUM 3d-core=BROWSER_NATIVE closing=CINEMATIC reduced-motion=PASS v5-water=FROZEN v7-lab=FROZEN v9-liquid=FROZEN language=PL",
 );
