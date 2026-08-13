@@ -161,7 +161,9 @@ export function SystemAssembly() {
       },
       { rootMargin: "-32% 0px -45%", threshold: 0.1 },
     );
-    nodes.forEach((node) => observer.observe(node));
+    nodes.forEach((node) => {
+      observer.observe(node);
+    });
     return () => observer.disconnect();
   }, []);
 
