@@ -1,12 +1,14 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { JsonLd } from "@/components/json-ld";
+import { WaterSurface } from "@/components/water-surface";
 import { site } from "@/lib/site";
 import { getGlobalStructuredData } from "@/lib/structured-data";
 import "./globals.css";
 import "./services.css";
 import "./contact.css";
 import "./knowledge.css";
+import "./precision-water.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -36,10 +38,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f3f1eb" },
-    { media: "(prefers-color-scheme: dark)", color: "#080b0f" },
-  ],
+  themeColor: "#080b0f",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
@@ -47,6 +46,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
     <html lang="pl">
       <body>
         <JsonLd data={getGlobalStructuredData()} />
+        <WaterSurface />
         {children}
       </body>
     </html>
