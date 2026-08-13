@@ -12,11 +12,12 @@ const read = (path) => {
 
 const contactPage = read("app/kontakt/page.tsx");
 const contactPanel = read("components/lead-form.tsx");
+const briefBuilder = read("components/contact-brief-builder-v13.tsx");
 const sitemap = read("app/sitemap.ts");
 const header = read("components/site-header.tsx");
 const site = read("lib/site.ts");
 
-if (!contactPage.includes("LeadForm") || !contactPage.includes("metadata")) {
+if (!contactPage.includes("LeadForm") || !contactPage.includes("ContactBriefBuilderV13") || !contactPage.includes("metadata")) {
   fail("contact route contract incomplete");
 }
 if (!contactPanel.includes("Formularz online jest obecnie wyłączony")) {
@@ -31,9 +32,15 @@ if (contactPanel.includes("fetch(") || contactPanel.includes("apiUrl(")) {
 if (contactPanel.includes("<form") || contactPanel.includes('type="submit"')) {
   fail("disabled contact UI must not expose a non-functional submit form");
 }
+for (const forbidden of ["fetch(", "XMLHttpRequest", "localStorage", "sessionStorage", "document.cookie", "<form", 'type="submit"']) {
+  if (briefBuilder.includes(forbidden)) fail(`frontend-only brief builder crossed lead boundary: ${forbidden}`);
+}
+if (!briefBuilder.includes('mailto:${site.email}') || !briefBuilder.includes("strona niczego nie zapisuje ani nie wysyła samodzielnie")) {
+  fail("frontend-only brief builder mailto/privacy boundary missing");
+}
 if (!sitemap.includes('"kontakt"')) fail("contact route missing from sitemap");
 if (!header.includes('href="/kontakt"')) fail("primary header CTA does not point to contact route");
 if (!site.includes('email: "kontakt@leadflowai.pl"')) fail("public LeadFlowAI contact e-mail mismatch");
 if (existsSync("app/api/leads/route.ts")) fail("dynamic lead Route Handler must not remain in GitHub Pages frontend");
 
-console.log("LEAD_CONTRACT_PASS contact=PASS delivery=OFF_BY_OWNER direct-email=PASS identity=PASS");
+console.log("LEAD_CONTRACT_PASS contact=PASS delivery=OFF_BY_OWNER direct-email=PASS brief=FRONTEND_ONLY_NO_STORAGE identity=PASS");
