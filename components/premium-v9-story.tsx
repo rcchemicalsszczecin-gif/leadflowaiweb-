@@ -3,18 +3,18 @@
 import { useEffect, useRef, useState } from "react";
 
 const buildModes = [
-  { key: "WEB", note: "Architektura, design i development", href: "/strony-internetowe" },
-  { key: "3D", note: "WebGL, produkt i przestrzeń", href: "/strony-3d-webgl" },
-  { key: "SEARCH", note: "SEO, AEO i GEO / AI Search", href: "/seo-aeo-geo" },
-  { key: "AI", note: "Chatboty i inteligentne funkcje", href: "/chatboty-ai" },
-  { key: "COMMERCE", note: "Sklepy i ścieżki zakupu", href: "/sklepy-internetowe" },
+  { key: "WEB", label: "STRONY WWW", note: "Architektura, projekt i wdrożenie", href: "/strony-internetowe" },
+  { key: "3D", label: "3D", note: "WebGL, produkt i przestrzeń", href: "/strony-3d-webgl" },
+  { key: "SEARCH", label: "WIDOCZNOŚĆ", note: "SEO, AEO i GEO / AI Search", href: "/seo-aeo-geo" },
+  { key: "AI", label: "AI", note: "Chatboty i inteligentne funkcje", href: "/chatboty-ai" },
+  { key: "COMMERCE", label: "SKLEPY", note: "Sklepy i ścieżki zakupu", href: "/sklepy-internetowe" },
 ] as const;
 
 const storyStates = [
-  ["01", "EXPERIENCE", "Najpierw człowiek rozumie ofertę i wie, co zrobić dalej."],
-  ["02", "DISCOVER", "Semantyka, SEO, AEO i GEO powstają razem z architekturą."],
-  ["03", "CONVERT", "Treść, CTA i pomiar tworzą spójną ścieżkę decyzji."],
-  ["04", "INTELLIGENCE", "AI i integracje pojawiają się dopiero tam, gdzie mają konkretną pracę."],
+  ["01", "DOŚWIADCZENIE", "Najpierw człowiek rozumie ofertę i wie, co zrobić dalej."],
+  ["02", "WIDOCZNOŚĆ", "Semantyka, SEO, AEO i GEO powstają razem z architekturą."],
+  ["03", "KONWERSJA", "Treść, CTA i pomiar tworzą spójną ścieżkę decyzji."],
+  ["04", "INTELIGENCJA", "AI i integracje pojawiają się dopiero tam, gdzie mają konkretną pracę."],
 ] as const;
 
 export function WhatWeBuildV9() {
@@ -30,7 +30,7 @@ export function WhatWeBuildV9() {
     >
       <div className="what-build-head-v9">
         <p>WHAT WE BUILD</p>
-        <h2 id="what-build-title">Nie jeden typ strony.<br /><span>Jedno studio doświadczeń.</span></h2>
+        <h2 id="what-build-title">Nie jeden typ strony.<br /><span>Jeden spójny system WWW.</span></h2>
       </div>
       <div className="what-build-layout-v9">
         <nav aria-label="Obszary projektowe LeadFlowAI">
@@ -41,10 +41,10 @@ export function WhatWeBuildV9() {
               className={active === item.key ? "is-active" : ""}
               onMouseEnter={() => setActive(item.key)}
               onFocus={() => setActive(item.key)}
-              data-cursor="VIEW"
+              data-cursor="ZOBACZ"
             >
               <small>0{index + 1}</small>
-              <strong>{item.key}</strong>
+              <strong>{item.label}</strong>
               <span>{item.note}</span>
             </a>
           ))}
@@ -54,13 +54,13 @@ export function WhatWeBuildV9() {
           data-mode={active}
           data-cursor="EXPLORE"
         >
-          <span className="what-build-ghost-v9">{active}</span>
+          <span className="what-build-ghost-v9">{current.label}</span>
           <div className="what-build-object-v9"><i /><i /><i /><b /></div>
           <div className="capability-live-stage-v92" aria-hidden="true">
             <i className="capability-plane-v92 capability-plane-a-v92" />
             <i className="capability-plane-v92 capability-plane-b-v92" />
             <i className="capability-plane-v92 capability-plane-c-v92" />
-            <b className="capability-core-v92">{active}</b>
+            <b className="capability-core-v92">{current.label}</b>
             <span className="capability-orbit-v92 capability-orbit-a-v92" />
             <span className="capability-orbit-v92 capability-orbit-b-v92" />
           </div>
@@ -100,8 +100,8 @@ export function ScrollStoryV9() {
     >
       <div className="story-sticky-v9">
         <div className="story-copy-v9">
-          <p>ONE SYSTEM / FOUR STATES</p>
-          <h2 id="story-title">Strona dojrzewa<br /><span>w trakcie scrolla.</span></h2>
+          <p>JEDEN SYSTEM / CZTERY WARSTWY</p>
+          <h2 id="story-title">Strona dojrzewa<br /><span>w trakcie przewijania.</span></h2>
           <strong>{storyStates[active][1]}</strong>
           <p>{storyStates[active][2]}</p>
         </div>
@@ -111,7 +111,7 @@ export function ScrollStoryV9() {
           <div className="story-ring-v9 story-ring-b-v9" />
           <div className="story-beam-v9" />
           <div className="story-depth-plane-v92" />
-          <span>WWW</span><span>SEARCH</span><span>CRO</span><span>AI</span>
+          <span>WWW</span><span>WIDOCZNOŚĆ</span><span>CRO</span><span>AI</span>
         </div>
       </div>
       <div className="story-steps-v9">
@@ -156,15 +156,15 @@ export function LiquidCircuitV9() {
       <div className="liquid-copy-v9">
         <p>SIGNATURE EXPERIENCE</p>
         <h2 id="liquid-title">LeadFlow<br /><span>Liquid Circuit.</span></h2>
-        <p>Woda, hardware i interfejs reagują jak jeden system. Ruch wzbudza powierzchnię, a impuls budzi pobliskie ścieżki danych.</p>
-        <a href="/lab" data-cursor="OPEN">Otwórz Live Lab <span aria-hidden="true">↗</span></a>
+        <p>Woda, warstwa sprzętowa i interfejs reagują jak jeden system. Ruch wzbudza powierzchnię, a impuls budzi pobliskie ścieżki danych.</p>
+        <a href="/lab" data-cursor="OTWÓRZ">Zobacz możliwości <span aria-hidden="true">↗</span></a>
       </div>
       <div
         className="liquid-field-v9"
         ref={rootRef}
         onPointerMove={onMove}
         onPointerDown={onDown}
-        data-cursor="TOUCH"
+        data-cursor="DOTKNIJ"
         role="img"
         aria-label="Interaktywna demonstracja LeadFlow Liquid Circuit"
       >
@@ -176,7 +176,7 @@ export function LiquidCircuitV9() {
         </svg>
         <div className="liquid-nodes-v9"><i /><i /><i /><i /><i /><i /></div>
         <div key={impact.id} className="liquid-impact-v9" style={{ left: `${impact.x}%`, top: `${impact.y}%` }}><i /><i /><i /></div>
-        <div className="liquid-readout-v9"><span>WATER</span><span>HARDWARE</span><span>DATA</span></div>
+        <div className="liquid-readout-v9"><span>WODA</span><span>SPRZĘT</span><span>DANE</span></div>
       </div>
     </section>
   );
@@ -184,9 +184,9 @@ export function LiquidCircuitV9() {
 
 export function PremiumProofV9() {
   const proofs = [
-    { code: "01", title: "Liquid Hardware", note: "Interaktywna woda + real hardware background", href: "/lab" },
-    { code: "02", title: "3D Core", note: "Browser-native przestrzeń i pointer interaction", href: "/strony-3d-webgl" },
-    { code: "03", title: "Responsive Prototype", note: "Live states desktop/mobile bez filmu", href: "/lab" },
+    { code: "01", title: "Liquid Hardware", note: "Interaktywna woda i własna warstwa sprzętowa", href: "/lab" },
+    { code: "02", title: "Rdzeń 3D", note: "Przestrzeń 3D działająca bezpośrednio w przeglądarce", href: "/strony-3d-webgl" },
+    { code: "03", title: "Prototyp responsywny", note: "Rzeczywiste stany desktop/mobile bez filmu", href: "/lab" },
   ] as const;
 
   return (
@@ -203,8 +203,8 @@ export function PremiumProofV9() {
       </div>
       <div className="premium-proof-grid-v9">
         {proofs.map((proof, index) => (
-          <a href={proof.href} key={proof.title} className={`proof-card-v9 proof-card-${index + 1}-v9`} data-cursor="OPEN">
-            <span>{proof.code} / LIVE DEMO</span>
+          <a href={proof.href} key={proof.title} className={`proof-card-v9 proof-card-${index + 1}-v9`} data-cursor="OTWÓRZ">
+            <span>{proof.code} / DEMO NA ŻYWO</span>
             <div className="proof-art-v9"><i /><i /><i /></div>
             <h3>{proof.title}</h3>
             <p>{proof.note}</p>
