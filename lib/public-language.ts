@@ -59,6 +59,15 @@ const PUBLIC_LABELS: Record<string, string> = {
   evidence: "Dowody",
   truth: "Weryfikacja faktów",
   services: "Usługi",
+  "web app": "Aplikacja webowa",
+  workflow: "Proces",
+  observability: "Obserwowalność",
+  frontend: "Warstwa frontowa",
+  backend: "Zaplecze",
+  environments: "Środowiska",
+  artifact: "Artefakt",
+  pipeline: "Proces wdrożeniowy",
+  "static hosting": "Hosting statyczny",
 };
 
 export function publicLabel(value: string) {
