@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { experienceServiceLinks } from "@/lib/experience-services";
 import { expandedServiceLinks } from "@/lib/expanded-services";
-import { knowledgeArticles } from "@/lib/knowledge";
+import { knowledgeArticles } from "@/lib/knowledge-registry";
 import { searchServiceLinks } from "@/lib/search-pages";
 import { coreServiceLinks } from "@/lib/services";
 import { site } from "@/lib/site";
