@@ -14,6 +14,7 @@ const layout = read("app/layout.tsx");
 const home = read("app/page.tsx");
 const v8Component = read("components/premium-composition-v8.tsx");
 const v8Css = read("app/premium-composition-v8.css");
+const v8Themes = read("app/premium-composition-v8-themes.css");
 const v7Interactive = read("components/interactive-experience.tsx");
 const v7Css = read("app/interactive-v7.css");
 const water = read("components/water-surface.tsx");
@@ -22,7 +23,9 @@ const v6Css = read("app/content-frames-v6.css");
 const direction = read("docs/design/LEADFLOWAI-PREMIUM-COMPOSITION-V8.md");
 const decisions = read("docs/governance/WEBSITE-OWNER-DECISIONS.md");
 
-if (!layout.includes('import "./premium-composition-v8.css"')) fail("V8 stylesheet not mounted");
+if (!layout.includes('import "./premium-composition-v8.css"') || !layout.includes('import "./premium-composition-v8-themes.css"')) {
+  fail("V8 stylesheets not mounted");
+}
 if (!home.includes("HeroSystemV8") || !home.includes("SystemSpineV8") || !home.includes("StageVisualV8")) {
   fail("V8 homepage composition components are not mounted");
 }
@@ -45,7 +48,8 @@ for (const token of [
   "connect-live-v8",
   "care-live-v8",
 ]) {
-  if (!v8Css.includes(`.${token}`)) fail(`missing V8 visual styling ${token}`);
+  if (!v8Component.includes(token)) fail(`missing V8 visual markup ${token}`);
+  if (!v8Themes.includes(`.${token}`)) fail(`missing distinct V8 visual theme ${token}`);
 }
 
 if (!v8Component.includes("IntersectionObserver") || v8Component.includes('addEventListener("scroll"')) {
@@ -66,7 +70,7 @@ if (!v8Css.includes("min-height: clamp(22rem, 31vw, 28rem)")) {
 if (!v8Css.includes("prefers-reduced-motion") || !v8Css.includes("@media (max-width: 760px)")) {
   fail("V8 reduced-motion/mobile fallback missing");
 }
-if (v8Css.includes("backdrop-filter: blur") || v8Css.includes("filter: blur")) {
+if (v8Css.includes("backdrop-filter: blur") || v8Css.includes("filter: blur") || v8Themes.includes("filter: blur")) {
   fail("V8 introduced expensive bulk blur");
 }
 
