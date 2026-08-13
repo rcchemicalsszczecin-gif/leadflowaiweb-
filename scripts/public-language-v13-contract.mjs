@@ -19,6 +19,11 @@ const publicSources = [
   "app/wiedza/page.tsx",
   "app/wiedza/[slug]/page.tsx",
   "app/lab/page.tsx",
+  "app/local-seo/page.tsx",
+  "components/audience-paths-v13.tsx",
+  "components/contact-brief-builder-v13.tsx",
+  "components/offer-levels-v13.tsx",
+  "components/search-visibility-explainer-v13.tsx",
   "components/premium-v9-story.tsx",
   "components/premium-v9-journey.tsx",
   "components/premium-v9-2-enhancements.tsx",
@@ -60,6 +65,22 @@ for (const path of publicSources) {
   }
 }
 
+const glossary = read("docs/quality/V13-10-PUBLIC-GLOSSARY.md");
+for (const required of [
+  "STATUS: ACTIVE PUBLIC LANGUAGE SOURCE OF TRUTH",
+  "LeadFlowAI",
+  "Tervyxa Systems sp. z o.o.",
+  "PROJEKT I BUDOWA",
+  "WIDOCZNOŚĆ",
+  "KONWERSJA",
+  "INTELIGENCJA",
+  "INTEGRACJE",
+  "OPIEKA",
+  "Terminy techniczne pozostawiane bez sztucznego tłumaczenia",
+]) {
+  if (!glossary.includes(required)) fail(`public glossary missing: ${required}`);
+}
+
 const home = read("app/page.tsx");
 for (const required of [
   "LEADFLOWAI / STRONY WWW · WIDOCZNOŚĆ · SYSTEMY",
@@ -84,8 +105,8 @@ for (const required of ["INTELIGENCJA.", 'data-cursor="PRZESUŃ"']) {
 }
 
 const about = read("app/o-nas/page.tsx");
-for (const required of ["O LeadFlowAI", "Tervyxa Systems sp. z o.o.", "Dowód przed deklaracją"]) {
-  if (!about.includes(required)) fail(`about page missing trust/public-truth label: ${required}`);
+for (const required of ["O LeadFlowAI", "Tervyxa Systems sp. z o.o.", "Dowód przed deklaracją", "METODOLOGIA LEADFLOW"]) {
+  if (!about.includes(required)) fail(`about page missing trust/methodology label: ${required}`);
 }
 
-console.log(`PUBLIC_LANGUAGE_V13_PASS sources=${publicSources.length} retired=${retiredPublicLiterals.length} homepage=BUYER_FIRST_PL premium=PL v92=PL trust=PL`);
+console.log(`PUBLIC_LANGUAGE_V13_PASS sources=${publicSources.length} retired=${retiredPublicLiterals.length} glossary=AUTHORITATIVE homepage=BUYER_FIRST_PL premium=PL v92=PL trust=PL`);
