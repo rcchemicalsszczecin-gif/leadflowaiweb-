@@ -12,7 +12,11 @@ const read = (path) => {
 
 const layout = read("app/layout.tsx");
 const home = read("app/page.tsx");
-const component = read("components/premium-art-direction-v9.tsx");
+const entrypoint = read("components/premium-art-direction-v9.tsx");
+const interactions = read("components/premium-v9-interactions.tsx");
+const journey = read("components/premium-v9-journey.tsx");
+const story = read("components/premium-v9-story.tsx");
+const component = `${interactions}\n${journey}\n${story}`;
 const css = read("app/premium-art-direction-v9.css");
 const polish = read("app/premium-art-direction-v9-polish.css");
 const water = read("components/water-surface.tsx");
@@ -50,15 +54,16 @@ for (const name of [
   "PremiumProofV9",
 ]) {
   if (!component.includes(`function ${name}`)) fail(`missing V9 component ${name}`);
+  if (!entrypoint.includes(name)) fail(`V9 entrypoint does not export ${name}`);
   if (!home.includes(`<${name}`) && name !== "MagneticLinkV9") fail(`homepage does not mount ${name}`);
 }
 if (!home.includes("<MagneticLinkV9")) fail("magnetic CTA not mounted");
 
 for (const stage of ["CREATE", "DISCOVER", "CONVERT", "INTELLIGENCE", "CONNECT", "CARE"]) {
-  if (!component.includes(`case "${stage}"`)) fail(`missing cinematic V9 stage ${stage}`);
+  if (!journey.includes(`case "${stage}"`)) fail(`missing cinematic V9 stage ${stage}`);
 }
 for (const visual of ["floating-site-v9", "search-orbit-v9", "journey-line-v9", "ai-core-v9", "connect-core-v9", "care-rings-v9"]) {
-  if (!component.includes(visual) || !css.includes(`.${visual}`)) fail(`missing V9 visual system ${visual}`);
+  if (!journey.includes(visual) || !css.includes(`.${visual}`)) fail(`missing V9 visual system ${visual}`);
 }
 
 if (!component.includes("IntersectionObserver") || component.includes('addEventListener("scroll"')) {
@@ -67,16 +72,16 @@ if (!component.includes("IntersectionObserver") || component.includes('addEventL
 if (!component.includes("data-cursor") || !css.includes(".premium-cursor-v9") || !css.includes("[data-cursor]")) {
   fail("context cursor contract missing");
 }
-if (!component.includes("onPointerMove={onMove}") || !css.includes(".magnetic-link-v9")) {
+if (!interactions.includes("onPointerMove={onMove}") || !css.includes(".magnetic-link-v9")) {
   fail("magnetic/pointer interaction contract missing");
 }
-if (!component.includes("LeadFlow") || !component.includes("LiquidCircuitV9") || !css.includes(".liquid-signature-v9")) {
+if (!story.includes("LeadFlow") || !story.includes("LiquidCircuitV9") || !css.includes(".liquid-signature-v9")) {
   fail("LeadFlow Liquid Circuit signature experience missing");
 }
-if (!component.includes("FIRST-PARTY PROOF") || !component.includes("demonstracje LeadFlowAI")) {
+if (!story.includes("FIRST-PARTY PROOF") || !story.includes("demonstracje LeadFlowAI")) {
   fail("first-party proof/public-truth framing missing");
 }
-if (!component.includes("WHAT WE BUILD") || !component.includes("ScrollStoryV9")) {
+if (!story.includes("WHAT WE BUILD") || !story.includes("ScrollStoryV9")) {
   fail("cinematic capability/scroll storytelling missing");
 }
 
@@ -120,5 +125,5 @@ if (!decisions.includes("Premium Art Direction V9") || !agents.includes("PREMIUM
 }
 
 console.log(
-  "DESIGN_V9_CONTRACT_PASS editorial-hero=PASS frames=REDUCED typography=PASS cinematic-stages=6 asymmetry=PASS fullscreen=PASS art-directed-photo=PASS depth=PASS transitions=PASS scroll-story=PASS context-cursor=PASS magnetic-cta=PASS what-we-build=PASS proof=REAL_ONLY material-system=3 green=RESTRAINED ambient-light=PASS liquid-circuit=PASS mobile=PASS reduced-motion=PASS v5-water=FROZEN v7-lab=FROZEN",
+  "DESIGN_V9_CONTRACT_PASS editorial-hero=PASS frames=REDUCED typography=PASS cinematic-stages=6 asymmetry=PASS fullscreen=PASS art-directed-photo=PASS depth=PASS transitions=PASS scroll-story=PASS context-cursor=PASS magnetic-cta=PASS what-we-build=PASS proof=REAL_ONLY material-system=3 green=RESTRAINED ambient-light=PASS liquid-circuit=PASS mobile=PASS reduced-motion=PASS modular=PASS v5-water=FROZEN v7-lab=FROZEN",
 );
