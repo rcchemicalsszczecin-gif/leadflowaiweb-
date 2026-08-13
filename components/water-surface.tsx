@@ -209,7 +209,7 @@ export function WaterSurface() {
         <div className="ambient-node ambient-node-b" />
         <div className="ambient-node ambient-node-c" />
       </div>
-      <canvas ref={canvasRef} className="water-surface" role="presentation" />
+      <canvas ref={canvasRef} className="water-surface" />
     </>
   );
 }
