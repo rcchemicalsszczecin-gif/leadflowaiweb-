@@ -14,6 +14,7 @@ on:
       - design/premium-art-direction-v9
       - design/premium-calibration-v9-2
       - qa/responsive-performance-v10
+      - content/full-offer-v11
   pull_request:
     branches:
       - main
@@ -44,7 +45,7 @@ jobs:
           node-version: 22
 
       - name: Install dependencies
-        run: npm install --no-audit --no-fund
+        run: npm ci --no-audit --no-fund
 
       - name: Full repository verification
         run: npm run verify
@@ -66,27 +67,49 @@ jobs:
           test ! -e out/api/health
           test -f out/kontakt/index.html
           test -f out/lab/index.html
-          test -f out/strony-3d-webgl/index.html
-          test -f out/interaktywne-strony/index.html
-          test -f out/motion-design/index.html
-          test -f out/chatboty-ai/index.html
+          test -f out/uslugi/index.html
+
+          for route in \
+            ux-ui-design \
+            aplikacje-webowe \
+            cms-headless \
+            pwa \
+            strony-wielojezyczne \
+            copywriting-content \
+            cro-optymalizacja-konwersji \
+            analityka-webowa \
+            formularze-lead-generation \
+            integracje-ai \
+            integracje-api \
+            automatyzacje-www \
+            core-web-vitals \
+            dostepnosc-wcag \
+            bezpieczenstwo-stron \
+            hosting-deploy \
+            opieka-utrzymanie-stron \
+            rag-bazy-wiedzy \
+            agenci-ai-www \
+            monitoring-www; do
+            test -f "out/${route}/index.html"
+          done
+
+          test -f out/wiedza/ai-search-google-co-robic-2026/index.html
+          test -f out/wiedza/wcag-22-co-sprawdzic-na-stronie/index.html
+          test -f out/wiedza/rag-na-stronie-jak-zaprojektowac/index.html
           grep -q 'kontakt@leadflowai.pl' out/kontakt/index.html
           grep -q 'Formularz online jest obecnie wyłączony' out/kontakt/index.html
-          grep -q 'Live Lab' out/lab/index.html
-          grep -q '3D' out/strony-3d-webgl/index.html
+          grep -q 'Pełna oferta' out/uslugi/index.html
+          grep -q 'RAG' out/uslugi/index.html
+          grep -q 'Monitoring' out/uslugi/index.html
+          grep -q 'Źródła i standardy' out/wiedza/ai-search-google-co-robic-2026/index.html
           grep -q 'DIGITAL EXPERIENCE STUDIO' out/index.html
-          grep -q 'STUDIO PRINCIPLE' out/index.html
-          grep -q 'BROWSER-NATIVE 3D' out/index.html
-          grep -q 'ONE CONNECTED EXPERIENCE' out/index.html
-          grep -q 'FIRST-PARTY PROOF' out/index.html
           grep -q 'Liquid Circuit' out/index.html
           grep -q 'Nawigacja mobilna' out/index.html
-          grep -q 'Otwórz nawigację' out/index.html
           if grep -Rqs 'api.leadflowai.pl/leads' out; then
             echo "Disabled lead endpoint leaked into static artifact"
             exit 1
           fi
-          echo "STATIC_ARTIFACT_PASS html=PASS v9-2-calibration=PASS responsive-v10=PASS performance-budget=PASS mobile-nav=PASS 3d-core=PASS liquid-circuit=PASS proof=REAL_ONLY lab=PASS experience-routes=4 contact-direct-email=PASS lead-api=ABSENT"
+          echo "STATIC_ARTIFACT_PASS html=PASS full-offer-v11=PASS expanded-services=20 knowledge=20plus sources=PASS responsive-v10=PASS proof=REAL_ONLY contact-direct-email=PASS lead-api=ABSENT"
 
       - name: Static route smoke
         shell: bash
@@ -121,21 +144,48 @@ jobs:
             /motion-design/ \
             /chatboty-ai/ \
             /lab/ \
+            /seo/ \
+            /aeo/ \
+            /geo-ai-search/ \
             /seo-aeo-geo/ \
+            /local-seo/ \
+            /uslugi/ \
+            /ux-ui-design/ \
+            /aplikacje-webowe/ \
+            /cms-headless/ \
+            /pwa/ \
+            /strony-wielojezyczne/ \
+            /copywriting-content/ \
+            /cro-optymalizacja-konwersji/ \
+            /analityka-webowa/ \
+            /formularze-lead-generation/ \
+            /integracje-ai/ \
+            /integracje-api/ \
+            /automatyzacje-www/ \
+            /core-web-vitals/ \
+            /dostepnosc-wcag/ \
+            /bezpieczenstwo-stron/ \
+            /hosting-deploy/ \
+            /opieka-utrzymanie-stron/ \
+            /rag-bazy-wiedzy/ \
+            /agenci-ai-www/ \
+            /monitoring-www/ \
             /realizacje/ \
             /wiedza/ \
-            /wiedza/jak-zaplanowac-strone-firmowa/; do
+            /wiedza/jak-zaplanowac-strone-firmowa/ \
+            /wiedza/ai-search-google-co-robic-2026/ \
+            /wiedza/rag-na-stronie-jak-zaprojektowac/; do
             curl -fsS "http://127.0.0.1:3000${route}" >/dev/null
           done
 
           curl -fsS http://127.0.0.1:3000/sitemap.xml | grep -q 'leadflowai.pl'
-          curl -fsS http://127.0.0.1:3000/sitemap.xml | grep -q 'strony-3d-webgl'
-          curl -fsS http://127.0.0.1:3000/sitemap.xml | grep -q '/lab'
+          curl -fsS http://127.0.0.1:3000/sitemap.xml | grep -q 'analityka-webowa'
+          curl -fsS http://127.0.0.1:3000/sitemap.xml | grep -q 'rag-bazy-wiedzy'
+          curl -fsS http://127.0.0.1:3000/sitemap.xml | grep -q 'monitoring-www'
+          curl -fsS http://127.0.0.1:3000/sitemap.xml | grep -q 'ai-search-google-co-robic-2026'
           curl -fsS http://127.0.0.1:3000/robots.txt | grep -q 'sitemap.xml'
           grep -q 'kontakt@leadflowai.pl' /tmp/home.html
           grep -q 'DIGITAL EXPERIENCE STUDIO' /tmp/home.html
-          grep -q 'STUDIO PRINCIPLE' /tmp/home.html
-          grep -q 'BROWSER-NATIVE 3D' /tmp/home.html
           grep -q 'Liquid Circuit' /tmp/home.html
           grep -q 'Nawigacja mobilna' /tmp/home.html
-          echo "STATIC_ROUTE_SMOKE_PASS routes=17 sitemap=PASS interactive=PASS v9-2-calibration=PASS responsive-v10=PASS mobile-nav=PASS robots=PASS"
+          echo "STATIC_ROUTE_SMOKE_PASS routes=43 sitemap=PASS full-offer-v11=PASS expanded-services=20 knowledge=20plus responsive-v10=PASS robots=PASS"

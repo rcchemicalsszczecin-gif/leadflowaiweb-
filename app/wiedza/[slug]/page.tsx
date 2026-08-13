@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/json-ld";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { getKnowledgeArticle, knowledgeArticles } from "@/lib/knowledge";
+import { getKnowledgeArticle, knowledgeArticles } from "@/lib/knowledge-registry";
 import { getArticleStructuredData } from "@/lib/structured-data";
 
 type PageProps = {
@@ -58,8 +58,8 @@ export default async function KnowledgeArticlePage({ params }: PageProps) {
       <article className="section-light knowledge-article-body">
         <div className="page-shell knowledge-article-grid">
           <aside aria-label="Informacja o materiale">
-            <p className="service-index">LEADFLOWAI / KNOWLEDGE</p>
-            <p>Materiał redakcyjny o architekturze i praktykach WWW. Bez fikcyjnych case studies i bez gwarancji wyników.</p>
+            <p className="service-index">LEADFLOWAI / WIEDZA</p>
+            <p>Materiał redakcyjny o architekturze i praktykach WWW. Bez fikcyjnych realizacji i bez gwarancji wyników.</p>
           </aside>
 
           <div className="knowledge-prose">
@@ -75,6 +75,20 @@ export default async function KnowledgeArticlePage({ params }: PageProps) {
               </section>
             ))}
 
+            {article.sources?.length ? (
+              <section className="knowledge-related">
+                <h2>Źródła i standardy</h2>
+                <p>Materiały źródłowe użyte do weryfikacji technicznych twierdzeń w tym artykule.</p>
+                <nav aria-label="Źródła i standardy">
+                  {article.sources.map((source) => (
+                    <a key={source.href} href={source.href} target="_blank" rel="noreferrer">
+                      {source.label}<span aria-hidden="true">↗</span>
+                    </a>
+                  ))}
+                </nav>
+              </section>
+            ) : null}
+
             <section className="knowledge-related">
               <h2>Powiązane strony LeadFlowAI</h2>
               <nav aria-label="Powiązane materiały i usługi">
@@ -89,7 +103,7 @@ export default async function KnowledgeArticlePage({ params }: PageProps) {
 
       <section className="section-dark knowledge-article-footer">
         <div className="page-shell section-pad">
-          <p className="service-index">NEXT / PROJECT</p>
+          <p className="service-index">NASTĘPNY KROK / PROJEKT</p>
           <h2>Potrzebujesz przełożyć tę wiedzę na konkretną stronę?</h2>
           <a className="button button-primary" href="/kontakt">Opisz projekt <span aria-hidden="true">↗</span></a>
         </div>

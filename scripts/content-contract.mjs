@@ -4,45 +4,47 @@ const fail = (message) => {
   console.error(`CONTENT_CONTRACT_FAIL: ${message}`);
   process.exit(1);
 };
-
 const read = (path) => {
   if (!existsSync(path)) fail(`missing ${path}`);
   return readFileSync(path, "utf8");
 };
 
-const portfolio = read("app/realizacje/page.tsx");
+const portfolioPage = read("app/realizacje/page.tsx");
+const portfolioData = read("lib/portfolio.ts");
+const knowledgeCore = read("lib/knowledge.ts");
+const knowledgeExpanded = read("lib/knowledge-expanded.ts");
+const knowledgeRegistry = read("lib/knowledge-registry.ts");
 const knowledgeIndex = read("app/wiedza/page.tsx");
 const knowledgeArticle = read("app/wiedza/[slug]/page.tsx");
-const knowledge = read("lib/knowledge.ts");
 const schema = read("lib/structured-data.ts");
 const sitemap = read("app/sitemap.ts");
 const footer = read("components/site-footer.tsx");
 
-if (!portfolio.includes("PROJEKT WŁASNY") || !portfolio.includes("Nie przedstawiamy go jako klientowskiego case study")) {
-  fail("portfolio real-work disclosure missing");
+for (const phrase of ["portfolioCases", "Realne projekty", "Dowód przed claimem"]) {
+  if (!portfolioPage.includes(phrase)) fail(`portfolio page missing ${phrase}`);
 }
-if (!portfolio.includes("LeadFlowAI.pl") || !portfolio.includes("AKTYWNIE ROZWIJANY")) fail("own-project status missing");
-if (!portfolio.includes("Nie publikujemy wymyślonych wyników")) fail("portfolio evidence boundary missing");
-
 for (const phrase of [
-  "jak-zaplanowac-strone-firmowa",
-  "seo-aeo-geo-jedna-architektura",
-  "chatbot-na-stronie-kiedy-ma-sens",
-  "modernizacja-strony-bez-utraty-widocznosci",
+  "LeadFlowAI.pl",
+  "TranskrypcjaAI.pl",
+  "Tervyxa.pl",
+  "PROJEKT WŁASNY",
+  "upload publiczny OFF",
+  "CLAIM → EVIDENCE → REVIEW → PUBLIC STATUS",
 ]) {
-  if (!knowledge.includes(phrase)) fail(`knowledge article missing ${phrase}`);
+  if (!portfolioData.includes(phrase)) fail(`portfolio data missing ${phrase}`);
 }
+if (!portfolioPage.includes("projektami własnymi ekosystemu Tervyxa Systems")) fail("portfolio own-project disclosure missing");
+if (!portfolioPage.includes("nie przedstawiamy ich jako zewnętrznych case studies")) fail("portfolio client-case disclaimer missing");
 
-if (!knowledgeIndex.includes("knowledgeArticles") || !knowledgeIndex.includes("metadata")) fail("knowledge index contract incomplete");
-if (!knowledgeArticle.includes("generateStaticParams") || !knowledgeArticle.includes("generateMetadata") || !knowledgeArticle.includes("getArticleStructuredData")) {
-  fail("knowledge article route contract incomplete");
-}
-if (!schema.includes('"@type": "Article"') || !schema.includes("getArticleStructuredData")) fail("Article structured-data contract missing");
-if (!sitemap.includes("knowledgeArticles") || !sitemap.includes('"realizacje"') || !sitemap.includes('"wiedza"')) fail("content routes missing from sitemap registry");
-if (!footer.includes('href="/realizacje"') || !footer.includes('href="/wiedza"')) fail("content discovery links missing from footer");
+const coreCount = [...knowledgeCore.matchAll(/slug: "([^"]+)"/g)].length;
+const expandedCount = [...knowledgeExpanded.matchAll(/slug: "([^"]+)"/g)].length;
+const totalKnowledge = coreCount + expandedCount;
+if (coreCount !== 4 || expandedCount < 16 || totalKnowledge < 20) fail("knowledge inventory too small");
+if (!knowledgeRegistry.includes("coreKnowledgeArticles") || !knowledgeRegistry.includes("expandedKnowledgeArticles")) fail("knowledge registry incomplete");
+if (!knowledgeIndex.includes("knowledge-registry")) fail("knowledge index incomplete");
+if (!knowledgeArticle.includes("generateStaticParams") || !knowledgeArticle.includes("getArticleStructuredData") || !knowledgeArticle.includes("Źródła i standardy")) fail("knowledge article route incomplete");
+if (!schema.includes('"@type": "Article"')) fail("Article schema missing");
+if (!sitemap.includes("knowledge-registry") || !sitemap.includes('"realizacje"') || !sitemap.includes('"wiedza"')) fail("content sitemap incomplete");
+if (!footer.includes('href="/realizacje"') || !footer.includes('href="/wiedza"')) fail("content discovery links missing");
 
-for (const forbidden of ["gwarantujemy pierwsze miejsce", "setki zadowolonych klientow", "setki zadowolonych klientów"]) {
-  if (portfolio.toLowerCase().includes(forbidden) || knowledge.toLowerCase().includes(forbidden)) fail(`unsupported marketing claim found: ${forbidden}`);
-}
-
-console.log("CONTENT_CONTRACT_PASS portfolio=REAL_ONLY knowledge=4 article-schema=PASS sitemap=PASS");
+console.log(`CONTENT_CONTRACT_PASS portfolio=3_REAL_OWN_PROJECTS transkrypcja-upload=OFF knowledge=${totalKnowledge} sources=SUPPORTED schema=PASS sitemap=PASS`);

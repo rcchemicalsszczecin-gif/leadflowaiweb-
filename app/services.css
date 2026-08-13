@@ -306,7 +306,7 @@
     letter-spacing: 0.08em;
   }
 
-  .related-grid strong {
+  .related-grid a strong {
     max-width: 20ch;
     align-self: end;
     font-size: clamp(1.3rem, 2vw, 2rem);

@@ -9,6 +9,8 @@
     "lint": "biome lint --max-diagnostics=100 .",
     "format": "biome format --write .",
     "search:contract": "node scripts/search-contract.mjs",
+    "offer:contract": "node scripts/offer-contract-v11.mjs",
+    "portfolio:contract": "node scripts/portfolio-contract-v12.mjs",
     "lead:contract": "node scripts/lead-contract.mjs",
     "chat:contract": "node scripts/chat-contract.mjs",
     "content:contract": "node scripts/content-contract.mjs",
@@ -18,7 +20,7 @@
     "responsive:contract": "node scripts/responsive-performance-v10-contract.mjs",
     "performance:budget": "node scripts/performance-budget-v10.mjs",
     "check": "npm run typecheck && npm run lint",
-    "verify": "npm run search:contract && npm run lead:contract && npm run chat:contract && npm run content:contract && npm run operations:contract && npm run static:contract && npm run design:contract && npm run responsive:contract && npm run check && npm run build && npm run performance:budget"
+    "verify": "npm run search:contract && npm run offer:contract && npm run portfolio:contract && npm run lead:contract && npm run chat:contract && npm run content:contract && npm run operations:contract && npm run static:contract && npm run design:contract && npm run responsive:contract && npm run check && npm run build && npm run performance:budget"
   },
   "engines": {
     "node": ">=20.9.0"

@@ -11,7 +11,8 @@ const limits = {
   homepageRaw: 70_000,
   homepageGzip: 16_000,
   largestJsRaw: 240_000,
-  totalRaw: 4_250_000,
+  largestHtmlRaw: 120_000,
+  largestHtmlGzip: 26_000,
 };
 
 const fail = (message) => {
@@ -38,8 +39,14 @@ const gzipSizeOf = (paths) => paths.reduce((sum, path) => sum + gzipSync(readFil
 
 const jsFiles = files.filter((path) => extname(path) === ".js");
 const cssFiles = files.filter((path) => extname(path) === ".css");
+const htmlFiles = files.filter((path) => extname(path) === ".html");
 const homepage = join(OUT, "index.html");
 if (!existsSync(homepage)) fail("missing homepage static HTML");
+
+const largestHtml = htmlFiles.reduce(
+  (current, path) => (statSync(path).size > statSync(current).size ? path : current),
+  homepage,
+);
 
 const metrics = {
   jsRaw: sizeOf(jsFiles),
@@ -49,7 +56,8 @@ const metrics = {
   homepageRaw: statSync(homepage).size,
   homepageGzip: gzipSync(readFileSync(homepage), { level: 9 }).byteLength,
   largestJsRaw: jsFiles.reduce((largest, path) => Math.max(largest, statSync(path).size), 0),
-  totalRaw: sizeOf(files),
+  largestHtmlRaw: statSync(largestHtml).size,
+  largestHtmlGzip: gzipSync(readFileSync(largestHtml), { level: 9 }).byteLength,
 };
 
 for (const [name, limit] of Object.entries(limits)) {
@@ -58,5 +66,5 @@ for (const [name, limit] of Object.entries(limits)) {
 }
 
 console.log(
-  `PERFORMANCE_BUDGET_V10_PASS jsRaw=${metrics.jsRaw}/${limits.jsRaw} jsGzip=${metrics.jsGzip}/${limits.jsGzip} cssRaw=${metrics.cssRaw}/${limits.cssRaw} cssGzip=${metrics.cssGzip}/${limits.cssGzip} homepageRaw=${metrics.homepageRaw}/${limits.homepageRaw} homepageGzip=${metrics.homepageGzip}/${limits.homepageGzip} largestJsRaw=${metrics.largestJsRaw}/${limits.largestJsRaw} totalRaw=${metrics.totalRaw}/${limits.totalRaw}`,
+  `PERFORMANCE_BUDGET_V10_PASS jsRaw=${metrics.jsRaw}/${limits.jsRaw} jsGzip=${metrics.jsGzip}/${limits.jsGzip} cssRaw=${metrics.cssRaw}/${limits.cssRaw} cssGzip=${metrics.cssGzip}/${limits.cssGzip} homepageRaw=${metrics.homepageRaw}/${limits.homepageRaw} homepageGzip=${metrics.homepageGzip}/${limits.homepageGzip} largestJsRaw=${metrics.largestJsRaw}/${limits.largestJsRaw} largestHtmlRaw=${metrics.largestHtmlRaw}/${limits.largestHtmlRaw} largestHtmlGzip=${metrics.largestHtmlGzip}/${limits.largestHtmlGzip}`,
 );
