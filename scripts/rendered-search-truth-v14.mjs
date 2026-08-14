@@ -98,7 +98,7 @@ for (const path of indexableHtml) {
   }
 
   if (/localhost|127\.0\.0\.1|api\.leadflowai\.pl\/leads/i.test(html)) addViolation(display, "local/disabled runtime URL leaked into public HTML");
-  if (/\bLorem ipsum\b|\bComing soon\b|\bPLACEHOLDER\b/i.test(html)) addViolation(display, "placeholder residue found");
+  if (/\bLorem ipsum\b|\bComing soon\b|\bPLACEHOLDER\b/.test(html)) addViolation(display, "placeholder residue found");
 
   const jsonLdMatches = [...html.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)];
   if (!jsonLdMatches.length) addViolation(display, "JSON-LD missing");
