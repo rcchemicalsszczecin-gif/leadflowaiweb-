@@ -1,72 +1,172 @@
 # SOURCE OF TRUTH POLICY
 
 STATUS: NORMATIVE
+OWNER: Paweł Niewiadomski
 
-Authority is determined by role and explicit supersession, not file age or verbosity.
+Authority is determined by role, current evidence and explicit supersession — not by filename, age, verbosity or remembered context.
 
-## Authority map
+## 1. Authority map
 
-- Governance and execution authority: root `AGENTS.md` + current files under `docs/governance/`.
-- Current repository/release/work-state checkpoint: `docs/governance/CURRENT-STATE.md`.
-- Current Owner decisions: `docs/governance/WEBSITE-OWNER-DECISIONS.md` plus any later explicit Owner decision record.
-- Product plan: `docs/plans/LEADFLOWAI_AUTHORITATIVE_MASTER_PLAN_V1.md`, interpreted through current Owner decisions and `CURRENT-STATE.md`.
-- Active V14 execution plan: `docs/plans/V14-VISUAL-REBUILD.md`.
-- Current visual authority: `docs/governance/WEBSITE-OWNER-DECISION-V14.md` plus the active V14 execution plan.
-- V13 public-language/search/evidence truth: active V13 quality sources that are explicitly marked as current, including the public glossary, evidence boundaries, search-intent map and validated current registries/contracts.
-- Architecture: current architecture files that do not conflict with higher authority or `CURRENT-STATE.md`.
-- Implementation truth: current committed source plus validation evidence for the exact revision/merge ref being evaluated.
-- Public business truth: current Owner-approved legal/business facts and evidence-backed public claims.
+Use this order when interpreting the repository:
 
-## Current design supersession
+1. Current explicit Owner instruction.
+2. Root `AGENTS.md`.
+3. `docs/governance/CONTROL-PLANE-INDEX.md` and applicable current normative governance files.
+4. `docs/governance/CURRENT-STATE.md` for current production/candidate/release checkpoint.
+5. Current Owner decisions.
+6. Current Owner-approved Master Plan and active stage plan.
+7. Current architecture/quality contracts and exact committed implementation evidence.
+8. Historical/reference documentation.
+9. Conversation history and model memory.
 
-V14 supersedes V9/V9.2 visual freeze for the redesign areas explicitly authorized by the Owner.
+Lower authority never silently overrides higher authority.
 
-Historical design files V1–V9.2 and V10 responsive/performance records remain evidence/recovery records. They do not override the later V14 Owner decision.
+## 2. Execution authority
 
-V7 remains useful functional evidence for `/lab`, but its old visual dependency on V5/V6/V9 is historical rather than current V14 authority.
+Execution behavior is governed by the current control plane, including:
+- `AGENTS.md`;
+- `CONTROL-PLANE-INDEX.md`;
+- `OWNER-AUTHORITY.md`;
+- `HUMAN-AI-OPERATING-MODEL.md`;
+- `CODEX-EXECUTION-CONTRACT.md`;
+- `WORKFLOW-CONTRACT.md`;
+- `STAGE-GATE-PROTOCOL.md`;
+- `PROMPT-CONTRACT.md`;
+- `CODEX-REPORT-CONTRACT.md`;
+- `FILE-OWNERSHIP-AND-SCOPE-POLICY.md`;
+- `GIT-SAFETY-POLICY.md`;
+- `EVIDENCE-PASS-POLICY.md`;
+- `DEFINITION-OF-DONE.md`;
+- `PROJECT-BOUNDARIES.md`.
 
-The old V5 motherboard photograph/Unsplash requirement is not a protected current V14 design invariant.
+A task prompt is subordinate to this control plane.
 
-## V13 foundation rule
+## 3. Current production authority
 
-V14 does not automatically supersede the V13 content/search/public-truth foundation.
+Production branch is `main`.
 
-V13 remains authoritative for already validated public facts and architecture such as:
-- Polish public-language foundation;
+Current `main` HEAD at this checkpoint is:
+
+`67663b08c950de120a94ef8495b5cdc8c9bdecfe`
+
+The production visual/runtime authority remains V14 Global Liquid World.
+
+The V14 Global Liquid runtime milestone was merged at:
+
+`36ad3fd6130ce21e68a2c5e701a516fcb3703b65`
+
+Later commits on `main` through `67663b08...` are part of the current production repository state and do not revert that V14 visual authority.
+
+Current production state is determined by `CURRENT-STATE.md` plus exact Git/Pages evidence, not by an older release narrative.
+
+## 4. Candidate lineage
+
+Current candidate lineage at this checkpoint is:
+
+`main`
+`67663b08c950de120a94ef8495b5cdc8c9bdecfe`
+
+->
+
+`v15/search-master-plan`
+`5925c553bae0d59ebb7cb10043f46453fb8da8b6`
+
+->
+
+`post-v15/css-destack`
+`5c65435f2de5b2318c1c2585a478c9595f576f76`
+
+The V15 and post-V15 branches are candidate/development authority, not production merely because they have technical PASS evidence.
+
+The `governance/codex-control-plane-v1` branch is an isolated governance candidate created from the post-V15 candidate. Its existence does not promote V15/post-V15 work to production.
+
+## 5. Product/search authority
+
+Product plan:
+- `docs/plans/LEADFLOWAI_AUTHORITATIVE_MASTER_PLAN_V1.md`, interpreted through higher current governance and exact Git evidence.
+
+V15 search/evidence program:
+- `docs/plans/V15-SEARCH-MASTER-PLAN.md` and its accepted V15 quality evidence on the V15 candidate lineage.
+
+V15 may supersede earlier search/content decisions only where evidence and the accepted stage explicitly establish that supersession.
+
+V15 technical readiness does not fabricate external Google/Bing/AI-search evidence and does not authorize production promotion by itself.
+
+## 6. Current visual supersession
+
+V14 Global Liquid World supersedes V9/V9.2 visual freeze and earlier V14 assumptions where later Owner-approved V14/Global Liquid decisions explicitly changed them.
+
+Historical design files V1–V9.2 and V10 records remain evidence/recovery references, not current visual authority when they conflict with V14 Global Liquid World.
+
+V7 remains useful functional evidence for `/lab`; its old visual dependencies are historical rather than present visual authority.
+
+## 7. Preserved V13 public foundation
+
+V14 visual evolution did not automatically supersede validated V13 public-language/search/public-truth foundations.
+
+The preserved foundation includes, unless a later evidence-backed accepted migration changes it:
+- Polish public language;
 - current service and knowledge registries;
 - 35 service/money pages;
 - 21 knowledge articles;
-- 63 dominant search intents;
+- 63 dominant search intents/canonical baseline;
 - evidence boundaries;
-- direct-answer/decision/FAQ content model;
-- metadata/canonical/sitemap/robots;
+- direct-answer/decision/FAQ model;
+- metadata/canonical/sitemap/robots architecture;
 - structured-data/public-truth consistency;
-- real-only portfolio.
+- real-only portfolio principles.
 
-V14 may change presentation and component structure while preserving those truths. A semantic/search change requires its own evidence and acceptance.
+Historical V13 files do not become current release-state authority merely because parts of their public foundation remain preserved.
 
-## Historical evidence rule
+## 8. Implementation truth
 
-Older plans, stage reports, validation records, architecture documents and superseded design decisions remain historical evidence. A historical file may accurately describe the state that existed when it was written, but it must not be treated as current operational status when `CURRENT-STATE.md`, a later Owner decision or higher authority records a newer state.
+Current implementation truth is the exact committed source at the exact revision being evaluated plus applicable validation evidence for that revision.
 
-Historical files should be explicitly marked as historical when their former ACTIVE/CURRENT status would materially mislead current execution.
+Do not infer implementation state from plans alone.
 
-## Production-state rule
+Do not infer production state from a feature branch.
 
-Current production authority is determined by `CURRENT-STATE.md` plus exact Git/Pages evidence.
+Do not infer candidate state from production pages alone.
 
-Production V13 being live does not authorize V14 merge.
-V14 feature-branch PASS does not make V14 production.
-Final V14 production promotion requires explicit Owner visual approval and explicit merge authorization.
+## 9. Public business truth
 
-## Conflict rule
+Public business truth requires current Owner-approved facts and evidence-backed claims.
 
-On conflict:
+No historical copy or schema may override a later validated public/legal identity.
+
+No fabricated local address, client, metric, certification, ranking, AI citation or case study may be promoted to truth.
+
+## 10. Historical evidence rule
+
+Older plans, stage reports, validation records, architecture documents and superseded decisions remain provenance.
+
+A historical file may accurately describe its original checkpoint while being wrong as a statement about today.
+
+Terms such as CURRENT, FINAL, MASTER, ACTIVE or ACCEPTANCE in a filename do not override newer higher-authority evidence.
+
+Historical files should be explicitly classified/superseded when their wording materially misleads current execution.
+
+## 11. Conflict rule
+
+On material conflict:
 
 1. STOP the conflicting interpretation.
-2. Classify each source by the authority chain in `AGENTS.md`.
-3. Prefer the higher-authority/current source.
-4. Treat explicit later Owner supersession as authoritative inside its scope.
-5. Reconcile misleading CURRENT/ACTIVE documentation in a bounded governance stage.
-6. Never allow conversation memory/history to silently override current repository authority.
-7. Never allow a historical executable contract to force a superseded product/design assumption into current active Quality.
+2. Identify exact conflicting sources/claims.
+3. Classify both by the authority chain.
+4. Check exact Git/release evidence and chronology.
+5. Prefer higher authority/current evidence only when the hierarchy resolves the conflict unambiguously.
+6. Otherwise return BLOCKER for Owner resolution.
+7. Reconcile misleading normative/current documentation in a separately bounded governance stage.
+8. Never allow conversation memory to silently override current repository truth.
+9. Never allow a historical executable contract to force a superseded product/design assumption into current Quality.
+
+## 12. Candidate / production separation rule
+
+A candidate branch can be technically superior to production and still remain non-production.
+
+PASS != MERGED.
+MERGED != DEPLOYED unless the deployment path is proven.
+DEPLOYED != externally indexed/measured.
+READY != ACTIVE.
+
+Every report must distinguish these states explicitly.
