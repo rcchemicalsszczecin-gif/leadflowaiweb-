@@ -54,10 +54,12 @@ for (const required of [
   "v14/full-visual-rebuild",
   "not merge-authorized",
   "OWNER_VISUAL_PASS=ACCEPTED",
+  "R9_PREMERGE_HARDENING=PASS",
+  "RELEASE_STATE=READY_FOR_SEPARATE_MERGE_AUTHORIZATION",
   "MERGE_AUTHORIZATION=NOT_GRANTED",
-  "Owner visual PASS authorizes R9 release hardening only",
+  "Owner visual PASS and R9 PRE-MERGE PASS are necessary but insufficient for production mutation.",
 ]) {
   if (!currentState.includes(required)) fail(`current production/V14 release boundary missing: ${required}`);
 }
 
-console.log("STATIC_DEPLOY_CONTRACT_PASS export=PASS pages-workflow=PASS cname=PASS api-split=PASS production=V13_MAIN v14=OWNER_VISUAL_PASS_R9_ONLY merge-auth=NOT_GRANTED");
+console.log("STATIC_DEPLOY_CONTRACT_PASS export=PASS pages-workflow=PASS cname=PASS api-split=PASS production=V13_MAIN v14=R9_PREMERGE_PASS release=READY_FOR_SEPARATE_MERGE_AUTHORIZATION merge-auth=NOT_GRANTED");
