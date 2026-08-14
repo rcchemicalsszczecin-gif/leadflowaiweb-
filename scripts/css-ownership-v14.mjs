@@ -50,7 +50,7 @@ const extractGlobalSignals = (css) => {
     [/(^|[,{]\s*)html\b/m, "html"],
     [/(^|[,{]\s*)body\b/m, "body"],
     [/:root\b/, ":root"],
-    [/(^|[,{]\s*)\*\s*(?:[,>{:#.\[]|\{)/m, "universal"],
+    [/(^|[,{]\s*)\*\s*(?:[,>{:#.[]|\{)/m, "universal"],
   ];
   for (const [pattern, label] of checks) if (pattern.test(css)) signals.push(label);
   return signals;
