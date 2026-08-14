@@ -28,7 +28,7 @@ for(const required of ["REALIZACJE WŁASNE","LeadFlowAI.pl","Tervyxa.pl","Transk
 const knowledgeFaq=read("components/v14-knowledge-faq.tsx");
 for(const required of ["WIEDZA I DECYZJE","FAQ / PRZED STARTEM","SEO, AEO i GEO","bazy wiedzy"])if(!knowledgeFaq.includes(required))fail(`V14 knowledge/FAQ layer missing: ${required}`);
 const brief=read("components/v14-contact-brief.tsx");
-for(const required of ["BRIEF PROJEKTU","strona niczego nie zapisuje ani nie wysyła","aria-pressed","mailto:${site.email}"])if(!brief.includes(required))fail(`V14 brief boundary missing: ${required}`);
+for(const required of ["BRIEF PROJEKTU","Strona niczego nie zapisuje","nie wysyła","aria-pressed","mailto:${site.email}"])if(!brief.includes(required))fail(`V14 brief boundary missing: ${required}`);
 const closing=read("components/v14-closing.tsx");
 for(const required of ["KONTAKT","Wyceń projekt","site.email","Tervyxa Systems sp. z o.o."])if(!closing.includes(required))fail(`V14 closing missing: ${required}`);
 const about=read("app/o-nas/page.tsx");
