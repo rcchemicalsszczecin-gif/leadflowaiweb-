@@ -3,7 +3,7 @@ name: V14 Browser Matrix
 on:
   push:
     branches:
-      - v14/full-visual-rebuild
+      - 'v14/**'
   workflow_dispatch:
 
 concurrency:

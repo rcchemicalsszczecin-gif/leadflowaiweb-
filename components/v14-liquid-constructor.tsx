@@ -15,7 +15,7 @@ export function V14LiquidConstructor() {
         <div>
           <p className="v14-liquid-kicker">03 / LIQUID WEB CONSTRUCTOR</p>
           <h2 id="v14-liquid-title">Z płynnej powierzchni do kompletnego produktu WWW.</h2>
-          <p className="v14-liquid-lead">Liquid Engine nie jest już tapetą. Staje się początkiem systemu: powierzchnia odsłania grid, grid buduje interfejs, a nad produktem pojawiają się warstwy Search i AI.</p>
+          <p className="v14-liquid-lead">Liquid Engine jest aktywną, przestrzenną warstwą LeadFlowAI — nie dekoracyjnym obrazkiem. Ta sama powierzchnia łączy ruch, grid, interfejs produktu, Search i AI w jeden system wizualny.</p>
           <ol className="v14-liquid-steps">
             {steps.map(([n, title, copy]) => (
               <li key={n}>
@@ -26,7 +26,7 @@ export function V14LiquidConstructor() {
         </div>
 
         <figure className="v14-liquid-stage">
-          <V14LiquidSurface />
+          <V14LiquidSurface variant="constructor" />
 
           <svg viewBox="0 0 700 560" aria-hidden="true" className="v14-liquid-wave">
             <defs><radialGradient id="liquidGlow"><stop offset="0" stopColor="#c7ff2f" stopOpacity=".2"/><stop offset="1" stopColor="#c7ff2f" stopOpacity="0"/></radialGradient></defs>
