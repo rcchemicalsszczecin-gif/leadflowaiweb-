@@ -15,7 +15,7 @@ const sitemap=read("app/sitemap.ts");
 const portfolio=read("app/realizacje/page.tsx");
 const packageJson=read("package.json");
 
-if(!owner.includes("STATUS: ACTIVE OWNER AUTHORITY"))fail("V14 owner authority missing");
+if(!owner.includes("STATUS: COMPLETED OWNER AUTHORITY / PRODUCTION RELEASED")||!owner.includes("OWNER_MERGE_AUTHORIZATION=GRANTED_AND_EXERCISED"))fail("V14 production owner authority missing");
 if(!home.includes("<V14Hero")||!home.includes('className="v14-page"'))fail("V14 homepage shell missing");
 for(const required of ["Wyceń projekt","Zobacz realizacje","pracują jak produkt","WEB PRODUCTS · SEARCH · AI"])if(!hero.includes(required))fail(`buyer-first V14 hero signal missing: ${required}`);
 if(!browser.includes("v14-browser")||!browser.includes("WEB PRODUCT / ACTIVE"))fail("spatial browser product proof missing");
@@ -30,4 +30,4 @@ if(!portfolio.includes("PortfolioProjectVisual")||!existsSync("components/portfo
 if(visualCss.includes("images.unsplash.com"))fail("V14 public visual layer depends on stock background");
 if(packageJson.includes('"three"')||packageJson.includes("@react-three")||packageJson.includes("babylon"))fail("heavy 3D dependency introduced");
 
-console.log("VISUAL_V14_PASS hero=PRODUCT_STAGE mobile=DEDICATED rhythm=LIGHT_DARK css=CONSOLIDATED search-education=PASS og=FIRST_PARTY trust=PASS portfolio=VISUAL stock=ABSENT heavy-3d=ABSENT");
+console.log("VISUAL_V14_PASS authority=PRODUCTION_RELEASED hero=PRODUCT_STAGE mobile=DEDICATED rhythm=LIGHT_DARK css=CONSOLIDATED search-education=PASS og=FIRST_PARTY trust=PASS portfolio=VISUAL stock=ABSENT heavy-3d=ABSENT");
