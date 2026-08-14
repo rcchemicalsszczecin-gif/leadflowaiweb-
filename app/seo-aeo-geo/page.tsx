@@ -40,15 +40,17 @@ const page = {
 };
 
 const baseMetadata = getSearchMetadata("seo-aeo-geo");
+const metaDescription =
+  "SEO buduje fundament widoczności, AEO porządkuje odpowiedzi, a GEO wzmacnia encje, źródła i dowody. Jedna architektura zamiast trzech konkurujących strategii.";
 
 export const metadata = withV13SocialMetadata(
   {
     ...baseMetadata,
     title: page.title,
-    description: page.lead,
+    description: metaDescription,
   },
   page.title,
-  page.lead,
+  metaDescription,
 );
 
 export default function SeoAeoGeoPage() {
