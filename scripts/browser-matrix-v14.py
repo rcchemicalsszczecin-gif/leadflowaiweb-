@@ -21,7 +21,8 @@ VIEWPORTS = [
 ]
 
 REPRESENTATIVE_ROUTES = [
-    ("/strony-internetowe/", "ODPOWIEDŹ WPROST"),
+    ("/strony-internetowe/", "Tworzenie stron internetowych dla firm ze Szczecina"),
+    ("/local-seo/", "SEO lokalne dla firm ze Szczecina"),
     ("/wiedza/", "KLASTRY TEMATYCZNE"),
     ("/kontakt/", "Formularz online jest obecnie wyłączony"),
     ("/lab/", "Działające doświadczenia"),
@@ -145,7 +146,7 @@ def open_browser(browser):
             process, base = start_driver(browser)
             session_id, bidi_url = create_session(browser, base)
             if attempt > 1:
-                print(f"BROWSER_MATRIX_V14_DRIVER_RECOVERED browser={browser} attempt={attempt}")
+                print(f"BROWSER_MATRIX_V15_DRIVER_RECOVERED browser={browser} attempt={attempt}")
             return process, base, session_id, bidi_url
         except (RuntimeError, urllib.error.URLError, TimeoutError) as error:
             last_error = error
@@ -156,7 +157,7 @@ def open_browser(browser):
                     pass
             if attempt < attempts:
                 print(
-                    f"BROWSER_MATRIX_V14_DRIVER_RETRY browser={browser} attempt={attempt} reason={type(error).__name__}",
+                    f"BROWSER_MATRIX_V15_DRIVER_RETRY browser={browser} attempt={attempt} reason={type(error).__name__}",
                     file=sys.stderr,
                 )
                 time.sleep(1.0)
@@ -304,7 +305,7 @@ def run_case(browser, base, session_id, bidi_url, path, width, height, truth):
     state = inspect_page(base, session_id, truth)
     validate(browser, path, width, truth, state)
     print(
-        f"BROWSER_MATRIX_V14_CASE browser={browser} route={path} target={width}x{height} actual={state['innerWidth']}x{state['innerHeight']} overflow={state['overflow']} nav=PASS"
+        f"BROWSER_MATRIX_V15_CASE browser={browser} route={path} target={width}x{height} actual={state['innerWidth']}x{state['innerHeight']} overflow={state['overflow']} nav=PASS"
     )
     return 1
 
@@ -332,7 +333,7 @@ def main():
         "firefox": shutil.which("firefox"),
         "geckodriver": shutil.which("geckodriver"),
     }
-    print("BROWSER_MATRIX_V14_BINARIES " + " ".join(f"{key}={value or 'MISSING'}" for key, value in versions.items()))
+    print("BROWSER_MATRIX_V15_BINARIES " + " ".join(f"{key}={value or 'MISSING'}" for key, value in versions.items()))
     if not versions["chrome"] or not versions["chromedriver"]:
         raise RuntimeError("Chromium/Chrome WebDriver toolchain missing")
     if not versions["firefox"] or not versions["geckodriver"]:
@@ -345,7 +346,7 @@ def main():
     if total != expected:
         raise RuntimeError(f"matrix coverage mismatch: {total} != {expected}")
     print(
-        f"BROWSER_MATRIX_V14_PASS browsers=2 cases={total} homepage-viewports=6 representative-routes=4x2 overflow=PASS navigation=PASS landmarks=PASS truth=PASS firefox-mobile=BIDI_TRUE_CSS_VIEWPORT session-retry=BOUNDED"
+        f"BROWSER_MATRIX_V15_PASS browsers=2 cases={total} homepage-viewports=6 representative-routes=5x2 overflow=PASS navigation=PASS landmarks=PASS truth=PASS firefox-mobile=BIDI_TRUE_CSS_VIEWPORT session-retry=BOUNDED"
     )
 
 
@@ -353,5 +354,5 @@ if __name__ == "__main__":
     try:
         main()
     except (RuntimeError, urllib.error.URLError, json.JSONDecodeError, TimeoutError) as error:
-        print(f"BROWSER_MATRIX_V14_FAIL: {error}", file=sys.stderr)
+        print(f"BROWSER_MATRIX_V15_FAIL: {error}", file=sys.stderr)
         sys.exit(1)
