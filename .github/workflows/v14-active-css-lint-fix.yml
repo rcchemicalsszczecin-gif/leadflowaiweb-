@@ -1,0 +1,67 @@
+name: V14 Active CSS Lint Fix
+
+on:
+  push:
+    branches:
+      - v14/full-visual-rebuild
+    paths:
+      - .github/workflows/v14-active-css-lint-fix.yml
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout exact V14 branch
+        uses: actions/checkout@v6
+        with:
+          ref: v14/full-visual-rebuild
+
+      - name: Apply bounded selector cleanup
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          replacements = {
+              Path('app/globals.css'): [
+                  ('.process-list span,\n  .process-list strong {', '.process-list li span,\n  .process-list li strong {'),
+                  ('.quality-item > span {', '.quality-grid .quality-item > span {'),
+              ],
+              Path('public/v14.css'): [
+                  ('.v14-browser-hero p{', '.v14-page .v14-browser-hero p{'),
+                  ('.v14-section-head>p{', '.v14-page .v14-section-head>p{'),
+                  ('.v14-service-card p{', '.v14-page .v14-service-card p{'),
+                  ('.v14-service-card em{', '.v14-page .v14-service-card em{'),
+                  ('.v14-device-copy>p{', '.v14-page .v14-device-copy>p{'),
+              ],
+          }
+
+          for path, pairs in replacements.items():
+              text = path.read_text()
+              for old, new in pairs:
+                  count = text.count(old)
+                  if count != 1:
+                      raise SystemExit(f'{path}: expected one occurrence of {old!r}, found {count}')
+                  text = text.replace(old, new, 1)
+              path.write_text(text)
+          PY
+
+      - name: Verify only intended files changed
+        shell: bash
+        run: |
+          changed="$(git diff --name-only | sort)"
+          expected="$(printf '%s\n' app/globals.css public/v14.css | sort)"
+          test "$changed" = "$expected"
+
+      - name: Commit active CSS lint cleanup
+        shell: bash
+        run: |
+          git config user.name "LeadFlowAI V14 QA"
+          git config user.email "actions@users.noreply.github.com"
+          git add app/globals.css public/v14.css
+          git commit -m "V14.9: reduce active CSS specificity debt"
+          git push origin HEAD:v14/full-visual-rebuild
