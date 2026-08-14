@@ -1,0 +1,323 @@
+name: Post-V15 Maintenance QA
+
+on:
+  push:
+    branches:
+      - 'post-v15/**'
+  workflow_dispatch:
+
+concurrency:
+  group: post-v15-maintenance-${{ github.ref_name }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Reject retired brand residue
+        shell: bash
+        run: |
+          retired="$(printf '%s%s' 'Ave' 'riq')"
+          if grep -RniI -i --exclude-dir=.git -- "$retired" .; then
+            echo "Retired brand residue found"
+            exit 1
+          fi
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Full repository verification
+        run: npm run verify
+        env:
+          NEXT_PUBLIC_SITE_URL: https://leadflowai.pl
+          NEXT_PUBLIC_API_BASE_URL: https://api.leadflowai.pl
+
+      - name: Static export artifact contract
+        shell: bash
+        run: |
+          test -f out/index.html
+          test -f out/CNAME
+          test "$(tr -d '\r\n' < out/CNAME)" = "leadflowai.pl"
+          test -f out/.nojekyll
+          test -f out/sitemap.xml
+          test -f out/robots.txt
+          test -f out/v14.css
+          test -f out/v14-shell.css
+          test ! -e out/api/leads
+          test ! -e out/api/chat
+          test ! -e out/api/health
+          test -f out/kontakt/index.html
+          test -f out/lab/index.html
+          test -f out/uslugi/index.html
+          test -f out/o-nas/index.html
+
+          for route in \
+            ux-ui-design \
+            aplikacje-webowe \
+            cms-headless \
+            pwa \
+            strony-wielojezyczne \
+            copywriting-content \
+            cro-optymalizacja-konwersji \
+            analityka-webowa \
+            formularze-lead-generation \
+            integracje-ai \
+            integracje-api \
+            automatyzacje-www \
+            core-web-vitals \
+            dostepnosc-wcag \
+            bezpieczenstwo-stron \
+            hosting-deploy \
+            opieka-utrzymanie-stron \
+            rag-bazy-wiedzy \
+            agenci-ai-www \
+            monitoring-www; do
+            test -f "out/${route}/index.html"
+          done
+
+          test -f out/wiedza/ai-search-google-co-robic-2026/index.html
+          test -f out/wiedza/wcag-22-co-sprawdzic-na-stronie/index.html
+          test -f out/wiedza/rag-na-stronie-jak-zaprojektowac/index.html
+          grep -q 'kontakt@leadflowai.pl' out/kontakt/index.html
+          grep -q 'Formularz online jest obecnie wyłączony' out/kontakt/index.html
+          grep -q 'LEADFLOWAI / PEŁNA OFERTA' out/uslugi/index.html
+          grep -q 'RAG' out/uslugi/index.html
+          grep -q 'Monitoring' out/uslugi/index.html
+          grep -q 'Źródła i standardy' out/wiedza/ai-search-google-co-robic-2026/index.html
+          grep -q 'pracują jak produkt' out/index.html
+          grep -q 'v14-browser' out/index.html
+          grep -q 'v14-phone' out/index.html
+          grep -q 'v14-signature-stage' out/index.html
+          grep -q 'LIQUID WEBGL' out/index.html
+          grep -q 'SPATIAL 3D' out/index.html
+          grep -q 'REAL-TIME SURFACE · SPATIAL PRODUCT' out/index.html
+          grep -q 'Sześć warstw jednego produktu cyfrowego' out/index.html
+          grep -q 'Jedna marka. Trzy urządzenia' out/index.html
+          grep -q 'LIQUID WEB CONSTRUCTOR' out/index.html
+          grep -q 'Z płynnej powierzchni' out/index.html
+          grep -q '/v14.css' out/index.html
+          grep -q '/v14-shell.css' out/index.html
+          grep -q 'v14-mobile-nav' out/index.html
+          grep -q 'Przejdź do treści' out/index.html
+          grep -q 'id="main-content"' out/index.html
+          grep -q 'id="process"' out/index.html
+          grep -q 'Tervyxa Systems sp. z o.o.' out/o-nas/index.html
+          if grep -Rqs 'api.leadflowai.pl/leads' out; then
+            echo "Disabled lead endpoint leaked into static artifact"
+            exit 1
+          fi
+          echo "POST_V15_STATIC_ARTIFACT_PASS"
+
+      - name: Static route smoke
+        shell: bash
+        run: |
+          python3 -m http.server 3000 -d out >/tmp/post-v15-static.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+
+          ready=0
+          for attempt in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:3000/ >/tmp/home.html; then
+              ready=1
+              break
+            fi
+            sleep 0.3
+          done
+          if [ "$ready" -ne 1 ]; then
+            cat /tmp/post-v15-static.log
+            exit 1
+          fi
+
+          for route in \
+            /kontakt/ \
+            /strony-internetowe/ \
+            /landing-pages/ \
+            /sklepy-internetowe/ \
+            /web-development/ \
+            /modernizacja-stron/ \
+            /audyt-strony/ \
+            /strony-3d-webgl/ \
+            /interaktywne-strony/ \
+            /motion-design/ \
+            /chatboty-ai/ \
+            /lab/ \
+            /seo/ \
+            /aeo/ \
+            /geo-ai-search/ \
+            /seo-aeo-geo/ \
+            /local-seo/ \
+            /uslugi/ \
+            /ux-ui-design/ \
+            /aplikacje-webowe/ \
+            /cms-headless/ \
+            /pwa/ \
+            /strony-wielojezyczne/ \
+            /copywriting-content/ \
+            /cro-optymalizacja-konwersji/ \
+            /analityka-webowa/ \
+            /formularze-lead-generation/ \
+            /integracje-ai/ \
+            /integracje-api/ \
+            /automatyzacje-www/ \
+            /core-web-vitals/ \
+            /dostepnosc-wcag/ \
+            /bezpieczenstwo-stron/ \
+            /hosting-deploy/ \
+            /opieka-utrzymanie-stron/ \
+            /rag-bazy-wiedzy/ \
+            /agenci-ai-www/ \
+            /monitoring-www/ \
+            /realizacje/ \
+            /o-nas/ \
+            /wiedza/ \
+            /wiedza/jak-zaplanowac-strone-firmowa/ \
+            /wiedza/ai-search-google-co-robic-2026/ \
+            /wiedza/rag-na-stronie-jak-zaprojektowac/; do
+            curl -fsS "http://127.0.0.1:3000${route}" >/dev/null
+          done
+
+          curl -fsS http://127.0.0.1:3000/sitemap.xml | grep -q 'leadflowai.pl'
+          curl -fsS http://127.0.0.1:3000/robots.txt | grep -q 'sitemap.xml'
+          grep -q 'pracują jak produkt' /tmp/home.html
+          grep -q 'v14-mobile-nav' /tmp/home.html
+          grep -q 'id="main-content"' /tmp/home.html
+          grep -q 'id="process"' /tmp/home.html
+          echo "POST_V15_STATIC_ROUTE_SMOKE_PASS routes=44"
+
+  browser-matrix:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Build static V14
+        run: npm run build
+        env:
+          NEXT_PUBLIC_SITE_URL: https://leadflowai.pl
+          NEXT_PUBLIC_API_BASE_URL: https://api.leadflowai.pl
+
+      - name: Start static preview
+        shell: bash
+        run: |
+          python3 -m http.server 3000 -d out >/tmp/post-v15-browser-matrix.log 2>&1 &
+          echo $! > /tmp/post-v15-browser-matrix.pid
+          for attempt in $(seq 1 40); do
+            if curl -fsS http://127.0.0.1:3000/ >/dev/null; then
+              exit 0
+            fi
+            sleep 0.25
+          done
+          cat /tmp/post-v15-browser-matrix.log
+          exit 1
+
+      - name: Browser toolchain inventory
+        shell: bash
+        run: |
+          set -x
+          command -v google-chrome || command -v chromium || command -v chromium-browser
+          command -v chromedriver
+          command -v firefox
+          command -v geckodriver
+          (google-chrome --version || chromium --version || chromium-browser --version)
+          chromedriver --version
+          firefox --version
+          geckodriver --version
+
+      - name: Run Chromium and Firefox matrix
+        run: python3 scripts/browser-matrix-v14.py
+
+  route-screenshots:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Build static V14
+        run: npm run build
+        env:
+          NEXT_PUBLIC_SITE_URL: https://leadflowai.pl
+          NEXT_PUBLIC_API_BASE_URL: https://api.leadflowai.pl
+
+      - name: Start static preview
+        shell: bash
+        run: |
+          python3 -m http.server 3000 -d out >/tmp/post-v15-route-preview.log 2>&1 &
+          echo $! > /tmp/post-v15-route-preview.pid
+          for attempt in $(seq 1 40); do
+            if curl -fsS http://127.0.0.1:3000/ >/dev/null; then
+              exit 0
+            fi
+            sleep 0.25
+          done
+          cat /tmp/post-v15-route-preview.log
+          exit 1
+
+      - name: Capture active global Liquid routes with WebDriver
+        shell: bash
+        run: |
+          python3 scripts/capture-route-webdriver-v14.py
+          test -s route-preview/route-webdriver-status.json
+
+      - name: Upload route visual preview
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: post-v15-route-preview-${{ github.sha }}
+          path: route-preview/*
+          retention-days: 7
+          if-no-files-found: error
+
+      - name: Verify route captures
+        shell: bash
+        run: |
+          test -s route-preview/service-desktop.png
+          test -s route-preview/service-mobile.png
+          test -s route-preview/local-seo-desktop.png
+          test -s route-preview/local-seo-mobile.png
+          test -s route-preview/aeo-desktop.png
+          test -s route-preview/aeo-mobile.png
+          test -s route-preview/geo-ai-search-desktop.png
+          test -s route-preview/geo-ai-search-mobile.png
+          test -s route-preview/seo-aeo-geo-desktop.png
+          test -s route-preview/seo-aeo-geo-mobile.png
+          test -s route-preview/ai-search-article-desktop.png
+          test -s route-preview/ai-search-article-mobile.png
+          test -s route-preview/knowledge-desktop.png
+          test -s route-preview/knowledge-mobile.png
+          test -s route-preview/contact-desktop.png
+          test -s route-preview/contact-mobile.png
+          test -s route-preview/lab-desktop.png
+          test -s route-preview/lab-mobile.png
+          grep -q '"webgl2": true' route-preview/route-webdriver-status.json
+          ! grep -q '"fallback": "[^"]\+"' route-preview/route-webdriver-status.json
+          echo "POST_V15_ROUTE_PREVIEW_PASS routes=9 viewports=2 captures=18 global-liquid=WEBGL2"
