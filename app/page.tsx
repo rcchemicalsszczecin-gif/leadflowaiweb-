@@ -9,7 +9,7 @@ import { V14Services } from "@/components/v14-services";
 
 export default function HomePage() {
   return (
-    <main className="v14-page">
+    <main id="main-content" className="v14-page" tabIndex={-1}>
       <V14Hero />
       <V14Services />
       <V14DeviceTheater />
