@@ -1,7 +1,6 @@
 export function V14DeviceTheater() {
   return (
     <section className="v14-device-theater" aria-labelledby="v14-device-title">
-      <link rel="stylesheet" href="/v14-device-theater.css" precedence="high" />
       <div className="v14-shell v14-device-layout">
         <div className="v14-device-copy">
           <p>02 / REALNY PRODUKT</p>
