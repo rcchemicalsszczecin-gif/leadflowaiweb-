@@ -4,21 +4,27 @@ import { V14ContactBrief } from "@/components/v14-contact-brief";
 import { V14SiteFooter } from "@/components/v14-site-footer";
 import { V14SiteHeader } from "@/components/v14-site-header";
 import { site } from "@/lib/site";
+import { withV13SocialMetadata } from "@/lib/social-metadata-v13";
 
-export const metadata: Metadata = {
-  title: "Kontakt i wycena strony internetowej",
-  description:
-    "Opisz projekt WWW, cel biznesowy i potrzebny zakres. LeadFlowAI pomoże uporządkować kierunek realizacji strony, sklepu, strony kampanijnej, modernizacji lub architektury widoczności SEO/AEO/GEO.",
-  alternates: { canonical: "/kontakt" },
-  openGraph: {
-    type: "website",
-    locale: "pl_PL",
-    url: `${site.url}/kontakt`,
-    siteName: site.name,
-    title: "Kontakt i wycena strony internetowej | LeadFlowAI",
-    description: "Opisz projekt WWW i cel, który strona ma realizować.",
+const pageTitle = "Kontakt i wycena strony internetowej";
+const pageDescription =
+  "Opisz projekt WWW, cel biznesowy i potrzebny zakres. LeadFlowAI pomoże uporządkować kierunek realizacji strony, sklepu, strony kampanijnej, modernizacji lub architektury widoczności SEO/AEO/GEO.";
+
+export const metadata: Metadata = withV13SocialMetadata(
+  {
+    title: pageTitle,
+    description: pageDescription,
+    alternates: { canonical: "/kontakt" },
+    openGraph: {
+      type: "website",
+      locale: "pl_PL",
+      url: `${site.url}/kontakt/`,
+      siteName: site.name,
+    },
   },
-};
+  "Kontakt i wycena strony internetowej | LeadFlowAI",
+  "Opisz projekt WWW i cel, który strona ma realizować.",
+);
 
 export default function KontaktPage() {
   return (

@@ -1,20 +1,48 @@
 import { ServicePage } from "@/components/service-page";
 import { getServiceMetadata, getServicePage } from "@/lib/services";
+import { withV13SocialMetadata } from "@/lib/social-metadata-v13";
 
+const basePage = getServicePage("strony-internetowe");
 const page = {
-  ...getServicePage("strony-internetowe"),
+  ...basePage,
   eyebrow: "LEADFLOWAI / TWORZENIE STRON INTERNETOWYCH",
-  title: "Tworzenie stron internetowych, które mają sprzedawać, budować zaufanie i być widoczne w wyszukiwarkach.",
-  lead: "Projektujemy i wdrażamy strony firmowe jako kompletne narzędzie biznesowe: od architektury informacji i UX/UI przez development, mobile i wydajność po SEO, AEO, GEO oraz mierzalną ścieżkę kontaktu.",
-  directAnswer: "Dobra strona firmowa nie kończy się na wyglądzie. Powinna szybko wyjaśniać ofertę, prowadzić użytkownika do działania, działać dobrze na telefonie, być technicznie przygotowana do indeksowania i publikować informacje w formie czytelnej również dla systemów odpowiedzi oraz wyszukiwania AI. Dlatego projektujemy te warstwy razem od początku.",
-  capabilities: ["Architektura informacji", "UX/UI", "Development", "Mobile", "SEO", "AEO", "GEO", "Konwersja", "Analityka", "Wydajność"],
+  title: "Tworzenie stron internetowych dla firm ze Szczecina i całej Polski.",
+  lead:
+    "Projektujemy i wdrażamy strony firmowe dla firm ze Szczecina oraz firm z całej Polski. Łączymy architekturę informacji, UX/UI, development, mobile i wydajność z SEO, AEO, GEO oraz mierzalną ścieżką kontaktu.",
+  directAnswer:
+    "LeadFlowAI tworzy strony internetowe dla firm ze Szczecina i realizuje projekty zdalnie dla firm z całej Polski. Dobra strona firmowa nie kończy się na wyglądzie: powinna szybko wyjaśniać ofertę, prowadzić użytkownika do działania, działać dobrze na telefonie, być technicznie przygotowana do indeksowania i publikować informacje czytelne także dla systemów odpowiedzi oraz wyszukiwania AI. Dlatego te warstwy projektujemy razem od początku.",
+  capabilities: [
+    "Architektura informacji",
+    "UX/UI",
+    "Development",
+    "Mobile",
+    "SEO",
+    "AEO",
+    "GEO",
+    "Konwersja",
+    "Analityka",
+    "Wydajność",
+  ],
+  faqs: [
+    ...basePage.faqs,
+    {
+      question: "Czy tworzycie strony internetowe dla firm ze Szczecina?",
+      answer:
+        "Tak. Szczecin jest jednym z rynków, dla których LeadFlowAI rozwija ofertę stron internetowych. Projekty możemy prowadzić zdalnie, dlatego ten sam proces obsługuje również firmy z innych części Polski. Nie uzależniamy współpracy od fizycznej wizyty w biurze.",
+    },
+  ],
+  related: ["local-seo", ...basePage.related],
 };
 
-export const metadata = {
-  ...getServiceMetadata("strony-internetowe"),
-  title: page.title,
-  description: page.lead,
-};
+export const metadata = withV13SocialMetadata(
+  {
+    ...getServiceMetadata("strony-internetowe"),
+    title: page.title,
+    description: page.lead,
+  },
+  page.title,
+  page.lead,
+);
 
 export default function StronyInternetowePage() {
   return <ServicePage page={page} />;

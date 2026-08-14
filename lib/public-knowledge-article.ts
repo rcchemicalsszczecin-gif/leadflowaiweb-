@@ -26,7 +26,7 @@ export function publicKnowledgeEyebrow(value: string) {
     .join(" / ");
 }
 
-export function toPublicKnowledgeArticle(article: SourcedKnowledgeArticle): SourcedKnowledgeArticle {
+export function toPublicKnowledgeArticle<T extends SourcedKnowledgeArticle>(article: T): T {
   return {
     ...article,
     eyebrow: publicKnowledgeEyebrow(article.eyebrow),
@@ -41,5 +41,5 @@ export function toPublicKnowledgeArticle(article: SourcedKnowledgeArticle): Sour
     })),
     related: article.related.map((item) => ({ ...item, label: publicText(item.label) })),
     sources: mergeKnowledgeSources(article.slug, article.sources),
-  };
+  } as T;
 }

@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "V15.19-1",
+  "status": "SCHEMA_READY_EXTERNAL_METRICS_UNMEASURED",
+  "property": "https://leadflowai.pl",
+  "evidenceClasses": [
+    "MEASURED_FIRST_PARTY",
+    "OBSERVED_PUBLIC_SERP",
+    "REPOSITORY_PROOF",
+    "OFFICIAL_PLATFORM_GUIDANCE",
+    "HYPOTHESIS_PENDING_DATA"
+  ],
+  "snapshotTemplate": {
+    "captureDate": null,
+    "sourcePlatform": null,
+    "measurementWindow": {
+      "start": null,
+      "end": null
+    },
+    "releaseSha": null,
+    "canonicalUrl": null,
+    "query": null,
+    "country": null,
+    "device": null,
+    "searchAppearance": null,
+    "classification": {
+      "branded": null,
+      "local": null,
+      "intent": null
+    },
+    "metrics": {
+      "impressions": null,
+      "clicks": null,
+      "ctr": null,
+      "averagePosition": null
+    },
+    "indexation": {
+      "status": null,
+      "sourceDetail": null
+    },
+    "fieldCoreWebVitals": {
+      "lcp": null,
+      "inp": null,
+      "cls": null,
+      "deviceOrUrlGroup": null
+    },
+    "generativeAI": {
+      "visibilityMetric": null,
+      "sourceDetail": null
+    },
+    "conversion": {
+      "qualifiedContactCount": null,
+      "conversionRate": null,
+      "measurementAuthority": null
+    },
+    "evidenceClass": null,
+    "notes": null
+  },
+  "zeroValueRule": "Use 0 only when the named measurement source explicitly reports zero. Unknown values remain null.",
+  "currentMetrics": null
+}

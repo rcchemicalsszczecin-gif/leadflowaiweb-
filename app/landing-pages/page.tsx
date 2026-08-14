@@ -1,5 +1,6 @@
 import { ServicePage } from "@/components/service-page";
 import { getServiceMetadata, getServicePage } from "@/lib/services";
+import { withV13SocialMetadata } from "@/lib/social-metadata-v13";
 
 const page = {
   ...getServicePage("landing-pages"),
@@ -9,11 +10,15 @@ const page = {
   directAnswer: "Landing page ma sens wtedy, gdy użytkownik powinien wykonać jedno główne działanie. Ograniczamy rozpraszacze, układamy argumenty w kolejności decyzji, projektujemy formularz lub kontakt i mierzymy kluczowe zdarzenia zamiast traktować stronę jak skróconą wersję całego serwisu firmowego.",
 };
 
-export const metadata = {
-  ...getServiceMetadata("landing-pages"),
-  title: page.title,
-  description: page.lead,
-};
+export const metadata = withV13SocialMetadata(
+  {
+    ...getServiceMetadata("landing-pages"),
+    title: page.title,
+    description: page.lead,
+  },
+  page.title,
+  page.lead,
+);
 
 export default function LandingPagesPage() {
   return <ServicePage page={page} />;

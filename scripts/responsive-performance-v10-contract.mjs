@@ -149,11 +149,17 @@ if (!liquidSurface.includes("sceneVisible") || !liquidSurface.includes("stopRend
   fail("offscreen Liquid render suspension missing");
 }
 
-if (!agents.includes("Current design authority — V14") || !agents.includes("V14 supersedes V9/V9.2 visual freeze")) {
-  fail("current V14 design authority missing");
+if (
+  !agents.includes("Current design authority — V14 Global Liquid World") ||
+  !agents.includes("V14 Full Visual Rebuild and the later Owner-authorized Global Liquid World supersede V9/V9.2 visual freeze")
+) {
+  fail("current V14 Global Liquid World design authority missing");
 }
-if (!v14Plan.includes("R2 — CSS + RUNTIME DE-STACK") || !v14Plan.includes("route-level budgets")) {
-  fail("current V14 responsive/performance execution plan incomplete");
+if (
+  !v14Plan.includes("R2 — CSS + RUNTIME DE-STACK") ||
+  !v14Plan.includes("aggregate and route-level performance budgets")
+) {
+  fail("completed V14 responsive/performance delivery evidence incomplete");
 }
 
 if (packageJson.includes('"three"') || packageJson.includes("@react-three") || packageJson.includes("babylon")) {
@@ -161,5 +167,5 @@ if (packageJson.includes('"three"') || packageJson.includes("@react-three") || p
 }
 
 console.log(
-  "RESPONSIVE_PERFORMANCE_V14_PASS root=GLOBALS_ONLY legacy-service-v2-v6=ROUTE_BRIDGE route-css=SCOPED lab-css=ROUTE_SCOPED v14-mobile=PASS touch=44px safe-area=PASS overflow=SAFE landscape=PASS coarse-pointer=PASS reduced-motion=PASS liquid=SCENE_BOUNDED offscreen-stop=PASS design=V14_ACTIVE",
+  "RESPONSIVE_PERFORMANCE_V14_PASS root=GLOBALS_ONLY legacy-service-v2-v6=ROUTE_BRIDGE route-css=SCOPED lab-css=ROUTE_SCOPED v14-mobile=PASS touch=44px safe-area=PASS overflow=SAFE landscape=PASS coarse-pointer=PASS reduced-motion=PASS liquid=SCENE_BOUNDED offscreen-stop=PASS design=V14_GLOBAL_LIQUID_WORLD",
 );

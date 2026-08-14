@@ -8,12 +8,31 @@ import { expandedServiceLinks } from "@/lib/expanded-services";
 import { extraServiceLinks } from "@/lib/extra-services";
 import { searchServiceLinks } from "@/lib/search-pages";
 import { coreServiceLinks } from "@/lib/services";
+import { site } from "@/lib/site";
+
+const title = "Usługi LeadFlowAI — strony, AI, widoczność, konwersja i utrzymanie";
+const description =
+  "Pełny katalog usług LeadFlowAI: strony i aplikacje webowe, 3D/WebGL, SEO/AEO/GEO, CRO, analityka, AI, RAG, agenci, integracje, automatyzacje, WCAG, wydajność, bezpieczeństwo, monitoring i utrzymanie.";
 
 export const metadata: Metadata = {
-  title: "Usługi LeadFlowAI — strony, AI, widoczność, konwersja i utrzymanie",
-  description:
-    "Pełny katalog usług LeadFlowAI: strony i aplikacje webowe, 3D/WebGL, SEO/AEO/GEO, CRO, analityka, AI, RAG, agenci, integracje, automatyzacje, WCAG, wydajność, bezpieczeństwo, monitoring i utrzymanie.",
+  title,
+  description,
   alternates: { canonical: "/uslugi" },
+  openGraph: {
+    type: "website",
+    locale: "pl_PL",
+    url: `${site.url}/uslugi/`,
+    siteName: site.name,
+    title,
+    description,
+    images: [{ url: `${site.url}/og-leadflowai.svg`, width: 1200, height: 630, alt: `${site.name} — usługi` }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: [`${site.url}/og-leadflowai.svg`],
+  },
 };
 
 const pillars = [
