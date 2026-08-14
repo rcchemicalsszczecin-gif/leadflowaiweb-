@@ -47,12 +47,15 @@ for (const required of [
   "V14.8 route migration: COMPLETE",
   "R2 root CSS de-stack: COMPLETE",
   "V14.9 final QA — COMPLETE",
-  "a5b63128f027179358fd50f04a6b4d374f58fce3",
+  "31225c140483d50863b8262b4675d8d55caf124e",
   "Quality — PASS",
   "Browser Matrix — PASS 28/28",
   "V14 Visual Preview — PASS",
   "0 vulnerabilities",
-  "V14.10 Owner visual acceptance: **NOT COMPLETE**",
+  "V14.10 Owner visual acceptance — COMPLETE",
+  "OWNER_VISUAL_PASS=ACCEPTED",
+  "MERGE_AUTHORIZATION=NOT_GRANTED",
+  "R9 release hardening / pre-merge audit: **IN PROGRESS**",
 ]) {
   if (!currentState.includes(required)) fail(`CURRENT-STATE invariant missing: ${required}`);
 }
@@ -66,6 +69,8 @@ for (const required of [
 }
 
 if (!ownerV14.includes("STATUS: ACTIVE OWNER AUTHORITY")) fail("V14 Owner authority record is not active");
+if (!ownerV14.includes("OWNER_VISUAL_PASS=ACCEPTED")) fail("Owner visual PASS not recorded");
+if (!ownerV14.includes("MERGE_AUTHORIZATION=NOT_GRANTED")) fail("separate merge authorization boundary missing");
 if (!sourceOfTruth.includes("Current visual authority") || !sourceOfTruth.includes("V14 supersedes V9/V9.2")) fail("source-of-truth map is not V14-aware");
 if (!masterPlan.includes("Active V14 execution sequence") || !masterPlan.includes("R2 — CSS/runtime de-stack")) fail("Master Plan does not point to current V14 sequence");
 
@@ -142,11 +147,13 @@ for (const required of [
   "V14_BROWSER_MATRIX=PASS_28_OF_28",
   "V14_PREVIEW_PIPELINE=PASS",
   "V14_FINAL_QA=COMPLETE",
-  "V14_VALIDATED_IMPLEMENTATION_CANDIDATE=a5b63128f027179358fd50f04a6b4d374f58fce3",
+  "V14_VALIDATED_GOVERNANCE_CHECKPOINT=31225c140483d50863b8262b4675d8d55caf124e",
   "V14_ACTIVE_LINT_WARNINGS=0",
-  "V14_OWNER_VISUAL_ACCEPTANCE=BLOCKED_PENDING_OWNER_REVIEW",
+  "V14_OWNER_VISUAL_ACCEPTANCE=PASS",
+  "R9_PREMERGE_HARDENING=IN_PROGRESS",
+  "MERGE_AUTHORIZATION=NOT_GRANTED",
 ]) {
   if (!repoStatus.includes(required)) fail(`repository status invariant missing: ${required}`);
 }
 
-console.log("V14_PLAN_CONTRACT_PASS authority=SYNC production-v13=LOCKED r0=PASS r1=PASS r2=COMPLETE root=GLOBALS_ONLY legacy-routes=BRIDGE_SCOPED liquid=SCENE_BOUNDED route-migration=COMPLETE route-budgets=PASS security=PASS dependency-audit=0 browser-matrix=28/28 preview=PASS rendered-search=PASS active-lint=0 v14.9=COMPLETE owner-acceptance=BLOCKED");
+console.log("V14_PLAN_CONTRACT_PASS authority=SYNC production-v13=LOCKED r0=PASS r1=PASS r2=COMPLETE root=GLOBALS_ONLY legacy-routes=BRIDGE_SCOPED liquid=SCENE_BOUNDED route-migration=COMPLETE route-budgets=PASS security=PASS dependency-audit=0 browser-matrix=28/28 preview=PASS rendered-search=PASS active-lint=0 v14.9=COMPLETE owner-acceptance=PASS r9=IN_PROGRESS merge-auth=NOT_GRANTED");
