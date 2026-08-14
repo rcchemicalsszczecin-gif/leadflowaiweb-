@@ -9,9 +9,7 @@ const hero = read("components/v14-hero.tsx");
 const stage = read("components/v14-product-stage.tsx");
 const browser = read("components/v14-browser-mockup.tsx");
 const phone = read("components/v14-phone-mockup.tsx");
-const base = read("public/v14-base.css");
-const browserCss = read("public/v14-browser-core.css") + read("public/v14-browser-content.css");
-const phoneCss = read("public/v14-phone.css");
+const visualCss = read("public/v14.css");
 const water = read("components/water-surface.tsx");
 const packageJson = read("package.json");
 
@@ -24,12 +22,10 @@ if (home.includes("data-v92-reveal")) fail("legacy reveal/fade language remains 
 for (const required of ["v14-header", "v14-hero", "pracują jak produkt", "Wyceń projekt", "Zobacz realizacje"]) if (!hero.includes(required)) fail(`hero signal missing: ${required}`);
 for (const required of ["V14BrowserMockup", "V14PhoneMockup", "LIQUID ENGINE"]) if (!stage.includes(required)) fail(`product stage missing: ${required}`);
 if (!browser.includes("v14-browser") || !phone.includes("v14-phone")) fail("device product mockups incomplete");
-if (!base.includes("--v14-accent") || !base.includes("v14-foundation") || !base.includes("background:var(--v14-paper)")) fail("light/dark V14 visual rhythm missing");
-if (!browserCss.includes("perspective:1600px") || !browserCss.includes("rotateY(-7deg)")) fail("spatial browser treatment missing");
-if (!phoneCss.includes("@media(max-width:620px)")) fail("dedicated mobile art direction missing");
-for (const css of [base,browserCss,phoneCss]) if (css.includes("images.unsplash.com")) fail("V14 visual system depends on stock background");
-if (!stage.includes('/v14-base.css') || !stage.includes('/v14-browser-core.css') || !stage.includes('/v14-phone.css')) fail("V14 scoped stylesheet assets are not mounted");
+for (const required of ["--v14-accent", "v14-foundation", "background:var(--v14-paper)", "perspective:1600px", "rotateY(-7deg)", "@media(max-width:620px)"]) if (!visualCss.includes(required)) fail(`consolidated V14 visual CSS missing: ${required}`);
+if (visualCss.includes("images.unsplash.com")) fail("V14 visual system depends on stock background");
+if (!stage.includes('/v14.css')) fail("consolidated V14 stylesheet is not mounted");
 if (!water.includes("const MAX_RIPPLES = 8") || !water.includes("FRAME_INTERVAL_MS = 1000 / 45")) fail("signature water performance bounds changed");
 if (packageJson.includes('"three"') || packageJson.includes("@react-three") || packageJson.includes("babylon")) fail("heavy third-party 3D dependency introduced");
 
-console.log("DESIGN_V14_CONTRACT_PASS root=CLEAN hero=PRODUCT_STAGE browser=SPATIAL mobile=DEDICATED rhythm=LIGHT_DARK reveal=ABSENT stock=ABSENT water=FROZEN heavy-3d=ABSENT");
+console.log("DESIGN_V14_CONTRACT_PASS root=CLEAN hero=PRODUCT_STAGE browser=SPATIAL mobile=DEDICATED rhythm=LIGHT_DARK css=CONSOLIDATED reveal=ABSENT stock=ABSENT water=FROZEN heavy-3d=ABSENT");
