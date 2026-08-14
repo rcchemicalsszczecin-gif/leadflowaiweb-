@@ -78,25 +78,35 @@ The recovery audit covered 231/231 tracked files. Its original findings are hist
 - Service URLs, metadata, canonical, structured data, direct answers, FAQ, decision guidance, related links and knowledge links remain preserved through the shared renderer migration.
 - Knowledge adapter/editorial/source/dateModified/Article JSON-LD layer remains preserved.
 - Preview workflow has been hardened and can generate the bounded desktop/tablet/mobile screenshot set.
-- R2 de-stack has removed V9, V9.2 and V10 styles from the root bundle.
+- R2 root de-stack removed V9, V9.2 and V10 styles from the active root bundle.
 - Root responsive safeguards now live in the active V14 shell.
-- WaterSurface is no longer mounted globally; its runtime is currently homepage-only.
-- Exact Quality #586 on the destacked V14 shell passed end-to-end, including 67/67 static build and 44-route smoke.
-- After root V9/V9.2/V10 removal, aggregate CSS measured 124292 raw / 26269 gzip against historical safety ceilings 195000 / 40000.
-- Exact Quality #592 passed after changing Liquid/Water runtime ownership to homepage-only.
+- Exact Quality #586 passed after V9/V9.2/V10 root removal, with 67/67 static build and 44-route smoke.
+- That de-stack reduced aggregate CSS to 124292 raw / 26269 gzip against historical ceilings 195000 / 40000.
+- Exact Quality #592 passed after removing global Water ownership and limiting the intermediate runtime to homepage ownership.
+
+### Current R2 candidate
+
+- Legacy `WaterSurface` is no longer mounted from root or homepage.
+- Active WebGL has moved to a dedicated `V14LiquidSurface` owned directly by `V14LiquidConstructor`.
+- The new runtime is locally sized with `ResizeObserver` rather than the browser window.
+- Rendering is suspended when the scene leaves the viewport through `IntersectionObserver` and when the document is hidden.
+- Reduced-motion exits before WebGL context allocation.
+- Fine-pointer tracking is locally mapped into the Liquid scene.
+- Compact devices use bounded FPS and DPR.
+- The new Liquid scene contains no `realistic-board-photo` class and no stock/motherboard dependency.
+- This exact scene-bounded candidate still requires its own final Quality and preview evidence before R2 is marked complete.
 
 ### Active / not complete
 
-- R2 CSS/runtime de-stack: ADVANCED, not complete. The remaining V2–V7/V13 historical global style layers still require reference-proof consolidation or route scoping where they remain active.
-- Water/Liquid runtime is homepage-only but still uses the legacy fullscreen circuit-water environment; true scene-bounded V14 Liquid ownership remains to be completed.
+- R2 CSS/runtime de-stack: ADVANCED, not complete. Remaining V2–V7/V13 historical global style layers require reference-proof consolidation or route scoping where they remain active.
 - V14.9 full QA: NOT COMPLETE. Required work includes the full viewport/browser matrix, route-level performance budgets, dependency/security review, final accessibility/browser checks and complete search/public-truth verification.
 - V14.10 Owner visual acceptance: NOT COMPLETE. Preview reliability is no longer the blocker; explicit Owner review/PASS of the final candidate is still required.
 - R9 release hardening/merge: BLOCKED pending V14.9 and Owner visual PASS.
 
 ## Current blockers / technical debt
 
-1. Remaining historical V2–V7/V13 CSS layers are still globally imported and need dependency-proof consolidation/route scoping.
-2. WaterSurface is no longer global but remains fullscreen on the homepage instead of being owned by a bounded V14 Liquid scene.
+1. Scene-bounded Liquid candidate needs exact-head Quality and visual preview proof.
+2. Remaining historical V2–V7/V13 CSS layers are still globally imported and need dependency-proof consolidation/route scoping.
 3. Biome still reports non-fatal specificity warnings, including historical CSS and some active CSS; active warnings should be reduced without weakening lint.
 4. Route-level performance budgets required by V14.9 are not yet implemented.
 5. Firefox and the complete 360/390/768/1366/1440/1920 visual/interaction matrix have not yet received final acceptance evidence.
@@ -106,7 +116,7 @@ The recovery audit covered 231/231 tracked files. Its original findings are hist
 
 ## Current execution order
 
-1. Finish R2 — scene-bound Liquid/Water ownership and remaining CSS/runtime de-stack.
+1. Validate the scene-bounded Liquid runtime and finish remaining R2 CSS ownership cleanup.
 2. Clean active lint/specificity debt and stale current contract naming where safe.
 3. Execute V14.9 — mobile/browser/performance/accessibility/security/search QA.
 4. Produce the final V14.9A preview evidence pack on the exact candidate SHA.
