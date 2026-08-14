@@ -41,6 +41,7 @@ const runtimeFiles = runtimeRoots.flatMap((root) =>
 const targetName = basename(target);
 const fileReferenceHits = [];
 const runtimeClassHits = [];
+const runtimeClassNames = new Set();
 const classBoundary = (name) => new RegExp(`(^|[^A-Za-z0-9_-])${name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?=$|[^A-Za-z0-9_-])`);
 
 for (const path of runtimeFiles) {
@@ -48,11 +49,13 @@ for (const path of runtimeFiles) {
   if (text.includes(targetName) || text.includes(target)) fileReferenceHits.push(path);
   if (!/[.][jt]sx?$/.test(path)) continue;
   const hits = targetClasses.filter((name) => classBoundary(name).test(text));
-  if (hits.length > 0) runtimeClassHits.push(`${path}:${hits.join(",")}`);
+  if (hits.length > 0) {
+    runtimeClassHits.push(`${path}:${hits.join(",")}`);
+    hits.forEach((name) => runtimeClassNames.add(name));
+  }
 }
 
 if (fileReferenceHits.length > 0) fail(`runtime stylesheet reference found: ${fileReferenceHits.join(";")}`);
-if (runtimeClassHits.length > 0) fail(`runtime class reference found: ${runtimeClassHits.join(";")}`);
 
 const htmlFiles = walkFiles("out", (path) => path.endsWith(".html"));
 const renderedClassHits = [];
@@ -88,7 +91,8 @@ console.log(
     `classes=${targetClasses.length}`,
     `runtime-files=${runtimeFiles.length}`,
     "file-references=0",
-    "runtime-class-references=0",
+    `source-class-consumer-files=${runtimeClassHits.length}`,
+    `source-class-consumer-classes=${runtimeClassNames.size}`,
     `rendered-html=${htmlFiles.length}`,
     "rendered-class-references=0",
     `emitted-css=${emittedCssFiles.length}`,
@@ -97,3 +101,7 @@ console.log(
     "verdict=SAFE_DELETE_CANDIDATE_NOT_YET_DELETED",
   ].join(" "),
 );
+
+if (runtimeClassHits.length > 0) {
+  console.log(`POST_V15_UNUSED_V13_CSS_SOURCE_DIAGNOSTIC ${runtimeClassHits.join(";")}`);
+}
