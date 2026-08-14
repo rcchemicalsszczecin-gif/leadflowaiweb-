@@ -3,29 +3,33 @@
 STATUS: NORMATIVE
 OWNER: Paweł Niewiadomski
 
-This document is the index for the repository execution control plane. It does not replace `AGENTS.md`; it makes the governing documents explicit and non-overlapping.
+This document is the index for the repository execution control plane. It does not replace `AGENTS.md`; it makes governing documents explicit and non-overlapping.
 
 ## 1. Top-level authority
 
 1. Current explicit Owner instruction.
 2. Root `AGENTS.md`.
-3. Current normative files under `docs/governance/` listed here.
+3. Applicable nested `AGENTS.md` plus current normative governance files indexed here.
 4. `docs/governance/CURRENT-STATE.md` for current production/candidate state.
-5. Current Owner-approved Master Plan / active stage plan.
-6. Current implementation, architecture, quality contracts and exact evidence.
-7. Historical/reference material.
-8. Conversation/model memory.
+5. `docs/governance/WEBSITE-OWNER-DECISIONS.md` for current product/business/runtime Owner decisions.
+6. Current Owner-approved Master Plan / active stage plan.
+7. Current implementation, architecture, quality contracts and exact evidence.
+8. Historical/reference material.
+9. Conversation/model memory.
 
 ## 2. Normative execution files
 
 ### `AGENTS.md`
 Root constitution. Defines roles, authority order, global invariants, Git authority and default STOP behavior.
 
+### `docs/governance/AGENTS.md`
+Nested governance-subtree guard. Governance is read-only by default and may not be rewritten by an agent to expand its own authority.
+
 ### `docs/governance/OWNER-AUTHORITY.md`
 Defines decisions reserved to the Owner and the default non-delegation model.
 
 ### `docs/governance/HUMAN-AI-OPERATING-MODEL.md`
-Defines the Paweł -> ChatGPT -> Codex -> ChatGPT -> Paweł operating loop.
+Defines the Owner -> ChatGPT -> Codex -> ChatGPT -> Owner operating loop.
 
 ### `docs/governance/CODEX-EXECUTION-CONTRACT.md`
 Defines what Codex may and may not do.
@@ -63,53 +67,74 @@ Defines project containment and cross-project restrictions.
 ### `docs/governance/CURRENT-STATE.md`
 Authoritative current repository/release checkpoint. It must distinguish production from candidate work.
 
-## 3. Product authority files
+### `docs/governance/WEBSITE-OWNER-DECISIONS.md`
+Current Owner-approved product/business/runtime decisions. It is subordinate to a later explicit Owner instruction and interpreted with `CURRENT-STATE.md` for exact release identity.
+
+## 3. Completed / historical Owner decision records
+
+These files preserve real historical Owner decisions and recovery/provenance context. Their historical decision scope remains evidence, but they do not override later current authority outside that scope:
+
+- `docs/governance/WEBSITE-OWNER-DECISION-V14.md` — completed V14 / Global Liquid production decision record.
+- `docs/governance/WEBSITE-OWNER-DECISION-V13.md` — historical V13 production decision record.
+- `docs/governance/WEBSITE-OWNER-DECISION-V9-2.md` — superseded V9.2 visual decision record.
+
+Do not rewrite historical decision evidence merely to make history look like the current state.
+
+## 4. Product authority files
 
 Product plans, visual decisions, search plans, architecture and quality evidence are subordinate to the execution constitution but authoritative inside their domain when they do not conflict with higher authority.
 
 Important current families include:
 - `docs/plans/LEADFLOWAI_AUTHORITATIVE_MASTER_PLAN_V1.md`
-- `docs/plans/V14-VISUAL-REBUILD.md`
+- `docs/plans/V14-VISUAL-REBUILD.md` as historical/completed V14 execution evidence where so classified by current authority
 - `docs/plans/V15-SEARCH-MASTER-PLAN.md`
 - `docs/quality/V15-*`
 - `docs/architecture/*`
 - current scripts/contracts and implementation.
 
-## 4. Historical material
+A plan marked ACTIVE/CURRENT in historical text does not override a later completed production/candidate checkpoint.
+
+## 5. Historical material
 
 Historical documents retain evidence value but do not regain current authority because their filename contains terms such as MASTER, CURRENT, ACTIVE, FINAL or ACCEPTANCE.
 
 On conflict, classify chronology and authority explicitly.
 
-## 5. Required fresh-session reading order
+## 6. Required fresh-session reading order
 
 Before a Codex write stage in a fresh session:
 
-1. `AGENTS.md`
-2. this index
-3. Owner authority
-4. Human/AI operating model
-5. Codex execution contract
-6. workflow contract
-7. stage/gate protocol
-8. prompt contract
-9. file ownership/scope policy
-10. Git safety
-11. evidence/PASS policy
-12. Definition of Done
-13. Source of Truth policy
-14. Current State
-15. exact current Master Plan / stage-specific authorities named by the prompt.
+1. root `AGENTS.md`
+2. every applicable nested `AGENTS.md`, including `docs/governance/AGENTS.md` when governance files are read/modified
+3. this index
+4. Owner authority
+5. Human/AI operating model
+6. Codex execution contract
+7. workflow contract
+8. stage/gate protocol
+9. prompt contract
+10. Codex report contract
+11. file ownership/scope policy
+12. Git safety
+13. evidence/PASS policy
+14. Definition of Done
+15. Source of Truth policy
+16. Project Boundaries
+17. Current State
+18. current Owner Decisions
+19. exact current Master Plan / stage-specific authorities named by the prompt.
 
 For a full-repository absorption pass, Codex must then read and account for the complete tracked repository before concluding.
 
-## 6. No duplicate authority rule
+## 7. No duplicate authority rule
 
 New governance files must not create a second contradictory workflow.
 
-If a new rule supersedes an older normative rule, update or explicitly supersede the older rule in the same bounded governance stage.
+If a new rule supersedes an older normative/current rule, update or explicitly supersede the older rule in the same bounded governance stage.
 
-## 7. STOP rule
+Historical evidence should be preserved rather than silently rewritten unless the file incorrectly presents itself as current operational authority.
+
+## 8. STOP rule
 
 If the control plane is materially contradictory, incomplete for the requested action, or inconsistent with current Git identity:
 
