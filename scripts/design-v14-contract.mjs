@@ -11,7 +11,7 @@ const hero = read("components/v14-hero.tsx");
 const stage = read("components/v14-product-stage.tsx");
 const browser = read("components/v14-browser-mockup.tsx");
 const phone = read("components/v14-phone-mockup.tsx");
-const constructor = read("components/v14-liquid-constructor.tsx");
+const liquidConstructorSource = read("components/v14-liquid-constructor.tsx");
 const liquidSurface = read("components/v14-liquid-surface.tsx");
 const visualCss = read("public/v14.css");
 const shellCss = read("public/v14-shell.css");
@@ -54,7 +54,7 @@ for (const required of [
 
 if (layout.includes("WaterSurface") || layout.includes("water-surface")) fail("Liquid runtime must not be mounted globally");
 for (const required of ['import { V14LiquidSurface }', "<V14LiquidSurface />", 'className="v14-liquid-stage"']) {
-  if (!constructor.includes(required)) fail(`Liquid Constructor runtime ownership missing: ${required}`);
+  if (!liquidConstructorSource.includes(required)) fail(`Liquid Constructor runtime ownership missing: ${required}`);
 }
 for (const required of [
   "const FRAME_INTERVAL_MS = 1000 / 45",
