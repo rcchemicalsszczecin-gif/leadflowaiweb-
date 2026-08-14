@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import json
+import math
 import shutil
 import subprocess
 import sys
@@ -8,6 +9,8 @@ import urllib.error
 import urllib.request
 
 SITE = "http://127.0.0.1:3000"
+FIREFOX_MIN_OUTER_WIDTH = 500
+FIREFOX_CHROME_HEIGHT = 86
 
 VIEWPORTS = [
     (360, 800),
@@ -73,7 +76,13 @@ def start_driver(browser):
     return process, base
 
 
-def create_session(browser, base):
+def firefox_scale(css_width):
+    if css_width >= FIREFOX_MIN_OUTER_WIDTH:
+        return 1.0
+    return FIREFOX_MIN_OUTER_WIDTH / css_width
+
+
+def create_session(browser, base, css_width=None):
     if browser == "chromium":
         always_match = {
             "browserName": "chrome",
@@ -94,9 +103,15 @@ def create_session(browser, base):
             },
         }
     else:
+        scale = firefox_scale(css_width or FIREFOX_MIN_OUTER_WIDTH)
         always_match = {
             "browserName": "firefox",
-            "moz:firefoxOptions": {"args": ["-headless"]},
+            "moz:firefoxOptions": {
+                "args": ["-headless"],
+                "prefs": {
+                    "layout.css.devPixelsPerPx": f"{scale:.6f}",
+                },
+            },
         }
 
     response = http_json(
@@ -111,6 +126,15 @@ def create_session(browser, base):
     if not session_id:
         raise RuntimeError(f"failed to create {browser} session: {response}")
     return session_id
+
+
+def delete_session(base, session_id):
+    if not session_id:
+        return
+    try:
+        http_json("DELETE", base, f"/session/{session_id}", timeout=5)
+    except Exception:
+        pass
 
 
 def execute(base, session_id, script):
@@ -132,12 +156,20 @@ def wait_ready(base, session_id):
     raise RuntimeError("document did not reach readyState=complete")
 
 
-def set_viewport(base, session_id, width, height):
+def set_viewport(browser, base, session_id, width, height):
+    if browser == "firefox" and width < FIREFOX_MIN_OUTER_WIDTH:
+        scale = firefox_scale(width)
+        outer_width = FIREFOX_MIN_OUTER_WIDTH
+        outer_height = math.ceil(height * scale + FIREFOX_CHROME_HEIGHT)
+    else:
+        outer_width = width
+        outer_height = height
+
     http_json(
         "POST",
         base,
         f"/session/{session_id}/window/rect",
-        {"x": 0, "y": 0, "width": width, "height": height},
+        {"x": 0, "y": 0, "width": outer_width, "height": outer_height},
     )
 
 
@@ -181,8 +213,8 @@ def inspect_page(base, session_id, truth):
 def validate(browser, path, width, expected_truth, state):
     if not isinstance(state, dict):
         raise RuntimeError(f"{browser} {path} {width}: invalid state {state}")
-    if abs(float(state.get("innerWidth", 0)) - width) > 40:
-        raise RuntimeError(f"{browser} {path} {width}: viewport mismatch {state}")
+    if abs(float(state.get("innerWidth", 0)) - width) > 24:
+        raise RuntimeError(f"{browser} {path} {width}: CSS viewport mismatch {state}")
     if float(state.get("overflow", 999)) > 2:
         raise RuntimeError(f"{browser} {path} {width}: horizontal overflow {state}")
     if not state.get("main") or not state.get("skip") or not state.get("h1"):
@@ -201,37 +233,55 @@ def validate(browser, path, width, expected_truth, state):
             raise RuntimeError(f"{browser} {path} {width}: desktop navigation hidden {state}")
 
 
+def run_case(browser, base, session_id, path, width, height, truth):
+    set_viewport(browser, base, session_id, width, height)
+    navigate(base, session_id, path)
+    state = inspect_page(base, session_id, truth)
+    validate(browser, path, width, truth, state)
+    print(
+        f"BROWSER_MATRIX_V14_CASE browser={browser} route={path} target={width}x{height} actual={state['innerWidth']}x{state['innerHeight']} overflow={state['overflow']} nav=PASS"
+    )
+    return 1
+
+
 def run_browser(browser):
     process, base = start_driver(browser)
-    session_id = None
     checks = 0
     try:
-        session_id = create_session(browser, base)
+        if browser == "chromium":
+            session_id = create_session(browser, base)
+            try:
+                for width, height in VIEWPORTS:
+                    checks += run_case(browser, base, session_id, "/", width, height, "pracują jak produkt")
+                for path, truth in REPRESENTATIVE_ROUTES:
+                    for width, height in ((390, 844), (1440, 1000)):
+                        checks += run_case(browser, base, session_id, path, width, height, truth)
+            finally:
+                delete_session(base, session_id)
+        else:
+            # Firefox headless enforces an outer-window floor near 500 px. For 360/390 CSS px,
+            # use a per-session devPixelsPerPx scale so media queries and layout run at the real target width.
+            grouped_cases = {360: [], 390: [], "standard": []}
+            for width, height in VIEWPORTS:
+                key = width if width < FIREFOX_MIN_OUTER_WIDTH else "standard"
+                grouped_cases[key].append(("/", width, height, "pracują jak produkt"))
+            for path, truth in REPRESENTATIVE_ROUTES:
+                grouped_cases[390].append((path, 390, 844, truth))
+                grouped_cases["standard"].append((path, 1440, 1000, truth))
 
-        for width, height in VIEWPORTS:
-            set_viewport(base, session_id, width, height)
-            navigate(base, session_id, "/")
-            state = inspect_page(base, session_id, "pracują jak produkt")
-            validate(browser, "/", width, "pracują jak produkt", state)
-            checks += 1
-            print(f"BROWSER_MATRIX_V14_CASE browser={browser} route=/ viewport={width}x{height} overflow={state['overflow']} nav=PASS")
-
-        for path, truth in REPRESENTATIVE_ROUTES:
-            for width, height in ((390, 844), (1440, 1000)):
-                set_viewport(base, session_id, width, height)
-                navigate(base, session_id, path)
-                state = inspect_page(base, session_id, truth)
-                validate(browser, path, width, truth, state)
-                checks += 1
-                print(f"BROWSER_MATRIX_V14_CASE browser={browser} route={path} viewport={width}x{height} overflow={state['overflow']} nav=PASS")
+            for key, cases in grouped_cases.items():
+                if not cases:
+                    continue
+                css_width = key if isinstance(key, int) else FIREFOX_MIN_OUTER_WIDTH
+                session_id = create_session(browser, base, css_width=css_width)
+                try:
+                    for path, width, height, truth in cases:
+                        checks += run_case(browser, base, session_id, path, width, height, truth)
+                finally:
+                    delete_session(base, session_id)
 
         return checks
     finally:
-        if session_id:
-            try:
-                http_json("DELETE", base, f"/session/{session_id}", timeout=5)
-            except Exception:
-                pass
         process.terminate()
         try:
             process.wait(timeout=5)
@@ -259,7 +309,9 @@ def main():
     expected = (len(VIEWPORTS) + len(REPRESENTATIVE_ROUTES) * 2) * 2
     if total != expected:
         raise RuntimeError(f"matrix coverage mismatch: {total} != {expected}")
-    print(f"BROWSER_MATRIX_V14_PASS browsers=2 cases={total} homepage-viewports=6 representative-routes=4x2 overflow=PASS navigation=PASS landmarks=PASS truth=PASS")
+    print(
+        f"BROWSER_MATRIX_V14_PASS browsers=2 cases={total} homepage-viewports=6 representative-routes=4x2 overflow=PASS navigation=PASS landmarks=PASS truth=PASS firefox-mobile=CSS_PIXEL_CALIBRATED"
+    )
 
 
 if __name__ == "__main__":
