@@ -8,7 +8,7 @@ const plan = read("docs/plans/V14-VISUAL-REBUILD.md");
 const layout = read("app/layout.tsx");
 const home = read("app/page.tsx");
 const hero = read("components/v14-hero.tsx");
-const stage = read("components/v14-product-stage.tsx");
+const signature = read("components/v14-signature-stage.tsx");
 const browser = read("components/v14-browser-mockup.tsx");
 const phone = read("components/v14-phone-mockup.tsx");
 const liquidConstructorSource = read("components/v14-liquid-constructor.tsx");
@@ -26,13 +26,14 @@ for (const retired of ["premium-page-v9", "premium-page-v92", "PremiumExperience
   if (home.includes(retired)) fail(`legacy homepage visual/runtime dependency remains: ${retired}`);
 }
 if (home.includes("data-v92-reveal")) fail("legacy reveal/fade language remains on V14 homepage");
-for (const required of ["v14-header", "v14-hero", "pracują jak produkt", "Wyceń projekt", "Zobacz realizacje", "/v14.css", "/v14-shell.css", "/v14-content.css", "/v14-liquid-surface.css"]) {
-  if (!hero.includes(required)) fail(`hero/shell signal missing: ${required}`);
+for (const required of ["v14-header", "v14-hero", "pracują jak produkt", "Wyceń projekt", "Zobacz realizacje", "V14LiquidSurface", 'variant="hero"', "V14SignatureStage", "/v14-liquid-surface.css"]) {
+  if (!hero.includes(required)) fail(`hero/signature signal missing: ${required}`);
 }
-for (const required of ["V14BrowserMockup", "V14PhoneMockup", "LIQUID ENGINE"]) if (!stage.includes(required)) fail(`product stage missing: ${required}`);
-if (stage.includes('rel="stylesheet"')) fail("product stage owns stylesheet links instead of V14 shell");
+for (const required of ["V14BrowserMockup", "V14PhoneMockup", "v14-signature-stage", "v14-signature-browser-layer", "v14-signature-phone-layer", "v14-signature-node-search", "v14-signature-node-ai", "--sig-rx", "--sig-ry", "requestAnimationFrame"]) {
+  if (!signature.includes(required)) fail(`signature spatial stage missing: ${required}`);
+}
 if (!browser.includes("v14-browser") || !phone.includes("v14-phone")) fail("device product mockups incomplete");
-for (const required of ["--v14-accent", "v14-foundation", "background:var(--v14-paper)", "perspective:1600px", "rotateY(-7deg)", "@media(max-width:620px)"]) {
+for (const required of ["--v14-accent", "v14-foundation", "background:var(--v14-paper)", "perspective:1600px", "@media(max-width:620px)"]) {
   if (!visualCss.includes(required)) fail(`consolidated V14 visual CSS missing: ${required}`);
 }
 for (const required of ["v14-mobile-nav", "prefers-reduced-motion: reduce", "min-height: 44px"]) {
@@ -52,8 +53,8 @@ for (const required of [
   if (!contentCss.includes(required)) fail(`V14 content/variant CSS missing: ${required}`);
 }
 
-if (layout.includes("WaterSurface") || layout.includes("water-surface")) fail("Liquid runtime must not be mounted globally");
-for (const required of ['import { V14LiquidSurface }', "<V14LiquidSurface />", 'className="v14-liquid-stage"']) {
+if (layout.includes("WaterSurface") || layout.includes("water-surface")) fail("legacy Liquid runtime must not be mounted globally");
+for (const required of ['import { V14LiquidSurface }', 'variant="constructor"', 'className="v14-liquid-stage"']) {
   if (!liquidConstructorSource.includes(required)) fail(`Liquid Constructor runtime ownership missing: ${required}`);
 }
 for (const required of [
@@ -61,6 +62,13 @@ for (const required of [
   "const COMPACT_FRAME_INTERVAL_MS = 1000 / 30",
   "const MAX_DPR = 1.25",
   "const COMPACT_DPR = 1",
+  "waveHeight",
+  "waterNormal",
+  "fresnel",
+  "reflectedDirection",
+  "caustic",
+  "pointerRipple",
+  'variant === "hero" ? 1 : 0',
   "IntersectionObserver",
   "ResizeObserver",
   'document.addEventListener("visibilitychange"',
@@ -70,14 +78,16 @@ for (const required of [
   'window.matchMedia("(max-width: 899px), (pointer: coarse)")',
   'powerPreference: compactRender.matches ? "low-power" : "default"',
 ]) {
-  if (!liquidSurface.includes(required)) fail(`scene-bounded Liquid runtime invariant missing: ${required}`);
+  if (!liquidSurface.includes(required)) fail(`perspective Liquid runtime invariant missing: ${required}`);
 }
 const reducedGuard = liquidSurface.indexOf("if (reducedMotion.matches)");
 const contextAllocation = liquidSurface.indexOf('canvas.getContext("webgl2"');
 if (reducedGuard < 0 || contextAllocation < 0 || reducedGuard > contextAllocation) fail("reduced-motion must bypass scene WebGL allocation");
-if (!liquidCss.includes(".v14-liquid-surface") || !liquidCss.includes("position: absolute") || !liquidCss.includes("pointer-events: none")) fail("Liquid scene CSS is not locally bounded");
+for (const required of [".v14-liquid-surface", '[data-variant="hero"]', ".v14-signature-stage", "perspective: 1900px", "translateZ(250px)", "transform-style: preserve-3d", "pointer-events: none"]) {
+  if (!liquidCss.includes(required)) fail(`Liquid/spatial CSS invariant missing: ${required}`);
+}
 if (liquidSurface.includes("realistic-board-photo") || liquidCss.includes("images.unsplash.com")) fail("V14 Liquid scene depends on legacy stock motherboard");
 if (visualCss.includes("images.unsplash.com") || shellCss.includes("images.unsplash.com") || contentCss.includes("images.unsplash.com")) fail("V14 visual system depends on stock background");
 if (packageJson.includes('"three"') || packageJson.includes("@react-three") || packageJson.includes("babylon")) fail("heavy third-party 3D dependency introduced");
 
-console.log("DESIGN_V14_CONTRACT_PASS authority=PRODUCTION_RELEASED root=CLEAN shell=V14 hero=PRODUCT_STAGE browser=SPATIAL services=6_VARIANTS knowledge=PASS faq=PASS brief=PASS mobile=NAVIGABLE rhythm=LIGHT_DARK css=V14_OWNED reveal=ABSENT stock=ABSENT liquid=SCENE_BOUNDED visibility=BOUNDED heavy-3d=ABSENT");
+console.log("DESIGN_V14_CONTRACT_PASS authority=PRODUCTION_RELEASED root=CLEAN shell=V14 hero=LIQUID_WEBGL_SPATIAL_PRODUCT water=PERSPECTIVE_HEIGHTFIELD_FRESNEL_CAUSTICS product-depth=POINTER_DRIVEN_3D services=6_VARIANTS knowledge=PASS mobile=NAVIGABLE css=V14_OWNED reduced-motion=PASS stock=ABSENT heavy-3d-lib=ABSENT");
