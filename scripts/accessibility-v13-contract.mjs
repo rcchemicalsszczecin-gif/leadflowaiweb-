@@ -34,7 +34,7 @@ for (const required of [
   'className="v14-mobile-nav"',
   'aria-label="Otwórz nawigację mobilną"',
   'aria-label="Nawigacja mobilna"',
-  'href="/#process"',
+  'href: "/#process"',
 ]) {
   if (!v14Hero.includes(required)) fail(`V14 hero accessibility invariant missing: ${required}`);
 }
