@@ -10,19 +10,22 @@ PRIMARY DOMAIN: leadflowai.pl
 ## Production authority
 
 - Production branch: `main`.
-- Production authority: V14 Full Visual Rebuild.
-- Production merge revision: `39c9b304eff42a71ea36aee871dce569d8f374f0` — `Merge V14 Full Visual Rebuild`.
-- Merged release candidate: `242263ffe1593d1a80890b7f6bc1514316ed2656`.
-- Previous production / rollback baseline: V13 `10627e2f18ccfc7ef86c76a695dab9cf7933cce9`.
-- Owner merge authorization: GRANTED and exercised on 2026-08-14.
-- PR #19: merged.
+- Production authority: V14 Global Liquid World.
+- Production merge revision: `36ad3fd6130ce21e68a2c5e701a516fcb3703b65` — `Merge V14 Global Liquid World`.
+- Merged Global Liquid candidate: `50b71632c687e032311556371108ce3f8d989650`.
+- Previous production baseline: `5bba6a6c963fa61ea3920bb4fcefff65ff9376cc`.
+- Initial V14 release merge (historical): `39c9b304eff42a71ea36aee871dce569d8f374f0` from release candidate `242263ffe1593d1a80890b7f6bc1514316ed2656`.
+- V13 `10627e2f18ccfc7ef86c76a695dab9cf7933cce9` remains the older major rollback reference.
+- Owner Global Liquid production authorization: GRANTED and exercised on 2026-08-14 by explicit instruction to load the accepted candidate to `main`.
+- PR #21: merged.
 
 ## Production deployment proof
 
-GitHub Pages deployment run #16 / run id `31800348526`:
-- head SHA: `39c9b304eff42a71ea36aee871dce569d8f374f0`;
-- build job: PASS;
-- full verify/static artifact identity: PASS;
+GitHub Pages deployment run #36 / run id `31809931666`:
+- head SHA: `36ad3fd6130ce21e68a2c5e701a516fcb3703b65`;
+- full verify/static build: PASS;
+- Pages artifact identity: PASS;
+- artifact upload: PASS;
 - deploy job: PASS;
 - workflow conclusion: SUCCESS.
 
@@ -36,7 +39,7 @@ GitHub Pages repository state after deployment:
 
 ## Preserved public foundation
 
-Production V14 preserves:
+Production still preserves:
 - 35 service/money pages;
 - 21 knowledge articles;
 - 63 dominant public search intents;
@@ -48,61 +51,68 @@ Production V14 preserves:
 
 Public chatbot UI remains OFF by Owner. Online lead delivery remains OFF by Owner. Analytics activation is not authorized by V14.
 
-## V14 delivery status
+## Current visual/runtime authority
 
-- Recovery audit: 231/231 tracked files.
-- R0 governance/source-of-truth synchronization: COMPLETE.
-- R1 mobile/accessibility repair: COMPLETE.
-- R2 runtime and root CSS de-stack: COMPLETE.
-- V14.1–V14.7 visual/product/search/process/portfolio/knowledge/contact delivery: COMPLETE.
-- V14.8 route migration: COMPLETE.
-- V14.9 final QA: COMPLETE.
-- V14.10 Owner Visual PASS: ACCEPTED.
-- R9 pre-merge hardening: PASS.
-- Production merge: COMPLETE.
-- GitHub Pages deployment: PASS.
+The accepted first-screen hero remains the lead visual composition. The post-release Global Liquid World extends the signature system across the remaining public site without replacing that hero.
 
-## Final release evidence
+Current visual/runtime invariants:
+- no white/paper public section art direction;
+- one root-mounted first-party WebGL2 submerged-compute field for public routes outside the protected hero viewport;
+- explicit PCB traces/vias, CPU/socket/die, GPU package, VRAM modules, capacitors and rail-like hardware forms;
+- liquid refraction, caustics, specular bands, ripples and bubbles;
+- pointer/scroll response with frame caps of 36 FPS desktop and 24 FPS compact;
+- DPR caps, document-visibility suspension and reduced-motion fallback;
+- hero guard suppresses the global field while the accepted hero covers the viewport, preventing redundant visual/GPU competition;
+- existing `V14LiquidSurface` remains the dedicated hero/constructor Liquid runtime;
+- Owner-provided LeadFlowAI brand mark is active in the public shell;
+- homepage Search/Google/AI visual uses the dark variant;
+- service, knowledge, contact and Lab public surfaces are dark/translucent over the global field.
 
-Exact release candidate `242263ffe1593d1a80890b7f6bc1514316ed2656` passed:
+## Release evidence
+
+Exact Global Liquid candidate `50b71632c687e032311556371108ce3f8d989650` passed before merge:
 - Quality: PASS;
+- required Global Liquid World contract: PASS;
 - active Biome lint warnings: 0;
 - TypeScript: PASS;
 - static build: PASS;
 - security contract: PASS;
 - `npm audit --omit=dev --audit-level=high`: 0 vulnerabilities;
-- aggregate performance: PASS;
+- aggregate performance budgets: PASS;
 - six route-level performance budgets: PASS;
 - rendered Search/Public Truth: PASS with 63 canonical URLs exactly matching 63 sitemap URLs;
-- Browser Matrix: PASS 28/28 across Chrome and Firefox, including true Firefox 360/390 CSS viewports through WebDriver BiDi;
-- Visual Preview: PASS, including active Liquid WebGL2 desktop/mobile evidence.
+- Browser Matrix: PASS 28/28 across Chrome and Firefox;
+- homepage Visual Preview: PASS;
+- Route Visual Preview: PASS with active WebGL2 on `/strony-internetowe/`, `/wiedza/`, `/kontakt/` and `/lab/`, desktop + mobile = 8/8 captures;
+- horizontal overflow checks: PASS.
 
 ## Production architecture
 
 - Next.js 16.3.1 static export.
 - GitHub Pages hosts the public frontend.
-- Root stylesheet ownership is `globals.css` only.
-- Legacy service + V2→V6 compatibility CSS is isolated in `/v14-legacy-routes.css` for migrated non-home routes.
-- Homepage does not load that bridge.
+- Root module CSS import remains `globals.css` only; the Global Liquid World stylesheet is a first-party static public asset mounted by the root layout.
+- Legacy service + V2→V6 compatibility CSS remains isolated in `/v14-legacy-routes.css` for migrated non-home routes.
+- Homepage does not load that compatibility bridge.
 - Legacy global `WaterSurface` is not mounted.
-- Active `V14LiquidSurface` is scene-bounded inside `V14LiquidConstructor`.
-- No stock/motherboard or external network asset dependency remains in active CSS/Liquid runtime.
-- Branded noindex 404 and first-party app icon are present.
+- `V14GlobalTechLiquid` is the global background runtime; `V14GlobalTechHeroGuard` protects the accepted hero.
+- `V14LiquidSurface` remains dedicated to the hero/constructor signature scenes.
+- No stock/external-network visual dependency is required by the active Liquid runtime.
+- Branded noindex 404 and first-party app icon remain present.
 
 ## Remaining non-blocking debt
 
 - `main` branch protection remains OFF at repository-settings level.
 - Dependabot alerts remain OFF at repository-settings level; npm audit is enforced in CI.
-- `/v14-legacy-routes.css` remains a bounded compatibility bridge; further removal is post-release cleanup and must remain reference-proven.
-- Independent live-domain HTTP smoke from the assistant runtime was not available because that runtime could not resolve `leadflowai.pl`; GitHub Pages itself reports the custom domain built with HTTPS approved/enforced and the exact deployment workflow passed.
+- `/v14-legacy-routes.css` remains a bounded compatibility bridge; removal is separate reference-proven maintenance.
+- Independent search-engine indexing/field performance evidence still belongs to the upcoming production-search phase.
 
 ## Next execution order
 
-1. Keep V14 production stable and monitor Pages/static-route/search health.
-2. Perform post-release bridge cleanup only as separately bounded maintenance.
+1. Keep the Global Liquid World production release stable and collect real production evidence.
+2. Perform legacy route-bridge cleanup only as separately bounded maintenance.
 3. Consider enabling `main` branch protection and Dependabot alerts.
-4. Start V15 Search Master Plan from stable V14 production evidence and real search data.
+4. Start V15 Search Master Plan from stable production evidence and real search data.
 
 ## Production protection
 
-Further production mutations require normal Owner/governance authority. V14 is now the production baseline; V13 remains the immediate known-good rollback reference.
+Further production mutations require normal Owner/governance authority. The current production rollback point immediately before Global Liquid World is `5bba6a6c963fa61ea3920bb4fcefff65ff9376cc`; the initial V14 and V13 revisions remain deeper historical recovery references.

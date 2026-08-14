@@ -26,6 +26,7 @@ const liquidConstructor = read("components/v14-liquid-constructor.tsx");
 const liquidSurface = read("components/v14-liquid-surface.tsx");
 const siteHeader = read("components/v14-site-header.tsx");
 const legacyGenerator = read("scripts/generate-v14-legacy-routes-css.mjs");
+const globalWorldContract = read("scripts/global-liquid-world-v14-contract.mjs");
 const packageJson = read("package.json");
 const browserMatrix = read("scripts/browser-matrix-v14.py");
 const renderedSearch = read("scripts/rendered-search-truth-v14.mjs");
@@ -35,9 +36,10 @@ for (const required of ["Current design authority — V14", "35 service/money pa
 }
 
 for (const required of [
-  "Production authority: V14 Full Visual Rebuild",
-  "39c9b304eff42a71ea36aee871dce569d8f374f0",
-  "242263ffe1593d1a80890b7f6bc1514316ed2656",
+  "Production authority: V14 Global Liquid World",
+  "36ad3fd6130ce21e68a2c5e701a516fcb3703b65",
+  "50b71632c687e032311556371108ce3f8d989650",
+  "31809931666",
   "GitHub Pages deployment: PASS",
   "V14.9 final QA: COMPLETE",
   "V14.10 Owner Visual PASS: ACCEPTED",
@@ -49,9 +51,11 @@ for (const required of [
 
 for (const required of [
   "OWNER_VISUAL_PASS=ACCEPTED",
-  "OWNER_MERGE_AUTHORIZATION=GRANTED_AND_EXERCISED",
-  "V14_PRODUCTION_MERGE=39c9b304eff42a71ea36aee871dce569d8f374f0",
+  "V14_GLOBAL_LIQUID_OWNER_AUTHORIZATION=GRANTED_AND_EXERCISED",
+  "V14_GLOBAL_LIQUID_CANDIDATE=50b71632c687e032311556371108ce3f8d989650",
+  "V14_PRODUCTION_MERGE=36ad3fd6130ce21e68a2c5e701a516fcb3703b65",
   "GITHUB_PAGES_DEPLOYMENT=PASS",
+  "GITHUB_PAGES_RUN=31809931666",
 ]) {
   if (!ownerV14.includes(required)) fail(`Owner V14 release evidence missing: ${required}`);
 }
@@ -78,25 +82,33 @@ for (const required of ["IntersectionObserver", "ResizeObserver", "waveHeight", 
 
 const rootCssImports = [...layout.matchAll(/import\s+["'](\.\/[^"']+\.css)["']/g)].map((match) => match[1]);
 if (rootCssImports.length !== 1 || rootCssImports[0] !== "./globals.css") fail(`root CSS is not globals-only: ${rootCssImports.join(",")}`);
+if (!layout.includes('<link rel="stylesheet" href="/v14-global-tech-world.css"')) fail("global Liquid World stylesheet mount missing");
+if (!layout.includes("<V14GlobalTechLiquid />") || !layout.includes("<V14GlobalTechHeroGuard />")) fail("global Liquid World root runtime missing");
 if (!siteHeader.includes('href="/v14-legacy-routes.css"')) fail("legacy route bridge missing on migrated routes");
 if (hero.includes("v14-legacy-routes.css")) fail("homepage references legacy route bridge");
 for (const sourcePath of ["app/services.css", "app/precision-water.css", "app/circuit-water-v3.css", "app/hardware-board-v4.css", "app/realistic-board-v5.css", "app/content-frames-v6.css"]) {
   if (!legacyGenerator.includes(`"${sourcePath}"`)) fail(`legacy bridge source missing: ${sourcePath}`);
 }
 if (!packageJson.includes('"next": "16.3.1"') || !packageJson.includes('"dependency:audit"')) fail("Next/dependency baseline not current");
+if (!packageJson.includes('"global-world:contract"') || !packageJson.includes("npm run global-world:contract")) fail("Global Liquid World contract is not enforced by verify");
+for (const marker of ["GLOBAL_LIQUID_WORLD_V14_PASS", "PCB_CPU_GPU", "hero=PRESERVED_GPU_GUARDED", "route-preview=8_CAPTURES"]) {
+  if (!globalWorldContract.includes(marker)) fail(`Global Liquid World contract marker missing: ${marker}`);
+}
 if (!browserMatrix.includes("firefox-bidi-viewport-v14.mjs") || !browserMatrix.includes("VIEWPORTS")) fail("browser matrix not wired");
 if (!renderedSearch.includes("_EXACT_SET")) fail("rendered Search/Public Truth exact-set gate missing");
 
 for (const required of [
-  "PRODUCTION_REVISION=39c9b304eff42a71ea36aee871dce569d8f374f0",
-  "PRODUCTION_AUTHORITY=V14_FULL_VISUAL_REBUILD",
-  "V14_OWNER_MERGE_AUTHORIZATION=GRANTED_AND_EXERCISED",
-  "V14_FINAL_QA=COMPLETE",
-  "V14_OWNER_VISUAL_ACCEPTANCE=PASS",
-  "V14_R9_PREMERGE_HARDENING=PASS",
-  "GITHUB_PAGES_RUN=31800348526_SUCCESS",
+  "PRODUCTION_REVISION=36ad3fd6130ce21e68a2c5e701a516fcb3703b65",
+  "PRODUCTION_AUTHORITY=V14_GLOBAL_LIQUID_WORLD",
+  "V14_GLOBAL_LIQUID_CANDIDATE=50b71632c687e032311556371108ce3f8d989650",
+  "V14_GLOBAL_LIQUID_MERGE=36ad3fd6130ce21e68a2c5e701a516fcb3703b65",
+  "V14_GLOBAL_LIQUID_OWNER_AUTHORIZATION=GRANTED_AND_EXERCISED",
+  "V14_GLOBAL_LIQUID_CONTRACT=PASS",
+  "V14_GLOBAL_LIQUID_ROUTE_PREVIEW=PASS_8_OF_8",
+  "V14_GLOBAL_LIQUID_BROWSER_MATRIX=PASS_28_OF_28",
+  "GITHUB_PAGES_RUN=31809931666_SUCCESS",
 ]) {
   if (!repoStatus.includes(required)) fail(`repository status invariant missing: ${required}`);
 }
 
-console.log("V14_PLAN_CONTRACT_PASS production=V14 main=39c9b304 release-candidate=242263ff signature-upgrade=BRANCH_ONLY hero-liquid=WEBGL2 spatial-3d=PASS constructor-liquid=PASS r2=COMPLETE route-migration=COMPLETE owner-visual=HISTORICAL_PASS merge=HISTORICAL_COMPLETE pages=PASS next=16.3.1");
+console.log("V14_PLAN_CONTRACT_PASS production=V14_GLOBAL_LIQUID_WORLD main=36ad3fd6 candidate=50b71632 initial-v14=39c9b304 global-world=PASS hero-liquid=WEBGL2 spatial-3d=PASS constructor-liquid=PASS routes=8_PREVIEW browser=28_OF_28 search=63_EXACT next=16.3.1");

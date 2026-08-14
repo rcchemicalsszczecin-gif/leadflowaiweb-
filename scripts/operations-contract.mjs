@@ -23,14 +23,14 @@ if (!nextConfig.includes('output: "export"') || !nextConfig.includes("trailingSl
 if (nextConfig.includes("async headers") || nextConfig.includes("Strict-Transport-Security") || nextConfig.includes("Content-Security-Policy")) fail("server/edge headers incorrectly owned by static Next frontend");
 
 for (const required of [
-  "PRODUCTION V14",
-  "39c9b304eff42a71ea36aee871dce569d8f374f0",
-  "242263ffe1593d1a80890b7f6bc1514316ed2656",
-  "31800348526",
+  "V14 Global Liquid World",
+  "36ad3fd6130ce21e68a2c5e701a516fcb3703b65",
+  "50b71632c687e032311556371108ce3f8d989650",
+  "31809931666",
   "GitHub Pages",
 ]) {
   if (![currentState, readiness, runbook, recovery, frontend].some((doc) => doc.includes(required))) {
-    fail(`production V14 operations state missing ${required}`);
+    fail(`current production operations state missing ${required}`);
   }
 }
 
@@ -52,5 +52,6 @@ if (!recovery.includes("Secrets")) fail("recovery secrets domain missing");
 if (!frontend.includes("GitHub Pages") || !frontend.includes('output: "export"') || !frontend.includes("api.leadflowai.pl")) {
   fail("static frontend architecture incomplete");
 }
+if (!frontend.includes("V14GlobalTechLiquid") || !frontend.includes("V14GlobalTechHeroGuard")) fail("current global Liquid runtime architecture missing");
 
-console.log("OPERATIONS_CONTRACT_PASS production-v14=LIVE deploy=PASS static-frontend=PASS future-api-boundary=PASS monitoring=PASS recovery=PASS rollback-v13=RECORDED");
+console.log("OPERATIONS_CONTRACT_PASS production-v14=GLOBAL_LIQUID_WORLD deploy=PASS static-frontend=PASS global-liquid=ACTIVE_WITH_HERO_GUARD future-api-boundary=PASS monitoring=PASS recovery=PASS");

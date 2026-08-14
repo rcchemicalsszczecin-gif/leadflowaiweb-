@@ -42,19 +42,21 @@ for (const required of [
   'output: "export"',
   "out/",
   "api.leadflowai.pl",
-  "39c9b304eff42a71ea36aee871dce569d8f374f0",
+  "36ad3fd6130ce21e68a2c5e701a516fcb3703b65",
+  "V14GlobalTechLiquid",
+  "V14GlobalTechHeroGuard",
 ]) {
   if (!frontend.includes(required)) fail(`frontend deployment architecture record missing: ${required}`);
 }
 
 for (const required of [
-  "Production authority: V14 Full Visual Rebuild",
-  "39c9b304eff42a71ea36aee871dce569d8f374f0",
-  "242263ffe1593d1a80890b7f6bc1514316ed2656",
-  "Owner merge authorization: GRANTED and exercised",
+  "Production authority: V14 Global Liquid World",
+  "36ad3fd6130ce21e68a2c5e701a516fcb3703b65",
+  "50b71632c687e032311556371108ce3f8d989650",
+  "Owner Global Liquid production authorization: GRANTED and exercised",
   "GitHub Pages deployment: PASS",
 ]) {
-  if (!currentState.includes(required)) fail(`current V14 production boundary missing: ${required}`);
+  if (!currentState.includes(required)) fail(`current production boundary missing: ${required}`);
 }
 
-console.log("STATIC_DEPLOY_CONTRACT_PASS export=PASS pages-workflow=PASS cname=PASS api-split=PASS production=V14_MAIN deployment=PASS");
+console.log("STATIC_DEPLOY_CONTRACT_PASS export=PASS pages-workflow=PASS cname=PASS api-split=PASS production=V14_GLOBAL_LIQUID_WORLD deployment=PASS");
