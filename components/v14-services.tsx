@@ -10,7 +10,6 @@ const services = [
 export function V14Services() {
   return (
     <section className="v14-services" aria-labelledby="v14-services-title">
-      <link rel="stylesheet" href="/v14-services.css" precedence="high" />
       <div className="v14-shell">
         <div className="v14-section-head">
           <p>01 / SYSTEM OFERTY</p>
