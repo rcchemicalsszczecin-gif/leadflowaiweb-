@@ -19,6 +19,7 @@ const bridgeSources = [
 
 const zeroDeadRequired = new Set([
   "app/services.css",
+  "app/circuit-water-v3.css",
   "app/hardware-board-v4.css",
   "app/realistic-board-v5.css",
   "app/content-frames-v6.css",
