@@ -11,8 +11,6 @@ const read = (path) => {
 };
 
 const layout = read("app/layout.tsx");
-const legacyResponsiveCss = read("app/responsive-performance-v10.css");
-const legacyHeader = read("components/site-header.tsx");
 const v14Hero = read("components/v14-hero.tsx");
 const v14Shell = read("public/v14-shell.css");
 const water = read("components/water-surface.tsx");
@@ -20,24 +18,12 @@ const packageJson = read("package.json");
 const agents = read("AGENTS.md");
 const v14Plan = read("docs/plans/V14-VISUAL-REBUILD.md");
 
-if (!layout.includes('import "./responsive-performance-v10.css"')) {
-  fail("legacy-route responsive layer missing before V14 full route migration");
-}
-
-for (const required of [
-  'className="mobile-nav-v10"',
-  'className="mobile-nav-panel-v10"',
-  'aria-label="Nawigacja mobilna"',
-  'aria-label="Otwórz nawigację"',
+for (const retiredImport of [
+  './premium-art-direction-v9.css',
+  './premium-calibration-v9-2.css',
+  './responsive-performance-v10.css',
 ]) {
-  if (!legacyHeader.includes(required)) fail(`legacy-route mobile navigation invariant missing: ${required}`);
-}
-
-if (!legacyResponsiveCss.includes("min-height: 44px") || !legacyResponsiveCss.includes("safe-area-inset-left") || !legacyResponsiveCss.includes("safe-area-inset-bottom")) {
-  fail("legacy-route touch/safe-area safeguards missing");
-}
-if (!legacyResponsiveCss.includes("overflow-x: clip") || !legacyResponsiveCss.includes("orientation: landscape") || !legacyResponsiveCss.includes("pointer: coarse")) {
-  fail("legacy-route overflow/landscape/coarse-pointer safeguards missing");
+  if (layout.includes(retiredImport)) fail(`retired root stylesheet remounted: ${retiredImport}`);
 }
 
 for (const required of [
@@ -51,10 +37,18 @@ for (const required of [
 }
 
 for (const required of [
+  "overflow-x: clip",
+  "text-size-adjust: 100%",
+  "max-inline-size: 100%",
+  "safe-area-inset-left",
+  "safe-area-inset-right",
+  "safe-area-inset-top",
   "@media (max-width: 980px)",
   ".v14-mobile-nav",
   "display: block",
   "min-height: 44px",
+  "orientation: landscape",
+  "100svh",
   "pointer: coarse",
   "prefers-reduced-motion: reduce",
 ]) {
@@ -102,5 +96,5 @@ if (packageJson.includes('"three"') || packageJson.includes("@react-three") || p
 }
 
 console.log(
-  "RESPONSIVE_PERFORMANCE_V14_PASS legacy-mobile=PASS v14-mobile=PASS touch=44px safe-area=PASS overflow=SAFE coarse-pointer=PASS reduced-motion=PASS water-runtime-bounds=PASS design=V14_ACTIVE",
+  "RESPONSIVE_PERFORMANCE_V14_PASS root=DESTACKED v14-mobile=PASS touch=44px safe-area=PASS overflow=SAFE landscape=PASS coarse-pointer=PASS reduced-motion=PASS water-runtime-bounds=PASS design=V14_ACTIVE",
 );
