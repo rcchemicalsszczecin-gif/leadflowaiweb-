@@ -1,3 +1,4 @@
+import { V14DeviceTheater } from "@/components/v14-device-theater";
 import { V14Hero } from "@/components/v14-hero";
 import { V14Services } from "@/components/v14-services";
 import { site } from "@/lib/site";
@@ -7,6 +8,7 @@ export default function HomePage() {
     <main className="v14-page">
       <V14Hero />
       <V14Services />
+      <V14DeviceTheater />
       <section className="v14-foundation" aria-labelledby="v14-foundation-title">
         <div className="v14-shell">
           <p>V14 / VISUAL REBUILD</p>
