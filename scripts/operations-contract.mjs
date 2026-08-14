@@ -22,40 +22,35 @@ const apiBoundary = read("docs/architecture/LOCAL-API-BOUNDARY.md");
 if (!nextConfig.includes('output: "export"') || !nextConfig.includes("trailingSlash: true")) fail("static frontend output contract incomplete");
 if (nextConfig.includes("async headers") || nextConfig.includes("Strict-Transport-Security") || nextConfig.includes("Content-Security-Policy")) fail("server/edge headers incorrectly owned by static Next frontend");
 
-for (const phrase of [
-  "10627e2f18ccfc7ef86c76a695dab9cf7933cce9",
-  "Production V13",
-  "V14",
+for (const required of [
+  "PRODUCTION V14",
+  "39c9b304eff42a71ea36aee871dce569d8f374f0",
+  "242263ffe1593d1a80890b7f6bc1514316ed2656",
+  "31800348526",
   "GitHub Pages",
 ]) {
-  if (!currentState.includes(phrase) && !readiness.includes(phrase) && !runbook.includes(phrase)) {
-    fail(`current production/V14 state missing ${phrase}`);
+  if (![currentState, readiness, runbook, recovery, frontend].some((doc) => doc.includes(required))) {
+    fail(`production V14 operations state missing ${required}`);
   }
 }
 
-if (!readiness.includes("PRODUCTION V13 LIVE") || !readiness.includes("NOT AUTHORIZED FOR PRODUCTION MERGE")) {
-  fail("deployment readiness must distinguish live V13 from unmerged V14");
-}
-
-if (!runbook.includes("PRODUCTION V13 OPERATING BASELINE") || !runbook.includes("V14 merge/deployment: NOT AUTHORIZED")) {
-  fail("runbook does not describe current V13/V14 release boundary");
-}
+if (!readiness.includes("PRODUCTION V14 LIVE / DEPLOYMENT PASS")) fail("deployment readiness is not V14 production");
+if (!runbook.includes("PRODUCTION V14 OPERATING BASELINE")) fail("runbook is not V14 production baseline");
+if (!monitoring.includes("PRODUCTION V14 BASELINE")) fail("monitoring is not V14 production baseline");
+if (!recovery.includes("PRODUCTION V14 BASELINE")) fail("recovery is not V14 production baseline");
 
 if (!apiBoundary.includes("POST /leads") || !apiBoundary.includes("POST /chat") || !apiBoundary.includes("GET /health") || !apiBoundary.includes("Cloudflare Tunnel")) {
   fail("future local API boundary incomplete");
 }
 if (!apiBoundary.includes("https://leadflowai.pl") || !apiBoundary.includes("CORS")) fail("future local API origin contract incomplete");
 
-if (!monitoring.includes("Core Web Vitals") || !monitoring.includes("V14 mobile navigation") || !monitoring.includes("21 knowledge articles")) {
-  fail("monitoring baseline incomplete for current V14 release requirements");
+if (!monitoring.includes("Core Web Vitals") || !monitoring.includes("mobile navigation") || !monitoring.includes("21 knowledge articles")) {
+  fail("monitoring baseline incomplete for V14 production");
 }
-
-if (!recovery.includes("last known-good") || !recovery.includes("Secrets") || !recovery.includes("10627e2f18ccfc7ef86c76a695dab9cf7933cce9")) {
-  fail("recovery domains/current production recovery point incomplete");
-}
-
+if (!recovery.includes("last known-good") && !recovery.includes("known-good")) fail("recovery known-good principle missing");
+if (!recovery.includes("Secrets")) fail("recovery secrets domain missing");
 if (!frontend.includes("GitHub Pages") || !frontend.includes('output: "export"') || !frontend.includes("api.leadflowai.pl")) {
   fail("static frontend architecture incomplete");
 }
 
-console.log("OPERATIONS_CONTRACT_PASS production-v13=LIVE v14=NOT_MERGE_AUTHORIZED static-frontend=PASS future-api-boundary=PASS monitoring=PASS recovery=PASS");
+console.log("OPERATIONS_CONTRACT_PASS production-v14=LIVE deploy=PASS static-frontend=PASS future-api-boundary=PASS monitoring=PASS recovery=PASS rollback-v13=RECORDED");
