@@ -25,10 +25,12 @@ if(home.includes("realistic-board-photo") || home.includes("images.unsplash.com"
 if(home.includes("api.leadflowai.pl/leads"))fail("disabled lead endpoint leaked into V14 homepage");
 
 const notFound=readFileSync("out/404.html","utf8");
-for(const required of ["Ta ścieżka nie prowadzi do aktywnej strony","v14-not-found-page","v14-header-static","v14-route-footer","Strona główna","Zobacz usługi"]){
+for(const required of ["Ta ścieżka nie prowadzi do aktywnej strony","404 / NIE ZNALEZIONO","LEADFLOWAI","Strona główna","Zobacz usługi","Wyceń projekt"]){
   if(!notFound.includes(required))fail(`branded 404 artifact missing: ${required}`);
 }
 if(!/noindex/i.test(notFound))fail("404 artifact must remain noindex");
+if(notFound.includes("/v14-legacy-routes.css"))fail("root-clean 404 must not load legacy route bridge");
+if(notFound.includes("v14-header-static")||notFound.includes("v14-route-footer"))fail("404 leaked route-shell resources into root boundary");
 const icon=readFileSync("out/icon.svg","utf8");
 if(!icon.includes("LeadFlowAI")||!icon.includes("#c7ff2f"))fail("first-party app icon identity incomplete");
 
@@ -88,4 +90,4 @@ if(!readFileSync("out/wiedza/wcag-22-co-sprawdzic-na-stronie/index.html","utf8")
 const about=readFileSync("out/o-nas/index.html","utf8");
 if(!about.includes("Tervyxa Systems sp. z o.o."))fail("public trust entity missing from about artifact");
 
-console.log(`PUBLIC_ARTIFACT_V14_PASS html=${htmlFiles.length} placeholders=ABSENT retired-en=ABSENT homepage=V14_FULL_ROOT_GLOBALS_ONLY legacy-route-bridge=SERVICE_V2_V6_SCOPED liquid=SCENE_BOUNDED service-shell=V14 services=${serviceSamples.length} primary-routes=${routeSamples.length} 404=BRANDED_NOINDEX icon=FIRST_PARTY lab=INTERACTIVE knowledge-samples=${knowledgeSamples.length} decisions=PASS schema=PASS sources=PASS faq=PASS brief=FRONTEND_ONLY portfolio=FIRST_PARTY stock=ABSENT trust=PASS`);
+console.log(`PUBLIC_ARTIFACT_V14_PASS html=${htmlFiles.length} placeholders=ABSENT retired-en=ABSENT homepage=V14_FULL_ROOT_GLOBALS_ONLY legacy-route-bridge=SERVICE_V2_V6_SCOPED liquid=SCENE_BOUNDED service-shell=V14 services=${serviceSamples.length} primary-routes=${routeSamples.length} 404=BRANDED_NOINDEX_ROOT_CLEAN icon=FIRST_PARTY lab=INTERACTIVE knowledge-samples=${knowledgeSamples.length} decisions=PASS schema=PASS sources=PASS faq=PASS brief=FRONTEND_ONLY portfolio=FIRST_PARTY stock=ABSENT trust=PASS`);
