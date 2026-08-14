@@ -13,7 +13,7 @@ const read = (path) => {
 const layout = read("app/layout.tsx");
 const v14Hero = read("components/v14-hero.tsx");
 const v14Shell = read("public/v14-shell.css");
-const water = read("components/water-surface.tsx");
+const liquidSurface = read("components/v14-liquid-surface.tsx");
 const packageJson = read("package.json");
 const agents = read("AGENTS.md");
 const v14Plan = read("docs/plans/V14-VISUAL-REBUILD.md");
@@ -25,6 +25,7 @@ for (const retiredImport of [
 ]) {
   if (layout.includes(retiredImport)) fail(`retired root stylesheet remounted: ${retiredImport}`);
 }
+if (layout.includes("WaterSurface") || layout.includes("water-surface")) fail("global Water runtime remounted");
 
 for (const required of [
   'href="/v14-shell.css"',
@@ -56,32 +57,34 @@ for (const required of [
 }
 
 for (const invariant of [
-  "const MAX_RIPPLES = 8",
-  "const COMPACT_MAX_RIPPLES = 5",
   "const FRAME_INTERVAL_MS = 1000 / 45",
   "const COMPACT_FRAME_INTERVAL_MS = 1000 / 30",
+  "const MAX_DPR = 1.25",
+  "const COMPACT_DPR = 1",
+  "IntersectionObserver",
+  "ResizeObserver",
   'document.addEventListener("visibilitychange"',
   "document.hidden",
   'window.matchMedia("(pointer: fine)")',
   'window.matchMedia("(max-width: 899px), (pointer: coarse)")',
   'powerPreference: compactRender.matches ? "low-power" : "default"',
 ]) {
-  if (!water.includes(invariant)) fail(`water runtime invariant missing: ${invariant}`);
+  if (!liquidSurface.includes(invariant)) fail(`Liquid runtime invariant missing: ${invariant}`);
 }
 
-const reducedGuard = water.indexOf("if (reducedMotion.matches)");
-const contextAllocation = water.indexOf('canvas.getContext("webgl2"');
+const reducedGuard = liquidSurface.indexOf("if (reducedMotion.matches)");
+const contextAllocation = liquidSurface.indexOf('canvas.getContext("webgl2"');
 if (reducedGuard < 0 || contextAllocation < 0 || reducedGuard > contextAllocation) {
-  fail("reduced-motion must bypass WebGL allocation while WaterSurface remains in use");
+  fail("reduced-motion must bypass WebGL allocation");
 }
-if (!water.includes('if (finePointer.matches) window.addEventListener("pointermove"')) {
-  fail("pointermove must be fine-pointer only");
+if (!liquidSurface.includes('if (finePointer.matches) window.addEventListener("pointermove"')) {
+  fail("Liquid pointer tracking must be fine-pointer only");
 }
-if (water.includes('addEventListener("scroll"')) {
+if (liquidSurface.includes('addEventListener("scroll"')) {
   fail("global scroll event loop introduced");
 }
-if (!water.includes("compactRender.matches ? 1 : 1.15")) {
-  fail("compact/desktop DPR bounds missing");
+if (!liquidSurface.includes("sceneVisible") || !liquidSurface.includes("stopRendering")) {
+  fail("offscreen Liquid render suspension missing");
 }
 
 if (!agents.includes("Current design authority — V14") || !agents.includes("V14 supersedes V9/V9.2 visual freeze")) {
@@ -96,5 +99,5 @@ if (packageJson.includes('"three"') || packageJson.includes("@react-three") || p
 }
 
 console.log(
-  "RESPONSIVE_PERFORMANCE_V14_PASS root=DESTACKED v14-mobile=PASS touch=44px safe-area=PASS overflow=SAFE landscape=PASS coarse-pointer=PASS reduced-motion=PASS water-runtime-bounds=PASS design=V14_ACTIVE",
+  "RESPONSIVE_PERFORMANCE_V14_PASS root=DESTACKED v14-mobile=PASS touch=44px safe-area=PASS overflow=SAFE landscape=PASS coarse-pointer=PASS reduced-motion=PASS liquid=SCENE_BOUNDED offscreen-stop=PASS design=V14_ACTIVE",
 );
