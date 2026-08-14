@@ -10,7 +10,7 @@ const glossary=read("docs/quality/V13-10-PUBLIC-GLOSSARY.md");
 for(const required of ["STATUS: ACTIVE PUBLIC LANGUAGE SOURCE OF TRUTH","LeadFlowAI","Tervyxa Systems sp. z o.o.","PROJEKT I BUDOWA","WIDOCZNOŚĆ","KONWERSJA","INTELIGENCJA","INTEGRACJE","OPIEKA","Terminy techniczne pozostawiane bez sztucznego tłumaczenia"])if(!glossary.includes(required))fail(`public glossary missing: ${required}`);
 
 const owner=read("docs/governance/WEBSITE-OWNER-DECISION-V14.md");
-if(!owner.includes("STATUS: ACTIVE OWNER AUTHORITY"))fail("V14 owner authority missing");
+if(!owner.includes("STATUS: COMPLETED OWNER AUTHORITY / PRODUCTION RELEASED")||!owner.includes("OWNER_MERGE_AUTHORIZATION=GRANTED_AND_EXERCISED"))fail("V14 production owner authority missing");
 const home=read("app/page.tsx");
 for(const required of ["V14Hero","V14Services","V14DeviceTheater","V14LiquidConstructor","V14SearchTrinity","V14ProcessCanvas","V14Portfolio","V14KnowledgeFaq","V14ContactBrief","V14Closing"])if(!home.includes(required))fail(`V14 homepage composition missing: ${required}`);
 const hero=read("components/v14-hero.tsx");
@@ -37,4 +37,4 @@ for(const required of ["KONTAKT","Wyceń projekt","site.email","Tervyxa Systems 
 const about=read("app/o-nas/page.tsx");
 for(const required of ["O LeadFlowAI","Tervyxa Systems sp. z o.o.","Dowód przed deklaracją","METODOLOGIA LEADFLOW"])if(!about.includes(required))fail(`about page missing trust/methodology label: ${required}`);
 
-console.log(`PUBLIC_LANGUAGE_V14_PASS sources=${publicSources.length} retired=${retired.length} glossary=AUTHORITATIVE homepage-content=PASS knowledge=PASS faq=PASS brief=FRONTEND_ONLY liquid=SCENE_BOUNDED trinity=PASS process=PASS portfolio=FIRST_PARTY closing=PASS trust=PL`);
+console.log(`PUBLIC_LANGUAGE_V14_PASS authority=PRODUCTION_RELEASED sources=${publicSources.length} retired=${retired.length} glossary=AUTHORITATIVE homepage-content=PASS knowledge=PASS faq=PASS brief=FRONTEND_ONLY liquid=SCENE_BOUNDED trinity=PASS process=PASS portfolio=FIRST_PARTY closing=PASS trust=PL`);
