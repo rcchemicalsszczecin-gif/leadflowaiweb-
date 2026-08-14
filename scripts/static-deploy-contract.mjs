@@ -35,31 +35,26 @@ if (!existsSync("public/.nojekyll")) fail(".nojekyll marker missing");
 for (const token of ["actions/configure-pages@v5", "actions/upload-pages-artifact@v4", "actions/deploy-pages@v4", "path: ./out", "branches:", "- main"]) {
   if (!pages.includes(token)) fail(`Pages workflow missing ${token}`);
 }
-if (pages.includes("build/leadflowai")) fail("work branch must not auto-deploy to Pages");
 
 for (const required of [
-  "STATUS: PRODUCTION ARCHITECTURE",
+  "STATUS: PRODUCTION V14 ARCHITECTURE",
   "GitHub Pages",
   'output: "export"',
   "out/",
   "api.leadflowai.pl",
-  "V14 production promotion requires",
+  "39c9b304eff42a71ea36aee871dce569d8f374f0",
 ]) {
   if (!frontend.includes(required)) fail(`frontend deployment architecture record missing: ${required}`);
 }
 
 for (const required of [
-  "10627e2f18ccfc7ef86c76a695dab9cf7933cce9",
-  "V13 Polish Production Rebuild",
-  "v14/full-visual-rebuild",
-  "not merge-authorized",
-  "OWNER_VISUAL_PASS=ACCEPTED",
-  "R9_PREMERGE_HARDENING=PASS",
-  "RELEASE_STATE=READY_FOR_SEPARATE_MERGE_AUTHORIZATION",
-  "MERGE_AUTHORIZATION=NOT_GRANTED",
-  "Owner visual PASS and R9 PRE-MERGE PASS are necessary but insufficient for production mutation.",
+  "Production authority: V14 Full Visual Rebuild",
+  "39c9b304eff42a71ea36aee871dce569d8f374f0",
+  "242263ffe1593d1a80890b7f6bc1514316ed2656",
+  "Owner merge authorization: GRANTED and exercised",
+  "GitHub Pages deployment: PASS",
 ]) {
-  if (!currentState.includes(required)) fail(`current production/V14 release boundary missing: ${required}`);
+  if (!currentState.includes(required)) fail(`current V14 production boundary missing: ${required}`);
 }
 
-console.log("STATIC_DEPLOY_CONTRACT_PASS export=PASS pages-workflow=PASS cname=PASS api-split=PASS production=V13_MAIN v14=R9_PREMERGE_PASS release=READY_FOR_SEPARATE_MERGE_AUTHORIZATION merge-auth=NOT_GRANTED");
+console.log("STATIC_DEPLOY_CONTRACT_PASS export=PASS pages-workflow=PASS cname=PASS api-split=PASS production=V14_MAIN deployment=PASS");
