@@ -3,12 +3,16 @@ import { PortfolioProjectVisual } from "@/components/portfolio-project-visual";
 import { V14SiteFooter } from "@/components/v14-site-footer";
 import { V14SiteHeader } from "@/components/v14-site-header";
 import { portfolioCases } from "@/lib/portfolio";
+import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Realizacje i projekty własne",
   description:
     "Realizacje LeadFlowAI publikowane wyłącznie z prawdziwym zakresem i możliwym do potwierdzenia statusem. LeadFlowAI, TranskrypcjaAI i Tervyxa bez fikcyjnych wyników.",
   alternates: { canonical: "/realizacje" },
+  openGraph: {
+    url: `${site.url}/realizacje/`,
+  },
 };
 
 export default function PortfolioPage() {
