@@ -18,85 +18,61 @@ KNOWLEDGE_ARTICLES=21
 DOMINANT_SEARCH_INTENTS=63
 LEAD_FORM_DELIVERY=OFF_BY_OWNER
 DIRECT_EMAIL_CONTACT=PASS
-CHATBOT_OFFER=YES
 CHATBOT_PUBLIC_UI=OFF
 CHATBOT_CODE=DORMANT
 STATIC_FRONTEND=PASS
 GITHUB_PAGES=PRODUCTION
 CUSTOM_DOMAIN=leadflowai.pl
-FUTURE_API_ORIGIN=https://api.leadflowai.pl
-LOCAL_API=NOT_PUBLICLY_ACTIVE
 ANALYTICS_RUNTIME=NOT_AUTHORIZED_IN_V14
 V14_ROUTE_MIGRATION=COMPLETE
-V14_R2_DESTACK=ADVANCED
+V14_R2_RUNTIME=PASS
+V14_R2_CSS_CLEANUP=ADVANCED
 V14_LIQUID_RUNTIME=SCENE_BOUNDED
 V14_LEGACY_WATER_RUNTIME=NOT_MOUNTED
-V14_PREVIEW_PIPELINE=RELIABLE
-V14_FINAL_QA=NOT_COMPLETE
+V14_ROUTE_PERFORMANCE_BUDGETS=PASS
+V14_PREVIEW_PIPELINE=PASS
+V14_FINAL_QA=IN_PROGRESS
 V14_OWNER_VISUAL_ACCEPTANCE=BLOCKED_PENDING_OWNER_REVIEW
 MAIN_BRANCH_PROTECTION=OFF
 DEPENDABOT_ALERTS=OFF
 
 ## Production architecture
 
-LeadFlowAI production is a Next.js static export deployed through GitHub Actions to GitHub Pages.
+Production `main` remains the Owner-authorized V13 Polish Production Rebuild. V14 is still isolated on `v14/full-visual-rebuild` and is not production authority.
 
-Production `main` contains the Owner-authorized V13 Polish Production Rebuild. V14 is not production authority until a separately authorized merge occurs.
+## Current V14 frontend
 
-## Current V14 branch
-
-V14 is a feature-branch full visual/implementation-system rebuild. The active branch remains intentionally separate from `main` while remaining R2 cleanup, V14.9 final QA and Owner visual acceptance are unfinished.
-
-The authoritative V14 plan is `docs/plans/V14-VISUAL-REBUILD.md`.
-
-## Current frontend boundaries
-
-- No dynamic `app/api/**` server runtime is required by GitHub Pages.
-- Direct public contact is e-mail only.
-- Public lead submission remains OFF.
-- Public chatbot remains OFF.
-- Future local API origin remains an architectural target only for a separately authorized runtime stage.
+- V14.8 shared-shell migration is complete for homepage, all 35 service pages, `/uslugi`, `/realizacje`, `/o-nas`, `/kontakt`, `/wiedza`, all 21 knowledge articles and `/lab`.
+- V13 URLs, metadata, canonical, schema, decision guidance, FAQ, knowledge/editorial/source layer and real-only portfolio remain preserved.
 - Legacy `WaterSurface` is not mounted in root or homepage runtime.
-- Active V14 Liquid WebGL is owned by the Liquid Constructor scene only.
-- The scene renderer is bounded by its element size, reduced-motion no-context behavior, compact FPS/DPR limits, page visibility and IntersectionObserver offscreen suspension.
+- Active `V14LiquidSurface` belongs only to `V14LiquidConstructor`.
+- Liquid runtime uses local element sizing, reduced-motion no-context behavior, compact FPS/DPR bounds, hidden-tab suspension and IntersectionObserver offscreen suspension.
+- No stock/motherboard dependency remains in the active V14 Liquid scene.
 
-## Search/content boundary
+## Validation evidence
 
-V14 preserves the V13 content/search foundation:
-- 35 service/money pages;
-- 21 knowledge articles;
-- 63 dominant intents;
-- canonical/sitemap/robots;
-- structured-data/public-truth rules;
-- real-only portfolio.
-
-V14.8 shared-shell migration is complete for all 35 service pages plus `/uslugi`, `/realizacje`, `/o-nas`, `/kontakt`, `/wiedza`, all knowledge articles and `/lab`.
-
-## Current validation evidence
-
-- V14.8 renderer/source contracts: PASS.
-- Rendered artifact checks for representative service groups, primary routes, knowledge pages/articles and Lab: PASS.
-- Static build: 67/67 routes generated.
+- V14.8 source/rendered artifact gates: PASS.
+- Static build: 67/67 routes.
 - Static HTTP smoke: 44 representative routes PASS.
 - R2 root V9/V9.2/V10 de-stack Quality #586: PASS.
 - Post de-stack CSS aggregate: 124292 raw / 26269 gzip against historical ceilings 195000 / 40000.
-- Homepage-only intermediate Water runtime Quality #592: PASS.
-- Scene-bounded Liquid runtime is the current R2 candidate and requires its exact-head Quality/preview evidence before final R2 acceptance.
-- Preview pipeline can generate bounded desktop/tablet/mobile visual evidence.
+- Scene-bounded Liquid Quality on `0279836761ec0ecc82a19ae45859fb0dd2e52cfb`: PASS.
+- Preview run #130 on the same SHA: PASS.
+- Active Liquid WebDriver evidence on the same SHA:
+  - desktop: WebGL2=true, fallback empty, overflow=0, visibleRatio≈0.905;
+  - mobile: WebGL2=true, fallback empty, overflow=0, visibleRatio=1.0.
+- V14.9 route-level performance budgets: PASS for homepage, service, knowledge hub, knowledge article, contact and Lab representatives; total raw/gzip and asset-count regressions are enforced.
 
-## Current V14 blockers
+## Current blockers
 
-- validate the scene-bounded Liquid candidate visually and technically;
-- complete remaining R2 historical CSS ownership cleanup;
-- reduce active lint/specificity debt;
-- add route-level performance budgets;
-- complete Chromium + Firefox and full viewport QA matrix;
-- complete dependency/security review;
+- complete remaining historical V2–V7/V13 CSS ownership cleanup where reference proof permits;
+- reduce active lint/specificity debt without weakening lint;
+- complete V14.9 security/dependency review;
+- complete Chromium + Firefox and 360/390/768/1366/1440/1920 browser/viewport matrix;
 - complete final search/public-truth QA;
+- produce final exact-candidate preview after all V14.9 changes;
 - obtain explicit Owner visual PASS.
 
 ## Release rule
 
-V14 feature-branch Quality PASS is necessary but insufficient.
-
-Production promotion requires exact final candidate validation, final visual preview evidence, explicit Owner visual PASS and explicit Owner merge authorization.
+V14 feature-branch Quality/Preview PASS is necessary but insufficient. Production promotion requires final exact-candidate validation, explicit Owner visual PASS and explicit Owner merge authorization.
