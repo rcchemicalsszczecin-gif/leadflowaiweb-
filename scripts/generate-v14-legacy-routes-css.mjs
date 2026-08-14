@@ -1,6 +1,7 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 
 const sources = [
+  "app/services.css",
   "app/precision-water.css",
   "app/circuit-water-v3.css",
   "app/hardware-board-v4.css",
@@ -18,7 +19,7 @@ const chunks = sources.map((path) => {
 
 const output = [
   "/* GENERATED FILE — V14 LEGACY ROUTE BRIDGE. DO NOT EDIT DIRECTLY. */",
-  "/* Preserves V2→V6 cascade for migrated non-home routes while root remains V14-clean. */",
+  "/* Preserves legacy service + V2→V6 cascade for migrated non-home routes while root remains V14-clean. */",
   ...chunks,
   "",
 ].join("\n\n");
