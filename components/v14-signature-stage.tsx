@@ -61,7 +61,7 @@ export function V14SignatureStage() {
   }, []);
 
   return (
-    <div ref={rootRef} className="v14-signature-stage" aria-label="Przestrzenny podgląd produktu WWW">
+    <div ref={rootRef} className="v14-signature-stage" role="img" aria-label="Przestrzenny podgląd produktu WWW">
       <div className="v14-signature-scene" aria-hidden="true">
         <div className="v14-signature-horizon" />
         <div className="v14-signature-orbit v14-signature-orbit-a" />
