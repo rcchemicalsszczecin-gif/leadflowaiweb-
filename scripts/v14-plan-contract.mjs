@@ -28,6 +28,7 @@ const siteHeader = read("components/v14-site-header.tsx");
 const legacyGenerator = read("scripts/generate-v14-legacy-routes-css.mjs");
 const packageJson = read("package.json");
 const browserMatrix = read("scripts/browser-matrix-v14.py");
+const renderedSearch = read("scripts/rendered-search-truth-v14.mjs");
 
 for (const required of [
   "Current design authority — V14",
@@ -43,14 +44,15 @@ for (const required of [
   "10627e2f18ccfc7ef86c76a695dab9cf7933cce9",
   "V13 Polish Production Rebuild",
   "v14/full-visual-rebuild",
-  "V14.8 route migration COMPLETE",
-  "R2 ROOT CSS DE-STACK: COMPLETE",
-  "e190d2466bdc5166917614aecf361814db9abe8b",
-  "Browser Matrix: PASS 28/28",
-  "Next.js upgraded to 16.3.1",
+  "V14.8 route migration: COMPLETE",
+  "R2 root CSS de-stack: COMPLETE",
+  "V14.9 final QA — COMPLETE",
+  "a5b63128f027179358fd50f04a6b4d374f58fce3",
+  "Quality — PASS",
+  "Browser Matrix — PASS 28/28",
+  "V14 Visual Preview — PASS",
   "0 vulnerabilities",
-  "V14.9 final QA: IN PROGRESS",
-  "V14.10 Owner visual acceptance: NOT COMPLETE",
+  "V14.10 Owner visual acceptance: **NOT COMPLETE**",
 ]) {
   if (!currentState.includes(required)) fail(`CURRENT-STATE invariant missing: ${required}`);
 }
@@ -123,6 +125,9 @@ if (!packageJson.includes('"next": "16.3.1"') || !packageJson.includes('"depende
 if (!browserMatrix.includes("firefox-bidi-viewport-v14.mjs") || !browserMatrix.includes("VIEWPORTS")) {
   fail("cross-browser true viewport matrix not wired");
 }
+if (!renderedSearch.includes("canonicals=${canonicals.size}_UNIQUE") || !renderedSearch.includes("sitemap=${sitemapUrls.length}_EXACT_SET")) {
+  fail("rendered Search/Public Truth exact-set gate missing");
+}
 
 for (const required of [
   "V14_ROUTE_MIGRATION=COMPLETE",
@@ -136,10 +141,12 @@ for (const required of [
   "NEXT_VERSION=16.3.1",
   "V14_BROWSER_MATRIX=PASS_28_OF_28",
   "V14_PREVIEW_PIPELINE=PASS",
-  "V14_FINAL_QA=IN_PROGRESS",
+  "V14_FINAL_QA=COMPLETE",
+  "V14_VALIDATED_IMPLEMENTATION_CANDIDATE=a5b63128f027179358fd50f04a6b4d374f58fce3",
+  "V14_ACTIVE_LINT_WARNINGS=0",
   "V14_OWNER_VISUAL_ACCEPTANCE=BLOCKED_PENDING_OWNER_REVIEW",
 ]) {
   if (!repoStatus.includes(required)) fail(`repository status invariant missing: ${required}`);
 }
 
-console.log("V14_PLAN_CONTRACT_PASS authority=SYNC production-v13=LOCKED r0=PASS r1=PASS r2-runtime=PASS r2-root-css=COMPLETE root=GLOBALS_ONLY legacy-routes=BRIDGE_SCOPED liquid=SCENE_BOUNDED route-migration=COMPLETE route-budgets=PASS security=PASS dependency-audit=0 browser-matrix=28/28 preview=PASS final-qa=IN_PROGRESS owner-acceptance=BLOCKED");
+console.log("V14_PLAN_CONTRACT_PASS authority=SYNC production-v13=LOCKED r0=PASS r1=PASS r2=COMPLETE root=GLOBALS_ONLY legacy-routes=BRIDGE_SCOPED liquid=SCENE_BOUNDED route-migration=COMPLETE route-budgets=PASS security=PASS dependency-audit=0 browser-matrix=28/28 preview=PASS rendered-search=PASS active-lint=0 v14.9=COMPLETE owner-acceptance=BLOCKED");
