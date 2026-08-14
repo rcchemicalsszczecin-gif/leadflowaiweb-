@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
+import { V14SiteFooter } from "@/components/v14-site-footer";
+import { V14SiteHeader } from "@/components/v14-site-header";
 import { knowledgeArticles } from "@/lib/knowledge-registry";
 import { knowledgeTopicsV13 } from "@/lib/knowledge-topics-v13";
 import { toPublicKnowledgeArticle } from "@/lib/public-knowledge-article";
@@ -16,10 +16,11 @@ export default function KnowledgePage() {
   const publicArticles = knowledgeArticles.map(toPublicKnowledgeArticle);
 
   return (
-    <main className="knowledge-page">
+    <main id="main-content" className="knowledge-page v14-route-page v14-knowledge-page" tabIndex={-1}>
+      <V14SiteHeader mode="static" />
+
       <section className="knowledge-hero section-dark blueprint-surface">
         <div className="page-shell">
-          <SiteHeader />
           <div className="knowledge-hero-copy">
             <p className="eyebrow">LEADFLOWAI / BAZA WIEDZY</p>
             <h1>Wiedza, która pomaga podejmować lepsze decyzje o stronie internetowej.</h1>
@@ -75,8 +76,9 @@ export default function KnowledgePage() {
             Materiały opisują nasze podejście, praktyki projektowe i możliwe do zweryfikowania standardy. Gdy temat wymaga danych klienta, wyników, prawa albo regulowanych twierdzeń, informacja musi pochodzić z rzeczywistego źródła i przejść odpowiednią weryfikację.
           </p>
         </div>
-        <div className="page-shell"><SiteFooter /></div>
       </section>
+
+      <V14SiteFooter />
     </main>
   );
 }
