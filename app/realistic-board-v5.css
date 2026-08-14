@@ -16,37 +16,6 @@
 }
 
 @layer components {
-  /*
-   * Photo: Brecht Corbeel / Unsplash
-   * Source: https://unsplash.com/photos/Y2RuzisrEcs
-   * Free to use under the Unsplash License.
-   */
-  .realistic-board-photo {
-    z-index: 0;
-    background-image:
-      radial-gradient(circle at 72% 34%, rgba(20, 121, 154, 0.08), transparent 34rem),
-      linear-gradient(180deg, rgba(0, 5, 9, 0.38), rgba(0, 5, 9, 0.58)),
-      url("https://images.unsplash.com/photo-1741392078190-d263a71291cd?auto=format&fit=crop&w=2400&q=78");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    transform: scale(1.015);
-  }
-
-  .circuit-water-canvas,
-  .water-surface.circuit-water-canvas {
-    z-index: 1;
-    opacity: 1;
-    mix-blend-mode: normal;
-  }
-
-  .circuit-water-glass {
-    z-index: 2;
-    background:
-      radial-gradient(circle at 50% -16%, rgba(205, 238, 255, 0.035), transparent 46%),
-      linear-gradient(180deg, rgba(1, 5, 9, 0.015), rgba(1, 5, 9, 0.085));
-  }
-
   main > section,
   .service-page,
   .section-dark,
@@ -209,10 +178,6 @@
   }
 
   @media (max-width: 1080px) {
-    .realistic-board-photo {
-      background-position: 56% center;
-    }
-
     main > section,
     .service-page,
     .section-dark,
@@ -238,10 +203,6 @@
   }
 
   @media (max-width: 760px) {
-    .realistic-board-photo {
-      background-position: 62% center;
-    }
-
     main > section,
     .service-page,
     .section-dark,
@@ -291,12 +252,6 @@
     .related-grid a,
     .knowledge-article-grid > aside {
       background: rgba(3, 10, 16, 0.9);
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .circuit-water-canvas {
-      display: none;
     }
   }
 }
