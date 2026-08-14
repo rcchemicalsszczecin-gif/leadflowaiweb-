@@ -4,6 +4,12 @@
     outline-offset: 4px;
   }
 
+  @media (max-width: 760px) {
+    .site-header-v92 {
+      backdrop-filter: none;
+    }
+  }
+
   @media (hover: none), (pointer: coarse) {
     .related-grid a,
     .service-directory a,
