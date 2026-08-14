@@ -1,72 +1,98 @@
-# LEADFLOWAI — OPERATIONS RUNBOOK V2
+# LEADFLOWAI — OPERATIONS RUNBOOK
 
-STATUS: STATIC FRONTEND TARGET LOCKED / PRODUCTION NOT AUTHORIZED
-DATE: 2026-08-12
+STATUS: PRODUCTION V13 OPERATING BASELINE / V14 CANDIDATE
+DATE: 2026-08-14
 
 ## Current architecture
 
 - Public frontend: GitHub Pages static export at `https://leadflowai.pl`.
-- DNS/TLS/edge: Cloudflare — configuration pending.
-- Dynamic API: `https://api.leadflowai.pl` on local Owner-controlled hardware through Cloudflare Tunnel — deployment pending.
+- Production branch: `main`.
+- Production V13 revision: `10627e2f18ccfc7ef86c76a695dab9cf7933cce9`.
+- GitHub Pages deployment for that revision: PASS.
 - Public contact: `kontakt@leadflowai.pl`.
-- Production deployment: NOT AUTHORIZED until final acceptance.
-- `main`: remains Owner-controlled release authority.
+- Online lead delivery: OFF by Owner.
+- Public chatbot: OFF by Owner.
+- Future dynamic API boundary: `https://api.leadflowai.pl`, only when separately authorized.
+- V14 implementation branch: `v14/full-visual-rebuild`.
+- V14 merge/deployment: NOT AUTHORIZED until explicit Owner visual PASS + merge authorization.
 
 ## Frontend health
 
-Static frontend availability is validated by HTTP checks for:
+Critical static checks include:
 - `/`;
+- `/uslugi/`;
+- `/strony-internetowe/`;
 - `/kontakt/`;
-- core commercial routes;
 - `/realizacje/`;
+- `/o-nas/`;
 - `/wiedza/`;
+- representative article;
+- `/lab/`;
 - `/sitemap.xml`;
 - `/robots.txt`.
 
-GitHub Pages has no application server health endpoint in this architecture.
+GitHub Pages has no application-server health endpoint in this architecture.
 
 ## API health
 
-The local API stage must provide `GET https://api.leadflowai.pl/health` with a minimal non-sensitive health response. That endpoint belongs to the local backend, not the GitHub Pages artifact.
+No API health endpoint is required for the currently active public frontend because the chatbot and online lead delivery are disabled.
 
-## Pre-deploy minimum checks
+If a future Owner-authorized local API is deployed, it must provide an explicit health contract and remain a separate failure domain from the static frontend.
 
-1. Owner-approved release identity on `main`.
-2. Quality workflow green on the exact release commit.
-3. Static export artifact contains `CNAME`, `.nojekyll`, sitemap and robots.
-4. GitHub Pages repository setting enabled for GitHub Actions.
-5. Cloudflare DNS/TLS change plan recorded before traffic cutover.
-6. Local API and Cloudflare Tunnel validated before relying on form/chat.
-7. Lead delivery tested end-to-end to a controlled destination.
-8. Local AI/RAG success and fallback tested if enabled.
-9. Analytics/consent and legal/public company data reviewed.
-10. Rollback target recorded before release.
+## Pre-V14-merge minimum checks
+
+1. V14 source-of-truth/governance synchronized.
+2. Exact candidate SHA recorded.
+3. Full Quality workflow green on that exact SHA.
+4. Mobile navigation, process anchor, keyboard, focus, touch and reduced-motion PASS.
+5. CSS/runtime de-stack PASS with measurable performance headroom.
+6. All 35 service pages and primary routes use the accepted V14 shell/templates.
+7. 63 intent URLs and 21 articles remain generated and semantically correct.
+8. Sitemap/robots/canonical/structured-data/public-truth checks PASS.
+9. Public chatbot remains OFF.
+10. Online lead delivery remains OFF.
+11. `out/` contains `CNAME`, `.nojekyll`, sitemap and robots.
+12. Aggregate and route-level performance checks PASS.
+13. Representative Chromium and Firefox QA PASS.
+14. Dependency/security review PASS or explicitly documented bounded blocker.
+15. Reliable desktop/mobile preview artifacts exist.
+16. Owner has explicitly given visual PASS.
+17. Owner has explicitly authorized merge.
 
 ## Incident triage
 
 ### Static site unavailable
-- check GitHub Pages status/deployment;
-- check Cloudflare DNS/TLS/proxy state;
-- compare deployed Pages artifact/release with last known-good release;
-- use rollback/redeploy without rewriting Git history.
+- check GitHub Pages workflow/deployment;
+- check DNS/TLS/edge status;
+- compare deployed release with last known-good `main` revision;
+- redeploy/revert through normal Git history; do not rewrite history.
 
-### Lead form unavailable
-- verify `/kontakt/` still renders;
-- verify `https://api.leadflowai.pl/health`;
-- verify Tunnel/API service and narrow CORS allow-list;
-- use `kontakt@leadflowai.pl` as the public fallback;
-- never claim successful delivery without end-to-end proof.
+### Contact path problem
+- verify `/kontakt/` renders;
+- verify the direct `mailto:` destination remains `kontakt@leadflowai.pl`;
+- do not fall back to an unapproved server/webhook path.
 
-### Assistant unavailable
-- core site and contact remain usable independently;
-- verify `api.leadflowai.pl` and local AI service;
-- preserve deterministic fallback behavior;
-- API/AI outage must not take down GitHub Pages.
+### Search artifact regression
+- check `/sitemap.xml` and `/robots.txt`;
+- compare route registry and generated output;
+- verify canonical domain and structured-data/public-truth contracts.
+
+### V14 visual regression before merge
+- keep `main` unchanged;
+- fix/calibrate only on `v14/full-visual-rebuild`;
+- regenerate preview evidence;
+- repeat Owner review.
 
 ## Security boundary
 
-Final HSTS/CSP and production response headers are owned by the Cloudflare edge stage after live HTTPS and script/provider inventory are verified. They are not simulated in static Next.js configuration.
+- no secrets in Git;
+- static frontend cannot substitute for a server-side validation/rate-limit layer;
+- disabled dynamic features must not leak fake endpoint claims into the public artifact;
+- edge security headers must be validated at the actual live edge configuration;
+- dependency vulnerability review must be treated separately from a successful `npm ci --no-audit` install.
 
 ## Rollback principle
 
-Restore the last known-good frontend artifact/release and, independently, the last known-good local API configuration. DNS/Tunnel rollback procedures must be recorded before launch.
+Frontend rollback restores/redeploys the last known-good production revision or artifact through normal Git/Pages history.
+
+Future API/edge configuration, if activated, is a separate recovery domain and must have its own last known-good identity and rollback procedure.
