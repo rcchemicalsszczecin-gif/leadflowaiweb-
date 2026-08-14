@@ -1,5 +1,5 @@
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
-import { join, relative } from "node:path";
+import { basename, join, relative } from "node:path";
 
 const fail = (message) => {
   console.error(`RENDERED_SEARCH_TRUTH_V14_FAIL: ${message}`);
@@ -21,7 +21,8 @@ const walk = (dir) => {
 };
 walk("out");
 
-const publicHtml = htmlFiles.filter((path) => !path.includes("_not-found"));
+const isNotFoundArtifact = (path) => path.includes("_not-found") || basename(path) === "404.html";
+const publicHtml = htmlFiles.filter((path) => !isNotFoundArtifact(path));
 if (publicHtml.length !== 65) fail(`expected 65 public HTML documents, found ${publicHtml.length}`);
 
 const canonicals = new Map();
@@ -126,6 +127,12 @@ if (!about.includes("Tervyxa Systems sp. z o.o.")) fail("legal entity truth miss
 if (!contact.includes("kontakt@leadflowai.pl")) fail("public contact truth missing from /kontakt");
 if (!contact.includes("Formularz online jest obecnie wyłączony")) fail("lead-delivery OFF truth missing from /kontakt");
 
+const notFoundPath = htmlFiles.find((path) => basename(path) === "404.html");
+if (!notFoundPath) fail("branded 404 artifact missing");
+const notFound = readFileSync(notFoundPath, "utf8");
+if (!notFound.includes("Ta ścieżka nie prowadzi do aktywnej strony")) fail("branded 404 truth missing");
+if (!/noindex/i.test(notFound)) fail("404 artifact must remain noindex");
+
 console.log(
-  `RENDERED_SEARCH_TRUTH_V14_PASS html=${publicHtml.length} canonicals=${canonicals.size}_UNIQUE sitemap=${sitemapUrls.length}_EXACT titles=PASS descriptions=PASS h1=EXACT_ONE lang=PL robots=PASS schemas=${schemas} service>=${serviceSchemas} article=${articleSchemas} faq>=${faqSchemas} public-truth=PASS runtime-leaks=ABSENT placeholders=ABSENT`,
+  `RENDERED_SEARCH_TRUTH_V14_PASS html=${publicHtml.length} canonicals=${canonicals.size}_UNIQUE sitemap=${sitemapUrls.length}_EXACT titles=PASS descriptions=PASS h1=EXACT_ONE lang=PL robots=PASS schemas=${schemas} service>=${serviceSchemas} article=${articleSchemas} faq>=${faqSchemas} 404=BRANDED_NOINDEX public-truth=PASS runtime-leaks=ABSENT placeholders=ABSENT`,
 );
