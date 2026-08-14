@@ -8,7 +8,7 @@ export function V14ProductStage() {
       <link rel="stylesheet" href="/v14-browser-core.css" precedence="high" />
       <link rel="stylesheet" href="/v14-browser-content.css" precedence="high" />
       <link rel="stylesheet" href="/v14-phone.css" precedence="high" />
-      <div className="v14-product-stage" aria-label="Demonstracyjna scena produktu WWW LeadFlowAI">
+      <div className="v14-product-stage" role="group" aria-label="Demonstracyjna scena produktu WWW LeadFlowAI">
         <div className="v14-stage-glow" aria-hidden="true" />
         <V14BrowserMockup />
         <V14PhoneMockup />
