@@ -16,6 +16,8 @@ OUTPUT = Path("route-preview")
 ROUTES = (
     ("service-desktop", "/strony-internetowe/", 1440, 1600),
     ("service-mobile", "/strony-internetowe/", 390, 1200),
+    ("local-seo-desktop", "/local-seo/", 1440, 1600),
+    ("local-seo-mobile", "/local-seo/", 390, 1200),
     ("knowledge-desktop", "/wiedza/", 1440, 1600),
     ("knowledge-mobile", "/wiedza/", 390, 1200),
     ("contact-desktop", "/kontakt/", 1440, 1400),
@@ -186,7 +188,7 @@ def main():
             json.dumps(evidence, ensure_ascii=False, indent=2) + "\n",
             encoding="utf-8",
         )
-        print("V14_ROUTE_WEBDRIVER_PASS routes=4 viewports=2 captures=8 global-liquid=WEBGL2 overflow=PASS")
+        print("V15_ROUTE_WEBDRIVER_PASS routes=5 viewports=2 captures=10 global-liquid=WEBGL2 overflow=PASS")
     finally:
         process.terminate()
         try:
@@ -199,5 +201,5 @@ if __name__ == "__main__":
     try:
         main()
     except (RuntimeError, urllib.error.URLError, json.JSONDecodeError) as error:
-        print(f"V14_ROUTE_WEBDRIVER_FAIL: {error}", file=sys.stderr)
+        print(f"V15_ROUTE_WEBDRIVER_FAIL: {error}", file=sys.stderr)
         sys.exit(1)
