@@ -18,6 +18,14 @@ ROUTES = (
     ("service-mobile", "/strony-internetowe/", 390, 1200),
     ("local-seo-desktop", "/local-seo/", 1440, 1600),
     ("local-seo-mobile", "/local-seo/", 390, 1200),
+    ("aeo-desktop", "/aeo/", 1440, 1600),
+    ("aeo-mobile", "/aeo/", 390, 1200),
+    ("geo-ai-search-desktop", "/geo-ai-search/", 1440, 1600),
+    ("geo-ai-search-mobile", "/geo-ai-search/", 390, 1200),
+    ("seo-aeo-geo-desktop", "/seo-aeo-geo/", 1440, 1600),
+    ("seo-aeo-geo-mobile", "/seo-aeo-geo/", 390, 1200),
+    ("ai-search-article-desktop", "/wiedza/ai-search-google-co-robic-2026/", 1440, 1600),
+    ("ai-search-article-mobile", "/wiedza/ai-search-google-co-robic-2026/", 390, 1200),
     ("knowledge-desktop", "/wiedza/", 1440, 1600),
     ("knowledge-mobile", "/wiedza/", 390, 1200),
     ("contact-desktop", "/kontakt/", 1440, 1400),
@@ -188,7 +196,7 @@ def main():
             json.dumps(evidence, ensure_ascii=False, indent=2) + "\n",
             encoding="utf-8",
         )
-        print("V15_ROUTE_WEBDRIVER_PASS routes=5 viewports=2 captures=10 global-liquid=WEBGL2 overflow=PASS")
+        print("V15_ROUTE_WEBDRIVER_PASS routes=9 viewports=2 captures=18 global-liquid=WEBGL2 overflow=PASS")
     finally:
         process.terminate()
         try:
