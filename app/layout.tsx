@@ -57,6 +57,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
     <html lang="pl">
       <body>
         <link rel="stylesheet" href="/v14-global-tech-world.css" precedence="high" />
+        <link rel="stylesheet" href="/v14-brand-logo.css" precedence="high" />
         <V14GlobalTechLiquid />
         <V14GlobalTechHeroGuard />
         <JsonLd data={getGlobalStructuredData()} />
