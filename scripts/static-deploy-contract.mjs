@@ -53,9 +53,11 @@ for (const required of [
   "V13 Polish Production Rebuild",
   "v14/full-visual-rebuild",
   "not merge-authorized",
-  "No feature-branch Quality PASS",
+  "OWNER_VISUAL_PASS=ACCEPTED",
+  "MERGE_AUTHORIZATION=NOT_GRANTED",
+  "Owner visual PASS authorizes R9 release hardening only",
 ]) {
   if (!currentState.includes(required)) fail(`current production/V14 release boundary missing: ${required}`);
 }
 
-console.log("STATIC_DEPLOY_CONTRACT_PASS export=PASS pages-workflow=PASS cname=PASS api-split=PASS production=V13_MAIN v14=ISOLATED_NOT_AUTHORIZED");
+console.log("STATIC_DEPLOY_CONTRACT_PASS export=PASS pages-workflow=PASS cname=PASS api-split=PASS production=V13_MAIN v14=OWNER_VISUAL_PASS_R9_ONLY merge-auth=NOT_GRANTED");
