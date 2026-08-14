@@ -18,7 +18,7 @@ const knowledgeIndex = read("app/wiedza/page.tsx");
 const knowledgeArticle = read("app/wiedza/[slug]/page.tsx");
 const schema = read("lib/structured-data.ts");
 const sitemap = read("app/sitemap.ts");
-const footer = read("components/site-footer.tsx");
+const footer = read("components/v14-closing.tsx");
 
 for (const phrase of ["portfolioCases", "Realne projekty", "Dowód przed deklaracją"]) {
   if (!portfolioPage.includes(phrase)) fail(`portfolio page missing ${phrase}`);
@@ -45,6 +45,6 @@ if (!knowledgeIndex.includes("knowledge-registry")) fail("knowledge index incomp
 if (!knowledgeArticle.includes("generateStaticParams") || !knowledgeArticle.includes("getArticleStructuredData") || !knowledgeArticle.includes("Źródła i standardy")) fail("knowledge article route incomplete");
 if (!schema.includes('"@type": "Article"')) fail("Article schema missing");
 if (!sitemap.includes("knowledge-registry") || !sitemap.includes('"realizacje"') || !sitemap.includes('"wiedza"')) fail("content sitemap incomplete");
-if (!footer.includes('href="/realizacje"') || !footer.includes('href="/wiedza"')) fail("content discovery links missing");
+if (!footer.includes('href="/realizacje"') || !footer.includes('href="/wiedza"')) fail("active V14 footer content discovery links missing");
 
-console.log(`CONTENT_CONTRACT_PASS portfolio=3_REAL_OWN_PROJECTS transkrypcja-upload=OFF knowledge=${totalKnowledge} sources=SUPPORTED schema=PASS sitemap=PASS language=PL`);
+console.log(`CONTENT_CONTRACT_PASS portfolio=3_REAL_OWN_PROJECTS transkrypcja-upload=OFF knowledge=${totalKnowledge} sources=SUPPORTED schema=PASS sitemap=PASS footer=V14_ACTIVE language=PL`);
