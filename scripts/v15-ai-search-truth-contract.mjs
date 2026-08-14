@@ -63,7 +63,8 @@ if (!h1s.geo.includes("GEO i AI Search") || !visible.geo.includes("gotowość ź
 for (const required of [
   "nie wymagają specjalnego schema ani pliku llms.txt",
   "indeksowanie i wyświetlanie nie są gwarantowane",
-  "Raport skuteczności generatywnej AI",
+  "skuteczności generatywnej AI",
+  "Search Console",
   "AI Overviews",
   "AI Mode",
 ]) {
