@@ -1,7 +1,19 @@
 {
   "$schema": "https://biomejs.dev/schemas/2.5.6/schema.json",
   "files": {
-    "includes": ["**", "!node_modules", "!.next"]
+    "includes": [
+      "**",
+      "!node_modules",
+      "!.next",
+      "!app/premium-composition-v8.css",
+      "!app/premium-composition-v8-themes.css",
+      "!app/premium-art-direction-v9.css",
+      "!app/premium-art-direction-v9-polish.css",
+      "!app/premium-calibration-v9-2.css",
+      "!app/responsive-performance-v10.css",
+      "!app/runtime-performance-v10.css",
+      "!app/v13-visual-authority.css"
+    ]
   },
   "formatter": {
     "enabled": true,
