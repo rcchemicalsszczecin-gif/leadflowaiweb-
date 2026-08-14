@@ -19,6 +19,7 @@ export function V14SiteHeader({ mode = "static", includeStyles = true }: V14Site
           <link rel="stylesheet" href="/v14.css" precedence="high" />
           <link rel="stylesheet" href="/v14-shell.css" precedence="high" />
           <link rel="stylesheet" href="/v14-content.css" precedence="high" />
+          <link rel="stylesheet" href="/v14-routes.css" precedence="high" />
         </>
       ) : null}
       <a className="v14-skip-link" href="#main-content">Przejdź do treści</a>
