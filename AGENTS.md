@@ -37,8 +37,9 @@ Direct mutation of `main`, force-push and history rewrite are prohibited without
 Feature-branch commits may be created when the current Owner instruction explicitly authorizes starting implementation.
 Merge to `main`, production deployment and release remain Owner-controlled unless explicitly delegated.
 
-Current V14 implementation branch: `v14/full-visual-rebuild`.
-Production baseline remains `main` until explicit Owner merge authorization.
+Current active planning/implementation branch: `v15/search-master-plan`.
+Current production branch: `main`.
+Current visual production authority: V14 Global Liquid World.
 
 ## Public truth
 No fabricated clients, testimonials, case studies, metrics, certifications, awards, legal identifiers, guarantees, rankings, offices, partnerships, AI citations or research.
@@ -68,14 +69,30 @@ Current functional/public boundaries:
 - direct e-mail through `kontakt@leadflowai.pl`: ACTIVE;
 - analytics/consent runtime: not activated without a separate reviewed stage.
 
-## Current design authority — V14
-The active visual authority is the later Owner decision recorded in `docs/governance/WEBSITE-OWNER-DECISION-V14.md` together with the execution plan in `docs/plans/V14-VISUAL-REBUILD.md`.
+## Current design authority — V14 Global Liquid World
+The current production visual authority is the Owner-approved V14 Global Liquid World recorded in `docs/governance/CURRENT-STATE.md`, `docs/governance/WEBSITE-OWNER-DECISION-V14.md` and the completed historical delivery record `docs/plans/V14-VISUAL-REBUILD.md`.
 
-V14 supersedes V9/V9.2 visual freeze for the public redesign areas authorized by the Owner.
-V9/V9.2, V8 and earlier design records remain historical evidence/recovery checkpoints, not the current homepage design authority.
+V14 Full Visual Rebuild and the later Owner-authorized Global Liquid World supersede V9/V9.2 visual freeze and the earlier V14 assumption that Liquid must remain only a small selective signature scene.
 
-V13 remains authoritative for the Polish content/search/public-truth foundation unless V14 explicitly changes presentation without changing the underlying truth model.
-Preserve through V14:
+The accepted first-screen hero remains protected as the lead composition. Outside that protected hero viewport, the public site intentionally uses one shared first-party WebGL2 submerged-compute world as the persistent visual substrate.
+
+Current visual invariants:
+- no white/paper public section art direction;
+- Owner-provided LeadFlowAI brand mark is the active public identity mark and must not be replaced by a placeholder;
+- one root-mounted global Liquid world outside the hero guard;
+- recognizable submerged PCB / CPU / GPU / VRAM / electronic-rail language;
+- liquid refraction, caustics, highlights, ripples and depth are visual atmosphere only and never carry essential meaning;
+- service, knowledge, contact and Lab surfaces remain dark/translucent over the shared world;
+- the accepted hero keeps its dedicated Liquid/spatial scene and must not compete with a second active global canvas in the same viewport;
+- reduced-motion, visibility suspension, DPR caps, frame caps and no-WebGL usability remain mandatory;
+- real browser/product/device UI outranks decorative abstraction;
+- mobile receives its own composition/navigation/touch treatment rather than scaled desktop;
+- global fade/dimming of ordinary content during scroll is prohibited;
+- no heavyweight third-party 3D dependency solely for decorative effects;
+- essential information and navigation remain usable without animation or WebGL.
+
+V13 remains the preserved Polish content/search/public-truth foundation unless V15 changes a search/content decision through evidence.
+Preserve unless an evidence-backed V15 gate explicitly changes ownership:
 - existing public URLs;
 - 35 service/money pages;
 - 21 knowledge articles;
@@ -87,36 +104,39 @@ Preserve through V14:
 
 V7 remains a useful functional baseline for the dedicated `/lab` interactive demonstrations, but its old visual dependency on V5/V6/V9 is not current authority.
 
-## V14 visual principles
-- LeadFlowAI must read as a premium web/product studio rather than a technical dashboard template.
-- Use a controlled 12-column/grid-based system, deliberate spacing and strong editorial hierarchy.
-- Use light and dark scenes intentionally for rhythm.
-- Real browser/product/device UI should outrank decorative abstract diagrams.
-- Liquid/Water is a selective signature experience, not a permanent wallpaper requirement.
-- The old motherboard photograph is not a protected current design asset.
-- Global fade/dimming of ordinary content during scroll is prohibited.
-- Mobile receives its own composition/navigation/touch treatment rather than scaled desktop.
-- Motion must explain state, hierarchy or system behavior and respect reduced motion.
-- No heavyweight third-party 3D dependency solely for decorative effects.
-- Essential information and navigation must remain usable without animation or WebGL.
+## Active search authority — V15
+V15 is the active post-release search, evidence and growth program.
+Its plan is `docs/plans/V15-SEARCH-MASTER-PLAN.md`.
+
+V15 must be driven by real production evidence, not fabricated ranking claims or synthetic Search Console data.
+Priority sources include:
+- Google Search Console indexing and performance evidence;
+- Search Console generative-AI visibility evidence when available for the property;
+- Bing Webmaster Tools / IndexNow evidence;
+- live crawl and rendered-artifact evidence;
+- real branded, non-branded and local query observations;
+- field Core Web Vitals when available;
+- real conversion evidence only after the required analytics/privacy authority exists.
+
+AEO/GEO are not treated as magic ranking systems. For Google, current official guidance makes standard SEO, crawlability/indexability, unique useful content and user value the foundation for generative-AI visibility. Special AI-only files or schema are not to be added merely as ranking theatre.
 
 ## Historical design records
-Historical design documents V1–V9.2 and V10 responsive/performance records may retain accurate evidence of their original stage. They must not be interpreted as present operational authority when they conflict with the current V14 Owner decision.
+Historical design documents V1–V9.2, V10 responsive/performance records and the V14 execution plan retain accurate evidence of their original stages. They must not be interpreted as present operational authority when they conflict with the current V14 Global Liquid World or V15 search authority.
 
-Historical executable contracts may remain for evidence, but active Quality must not require superseded historical visual assumptions such as V9.2 freeze or the old Unsplash motherboard asset.
+Historical executable contracts may remain for evidence, but active Quality must not require superseded visual assumptions such as V9.2 freeze, the old Unsplash motherboard asset, white/light section rhythm, or Liquid being limited to one small scene.
 
 ## Validation
 Each stage requires relevant technical validation, changed-path review, semantic/public-truth checks and a formal PASS/FAIL/BLOCKER verdict.
 
-V14 acceptance additionally requires:
+Current release/search validation must preserve:
 - mobile navigation and touch behavior;
 - keyboard/focus/reduced-motion coverage;
 - route-level and aggregate performance evidence;
 - Chromium and Firefox representative QA;
-- all 63 intent URLs and 21 knowledge articles preserved;
+- all 63 intent URLs and 21 knowledge articles unless a separately proven V15 migration changes the canonical set;
 - valid static export/search artifacts;
 - no accidental public API/chat/lead activation;
-- reliable visual preview evidence;
-- explicit Owner visual approval before merge.
+- reliable visual preview evidence for visual mutations;
+- exact query/index evidence for search assertions.
 
 Completion of a stage does not automatically authorize deployment or merge.

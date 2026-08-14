@@ -9,7 +9,7 @@
     "typecheck": "tsc --noEmit",
     "lint": "biome lint --max-diagnostics=100 .",
     "format": "biome format --write .",
-    "plan:contract": "node scripts/v14-plan-contract.mjs",
+    "plan:contract": "node scripts/v15-plan-contract.mjs",
     "search:contract": "node scripts/search-contract.mjs",
     "offer:contract": "node scripts/offer-contract-v11.mjs",
     "portfolio:contract": "node scripts/portfolio-contract-v12.mjs",
@@ -34,6 +34,7 @@
     "css:ownership": "node scripts/css-ownership-v14.mjs",
     "dependency:audit": "npm audit --omit=dev --audit-level=high",
     "historical:design:v9-2": "node scripts/design-v9-2-contract.mjs",
+    "historical:plan:v14": "node scripts/v14-plan-contract.mjs",
     "check": "npm run typecheck && npm run lint",
     "verify": "npm run plan:contract && npm run search:contract && npm run offer:contract && npm run portfolio:contract && npm run lead:contract && npm run chat:contract && npm run content:contract && npm run operations:contract && npm run static:contract && npm run security:contract && npm run dependency:audit && npm run global-world:contract && npm run design:contract && npm run responsive:contract && npm run language:contract && npm run service-language:contract && npm run knowledge-language:contract && npm run visual:contract && npm run accessibility:contract && npm run check && npm run build && npm run public-artifact:contract && npm run rendered-search:contract && npm run performance:budget && npm run route-performance:budget && npm run css:ownership"
   },
