@@ -1,4 +1,3 @@
-import { WaterSurface } from "@/components/water-surface";
 import { V14Closing } from "@/components/v14-closing";
 import { V14ContactBrief } from "@/components/v14-contact-brief";
 import { V14DeviceTheater } from "@/components/v14-device-theater";
@@ -12,20 +11,17 @@ import { V14Services } from "@/components/v14-services";
 
 export default function HomePage() {
   return (
-    <>
-      <WaterSurface />
-      <main id="main-content" className="v14-page" tabIndex={-1}>
-        <V14Hero />
-        <V14Services />
-        <V14DeviceTheater />
-        <V14LiquidConstructor />
-        <V14SearchTrinity />
-        <V14ProcessCanvas />
-        <V14Portfolio />
-        <V14KnowledgeFaq />
-        <V14ContactBrief />
-        <V14Closing />
-      </main>
-    </>
+    <main id="main-content" className="v14-page" tabIndex={-1}>
+      <V14Hero />
+      <V14Services />
+      <V14DeviceTheater />
+      <V14LiquidConstructor />
+      <V14SearchTrinity />
+      <V14ProcessCanvas />
+      <V14Portfolio />
+      <V14KnowledgeFaq />
+      <V14ContactBrief />
+      <V14Closing />
+    </main>
   );
 }
