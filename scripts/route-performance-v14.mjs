@@ -44,6 +44,7 @@ const routes = [
 
 const size = (path) => statSync(path).size;
 const gzip = (path) => gzipSync(readFileSync(path)).byteLength;
+const violations = [];
 
 function localAssetPath(reference) {
   const clean = reference.split("#")[0].split("?")[0];
@@ -78,8 +79,8 @@ function sumAssets(assets, extension) {
   );
 }
 
-function assertAtMost(route, label, actual, limit) {
-  if (actual > limit) fail(`${route} ${label}=${actual} exceeds ${limit}`);
+function checkAtMost(route, label, actual, limit) {
+  if (actual > limit) violations.push(`${route} ${label}=${actual} exceeds ${limit}`);
 }
 
 for (const route of routes) {
@@ -93,17 +94,22 @@ for (const route of routes) {
   const totalRaw = html.raw + js.raw + css.raw;
   const totalGzip = html.gzip + js.gzip + css.gzip;
 
-  assertAtMost(route.name, "htmlRaw", html.raw, route.limits.htmlRaw);
-  assertAtMost(route.name, "htmlGzip", html.gzip, route.limits.htmlGzip);
-  assertAtMost(route.name, "jsRaw", js.raw, route.limits.jsRaw);
-  assertAtMost(route.name, "jsGzip", js.gzip, route.limits.jsGzip);
-  assertAtMost(route.name, "cssRaw", css.raw, route.limits.cssRaw);
-  assertAtMost(route.name, "cssGzip", css.gzip, route.limits.cssGzip);
-  assertAtMost(route.name, "totalGzip", totalGzip, route.limits.totalGzip);
-
   console.log(
     `ROUTE_PERFORMANCE_V14_ROUTE name=${route.name} html=${html.raw}/${html.gzip} js=${js.raw}/${js.gzip} css=${css.raw}/${css.gzip} total=${totalRaw}/${totalGzip} assets=${assets.length}`,
   );
+
+  checkAtMost(route.name, "htmlRaw", html.raw, route.limits.htmlRaw);
+  checkAtMost(route.name, "htmlGzip", html.gzip, route.limits.htmlGzip);
+  checkAtMost(route.name, "jsRaw", js.raw, route.limits.jsRaw);
+  checkAtMost(route.name, "jsGzip", js.gzip, route.limits.jsGzip);
+  checkAtMost(route.name, "cssRaw", css.raw, route.limits.cssRaw);
+  checkAtMost(route.name, "cssGzip", css.gzip, route.limits.cssGzip);
+  checkAtMost(route.name, "totalGzip", totalGzip, route.limits.totalGzip);
+}
+
+if (violations.length) {
+  for (const violation of violations) console.error(`ROUTE_PERFORMANCE_V14_VIOLATION: ${violation}`);
+  fail(`violations=${violations.length}`);
 }
 
 console.log(`ROUTE_PERFORMANCE_V14_PASS routes=${routes.length} representative=HOMEPAGE_SERVICE_KNOWLEDGE_ARTICLE_CONTACT_LAB budgets=ENFORCED`);
