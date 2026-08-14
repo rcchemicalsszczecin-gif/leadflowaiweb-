@@ -185,7 +185,7 @@
 @media (prefers-reduced-motion: reduce) {
   .v14-page,
   .v14-page * {
-    scroll-behavior: auto !important;
+    scroll-behavior: auto;
   }
 
   .v14-mobile-nav > summary i::before,
@@ -196,7 +196,7 @@
   .v14-device-desktop,
   .v14-device-tablet,
   .v14-device-mobile {
-    transition: none !important;
+    transition: none;
   }
 
   .v14-browser,
@@ -204,7 +204,7 @@
   .v14-device-desktop,
   .v14-device-tablet,
   .v14-device-mobile {
-    transform: none !important;
+    transform: none;
   }
 
   .v14-service-card:hover {
