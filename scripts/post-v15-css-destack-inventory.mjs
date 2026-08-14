@@ -17,7 +17,11 @@ const bridgeSources = [
   "app/content-frames-v6.css",
 ];
 
-const zeroDeadRequired = new Set(["app/services.css", "app/content-frames-v6.css"]);
+const zeroDeadRequired = new Set([
+  "app/services.css",
+  "app/hardware-board-v4.css",
+  "app/content-frames-v6.css",
+]);
 const runtimeRoots = ["app", "components", "lib", "hooks"].filter((path) => existsSync(path));
 const runtimeExtensions = new Set([".js", ".jsx", ".ts", ".tsx"]);
 
