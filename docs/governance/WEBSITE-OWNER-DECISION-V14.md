@@ -27,5 +27,17 @@ LeadFlowAI ma wizualnie udowadniać poziom firmy projektującej i produkującej 
 ## V14 visual signature
 LeadFlowAI = premium web/product studio z własnym Liquid Engine. Czysta typografia, realne browser/product mockupy, spatial UI, selektywny WebGL, precyzyjny motion i bardzo czytelna warstwa sprzedażowa.
 
+## V14.10 Owner visual acceptance
+
+OWNER_VISUAL_PASS=ACCEPTED
+ACCEPTED_AT=2026-08-14T14:09:00+02:00
+ACCEPTED_CANDIDATE=31225c140483d50863b8262b4675d8d55caf124e
+
+Owner po obejrzeniu finalnego V14 preview zaakceptował kierunek wizualny i polecił kontynuować do R9 release hardening.
+
+Ta akceptacja kończy V14.10 i pozwala rozpocząć pre-merge release hardening. Nie jest zgodą na mutację `main`.
+
+MERGE_AUTHORIZATION=NOT_GRANTED
+
 ## STOP
-Nie merge’ować V14 do `main` bez jawnej akceptacji wizualnej Ownera po obejrzeniu realnego deploymentu/preview.
+V14.10 visual gate jest zaliczony. Nadal nie merge’ować V14 do `main` bez osobnego, jawnego Owner `MERGE AUTHORIZED` po zakończeniu R9 pre-merge hardening.
