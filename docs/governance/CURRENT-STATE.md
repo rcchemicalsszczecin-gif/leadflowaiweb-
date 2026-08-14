@@ -124,10 +124,35 @@ Visual PASS nie jest merge authorization.
 
 MERGE_AUTHORIZATION=NOT_GRANTED
 
+## R9 release hardening — PRE-MERGE PASS
+
+Validated R9 pre-merge evidence checkpoint:
+`686ca9dbb42b21cdec26b4301ca6040eac80f767`
+
+Release-hardening evidence:
+- Quality: PASS;
+- Browser Matrix: PASS 28/28;
+- Visual Preview: PASS;
+- compare `main...v14/full-visual-rebuild`: 303 commits ahead / 0 behind;
+- merge base: exact production V13 `10627e2f18ccfc7ef86c76a695dab9cf7933cce9`;
+- PR #19: OPEN, Draft, mergeable=true, merged=false;
+- PR surface: 101 changed files, 6486 additions, 1804 deletions;
+- changed-path review: all paths remain inside expected workflow/app/components/docs/package/public/scripts domains;
+- temporary patch/write-helper workflows and scripts: ABSENT from final diff/current branch;
+- current workflow inventory: `pages.yml`, `quality.yml`, `v14-browser-matrix.yml`, `v14-preview.yml` only;
+- `contents: write` residue in current repository workflow search: ABSENT;
+- unresolved PR review threads: 0;
+- production `main` after R9 audit: unchanged at `10627e2f18ccfc7ef86c76a695dab9cf7933cce9`;
+- PR body synchronized to Owner PASS / R9 state while intentionally remaining Draft.
+
+R9_PREMERGE_HARDENING=PASS
+RELEASE_STATE=READY_FOR_SEPARATE_MERGE_AUTHORIZATION
+MERGE_AUTHORIZATION=NOT_GRANTED
+
 ## Active / not complete
 
-- R9 release hardening / pre-merge audit: **IN PROGRESS**.
-- Production merge: **BLOCKED** pending separate explicit Owner `MERGE AUTHORIZED` after R9 pre-merge PASS.
+- Production merge: **BLOCKED** pending separate explicit Owner `MERGE AUTHORIZED`.
+- Post-merge GitHub Pages deployment verification: NOT STARTED because merge is not authorized.
 - V15 Search Master Plan: starts only after stable V14 production.
 
 ## Non-blocking repository-setting debt
@@ -136,17 +161,16 @@ MERGE_AUTHORIZATION=NOT_GRANTED
 - Dependabot alerts remain OFF at repository-settings level; npm audit is enforced in CI.
 - Isolated `/v14-legacy-routes.css` remains a bounded compatibility bridge for migrated non-home routes; further removal is optional post-V14 cleanup and must remain reference-proven.
 
-## R9 execution order
+## Execution order from this checkpoint
 
-1. Audit the complete PR diff and exact lineage against production `main`.
-2. Verify no temporary write-helper workflows/scripts remain in the release diff/current branch.
-3. Verify branch is not behind `main`, PR remains mergeable and production `main` is unchanged.
-4. Re-run exact-head Quality + Browser Matrix + Preview after Owner-acceptance governance synchronization.
-5. Record R9 PRE-MERGE PASS only if every release-hardening gate is green.
-6. Stop before merge and require separate explicit Owner `MERGE AUTHORIZED`.
-7. After authorized merge: verify GitHub Pages deploy and post-deploy smoke.
-8. Start V15 Search Master Plan only from stable production evidence.
+1. Stop before merge.
+2. Obtain separate explicit Owner `MERGE AUTHORIZED`.
+3. Only after authorization: merge PR #19 using an exact expected-head guard.
+4. Verify resulting `main` SHA and GitHub Pages deployment.
+5. Run post-deploy production smoke against the live static artifact/domain.
+6. Synchronize production authority from V13 to V14 only after deployment proof.
+7. Start V15 Search Master Plan only from stable production evidence.
 
 ## Production protection
 
-Owner visual PASS authorizes R9 release hardening only. It does not authorize mutation of `main`. `main` must not be mutated without separate explicit Owner merge authorization.
+Owner visual PASS and R9 PRE-MERGE PASS are necessary but insufficient for production mutation. `main` must not be mutated without separate explicit Owner `MERGE AUTHORIZED`.
