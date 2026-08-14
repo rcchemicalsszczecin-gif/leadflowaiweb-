@@ -30,63 +30,111 @@ Public chatbot UI remains OFF by Owner. Online lead delivery remains OFF by Owne
 
 ## Completed / PASS
 
-- R0 governance/source-of-truth synchronization.
-- R1 mobile/accessibility P0 repair.
-- V14.1–V14.7 homepage/product/search/process/portfolio/knowledge/contact visual foundation.
-- V14.8 route migration COMPLETE for homepage, all 35 service pages, `/uslugi`, `/realizacje`, `/o-nas`, `/kontakt`, `/wiedza`, all 21 knowledge articles and `/lab`.
-- Legacy global/page-wide `WaterSurface` removed from active V14.
-- `V14LiquidSurface` is scene-bounded inside `V14LiquidConstructor` with reduced-motion no-context behavior, 45/30 FPS, bounded DPR, hidden-tab suspension, IntersectionObserver offscreen suspension and fine-pointer-only tracking.
-- Active Liquid visual proof: desktop/mobile WebGL2=true, fallback empty, overflow=0.
-- R2 ROOT CSS DE-STACK: COMPLETE.
+- Full recovery audit: 231/231 tracked files.
+- R0 governance/source-of-truth synchronization: COMPLETE.
+- R1 mobile/accessibility P0 repair: COMPLETE.
+- V14.1–V14.7 homepage/product/search/process/portfolio/knowledge/contact visual foundation: COMPLETE for V14 delivery scope.
+- V14.8 route migration: COMPLETE for homepage, all 35 service pages, `/uslugi`, `/realizacje`, `/o-nas`, `/kontakt`, `/wiedza`, all 21 knowledge articles and `/lab`.
+- R2 runtime de-stack: COMPLETE.
+  - legacy global/page-wide `WaterSurface` is not mounted;
+  - active `V14LiquidSurface` is scene-bounded inside `V14LiquidConstructor`;
+  - reduced-motion exits before WebGL allocation;
+  - rendering is bounded by 45/30 FPS, DPR limits, hidden-tab suspension and IntersectionObserver offscreen suspension;
+  - fine-pointer tracking is local to the Liquid scene.
+- R2 root CSS de-stack: COMPLETE.
   - root `app/layout.tsx` imports exactly one stylesheet: `globals.css`;
   - V8/V9/V9.2/V10/V13 visual/accessibility layers are not mounted from root;
   - legacy `services.css` plus V2→V6 cascade is generated deterministically as `/v14-legacy-routes.css` only for migrated non-home routes;
   - homepage does not load the legacy route bridge;
-  - route-specific contact/knowledge/search/Lab CSS is scoped by nested layouts;
+  - contact/knowledge/portfolio/about/search/Lab CSS is route-scoped;
   - active legacy bridge contains no stock or external network asset URLs.
-- Exact R2 root-clean candidate `e190d2466bdc5166917614aecf361814db9abe8b`:
-  - Quality: PASS;
-  - build: 67/67;
-  - artifact contract: PASS;
-  - static route smoke: 44 routes PASS;
-  - Browser Matrix: PASS 28/28.
-- Browser Matrix uses Chrome 151 and Firefox 153 with true Firefox 360/390 CSS viewport via WebDriver BiDi, plus 768/1366/1440/1920 homepage checks and representative service/knowledge/contact/Lab mobile+desktop cases.
-- Browser matrix validates navigation mode, landmarks, truth markers and horizontal overflow.
-- V14.9 route-level performance budgets are active for homepage, service, knowledge hub, knowledge article, contact and Lab.
-- Homepage route CSS on exact R2 candidate: 48772 raw / 12742 gzip.
-- Next.js upgraded to 16.3.1 after dependency audit identified high-severity transitive issues on 16.2.11.
+- Next.js baseline: 16.3.1.
+- Runtime dependencies: Next/React/ReactDOM only.
 - `npm audit --omit=dev --audit-level=high`: 0 vulnerabilities.
 - Security contract: PASS — no raw HTML injection, eval/dynamic Function, browser storage/cookies, unapproved fetch/XHR, dynamic `app/api`, external scripts, external CSS assets or detected secrets in active public sources.
-- Dormant chatbot code is NETWORK_OFF and public chatbot UI remains OFF.
+- Dormant chatbot: NETWORK_OFF; public chatbot UI remains OFF.
+- Branded root-clean 404: PASS / noindex.
+- First-party `app/icon.svg`: PASS.
+
+## V14.9 final QA — COMPLETE
+
+Validated implementation candidate:
+`a5b63128f027179358fd50f04a6b4d374f58fce3`
+
+The following three independent gates passed on that exact candidate:
+
+1. **Quality — PASS**
+   - full contracts: PASS;
+   - TypeScript: PASS;
+   - Biome active lint surface: PASS with 0 warnings;
+   - static build: 68/68 generated routes/artifacts;
+   - static artifact contract: PASS;
+   - 44-route HTTP smoke: PASS;
+   - npm dependency audit: 0 vulnerabilities;
+   - security contract: PASS;
+   - aggregate performance budgets: PASS;
+   - six route-level performance budgets: PASS;
+   - rendered Search/Public Truth: PASS.
+
+2. **Browser Matrix — PASS 28/28**
+   - Chrome 151 + Firefox 153;
+   - Firefox 360/390 uses WebDriver BiDi true CSS viewport override;
+   - homepage: 360 / 390 / 768 / 1366 / 1440 / 1920;
+   - representative service, knowledge, contact and Lab routes: mobile + desktop;
+   - navigation mode, landmarks, truth markers and horizontal overflow: PASS.
+
+3. **V14 Visual Preview — PASS**
+   - desktop 1440: PASS;
+   - tablet 768: PASS;
+   - mobile 390: PASS;
+   - desktop long reduced-motion: PASS;
+   - mobile long reduced-motion: PASS;
+   - active Liquid desktop WebDriver capture: PASS;
+   - active Liquid mobile WebDriver capture: PASS;
+   - Liquid desktop: WebGL2=true, fallback empty, overflow=0, visible ratio 0.8298;
+   - Liquid mobile: WebGL2=true, fallback empty, overflow=0, visible ratio 0.9064;
+   - preview artifact digest: `sha256:bc1e7928edb0d10744fc0d2b6f7b292922515bb75898b3aa4bfcc871cf4f877b`.
+
+Rendered Search/Public Truth on the validated candidate:
+- indexable HTML: 63;
+- noindex/error artifacts: 2;
+- canonical URLs: 63 unique;
+- sitemap URLs: 63 exact-set match;
+- title/description/H1/lang/robots: PASS;
+- rendered schemas: 270 total nodes/scripts evaluated by gate;
+- Service schema: >=35;
+- Article schema: 21;
+- FAQPage schema: >=36;
+- legal/contact truth: PASS;
+- runtime leaks/placeholders: ABSENT.
+
+Final validated performance snapshot:
+- aggregate JS raw/gzip: 671988 / 202044 bytes;
+- aggregate CSS raw/gzip: 126657 / 28650 bytes;
+- homepage HTML raw/gzip: 65183 / 14658 bytes;
+- homepage route CSS raw/gzip: 55098 / 13651 bytes;
+- all configured aggregate and route-level ceilings: PASS.
 
 ## Active / not complete
 
-- V14.9 final QA: IN PROGRESS.
-- Active lint/specificity cleanup: IN PROGRESS.
-- Legacy route bridge reduction/migration away from V2→V6 internals: DEFERRED CLEANUP, not a root blocker; bridge is isolated and validated.
-- Final search/public-truth exact-candidate QA: NOT COMPLETE.
-- Final exact-candidate Preview after the remaining V14.9 mutations: NOT COMPLETE.
-- V14.10 Owner visual acceptance: NOT COMPLETE.
-- R9 merge/release: BLOCKED pending V14.9 and explicit Owner PASS.
+- V14.10 Owner visual acceptance: **NOT COMPLETE**.
+- R9 merge/release: **BLOCKED** pending explicit Owner visual PASS and explicit Owner merge authorization.
+- V15 Search Master Plan: starts only after stable V14 production.
 
-## Remaining technical debt / blockers
+## Non-blocking repository-setting debt
 
-1. Reduce active Biome specificity warnings without weakening lint. Historical/unmounted V8/V9/V9.2 warnings must not be confused with active public CSS debt.
-2. Continue bounded cleanup of the isolated legacy route bridge only where reference proof permits; do not reintroduce it to root/homepage.
-3. Complete final search/public-truth verification on the final candidate.
-4. Run final Quality + Browser Matrix + Preview on the exact final V14.9 candidate.
-5. Complete V14.10 Owner visual review and obtain explicit Owner PASS.
-6. `main` branch protection remains OFF at repository-settings level.
-7. Dependabot alerts remain OFF at repository-settings level; npm audit is now enforced in CI.
+- `main` branch protection remains OFF at repository-settings level.
+- Dependabot alerts remain OFF at repository-settings level; npm audit is enforced in CI.
+- Isolated `/v14-legacy-routes.css` remains a bounded compatibility bridge for migrated non-home routes; further removal is optional post-V14 cleanup and must remain reference-proven.
 
-## Execution order
+## Execution order from this checkpoint
 
-1. Active lint/specificity cleanup and final bounded route-bridge cleanup where safe.
-2. Final search/public-truth exact-candidate QA.
-3. Final exact-candidate Quality + 28-case Browser Matrix + Preview evidence pack.
-4. V14.10 Owner visual review.
-5. Only after explicit Owner PASS: R9 merge/release.
-6. After stable V14 production: V15 Search Master Plan using real production/search evidence.
+1. V14.10 Owner visual review of the validated V14.9 candidate.
+2. If Owner finds visual issues: bounded V14.10 calibration pass, then repeat exact-candidate Quality + Browser Matrix + Preview.
+3. Only after explicit Owner visual PASS: R9 release hardening and explicit merge authorization.
+4. Merge V14 to `main` only after that authorization.
+5. Verify production Pages deploy and post-deploy smoke.
+6. Start V15 Search Master Plan only from stable production evidence.
 
 ## Production protection
 
