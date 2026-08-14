@@ -38,8 +38,7 @@
   .service-faq,
   .related-services,
   .knowledge-index,
-  .portfolio-current,
-  .site-footer {
+  .portfolio-current {
     background: var(--realistic-section-alt);
   }
 
@@ -109,7 +108,6 @@
       0 12px 40px rgba(0, 0, 0, 0.32);
   }
 
-  .system-flow,
   .service-capability-panel,
   .outcome-grid article,
   .knowledge-cards article,
@@ -129,7 +127,6 @@
       0 14px 42px rgba(0, 0, 0, 0.18);
   }
 
-  .system-flow,
   .service-capability-panel,
   .lead-form,
   .contact-aside,
@@ -187,8 +184,7 @@
     .contact-section,
     .knowledge-index,
     .portfolio-current,
-    .knowledge-article-body,
-    .site-footer {
+    .knowledge-article-body {
       background: rgba(2, 7, 11, 0.34);
     }
 
@@ -201,7 +197,6 @@
       box-shadow: none;
     }
 
-    .system-flow,
     .service-capability-panel,
     .outcome-grid article,
     .knowledge-cards article,
