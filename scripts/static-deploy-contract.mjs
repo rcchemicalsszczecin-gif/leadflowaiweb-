@@ -48,8 +48,14 @@ for (const required of [
   if (!frontend.includes(required)) fail(`frontend deployment architecture record missing: ${required}`);
 }
 
-if (!currentState.includes("10627e2f18ccfc7ef86c76a695dab9cf7933cce9") || !currentState.includes("V14 is not merged to `main`")) {
-  fail("current production/V14 release boundary is not recorded");
+for (const required of [
+  "10627e2f18ccfc7ef86c76a695dab9cf7933cce9",
+  "V13 Polish Production Rebuild",
+  "v14/full-visual-rebuild",
+  "not merge-authorized",
+  "No feature-branch Quality PASS",
+]) {
+  if (!currentState.includes(required)) fail(`current production/V14 release boundary missing: ${required}`);
 }
 
-console.log("STATIC_DEPLOY_CONTRACT_PASS export=PASS pages-workflow=PASS cname=PASS api-split=PASS production=V13_MAIN v14=FEATURE_BRANCH");
+console.log("STATIC_DEPLOY_CONTRACT_PASS export=PASS pages-workflow=PASS cname=PASS api-split=PASS production=V13_MAIN v14=ISOLATED_NOT_AUTHORIZED");
