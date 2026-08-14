@@ -29,7 +29,8 @@ LOCAL_API=NOT_PUBLICLY_ACTIVE
 ANALYTICS_RUNTIME=NOT_AUTHORIZED_IN_V14
 V14_ROUTE_MIGRATION=COMPLETE
 V14_R2_DESTACK=ADVANCED
-V14_WATER_RUNTIME=HOMEPAGE_ONLY_PENDING_SCENE_BOUNDING
+V14_LIQUID_RUNTIME=SCENE_BOUNDED
+V14_LEGACY_WATER_RUNTIME=NOT_MOUNTED
 V14_PREVIEW_PIPELINE=RELIABLE
 V14_FINAL_QA=NOT_COMPLETE
 V14_OWNER_VISUAL_ACCEPTANCE=BLOCKED_PENDING_OWNER_REVIEW
@@ -44,7 +45,7 @@ Production `main` contains the Owner-authorized V13 Polish Production Rebuild. V
 
 ## Current V14 branch
 
-V14 is a feature-branch full visual/implementation-system rebuild. The active branch remains intentionally separate from `main` while R2 cleanup, V14.9 final QA and Owner visual acceptance remain unfinished.
+V14 is a feature-branch full visual/implementation-system rebuild. The active branch remains intentionally separate from `main` while remaining R2 cleanup, V14.9 final QA and Owner visual acceptance are unfinished.
 
 The authoritative V14 plan is `docs/plans/V14-VISUAL-REBUILD.md`.
 
@@ -55,7 +56,9 @@ The authoritative V14 plan is `docs/plans/V14-VISUAL-REBUILD.md`.
 - Public lead submission remains OFF.
 - Public chatbot remains OFF.
 - Future local API origin remains an architectural target only for a separately authorized runtime stage.
-- WaterSurface is not mounted from the root layout; it is currently homepage-only.
+- Legacy `WaterSurface` is not mounted in root or homepage runtime.
+- Active V14 Liquid WebGL is owned by the Liquid Constructor scene only.
+- The scene renderer is bounded by its element size, reduced-motion no-context behavior, compact FPS/DPR limits, page visibility and IntersectionObserver offscreen suspension.
 
 ## Search/content boundary
 
@@ -77,13 +80,14 @@ V14.8 shared-shell migration is complete for all 35 service pages plus `/uslugi`
 - Static HTTP smoke: 44 representative routes PASS.
 - R2 root V9/V9.2/V10 de-stack Quality #586: PASS.
 - Post de-stack CSS aggregate: 124292 raw / 26269 gzip against historical ceilings 195000 / 40000.
-- Homepage-only Water runtime Quality #592: PASS.
+- Homepage-only intermediate Water runtime Quality #592: PASS.
+- Scene-bounded Liquid runtime is the current R2 candidate and requires its exact-head Quality/preview evidence before final R2 acceptance.
 - Preview pipeline can generate bounded desktop/tablet/mobile visual evidence.
 
 ## Current V14 blockers
 
+- validate the scene-bounded Liquid candidate visually and technically;
 - complete remaining R2 historical CSS ownership cleanup;
-- move homepage WaterSurface from legacy fullscreen environment to a deliberately bounded V14 Liquid scene;
 - reduce active lint/specificity debt;
 - add route-level performance budgets;
 - complete Chromium + Firefox and full viewport QA matrix;
