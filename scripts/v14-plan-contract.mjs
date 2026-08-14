@@ -19,6 +19,7 @@ const v14Plan = read("docs/plans/V14-VISUAL-REBUILD.md");
 const repoStatus = read("docs/architecture/REPO-STATUS.md");
 const layout = read("app/layout.tsx");
 const hero = read("components/v14-hero.tsx");
+const signature = read("components/v14-signature-stage.tsx");
 const processComponent = read("components/v14-process-canvas.tsx");
 const homepage = read("app/page.tsx");
 const liquidConstructor = read("components/v14-liquid-constructor.tsx");
@@ -61,14 +62,19 @@ for (const phase of ["R0 — SOURCE OF TRUTH + GOVERNANCE REPAIR", "R1 — P0 V1
   if (!v14Plan.includes(phase)) fail(`V14 plan phase missing: ${phase}`);
 }
 
-for (const required of ['className="v14-mobile-nav"', 'href: "/#process"', 'href="#main-content"']) {
-  if (!hero.includes(required)) fail(`V14 shell invariant missing: ${required}`);
+for (const required of ['className="v14-mobile-nav"', 'href: "/#process"', 'href="#main-content"', 'variant="hero"', "V14SignatureStage"]) {
+  if (!hero.includes(required)) fail(`V14 shell/signature invariant missing: ${required}`);
+}
+for (const required of ["v14-signature-stage", "V14BrowserMockup", "V14PhoneMockup", "--sig-rx", "--sig-ry"]) {
+  if (!signature.includes(required)) fail(`V14 signature stage invariant missing: ${required}`);
 }
 if (!processComponent.includes('id="process"')) fail("V14 process anchor missing");
 if (!homepage.includes('id="main-content"')) fail("V14 main-content target missing");
 if (homepage.includes("WaterSurface") || layout.includes("WaterSurface")) fail("legacy Water runtime mounted globally/page-wide");
-if (!liquidConstructor.includes("<V14LiquidSurface />")) fail("scene-bounded Liquid runtime missing");
-if (!liquidSurface.includes("IntersectionObserver") || !liquidSurface.includes("ResizeObserver")) fail("Liquid visibility/size guards incomplete");
+if (!liquidConstructor.includes('<V14LiquidSurface variant="constructor" />')) fail("constructor Liquid runtime missing");
+for (const required of ["IntersectionObserver", "ResizeObserver", "waveHeight", "waterNormal", "fresnel", "caustic", 'variant === "hero" ? 1 : 0']) {
+  if (!liquidSurface.includes(required)) fail(`Liquid signature runtime invariant missing: ${required}`);
+}
 
 const rootCssImports = [...layout.matchAll(/import\s+["'](\.\/[^"']+\.css)["']/g)].map((match) => match[1]);
 if (rootCssImports.length !== 1 || rootCssImports[0] !== "./globals.css") fail(`root CSS is not globals-only: ${rootCssImports.join(",")}`);
@@ -93,4 +99,4 @@ for (const required of [
   if (!repoStatus.includes(required)) fail(`repository status invariant missing: ${required}`);
 }
 
-console.log("V14_PLAN_CONTRACT_PASS production=V14 main=39c9b304 release-candidate=242263ff r0=PASS r1=PASS r2=COMPLETE route-migration=COMPLETE v14.9=COMPLETE owner-visual=PASS r9=PASS merge=COMPLETE pages=PASS next=16.3.1");
+console.log("V14_PLAN_CONTRACT_PASS production=V14 main=39c9b304 release-candidate=242263ff signature-upgrade=BRANCH_ONLY hero-liquid=WEBGL2 spatial-3d=PASS constructor-liquid=PASS r2=COMPLETE route-migration=COMPLETE owner-visual=HISTORICAL_PASS merge=HISTORICAL_COMPLETE pages=PASS next=16.3.1");
