@@ -2,12 +2,33 @@ import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { basename, join } from "node:path";
 
 const target = "app/v13-visual-authority.css";
+const targetName = basename(target);
+const retiredRenderClasses = [
+  "premium-stage-v9",
+  "hero-product-scene-v13",
+  "hero-plane-v9",
+  "hero-orb-v9",
+  "hero-browser-v13",
+  "hero-browser-toolbar-v13",
+  "hero-browser-body-v13",
+  "hero-browser-copy-v13",
+  "hero-browser-art-v13",
+  "hero-browser-orbit-v13",
+  "hero-browser-core-v13",
+  "hero-browser-line-v13",
+  "hero-browser-signals-v13",
+  "hero-mobile-v13",
+  "hero-mobile-speaker-v13",
+  "hero-core-v13",
+];
+const collisionDiagnosticClasses = ["realistic-board-photo", "line-a", "line-b"];
+
 const fail = (message) => {
-  console.error(`POST_V15_UNUSED_V13_CSS_FAIL: ${message}`);
+  console.error(`POST_V15_RETIRED_V13_CSS_FAIL: ${message}`);
   process.exit(1);
 };
 
-if (!existsSync(target)) fail(`target missing before proof: ${target}`);
+if (existsSync(target)) fail(`retired stylesheet unexpectedly exists: ${target}`);
 if (!existsSync("out")) fail("static out/ artifact missing; run build first");
 
 const walkFiles = (root, accept) => {
@@ -25,90 +46,62 @@ const walkFiles = (root, accept) => {
   return files;
 };
 
-const targetCss = readFileSync(target, "utf8");
-const targetClasses = [...new Set(
-  [...targetCss.matchAll(/\.([_a-zA-Z]+[_a-zA-Z0-9-]*)/g)].map((match) => match[1]),
-)].sort();
-if (targetClasses.length === 0) fail("target has no classes; proof assumptions changed");
-
 const runtimeRoots = ["app", "components", "lib", "hooks"];
 const runtimeExtensions = new Set([".css", ".js", ".jsx", ".ts", ".tsx"]);
 const extensionOf = (path) => path.match(/(\.[^./]+)$/)?.[1] ?? "";
 const runtimeFiles = runtimeRoots.flatMap((root) =>
-  walkFiles(root, (path) => path !== target && runtimeExtensions.has(extensionOf(path))),
+  walkFiles(root, (path) => runtimeExtensions.has(extensionOf(path))),
 );
 
-const targetName = basename(target);
 const fileReferenceHits = [];
-const runtimeClassHits = [];
-const runtimeClassNames = new Set();
-const classBoundary = (name) => new RegExp(`(^|[^A-Za-z0-9_-])${name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?=$|[^A-Za-z0-9_-])`);
-
 for (const path of runtimeFiles) {
   const text = readFileSync(path, "utf8");
   if (text.includes(targetName) || text.includes(target)) fileReferenceHits.push(path);
-  if (!/[.][jt]sx?$/.test(path)) continue;
-  const hits = targetClasses.filter((name) => classBoundary(name).test(text));
-  if (hits.length > 0) {
-    runtimeClassHits.push(`${path}:${hits.join(",")}`);
-    for (const name of hits) runtimeClassNames.add(name);
-  }
 }
-
-if (fileReferenceHits.length > 0) fail(`runtime stylesheet reference found: ${fileReferenceHits.join(";")}`);
+if (fileReferenceHits.length > 0) fail(`retired stylesheet reference found: ${fileReferenceHits.join(";")}`);
 
 const htmlFiles = walkFiles("out", (path) => path.endsWith(".html"));
-const renderedClassHits = [];
+const renderedRetiredHits = [];
 for (const path of htmlFiles) {
   const html = readFileSync(path, "utf8");
   const classTokens = new Set();
   for (const match of html.matchAll(/\bclass=["']([^"']+)["']/g)) {
     for (const token of match[1].split(/\s+/)) if (token) classTokens.add(token);
   }
-  const hits = targetClasses.filter((name) => classTokens.has(name));
-  if (hits.length > 0) renderedClassHits.push(`${path}:${hits.join(",")}`);
+  const hits = retiredRenderClasses.filter((name) => classTokens.has(name));
+  if (hits.length > 0) renderedRetiredHits.push(`${path}:${hits.join(",")}`);
 }
-if (renderedClassHits.length > 0) fail(`rendered target classes found: ${renderedClassHits.join(";")}`);
-
-const emittedCssFiles = walkFiles("out", (path) => path.endsWith(".css"));
-const emittedClassCollisionHits = [];
-const emittedClassCollisionNames = new Set();
-for (const path of emittedCssFiles) {
-  const css = readFileSync(path, "utf8");
-  const hits = targetClasses.filter((name) => css.includes(`.${name}`));
-  if (hits.length > 0) {
-    emittedClassCollisionHits.push(`${path}:${hits.join(",")}`);
-    for (const name of hits) emittedClassCollisionNames.add(name);
-  }
-}
+if (renderedRetiredHits.length > 0) fail(`retired V13 render classes found: ${renderedRetiredHits.join(";")}`);
 
 const bridgePath = "out/v14-legacy-routes.css";
 if (!existsSync(bridgePath)) fail("legacy bridge artifact missing");
 const bridge = readFileSync(bridgePath, "utf8");
-if (bridge.includes(targetName) || bridge.includes(target)) fail("target unexpectedly included by legacy bridge");
+if (bridge.includes(targetName) || bridge.includes(target)) fail("retired stylesheet unexpectedly included by legacy bridge");
+
+const emittedCssFiles = walkFiles("out", (path) => path.endsWith(".css"));
+const collisionHits = [];
+for (const path of emittedCssFiles) {
+  const css = readFileSync(path, "utf8");
+  const hits = collisionDiagnosticClasses.filter((name) => css.includes(`.${name}`));
+  if (hits.length > 0) collisionHits.push(`${path}:${hits.join(",")}`);
+}
 
 console.log(
   [
-    "POST_V15_UNUSED_V13_CSS_PASS",
+    "POST_V15_RETIRED_V13_CSS_PASS",
     `target=${target}`,
-    `classes=${targetClasses.length}`,
+    "target-file=ABSENT",
     `runtime-files=${runtimeFiles.length}`,
     "file-references=0",
-    `source-class-consumer-files=${runtimeClassHits.length}`,
-    `source-class-consumer-classes=${runtimeClassNames.size}`,
     `rendered-html=${htmlFiles.length}`,
-    "rendered-class-references=0",
-    `emitted-css=${emittedCssFiles.length}`,
-    `emitted-class-collision-files=${emittedClassCollisionHits.length}`,
-    `emitted-class-collision-classes=${emittedClassCollisionNames.size}`,
+    `retired-render-classes=${retiredRenderClasses.length}`,
+    "rendered-retired-references=0",
     "bridge-reference=0",
-    "verdict=SAFE_DELETE_CANDIDATE_NOT_YET_DELETED",
+    `collision-diagnostic-files=${collisionHits.length}`,
+    "verdict=RETIRED_CSS_ABSENT_NO_LOAD_REFERENCE",
   ].join(" "),
 );
 
-if (runtimeClassHits.length > 0) {
-  console.log(`POST_V15_UNUSED_V13_CSS_SOURCE_DIAGNOSTIC ${runtimeClassHits.join(";")}`);
-}
-if (emittedClassCollisionHits.length > 0) {
-  console.log(`POST_V15_UNUSED_V13_CSS_EMITTED_COLLISION_DIAGNOSTIC ${emittedClassCollisionHits.join(";")}`);
+if (collisionHits.length > 0) {
+  console.log(`POST_V15_RETIRED_V13_CSS_COLLISION_DIAGNOSTIC ${collisionHits.join(";")}`);
 }
