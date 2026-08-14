@@ -9,6 +9,7 @@ const fail = (message) => {
 const root = process.cwd();
 const sourceRoots = ["app", "components", "lib", "hooks"].filter((path) => existsSync(path));
 const sourceExtensions = [".ts", ".tsx", ".js", ".jsx"];
+const ignoredLocalAssetPattern = /\.(?:css|scss|sass|less|json|svg|png|jpe?g|webp|avif|gif|ico|woff2?|ttf|otf)$/i;
 const frameworkEntryNames = new Set([
   "page.ts",
   "page.tsx",
@@ -112,10 +113,15 @@ const resolveLocalSpecifier = (fromFile, specifier) => {
 
 const edges = new Map(sourceFiles.map((file) => [file, new Set()]));
 const unresolvedLocal = [];
+let ignoredLocalAssets = 0;
 for (const file of sourceFiles) {
   const text = readFileSync(file, "utf8");
   for (const specifier of extractSpecifiers(text)) {
     if (!specifier.startsWith("@/") && !specifier.startsWith(".")) continue;
+    if (ignoredLocalAssetPattern.test(specifier)) {
+      ignoredLocalAssets += 1;
+      continue;
+    }
     const resolved = resolveLocalSpecifier(file, specifier);
     if (resolved) edges.get(file).add(resolved);
     else unresolvedLocal.push(`${toRepoPath(file)}:${specifier}`);
@@ -123,7 +129,7 @@ for (const file of sourceFiles) {
 }
 
 if (unresolvedLocal.length > 0) {
-  fail(`unresolved local import/export specifiers: ${unresolvedLocal.slice(0, 30).join(";")}`);
+  fail(`unresolved local code import/export specifiers: ${unresolvedLocal.slice(0, 30).join(";")}`);
 }
 
 const incoming = new Map(sourceFiles.map((file) => [file, new Set()]));
@@ -190,6 +196,7 @@ console.log(
     `sources=${sourceFiles.length}`,
     `entries=${entries.length}`,
     `edges=${[...edges.values()].reduce((sum, targets) => sum + targets.size, 0)}`,
+    `ignored-local-assets=${ignoredLocalAssets}`,
     `reachable=${reachable.size}`,
     `unreachable=${unreachableSource.length}`,
     `unreachable-components=${unreachableComponents.length}`,
