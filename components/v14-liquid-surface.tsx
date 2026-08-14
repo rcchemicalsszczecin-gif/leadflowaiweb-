@@ -241,6 +241,7 @@ export function V14LiquidSurface({ variant = "constructor" }: { variant?: Liquid
       return;
     }
 
+    const bindProgram = gl.useProgram.bind(gl);
     const position = gl.getAttribLocation(program, "aPosition");
     const resolution = getUniform(gl, program, "uResolution");
     const time = getUniform(gl, program, "uTime");
@@ -252,7 +253,7 @@ export function V14LiquidSurface({ variant = "constructor" }: { variant?: Liquid
 
     gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
-    gl.useProgram(program);
+    bindProgram(program);
     gl.enableVertexAttribArray(position);
     gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
     gl.enable(gl.BLEND);
@@ -286,7 +287,7 @@ export function V14LiquidSurface({ variant = "constructor" }: { variant?: Liquid
         return;
       }
       lastFrameAt = now;
-      gl.useProgram(program);
+      bindProgram(program);
       gl.clear(gl.COLOR_BUFFER_BIT);
       gl.uniform2f(resolution, canvas.width, canvas.height);
       gl.uniform1f(time, now / 1000);
