@@ -43,7 +43,7 @@ const frameworkEntryNames = new Set([
   "twitter-image.tsx",
 ]);
 
-const candidates = [
+const retiredCandidates = [
   "components/premium-art-direction-v9.tsx",
   "components/premium-composition-v8.tsx",
   "components/premium-v9-2-enhancements.tsx",
@@ -52,6 +52,11 @@ const candidates = [
   "components/premium-v9-story.tsx",
   "components/water-surface.tsx",
 ];
+const retiredKnownBytes = 52147;
+
+for (const path of retiredCandidates) {
+  if (existsSync(path)) fail(`retired unreachable component unexpectedly exists: ${path}`);
+}
 
 const toRepoPath = (absolutePath) => relative(root, absolutePath).split(sep).join("/");
 const walkFiles = (start) => {
@@ -73,10 +78,6 @@ const walkFiles = (start) => {
 const sourceFiles = [...new Set(sourceRoots.flatMap((path) => walkFiles(path)))].sort();
 const sourceSet = new Set(sourceFiles);
 if (sourceFiles.length === 0) fail("no source files found");
-
-for (const candidate of candidates) {
-  if (!existsSync(candidate)) fail(`candidate missing before report-only proof: ${candidate}`);
-}
 
 const importPatterns = [
   /\bimport\s+(?:type\s+)?(?:[^"']*?\sfrom\s*)?["']([^"']+)["']/g,
@@ -132,11 +133,6 @@ if (unresolvedLocal.length > 0) {
   fail(`unresolved local code import/export specifiers: ${unresolvedLocal.slice(0, 30).join(";")}`);
 }
 
-const incoming = new Map(sourceFiles.map((file) => [file, new Set()]));
-for (const [from, targets] of edges) {
-  for (const target of targets) incoming.get(target).add(from);
-}
-
 const appFiles = sourceFiles.filter((file) => toRepoPath(file).startsWith("app/"));
 const entries = appFiles.filter((file) => frameworkEntryNames.has(toRepoPath(file).split("/").at(-1)));
 if (entries.length === 0) fail("no Next app entrypoints found");
@@ -152,60 +148,28 @@ while (queue.length > 0) {
   }
 }
 
-const candidateSet = new Set(candidates.map((path) => resolve(path)));
-let unreachableCandidates = 0;
-let candidateBytes = 0;
-let unreachableBytes = 0;
-
-for (const candidatePath of candidates) {
-  const file = resolve(candidatePath);
-  const refs = [...(incoming.get(file) ?? [])].sort().map(toRepoPath);
-  const reachableRefs = refs.filter((ref) => reachable.has(resolve(ref)));
-  const dependencies = [...(edges.get(file) ?? [])].sort().map(toRepoPath);
-  const candidateDependencies = dependencies.filter((path) => candidateSet.has(resolve(path)));
-  const bytes = statSync(file).size;
-  const isReachable = reachable.has(file);
-
-  candidateBytes += bytes;
-  if (!isReachable) {
-    unreachableCandidates += 1;
-    unreachableBytes += bytes;
-  }
-
-  console.log(
-    [
-      "POST_V15_COMPONENT_REACHABILITY_CANDIDATE",
-      `path=${candidatePath}`,
-      `bytes=${bytes}`,
-      `reachable=${isReachable ? "YES" : "NO"}`,
-      `incoming=${refs.length}`,
-      `incoming-reachable=${reachableRefs.length}`,
-      `candidate-deps=${candidateDependencies.join(",") || "NONE"}`,
-      `incoming-preview=${refs.slice(0, 12).join(",") || "NONE"}`,
-    ].join(" "),
-  );
-}
-
 const unreachableSource = sourceFiles.filter((file) => !reachable.has(file));
 const unreachableComponents = unreachableSource.filter((file) => toRepoPath(file).startsWith("components/"));
 const unreachableComponentBytes = unreachableComponents.reduce((sum, file) => sum + statSync(file).size, 0);
+const edgeCount = [...edges.values()].reduce((sum, targets) => sum + targets.size, 0);
 
 console.log(
   [
     "POST_V15_COMPONENT_REACHABILITY_PASS",
     `sources=${sourceFiles.length}`,
     `entries=${entries.length}`,
-    `edges=${[...edges.values()].reduce((sum, targets) => sum + targets.size, 0)}`,
+    `edges=${edgeCount}`,
     `ignored-local-assets=${ignoredLocalAssets}`,
+    "unresolved-local-code=0",
     `reachable=${reachable.size}`,
     `unreachable=${unreachableSource.length}`,
     `unreachable-components=${unreachableComponents.length}`,
     `unreachable-component-bytes=${unreachableComponentBytes}`,
-    `candidates=${candidates.length}`,
-    `candidate-bytes=${candidateBytes}`,
-    `unreachable-candidates=${unreachableCandidates}`,
-    `unreachable-candidate-bytes=${unreachableBytes}`,
-    "mode=REPORT_ONLY_NO_DELETE",
+    `retired-candidates=${retiredCandidates.length}`,
+    `retired-known-bytes=${retiredKnownBytes}`,
+    "retired-files=ABSENT",
+    "retired-imports=ABSENT",
+    "mode=TOMBSTONE_AND_REPORT_REMAINING",
   ].join(" "),
 );
 
