@@ -29,6 +29,8 @@ GitHub Pages deployment run #36 / run id `31809931666`:
 - deploy job: PASS;
 - workflow conclusion: SUCCESS.
 
+GitHub Pages deployment: PASS.
+
 GitHub Pages repository state after deployment:
 - status: `built`;
 - source: `main`;
@@ -50,6 +52,19 @@ Production still preserves:
 - direct contact through `kontakt@leadflowai.pl`.
 
 Public chatbot UI remains OFF by Owner. Online lead delivery remains OFF by Owner. Analytics activation is not authorized by V14.
+
+## Historical V14 delivery status
+
+- R0 governance/source-of-truth synchronization: COMPLETE.
+- R1 mobile/accessibility repair: COMPLETE.
+- R2 runtime and root CSS de-stack: COMPLETE.
+- V14.8 route migration: COMPLETE.
+- V14.9 final QA: COMPLETE.
+- V14.10 Owner Visual PASS: ACCEPTED.
+- R9 pre-merge hardening: PASS.
+- Initial V14 production merge: COMPLETE.
+- Global Liquid World production merge: COMPLETE.
+- Production merge: COMPLETE.
 
 ## Current visual/runtime authority
 
