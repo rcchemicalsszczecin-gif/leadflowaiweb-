@@ -1,72 +1,76 @@
-# LEADFLOWAI — DEPLOYMENT READINESS V2
+# LEADFLOWAI — DEPLOYMENT READINESS
 
-STATUS: FRONTEND TARGET LOCKED / PRODUCTION NOT YET AUTHORIZED
-DATE: 2026-08-12
+STATUS: PRODUCTION V13 LIVE / V14 NOT AUTHORIZED FOR MERGE
+DATE: 2026-08-14
 
-## Locked deployment architecture
+## Current production architecture
 
 Frontend:
-- GitHub repository source;
-- Next.js static export;
-- GitHub Pages;
-- public domain `leadflowai.pl`;
-- GitHub Actions deployment artifact `out/`.
+- source: GitHub repository;
+- production branch: `main`;
+- framework: Next.js static export;
+- hosting: GitHub Pages;
+- public domain: `https://leadflowai.pl`;
+- production V13 revision: `10627e2f18ccfc7ef86c76a695dab9cf7933cce9`;
+- GitHub Pages deployment for that revision: PASS.
 
-Network / edge:
-- Cloudflare DNS/TLS for `leadflowai.pl`;
-- Cloudflare stage is pending and must follow static frontend acceptance.
-
-Dynamic API:
-- `api.leadflowai.pl`;
-- Owner-controlled local hardware;
-- Cloudflare Tunnel;
-- exact local machine not yet selected.
-
-Mail:
+Public contact:
 - `kontakt@leadflowai.pl`;
-- Cloudflare Email Routing to the existing Gmail destination, configured in the Cloudflare stage.
+- direct e-mail path is active;
+- online lead delivery remains OFF by Owner.
+
+Dynamic API/chat:
+- not part of the GitHub Pages artifact;
+- `https://api.leadflowai.pl` remains a future/separately authorized local API boundary;
+- public LeadFlowAI chatbot remains OFF.
 
 Analytics:
-- production analytics are authorized in principle;
-- GA4/Search Console/Bing identifiers and consent implementation remain pending production setup.
+- runtime analytics/consent activation is not part of current V14 work unless separately authorized.
 
-## Already proven on work branch
+## Current V14 release boundary
 
-- governance and design system;
-- homepage and commercial routes;
-- SEO/AEO/GEO architecture;
-- sitemap / robots / structured data;
-- contact UI and public e-mail identity;
-- assistant UI and controlled fallback behavior;
-- real-only portfolio and knowledge architecture;
-- TypeScript / Biome / production builds;
-- provider-neutral operations/runbook/recovery documentation.
+- implementation branch: `v14/full-visual-rebuild`;
+- active plan: `docs/plans/V14-VISUAL-REBUILD.md`;
+- V14 is a feature-branch candidate, not production;
+- current V14 Quality/preview evidence does not authorize merge;
+- final production promotion requires reliable preview evidence, Owner visual PASS, final Quality on the exact release SHA and explicit Owner merge authorization.
 
-## Architecture changes in Stage 11A/B
+## V14 blockers before release readiness
 
-The frontend no longer owns dynamic Route Handlers. `app/api/**` is removed from the static frontend because GitHub Pages cannot execute POST/server logic.
+At minimum:
+- source-of-truth/governance synchronization complete;
+- V14 mobile navigation/anchor/accessibility defects resolved;
+- CSS/runtime historical override stack materially consolidated;
+- homepage V14.1–V14.7 literally complete;
+- 35 service/money pages and primary routes migrated to V14 shell/templates;
+- 63 public search intents and 21 knowledge articles preserved;
+- route-level + aggregate performance PASS;
+- keyboard/touch/reduced-motion/mobile PASS;
+- Chromium + Firefox representative QA PASS;
+- static artifact/search/public-truth PASS;
+- no accidental chatbot/lead backend activation;
+- dependency/security review complete for the release;
+- reliable visual preview artifacts available;
+- explicit Owner visual approval.
 
-Frontend network calls target `https://api.leadflowai.pl` through `NEXT_PUBLIC_API_BASE_URL`.
+## Static frontend invariants
 
-Previous lead/chat server behavior remains a behavioral requirement for the local API stage, not a claim that GitHub Pages runs a backend.
+- `output: "export"` remains active;
+- dynamic `app/api/**` handlers are not required by the static public frontend;
+- sitemap and robots export statically;
+- `CNAME`/`.nojekyll` remain in the Pages artifact;
+- public core navigation/content/contact must remain usable without any future API.
 
-## Remaining production blockers
+## Security boundary
 
-- final GitHub Pages repository setting / custom-domain activation;
-- Cloudflare DNS cutover and TLS validation;
-- Cloudflare response security layer, including final HSTS/CSP after live validation;
-- local API machine selection and service deployment;
-- Cloudflare Tunnel for `api.leadflowai.pl`;
-- real lead-delivery path and end-to-end success proof;
-- local chatbot/RAG service proof;
-- durable rate limiting at the chosen API topology;
-- GA4/Search Console/Bing setup and consent layer;
-- final legal/privacy data after company registration is completed;
-- live browser/CWV/accessibility/security acceptance.
+Static GitHub Pages does not own server-side application headers the way a Next.js server runtime would. Edge response-security policy belongs to the actual edge/deployment layer and must be validated against the live provider configuration before tightening CSP/HSTS.
+
+Secrets must never be committed or exposed through `NEXT_PUBLIC_*` unless they are intentionally public configuration.
 
 ## Launch decision
 
-Current status remains **NOT READY FOR PRODUCTION LAUNCH**.
+Production V13 is already live.
 
-Stage 11A/B may produce a deployable static artifact and deployment workflow without authorizing a live production deployment.
-Final GO / NO-GO remains an Owner-controlled Stage 12 decision.
+V14 current status: **NOT AUTHORIZED FOR PRODUCTION MERGE**.
+
+That statement protects the current feature branch; it must not be misread as saying LeadFlowAI production itself is not launched.
