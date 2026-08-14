@@ -5,15 +5,12 @@ import { site } from "@/lib/site";
 import { getGlobalStructuredData } from "@/lib/structured-data";
 import "./globals.css";
 import "./services.css";
-import "./contact.css";
-import "./knowledge.css";
 import "./precision-water.css";
 import "./circuit-water-v3.css";
 import "./hardware-board-v4.css";
 import "./realistic-board-v5.css";
 import "./content-frames-v6.css";
 import "./v13-visual-authority.css";
-import "./v13-search-education.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
