@@ -35,7 +35,6 @@ const candidates = [
   "app/hardware-board-v4.css",
   "app/realistic-board-v5.css",
   "app/content-frames-v6.css",
-  "app/v13-visual-authority.css",
 ];
 
 const extractClasses = (css) => {
@@ -71,5 +70,5 @@ for (const path of candidates) {
 }
 
 console.log(
-  `CSS_OWNERSHIP_V14_PASS html=${htmlFiles.length} renderedClasses=${renderedClasses.size} candidates=${candidates.length} totalOverlap=${totalOverlap} mode=REPORT_ONLY_NO_AUTODELETE`,
+  `CSS_OWNERSHIP_V14_PASS html=${htmlFiles.length} renderedClasses=${renderedClasses.size} candidates=${candidates.length} totalOverlap=${totalOverlap} retired-v13-css=REMOVED mode=REPORT_ONLY_NO_AUTODELETE`,
 );
