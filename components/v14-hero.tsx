@@ -1,3 +1,4 @@
+import { V14BrandMark } from "@/components/v14-brand-mark";
 import { V14LiquidSurface } from "@/components/v14-liquid-surface";
 import { V14SignatureStage } from "@/components/v14-signature-stage";
 
@@ -22,7 +23,7 @@ export function V14Hero() {
       <header className="v14-header">
         <div className="v14-shell v14-header-inner">
           <a className="v14-brand" href="/" aria-label="LeadFlowAI — strona główna">
-            <span className="v14-brand-mark" aria-hidden="true"><i /><i /></span><span>LEADFLOWAI</span>
+            <V14BrandMark /><span>LEADFLOWAI</span>
           </a>
           <nav className="v14-nav" aria-label="Główna nawigacja">
             {navItems.map((item) => <a key={item.href} href={item.href}>{item.label}</a>)}
