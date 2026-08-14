@@ -22,6 +22,8 @@ const layout = read("app/layout.tsx");
 const hero = read("components/v14-hero.tsx");
 const processComponent = read("components/v14-process-canvas.tsx");
 const homepage = read("app/page.tsx");
+const liquidConstructor = read("components/v14-liquid-constructor.tsx");
+const liquidSurface = read("components/v14-liquid-surface.tsx");
 
 for (const required of [
   "Current design authority — V14",
@@ -39,7 +41,7 @@ for (const required of [
   "v14/full-visual-rebuild",
   "231/231",
   "V14.8 route migration is COMPLETE",
-  "WaterSurface is no longer mounted globally",
+  "V14LiquidSurface",
   "V14.9 full QA: NOT COMPLETE",
   "V14.10 Owner visual acceptance: NOT COMPLETE",
 ]) {
@@ -88,13 +90,15 @@ for (const required of [
 }
 if (!processComponent.includes('id="process"')) fail("V14 process anchor missing");
 if (!homepage.includes('id="main-content"')) fail("V14 main-content target missing");
-if (!homepage.includes("<WaterSurface />")) fail("homepage signature Water runtime missing");
-if (layout.includes("WaterSurface") || layout.includes("water-surface")) fail("Water runtime regressed to global root ownership");
+if (homepage.includes("WaterSurface") || layout.includes("WaterSurface") || layout.includes("water-surface")) fail("legacy Water runtime still mounted globally/page-wide");
+if (!liquidConstructor.includes("<V14LiquidSurface />")) fail("scene-bounded Liquid runtime not mounted by constructor");
+if (!liquidSurface.includes("IntersectionObserver") || !liquidSurface.includes("ResizeObserver")) fail("Liquid scene ownership/visibility guards incomplete");
 
 for (const required of [
   "V14_ROUTE_MIGRATION=COMPLETE",
   "V14_R2_DESTACK=ADVANCED",
-  "V14_WATER_RUNTIME=HOMEPAGE_ONLY_PENDING_SCENE_BOUNDING",
+  "V14_LIQUID_RUNTIME=SCENE_BOUNDED",
+  "V14_LEGACY_WATER_RUNTIME=NOT_MOUNTED",
   "V14_PREVIEW_PIPELINE=RELIABLE",
   "V14_FINAL_QA=NOT_COMPLETE",
   "V14_OWNER_VISUAL_ACCEPTANCE=BLOCKED_PENDING_OWNER_REVIEW",
@@ -102,4 +106,4 @@ for (const required of [
   if (!repoStatus.includes(required)) fail(`repository status invariant missing: ${required}`);
 }
 
-console.log("V14_PLAN_CONTRACT_PASS authority=SYNC production-v13=LOCKED audit=231/231 r0=PASS r1=PASS r2=ADVANCED route-migration=COMPLETE preview=RELIABLE final-qa=NOT_COMPLETE owner-acceptance=BLOCKED");
+console.log("V14_PLAN_CONTRACT_PASS authority=SYNC production-v13=LOCKED audit=231/231 r0=PASS r1=PASS r2=ADVANCED liquid=SCENE_BOUNDED route-migration=COMPLETE preview=RELIABLE final-qa=NOT_COMPLETE owner-acceptance=BLOCKED");
