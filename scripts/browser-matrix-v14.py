@@ -23,6 +23,10 @@ VIEWPORTS = [
 REPRESENTATIVE_ROUTES = [
     ("/strony-internetowe/", "Tworzenie stron internetowych dla firm ze Szczecina"),
     ("/local-seo/", "SEO lokalne dla firm ze Szczecina"),
+    ("/aeo/", "AEO: architektura odpowiedzi"),
+    ("/geo-ai-search/", "GEO i AI Search: źródłowa architektura"),
+    ("/seo-aeo-geo/", "trzy jasno rozdzielone role"),
+    ("/wiedza/ai-search-google-co-robic-2026/", "Google nie traktuje AEO i GEO jako osobnych systemów rankingowych"),
     ("/wiedza/", "KLASTRY TEMATYCZNE"),
     ("/kontakt/", "Formularz online jest obecnie wyłączony"),
     ("/lab/", "Działające doświadczenia"),
@@ -346,7 +350,7 @@ def main():
     if total != expected:
         raise RuntimeError(f"matrix coverage mismatch: {total} != {expected}")
     print(
-        f"BROWSER_MATRIX_V15_PASS browsers=2 cases={total} homepage-viewports=6 representative-routes=5x2 overflow=PASS navigation=PASS landmarks=PASS truth=PASS firefox-mobile=BIDI_TRUE_CSS_VIEWPORT session-retry=BOUNDED"
+        f"BROWSER_MATRIX_V15_PASS browsers=2 cases={total} homepage-viewports=6 representative-routes=9x2 overflow=PASS navigation=PASS landmarks=PASS truth=PASS firefox-mobile=BIDI_TRUE_CSS_VIEWPORT session-retry=BOUNDED"
     )
 
 
