@@ -51,15 +51,18 @@ for (const required of [
   ":focus-visible",
   "pointer: coarse",
   "prefers-reduced-motion: reduce",
-  "transform: none !important",
+  "transform: none;",
+  "transition: none;",
   "#main-content",
   "#process",
 ]) {
   if (!v14Shell.includes(required)) fail(`V14 shell accessibility rule missing: ${required}`);
 }
 
+if (v14Shell.includes("!important")) fail("V14 shell should not rely on important overrides");
+
 if ((briefBuilder.match(/aria-pressed=/g) ?? []).length < 3) {
   fail("brief builder selected states are not exposed with aria-pressed");
 }
 
-console.log("ACCESSIBILITY_V14_PASS legacy-routes=PASS v14-mobile-nav=PASS skip-link=PASS process-anchor=PASS brief-state=PASS focus=VISIBLE touch=44px reduced-motion=PASS navigation-labels=PASS");
+console.log("ACCESSIBILITY_V14_PASS legacy-routes=PASS v14-mobile-nav=PASS skip-link=PASS process-anchor=PASS brief-state=PASS focus=VISIBLE touch=44px reduced-motion=PASS important=ABSENT navigation-labels=PASS");
