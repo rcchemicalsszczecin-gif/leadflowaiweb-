@@ -11,12 +11,16 @@ import {
 } from "@/components/interactive-experience";
 import { V14SiteFooter } from "@/components/v14-site-footer";
 import { V14SiteHeader } from "@/components/v14-site-header";
+import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Laboratorium — 3D, WebGL, ruch i interaktywne WWW",
   description:
     "Laboratorium LeadFlowAI: działające w przeglądarce demonstracje 3D, interakcji, narracji przewijanej, UI, przebudowy stron i architektury doświadczenia.",
   alternates: { canonical: "/lab" },
+  openGraph: {
+    url: `${site.url}/lab/`,
+  },
 };
 
 export default function LabPage() {
