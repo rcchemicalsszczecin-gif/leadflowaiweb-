@@ -14,13 +14,13 @@ for(const path of ["out/index.html","out/o-nas/index.html","out/uslugi/index.htm
 for(const asset of ["out/v14.css","out/v14-shell.css","out/v14-content.css","out/v14-scenes.css","out/v14-liquid-surface.css","out/v14-routes.css","out/v14-legacy-routes.css","out/v14-search-trinity.svg","out/v14-quality-canvas.svg","out/v14-portfolio-stage.svg"])if(!existsSync(asset))fail(`missing V14 first-party asset: ${asset}`);
 
 const legacyBridge=readFileSync("out/v14-legacy-routes.css","utf8");
-for(const source of ["app/precision-water.css","app/circuit-water-v3.css","app/hardware-board-v4.css","app/realistic-board-v5.css","app/content-frames-v6.css"])if(!legacyBridge.includes(`SOURCE: ${source}`))fail(`legacy route bridge lost ordered source marker: ${source}`);
+for(const source of ["app/services.css","app/precision-water.css","app/circuit-water-v3.css","app/hardware-board-v4.css","app/realistic-board-v5.css","app/content-frames-v6.css"])if(!legacyBridge.includes(`SOURCE: ${source}`))fail(`legacy route bridge lost ordered source marker: ${source}`);
 if(/url\(\s*["']?https?:\/\//i.test(legacyBridge)||/\bunsplash\b/i.test(legacyBridge))fail("legacy route bridge contains external/stock asset residue");
 
 const home=readFileSync("out/index.html","utf8");
 for(const required of ["pracują jak produkt","Wyceń projekt","Zobacz realizacje","v14-browser","v14-phone","Sześć warstw jednego produktu cyfrowego","Jedna marka. Trzy urządzenia","LIQUID WEB CONSTRUCTOR","Z płynnej powierzchni","v14-liquid-surface","CZŁOWIEK · GOOGLE · SYSTEM AI","Od decyzji biznesowej do działającego produktu","v14-quality-canvas.svg","REALIZACJE WŁASNE","LeadFlowAI.pl","Tervyxa.pl","TranskrypcjaAI.pl","Zobacz pełne realizacje","WIEDZA I DECYZJE","FAQ / PRZED STARTEM","BRIEF PROJEKTU","Strona niczego nie zapisuje","nie wysyła","Otwórz wiadomość","Zbudujmy WWW, które samo pokazuje poziom Twojej firmy","kontakt@leadflowai.pl"])if(!home.includes(required))fail(`V14 homepage artifact missing: ${required}`);
 for(const css of ["/v14.css","/v14-shell.css","/v14-content.css","/v14-scenes.css","/v14-liquid-surface.css"])if(!home.includes(css))fail(`V14 stylesheet not rendered: ${css}`);
-if(home.includes("/v14-legacy-routes.css"))fail("homepage must not load the V2-V6 legacy route bridge");
+if(home.includes("/v14-legacy-routes.css"))fail("homepage must not load the service/V2-V6 legacy route bridge");
 if(home.includes("realistic-board-photo") || home.includes("images.unsplash.com"))fail("V14 homepage artifact still exposes legacy stock motherboard");
 if(home.includes("api.leadflowai.pl/leads"))fail("disabled lead endpoint leaked into V14 homepage");
 
@@ -80,4 +80,4 @@ if(!readFileSync("out/wiedza/wcag-22-co-sprawdzic-na-stronie/index.html","utf8")
 const about=readFileSync("out/o-nas/index.html","utf8");
 if(!about.includes("Tervyxa Systems sp. z o.o."))fail("public trust entity missing from about artifact");
 
-console.log(`PUBLIC_ARTIFACT_V14_PASS html=${htmlFiles.length} placeholders=ABSENT retired-en=ABSENT homepage=V14_FULL_ROOT_CLEAN legacy-route-bridge=V2_V6_SCOPED liquid=SCENE_BOUNDED service-shell=V14 services=${serviceSamples.length} primary-routes=${routeSamples.length} lab=INTERACTIVE knowledge-samples=${knowledgeSamples.length} decisions=PASS schema=PASS sources=PASS faq=PASS brief=FRONTEND_ONLY portfolio=FIRST_PARTY stock=ABSENT trust=PASS`);
+console.log(`PUBLIC_ARTIFACT_V14_PASS html=${htmlFiles.length} placeholders=ABSENT retired-en=ABSENT homepage=V14_FULL_ROOT_GLOBALS_ONLY legacy-route-bridge=SERVICE_V2_V6_SCOPED liquid=SCENE_BOUNDED service-shell=V14 services=${serviceSamples.length} primary-routes=${routeSamples.length} lab=INTERACTIVE knowledge-samples=${knowledgeSamples.length} decisions=PASS schema=PASS sources=PASS faq=PASS brief=FRONTEND_ONLY portfolio=FIRST_PARTY stock=ABSENT trust=PASS`);
