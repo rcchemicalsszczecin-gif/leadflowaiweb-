@@ -1,62 +1,57 @@
-# LEADFLOWAI — SITE ASSISTANT / CHAT SYSTEM V1
+# LEADFLOWAI — SITE ASSISTANT / CHAT SYSTEM
 
-STATUS: IMPLEMENTED FOR VALIDATION
-DATE: 2026-08-12
+STATUS: DORMANT CODE / PUBLIC UI OFF / FUTURE RUNTIME BOUNDARY
+DATE: 2026-08-14
 
-## Purpose
+## Current Owner decision
 
-The LeadFlowAI site assistant is a website-support layer, not a replacement for navigation, service pages or the contact form.
+The LeadFlowAI commercial offer may include AI chatbots.
 
-It must remain useful when no external AI provider is configured.
+The LeadFlowAI website itself does **not** currently expose a public chatbot widget.
 
-## Modes
+Public chatbot UI remains OFF until a separate explicit Owner configuration/enablement stage.
 
-### 1. KNOWLEDGE
+## Current repository state
 
-Known commercial/site questions are answered from controlled local knowledge in `lib/chat.ts`.
+Dormant client/knowledge code may remain for future reuse:
+- `components/site-assistant.tsx`;
+- `lib/chat.ts`;
+- future API URL helpers/boundaries.
 
-Topics include:
-- websites;
-- landing pages;
-- e-commerce;
-- SEO/AEO/GEO;
-- chatbot scope;
-- modernization/migration;
-- audits;
-- pricing/quote direction;
-- contact;
-- LeadFlowAI / Tervyxa relationship.
+Current root layout must not mount `SiteAssistant` while the public UI decision remains OFF.
 
-### 2. PROVIDER
+The GitHub Pages frontend does not provide `POST /api/chat` and must not claim that it does.
 
-Unknown questions may be forwarded server-side to an optional provider configured through:
-- `CHAT_PROVIDER_URL`;
-- `CHAT_PROVIDER_TOKEN`;
-- `CHAT_PROVIDER_MODEL`.
+## Future behavior contract
 
-The browser never receives provider URL/token credentials.
+If the Owner later reopens the chatbot stage, the future runtime should preserve these validated design principles.
 
-The provider is expected to accept an OpenAI-compatible chat payload. This adapter is intentionally provider-neutral and does not claim that any provider is already configured.
+### Controlled knowledge
+Known commercial/site questions may be answered from controlled LeadFlowAI knowledge rather than requiring a remote model for every response.
 
-### 3. FALLBACK
+### AI/provider/local-model mode
+Unknown questions may be sent to a separately deployed server-side/local-AI boundary when that runtime is explicitly configured.
 
-When no provider is configured or the provider cannot return a safe usable response, the API returns a controlled fallback directing the user to `/kontakt` or `kontakt@leadflowai.pl`.
+Browser code must never receive secret provider credentials.
 
-The UI does not pretend a remote model answered in fallback mode.
+### Fallback
+When AI/model/provider service is unavailable or cannot return a safe usable response, the assistant must have a deterministic fallback to normal site navigation/contact.
+
+The public site itself must remain usable when the AI runtime is unavailable.
 
 ## Public-truth guardrails
 
-The provider system prompt explicitly prohibits invention of:
+Any future assistant/provider prompt must prohibit invention of:
 - prices;
-- timelines;
+- delivery timelines;
 - customers;
 - case studies;
 - rankings;
 - awards/certifications;
 - guarantees;
-- company registration identifiers.
-
-It also prohibits guarantees of Google positions or recommendation/citation by generative AI systems.
+- company identifiers;
+- guaranteed Google positions;
+- guaranteed recommendation/citation by generative AI systems.
 
 Public identity remains:
 - Brand: LeadFlowAI;
@@ -64,49 +59,26 @@ Public identity remains:
 - Legal operator: Tervyxa Systems sp. z o.o.;
 - Contact: kontakt@leadflowai.pl.
 
-## Security / privacy
+## Future security/privacy requirements
 
-`POST /api/chat` uses:
-- same-origin validation;
-- JSON content-type requirement;
-- bounded request body;
-- server-side message validation;
-- best-effort in-process rate limiting;
-- server-only provider credentials;
-- HTTPS provider requirement in production;
-- outbound timeout;
-- bounded provider response body.
+A future public chatbot runtime requires, before activation:
+- explicit server-side API ownership;
+- bounded request validation;
+- narrow CORS/origin policy where cross-origin requests are used;
+- rate limiting appropriate to the deployment;
+- timeout/body limits;
+- server-only secret handling;
+- no accidental logging of user messages/PII beyond an explicitly approved policy;
+- fallback behavior;
+- monitoring/recovery evidence;
+- privacy/legal review appropriate to actual data handling.
 
-The route intentionally does not log submitted chat messages.
+## Current validation
 
-No conversation database or persistent user profile is implemented in V1.
+Current `scripts/chat-contract.mjs` must enforce the dormant state:
+- public UI OFF;
+- root layout does not mount SiteAssistant;
+- no accidental active chat endpoint claim;
+- controlled knowledge/public-truth/fallback code may remain dormant.
 
-### Rate-limit limitation
-
-The in-process limiter is best-effort only and is not a distributed production authority across multiple runtime instances. Durable production limiting remains a deployment-stage concern.
-
-## UX / accessibility
-
-The assistant is globally available through `SiteAssistant` and remains optional.
-
-Requirements implemented in V1:
-- explicit launcher button;
-- close button;
-- visible label and message input;
-- `aria-live` for new responses;
-- keyboard-operable native buttons/form controls;
-- mobile layout;
-- no chatbot dependency for core navigation/contact.
-
-## Validation
-
-Static contract: `scripts/chat-contract.mjs`.
-
-CI runtime smoke verifies:
-- assistant launcher is rendered;
-- foreign-origin requests are rejected with 403;
-- a known e-commerce question returns `mode=knowledge`;
-- an unknown question without provider returns `mode=fallback`;
-- fallback includes `kontakt@leadflowai.pl`.
-
-A real remote provider success test requires explicit non-production provider credentials and is intentionally outside repository-only validation.
+Historical records describing `POST /api/chat` as a current Next.js route or the assistant as globally rendered are superseded by the static GitHub Pages + dormant UI architecture.
