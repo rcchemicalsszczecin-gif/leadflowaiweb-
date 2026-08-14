@@ -6,137 +6,383 @@ LEGAL ENTITY: Tervyxa Systems sp. z o.o.
 PUBLIC BRAND: LeadFlowAI
 PRIMARY DOMAIN: leadflowai.pl
 
-## Authority chain
+This file is the root execution constitution for every AI agent, coding agent, reviewer and automation operating inside this repository.
+
+The repository is governed as a controlled engineering system, not as an open-ended autonomous workspace.
+
+## 1. Human / AI authority model
+
+The operating chain is:
+
+OWNER -> CHATGPT CONTROLLER -> CODEX EXECUTOR -> CHATGPT STRICT REVIEW -> OWNER DECISION
+
+Roles are intentionally separated.
+
+### Owner
+
+Paweł Niewiadomski is the final authority.
+
+The Owner alone controls:
+- product direction;
+- stage authorization;
+- scope expansion;
+- public claims;
+- business/legal identity;
+- final design choices;
+- activation of dormant commercial/runtime features;
+- staging approval;
+- commit approval;
+- push approval;
+- merge to `main`;
+- production deployment;
+- destructive Git/history operations;
+- credentials and secrets.
+
+### ChatGPT Controller
+
+ChatGPT acts as Guardian + Helper + Reviewer.
+
+Its normal responsibilities are:
+- recover current repository truth;
+- prepare the next bounded stage;
+- define scope and non-scope;
+- prepare English-language Codex prompts;
+- review Codex evidence and reports;
+- translate/summarize Codex results for the Owner;
+- recommend PASS / FAIL / BLOCKER;
+- provide exact-path Git commands for the Owner when appropriate.
+
+ChatGPT does not gain standing authority to mutate the repository merely by acting as Controller. Repository mutation by ChatGPT requires a current explicit Owner instruction for that mutation.
+
+### Codex Executor
+
+Codex is an execution engine, not a project authority.
+
+Codex may only perform actions explicitly authorized by the current prompt and this control plane.
+
+By default Codex MUST NOT:
+- choose the next stage;
+- expand scope;
+- modify governance on its own initiative;
+- switch branches;
+- create branches;
+- stage files;
+- commit;
+- push;
+- merge;
+- rebase;
+- deploy;
+- activate production features;
+- modify secrets;
+- perform opportunistic cleanup.
+
+Codex must STOP when authority, scope, repository identity or required evidence is materially ambiguous.
+
+## 2. Authority chain
+
+Interpret conflicting evidence using this order:
+
 1. Current explicit Owner instruction.
-2. This `AGENTS.md`.
-3. `docs/governance/*`.
-4. Current Owner-approved Master Plan.
-5. Current architecture/design decision records.
-6. Current committed repository evidence.
-7. Reference/history/memory.
+2. This root `AGENTS.md`.
+3. `docs/governance/CONTROL-PLANE-INDEX.md` and current normative governance files.
+4. `docs/governance/CURRENT-STATE.md` for current production/candidate state.
+5. Current Owner-approved Master Plan and active stage plan.
+6. Current architecture/quality contracts and exact committed implementation evidence.
+7. Historical/reference documentation.
+8. Conversation history and model memory.
 
 Lower authority never silently overrides higher authority.
-A later explicit Owner decision supersedes an earlier design/release decision inside the scope it changes.
 
-## Execution model
-Work may be executed as a complete bounded STAGE when the Owner authorizes starting that stage.
-A stage may contain multiple gates and many files when all work is necessary for one coherent stage outcome.
+A later explicit Owner decision supersedes an earlier rule only inside the exact scope of that later decision.
 
-1000% = MAXIMUM COMPLETENESS INSIDE CURRENT SCOPE
-1000% != MAXIMUM SCOPE
+If two same-level authorities conflict materially, STOP and report the conflict instead of guessing.
 
-For every stage: define objective, in-scope, forbidden work, write set/domain, before-state, recovery, dependencies, validation, exit criteria and STOP semantics.
+## 3. Mandatory control-plane reading order
+
+Before the first write in a fresh Codex session, read at minimum:
+
+1. `AGENTS.md`
+2. `docs/governance/CONTROL-PLANE-INDEX.md`
+3. `docs/governance/OWNER-AUTHORITY.md`
+4. `docs/governance/HUMAN-AI-OPERATING-MODEL.md`
+5. `docs/governance/CODEX-EXECUTION-CONTRACT.md`
+6. `docs/governance/WORKFLOW-CONTRACT.md`
+7. `docs/governance/STAGE-GATE-PROTOCOL.md`
+8. `docs/governance/PROMPT-CONTRACT.md`
+9. `docs/governance/FILE-OWNERSHIP-AND-SCOPE-POLICY.md`
+10. `docs/governance/GIT-SAFETY-POLICY.md`
+11. `docs/governance/EVIDENCE-PASS-POLICY.md`
+12. `docs/governance/DEFINITION-OF-DONE.md`
+13. `docs/governance/SOURCE-OF-TRUTH-POLICY.md`
+14. `docs/governance/CURRENT-STATE.md`
+15. the current Owner-approved Master Plan / active stage plan relevant to the assignment.
+
+A task-specific prompt may require additional mandatory reads.
+
+## 4. Standard work lifecycle
+
+The normal lifecycle is:
+
+READ / STATUS / INVENTORY
+-> PREWRITE / PROPOSED EXACT TARGET
+-> OWNER AUTHORIZATION
+-> IMPLEMENTATION
+-> VALIDATION
+-> CODEX FINAL REPORT
+-> CHATGPT STRICT REVIEW
+-> OWNER REVIEW
+-> OWNER EXACT-PATH STAGING
+-> OWNER COMMIT APPROVAL
+-> OWNER COMMIT
+-> OWNER PUSH APPROVAL
+-> OWNER PUSH
+-> POST-PUSH VALIDATION
+-> NEXT STAGE DECISION
+
+No phase automatically authorizes the next phase.
+
+A successful implementation does not authorize staging.
+Staging does not authorize commit.
+Commit does not authorize push.
+Push does not authorize merge.
+Merge does not authorize deployment unless the Owner explicitly says so.
+
+## 5. Stage model
+
+Work is executed as one bounded stage at a time.
+
+Every stage must define:
+- MODE;
+- exact objective;
+- repository/branch/HEAD identity;
+- prerequisites;
+- authority sources;
+- exact target;
+- exact path set whenever knowable;
+- bounded write domain only when exact paths cannot be known safely in advance;
+- non-scope;
+- forbidden operations;
+- before-state evidence;
+- recovery path;
+- dependencies/blast radius;
+- validation matrix;
+- evidence requirements;
+- exit criteria;
+- STOP conditions;
+- required final report format.
+
+1000% = MAXIMUM COMPLETENESS INSIDE THE CURRENT AUTHORIZED SCOPE.
+1000% != MAXIMUM SCOPE.
+
 FILE COUNT != SCOPE.
-Unexpected changed paths = FAIL / STOP.
 
-## No opportunistic expansion
-No unrelated cleanup, refactors, dependency changes, runtime changes, deployment, credentials, cross-project mutation or publication unless included in the active stage.
+Unexpected changed paths are FAIL / STOP unless the Owner explicitly expands scope.
 
-## Git authority
-Direct mutation of `main`, force-push and history rewrite are prohibited without explicit Owner instruction.
-Feature-branch commits may be created when the current Owner instruction explicitly authorizes starting implementation.
-Merge to `main`, production deployment and release remain Owner-controlled unless explicitly delegated.
+## 6. No opportunistic expansion
 
-Current active planning/implementation branch: `v15/search-master-plan`.
-Current production branch: `main`.
-Current visual production authority: V14 Global Liquid World.
+Do not perform unrelated:
+- cleanup;
+- refactors;
+- dependency upgrades;
+- package substitutions;
+- design changes;
+- copy rewrites;
+- SEO changes;
+- analytics work;
+- chatbot work;
+- lead-delivery work;
+- deployment work;
+- repository settings changes;
+- cross-project changes.
 
-## Public truth
-No fabricated clients, testimonials, case studies, metrics, certifications, awards, legal identifiers, guarantees, rankings, offices, partnerships, AI citations or research.
+If an out-of-scope issue is discovered:
+REPORT IT.
+DO NOT FIX IT.
+
+## 7. Git authority
+
+Codex must never stage, commit, push, merge or deploy in the normal Owner-controlled workflow.
+
+The Owner performs Git finalization after review.
+
+Default staging policy:
+- use exact paths;
+- never use `git add .`;
+- never use `git add -A`;
+- never stage unrelated files;
+- verify staged diff before commit.
+
+Direct mutation of `main`, force-push, history rewrite, destructive reset, branch deletion and tag deletion require explicit Owner authority and are otherwise forbidden.
+
+No agent may infer Git authority from the fact that implementation was authorized.
+
+## 8. Dirty-worktree rule
+
+At stage start, record repository identity and worktree state.
+
+If the task expects a clean repository and unexpected tracked changes exist:
+VERDICT: BLOCKER
+STOP.
+
+Do not silently restore, stash, reset or delete existing work.
+
+If a stage intentionally begins from an approved dirty state, the prompt must enumerate that state explicitly.
+
+## 9. Evidence rule
+
+A declaration is not evidence.
+
+NO EVIDENCE = NO PASS.
+
+PASS requires current stage-specific proof tied to exact repository state.
+
+Where applicable evidence includes:
+- branch;
+- HEAD;
+- upstream;
+- clean/dirty state;
+- exact changed paths;
+- exact diff;
+- tests;
+- build/static-export proof;
+- semantic/public-truth checks;
+- accessibility/performance/security checks;
+- browser evidence;
+- after-state Git proof.
+
+Historical PASS does not prove current state.
+
+Use UNKNOWN / NOT_PROVEN / BLOCKED_EXTERNAL_EVIDENCE when proof does not exist.
+
+## 10. Prompt language and reporting
+
+Codex prompts are written in English unless the Owner explicitly requests otherwise.
+
+Codex reports are expected in English unless the current prompt specifies another language.
+
+ChatGPT translates/explains the report to the Owner and performs strict review before a new stage is authorized.
+
+Codex must not continue into a proposed next stage after delivering its report.
+
+## 11. Public truth
+
+No fabricated:
+- clients;
+- testimonials;
+- case studies;
+- metrics;
+- certifications;
+- awards;
+- legal identifiers;
+- guarantees;
+- rankings;
+- offices;
+- partnerships;
+- AI citations;
+- research;
+- external-search measurements.
+
 CLAIM -> EVIDENCE -> REVIEW -> PUBLIC STATUS.
+
 Live demonstrations must be labeled as first-party demos/concepts and never implied to be client case studies.
-Qualitative interface status labels may describe demo/system states but must not masquerade as customer metrics or business results.
+
 Original research requires a real auditable dataset, methodology, time range, sample rules and stated limitations before publication.
 
-## Website invariants
+## 12. Website invariants
+
 LeadFlowAI must itself demonstrate the quality it sells:
 - semantic HTML;
 - responsive/mobile-first UX;
 - accessibility;
-- performance and Core Web Vitals;
+- performance and Core Web Vitals discipline;
 - technical SEO;
 - AEO;
 - GEO / AI Search architecture;
 - valid structured data;
-- CRO and lead capture architecture;
+- CRO and lead-capture architecture;
 - security;
-- privacy-aware analytics;
-- maintainability and observability.
+- privacy-aware analytics readiness;
+- maintainability;
+- observability.
 
 Current functional/public boundaries:
 - public chatbot UI: OFF until a separate Owner decision;
 - online lead-form delivery: OFF until a separate Owner decision;
 - direct e-mail through `kontakt@leadflowai.pl`: ACTIVE;
-- analytics/consent runtime: not activated without a separate reviewed stage.
+- analytics/consent runtime: OFF until a separate reviewed Owner-authorized stage.
 
-## Current design authority — V14 Global Liquid World
-The current production visual authority is the Owner-approved V14 Global Liquid World recorded in `docs/governance/CURRENT-STATE.md`, `docs/governance/WEBSITE-OWNER-DECISION-V14.md` and the completed historical delivery record `docs/plans/V14-VISUAL-REBUILD.md`.
+ATTACHMENT != ACTIVATION.
+READY != ACTIVE.
+IMPLEMENTED != AUTHORIZED FOR PRODUCTION.
 
-V14 Full Visual Rebuild and the later Owner-authorized Global Liquid World supersede V9/V9.2 visual freeze and the earlier V14 assumption that Liquid must remain only a small selective signature scene.
+## 13. Current product/design authority
+
+Current production visual authority is V14 Global Liquid World as recorded in current governance and production evidence.
 
 The accepted first-screen hero remains protected as the lead composition. Outside that protected hero viewport, the public site intentionally uses one shared first-party WebGL2 submerged-compute world as the persistent visual substrate.
 
-Current visual invariants:
+Current visual invariants include:
 - no white/paper public section art direction;
-- Owner-provided LeadFlowAI brand mark is the active public identity mark and must not be replaced by a placeholder;
+- Owner-provided LeadFlowAI brand mark remains the public identity mark;
 - one root-mounted global Liquid world outside the hero guard;
 - recognizable submerged PCB / CPU / GPU / VRAM / electronic-rail language;
-- liquid refraction, caustics, highlights, ripples and depth are visual atmosphere only and never carry essential meaning;
+- liquid effects never carry essential meaning;
 - service, knowledge, contact and Lab surfaces remain dark/translucent over the shared world;
-- the accepted hero keeps its dedicated Liquid/spatial scene and must not compete with a second active global canvas in the same viewport;
 - reduced-motion, visibility suspension, DPR caps, frame caps and no-WebGL usability remain mandatory;
 - real browser/product/device UI outranks decorative abstraction;
-- mobile receives its own composition/navigation/touch treatment rather than scaled desktop;
+- mobile receives its own composition/navigation/touch treatment;
 - global fade/dimming of ordinary content during scroll is prohibited;
 - no heavyweight third-party 3D dependency solely for decorative effects;
-- essential information and navigation remain usable without animation or WebGL.
+- essential information/navigation remain usable without animation or WebGL.
 
-V13 remains the preserved Polish content/search/public-truth foundation unless V15 changes a search/content decision through evidence.
-Preserve unless an evidence-backed V15 gate explicitly changes ownership:
-- existing public URLs;
+V13 remains a preserved Polish content/search/public-truth foundation except where later evidence-backed V15 work explicitly supersedes it.
+
+Preserve unless a separately authorized migration changes them:
+- public URL/canonical model;
 - 35 service/money pages;
 - 21 knowledge articles;
 - 63 dominant search intents;
-- metadata/canonical/sitemap/robots;
+- metadata/canonical/sitemap/robots architecture;
 - structured-data/public-truth boundaries;
 - real-only portfolio;
 - direct-answer/decision/FAQ information architecture.
 
-V7 remains a useful functional baseline for the dedicated `/lab` interactive demonstrations, but its old visual dependency on V5/V6/V9 is not current authority.
+V15 is a search/evidence candidate program, not automatic production authority.
+Post-V15 maintenance remains candidate work until Owner-authorized promotion.
 
-## Active search authority — V15
-V15 is the active post-release search, evidence and growth program.
-Its plan is `docs/plans/V15-SEARCH-MASTER-PLAN.md`.
+## 14. Search evidence rule
 
-V15 must be driven by real production evidence, not fabricated ranking claims or synthetic Search Console data.
-Priority sources include:
-- Google Search Console indexing and performance evidence;
-- Search Console generative-AI visibility evidence when available for the property;
-- Bing Webmaster Tools / IndexNow evidence;
-- live crawl and rendered-artifact evidence;
-- real branded, non-branded and local query observations;
-- field Core Web Vitals when available;
-- real conversion evidence only after the required analytics/privacy authority exists.
+AEO/GEO are layers above technically correct SEO, public truth, entity clarity and useful content.
 
-AEO/GEO are not treated as magic ranking systems. For Google, current official guidance makes standard SEO, crawlability/indexability, unique useful content and user value the foundation for generative-AI visibility. Special AI-only files or schema are not to be added merely as ranking theatre.
+Do not add AI-only theatre such as unsupported special files/schema merely to claim AI-search optimization.
 
-## Historical design records
-Historical design documents V1–V9.2, V10 responsive/performance records and the V14 execution plan retain accurate evidence of their original stages. They must not be interpreted as present operational authority when they conflict with the current V14 Global Liquid World or V15 search authority.
+Real external search assertions require external evidence such as Search Console, Bing Webmaster, rendered crawl evidence, field data or auditable query observations.
 
-Historical executable contracts may remain for evidence, but active Quality must not require superseded visual assumptions such as V9.2 freeze, the old Unsplash motherboard asset, white/light section rhythm, or Liquid being limited to one small scene.
+Missing external evidence is not permission to fabricate it.
 
-## Validation
-Each stage requires relevant technical validation, changed-path review, semantic/public-truth checks and a formal PASS/FAIL/BLOCKER verdict.
+## 15. Security and secrets
 
-Current release/search validation must preserve:
-- mobile navigation and touch behavior;
-- keyboard/focus/reduced-motion coverage;
-- route-level and aggregate performance evidence;
-- Chromium and Firefox representative QA;
-- all 63 intent URLs and 21 knowledge articles unless a separately proven V15 migration changes the canonical set;
-- valid static export/search artifacts;
-- no accidental public API/chat/lead activation;
-- reliable visual preview evidence for visual mutations;
-- exact query/index evidence for search assertions.
+Never place credentials, tokens, private keys or real secrets in tracked files, prompts, docs, examples or logs.
 
-Completion of a stage does not automatically authorize deployment or merge.
+Potential secret discovery must be reported with values redacted.
+
+Security-sensitive changes require explicit scope and validation.
+
+## 16. Validation and completion
+
+Each stage requires relevant validation proportional to risk.
+
+Completion requires the applicable conditions in `docs/governance/DEFINITION-OF-DONE.md`.
+
+Statuses are:
+- PASS
+- PASS_WITH_WARNINGS
+- FAIL
+- BLOCKER
+- NOT_PROVEN
+- BLOCKED_EXTERNAL_EVIDENCE
+- OUT_OF_SCOPE
+
+A stage report must always end with repository identity and Git status evidence, then STOP.
+
+Completion of a stage never automatically authorizes the next stage, commit, push, merge or deployment.
