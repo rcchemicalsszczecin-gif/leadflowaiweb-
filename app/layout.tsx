@@ -4,7 +4,6 @@ import { JsonLd } from "@/components/json-ld";
 import { site } from "@/lib/site";
 import { getGlobalStructuredData } from "@/lib/structured-data";
 import "./globals.css";
-import "./services.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
