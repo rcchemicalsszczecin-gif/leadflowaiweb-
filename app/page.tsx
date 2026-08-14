@@ -1,6 +1,8 @@
 import { V14Closing } from "@/components/v14-closing";
+import { V14ContactBrief } from "@/components/v14-contact-brief";
 import { V14DeviceTheater } from "@/components/v14-device-theater";
 import { V14Hero } from "@/components/v14-hero";
+import { V14KnowledgeFaq } from "@/components/v14-knowledge-faq";
 import { V14LiquidConstructor } from "@/components/v14-liquid-constructor";
 import { V14Portfolio } from "@/components/v14-portfolio";
 import { V14ProcessCanvas } from "@/components/v14-process-canvas";
@@ -17,6 +19,8 @@ export default function HomePage() {
       <V14SearchTrinity />
       <V14ProcessCanvas />
       <V14Portfolio />
+      <V14KnowledgeFaq />
+      <V14ContactBrief />
       <V14Closing />
     </main>
   );
