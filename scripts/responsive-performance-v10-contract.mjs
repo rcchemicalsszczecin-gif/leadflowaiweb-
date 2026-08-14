@@ -12,6 +12,11 @@ const read = (path) => {
 
 const layout = read("app/layout.tsx");
 const labLayout = read("app/lab/layout.tsx");
+const contactLayout = read("app/kontakt/layout.tsx");
+const knowledgeLayout = read("app/wiedza/layout.tsx");
+const portfolioLayout = read("app/realizacje/layout.tsx");
+const aboutLayout = read("app/o-nas/layout.tsx");
+const searchEducationLayout = read("app/seo-aeo-geo/layout.tsx");
 const v14Hero = read("components/v14-hero.tsx");
 const v14Shell = read("public/v14-shell.css");
 const liquidSurface = read("components/v14-liquid-surface.tsx");
@@ -24,10 +29,25 @@ for (const retiredImport of [
   './premium-calibration-v9-2.css',
   './responsive-performance-v10.css',
   './interactive-v7.css',
+  './contact.css',
+  './knowledge.css',
+  './v13-search-education.css',
 ]) {
   if (layout.includes(retiredImport)) fail(`retired/root-inappropriate stylesheet remounted: ${retiredImport}`);
 }
-if (!labLayout.includes('import "../interactive-v7.css"')) fail("Lab-only interactive stylesheet ownership missing");
+
+const routeStyles = [
+  [labLayout, 'import "../interactive-v7.css"', "Lab interactive"],
+  [contactLayout, 'import "../contact.css"', "contact"],
+  [knowledgeLayout, 'import "../knowledge.css"', "knowledge"],
+  [portfolioLayout, 'import "../knowledge.css"', "portfolio"],
+  [aboutLayout, 'import "../knowledge.css"', "about"],
+  [searchEducationLayout, 'import "../v13-search-education.css"', "search education"],
+];
+for (const [source, token, label] of routeStyles) {
+  if (!source.includes(token)) fail(`${label} route stylesheet ownership missing`);
+}
+
 if (layout.includes("WaterSurface") || layout.includes("water-surface")) fail("global Water runtime remounted");
 
 for (const required of [
@@ -102,5 +122,5 @@ if (packageJson.includes('"three"') || packageJson.includes("@react-three") || p
 }
 
 console.log(
-  "RESPONSIVE_PERFORMANCE_V14_PASS root=DESTACKED lab-css=ROUTE_SCOPED v14-mobile=PASS touch=44px safe-area=PASS overflow=SAFE landscape=PASS coarse-pointer=PASS reduced-motion=PASS liquid=SCENE_BOUNDED offscreen-stop=PASS design=V14_ACTIVE",
+  "RESPONSIVE_PERFORMANCE_V14_PASS root=DESTACKED route-css=SCOPED lab-css=ROUTE_SCOPED v14-mobile=PASS touch=44px safe-area=PASS overflow=SAFE landscape=PASS coarse-pointer=PASS reduced-motion=PASS liquid=SCENE_BOUNDED offscreen-stop=PASS design=V14_ACTIVE",
 );
