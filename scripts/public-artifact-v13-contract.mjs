@@ -10,7 +10,7 @@ walk("out");
 const banned=["DIGITAL EXPERIENCE STUDIO","WHAT WE BUILD","FIRST-PARTY PROOF","SIGNATURE EXPERIENCE","INTELLIGENCE.","SCROLL / EXPERIENCE","STUDIO DOŚWIADCZEŃ CYFROWYCH","WWW / STRATEGY","SEARCH / ARCHITECTURE","AI / WEBSITE","MIGRATION / SEARCH","ACCESSIBILITY / WCAG","PERFORMANCE / CWV","Lorem ipsum","Coming soon","PLACEHOLDER","V14 / VISUAL REBUILD"];
 for(const path of htmlFiles){const html=readFileSync(path,"utf8");for(const literal of banned)if(html.includes(literal))fail(`${path} exposes retired or placeholder literal: ${literal}`)}
 
-for(const path of ["out/index.html","out/o-nas/index.html","out/uslugi/index.html","out/realizacje/index.html","out/kontakt/index.html","out/wiedza/index.html","out/wiedza/seo-aeo-geo-jedna-architektura/index.html","out/wiedza/wcag-22-co-sprawdzic-na-stronie/index.html"])if(!existsSync(path))fail(`missing required public artifact: ${path}`);
+for(const path of ["out/index.html","out/o-nas/index.html","out/uslugi/index.html","out/realizacje/index.html","out/kontakt/index.html","out/lab/index.html","out/wiedza/index.html","out/wiedza/seo-aeo-geo-jedna-architektura/index.html","out/wiedza/wcag-22-co-sprawdzic-na-stronie/index.html"])if(!existsSync(path))fail(`missing required public artifact: ${path}`);
 for(const asset of ["out/v14.css","out/v14-shell.css","out/v14-content.css","out/v14-scenes.css","out/v14-routes.css","out/v14-search-trinity.svg","out/v14-quality-canvas.svg","out/v14-portfolio-stage.svg"])if(!existsSync(asset))fail(`missing V14 first-party asset: ${asset}`);
 
 const home=readFileSync("out/index.html","utf8");
@@ -41,6 +41,7 @@ const routeSamples=[
   ["out/o-nas/index.html","v14-about-page","METODOLOGIA LEADFLOW"],
   ["out/kontakt/index.html","v14-contact-page","Formularz online jest obecnie wyłączony"],
   ["out/wiedza/index.html","v14-knowledge-page","KLASTRY TEMATYCZNE"],
+  ["out/lab/index.html","v14-lab-page","Działające doświadczenia"],
 ];
 for(const [path,routeClass,truth] of routeSamples){
   const html=readFileSync(path,"utf8");
@@ -48,6 +49,12 @@ for(const [path,routeClass,truth] of routeSamples){
     if(!html.includes(required))fail(`${path} missing V14 primary-route invariant: ${required}`);
   }
 }
+
+const lab=readFileSync("out/lab/index.html","utf8");
+for(const required of ["processor-chip","browser-shell","comparison-stage","constellation-node","command-center","demo koncepcyjne","mailto:kontakt@leadflowai.pl"]){
+  if(!lab.includes(required))fail(`Live Lab lost interactive/public-truth invariant: ${required}`);
+}
+if(lab.includes("api.leadflowai.pl/leads"))fail("Live Lab leaked disabled lead endpoint");
 
 const knowledgeSamples=[
   "out/wiedza/seo-aeo-geo-jedna-architektura/index.html",
@@ -65,4 +72,4 @@ if(!readFileSync("out/wiedza/wcag-22-co-sprawdzic-na-stronie/index.html","utf8")
 const about=readFileSync("out/o-nas/index.html","utf8");
 if(!about.includes("Tervyxa Systems sp. z o.o."))fail("public trust entity missing from about artifact");
 
-console.log(`PUBLIC_ARTIFACT_V14_PASS html=${htmlFiles.length} placeholders=ABSENT retired-en=ABSENT homepage=V14_FULL service-shell=V14 services=${serviceSamples.length} primary-routes=${routeSamples.length} knowledge-samples=${knowledgeSamples.length} decisions=PASS schema=PASS sources=PASS faq=PASS brief=FRONTEND_ONLY portfolio=FIRST_PARTY motherboard=ABSENT trust=PASS`);
+console.log(`PUBLIC_ARTIFACT_V14_PASS html=${htmlFiles.length} placeholders=ABSENT retired-en=ABSENT homepage=V14_FULL service-shell=V14 services=${serviceSamples.length} primary-routes=${routeSamples.length} lab=INTERACTIVE knowledge-samples=${knowledgeSamples.length} decisions=PASS schema=PASS sources=PASS faq=PASS brief=FRONTEND_ONLY portfolio=FIRST_PARTY motherboard=ABSENT trust=PASS`);
