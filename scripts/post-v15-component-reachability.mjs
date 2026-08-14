@@ -54,8 +54,24 @@ const retiredCandidates = [
 ];
 const retiredKnownBytes = 52147;
 
+const protectedDormant = [
+  "components/contact-brief-builder-v13.tsx",
+  "components/site-assistant.tsx",
+];
+
+const cleanupCandidates = [
+  "components/section-label.tsx",
+  "components/site-footer.tsx",
+  "components/site-header.tsx",
+  "components/system-flow.tsx",
+  "components/v14-product-stage.tsx",
+];
+
 for (const path of retiredCandidates) {
   if (existsSync(path)) fail(`retired unreachable component unexpectedly exists: ${path}`);
+}
+for (const path of [...protectedDormant, ...cleanupCandidates]) {
+  if (!existsSync(path)) fail(`classified remaining component unexpectedly missing: ${path}`);
 }
 
 const toRepoPath = (absolutePath) => relative(root, absolutePath).split(sep).join("/");
@@ -133,6 +149,11 @@ if (unresolvedLocal.length > 0) {
   fail(`unresolved local code import/export specifiers: ${unresolvedLocal.slice(0, 30).join(";")}`);
 }
 
+const incoming = new Map(sourceFiles.map((file) => [file, new Set()]));
+for (const [from, targets] of edges) {
+  for (const target of targets) incoming.get(target).add(from);
+}
+
 const appFiles = sourceFiles.filter((file) => toRepoPath(file).startsWith("app/"));
 const entries = appFiles.filter((file) => frameworkEntryNames.has(toRepoPath(file).split("/").at(-1)));
 if (entries.length === 0) fail("no Next app entrypoints found");
@@ -148,10 +169,44 @@ while (queue.length > 0) {
   }
 }
 
+const reportClassified = (path, classification) => {
+  const file = resolve(path);
+  const refs = [...(incoming.get(file) ?? [])].sort();
+  const reachableRefs = refs.filter((ref) => reachable.has(ref));
+  const dependencies = [...(edges.get(file) ?? [])].sort();
+  const bytes = statSync(file).size;
+  const isReachable = reachable.has(file);
+
+  if (classification === "CLEANUP_CANDIDATE" && (isReachable || reachableRefs.length > 0)) {
+    fail(`${path} is not a safe cleanup candidate: reachable=${isReachable} incoming-reachable=${reachableRefs.length}`);
+  }
+
+  console.log(
+    [
+      "POST_V15_COMPONENT_CLASSIFICATION",
+      `path=${path}`,
+      `classification=${classification}`,
+      `bytes=${bytes}`,
+      `reachable=${isReachable ? "YES" : "NO"}`,
+      `incoming=${refs.length}`,
+      `incoming-reachable=${reachableRefs.length}`,
+      `dependencies=${dependencies.map(toRepoPath).join(",") || "NONE"}`,
+      `incoming-preview=${refs.slice(0, 12).map(toRepoPath).join(",") || "NONE"}`,
+    ].join(" "),
+  );
+
+  return { bytes, isReachable, incoming: refs.length, incomingReachable: reachableRefs.length };
+};
+
+const dormantReports = protectedDormant.map((path) => reportClassified(path, "PROTECTED_DORMANT"));
+const cleanupReports = cleanupCandidates.map((path) => reportClassified(path, "CLEANUP_CANDIDATE"));
+
 const unreachableSource = sourceFiles.filter((file) => !reachable.has(file));
 const unreachableComponents = unreachableSource.filter((file) => toRepoPath(file).startsWith("components/"));
 const unreachableComponentBytes = unreachableComponents.reduce((sum, file) => sum + statSync(file).size, 0);
 const edgeCount = [...edges.values()].reduce((sum, targets) => sum + targets.size, 0);
+const cleanupBytes = cleanupReports.reduce((sum, report) => sum + report.bytes, 0);
+const dormantBytes = dormantReports.reduce((sum, report) => sum + report.bytes, 0);
 
 console.log(
   [
@@ -169,7 +224,13 @@ console.log(
     `retired-known-bytes=${retiredKnownBytes}`,
     "retired-files=ABSENT",
     "retired-imports=ABSENT",
-    "mode=TOMBSTONE_AND_REPORT_REMAINING",
+    `protected-dormant=${protectedDormant.length}`,
+    `protected-dormant-bytes=${dormantBytes}`,
+    `cleanup-candidates=${cleanupCandidates.length}`,
+    `cleanup-candidate-bytes=${cleanupBytes}`,
+    "cleanup-candidates-reachable=0",
+    "cleanup-candidates-incoming-reachable=0",
+    "mode=CLASSIFIED_REPORT_ONLY_NO_DELETE",
   ].join(" "),
 );
 
