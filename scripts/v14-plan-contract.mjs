@@ -2,7 +2,7 @@ import { existsSync, readFileSync } from "node:fs";
 
 const fail = (message) => {
   console.error(`V14_PLAN_CONTRACT_FAIL: ${message}`);
-  process.exit(1);
+  globalThis.process.exit(1);
 };
 
 const read = (path) => {
@@ -19,7 +19,7 @@ const masterPlan = read("docs/plans/LEADFLOWAI_AUTHORITATIVE_MASTER_PLAN_V1.md")
 const v14Plan = read("docs/plans/V14-VISUAL-REBUILD.md");
 const repoStatus = read("docs/architecture/REPO-STATUS.md");
 const hero = read("components/v14-hero.tsx");
-const process = read("components/v14-process-canvas.tsx");
+const processComponent = read("components/v14-process-canvas.tsx");
 const homepage = read("app/page.tsx");
 
 for (const required of [
@@ -78,12 +78,12 @@ for (const phase of [
 
 for (const required of [
   'className="v14-mobile-nav"',
-  'href="/#process"',
+  'href: "/#process"',
   'href="#main-content"',
 ]) {
   if (!hero.includes(required)) fail(`current V14 P0 shell invariant missing: ${required}`);
 }
-if (!process.includes('id="process"')) fail("V14 process anchor missing");
+if (!processComponent.includes('id="process"')) fail("V14 process anchor missing");
 if (!homepage.includes('id="main-content"')) fail("V14 main-content target missing");
 
 if (!repoStatus.includes("V14_ROUTE_MIGRATION=NOT_COMPLETE") || !repoStatus.includes("V14_OWNER_VISUAL_ACCEPTANCE=BLOCKED_PENDING_RELIABLE_PREVIEW")) {
