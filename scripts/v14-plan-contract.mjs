@@ -54,8 +54,11 @@ for (const required of [
   "0 vulnerabilities",
   "V14.10 Owner visual acceptance — COMPLETE",
   "OWNER_VISUAL_PASS=ACCEPTED",
+  "R9 release hardening — PRE-MERGE PASS",
+  "686ca9dbb42b21cdec26b4301ca6040eac80f767",
+  "R9_PREMERGE_HARDENING=PASS",
+  "RELEASE_STATE=READY_FOR_SEPARATE_MERGE_AUTHORIZATION",
   "MERGE_AUTHORIZATION=NOT_GRANTED",
-  "R9 release hardening / pre-merge audit: **IN PROGRESS**",
 ]) {
   if (!currentState.includes(required)) fail(`CURRENT-STATE invariant missing: ${required}`);
 }
@@ -150,10 +153,12 @@ for (const required of [
   "V14_VALIDATED_GOVERNANCE_CHECKPOINT=31225c140483d50863b8262b4675d8d55caf124e",
   "V14_ACTIVE_LINT_WARNINGS=0",
   "V14_OWNER_VISUAL_ACCEPTANCE=PASS",
-  "R9_PREMERGE_HARDENING=IN_PROGRESS",
+  "R9_PREMERGE_HARDENING=PASS",
+  "R9_PREMERGE_EVIDENCE_CHECKPOINT=686ca9dbb42b21cdec26b4301ca6040eac80f767",
+  "RELEASE_STATE=READY_FOR_SEPARATE_MERGE_AUTHORIZATION",
   "MERGE_AUTHORIZATION=NOT_GRANTED",
 ]) {
   if (!repoStatus.includes(required)) fail(`repository status invariant missing: ${required}`);
 }
 
-console.log("V14_PLAN_CONTRACT_PASS authority=SYNC production-v13=LOCKED r0=PASS r1=PASS r2=COMPLETE root=GLOBALS_ONLY legacy-routes=BRIDGE_SCOPED liquid=SCENE_BOUNDED route-migration=COMPLETE route-budgets=PASS security=PASS dependency-audit=0 browser-matrix=28/28 preview=PASS rendered-search=PASS active-lint=0 v14.9=COMPLETE owner-acceptance=PASS r9=IN_PROGRESS merge-auth=NOT_GRANTED");
+console.log("V14_PLAN_CONTRACT_PASS authority=SYNC production-v13=LOCKED r0=PASS r1=PASS r2=COMPLETE root=GLOBALS_ONLY legacy-routes=BRIDGE_SCOPED liquid=SCENE_BOUNDED route-migration=COMPLETE route-budgets=PASS security=PASS dependency-audit=0 browser-matrix=28/28 preview=PASS rendered-search=PASS active-lint=0 v14.9=COMPLETE owner-acceptance=PASS r9=PREMERGE_PASS release=READY_FOR_SEPARATE_MERGE_AUTHORIZATION merge-auth=NOT_GRANTED");
