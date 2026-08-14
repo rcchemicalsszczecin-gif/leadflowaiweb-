@@ -55,6 +55,15 @@ def wait_driver(base):
     raise RuntimeError(f"driver did not become ready at {base}")
 
 
+def stop_driver(process):
+    process.terminate()
+    try:
+        process.wait(timeout=5)
+    except subprocess.TimeoutExpired:
+        process.kill()
+        process.wait(timeout=5)
+
+
 def start_driver(browser):
     if browser == "chromium":
         binary = shutil.which("chromedriver")
@@ -71,7 +80,11 @@ def start_driver(browser):
 
     process = subprocess.Popen(args, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     base = f"http://127.0.0.1:{port}"
-    wait_driver(base)
+    try:
+        wait_driver(base)
+    except Exception:
+        stop_driver(process)
+        raise
     return process, base
 
 
@@ -95,19 +108,21 @@ def create_session(browser, base):
                 ]
             },
         }
+        session_timeout = 25
     else:
         always_match = {
             "browserName": "firefox",
             "webSocketUrl": True,
             "moz:firefoxOptions": {"args": ["-headless"]},
         }
+        session_timeout = 45
 
     response = http_json(
         "POST",
         base,
         "/session",
         {"capabilities": {"alwaysMatch": always_match}},
-        timeout=25,
+        timeout=session_timeout,
     )
     value = response.get("value", {})
     session_id = value.get("sessionId") or response.get("sessionId")
@@ -119,6 +134,33 @@ def create_session(browser, base):
     if browser == "firefox" and not bidi_url:
         raise RuntimeError(f"Firefox session did not expose webSocketUrl: {response}")
     return session_id, bidi_url
+
+
+def open_browser(browser):
+    attempts = 2 if browser == "firefox" else 1
+    last_error = None
+    for attempt in range(1, attempts + 1):
+        process = None
+        try:
+            process, base = start_driver(browser)
+            session_id, bidi_url = create_session(browser, base)
+            if attempt > 1:
+                print(f"BROWSER_MATRIX_V14_DRIVER_RECOVERED browser={browser} attempt={attempt}")
+            return process, base, session_id, bidi_url
+        except (RuntimeError, urllib.error.URLError, TimeoutError) as error:
+            last_error = error
+            if process is not None:
+                try:
+                    stop_driver(process)
+                except Exception:
+                    pass
+            if attempt < attempts:
+                print(
+                    f"BROWSER_MATRIX_V14_DRIVER_RETRY browser={browser} attempt={attempt} reason={type(error).__name__}",
+                    file=sys.stderr,
+                )
+                time.sleep(1.0)
+    raise RuntimeError(f"failed to start {browser} WebDriver session after {attempts} attempt(s): {last_error}")
 
 
 def delete_session(base, session_id):
@@ -268,11 +310,9 @@ def run_case(browser, base, session_id, bidi_url, path, width, height, truth):
 
 
 def run_browser(browser):
-    process, base = start_driver(browser)
-    session_id = None
+    process, base, session_id, bidi_url = open_browser(browser)
     checks = 0
     try:
-        session_id, bidi_url = create_session(browser, base)
         for width, height in VIEWPORTS:
             checks += run_case(browser, base, session_id, bidi_url, "/", width, height, "pracują jak produkt")
         for path, truth in REPRESENTATIVE_ROUTES:
@@ -280,13 +320,8 @@ def run_browser(browser):
                 checks += run_case(browser, base, session_id, bidi_url, path, width, height, truth)
         return checks
     finally:
-        if session_id:
-            delete_session(base, session_id)
-        process.terminate()
-        try:
-            process.wait(timeout=5)
-        except subprocess.TimeoutExpired:
-            process.kill()
+        delete_session(base, session_id)
+        stop_driver(process)
 
 
 def main():
@@ -310,13 +345,13 @@ def main():
     if total != expected:
         raise RuntimeError(f"matrix coverage mismatch: {total} != {expected}")
     print(
-        f"BROWSER_MATRIX_V14_PASS browsers=2 cases={total} homepage-viewports=6 representative-routes=4x2 overflow=PASS navigation=PASS landmarks=PASS truth=PASS firefox-mobile=BIDI_TRUE_CSS_VIEWPORT"
+        f"BROWSER_MATRIX_V14_PASS browsers=2 cases={total} homepage-viewports=6 representative-routes=4x2 overflow=PASS navigation=PASS landmarks=PASS truth=PASS firefox-mobile=BIDI_TRUE_CSS_VIEWPORT session-retry=BOUNDED"
     )
 
 
 if __name__ == "__main__":
     try:
         main()
-    except (RuntimeError, urllib.error.URLError, json.JSONDecodeError) as error:
+    except (RuntimeError, urllib.error.URLError, json.JSONDecodeError, TimeoutError) as error:
         print(f"BROWSER_MATRIX_V14_FAIL: {error}", file=sys.stderr)
         sys.exit(1)
