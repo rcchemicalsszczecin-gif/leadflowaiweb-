@@ -1,0 +1,29 @@
+name: V14 Precision Final Patch
+
+on:
+  push:
+    branches:
+      - v14/full-visual-rebuild
+    paths:
+      - scripts/patch-precision-final-v14.py
+      - .github/workflows/v14-precision-final-patch.yml
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: v14/full-visual-rebuild
+      - run: python3 scripts/patch-precision-final-v14.py
+      - run: test "$(git diff --name-only)" = "app/precision-water.css"
+      - run: |
+          git config user.name "LeadFlowAI V14 QA"
+          git config user.email "actions@users.noreply.github.com"
+          git add app/precision-water.css
+          git commit -m "V14.9: clear remaining bridge CSS specificity warnings"
+          git push origin HEAD:v14/full-visual-rebuild
