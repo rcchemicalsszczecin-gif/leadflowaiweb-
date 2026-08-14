@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const steps = [
   ["01", "Diagnoza", "Cel, odbiorca i wynik biznesowy."],
   ["02", "Architektura", "Informacja, UX, content, search i dane."],
@@ -22,7 +24,14 @@ export function V14ProcessCanvas() {
           </ol>
         </div>
         <figure style={{ margin: 0 }}>
-          <img className="v14-qc-img" src="/v14-quality-canvas.svg" alt="Quality Canvas LeadFlowAI: dostępność, wydajność, search i bezpieczeństwo przed publikacją" />
+          <Image
+            className="v14-qc-img"
+            src="/v14-quality-canvas.svg"
+            alt="Quality Canvas LeadFlowAI: dostępność, wydajność, search i bezpieczeństwo przed publikacją"
+            width={720}
+            height={560}
+            sizes="(max-width: 768px) 100vw, 680px"
+          />
         </figure>
       </div>
     </section>
