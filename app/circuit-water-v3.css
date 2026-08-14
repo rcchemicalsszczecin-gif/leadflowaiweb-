@@ -16,64 +16,13 @@
 
   body > main,
   body > section,
-  body > div:not(.circuit-water-environment) {
+  body > div {
     position: relative;
     z-index: 3;
   }
 }
 
 @layer components {
-  body > div.circuit-water-environment {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    overflow: hidden;
-    pointer-events: none;
-    background: var(--circuit-obsidian);
-    contain: strict;
-  }
-
-  .circuit-water-fallback,
-  .circuit-water-canvas,
-  .circuit-water-glass {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  .circuit-water-fallback {
-    z-index: 0;
-    background:
-      radial-gradient(circle at 16% 18%, rgba(32, 139, 187, 0.16), transparent 24rem),
-      radial-gradient(circle at 82% 72%, rgba(184, 255, 56, 0.09), transparent 30rem),
-      linear-gradient(rgba(29, 121, 160, 0.08) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(29, 121, 160, 0.08) 1px, transparent 1px),
-      #03070c;
-    background-size: auto, auto, 72px 72px, 72px 72px, auto;
-  }
-
-  .circuit-water-canvas,
-  .water-surface.circuit-water-canvas {
-    z-index: 1;
-    display: block;
-    opacity: 1;
-    mix-blend-mode: normal;
-    pointer-events: none;
-  }
-
-  .circuit-water-canvas[data-render-fallback="true"] {
-    opacity: 0;
-  }
-
-  .circuit-water-glass {
-    z-index: 2;
-    background:
-      linear-gradient(115deg, rgba(255, 255, 255, 0.018), transparent 28%, rgba(114, 203, 238, 0.018) 55%, transparent 78%),
-      radial-gradient(circle at 50% -12%, rgba(186, 228, 255, 0.06), transparent 44%),
-      linear-gradient(180deg, rgba(2, 7, 12, 0.04), rgba(1, 4, 8, 0.16));
-  }
-
   main > section,
   .section-dark,
   .section-light,
@@ -272,10 +221,6 @@
       background: rgba(3, 8, 13, 0.79);
     }
 
-    .circuit-water-glass {
-      background: linear-gradient(180deg, rgba(2, 7, 12, 0.04), rgba(1, 4, 8, 0.22));
-    }
-
     .system-flow,
     .service-capability-panel,
     .outcome-grid article,
@@ -287,12 +232,6 @@
     .related-grid a {
       background: rgba(6, 14, 21, 0.82);
       backdrop-filter: blur(6px);
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .circuit-water-glass {
-      background: linear-gradient(180deg, rgba(2, 7, 12, 0.08), rgba(1, 4, 8, 0.2));
     }
   }
 }
