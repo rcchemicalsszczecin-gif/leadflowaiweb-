@@ -12,6 +12,7 @@ const browser = read("components/v14-browser-mockup.tsx");
 const phone = read("components/v14-phone-mockup.tsx");
 const visualCss = read("public/v14.css");
 const shellCss = read("public/v14-shell.css");
+const contentCss = read("public/v14-content.css");
 const water = read("components/water-surface.tsx");
 const packageJson = read("package.json");
 
@@ -22,7 +23,7 @@ for (const retired of ["premium-page-v9", "premium-page-v92", "PremiumExperience
   if (home.includes(retired)) fail(`legacy homepage visual dependency remains: ${retired}`);
 }
 if (home.includes("data-v92-reveal")) fail("legacy reveal/fade language remains on V14 homepage");
-for (const required of ["v14-header", "v14-hero", "pracują jak produkt", "Wyceń projekt", "Zobacz realizacje", '/v14.css', '/v14-shell.css']) {
+for (const required of ["v14-header", "v14-hero", "pracują jak produkt", "Wyceń projekt", "Zobacz realizacje", "/v14.css", "/v14-shell.css", "/v14-content.css"]) {
   if (!hero.includes(required)) fail(`hero/shell signal missing: ${required}`);
 }
 for (const required of ["V14BrowserMockup", "V14PhoneMockup", "LIQUID ENGINE"]) if (!stage.includes(required)) fail(`product stage missing: ${required}`);
@@ -34,8 +35,21 @@ for (const required of ["--v14-accent", "v14-foundation", "background:var(--v14-
 for (const required of ["v14-mobile-nav", "prefers-reduced-motion: reduce", "min-height: 44px"]) {
   if (!shellCss.includes(required)) fail(`V14 shell CSS missing: ${required}`);
 }
-if (visualCss.includes("images.unsplash.com") || shellCss.includes("images.unsplash.com")) fail("V14 visual system depends on stock background");
+for (const required of [
+  "v14-service-visual-01",
+  "v14-service-visual-02",
+  "v14-service-visual-03",
+  "v14-service-visual-04",
+  "v14-service-visual-05",
+  "v14-service-visual-06",
+  "v14-knowledge-grid",
+  "v14-faq-layout",
+  "v14-brief-grid",
+]) {
+  if (!contentCss.includes(required)) fail(`V14 content/variant CSS missing: ${required}`);
+}
+if (visualCss.includes("images.unsplash.com") || shellCss.includes("images.unsplash.com") || contentCss.includes("images.unsplash.com")) fail("V14 visual system depends on stock background");
 if (!water.includes("const MAX_RIPPLES = 8") || !water.includes("FRAME_INTERVAL_MS = 1000 / 45")) fail("signature water runtime bounds changed unexpectedly");
 if (packageJson.includes('"three"') || packageJson.includes("@react-three") || packageJson.includes("babylon")) fail("heavy third-party 3D dependency introduced");
 
-console.log("DESIGN_V14_CONTRACT_PASS root=CLEAN shell=V14 hero=PRODUCT_STAGE browser=SPATIAL mobile=NAVIGABLE rhythm=LIGHT_DARK css=V14_OWNED reveal=ABSENT stock=ABSENT water=BOUNDED heavy-3d=ABSENT");
+console.log("DESIGN_V14_CONTRACT_PASS root=CLEAN shell=V14 hero=PRODUCT_STAGE browser=SPATIAL services=6_VARIANTS knowledge=PASS faq=PASS brief=PASS mobile=NAVIGABLE rhythm=LIGHT_DARK css=V14_OWNED reveal=ABSENT stock=ABSENT water=BOUNDED heavy-3d=ABSENT");
