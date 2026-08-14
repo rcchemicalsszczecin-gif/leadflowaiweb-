@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "legacy-routes:css": "node scripts/generate-v14-legacy-routes-css.mjs",
+    "dev": "npm run legacy-routes:css && next dev",
+    "build": "npm run legacy-routes:css && next build",
     "typecheck": "tsc --noEmit",
     "lint": "biome lint --max-diagnostics=100 .",
     "format": "biome format --write .",
