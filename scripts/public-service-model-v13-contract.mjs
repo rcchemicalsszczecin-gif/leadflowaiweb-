@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 
 const fail = (message) => {
-  console.error(`PUBLIC_SERVICE_MODEL_V13_FAIL: ${message}`);
+  console.error(`PUBLIC_SERVICE_MODEL_V14_FAIL: ${message}`);
   process.exit(1);
 };
 
@@ -10,8 +10,20 @@ const adapter = readFileSync("lib/public-service-page.ts", "utf8");
 const text = readFileSync("lib/public-text.ts", "utf8");
 const guidance = readFileSync("lib/service-decision-guidance.ts", "utf8");
 
-for (const required of ["toPublicServicePage(page)", "getPageStructuredData(publicPage)"]) {
+for (const required of [
+  "toPublicServicePage(page)",
+  "getPageStructuredData(publicPage)",
+  "V14SiteHeader",
+  "V14SiteFooter",
+  'id="main-content"',
+  "v14-service-page",
+  "tabIndex={-1}",
+]) {
   if (!renderer.includes(required)) fail(`renderer missing ${required}`);
+}
+
+if (renderer.includes("<SiteHeader") || renderer.includes("<SiteFooter")) {
+  fail("legacy service shell still mounted by shared renderer");
 }
 
 for (const required of ["capabilities: page.capabilities.map(publicTaxonomy)", "tags: item.tags.map(publicTaxonomy)", "description: publicText(item.description)"]) {
@@ -37,4 +49,4 @@ for (const required of ["getServiceDecisionGuidance(publicPage.slug)", "Ma sens,
 if (!guidance.includes("gwarancja pozycji")) fail("search guidance must reject ranking guarantees");
 if (/\b\d+\s*(zł|PLN|dni|tygodni)\b/i.test(guidance)) fail("unapproved price or duration promise detected");
 
-console.log(`PUBLIC_SERVICE_MODEL_V13_PASS renderer=NORMALIZED schema=NORMALIZED taxonomy=PL descriptions=PL decisions=${decisionSlugs.length} groups=6 pricing=UNPUBLISHED`);
+console.log(`PUBLIC_SERVICE_MODEL_V14_PASS renderer=NORMALIZED shell=V14 schema=NORMALIZED taxonomy=PL descriptions=PL decisions=${decisionSlugs.length} groups=6 pricing=UNPUBLISHED`);
