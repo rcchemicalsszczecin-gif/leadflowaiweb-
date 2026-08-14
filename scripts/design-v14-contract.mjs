@@ -5,6 +5,7 @@ const read = (path) => { if (!existsSync(path)) fail(`missing ${path}`); return 
 
 const owner = read("docs/governance/WEBSITE-OWNER-DECISION-V14.md");
 const plan = read("docs/plans/V14-VISUAL-REBUILD.md");
+const layout = read("app/layout.tsx");
 const home = read("app/page.tsx");
 const hero = read("components/v14-hero.tsx");
 const stage = read("components/v14-product-stage.tsx");
@@ -49,7 +50,9 @@ for (const required of [
   if (!contentCss.includes(required)) fail(`V14 content/variant CSS missing: ${required}`);
 }
 if (visualCss.includes("images.unsplash.com") || shellCss.includes("images.unsplash.com") || contentCss.includes("images.unsplash.com")) fail("V14 visual system depends on stock background");
+if (layout.includes("WaterSurface") || layout.includes("water-surface")) fail("Liquid runtime must not be mounted globally");
+if (!home.includes('import { WaterSurface } from "@/components/water-surface"') || !home.includes("<WaterSurface />")) fail("homepage Liquid signature runtime missing");
 if (!water.includes("const MAX_RIPPLES = 8") || !water.includes("FRAME_INTERVAL_MS = 1000 / 45")) fail("signature water runtime bounds changed unexpectedly");
 if (packageJson.includes('"three"') || packageJson.includes("@react-three") || packageJson.includes("babylon")) fail("heavy third-party 3D dependency introduced");
 
-console.log("DESIGN_V14_CONTRACT_PASS root=CLEAN shell=V14 hero=PRODUCT_STAGE browser=SPATIAL services=6_VARIANTS knowledge=PASS faq=PASS brief=PASS mobile=NAVIGABLE rhythm=LIGHT_DARK css=V14_OWNED reveal=ABSENT stock=ABSENT water=BOUNDED heavy-3d=ABSENT");
+console.log("DESIGN_V14_CONTRACT_PASS root=CLEAN shell=V14 hero=PRODUCT_STAGE browser=SPATIAL services=6_VARIANTS knowledge=PASS faq=PASS brief=PASS mobile=NAVIGABLE rhythm=LIGHT_DARK css=V14_OWNED reveal=ABSENT stock=ABSENT water=HOMEPAGE_ONLY heavy-3d=ABSENT");
