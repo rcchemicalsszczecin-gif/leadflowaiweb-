@@ -22,9 +22,18 @@ export function ContactBriefBuilderV13() {
         <p>Wybory pozostają wyłącznie w przeglądarce. Kliknięcie otwiera przygotowaną wiadomość e-mail — strona niczego nie zapisuje ani nie wysyła samodzielnie.</p>
       </div>
       <div className="command-console">
-        <div className="command-row"><span>RODZAJ PROJEKTU</span><div>{projectOptions.map((option) => <button type="button" key={option} className={project === option ? "is-active" : ""} onClick={() => setProject(option)}>{option}</button>)}</div></div>
-        <div className="command-row"><span>GŁÓWNY CEL</span><div>{goalOptions.map((option) => <button type="button" key={option} className={goal === option ? "is-active" : ""} onClick={() => setGoal(option)}>{option}</button>)}</div></div>
-        <div className="command-row"><span>STAN OBECNY</span><div>{stateOptions.map((option) => <button type="button" key={option} className={state === option ? "is-active" : ""} onClick={() => setState(option)}>{option}</button>)}</div></div>
+        <div className="command-row">
+          <span>RODZAJ PROJEKTU</span>
+          <div>{projectOptions.map((option) => <button type="button" key={option} aria-pressed={project === option} className={project === option ? "is-active" : ""} onClick={() => setProject(option)}>{option}</button>)}</div>
+        </div>
+        <div className="command-row">
+          <span>GŁÓWNY CEL</span>
+          <div>{goalOptions.map((option) => <button type="button" key={option} aria-pressed={goal === option} className={goal === option ? "is-active" : ""} onClick={() => setGoal(option)}>{option}</button>)}</div>
+        </div>
+        <div className="command-row">
+          <span>STAN OBECNY</span>
+          <div>{stateOptions.map((option) => <button type="button" key={option} aria-pressed={state === option} className={state === option ? "is-active" : ""} onClick={() => setState(option)}>{option}</button>)}</div>
+        </div>
         <div className="command-status"><span>BRIEF / GOTOWY</span><strong>{project} → {goal}</strong><i /></div>
         <a className="button button-primary button-large" href={`mailto:${site.email}?subject=${subject}&body=${body}`}>OTWÓRZ WIADOMOŚĆ <span aria-hidden="true">↗</span></a>
       </div>
