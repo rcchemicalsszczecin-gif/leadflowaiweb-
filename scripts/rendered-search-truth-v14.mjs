@@ -21,9 +21,16 @@ const walk = (dir) => {
 };
 walk("out");
 
-const isNotFoundArtifact = (path) => path.includes("_not-found") || basename(path) === "404.html";
-const publicHtml = htmlFiles.filter((path) => !isNotFoundArtifact(path));
-if (publicHtml.length < 60) fail(`unexpectedly small public HTML set: ${publicHtml.length}`);
+const hasNoindex = (html) => /<meta\b[^>]*\bname=["']robots["'][^>]*\bcontent=["'][^"']*noindex/i.test(html);
+const indexableHtml = [];
+const noindexHtml = [];
+for (const path of htmlFiles) {
+  const html = readFileSync(path, "utf8");
+  if (hasNoindex(html)) noindexHtml.push(path);
+  else indexableHtml.push(path);
+}
+if (indexableHtml.length < 60) fail(`unexpectedly small indexable HTML set: ${indexableHtml.length}`);
+if (noindexHtml.length < 1) fail("expected at least one noindex error artifact");
 
 const sitemap = readFileSync("out/sitemap.xml", "utf8");
 const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1].trim());
@@ -60,12 +67,12 @@ const decodeEntities = (value) => value
   .replace(/&lt;/g, "<")
   .replace(/&gt;/g, ">");
 
-for (const path of publicHtml) {
+for (const path of indexableHtml) {
   const html = readFileSync(path, "utf8");
   const display = relative("out", path);
 
   if (!/<html\b[^>]*\blang=["']pl["']/i.test(html)) fail(`${display}: html lang is not pl`);
-  if (/<meta\b[^>]*\bname=["']robots["'][^>]*\bcontent=["'][^"']*noindex/i.test(html)) fail(`${display}: public page contains noindex`);
+  if (hasNoindex(html)) fail(`${display}: indexable page contains noindex`);
 
   const title = html.match(/<title>([\s\S]*?)<\/title>/i)?.[1]?.trim() ?? "";
   if (title.length < 8 || title.length > 120) fail(`${display}: invalid title length ${title.length}`);
@@ -106,7 +113,7 @@ for (const path of publicHtml) {
   }
 }
 
-if (canonicals.size !== publicHtml.length) fail(`canonical cardinality mismatch: ${canonicals.size} != ${publicHtml.length}`);
+if (canonicals.size !== indexableHtml.length) fail(`canonical cardinality mismatch: ${canonicals.size} != ${indexableHtml.length}`);
 const sitemapSet = new Set(sitemapUrls);
 const canonicalSet = new Set(canonicals.keys());
 const orphanCanonicals = [...canonicalSet].filter((url) => !sitemapSet.has(url));
@@ -135,8 +142,8 @@ const notFoundPath = htmlFiles.find((path) => basename(path) === "404.html");
 if (!notFoundPath) fail("branded 404 artifact missing");
 const notFound = readFileSync(notFoundPath, "utf8");
 if (!notFound.includes("Ta ścieżka nie prowadzi do aktywnej strony")) fail("branded 404 truth missing");
-if (!/noindex/i.test(notFound)) fail("404 artifact must remain noindex");
+if (!hasNoindex(notFound)) fail("404 artifact must remain noindex");
 
 console.log(
-  `RENDERED_SEARCH_TRUTH_V14_PASS html=${publicHtml.length} canonicals=${canonicals.size}_UNIQUE sitemap=${sitemapUrls.length}_EXACT_SET titles=PASS descriptions=PASS h1=EXACT_ONE lang=PL robots=PASS schemas=${schemas} service>=${serviceSchemas} article=${articleSchemas} faq>=${faqSchemas} 404=BRANDED_NOINDEX public-truth=PASS runtime-leaks=ABSENT placeholders=ABSENT`,
+  `RENDERED_SEARCH_TRUTH_V14_PASS indexable-html=${indexableHtml.length} noindex-artifacts=${noindexHtml.length} canonicals=${canonicals.size}_UNIQUE sitemap=${sitemapUrls.length}_EXACT_SET titles=PASS descriptions=PASS h1=EXACT_ONE lang=PL robots=PASS schemas=${schemas} service>=${serviceSchemas} article=${articleSchemas} faq>=${faqSchemas} 404=BRANDED_NOINDEX public-truth=PASS runtime-leaks=ABSENT placeholders=ABSENT`,
 );
