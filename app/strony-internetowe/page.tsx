@@ -7,7 +7,7 @@ const page = {
   eyebrow: "LEADFLOWAI / TWORZENIE STRON INTERNETOWYCH",
   title: "Tworzenie stron internetowych dla firm ze Szczecina i całej Polski.",
   lead:
-    "Projektujemy i wdrażamy strony firmowe dla firm ze Szczecina oraz klientów z całej Polski. Łączymy architekturę informacji, UX/UI, development, mobile i wydajność z SEO, AEO, GEO oraz mierzalną ścieżką kontaktu.",
+    "Projektujemy i wdrażamy strony firmowe dla firm ze Szczecina oraz firm z całej Polski. Łączymy architekturę informacji, UX/UI, development, mobile i wydajność z SEO, AEO, GEO oraz mierzalną ścieżką kontaktu.",
   directAnswer:
     "LeadFlowAI tworzy strony internetowe dla firm ze Szczecina i realizuje projekty zdalnie dla firm z całej Polski. Dobra strona firmowa nie kończy się na wyglądzie: powinna szybko wyjaśniać ofertę, prowadzić użytkownika do działania, działać dobrze na telefonie, być technicznie przygotowana do indeksowania i publikować informacje czytelne także dla systemów odpowiedzi oraz wyszukiwania AI. Dlatego te warstwy projektujemy razem od początku.",
   capabilities: [
