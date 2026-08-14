@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - 'v14/**'
+      - 'v15/**'
   workflow_dispatch:
 
 concurrency:
