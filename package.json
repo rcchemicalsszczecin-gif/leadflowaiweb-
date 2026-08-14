@@ -21,7 +21,7 @@
     "language:v13": "node scripts/public-language-v13-contract.mjs",
     "service-language:v13": "node scripts/public-service-model-v13-contract.mjs",
     "knowledge-language:v13": "node scripts/knowledge-language-v13-contract.mjs",
-    "visual:v13": "node scripts/visual-v13-contract.mjs",
+    "visual:v13": "node scripts/visual-v14-contract.mjs",
     "accessibility:v13": "node scripts/accessibility-v13-contract.mjs",
     "public-artifact:v13": "node scripts/public-artifact-v13-contract.mjs",
     "performance:budget": "node scripts/performance-budget-v10.mjs",
