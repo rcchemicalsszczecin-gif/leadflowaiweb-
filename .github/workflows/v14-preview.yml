@@ -116,7 +116,6 @@ jobs:
               --no-default-browser-check \
               --hide-scrollbars \
               --disable-gpu \
-              --disable-software-rasterizer \
               --force-prefers-reduced-motion=reduce \
               --run-all-compositor-stages-before-draw \
               --virtual-time-budget="$budget" \
@@ -138,8 +137,8 @@ jobs:
           capture_active v14-mobile-390 390 844 4500
           capture_active v14-mobile-390-long 390 5200 6500
           capture_active v14-desktop-long 1440 7600 6500
-          capture_fallback v14-desktop-liquid-fallback 1440 1350 2200 "/#liquid"
-          capture_active v14-mobile-liquid 390 1600 4500 "/#liquid"
+          capture_fallback v14-desktop-liquid-fallback 1440 1350 2500 "/#liquid"
+          capture_active v14-mobile-liquid 390 1600 5000 "/#liquid"
 
           ls -lh preview
 
