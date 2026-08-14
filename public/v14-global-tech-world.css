@@ -1,0 +1,348 @@
+/* Global submerged-compute art direction for LeadFlowAI. */
+html,
+body {
+  background: #02070a !important;
+}
+
+body {
+  color: #edf3ef;
+}
+
+.v14-global-tech-liquid {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 280ms ease;
+  background:
+    radial-gradient(circle at 74% 20%, rgba(17, 128, 171, 0.24), transparent 34rem),
+    radial-gradient(circle at 20% 76%, rgba(120, 174, 34, 0.11), transparent 30rem),
+    #02070a;
+}
+
+.v14-global-tech-liquid[data-hero-covered="true"] {
+  opacity: 0;
+}
+
+.v14-global-tech-liquid canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  filter: saturate(1.24) contrast(1.08) brightness(1.07);
+}
+
+.v14-global-tech-liquid__depth {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 55% 44%, transparent 22%, rgba(0, 3, 5, 0.18) 76%, rgba(0, 3, 5, 0.42)),
+    linear-gradient(180deg, rgba(0, 5, 8, 0.02), rgba(0, 4, 7, 0.18));
+}
+
+.v14-global-tech-liquid__label {
+  position: absolute;
+  right: 20px;
+  bottom: 16px;
+  display: grid;
+  gap: 3px;
+  padding: 8px 10px;
+  border-left: 1px solid rgba(199, 255, 47, 0.34);
+  color: rgba(215, 227, 220, 0.26);
+  font: 8px/1.25 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  letter-spacing: 0.12em;
+}
+
+.v14-global-tech-liquid__label b {
+  color: rgba(199, 255, 47, 0.52);
+}
+
+.v14-global-tech-liquid[data-render-fallback]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba(199, 255, 47, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(64, 188, 221, 0.03) 1px, transparent 1px),
+    radial-gradient(ellipse at 30% 38%, rgba(199, 255, 47, 0.10), transparent 15rem),
+    radial-gradient(ellipse at 72% 62%, rgba(32, 136, 186, 0.18), transparent 22rem),
+    #031015;
+  background-size: 42px 42px, 42px 42px, auto, auto, auto;
+}
+
+/* Public content is a translucent stack above the single global liquid field. */
+.v14-page,
+.service-page,
+main[id="main-content"] {
+  position: relative;
+  z-index: 1;
+  background: transparent !important;
+}
+
+/* Accepted hero stays visually intact. */
+.v14-hero,
+.v14-hero-signature {
+  isolation: isolate;
+}
+
+/* Homepage: no paper sections. */
+.v14-services,
+.v14-device-theater,
+.v14-liquid,
+.v14-st,
+.v14-pc,
+.v14-foundation,
+.v14-knowledge,
+.v14-brief,
+.v14-closing {
+  position: relative;
+  background: linear-gradient(180deg, rgba(3, 9, 12, 0.68), rgba(3, 10, 14, 0.78)) !important;
+  color: #eef3ef !important;
+}
+
+.v14-device-theater,
+.v14-liquid,
+.v14-pc,
+.v14-brief,
+.v14-closing {
+  background: linear-gradient(180deg, rgba(2, 7, 10, 0.48), rgba(2, 8, 11, 0.68)) !important;
+}
+
+.v14-services::before,
+.v14-device-theater::before,
+.v14-liquid::before,
+.v14-st::before,
+.v14-pc::before,
+.v14-foundation::before,
+.v14-knowledge::before,
+.v14-brief::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(71, 164, 184, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(199, 255, 47, 0.018) 1px, transparent 1px);
+  background-size: 68px 68px;
+  mask-image: linear-gradient(180deg, transparent, black 12%, black 88%, transparent);
+  opacity: 0.70;
+}
+
+.v14-services > *,
+.v14-device-theater > *,
+.v14-liquid > *,
+.v14-st > *,
+.v14-pc > *,
+.v14-foundation > *,
+.v14-knowledge > *,
+.v14-brief > * {
+  position: relative;
+  z-index: 1;
+}
+
+.v14-service-card,
+.v14-foundation-grid a,
+.v14-knowledge-grid article {
+  border-color: rgba(132, 183, 169, 0.20) !important;
+  background:
+    linear-gradient(145deg, rgba(13, 25, 29, 0.86), rgba(5, 14, 18, 0.70)) !important;
+  color: #f0f4f0 !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.045),
+    0 24px 70px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(6px);
+}
+
+.v14-service-card:hover,
+.v14-foundation-grid a:hover,
+.v14-knowledge-grid article:hover {
+  border-color: rgba(199, 255, 47, 0.40) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 30px 78px rgba(0, 0, 0, 0.30),
+    0 0 34px rgba(59, 172, 188, 0.06);
+}
+
+.v14-section-head > p,
+.v14-section-head > span,
+.v14-service-meta span,
+.v14-service-meta small,
+.v14-page .v14-service-card p,
+.v14-page .v14-service-card em,
+.v14-foundation-grid small,
+.v14-st-k,
+.v14-st-lead,
+.v14-st-points li,
+.v14-knowledge-grid small,
+.v14-knowledge-grid p,
+.v14-faq-kicker,
+.v14-faq-list details p,
+.v14-foundation figcaption {
+  color: #91a39d !important;
+}
+
+.v14-service-card h3,
+.v14-foundation h2,
+.v14-foundation-grid strong,
+.v14-st h2,
+.v14-st-points b,
+.v14-st-link,
+.v14-knowledge h2,
+.v14-knowledge-grid h3,
+.v14-knowledge-grid a,
+.v14-faq-layout h2,
+.v14-faq-layout > div:first-child > a,
+.v14-faq-list summary {
+  color: #f0f4f0 !important;
+}
+
+.v14-faq-layout,
+.v14-faq-list,
+.v14-faq-list details {
+  border-color: rgba(132, 183, 169, 0.18) !important;
+}
+
+.v14-st-img,
+.v14-foundation figure > img {
+  border: 1px solid rgba(132, 183, 169, 0.18);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.26);
+}
+
+/* Every detail/service route becomes dark submerged glass. */
+.section-light,
+.section-dark,
+.v14-service-page .service-answer,
+.v14-service-page .service-outcomes,
+.v14-service-page .service-process,
+.v14-service-page .service-faq,
+.v14-service-page .related-services,
+.v14-service-page .service-deliverables,
+.v14-service-page .service-decision-v13,
+.v14-service-page .contact-section,
+.v14-service-page .service-hero {
+  position: relative;
+  background: linear-gradient(180deg, rgba(3, 9, 12, 0.68), rgba(3, 10, 14, 0.78)) !important;
+  color: #eef3ef !important;
+}
+
+.section-dark,
+.v14-service-page .service-deliverables,
+.v14-service-page .service-decision-v13,
+.v14-service-page .contact-section,
+.v14-service-page .service-hero {
+  background: linear-gradient(180deg, rgba(2, 7, 10, 0.50), rgba(2, 8, 11, 0.68)) !important;
+}
+
+.section-light::before,
+.section-dark::before,
+.v14-service-page .service-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(82, 171, 187, 0.024) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(199, 255, 47, 0.016) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(180deg, transparent, black 9%, black 91%, transparent);
+}
+
+.section-light > *,
+.section-dark > *,
+.v14-service-page .service-hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+.v14-service-page .outcome-grid article,
+.v14-service-page .service-faq-grid details,
+.v14-service-page .related-grid a,
+.v14-service-page .service-process li,
+.service-capability-panel {
+  border-color: rgba(132, 183, 169, 0.20) !important;
+  background: linear-gradient(145deg, rgba(13, 25, 29, 0.84), rgba(5, 14, 18, 0.70)) !important;
+  color: #eef3ef !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035);
+  backdrop-filter: blur(6px);
+}
+
+.v14-service-page .outcome-grid article p,
+.v14-service-page .service-faq-grid details p,
+.v14-service-page .service-process li p,
+.v14-service-page .related-grid a span,
+.service-answer p,
+.service-section-head p,
+.service-index,
+.service-lead {
+  color: #94a49f !important;
+}
+
+.v14-service-page .outcome-grid article h3,
+.v14-service-page .service-process li h3,
+.v14-service-page .related-grid a strong,
+.service-answer h2,
+.service-section-head h2,
+.service-faq-grid summary {
+  color: #eff4f0 !important;
+}
+
+.v14-service-page .deliverable-list article,
+.v14-service-page .service-process ol,
+.v14-service-page .service-faq-grid details,
+.v14-service-page .service-directory,
+.v14-service-page .related-grid a {
+  border-color: rgba(132, 183, 169, 0.17) !important;
+}
+
+.v14-header-static,
+.v14-route-footer {
+  background: rgba(2, 8, 11, 0.86) !important;
+  backdrop-filter: blur(18px);
+}
+
+/* Generic paper tokens are no longer allowed to produce white public panels. */
+body:has(main[id="main-content"]) .text-link-dark,
+body:has(main[id="main-content"]) .section-label:not(.section-label-inverted) {
+  color: #a2b0ab !important;
+  border-color: rgba(132, 183, 169, 0.22) !important;
+}
+
+/* Content/knowledge pages that use generic article surfaces. */
+body:has(main[id="main-content"]) article,
+body:has(main[id="main-content"]) details {
+  --paper: rgba(9, 19, 22, 0.82);
+  --paper-2: rgba(12, 24, 27, 0.86);
+}
+
+@media (max-width: 899px) {
+  .v14-global-tech-liquid canvas {
+    filter: saturate(1.14) contrast(1.05) brightness(1.02);
+  }
+
+  .v14-global-tech-liquid__label {
+    display: none;
+  }
+
+  .v14-services,
+  .v14-device-theater,
+  .v14-liquid,
+  .v14-st,
+  .v14-pc,
+  .v14-foundation,
+  .v14-knowledge,
+  .v14-brief,
+  .section-light,
+  .section-dark {
+    background: rgba(3, 10, 13, 0.80) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v14-global-tech-liquid {
+    transition: none;
+  }
+}
