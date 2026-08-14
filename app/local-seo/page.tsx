@@ -21,7 +21,17 @@ const page = {
   ],
 };
 
-export const metadata = withV13SocialMetadata(getSearchMetadata("local-seo"), page.title, page.lead);
+const baseMetadata = getSearchMetadata("local-seo");
+
+export const metadata = withV13SocialMetadata(
+  {
+    ...baseMetadata,
+    title: page.title,
+    description: page.lead,
+  },
+  page.title,
+  page.lead,
+);
 
 export default function LocalSeoPage() {
   return <PublicServicePage page={page} />;
