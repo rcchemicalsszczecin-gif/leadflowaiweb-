@@ -10,7 +10,7 @@ const page = {
   lead:
     "Porządkujemy encje, publiczne fakty, dowody, relacje usług i treści eksperckie tak, aby firma była opisana jako jedno spójne źródło. Dla Google fundamentem generatywnego AI Search nadal jest klasyczne SEO i indeks wyszukiwarki — bez specjalnego schema czy pliku llms.txt.",
   directAnswer:
-    "GEO w LeadFlowAI oznacza gotowość źródłową: jednoznaczną tożsamość marki i operatora, spójne fakty, oryginalne informacje, sensowne linkowanie oraz dane strukturalne zgodne z widoczną treścią. Nie traktujemy GEO jako osobnego algorytmu ani sposobu na kupienie cytowania. Google wprost wskazuje, że jego funkcje generatywnej AI opierają się na podstawowych systemach rankingu i jakości Search, nie wymagają specjalnego schema ani pliku llms.txt, a indeksowanie i wyświetlanie nie są gwarantowane.",
+    "GEO w LeadFlowAI oznacza gotowość źródłową: jednoznaczną tożsamość marki i operatora, spójne fakty, oryginalne informacje, sensowne linkowanie oraz dane strukturalne zgodne z widoczną treścią. Nie traktujemy GEO jako osobnego algorytmu ani sposobu na kupienie cytowania. Google wprost wskazuje, że jego funkcje generatywnej AI opierają się na podstawowych systemach rankingu i jakości Search, nie wymagają specjalnego schema ani pliku llms.txt, a indeksowanie i wyświetlanie nie są gwarantowane. Gdy zweryfikowana usługa ma dostęp do Raportu skuteczności generatywnej AI w Search Console, używamy go jako pierwszoplanowego źródła pomiaru zamiast wymyślać własny score widoczności.",
   faqs: [
     ...basePage.faqs,
     {
