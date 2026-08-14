@@ -44,7 +44,9 @@ V14_RENDERED_SEARCH_TRUTH=PASS_63_EXACT_SET
 V14_ACTIVE_LINT_WARNINGS=0
 V14_OWNER_VISUAL_ACCEPTANCE=PASS
 V14_OWNER_VISUAL_ACCEPTED_AT=2026-08-14T14:09:00+02:00
-R9_PREMERGE_HARDENING=IN_PROGRESS
+R9_PREMERGE_HARDENING=PASS
+R9_PREMERGE_EVIDENCE_CHECKPOINT=686ca9dbb42b21cdec26b4301ca6040eac80f767
+RELEASE_STATE=READY_FOR_SEPARATE_MERGE_AUTHORIZATION
 MERGE_AUTHORIZATION=NOT_GRANTED
 MAIN_BRANCH_PROTECTION=OFF
 DEPENDABOT_ALERTS=OFF
@@ -118,12 +120,35 @@ The Owner accepted the final V14 visual direction and authorized continuation in
 
 MERGE_AUTHORIZATION=NOT_GRANTED
 
+## R9 pre-merge hardening
+
+Validated pre-merge evidence checkpoint:
+`686ca9dbb42b21cdec26b4301ca6040eac80f767`
+
+Evidence:
+- Quality: PASS;
+- Browser Matrix: PASS 28/28;
+- Visual Preview: PASS;
+- branch lineage: 303 ahead / 0 behind relative to `main`;
+- merge base: exact production V13 `10627e2f18ccfc7ef86c76a695dab9cf7933cce9`;
+- PR #19: OPEN, Draft, mergeable=true, merged=false;
+- release diff: 101 changed files, 6486 additions, 1804 deletions;
+- unexpected paths: ABSENT;
+- temporary patch/write-helper workflows/scripts: ABSENT;
+- current workflows: pages, quality, browser matrix, preview only;
+- `contents: write` residue: ABSENT;
+- unresolved review threads: 0;
+- production `main`: unchanged.
+
+R9_PREMERGE_HARDENING=PASS
+RELEASE_STATE=READY_FOR_SEPARATE_MERGE_AUTHORIZATION
+
 ## Current blocker
 
-Only the R9 pre-merge hardening gate remains before the repository can be presented for separate merge authorization.
+The only remaining blocker is separate explicit Owner `MERGE AUTHORIZED`.
 
 Repository-setting debt remains separate from the V14 candidate: `main` protection and Dependabot alerts are still OFF.
 
 ## Release rule
 
-Owner visual PASS is complete but does not authorize production promotion. R9 must produce a clean pre-merge PASS, after which production merge still requires a separate explicit Owner `MERGE AUTHORIZED`.
+Owner visual PASS and R9 PRE-MERGE PASS are complete but do not authorize production promotion. V14 must remain Draft/unmerged until separate explicit Owner `MERGE AUTHORIZED` is given.
