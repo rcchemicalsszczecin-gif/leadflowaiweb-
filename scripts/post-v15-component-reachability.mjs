@@ -43,7 +43,7 @@ const frameworkEntryNames = new Set([
   "twitter-image.tsx",
 ]);
 
-const retiredCandidates = [
+const retiredComponents = [
   "components/premium-art-direction-v9.tsx",
   "components/premium-composition-v8.tsx",
   "components/premium-v9-2-enhancements.tsx",
@@ -51,27 +51,24 @@ const retiredCandidates = [
   "components/premium-v9-journey.tsx",
   "components/premium-v9-story.tsx",
   "components/water-surface.tsx",
-];
-const retiredKnownBytes = 52147;
-
-const protectedDormant = [
-  "components/contact-brief-builder-v13.tsx",
-  "components/site-assistant.tsx",
-];
-
-const cleanupCandidates = [
   "components/section-label.tsx",
   "components/site-footer.tsx",
   "components/site-header.tsx",
   "components/system-flow.tsx",
   "components/v14-product-stage.tsx",
 ];
+const retiredKnownBytes = 59695;
 
-for (const path of retiredCandidates) {
+const protectedDormant = [
+  "components/contact-brief-builder-v13.tsx",
+  "components/site-assistant.tsx",
+];
+
+for (const path of retiredComponents) {
   if (existsSync(path)) fail(`retired unreachable component unexpectedly exists: ${path}`);
 }
-for (const path of [...protectedDormant, ...cleanupCandidates]) {
-  if (!existsSync(path)) fail(`classified remaining component unexpectedly missing: ${path}`);
+for (const path of protectedDormant) {
+  if (!existsSync(path)) fail(`protected dormant component unexpectedly missing: ${path}`);
 }
 
 const toRepoPath = (absolutePath) => relative(root, absolutePath).split(sep).join("/");
@@ -169,44 +166,44 @@ while (queue.length > 0) {
   }
 }
 
-const reportClassified = (path, classification) => {
+let protectedDormantBytes = 0;
+for (const path of protectedDormant) {
   const file = resolve(path);
   const refs = [...(incoming.get(file) ?? [])].sort();
   const reachableRefs = refs.filter((ref) => reachable.has(ref));
   const dependencies = [...(edges.get(file) ?? [])].sort();
   const bytes = statSync(file).size;
   const isReachable = reachable.has(file);
+  protectedDormantBytes += bytes;
 
-  if (classification === "CLEANUP_CANDIDATE" && (isReachable || reachableRefs.length > 0)) {
-    fail(`${path} is not a safe cleanup candidate: reachable=${isReachable} incoming-reachable=${reachableRefs.length}`);
+  if (isReachable || reachableRefs.length > 0) {
+    fail(`${path} must remain dormant until separately authorized: reachable=${isReachable} incoming-reachable=${reachableRefs.length}`);
   }
 
   console.log(
     [
       "POST_V15_COMPONENT_CLASSIFICATION",
       `path=${path}`,
-      `classification=${classification}`,
+      "classification=PROTECTED_DORMANT",
       `bytes=${bytes}`,
-      `reachable=${isReachable ? "YES" : "NO"}`,
+      "reachable=NO",
       `incoming=${refs.length}`,
-      `incoming-reachable=${reachableRefs.length}`,
+      "incoming-reachable=0",
       `dependencies=${dependencies.map(toRepoPath).join(",") || "NONE"}`,
-      `incoming-preview=${refs.slice(0, 12).map(toRepoPath).join(",") || "NONE"}`,
     ].join(" "),
   );
-
-  return { bytes, isReachable, incoming: refs.length, incomingReachable: reachableRefs.length };
-};
-
-const dormantReports = protectedDormant.map((path) => reportClassified(path, "PROTECTED_DORMANT"));
-const cleanupReports = cleanupCandidates.map((path) => reportClassified(path, "CLEANUP_CANDIDATE"));
+}
 
 const unreachableSource = sourceFiles.filter((file) => !reachable.has(file));
 const unreachableComponents = unreachableSource.filter((file) => toRepoPath(file).startsWith("components/"));
+const protectedSet = new Set(protectedDormant.map((path) => resolve(path)));
+const unexpectedUnreachableComponents = unreachableComponents.filter((file) => !protectedSet.has(file));
+if (unexpectedUnreachableComponents.length > 0) {
+  fail(`unexpected unreachable components remain: ${unexpectedUnreachableComponents.map(toRepoPath).join(",")}`);
+}
+
 const unreachableComponentBytes = unreachableComponents.reduce((sum, file) => sum + statSync(file).size, 0);
 const edgeCount = [...edges.values()].reduce((sum, targets) => sum + targets.size, 0);
-const cleanupBytes = cleanupReports.reduce((sum, report) => sum + report.bytes, 0);
-const dormantBytes = dormantReports.reduce((sum, report) => sum + report.bytes, 0);
 
 console.log(
   [
@@ -220,23 +217,14 @@ console.log(
     `unreachable=${unreachableSource.length}`,
     `unreachable-components=${unreachableComponents.length}`,
     `unreachable-component-bytes=${unreachableComponentBytes}`,
-    `retired-candidates=${retiredCandidates.length}`,
+    `retired-components=${retiredComponents.length}`,
     `retired-known-bytes=${retiredKnownBytes}`,
     "retired-files=ABSENT",
     "retired-imports=ABSENT",
     `protected-dormant=${protectedDormant.length}`,
-    `protected-dormant-bytes=${dormantBytes}`,
-    `cleanup-candidates=${cleanupCandidates.length}`,
-    `cleanup-candidate-bytes=${cleanupBytes}`,
-    "cleanup-candidates-reachable=0",
-    "cleanup-candidates-incoming-reachable=0",
-    "mode=CLASSIFIED_REPORT_ONLY_NO_DELETE",
+    `protected-dormant-bytes=${protectedDormantBytes}`,
+    "protected-dormant-reachable=0",
+    "unexpected-unreachable-components=0",
+    "mode=TOMBSTONE_WITH_PROTECTED_DORMANT",
   ].join(" "),
-);
-
-console.log(
-  `POST_V15_COMPONENT_REACHABILITY_UNREACHABLE_COMPONENT_PREVIEW ${unreachableComponents
-    .slice(0, 40)
-    .map(toRepoPath)
-    .join(",") || "NONE"}`,
 );
