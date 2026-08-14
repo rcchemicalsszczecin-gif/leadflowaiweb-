@@ -18,9 +18,12 @@ const portfolioLayout = read("app/realizacje/layout.tsx");
 const aboutLayout = read("app/o-nas/layout.tsx");
 const searchEducationLayout = read("app/seo-aeo-geo/layout.tsx");
 const v14Hero = read("components/v14-hero.tsx");
+const v14SiteHeader = read("components/v14-site-header.tsx");
 const v14Shell = read("public/v14-shell.css");
 const liquidSurface = read("components/v14-liquid-surface.tsx");
+const legacyGenerator = read("scripts/generate-v14-legacy-routes-css.mjs");
 const packageJson = read("package.json");
+const gitignore = read(".gitignore");
 const agents = read("AGENTS.md");
 const v14Plan = read("docs/plans/V14-VISUAL-REBUILD.md");
 
@@ -33,8 +36,17 @@ for (const retiredImport of [
   './knowledge.css',
   './v13-search-education.css',
   './v13-visual-authority.css',
+  './precision-water.css',
+  './circuit-water-v3.css',
+  './hardware-board-v4.css',
+  './realistic-board-v5.css',
+  './content-frames-v6.css',
 ]) {
   if (layout.includes(retiredImport)) fail(`retired/root-inappropriate stylesheet remounted: ${retiredImport}`);
+}
+
+for (const requiredRootImport of ['./globals.css', './services.css']) {
+  if (!layout.includes(requiredRootImport)) fail(`required root stylesheet missing: ${requiredRootImport}`);
 }
 
 const routeStyles = [
@@ -47,6 +59,28 @@ const routeStyles = [
 ];
 for (const [source, token, label] of routeStyles) {
   if (!source.includes(token)) fail(`${label} route stylesheet ownership missing`);
+}
+
+if (!v14SiteHeader.includes('href="/v14-legacy-routes.css"')) {
+  fail("migrated-route legacy bridge link missing from shared V14 header");
+}
+if (v14Hero.includes("v14-legacy-routes.css")) {
+  fail("homepage must not load the legacy route bridge");
+}
+if (!gitignore.includes("/public/v14-legacy-routes.css")) {
+  fail("generated legacy route bridge must stay out of Git history");
+}
+for (const sourcePath of [
+  "app/precision-water.css",
+  "app/circuit-water-v3.css",
+  "app/hardware-board-v4.css",
+  "app/realistic-board-v5.css",
+  "app/content-frames-v6.css",
+]) {
+  if (!legacyGenerator.includes(`"${sourcePath}"`)) fail(`legacy bridge source missing: ${sourcePath}`);
+}
+if (!packageJson.includes('"legacy-routes:css"') || !packageJson.includes("npm run legacy-routes:css && next build")) {
+  fail("legacy bridge generation is not wired into the build");
 }
 
 if (layout.includes("WaterSurface") || layout.includes("water-surface")) fail("global Water runtime remounted");
@@ -123,5 +157,5 @@ if (packageJson.includes('"three"') || packageJson.includes("@react-three") || p
 }
 
 console.log(
-  "RESPONSIVE_PERFORMANCE_V14_PASS root=DESTACKED dead-v13-visual=UNMOUNTED route-css=SCOPED lab-css=ROUTE_SCOPED v14-mobile=PASS touch=44px safe-area=PASS overflow=SAFE landscape=PASS coarse-pointer=PASS reduced-motion=PASS liquid=SCENE_BOUNDED offscreen-stop=PASS design=V14_ACTIVE",
+  "RESPONSIVE_PERFORMANCE_V14_PASS root=V14_CLEAN legacy-v2-v6=ROUTE_BRIDGE route-css=SCOPED lab-css=ROUTE_SCOPED v14-mobile=PASS touch=44px safe-area=PASS overflow=SAFE landscape=PASS coarse-pointer=PASS reduced-motion=PASS liquid=SCENE_BOUNDED offscreen-stop=PASS design=V14_ACTIVE",
 );
