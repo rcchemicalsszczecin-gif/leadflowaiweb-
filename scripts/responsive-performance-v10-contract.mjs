@@ -32,6 +32,7 @@ for (const retiredImport of [
   './contact.css',
   './knowledge.css',
   './v13-search-education.css',
+  './v13-visual-authority.css',
 ]) {
   if (layout.includes(retiredImport)) fail(`retired/root-inappropriate stylesheet remounted: ${retiredImport}`);
 }
@@ -122,5 +123,5 @@ if (packageJson.includes('"three"') || packageJson.includes("@react-three") || p
 }
 
 console.log(
-  "RESPONSIVE_PERFORMANCE_V14_PASS root=DESTACKED route-css=SCOPED lab-css=ROUTE_SCOPED v14-mobile=PASS touch=44px safe-area=PASS overflow=SAFE landscape=PASS coarse-pointer=PASS reduced-motion=PASS liquid=SCENE_BOUNDED offscreen-stop=PASS design=V14_ACTIVE",
+  "RESPONSIVE_PERFORMANCE_V14_PASS root=DESTACKED dead-v13-visual=UNMOUNTED route-css=SCOPED lab-css=ROUTE_SCOPED v14-mobile=PASS touch=44px safe-area=PASS overflow=SAFE landscape=PASS coarse-pointer=PASS reduced-motion=PASS liquid=SCENE_BOUNDED offscreen-stop=PASS design=V14_ACTIVE",
 );
