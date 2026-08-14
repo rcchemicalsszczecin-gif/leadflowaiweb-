@@ -39,10 +39,13 @@ V14_BROWSER_MATRIX=PASS_28_OF_28
 V14_FIREFOX_MOBILE_VIEWPORT=BIDI_TRUE_CSS_360_390
 V14_PREVIEW_PIPELINE=PASS
 V14_FINAL_QA=COMPLETE
-V14_VALIDATED_IMPLEMENTATION_CANDIDATE=a5b63128f027179358fd50f04a6b4d374f58fce3
+V14_VALIDATED_GOVERNANCE_CHECKPOINT=31225c140483d50863b8262b4675d8d55caf124e
 V14_RENDERED_SEARCH_TRUTH=PASS_63_EXACT_SET
 V14_ACTIVE_LINT_WARNINGS=0
-V14_OWNER_VISUAL_ACCEPTANCE=BLOCKED_PENDING_OWNER_REVIEW
+V14_OWNER_VISUAL_ACCEPTANCE=PASS
+V14_OWNER_VISUAL_ACCEPTED_AT=2026-08-14T14:09:00+02:00
+R9_PREMERGE_HARDENING=IN_PROGRESS
+MERGE_AUTHORIZATION=NOT_GRANTED
 MAIN_BRANCH_PROTECTION=OFF
 DEPENDABOT_ALERTS=OFF
 
@@ -64,8 +67,8 @@ Production `main` remains the Owner-authorized V13 Polish Production Rebuild. V1
 
 ## V14.9 final evidence
 
-Validated implementation candidate:
-`a5b63128f027179358fd50f04a6b4d374f58fce3`
+Validated governance checkpoint before Owner review:
+`31225c140483d50863b8262b4675d8d55caf124e`
 
 Quality:
 - PASS;
@@ -81,13 +84,14 @@ Quality:
 
 Rendered search/public truth:
 - 63 indexable HTML documents;
-- 2 noindex/error artifacts;
+- 3 noindex/error artifacts;
 - 63 unique canonical URLs;
 - 63 sitemap URLs with exact canonical-set match;
 - title/description/exact-one-H1/lang/robots: PASS;
+- JSON-LD payloads evaluated: 119;
 - Service schema >=35;
 - Article schema =21;
-- FAQPage schema >=36;
+- FAQPage schema >=35;
 - public legal/contact truth: PASS;
 - runtime leaks/placeholders: ABSENT.
 
@@ -100,22 +104,26 @@ Browser Matrix:
 - navigation/landmarks/truth/overflow: PASS.
 
 Visual Preview:
-- PASS on the same implementation candidate;
+- PASS on the same governance checkpoint;
 - desktop/tablet/mobile bounded captures: PASS;
 - long reduced-motion desktop/mobile captures: PASS;
-- active Liquid desktop/mobile captures: PASS;
-- desktop Liquid WebGL2=true, fallback empty, overflow=0, visible ratio 0.8298;
-- mobile Liquid WebGL2=true, fallback empty, overflow=0, visible ratio 0.9064;
-- artifact digest: `sha256:bc1e7928edb0d10744fc0d2b6f7b292922515bb75898b3aa4bfcc871cf4f877b`.
+- active Liquid desktop/mobile captures: PASS.
+
+## V14.10 Owner acceptance
+
+OWNER_VISUAL_PASS=ACCEPTED
+ACCEPTED_CANDIDATE=31225c140483d50863b8262b4675d8d55caf124e
+
+The Owner accepted the final V14 visual direction and authorized continuation into R9 release hardening.
+
+MERGE_AUTHORIZATION=NOT_GRANTED
 
 ## Current blocker
 
-V14.10 Owner visual acceptance is the only V14 release blocker inside the implementation workflow.
+Only the R9 pre-merge hardening gate remains before the repository can be presented for separate merge authorization.
 
-If Owner requests calibration, a bounded V14.10 pass must be followed by a new exact-candidate Quality + Browser Matrix + Preview cycle.
-
-Repository-setting debt remains separate from the visual candidate: `main` protection and Dependabot alerts are still OFF.
+Repository-setting debt remains separate from the V14 candidate: `main` protection and Dependabot alerts are still OFF.
 
 ## Release rule
 
-Production promotion requires explicit Owner visual PASS and explicit Owner merge authorization. V14 must not be merged to `main` merely because CI/preview are green.
+Owner visual PASS is complete but does not authorize production promotion. R9 must produce a clean pre-merge PASS, after which production merge still requires a separate explicit Owner `MERGE AUTHORIZED`.
