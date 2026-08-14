@@ -29,8 +29,7 @@
   .contact-section,
   .knowledge-index,
   .portfolio-current,
-  .knowledge-article-body,
-  .site-footer {
+  .knowledge-article-body {
     background: var(--hardware-section);
   }
 
@@ -38,8 +37,7 @@
   .service-faq,
   .knowledge-index,
   .portfolio-current,
-  .related-services,
-  .site-footer {
+  .related-services {
     background: var(--hardware-section-alt);
   }
 
@@ -62,7 +60,6 @@
     background: linear-gradient(180deg, rgba(2, 7, 12, 0.68), rgba(2, 7, 12, 0.22));
   }
 
-  .system-flow,
   .service-capability-panel,
   .outcome-grid article,
   .knowledge-cards article,
@@ -81,7 +78,6 @@
     backdrop-filter: blur(9px) saturate(1.12);
   }
 
-  .system-flow,
   .service-capability-panel {
     background:
       radial-gradient(circle at 52% 38%, rgba(23, 110, 143, 0.065), transparent 70%),
@@ -120,8 +116,7 @@
     .contact-section,
     .knowledge-index,
     .portfolio-current,
-    .knowledge-article-body,
-    .site-footer {
+    .knowledge-article-body {
       background: rgba(3, 8, 13, 0.42);
     }
   }
@@ -141,12 +136,10 @@
     .contact-section,
     .knowledge-index,
     .portfolio-current,
-    .knowledge-article-body,
-    .site-footer {
+    .knowledge-article-body {
       background: rgba(3, 8, 13, 0.61);
     }
 
-    .system-flow,
     .service-capability-panel,
     .outcome-grid article,
     .knowledge-cards article,
