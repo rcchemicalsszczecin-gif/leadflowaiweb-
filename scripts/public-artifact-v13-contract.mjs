@@ -11,11 +11,16 @@ const banned=["DIGITAL EXPERIENCE STUDIO","WHAT WE BUILD","FIRST-PARTY PROOF","S
 for(const path of htmlFiles){const html=readFileSync(path,"utf8");for(const literal of banned)if(html.includes(literal))fail(`${path} exposes retired or placeholder literal: ${literal}`)}
 
 for(const path of ["out/index.html","out/o-nas/index.html","out/uslugi/index.html","out/realizacje/index.html","out/kontakt/index.html","out/lab/index.html","out/wiedza/index.html","out/wiedza/seo-aeo-geo-jedna-architektura/index.html","out/wiedza/wcag-22-co-sprawdzic-na-stronie/index.html"])if(!existsSync(path))fail(`missing required public artifact: ${path}`);
-for(const asset of ["out/v14.css","out/v14-shell.css","out/v14-content.css","out/v14-scenes.css","out/v14-liquid-surface.css","out/v14-routes.css","out/v14-search-trinity.svg","out/v14-quality-canvas.svg","out/v14-portfolio-stage.svg"])if(!existsSync(asset))fail(`missing V14 first-party asset: ${asset}`);
+for(const asset of ["out/v14.css","out/v14-shell.css","out/v14-content.css","out/v14-scenes.css","out/v14-liquid-surface.css","out/v14-routes.css","out/v14-legacy-routes.css","out/v14-search-trinity.svg","out/v14-quality-canvas.svg","out/v14-portfolio-stage.svg"])if(!existsSync(asset))fail(`missing V14 first-party asset: ${asset}`);
+
+const legacyBridge=readFileSync("out/v14-legacy-routes.css","utf8");
+for(const source of ["app/precision-water.css","app/circuit-water-v3.css","app/hardware-board-v4.css","app/realistic-board-v5.css","app/content-frames-v6.css"])if(!legacyBridge.includes(`SOURCE: ${source}`))fail(`legacy route bridge lost ordered source marker: ${source}`);
+if(/url\(\s*["']?https?:\/\//i.test(legacyBridge)||/\bunsplash\b/i.test(legacyBridge))fail("legacy route bridge contains external/stock asset residue");
 
 const home=readFileSync("out/index.html","utf8");
 for(const required of ["pracują jak produkt","Wyceń projekt","Zobacz realizacje","v14-browser","v14-phone","Sześć warstw jednego produktu cyfrowego","Jedna marka. Trzy urządzenia","LIQUID WEB CONSTRUCTOR","Z płynnej powierzchni","v14-liquid-surface","CZŁOWIEK · GOOGLE · SYSTEM AI","Od decyzji biznesowej do działającego produktu","v14-quality-canvas.svg","REALIZACJE WŁASNE","LeadFlowAI.pl","Tervyxa.pl","TranskrypcjaAI.pl","Zobacz pełne realizacje","WIEDZA I DECYZJE","FAQ / PRZED STARTEM","BRIEF PROJEKTU","Strona niczego nie zapisuje","nie wysyła","Otwórz wiadomość","Zbudujmy WWW, które samo pokazuje poziom Twojej firmy","kontakt@leadflowai.pl"])if(!home.includes(required))fail(`V14 homepage artifact missing: ${required}`);
 for(const css of ["/v14.css","/v14-shell.css","/v14-content.css","/v14-scenes.css","/v14-liquid-surface.css"])if(!home.includes(css))fail(`V14 stylesheet not rendered: ${css}`);
+if(home.includes("/v14-legacy-routes.css"))fail("homepage must not load the V2-V6 legacy route bridge");
 if(home.includes("realistic-board-photo") || home.includes("images.unsplash.com"))fail("V14 homepage artifact still exposes legacy stock motherboard");
 if(home.includes("api.leadflowai.pl/leads"))fail("disabled lead endpoint leaked into V14 homepage");
 
@@ -28,7 +33,7 @@ const serviceSamples=[
 for(const [path,group] of serviceSamples){
   if(!existsSync(path))fail(`missing representative V14 service artifact: ${path}`);
   const html=readFileSync(path,"utf8");
-  for(const required of ["v14-service-page","v14-header-static","v14-route-footer","/v14-routes.css","ODPOWIEDŹ WPROST","WARTOŚĆ DLA BIZNESU","Co wpływa na koszt","Co wpływa na czas","application/ld+json"]){
+  for(const required of ["v14-service-page","v14-header-static","v14-route-footer","/v14-legacy-routes.css","/v14-routes.css","ODPOWIEDŹ WPROST","WARTOŚĆ DLA BIZNESU","Co wpływa na koszt","Co wpływa na czas","application/ld+json"]){
     if(!html.includes(required))fail(`${path} missing V14 service artifact invariant: ${required}`);
   }
   if(!html.includes(`data-service-template="${group}"`))fail(`${path} lost service group template ${group}`);
@@ -46,7 +51,7 @@ const routeSamples=[
 ];
 for(const [path,routeClass,truth] of routeSamples){
   const html=readFileSync(path,"utf8");
-  for(const required of [routeClass,"v14-header-static","v14-route-footer","/v14-routes.css","id=\"main-content\"",truth]){
+  for(const required of [routeClass,"v14-header-static","v14-route-footer","/v14-legacy-routes.css","/v14-routes.css","id=\"main-content\"",truth]){
     if(!html.includes(required))fail(`${path} missing V14 primary-route invariant: ${required}`);
   }
   if(html.includes("v14-liquid-surface"))fail(`${path} leaked homepage-only Liquid runtime`);
@@ -65,7 +70,7 @@ const knowledgeSamples=[
 ];
 for(const path of knowledgeSamples){
   const html=readFileSync(path,"utf8");
-  for(const required of ["v14-knowledge-article-page","v14-header-static","v14-route-footer","/v14-routes.css","id=\"main-content\"","Redakcja:","Zweryfikowano:","application/ld+json"]){
+  for(const required of ["v14-knowledge-article-page","v14-header-static","v14-route-footer","/v14-legacy-routes.css","/v14-routes.css","id=\"main-content\"","Redakcja:","Zweryfikowano:","application/ld+json"]){
     if(!html.includes(required))fail(`${path} missing V14 knowledge artifact invariant: ${required}`);
   }
   if(html.includes("v14-liquid-surface"))fail(`${path} leaked homepage-only Liquid runtime`);
@@ -75,4 +80,4 @@ if(!readFileSync("out/wiedza/wcag-22-co-sprawdzic-na-stronie/index.html","utf8")
 const about=readFileSync("out/o-nas/index.html","utf8");
 if(!about.includes("Tervyxa Systems sp. z o.o."))fail("public trust entity missing from about artifact");
 
-console.log(`PUBLIC_ARTIFACT_V14_PASS html=${htmlFiles.length} placeholders=ABSENT retired-en=ABSENT homepage=V14_FULL liquid=SCENE_BOUNDED service-shell=V14 services=${serviceSamples.length} primary-routes=${routeSamples.length} lab=INTERACTIVE knowledge-samples=${knowledgeSamples.length} decisions=PASS schema=PASS sources=PASS faq=PASS brief=FRONTEND_ONLY portfolio=FIRST_PARTY stock=ABSENT trust=PASS`);
+console.log(`PUBLIC_ARTIFACT_V14_PASS html=${htmlFiles.length} placeholders=ABSENT retired-en=ABSENT homepage=V14_FULL_ROOT_CLEAN legacy-route-bridge=V2_V6_SCOPED liquid=SCENE_BOUNDED service-shell=V14 services=${serviceSamples.length} primary-routes=${routeSamples.length} lab=INTERACTIVE knowledge-samples=${knowledgeSamples.length} decisions=PASS schema=PASS sources=PASS faq=PASS brief=FRONTEND_ONLY portfolio=FIRST_PARTY stock=ABSENT trust=PASS`);
