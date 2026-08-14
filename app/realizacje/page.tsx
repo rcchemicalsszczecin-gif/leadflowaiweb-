@@ -4,16 +4,24 @@ import { V14SiteFooter } from "@/components/v14-site-footer";
 import { V14SiteHeader } from "@/components/v14-site-header";
 import { portfolioCases } from "@/lib/portfolio";
 import { site } from "@/lib/site";
+import { withV13SocialMetadata } from "@/lib/social-metadata-v13";
 
-export const metadata: Metadata = {
-  title: "Realizacje i projekty własne",
-  description:
-    "Realizacje LeadFlowAI publikowane wyłącznie z prawdziwym zakresem i możliwym do potwierdzenia statusem. LeadFlowAI, TranskrypcjaAI i Tervyxa bez fikcyjnych wyników.",
-  alternates: { canonical: "/realizacje" },
-  openGraph: {
-    url: `${site.url}/realizacje/`,
+const pageTitle = "Realizacje i projekty własne";
+const pageDescription =
+  "Realizacje LeadFlowAI publikowane wyłącznie z prawdziwym zakresem i możliwym do potwierdzenia statusem. LeadFlowAI, TranskrypcjaAI i Tervyxa bez fikcyjnych wyników.";
+
+export const metadata: Metadata = withV13SocialMetadata(
+  {
+    title: pageTitle,
+    description: pageDescription,
+    alternates: { canonical: "/realizacje" },
+    openGraph: {
+      url: `${site.url}/realizacje/`,
+    },
   },
-};
+  pageTitle,
+  pageDescription,
+);
 
 export default function PortfolioPage() {
   return (
