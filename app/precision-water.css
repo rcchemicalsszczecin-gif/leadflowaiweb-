@@ -38,17 +38,6 @@
 }
 
 @layer components {
-  .water-surface {
-    position: fixed;
-    inset: 0;
-    z-index: 30;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none;
-    opacity: 0.72;
-    mix-blend-mode: screen;
-  }
-
   main > section,
   .service-page,
   .section-dark,
@@ -404,10 +393,6 @@
       --display: clamp(3.2rem, 8.6vw, 6rem);
       --heading: clamp(2rem, 5.2vw, 3.8rem);
     }
-
-    .water-surface {
-      opacity: 0.62;
-    }
   }
 
   @media (max-width: 760px) {
@@ -424,16 +409,6 @@
     .service-hero-grid,
     .contact-hero-grid {
       min-height: auto;
-    }
-
-    .water-surface {
-      opacity: 0.5;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .water-surface {
-      display: none;
     }
   }
 }
