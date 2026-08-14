@@ -12,7 +12,7 @@ export default function HomePage() {
           <div className="v14-foundation-grid">
             <a href="/uslugi"><span>01</span><strong>Usługi</strong><small>6 filarów produktu ↗</small></a>
             <a href="/realizacje"><span>02</span><strong>Realizacje</strong><small>device theater ↗</small></a>
-            <a href="/seo-aeo-geo"><span>03</span><strong>Search</strong><small>SEO / AEO / GEO ↗</small></a>
+            <a href="/seo-aeo-geo"><span>03</span><strong>Search + AI</strong><small>SEO / AEO / GEO · Chatboty / RAG ↗</small></a>
             <a href="/kontakt"><span>04</span><strong>Kontakt</strong><small>{site.email} ↗</small></a>
           </div>
         </div>
