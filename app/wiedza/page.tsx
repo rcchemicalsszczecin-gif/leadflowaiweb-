@@ -4,12 +4,31 @@ import { V14SiteHeader } from "@/components/v14-site-header";
 import { knowledgeArticles } from "@/lib/knowledge-registry";
 import { knowledgeTopicsV13 } from "@/lib/knowledge-topics-v13";
 import { toPublicKnowledgeArticle } from "@/lib/public-knowledge-article";
+import { site } from "@/lib/site";
+
+const title = "Baza wiedzy o stronach WWW, SEO, AEO, GEO i konwersji";
+const description =
+  "Praktyczna baza wiedzy LeadFlowAI o projektowaniu i budowie stron internetowych, SEO, AEO, GEO, widoczności w wyszukiwaniu AI, CRO, analityce, dostępności, wydajności, integracjach i utrzymaniu WWW.";
 
 export const metadata: Metadata = {
-  title: "Baza wiedzy o stronach WWW, SEO, AEO, GEO i konwersji",
-  description:
-    "Praktyczna baza wiedzy LeadFlowAI o projektowaniu i budowie stron internetowych, SEO, AEO, GEO, widoczności w wyszukiwaniu AI, CRO, analityce, dostępności, wydajności, integracjach i utrzymaniu WWW.",
+  title,
+  description,
   alternates: { canonical: "/wiedza" },
+  openGraph: {
+    type: "website",
+    locale: "pl_PL",
+    url: `${site.url}/wiedza/`,
+    siteName: site.name,
+    title,
+    description,
+    images: [{ url: `${site.url}/og-leadflowai.svg`, width: 1200, height: 630, alt: `${site.name} — baza wiedzy` }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: [`${site.url}/og-leadflowai.svg`],
+  },
 };
 
 export default function KnowledgePage() {
