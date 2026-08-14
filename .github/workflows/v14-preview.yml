@@ -12,7 +12,7 @@ permissions:
 jobs:
   screenshots:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -45,21 +45,76 @@ jobs:
           cat /tmp/v14-preview.log
           exit 1
 
-      - name: Capture desktop and mobile
+      - name: Capture bounded visual evidence
         shell: bash
         run: |
+          set -u
           mkdir -p preview
+          : > preview/capture-status.txt
+
           BROWSER="$(command -v google-chrome || command -v chromium || command -v chromium-browser || true)"
           test -n "$BROWSER"
-          COMMON="--headless=new --no-sandbox --hide-scrollbars --use-gl=swiftshader --enable-webgl --ignore-gpu-blocklist --run-all-compositor-stages-before-draw --virtual-time-budget=5000"
-          $BROWSER $COMMON --window-size=1440,1200 --screenshot=preview/v14-desktop-1440.png http://127.0.0.1:3000/
-          $BROWSER $COMMON --window-size=390,844 --screenshot=preview/v14-mobile-390.png http://127.0.0.1:3000/
-          $BROWSER $COMMON --window-size=1440,7600 --screenshot=preview/v14-desktop-long.png http://127.0.0.1:3000/
+
+          capture() {
+            name="$1"
+            width="$2"
+            height="$3"
+            budget="$4"
+            profile="/tmp/v14-chrome-${name}"
+            rm -rf "$profile"
+
+            echo "CAPTURE_START ${name} ${width}x${height}" | tee -a preview/capture-status.txt
+            if timeout --signal=TERM --kill-after=5s 50s "$BROWSER" \
+              --headless=new \
+              --no-sandbox \
+              --disable-dev-shm-usage \
+              --disable-background-networking \
+              --disable-component-update \
+              --no-first-run \
+              --no-default-browser-check \
+              --hide-scrollbars \
+              --use-gl=swiftshader \
+              --enable-webgl \
+              --ignore-gpu-blocklist \
+              --run-all-compositor-stages-before-draw \
+              --virtual-time-budget="$budget" \
+              --user-data-dir="$profile" \
+              --window-size="${width},${height}" \
+              --screenshot="preview/${name}.png" \
+              http://127.0.0.1:3000/; then
+              test -s "preview/${name}.png"
+              echo "CAPTURE_PASS ${name}" | tee -a preview/capture-status.txt
+            else
+              rc=$?
+              echo "CAPTURE_FAIL ${name} rc=${rc}" | tee -a preview/capture-status.txt
+            fi
+            rm -rf "$profile"
+          }
+
+          capture v14-desktop-1440 1440 1200 4500
+          capture v14-tablet-768 768 1024 4500
+          capture v14-mobile-390 390 844 4500
+          capture v14-mobile-390-long 390 5200 6500
+          capture v14-desktop-long 1440 7600 6500
+
           ls -lh preview
 
       - name: Upload visual preview
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: v14-visual-preview-${{ github.sha }}
-          path: preview/*.png
+          path: preview/*
           retention-days: 7
+          if-no-files-found: error
+
+      - name: Verify required captures
+        shell: bash
+        run: |
+          test -s preview/v14-desktop-1440.png
+          test -s preview/v14-tablet-768.png
+          test -s preview/v14-mobile-390.png
+          test -s preview/v14-mobile-390-long.png
+          test -s preview/v14-desktop-long.png
+          ! grep -q '^CAPTURE_FAIL' preview/capture-status.txt
+          echo "V14_PREVIEW_PASS desktop=PASS tablet=PASS mobile=PASS long=PASS isolated-profiles=PASS bounded-timeouts=PASS"
