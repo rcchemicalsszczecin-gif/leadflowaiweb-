@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/json-ld";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
+import { V14SiteFooter } from "@/components/v14-site-footer";
+import { V14SiteHeader } from "@/components/v14-site-header";
 import { getKnowledgeMethodology, knowledgeEditorialV13 } from "@/lib/knowledge-editorial-v13";
 import { getKnowledgeArticle, knowledgeArticles } from "@/lib/knowledge-registry";
 import { toPublicKnowledgeArticle } from "@/lib/public-knowledge-article";
@@ -51,12 +51,12 @@ export default async function KnowledgeArticlePage({ params }: PageProps) {
   const methodology = getKnowledgeMethodology(Boolean(article.sources?.length));
 
   return (
-    <main className="knowledge-article-page">
+    <main id="main-content" className="knowledge-article-page v14-route-page v14-knowledge-article-page" tabIndex={-1}>
       <JsonLd data={getArticleStructuredData(article)} />
+      <V14SiteHeader mode="static" />
 
       <section className="knowledge-article-hero section-dark blueprint-surface">
         <div className="page-shell">
-          <SiteHeader />
           <div className="knowledge-article-head">
             <nav className="breadcrumb" aria-label="Okruszki">
               <a href="/">LeadFlowAI</a><span aria-hidden="true">/</span><a href="/wiedza">Wiedza</a>
@@ -122,8 +122,9 @@ export default async function KnowledgeArticlePage({ params }: PageProps) {
           <h2>Potrzebujesz przełożyć tę wiedzę na konkretną stronę?</h2>
           <a className="button button-primary" href="/kontakt">Opisz projekt <span aria-hidden="true">↗</span></a>
         </div>
-        <div className="page-shell"><SiteFooter /></div>
       </section>
+
+      <V14SiteFooter />
     </main>
   );
 }
