@@ -6,14 +6,17 @@ const basePage = getSearchPage("local-seo");
 const page = {
   ...basePage,
   eyebrow: "LEADFLOWAI / SEO LOKALNE",
-  title: "SEO lokalne dla firm, których klienci szukają usług w konkretnym miejscu.",
-  lead: "Łączymy realny obszar działania firmy, spójne dane, lokalne strony usługowe i profil firmy tam, gdzie zapytanie rzeczywiście ma lokalną intencję.",
-  directAnswer: "SEO lokalne służy firmom obsługującym konkretną lokalizację lub obszar. Nie polega na tworzeniu dziesiątek kopii stron z podmienioną nazwą miasta. Jeżeli rzeczywistym obszarem działania firmy jest na przykład Szczecin, tę lokalizację opisujemy jako prawdziwy kontekst usługi — bez sztucznych stron dla każdej dzielnicy i bez fikcyjnych danych adresowych.",
+  title: "SEO lokalne dla firm ze Szczecina i innych rynków lokalnych.",
+  lead:
+    "Pomagamy firmom działającym w Szczecinie i na innych realnych rynkach lokalnych uporządkować obszar działania, dane firmy, lokalne strony usługowe i profil firmy tam, gdzie zapytanie rzeczywiście ma lokalną intencję.",
+  directAnswer:
+    "SEO lokalne służy firmom obsługującym konkretną lokalizację lub obszar. Dla firmy działającej w Szczecinie oznacza to spójne informacje o rzeczywistym obszarze obsługi, właściwe strony usługowe, lokalny kontekst treści i poprawny fundament techniczny. Nie polega to na tworzeniu dziesiątek kopii stron z podmienioną nazwą miasta ani na publikowaniu fikcyjnych danych adresowych.",
   faqs: [
     ...basePage.faqs,
     {
-      question: "Czy można pozycjonować lokalnie firmę działającą w Szczecinie bez tworzenia stron doorway?",
-      answer: "Tak. Jeżeli Szczecin jest rzeczywistym obszarem działalności firmy, lokalny kontekst można budować przez spójne dane, właściwe strony usługowe, treści odnoszące się do realnej obsługi lokalnej i prawdziwe sygnały firmy. Nie trzeba tworzyć kopii tej samej strony z podmienioną nazwą dzielnicy lub miasta.",
+      question: "Czy LeadFlowAI prowadzi SEO lokalne dla firm ze Szczecina?",
+      answer:
+        "Tak. Jeżeli Szczecin jest rzeczywistym rynkiem lub obszarem obsługi firmy, możemy zaprojektować lokalny zakres SEO wokół jej usług, publicznych danych, właściwych stron i profilu firmy. Nie tworzymy fikcyjnych lokalizacji ani masowych stron doorway tylko po to, aby powielić nazwę miasta.",
     },
   ],
 };
