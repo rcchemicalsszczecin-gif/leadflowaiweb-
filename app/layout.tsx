@@ -14,7 +14,6 @@ import "./realistic-board-v5.css";
 import "./content-frames-v6.css";
 import "./interactive-v7.css";
 import "./v13-visual-authority.css";
-import "./v13-accessibility.css";
 import "./v13-search-education.css";
 
 export const metadata: Metadata = {
