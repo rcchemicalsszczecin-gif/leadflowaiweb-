@@ -1,7 +1,7 @@
 # LEADFLOWAI — CURRENT STATE
 
 STATUS: AUTHORITATIVE CURRENT-STATE CHECKPOINT
-DATE: 2026-08-13
+DATE: 2026-08-14
 OWNER: Paweł Niewiadomski
 LEGAL ENTITY: Tervyxa Systems sp. z o.o.
 PUBLIC BRAND: LeadFlowAI
@@ -9,102 +9,104 @@ PRIMARY DOMAIN: leadflowai.pl
 
 ## Purpose
 
-This file is the authoritative current-state checkpoint for release status, active work, current validation and known operational blockers. Historical plans, stage records, validation reports and architecture documents remain evidence, but they do not override this checkpoint when they describe an older state.
+This file is the authoritative checkpoint for current production state, active work, current validation boundaries and known blockers. Historical plans, design records, validation reports and stage files remain evidence of the state that existed when they were written, but they do not override this checkpoint or later explicit Owner decisions.
 
-## Production baseline
+## Production authority
 
-- Initial GitHub Pages production launch: COMPLETE.
 - Production/release branch: `main`.
-- Current production `main` commit: `f004d6624b037a138fc4d952d07ed0d0ca794753`.
-- PR #12 (`LeadFlowAI V11/V12 — full offer, knowledge, portfolio + release hardening`) was merged to `main` on 2026-08-13.
-- GitHub Pages workflow run #12 for merge commit `f004d6624b037a138fc4d952d07ed0d0ca794753`: BUILD PASS, DEPLOY PASS.
-- V11 Full Offer, V11 Knowledge, V12 Portfolio and bounded release-hardening changes are now production authority.
+- Current production `main`: `10627e2f18ccfc7ef86c76a695dab9cf7933cce9`.
+- Commit identity: `Merge V13 Polish Production Rebuild`.
+- Merge was explicitly Owner-authorized after the V13 Quality chain passed.
+- GitHub Pages production workflow for that exact V13 merge commit: SUCCESS.
+- Production public content authority: V13 Polish Production Rebuild.
+- V14 is not merged to `main` and is not production authority.
 
-## Current validated product state
+## Active implementation
 
-The production merge is backed by the previously validated feature-branch Quality chain and by the successful GitHub Pages production build/deploy for the merge commit.
+- Active branch: `v14/full-visual-rebuild`.
+- Active plan: `docs/plans/V14-VISUAL-REBUILD.md`.
+- Active visual Owner authority: `docs/governance/WEBSITE-OWNER-DECISION-V14.md`.
+- V14 PR exists as a Draft and must remain unmerged until explicit Owner visual acceptance.
+- Recovered pre-audit V14 checkpoint: `ca7e4164bd1638b8f0228c8855fbdb7896acdb0b` (`V14 preview: generate desktop and mobile screenshots`).
+- Current branch is advancing beyond that checkpoint under the unified repair/execution plan; exact current branch identity must be read from the Git ref when a stage is validated.
 
-Current validated state:
+## V13 foundation that V14 must preserve
 
-- deterministic dependency installation: PASS with committed `package-lock.json` and `npm ci`;
-- search contract: PASS;
-- Full Offer V11: PASS, including 20 expanded services across six pillars;
-- Portfolio V12: PASS, three first-party/own projects, zero fabricated external client case studies;
-- lead/contact contract: PASS with online form delivery OFF by Owner and direct e-mail active;
-- chatbot contract: PASS with public UI OFF and dormant code bounded;
-- content/knowledge contract: PASS with 21 knowledge articles and supported-source boundary;
-- operations/static deployment contracts: PASS;
-- V9.2 design contract: PASS;
-- V10 responsive/performance contract: PASS;
-- TypeScript: PASS;
-- Biome lint gate: PASS with 21 non-blocking CSS specificity warnings;
-- Next.js production build/static export: PASS;
-- performance budget: PASS;
-- static artifact contract: PASS;
-- static route smoke: PASS;
-- GitHub Pages production build: PASS;
-- GitHub Pages production deploy: PASS.
+Validated/public foundation carried into V14:
+- Polish public UI/content foundation;
+- 35 public service/money pages;
+- 21 knowledge articles;
+- 63 dominant public search intents;
+- service decision guidance;
+- direct-answer architecture;
+- useful visible FAQ content where applicable;
+- real-only portfolio: LeadFlowAI, TranskrypcjaAI and Tervyxa own projects;
+- canonical URL architecture;
+- sitemap and robots;
+- Organization/WebSite/WebPage/Service/Breadcrumb/FAQ/Article structured-data system where semantically valid;
+- SEO + AEO + GEO / AI Search architecture;
+- evidence/public-truth boundaries;
+- direct contact through `kontakt@leadflowai.pl`.
 
-The validated build generates 66 static pages. Dynamic API routes are absent from the static artifact.
+## Runtime/public feature boundaries
 
-## Repository-hardening state
-
-Completed and promoted to production:
-
-- Portfolio V12 optional-note TypeScript inference blocker fixed.
-- Source-of-truth/current-state governance synchronized with V9/V9.2 and current production reality.
-- Superseded 17-service V11 offer contract removed; the active V11 contract covers 20 expanded services.
-- Committed `tsconfig.json` normalized for Next.js 16 by including `.next/dev/types/**/*.ts`; subsequent validated builds no longer rewrite `tsconfig.json`.
-- CSS specificity debt in the new V11/V12 knowledge/portfolio layer reduced without changing visual values.
-- The `services.css` related-service selector warning was removed without altering visual declarations.
-- Biome specificity warnings were reduced from 35 to 21 while preserving the visual freeze boundary.
-- Repository scan returned no TODO/FIXME/HACK/XXX markers, no debug `console.*`/`debugger` residue and no hits for common secret-token variable names.
-- `package-lock.json` was generated under GitHub Actions Node 22.23.1 / npm 10.9.8 and committed.
-- Quality and GitHub Pages workflows use `npm ci --no-audit --no-fund`.
-- Temporary lockfile bootstrap logic and `contents: write` permission were removed; Quality is back to `contents: read`.
-- The inactive standalone `scripts/governance-contract.mjs` residue was removed.
-
-## Current visual authority
-
-- Homepage visual authority: Premium Art Direction V9 plus Premium Calibration V9.2.
-- V9.2 is the current homepage calibration authority and supersedes V9 only for the bounded areas defined in `docs/design/LEADFLOWAI-PREMIUM-CALIBRATION-V9-2.md`.
-- V9 remains the underlying premium art-direction language.
-- V7 remains authoritative for the dedicated Live Lab and interactive service routes.
-- V6 remains fallback frame grammar outside premium overrides.
-- V5 remains authoritative for the realistic hardware background and bounded water renderer.
-- Visual design is frozen after V9.2 except for corrections explicitly allowed by V10 responsive/performance governance.
-
-## Current commercial/content state
-
-- Public positioning: professional WWW production first.
-- Full offer architecture: CREATE, DISCOVER, CONVERT, INTELLIGENCE, CONNECT, CARE.
-- SEO + AEO + GEO / AI Search: active offer and implemented architecture layer.
-- Public chatbot widget: OFF pending explicit Owner enablement and runtime configuration.
+- Public LeadFlowAI chatbot widget: OFF by Owner.
+- Dormant chatbot code may remain for a future separately authorized local-AI/API stage.
 - Online lead/contact form delivery: OFF by Owner.
-- Active contact path: `kontakt@leadflowai.pl` via direct e-mail.
-- Public evidence rule: real evidence only; no fabricated clients, case studies, metrics, rankings or guarantees.
+- Direct e-mail contact: ACTIVE.
+- The frontend must not pretend that a server-side lead submission path is active.
+- Analytics/consent runtime: not activated by the current V14 stage.
+- Dynamic API is not part of the GitHub Pages static artifact.
 
-## Known technical/governance debt
+## V14 implementation state after full repository audit
 
-The following are known and must not be misreported as resolved:
+The recovery audit covered the complete tracked repository inventory: 231/231 tracked files.
 
-1. `main` is currently unprotected at GitHub repository settings level; required status checks are not enforced by branch protection.
-2. The latest fully validated Biome run reports 21 non-blocking CSS `noDescendingSpecificity` warnings. The remaining warnings are in `globals.css` plus legacy/frozen visual layers; V8/V9/V9.2 and the water layer must not be opportunistically rewritten merely to reach zero warnings.
-3. Performance remains within budget but has limited JavaScript headroom; future heavy dependencies/effects require explicit budget review.
-4. GitHub Actions currently specifies Node major `22`, not exact `22.23.1`; lockfile + `npm ci` are deterministic, but exact runtime-minor pinning remains a bounded follow-up improvement.
-5. Historical documents may contain superseded status statements. Their historical evidence remains valid, but current status is determined by this file plus higher-authority governance and Owner decisions.
-6. Independent public HTTP verification from the assistant environment was unavailable after deployment because the execution environment could not resolve the production domain; GitHub Pages build/deploy evidence is PASS, but this file does not claim an independent external smoke result.
+### Completed/advanced
+- V14 homepage has a real component cutover from the former V9/V9.2 homepage composition.
+- New V14 homepage component families exist for hero/product proof, services, device theater, Liquid Constructor, Search/AI, process/quality, portfolio and closing.
+- First-party V14 public SVG assets exist for social/portfolio/quality/search visuals.
+- V14 language/artifact/design gates exist and the pre-audit branch passed the Quality workflow.
 
-## Current release boundary
+### Not complete
+- V14.8 full route migration: NOT STARTED / not complete.
+- V14.9 mobile/performance/accessibility/security acceptance: NOT COMPLETE.
+- V14.10 Owner visual acceptance: BLOCKED until reliable preview evidence exists.
+- The V14 homepage is not a final content-complete implementation: knowledge/FAQ/contact/footer integration still requires completion according to the unified plan.
 
-The V11/V12 release itself is complete and production-promoted. This checkpoint does not authorize unrelated new production mutations.
+## Critical audit findings / active blockers
 
-Still requires a separately authorized bounded stage or explicit Owner instruction:
+1. V14 homepage mobile navigation disappears when the desktop V14 navigation is hidden; no equivalent V14 mobile menu currently replaces it.
+2. Central navigation points `Jak pracujemy` to `/#process`, but the current V14 process component does not expose the matching anchor.
+3. The active accessibility contract validates legacy V13/V10 header behavior rather than the V14 header and can therefore return PASS while V14 has a mobile-navigation defect.
+4. V14 reduced-motion/touch rules do not yet cover all new V14 components.
+5. Root layout still imports the historical V2→V13 CSS override stack globally.
+6. Root layout still mounts the complete WaterSurface environment globally even though V14 defines Liquid/Water as a selective signature layer.
+7. Historical aggregate CSS is effectively at the V10 safety ceiling; further V14 expansion requires CSS/runtime de-stacking first.
+8. `responsive-performance-v10-contract.mjs` still encodes superseded V9.2/Unsplash assumptions.
+9. `operations-contract.mjs` still encodes pre-production `NOT AUTHORIZED` language that no longer describes production V13 reality.
+10. Several architecture/operations/status documents still describe old pre-production or V9.2-current states and require synchronization/historical marking.
+11. The V14 preview workflow can hang during sequential headless Chrome screenshot capture and failed to produce the full Owner-review artifact set.
+12. Dependabot alerts are disabled; the normal CI install path uses `npm ci --no-audit --no-fund`, so current green Quality is not a dependency-vulnerability audit.
+13. `main` remains unprotected at repository settings level; required status checks are not enforced by branch protection.
 
-- public chatbot activation;
-- online lead form activation;
-- new credentials/secrets;
-- Cloudflare production mutations;
-- unrelated dependency upgrades;
-- visual redesign beyond the frozen V9.2/V10 boundary;
-- changes to repository protection/settings.
+## Current execution order
+
+The active order is defined by `docs/plans/V14-VISUAL-REBUILD.md`:
+
+1. R0 — source-of-truth/governance repair.
+2. R1 — P0 V14 UX/accessibility repair.
+3. R2 — CSS/runtime de-stack.
+4. Complete V14.1–V14.7 literally, not merely by string-presence gates.
+5. V14.8 — migrate the 35 service/money pages and remaining primary routes to the V14 shell/templates while preserving V13 truth.
+6. V14.9 — full mobile/performance/accessibility/security/search QA.
+7. V14.9A — reliable preview artifacts.
+8. V14.10 — explicit Owner visual acceptance.
+9. R9 — final hardening, Owner-authorized merge and deployment.
+10. R10/V15 — separate post-V14 Search Master Plan using real production/search data.
+
+## Production protection
+
+`main` is not to be mutated as part of V14 implementation without explicit Owner merge authorization. V14 work remains on `v14/full-visual-rebuild`.
+
+No current branch Quality PASS, Draft PR state or preview artifact by itself authorizes production merge.
