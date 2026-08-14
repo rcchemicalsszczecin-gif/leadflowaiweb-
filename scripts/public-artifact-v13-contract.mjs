@@ -10,7 +10,7 @@ walk("out");
 const banned=["DIGITAL EXPERIENCE STUDIO","WHAT WE BUILD","FIRST-PARTY PROOF","SIGNATURE EXPERIENCE","INTELLIGENCE.","SCROLL / EXPERIENCE","STUDIO DOŚWIADCZEŃ CYFROWYCH","WWW / STRATEGY","SEARCH / ARCHITECTURE","AI / WEBSITE","MIGRATION / SEARCH","ACCESSIBILITY / WCAG","PERFORMANCE / CWV","Lorem ipsum","Coming soon","PLACEHOLDER","V14 / VISUAL REBUILD"];
 for(const path of htmlFiles){const html=readFileSync(path,"utf8");for(const literal of banned)if(html.includes(literal))fail(`${path} exposes retired or placeholder literal: ${literal}`)}
 
-for(const path of ["out/index.html","out/o-nas/index.html","out/uslugi/index.html","out/realizacje/index.html","out/kontakt/index.html","out/lab/index.html","out/wiedza/index.html","out/wiedza/seo-aeo-geo-jedna-architektura/index.html","out/wiedza/wcag-22-co-sprawdzic-na-stronie/index.html"])if(!existsSync(path))fail(`missing required public artifact: ${path}`);
+for(const path of ["out/index.html","out/404.html","out/icon.svg","out/o-nas/index.html","out/uslugi/index.html","out/realizacje/index.html","out/kontakt/index.html","out/lab/index.html","out/wiedza/index.html","out/wiedza/seo-aeo-geo-jedna-architektura/index.html","out/wiedza/wcag-22-co-sprawdzic-na-stronie/index.html"])if(!existsSync(path))fail(`missing required public artifact: ${path}`);
 for(const asset of ["out/v14.css","out/v14-shell.css","out/v14-content.css","out/v14-scenes.css","out/v14-liquid-surface.css","out/v14-routes.css","out/v14-legacy-routes.css","out/v14-search-trinity.svg","out/v14-quality-canvas.svg","out/v14-portfolio-stage.svg"])if(!existsSync(asset))fail(`missing V14 first-party asset: ${asset}`);
 
 const legacyBridge=readFileSync("out/v14-legacy-routes.css","utf8");
@@ -23,6 +23,14 @@ for(const css of ["/v14.css","/v14-shell.css","/v14-content.css","/v14-scenes.cs
 if(home.includes("/v14-legacy-routes.css"))fail("homepage must not load the service/V2-V6 legacy route bridge");
 if(home.includes("realistic-board-photo") || home.includes("images.unsplash.com"))fail("V14 homepage artifact still exposes legacy stock motherboard");
 if(home.includes("api.leadflowai.pl/leads"))fail("disabled lead endpoint leaked into V14 homepage");
+
+const notFound=readFileSync("out/404.html","utf8");
+for(const required of ["Ta ścieżka nie prowadzi do aktywnej strony","v14-not-found-page","v14-header-static","v14-route-footer","Strona główna","Zobacz usługi"]){
+  if(!notFound.includes(required))fail(`branded 404 artifact missing: ${required}`);
+}
+if(!/noindex/i.test(notFound))fail("404 artifact must remain noindex");
+const icon=readFileSync("out/icon.svg","utf8");
+if(!icon.includes("LeadFlowAI")||!icon.includes("#c7ff2f"))fail("first-party app icon identity incomplete");
 
 const serviceSamples=[
   ["out/strony-internetowe/index.html","BUILD"],
@@ -80,4 +88,4 @@ if(!readFileSync("out/wiedza/wcag-22-co-sprawdzic-na-stronie/index.html","utf8")
 const about=readFileSync("out/o-nas/index.html","utf8");
 if(!about.includes("Tervyxa Systems sp. z o.o."))fail("public trust entity missing from about artifact");
 
-console.log(`PUBLIC_ARTIFACT_V14_PASS html=${htmlFiles.length} placeholders=ABSENT retired-en=ABSENT homepage=V14_FULL_ROOT_GLOBALS_ONLY legacy-route-bridge=SERVICE_V2_V6_SCOPED liquid=SCENE_BOUNDED service-shell=V14 services=${serviceSamples.length} primary-routes=${routeSamples.length} lab=INTERACTIVE knowledge-samples=${knowledgeSamples.length} decisions=PASS schema=PASS sources=PASS faq=PASS brief=FRONTEND_ONLY portfolio=FIRST_PARTY stock=ABSENT trust=PASS`);
+console.log(`PUBLIC_ARTIFACT_V14_PASS html=${htmlFiles.length} placeholders=ABSENT retired-en=ABSENT homepage=V14_FULL_ROOT_GLOBALS_ONLY legacy-route-bridge=SERVICE_V2_V6_SCOPED liquid=SCENE_BOUNDED service-shell=V14 services=${serviceSamples.length} primary-routes=${routeSamples.length} 404=BRANDED_NOINDEX icon=FIRST_PARTY lab=INTERACTIVE knowledge-samples=${knowledgeSamples.length} decisions=PASS schema=PASS sources=PASS faq=PASS brief=FRONTEND_ONLY portfolio=FIRST_PARTY stock=ABSENT trust=PASS`);
