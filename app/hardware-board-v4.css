@@ -15,20 +15,10 @@
 }
 
 @layer components {
-  .circuit-water-glass {
-    background:
-      radial-gradient(circle at 52% -10%, rgba(190, 230, 255, 0.035), transparent 44%),
-      linear-gradient(180deg, rgba(1, 5, 9, 0.01), rgba(1, 4, 8, 0.07));
-  }
-
   main > section,
   .service-page,
   .section-dark,
   .section-light,
-  .editorial-intro,
-  .process-section,
-  .proof-section,
-  .faq-section,
   .service-answer,
   .service-deliverables,
   .service-outcomes,
@@ -39,19 +29,15 @@
   .contact-section,
   .knowledge-index,
   .portfolio-current,
-  .knowledge-article-body,
-  .stage-section,
-  .site-footer {
+  .knowledge-article-body {
     background: var(--hardware-section);
   }
 
-  .stage-section:nth-child(even),
   .service-outcomes,
   .service-faq,
   .knowledge-index,
   .portfolio-current,
-  .related-services,
-  .site-footer {
+  .related-services {
     background: var(--hardware-section-alt);
   }
 
@@ -74,9 +60,7 @@
     background: linear-gradient(180deg, rgba(2, 7, 12, 0.68), rgba(2, 7, 12, 0.22));
   }
 
-  .system-flow,
   .service-capability-panel,
-  .quality-item,
   .outcome-grid article,
   .knowledge-cards article,
   .portfolio-scope-grid article,
@@ -94,38 +78,21 @@
     backdrop-filter: blur(9px) saturate(1.12);
   }
 
-  .system-flow,
   .service-capability-panel {
     background:
       radial-gradient(circle at 52% 38%, rgba(23, 110, 143, 0.065), transparent 70%),
       linear-gradient(145deg, rgba(8, 19, 28, 0.7), rgba(3, 9, 15, 0.57));
   }
 
-  .process-list,
-  .faq-list,
   .deliverable-list,
   .service-process ol,
   .service-faq-grid,
   .related-grid,
   .knowledge-cards,
-  .outcome-grid,
-  .quality-grid {
+  .outcome-grid {
     background: rgba(4, 11, 17, 0.22);
   }
 
-  .process-list li,
-  .faq-list details {
-    background: rgba(5, 13, 20, 0.42);
-    backdrop-filter: blur(5px);
-  }
-
-  .stage-heading,
-  .stage-detail,
-  .editorial-grid,
-  .process-head,
-  .quality-head,
-  .proof-grid,
-  .faq-grid,
   .service-section-head,
   .knowledge-index-head,
   .portfolio-method,
@@ -139,10 +106,6 @@
     .service-page,
     .section-dark,
     .section-light,
-    .editorial-intro,
-    .process-section,
-    .proof-section,
-    .faq-section,
     .service-answer,
     .service-deliverables,
     .service-outcomes,
@@ -153,9 +116,7 @@
     .contact-section,
     .knowledge-index,
     .portfolio-current,
-    .knowledge-article-body,
-    .stage-section,
-    .site-footer {
+    .knowledge-article-body {
       background: rgba(3, 8, 13, 0.42);
     }
   }
@@ -165,10 +126,6 @@
     .service-page,
     .section-dark,
     .section-light,
-    .editorial-intro,
-    .process-section,
-    .proof-section,
-    .faq-section,
     .service-answer,
     .service-deliverables,
     .service-outcomes,
@@ -179,15 +136,11 @@
     .contact-section,
     .knowledge-index,
     .portfolio-current,
-    .knowledge-article-body,
-    .stage-section,
-    .site-footer {
+    .knowledge-article-body {
       background: rgba(3, 8, 13, 0.61);
     }
 
-    .system-flow,
     .service-capability-panel,
-    .quality-item,
     .outcome-grid article,
     .knowledge-cards article,
     .portfolio-scope-grid article,

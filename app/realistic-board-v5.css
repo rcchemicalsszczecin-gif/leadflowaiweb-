@@ -20,10 +20,6 @@
   .service-page,
   .section-dark,
   .section-light,
-  .editorial-intro,
-  .process-section,
-  .proof-section,
-  .faq-section,
   .service-answer,
   .service-deliverables,
   .service-outcomes,
@@ -34,18 +30,15 @@
   .contact-section,
   .knowledge-index,
   .portfolio-current,
-  .knowledge-article-body,
-  .stage-section {
+  .knowledge-article-body {
     background: var(--realistic-section);
   }
 
-  .stage-section:nth-child(even),
   .service-outcomes,
   .service-faq,
   .related-services,
   .knowledge-index,
-  .portfolio-current,
-  .site-footer {
+  .portfolio-current {
     background: var(--realistic-section-alt);
   }
 
@@ -69,14 +62,11 @@
     backdrop-filter: blur(8px) saturate(1.08);
   }
 
-  .hero-copy,
   .service-hero-copy,
   .contact-hero-copy,
   .knowledge-hero-copy,
   .portfolio-hero-copy,
-  .knowledge-article-head,
-  .stage-heading,
-  .stage-detail {
+  .knowledge-article-head {
     background: linear-gradient(
       90deg,
       rgba(1, 6, 10, 0.84) 0%,
@@ -87,7 +77,6 @@
     box-shadow: -1.4rem 0 3.6rem rgba(0, 0, 0, 0.16);
   }
 
-  .hero-copy,
   .service-hero-copy,
   .contact-hero-copy,
   .knowledge-hero-copy,
@@ -97,20 +86,13 @@
     margin-left: clamp(-1rem, -1vw, -0.6rem);
   }
 
-  .hero h1 span,
-  .editorial-grid h2 span {
+  .hero h1 span {
     color: rgba(248, 250, 252, 0.58);
   }
 
   .hero-lead,
   .service-lead,
-  .contact-hero-copy,
-  .editorial-copy,
-  .stage-detail > p,
-  .process-head p,
-  .quality-head p,
-  .proof-copy,
-  .faq-list details p {
+  .contact-hero-copy {
     color: rgba(234, 244, 248, 0.78);
   }
 
@@ -120,16 +102,13 @@
   .knowledge-hero h1,
   .portfolio-hero h1,
   .knowledge-article-head h1,
-  .stage-heading h2,
   .service-section-head h2 {
     text-shadow:
       0 2px 8px rgba(0, 0, 0, 0.82),
       0 12px 40px rgba(0, 0, 0, 0.32);
   }
 
-  .system-flow,
   .service-capability-panel,
-  .quality-item,
   .outcome-grid article,
   .knowledge-cards article,
   .portfolio-scope-grid article,
@@ -140,9 +119,7 @@
   .related-grid a,
   .knowledge-article-grid > aside,
   .contact-direct,
-  .deliverable-list article,
-  .process-list li,
-  .faq-list details {
+  .deliverable-list article {
     background: var(--realistic-panel);
     backdrop-filter: none;
     box-shadow:
@@ -150,7 +127,6 @@
       0 14px 42px rgba(0, 0, 0, 0.18);
   }
 
-  .system-flow,
   .service-capability-panel,
   .lead-form,
   .contact-aside,
@@ -158,19 +134,15 @@
     background: var(--realistic-panel-strong);
   }
 
-  .process-list,
-  .faq-list,
   .deliverable-list,
   .service-process ol,
   .service-faq-grid,
   .related-grid,
   .knowledge-cards,
-  .outcome-grid,
-  .quality-grid {
+  .outcome-grid {
     background: rgba(2, 8, 13, 0.18);
   }
 
-  .quality-item:hover,
   .outcome-grid article:hover,
   .knowledge-cards article:hover,
   .related-grid a:hover {
@@ -182,10 +154,6 @@
     .service-page,
     .section-dark,
     .section-light,
-    .editorial-intro,
-    .process-section,
-    .proof-section,
-    .faq-section,
     .service-answer,
     .service-deliverables,
     .service-outcomes,
@@ -196,8 +164,7 @@
     .contact-section,
     .knowledge-index,
     .portfolio-current,
-    .knowledge-article-body,
-    .stage-section {
+    .knowledge-article-body {
       background: rgba(2, 7, 11, 0.18);
     }
   }
@@ -207,10 +174,6 @@
     .service-page,
     .section-dark,
     .section-light,
-    .editorial-intro,
-    .process-section,
-    .proof-section,
-    .faq-section,
     .service-answer,
     .service-deliverables,
     .service-outcomes,
@@ -221,27 +184,20 @@
     .contact-section,
     .knowledge-index,
     .portfolio-current,
-    .knowledge-article-body,
-    .stage-section,
-    .site-footer {
+    .knowledge-article-body {
       background: rgba(2, 7, 11, 0.34);
     }
 
-    .hero-copy,
     .service-hero-copy,
     .contact-hero-copy,
     .knowledge-hero-copy,
     .portfolio-hero-copy,
-    .knowledge-article-head,
-    .stage-heading,
-    .stage-detail {
+    .knowledge-article-head {
       background: rgba(1, 6, 10, 0.76);
       box-shadow: none;
     }
 
-    .system-flow,
     .service-capability-panel,
-    .quality-item,
     .outcome-grid article,
     .knowledge-cards article,
     .portfolio-scope-grid article,

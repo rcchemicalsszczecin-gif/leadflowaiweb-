@@ -40,7 +40,7 @@ const hub = read("app/uslugi/page.tsx");
 const hubLower = hub.toLowerCase();
 const registry = read("lib/page-registry.ts");
 const sitemap = read("app/sitemap.ts");
-const footer = read("components/site-footer.tsx");
+const footer = read("components/v14-closing.tsx");
 
 for (const slug of expandedSlugs) {
   if (!expanded.includes(`slug: "${slug}"`)) fail(`brak usługi ${slug} w expanded registry`);
@@ -76,7 +76,7 @@ if (!registry.includes("expandedServicePages") || !registry.includes("extraServi
 if (!sitemap.includes("expandedServiceLinks") || !sitemap.includes("extraServiceLinks") || !sitemap.includes('"uslugi"')) {
   fail("sitemap nie obejmuje pełnej oferty");
 }
-if (!footer.includes('href="/uslugi"')) fail("footer nie prowadzi do pełnej oferty");
+if (!footer.includes('href="/uslugi"')) fail("aktywny V14 footer nie prowadzi do pełnej oferty");
 
 for (const slug of allNewSlugs) {
   const source = slug in Object.create(null) ? "" : combined;
@@ -93,4 +93,4 @@ for (const claim of forbiddenClaims) {
   if (combined.toLowerCase().includes(claim)) fail(`niedozwolony claim: ${claim}`);
 }
 
-console.log(`OFFER_V11_PASS expanded=${allNewSlugs.length} pillars=6 hub=PASS registry=CONNECTED sitemap=PASS duplicate-intent=ABSENT language=PL public-truth=PASS`);
+console.log(`OFFER_V11_PASS expanded=${allNewSlugs.length} pillars=6 hub=PASS registry=CONNECTED sitemap=PASS footer=V14_ACTIVE duplicate-intent=ABSENT language=PL public-truth=PASS`);
