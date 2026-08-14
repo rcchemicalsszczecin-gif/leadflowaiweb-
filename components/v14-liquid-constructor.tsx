@@ -10,7 +10,7 @@ const steps = [
 
 export function V14LiquidConstructor() {
   return (
-    <section className="v14-foundation v14-liquid" aria-labelledby="v14-liquid-title">
+    <section id="liquid" className="v14-foundation v14-liquid" aria-labelledby="v14-liquid-title">
       <div className="v14-shell v14-liquid-grid">
         <div>
           <p className="v14-liquid-kicker">03 / LIQUID WEB CONSTRUCTOR</p>
