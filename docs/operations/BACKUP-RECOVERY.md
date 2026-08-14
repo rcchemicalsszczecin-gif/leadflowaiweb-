@@ -1,59 +1,80 @@
-# LEADFLOWAI — BACKUP / RECOVERY BASELINE V2
+# LEADFLOWAI — BACKUP / RECOVERY BASELINE
 
-STATUS: PRE-PRODUCTION DESIGN
-DATE: 2026-08-12
+STATUS: PRODUCTION V13 BASELINE / V14 RELEASE SUPPORT
+DATE: 2026-08-14
 
 ## Recovery domains
 
-### Static frontend source
-Authoritative application source is Git. Frontend rollback means redeploying the **last known-good** commit/artifact to GitHub Pages; normal rollback does not require force-push or history rewrite.
+### Production static frontend
+Authoritative application source is Git.
 
-### Content
-Current public service/knowledge content is repository-managed and follows the same Git/static artifact recovery path.
+Current production branch: `main`.
+Current production V13 revision: `10627e2f18ccfc7ef86c76a695dab9cf7933cce9`.
 
-### Cloudflare edge
-DNS/TLS/Tunnel configuration becomes a separate recovery domain when configured. Before launch record the previous working DNS/Tunnel state and rollback procedure.
+Normal frontend rollback means restoring/redeploying a known-good Git revision/artifact through normal history. Force-push/history rewrite is not a normal recovery mechanism.
 
-### Local API
-`api.leadflowai.pl` is a separate service/recovery domain. Record its application release, service configuration and last known-good deployment independently from the frontend.
+### V14 feature work
+V14 develops on `v14/full-visual-rebuild`.
+
+While V14 is under review, the primary recovery guarantee is that production `main` remains untouched until explicit Owner merge authorization.
+
+Each bounded V14 stage should record:
+- before-state branch/HEAD;
+- changed path set;
+- validation result;
+- resulting commit identity.
+
+### Public content
+Service, knowledge, portfolio and search/public-truth data are repository-managed and recover through the same Git/static-artifact path.
+
+V14 must not trade away the V13 registry/search/public-truth recovery path for visual convenience.
+
+### DNS/TLS/edge
+DNS/TLS/edge provider configuration is a separate recovery domain from this repository. Record provider-side changes and rollback state when such changes are actually authorized.
+
+### Future local API
+`api.leadflowai.pl`, if later activated, is a separate service/recovery domain. Its application release, secrets, service supervision, tunnel and last known-good configuration must be managed independently from the static frontend.
 
 ### Secrets
-Production secrets must not be backed up in Git. Cloudflare and local API secrets require secure provider/host recovery or reconstruction procedures.
+Production secrets must not be backed up in Git. Provider/API secrets require secure provider/host recovery or reconstruction procedures.
 
 ### Lead data
-The frontend repository contains no lead database. The selected lead delivery destination/CRM becomes a separate data-recovery domain and requires its own retention/backup policy.
+The current static frontend contains no lead database and online lead delivery is OFF. Direct e-mail is the active contact path.
+
+If persistent lead handling is introduced later, the selected destination becomes a separate data-recovery/retention domain.
 
 ### Chat data
-No persistent conversation database is assumed. If persistence is introduced later, it requires separate privacy, retention, access and recovery decisions.
+No persistent public chat system is currently active. If persistence or public chatbot runtime is introduced later, it requires separate privacy, retention, access and recovery decisions.
 
-## Pre-release recovery evidence
+## Pre-V14-release recovery evidence
 
-Before launch record:
-- frontend release commit/revision and Pages artifact identity;
-- frontend last known-good revision;
-- Cloudflare DNS/TLS/Tunnel configuration identity and rollback method;
-- local API release and last known-good revision;
-- environment variable inventory by name only, never secret values;
-- lead destination and successful controlled delivery proof;
-- backup/retention responsibility for persistent external data.
+Before V14 production merge record:
+- exact V14 release candidate SHA;
+- current production last known-good SHA;
+- full Quality evidence for the candidate;
+- visual preview identity;
+- route/search/public-truth validation;
+- aggregate + route-level performance evidence;
+- any edge/provider configuration change plan if separately authorized;
+- rollback method to the current V13 production baseline.
 
 ## Restore validation
 
-Frontend rollback validation:
-- homepage and critical routes;
-- `/kontakt/`;
-- sitemap and robots;
-- static asset loading and canonical domain.
+After a frontend rollback/redeploy verify:
+- homepage;
+- `/uslugi/`;
+- representative service route;
+- `/kontakt/` and direct e-mail identity;
+- `/realizacje/`;
+- `/wiedza/` and representative article;
+- `/lab/`;
+- sitemap;
+- robots;
+- canonical domain;
+- core static assets.
 
-API rollback validation after that service exists:
-- `https://api.leadflowai.pl/health`;
-- lead delivery path;
-- chat controlled knowledge/fallback;
-- CORS allow-list;
-- local AI mode if enabled.
+## Safety principle
 
-Edge rollback validation:
-- DNS resolution;
-- TLS;
-- redirects/canonical host;
-- final response security headers.
+A visual release is not worth weakening rollback, public truth or production stability.
+
+Feature-branch development and exact release identities remain the primary V14 safety mechanism until the Owner explicitly approves production promotion.
