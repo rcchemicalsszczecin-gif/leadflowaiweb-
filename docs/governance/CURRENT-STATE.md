@@ -7,125 +7,79 @@ LEGAL ENTITY: Tervyxa Systems sp. z o.o.
 PUBLIC BRAND: LeadFlowAI
 PRIMARY DOMAIN: leadflowai.pl
 
-## Purpose
-
-This file is the authoritative checkpoint for current production state, active work, validation boundaries and blockers. Historical plans, design records, validation reports and stage files remain evidence of the state that existed when they were written, but they do not override this checkpoint or later explicit Owner decisions.
-
 ## Production authority
 
-- Production/release branch: `main`.
-- Current production `main`: `10627e2f18ccfc7ef86c76a695dab9cf7933cce9`.
-- Commit identity: `Merge V13 Polish Production Rebuild`.
-- GitHub Pages deployment for that exact production revision: SUCCESS.
-- Production public content/search authority: V13 Polish Production Rebuild.
-- V14 is not merged to `main` and is not production authority.
+- Production branch: `main`.
+- Production revision: `10627e2f18ccfc7ef86c76a695dab9cf7933cce9` — `Merge V13 Polish Production Rebuild`.
+- GitHub Pages deployment for that production revision: SUCCESS.
+- V14 remains isolated on `v14/full-visual-rebuild` and is not merge-authorized.
 
-## Active implementation
+## Preserved V13 public foundation
 
-- Active branch: `v14/full-visual-rebuild`.
-- Active plan: `docs/plans/V14-VISUAL-REBUILD.md`.
-- Active visual Owner authority: `docs/governance/WEBSITE-OWNER-DECISION-V14.md`.
-- Draft PR: #19 `V14 — Full Visual Rebuild`.
-- PR remains unmerged until explicit Owner visual acceptance and merge authorization.
-- Exact active branch identity must be read from the Git ref; this checkpoint intentionally does not freeze a moving feature-branch SHA.
-
-## V13 foundation preserved by V14
-
-Validated/public foundation carried into V14:
-- Polish public UI/content foundation;
-- 35 public service/money pages;
+V14 preserves:
+- 35 service/money pages;
 - 21 knowledge articles;
 - 63 dominant public search intents;
-- service decision guidance and direct answers;
-- visible FAQ where semantically useful;
-- real-only portfolio: LeadFlowAI, TranskrypcjaAI and Tervyxa own projects;
-- canonical URL architecture, sitemap and robots;
-- Organization/WebSite/WebPage/Service/Breadcrumb/FAQ/Article structured data where semantically valid;
-- SEO + AEO + GEO / AI Search architecture;
-- evidence/public-truth boundaries;
+- canonical/sitemap/robots and structured-data architecture;
+- direct answers, FAQ and service decision guidance;
+- reviewed/source-backed knowledge layer;
+- real-only portfolio;
 - direct contact through `kontakt@leadflowai.pl`.
 
-## Runtime/public feature boundaries
+Public chatbot UI remains OFF by Owner. Online lead delivery remains OFF by Owner. Analytics activation is not authorized by V14.
 
-- Public chatbot UI: OFF by Owner.
-- Dormant chatbot code may remain for a separately authorized future runtime stage.
-- Online lead/contact form delivery: OFF by Owner.
-- Direct e-mail contact: ACTIVE.
-- Frontend must not imply an active server-side lead submission path.
-- Analytics/consent runtime: not activated by V14.
-- Dynamic API is not part of the GitHub Pages static artifact.
+## Completed / PASS
 
-## V14 execution state
+- R0 governance/source-of-truth synchronization.
+- R1 mobile/accessibility P0 repair.
+- V14.1–V14.7 homepage/product/search/process/portfolio/knowledge/contact visual foundation.
+- V14.8 route migration COMPLETE for homepage, all 35 service pages, `/uslugi`, `/realizacje`, `/o-nas`, `/kontakt`, `/wiedza`, all 21 knowledge articles and `/lab`.
+- V9/V9.2/V10 and retired V13 accessibility root layers removed from the active global bundle; required safeguards were absorbed into V14 shell.
+- Legacy global/page-wide `WaterSurface` removed from active V14.
+- `V14LiquidSurface` is scene-bounded inside `V14LiquidConstructor` and has no stock/motherboard dependency.
+- Liquid runtime bounds: local ResizeObserver sizing, reduced-motion before context allocation, 45/30 FPS, bounded DPR, hidden-tab suspension, IntersectionObserver offscreen suspension and fine-pointer-only tracking.
+- R2 runtime exact Quality PASS on `0279836761ec0ecc82a19ae45859fb0dd2e52cfb`.
+- Preview run #130 on the same SHA: PASS.
+- Active Liquid WebDriver evidence on the same SHA:
+  - desktop WebGL2=true, fallback empty, overflow=0, visibleRatio≈0.905;
+  - mobile WebGL2=true, fallback empty, overflow=0, visibleRatio=1.0.
+- Static build remains 67/67; 44-route smoke remains PASS.
+- V14.9 route-level performance budgets are active and PASS for six representative route classes, including total raw/gzip and asset-count ceilings.
 
-The recovery audit covered 231/231 tracked files. Its original findings are historical audit evidence; the current implementation has advanced materially beyond them.
+## Active / not complete
 
-### Completed / PASS
+- R2 runtime: PASS.
+- R2 remaining historical CSS ownership cleanup: ADVANCED, not fully complete.
+- V14.9 final QA: IN PROGRESS.
+- Security/dependency review: NOT COMPLETE.
+- Chromium + Firefox final viewport/browser matrix: NOT COMPLETE.
+- Final search/public-truth QA: NOT COMPLETE.
+- Final exact-candidate preview after all V14.9 mutations: NOT COMPLETE.
+- V14.10 Owner visual acceptance: NOT COMPLETE.
+- R9 merge/release: BLOCKED pending V14.9 and explicit Owner PASS.
 
-- R0 authority/governance synchronization foundation.
-- R1 P0 V14 mobile/accessibility repair: mobile navigation, `/#process`, skip-to-content, focus, touch targets, coarse-pointer handling, reduced motion and brief selected-state semantics.
-- V14 homepage content architecture including services, device theater, Liquid Constructor, Search/AI scene, process/quality, portfolio, knowledge, FAQ, frontend-only brief and closing/footer.
-- Six service groups have differentiated V14 visual languages.
-- V14.8 route migration is COMPLETE at shell/renderer level:
-  - homepage;
-  - all 35 service/money pages;
-  - `/uslugi`;
-  - `/realizacje`;
-  - `/o-nas`;
-  - `/kontakt`;
-  - `/wiedza`;
-  - all 21 `/wiedza/[slug]` articles;
-  - `/lab`.
-- Service URLs, metadata, canonical, structured data, direct answers, FAQ, decision guidance, related links and knowledge links remain preserved through the shared renderer migration.
-- Knowledge adapter/editorial/source/dateModified/Article JSON-LD layer remains preserved.
-- Preview workflow has been hardened and can generate the bounded desktop/tablet/mobile screenshot set.
-- R2 root de-stack removed V9, V9.2 and V10 styles from the active root bundle.
-- Root responsive safeguards now live in the active V14 shell.
-- Exact Quality #586 passed after V9/V9.2/V10 root removal, with 67/67 static build and 44-route smoke.
-- That de-stack reduced aggregate CSS to 124292 raw / 26269 gzip against historical ceilings 195000 / 40000.
-- Exact Quality #592 passed after removing global Water ownership and limiting the intermediate runtime to homepage ownership.
+## Remaining technical debt / blockers
 
-### Current R2 candidate
+1. Reference-proof remaining V2–V7/V13 global CSS ownership and remove/route-scope only what is demonstrably obsolete.
+2. Reduce active Biome specificity warnings without weakening lint.
+3. Add/complete security gate and dependency posture review; Dependabot alerts remain disabled at repository-settings level.
+4. Complete browser/viewport matrix at 360/390/768/1366/1440/1920 with Chromium and Firefox evidence.
+5. Complete final search/public-truth verification.
+6. Run final Quality + Preview on the exact final V14.9 candidate.
+7. Obtain explicit Owner visual PASS.
+8. `main` branch protection remains OFF at repository-settings level.
 
-- Legacy `WaterSurface` is no longer mounted from root or homepage.
-- Active WebGL has moved to a dedicated `V14LiquidSurface` owned directly by `V14LiquidConstructor`.
-- The new runtime is locally sized with `ResizeObserver` rather than the browser window.
-- Rendering is suspended when the scene leaves the viewport through `IntersectionObserver` and when the document is hidden.
-- Reduced-motion exits before WebGL context allocation.
-- Fine-pointer tracking is locally mapped into the Liquid scene.
-- Compact devices use bounded FPS and DPR.
-- The new Liquid scene contains no `realistic-board-photo` class and no stock/motherboard dependency.
-- This exact scene-bounded candidate still requires its own final Quality and preview evidence before R2 is marked complete.
+## Execution order
 
-### Active / not complete
-
-- R2 CSS/runtime de-stack: ADVANCED, not complete. Remaining V2–V7/V13 historical global style layers require reference-proof consolidation or route scoping where they remain active.
-- V14.9 full QA: NOT COMPLETE. Required work includes the full viewport/browser matrix, route-level performance budgets, dependency/security review, final accessibility/browser checks and complete search/public-truth verification.
-- V14.10 Owner visual acceptance: NOT COMPLETE. Preview reliability is no longer the blocker; explicit Owner review/PASS of the final candidate is still required.
-- R9 release hardening/merge: BLOCKED pending V14.9 and Owner visual PASS.
-
-## Current blockers / technical debt
-
-1. Scene-bounded Liquid candidate needs exact-head Quality and visual preview proof.
-2. Remaining historical V2–V7/V13 CSS layers are still globally imported and need dependency-proof consolidation/route scoping.
-3. Biome still reports non-fatal specificity warnings, including historical CSS and some active CSS; active warnings should be reduced without weakening lint.
-4. Route-level performance budgets required by V14.9 are not yet implemented.
-5. Firefox and the complete 360/390/768/1366/1440/1920 visual/interaction matrix have not yet received final acceptance evidence.
-6. Dependency vulnerability/security posture still needs an authorized final review; Dependabot alerts remain disabled at repository settings level.
-7. `main` remains unprotected at repository settings level; required status checks are not enforced by branch protection.
-8. Final Owner visual review has not occurred.
-
-## Current execution order
-
-1. Validate the scene-bounded Liquid runtime and finish remaining R2 CSS ownership cleanup.
-2. Clean active lint/specificity debt and stale current contract naming where safe.
-3. Execute V14.9 — mobile/browser/performance/accessibility/security/search QA.
-4. Produce the final V14.9A preview evidence pack on the exact candidate SHA.
-5. Run V14.10 Owner visual review.
-6. Only after explicit Owner PASS: R9 release hardening, exact final Quality, Owner merge authorization, merge and production deploy.
-7. After stable V14 production: R10/V15 Search Master Plan using real production/search evidence.
+1. V14.9 security gate and dependency review.
+2. Chromium/Firefox viewport matrix.
+3. Remaining bounded CSS/lint cleanup where safe.
+4. Final search/public-truth QA.
+5. Final exact-candidate Quality + Preview evidence pack.
+6. V14.10 Owner visual review.
+7. Only after explicit Owner PASS: R9 merge/release.
+8. After stable V14 production: V15 Search Master Plan using real production/search evidence.
 
 ## Production protection
 
-`main` is not to be mutated as part of V14 implementation without explicit Owner merge authorization. V14 work remains on `v14/full-visual-rebuild`.
-
-No feature-branch Quality PASS, Draft PR state or preview artifact by itself authorizes production merge.
+No feature-branch Quality PASS, Preview PASS, Draft PR state or automation result authorizes production merge by itself. `main` must not be mutated without explicit Owner merge authorization.
