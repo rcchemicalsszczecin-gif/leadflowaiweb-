@@ -6,6 +6,10 @@ on:
       - v14/full-visual-rebuild
   workflow_dispatch:
 
+concurrency:
+  group: v14-preview-${{ github.ref_name }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
