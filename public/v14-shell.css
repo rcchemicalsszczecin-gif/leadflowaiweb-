@@ -205,7 +205,16 @@ canvas {
 }
 
 @media (hover: none), (pointer: coarse) {
-  :is(.v14-page, .v14-route-page) :is(.v14-button, .v14-header-cta, .v14-service-card, .v14-mobile-nav-panel a) {
+  :is(.v14-page, .v14-route-page) :is(
+    .v14-button,
+    .v14-header-cta,
+    .v14-service-card,
+    .v14-mobile-nav-panel a,
+    .related-grid a,
+    .service-directory a,
+    .hero-actions a,
+    .contact-actions a
+  ) {
     min-height: 44px;
   }
 
