@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { JsonLd } from "@/components/json-ld";
-import { WaterSurface } from "@/components/water-surface";
 import { site } from "@/lib/site";
 import { getGlobalStructuredData } from "@/lib/structured-data";
 import "./globals.css";
@@ -68,7 +67,6 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
     <html lang="pl">
       <body>
         <JsonLd data={getGlobalStructuredData()} />
-        <WaterSurface />
         {children}
       </body>
     </html>
