@@ -1,3 +1,5 @@
+import { V14BrandMark } from "@/components/v14-brand-mark";
+
 const navItems = [
   { href: "/uslugi", label: "Usługi" },
   { href: "/realizacje", label: "Realizacje" },
@@ -27,7 +29,7 @@ export function V14SiteHeader({ mode = "static", includeStyles = true }: V14Site
       <header className={`v14-header ${mode === "static" ? "v14-header-static" : ""}`}>
         <div className="v14-shell v14-header-inner">
           <a className="v14-brand" href="/" aria-label="LeadFlowAI — strona główna">
-            <span className="v14-brand-mark" aria-hidden="true"><i /><i /></span>
+            <V14BrandMark />
             <span>LEADFLOWAI</span>
           </a>
 

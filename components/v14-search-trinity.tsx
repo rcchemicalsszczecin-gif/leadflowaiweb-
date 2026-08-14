@@ -11,7 +11,7 @@ export function V14SearchTrinity() {
         </div>
         <Image
           className="v14-st-img"
-          src="/v14-search-trinity.svg"
+          src="/v14-search-trinity-dark.svg"
           alt="Trzy sposoby odczytania strony LeadFlowAI: człowiek, Google i system AI"
           width={1200}
           height={500}

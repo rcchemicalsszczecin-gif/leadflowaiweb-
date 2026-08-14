@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { JsonLd } from "@/components/json-ld";
+import { V14GlobalTechHeroGuard } from "@/components/v14-global-tech-hero-guard";
+import { V14GlobalTechLiquid } from "@/components/v14-global-tech-liquid";
 import { site } from "@/lib/site";
 import { getGlobalStructuredData } from "@/lib/structured-data";
 import "./globals.css";
@@ -54,6 +56,9 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
   return (
     <html lang="pl">
       <body>
+        <link rel="stylesheet" href="/v14-global-tech-world.css" precedence="high" />
+        <V14GlobalTechLiquid />
+        <V14GlobalTechHeroGuard />
         <JsonLd data={getGlobalStructuredData()} />
         {children}
       </body>

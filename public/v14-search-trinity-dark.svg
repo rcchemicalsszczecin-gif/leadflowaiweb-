@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" role="img" aria-labelledby="t d">
+  <title id="t">Człowiek, Google i system AI w architekturze LeadFlowAI</title>
+  <desc id="d">Trzy ciemne panele pokazujące interfejs użytkownika, widoczność w wyszukiwarce oraz graf encji systemu AI.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#071216"/>
+      <stop offset="1" stop-color="#031015"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#122125" stop-opacity=".92"/>
+      <stop offset="1" stop-color="#071115" stop-opacity=".9"/>
+    </linearGradient>
+    <pattern id="grid" width="34" height="34" patternUnits="userSpaceOnUse">
+      <path d="M34 0H0V34" fill="none" stroke="#58a8b4" stroke-opacity=".055"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="500" rx="28" fill="url(#bg)"/>
+  <rect width="1200" height="500" rx="28" fill="url(#grid)"/>
+  <g font-family="Arial,sans-serif">
+    <g transform="translate(16 16)">
+      <rect width="378" height="468" rx="22" fill="url(#glass)" stroke="#7ea79e" stroke-opacity=".24"/>
+      <text x="22" y="34" font-size="10" letter-spacing="1.6" fill="#82948e">01 / CZŁOWIEK</text>
+      <text x="342" y="34" text-anchor="end" font-weight="700" font-size="12" fill="#b8ff38">UX</text>
+      <text x="22" y="78" font-weight="700" font-size="24" fill="#f1f5f2">Widzę ofertę i wiem,</text>
+      <text x="22" y="106" font-weight="700" font-size="24" fill="#f1f5f2">co zrobić dalej.</text>
+      <text x="22" y="136" font-size="12" fill="#85958f">Hierarchia · produkt · dowody · CTA</text>
+      <rect x="22" y="170" width="334" height="264" rx="18" fill="#071013" stroke="#6f938a" stroke-opacity=".18"/>
+      <circle cx="44" cy="194" r="4" fill="#b8ff38"/>
+      <rect x="58" y="191" width="44" height="6" rx="3" fill="#40514c"/>
+      <rect x="286" y="184" width="52" height="20" rx="10" fill="#b8ff38"/>
+      <rect x="44" y="231" width="166" height="18" rx="5" fill="#dce7e1"/>
+      <rect x="44" y="267" width="140" height="8" rx="4" fill="#5c716a"/>
+      <rect x="44" y="284" width="108" height="8" rx="4" fill="#3b4d48"/>
+      <rect x="44" y="320" width="78" height="28" rx="14" fill="#b8ff38"/>
+      <rect x="230" y="224" width="100" height="146" rx="14" fill="#b8ff38" fill-opacity=".045" stroke="#b8ff38" stroke-opacity=".24"/>
+      <circle cx="280" cy="297" r="26" fill="#1d88aa" fill-opacity=".13"/>
+    </g>
+    <g transform="translate(411 16)">
+      <rect width="378" height="468" rx="22" fill="url(#glass)" stroke="#7ea79e" stroke-opacity=".24"/>
+      <text x="22" y="34" font-size="10" letter-spacing="1.6" fill="#82948e">02 / GOOGLE</text>
+      <text x="342" y="34" text-anchor="end" font-weight="700" font-size="12" fill="#68c9ee">SEARCH</text>
+      <text x="22" y="78" font-weight="700" font-size="24" fill="#f1f5f2">Rozumiem temat, strukturę</text>
+      <text x="22" y="106" font-weight="700" font-size="24" fill="#f1f5f2">i relacje serwisu.</text>
+      <text x="22" y="136" font-size="12" fill="#85958f">Semantyka · canonical · schema · linki</text>
+      <rect x="22" y="170" width="334" height="264" rx="18" fill="#081317" stroke="#70968e" stroke-opacity=".20"/>
+      <circle cx="48" cy="204" r="11" fill="none" stroke="#68c9ee" stroke-width="3"/>
+      <text x="68" y="208" font-size="10" font-weight="700" fill="#cbd8d3">leadflowai.pl › strony-internetowe</text>
+      <text x="42" y="252" font-size="17" fill="#8edcff">Strony internetowe jako produkt</text>
+      <rect x="42" y="274" width="274" height="8" rx="4" fill="#4e615b"/>
+      <rect x="42" y="292" width="226" height="8" rx="4" fill="#354842"/>
+      <g fill="#13221f" stroke="#4e6c63" stroke-opacity=".42">
+        <rect x="42" y="332" width="66" height="26" rx="13"/>
+        <rect x="116" y="332" width="54" height="26" rx="13"/>
+        <rect x="178" y="332" width="62" height="26" rx="13"/>
+      </g>
+      <g fill="#9aaca6" font-size="9">
+        <text x="75" y="349" text-anchor="middle">Service</text>
+        <text x="143" y="349" text-anchor="middle">FAQ</text>
+        <text x="209" y="349" text-anchor="middle">Entity</text>
+      </g>
+    </g>
+    <g transform="translate(806 16)">
+      <rect width="378" height="468" rx="22" fill="#071013" stroke="#b8ff38" stroke-opacity=".22"/>
+      <text x="22" y="34" font-size="10" letter-spacing="1.6" fill="#82948e">03 / SYSTEM AI</text>
+      <text x="342" y="34" text-anchor="end" font-weight="700" font-size="12" fill="#b8ff38">ENTITY</text>
+      <text x="22" y="78" font-weight="700" font-size="24" fill="#f1f5f2">Mogę odczytać fakty,</text>
+      <text x="22" y="106" font-weight="700" font-size="24" fill="#f1f5f2">encje i źródła.</text>
+      <text x="22" y="136" font-size="12" fill="#85958f">Marka · organizacja · usługi · wiedza · dowody</text>
+      <g transform="translate(29 169)">
+        <path d="M160 122L52 45M160 122L277 48M160 122L60 223M160 122L278 220" fill="none" stroke="#b8ff38" stroke-opacity=".30"/>
+        <circle cx="160" cy="122" r="42" fill="#b8ff38" fill-opacity=".065" stroke="#b8ff38"/>
+        <g fill="#0c1815" stroke="#657c74">
+          <circle cx="52" cy="45" r="28"/><circle cx="277" cy="48" r="28"/><circle cx="60" cy="223" r="28"/><circle cx="278" cy="220" r="28"/>
+        </g>
+        <text x="160" y="126" text-anchor="middle" fill="#b8ff38" font-size="11">LEADFLOWAI</text>
+        <g fill="#c5d0cb" font-size="8">
+          <text x="52" y="49" text-anchor="middle">FIRMA</text><text x="277" y="52" text-anchor="middle">USŁUGI</text><text x="60" y="227" text-anchor="middle">WIEDZA</text><text x="278" y="224" text-anchor="middle">DOWODY</text>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,80 @@
+name: V14 Route Visual Preview
+
+on:
+  push:
+    branches:
+      - 'v14/**'
+  workflow_dispatch:
+
+concurrency:
+  group: v14-route-preview-${{ github.ref_name }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  route-screenshots:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Build static V14
+        run: npm run build
+        env:
+          NEXT_PUBLIC_SITE_URL: https://leadflowai.pl
+          NEXT_PUBLIC_API_BASE_URL: https://api.leadflowai.pl
+
+      - name: Start static preview
+        shell: bash
+        run: |
+          python3 -m http.server 3000 -d out >/tmp/v14-route-preview.log 2>&1 &
+          echo $! > /tmp/v14-route-preview.pid
+          for attempt in $(seq 1 40); do
+            if curl -fsS http://127.0.0.1:3000/ >/dev/null; then
+              exit 0
+            fi
+            sleep 0.25
+          done
+          cat /tmp/v14-route-preview.log
+          exit 1
+
+      - name: Capture active global Liquid routes with WebDriver
+        shell: bash
+        run: |
+          python3 scripts/capture-route-webdriver-v14.py
+          test -s route-preview/route-webdriver-status.json
+
+      - name: Upload route visual preview
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v14-route-preview-${{ github.sha }}
+          path: route-preview/*
+          retention-days: 7
+          if-no-files-found: error
+
+      - name: Verify route captures
+        shell: bash
+        run: |
+          test -s route-preview/service-desktop.png
+          test -s route-preview/service-mobile.png
+          test -s route-preview/knowledge-desktop.png
+          test -s route-preview/knowledge-mobile.png
+          test -s route-preview/contact-desktop.png
+          test -s route-preview/contact-mobile.png
+          test -s route-preview/lab-desktop.png
+          test -s route-preview/lab-mobile.png
+          grep -q '"webgl2": true' route-preview/route-webdriver-status.json
+          ! grep -q '"fallback": "[^"]\+"' route-preview/route-webdriver-status.json
+          echo "V14_ROUTE_PREVIEW_PASS routes=4 viewports=2 captures=8 global-liquid=WEBGL2"
