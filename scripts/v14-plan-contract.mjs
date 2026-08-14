@@ -39,10 +39,10 @@ for (const required of [
   "10627e2f18ccfc7ef86c76a695dab9cf7933cce9",
   "V13 Polish Production Rebuild",
   "v14/full-visual-rebuild",
-  "231/231",
-  "V14.8 route migration is COMPLETE",
-  "V14LiquidSurface",
-  "V14.9 full QA: NOT COMPLETE",
+  "35 service/money pages",
+  "V14.8 route migration COMPLETE",
+  "R2 runtime: PASS",
+  "V14.9 final QA: IN PROGRESS",
   "V14.10 Owner visual acceptance: NOT COMPLETE",
 ]) {
   if (!currentState.includes(required)) fail(`CURRENT-STATE invariant missing: ${required}`);
@@ -96,14 +96,16 @@ if (!liquidSurface.includes("IntersectionObserver") || !liquidSurface.includes("
 
 for (const required of [
   "V14_ROUTE_MIGRATION=COMPLETE",
-  "V14_R2_DESTACK=ADVANCED",
+  "V14_R2_RUNTIME=PASS",
+  "V14_R2_CSS_CLEANUP=ADVANCED",
   "V14_LIQUID_RUNTIME=SCENE_BOUNDED",
   "V14_LEGACY_WATER_RUNTIME=NOT_MOUNTED",
-  "V14_PREVIEW_PIPELINE=RELIABLE",
-  "V14_FINAL_QA=NOT_COMPLETE",
+  "V14_ROUTE_PERFORMANCE_BUDGETS=PASS",
+  "V14_PREVIEW_PIPELINE=PASS",
+  "V14_FINAL_QA=IN_PROGRESS",
   "V14_OWNER_VISUAL_ACCEPTANCE=BLOCKED_PENDING_OWNER_REVIEW",
 ]) {
   if (!repoStatus.includes(required)) fail(`repository status invariant missing: ${required}`);
 }
 
-console.log("V14_PLAN_CONTRACT_PASS authority=SYNC production-v13=LOCKED audit=231/231 r0=PASS r1=PASS r2=ADVANCED liquid=SCENE_BOUNDED route-migration=COMPLETE preview=RELIABLE final-qa=NOT_COMPLETE owner-acceptance=BLOCKED");
+console.log("V14_PLAN_CONTRACT_PASS authority=SYNC production-v13=LOCKED r0=PASS r1=PASS r2-runtime=PASS r2-css=ADVANCED liquid=SCENE_BOUNDED route-migration=COMPLETE route-budgets=PASS preview=PASS final-qa=IN_PROGRESS owner-acceptance=BLOCKED");
