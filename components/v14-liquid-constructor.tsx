@@ -1,3 +1,5 @@
+import { V14LiquidSurface } from "@/components/v14-liquid-surface";
+
 const steps = [
   ["01", "LIQUID", "signature interaction"],
   ["02", "GRID", "architektura informacji"],
@@ -24,6 +26,8 @@ export function V14LiquidConstructor() {
         </div>
 
         <figure className="v14-liquid-stage">
+          <V14LiquidSurface />
+
           <svg viewBox="0 0 700 560" aria-hidden="true" className="v14-liquid-wave">
             <defs><radialGradient id="liquidGlow"><stop offset="0" stopColor="#c7ff2f" stopOpacity=".2"/><stop offset="1" stopColor="#c7ff2f" stopOpacity="0"/></radialGradient></defs>
             <ellipse cx="350" cy="430" rx="300" ry="104" fill="url(#liquidGlow)"/>
