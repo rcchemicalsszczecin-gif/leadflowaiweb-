@@ -12,7 +12,6 @@ import "./circuit-water-v3.css";
 import "./hardware-board-v4.css";
 import "./realistic-board-v5.css";
 import "./content-frames-v6.css";
-import "./interactive-v7.css";
 import "./v13-visual-authority.css";
 import "./v13-search-education.css";
 
