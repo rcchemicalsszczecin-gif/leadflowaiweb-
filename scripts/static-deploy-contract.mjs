@@ -15,6 +15,7 @@ const runtime = read("lib/runtime.ts");
 const env = read(".env.example");
 const pages = read(".github/workflows/pages.yml");
 const frontend = read("docs/architecture/FRONTEND-DEPLOYMENT.md");
+const currentState = read("docs/governance/CURRENT-STATE.md");
 const cname = read("public/CNAME").trim();
 
 if (!nextConfig.includes('output: "export"') || !nextConfig.includes("trailingSlash: true")) fail("Next static export is not enabled");
@@ -25,7 +26,9 @@ for (const path of ["app/api/leads/route.ts", "app/api/chat/route.ts", "app/api/
   if (existsSync(path)) fail(`server Route Handler remains in static frontend: ${path}`);
 }
 
-if (!runtime.includes('https://api.leadflowai.pl') || !env.includes("NEXT_PUBLIC_API_BASE_URL=https://api.leadflowai.pl")) fail("external API source of truth incomplete");
+if (!runtime.includes("https://api.leadflowai.pl") || !env.includes("NEXT_PUBLIC_API_BASE_URL=https://api.leadflowai.pl")) {
+  fail("future external API source of truth incomplete");
+}
 if (cname !== "leadflowai.pl") fail("CNAME artifact identity mismatch");
 if (!existsSync("public/.nojekyll")) fail(".nojekyll marker missing");
 
@@ -33,6 +36,20 @@ for (const token of ["actions/configure-pages@v5", "actions/upload-pages-artifac
   if (!pages.includes(token)) fail(`Pages workflow missing ${token}`);
 }
 if (pages.includes("build/leadflowai")) fail("work branch must not auto-deploy to Pages");
-if (!frontend.includes("GitHub Pages") || !frontend.includes("out/") || !frontend.includes("Cloudflare")) fail("frontend deployment architecture record incomplete");
 
-console.log("STATIC_DEPLOY_CONTRACT_PASS export=PASS pages-workflow=PASS cname=PASS api-split=PASS production=AUTO_DEPLOY_MAIN_ONLY");
+for (const required of [
+  "STATUS: PRODUCTION ARCHITECTURE",
+  "GitHub Pages",
+  'output: "export"',
+  "out/",
+  "api.leadflowai.pl",
+  "V14 production promotion requires",
+]) {
+  if (!frontend.includes(required)) fail(`frontend deployment architecture record missing: ${required}`);
+}
+
+if (!currentState.includes("10627e2f18ccfc7ef86c76a695dab9cf7933cce9") || !currentState.includes("V14 is not merged to `main`")) {
+  fail("current production/V14 release boundary is not recorded");
+}
+
+console.log("STATIC_DEPLOY_CONTRACT_PASS export=PASS pages-workflow=PASS cname=PASS api-split=PASS production=V13_MAIN v14=FEATURE_BRANCH");
