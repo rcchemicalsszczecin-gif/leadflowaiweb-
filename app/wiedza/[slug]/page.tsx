@@ -21,6 +21,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const sourceArticle = getKnowledgeArticle(slug);
   if (!sourceArticle) return {};
   const article = toPublicKnowledgeArticle(sourceArticle);
+  const reviewedAt = article.reviewedAt ?? knowledgeEditorialV13.reviewedAt;
 
   return {
     title: article.title,
@@ -31,7 +32,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: article.title,
       description: article.description,
       url: `/wiedza/${article.slug}`,
-      modifiedTime: knowledgeEditorialV13.reviewedAt,
+      modifiedTime: reviewedAt,
       images: ["/og-leadflowai.svg"],
     },
     twitter: {
@@ -49,6 +50,7 @@ export default async function KnowledgeArticlePage({ params }: PageProps) {
   if (!sourceArticle) notFound();
   const article = toPublicKnowledgeArticle(sourceArticle);
   const methodology = getKnowledgeMethodology(Boolean(article.sources?.length));
+  const reviewedLabel = article.reviewedLabel ?? knowledgeEditorialV13.reviewedLabel;
 
   return (
     <main id="main-content" className="knowledge-article-page v14-route-page v14-knowledge-article-page" tabIndex={-1}>
@@ -73,7 +75,7 @@ export default async function KnowledgeArticlePage({ params }: PageProps) {
           <aside aria-label="Informacja o materiale">
             <p className="service-index">LEADFLOWAI / WIEDZA</p>
             <p><strong>Redakcja:</strong> {knowledgeEditorialV13.editor}</p>
-            <p><strong>Zweryfikowano:</strong> {knowledgeEditorialV13.reviewedLabel}</p>
+            <p><strong>Zweryfikowano:</strong> {reviewedLabel}</p>
             <p>{methodology}</p>
           </aside>
 

@@ -6,6 +6,10 @@ import { site } from "@/lib/site";
 const organizationId = `${site.url}/#organization`;
 const websiteId = `${site.url}/#website`;
 
+type StructuredKnowledgeArticle = KnowledgeArticle & {
+  reviewedAt?: string;
+};
+
 export function getGlobalStructuredData(): Record<string, unknown> {
   return {
     "@context": "https://schema.org",
@@ -98,10 +102,11 @@ export function getPageStructuredData(page: ServicePageData): Record<string, unk
   };
 }
 
-export function getArticleStructuredData(article: KnowledgeArticle): Record<string, unknown> {
+export function getArticleStructuredData(article: StructuredKnowledgeArticle): Record<string, unknown> {
   const url = `${site.url}/wiedza/${article.slug}`;
   const webPageId = `${url}#webpage`;
   const articleId = `${url}#article`;
+  const dateModified = article.reviewedAt ?? knowledgeEditorialV13.reviewedAt;
 
   return {
     "@context": "https://schema.org",
@@ -113,7 +118,7 @@ export function getArticleStructuredData(article: KnowledgeArticle): Record<stri
         name: article.title,
         description: article.description,
         inLanguage: "pl-PL",
-        dateModified: knowledgeEditorialV13.reviewedAt,
+        dateModified,
         isPartOf: { "@id": websiteId },
         mainEntity: { "@id": articleId },
       },
@@ -124,7 +129,7 @@ export function getArticleStructuredData(article: KnowledgeArticle): Record<stri
         description: article.description,
         url,
         inLanguage: "pl-PL",
-        dateModified: knowledgeEditorialV13.reviewedAt,
+        dateModified,
         mainEntityOfPage: { "@id": webPageId },
         author: { "@id": organizationId },
         publisher: { "@id": organizationId },

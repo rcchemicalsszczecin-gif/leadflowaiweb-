@@ -32,6 +32,7 @@
     "rendered-search:contract": "node scripts/rendered-search-truth-v14.mjs",
     "crawl:contract": "node scripts/v15-crawl-indexability-contract.mjs",
     "local-intent:contract": "node scripts/v15-local-intent-contract.mjs",
+    "ai-search:contract": "node scripts/v15-ai-search-truth-contract.mjs",
     "performance:budget": "node scripts/performance-budget-v10.mjs",
     "route-performance:budget": "node scripts/route-performance-v14.mjs",
     "css:ownership": "node scripts/css-ownership-v14.mjs",
@@ -39,7 +40,7 @@
     "historical:design:v9-2": "node scripts/design-v9-2-contract.mjs",
     "historical:plan:v14": "node scripts/v14-plan-contract.mjs",
     "check": "npm run typecheck && npm run lint",
-    "verify": "npm run plan:contract && npm run baseline:contract && npm run search:contract && npm run offer:contract && npm run portfolio:contract && npm run lead:contract && npm run chat:contract && npm run content:contract && npm run operations:contract && npm run static:contract && npm run security:contract && npm run dependency:audit && npm run global-world:contract && npm run design:contract && npm run responsive:contract && npm run language:contract && npm run service-language:contract && npm run knowledge-language:contract && npm run visual:contract && npm run accessibility:contract && npm run check && npm run build && npm run public-artifact:contract && npm run rendered-search:contract && npm run crawl:contract && npm run local-intent:contract && npm run performance:budget && npm run route-performance:budget && npm run css:ownership"
+    "verify": "npm run plan:contract && npm run baseline:contract && npm run search:contract && npm run offer:contract && npm run portfolio:contract && npm run lead:contract && npm run chat:contract && npm run content:contract && npm run operations:contract && npm run static:contract && npm run security:contract && npm run dependency:audit && npm run global-world:contract && npm run design:contract && npm run responsive:contract && npm run language:contract && npm run service-language:contract && npm run knowledge-language:contract && npm run visual:contract && npm run accessibility:contract && npm run check && npm run build && npm run public-artifact:contract && npm run rendered-search:contract && npm run crawl:contract && npm run local-intent:contract && npm run ai-search:contract && npm run performance:budget && npm run route-performance:budget && npm run css:ownership"
   },
   "engines": {
     "node": ">=20.9.0"
