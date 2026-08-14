@@ -11,6 +11,7 @@ const read = (path) => {
 };
 
 const layout = read("app/layout.tsx");
+const labLayout = read("app/lab/layout.tsx");
 const v14Hero = read("components/v14-hero.tsx");
 const v14Shell = read("public/v14-shell.css");
 const liquidSurface = read("components/v14-liquid-surface.tsx");
@@ -22,9 +23,11 @@ for (const retiredImport of [
   './premium-art-direction-v9.css',
   './premium-calibration-v9-2.css',
   './responsive-performance-v10.css',
+  './interactive-v7.css',
 ]) {
-  if (layout.includes(retiredImport)) fail(`retired root stylesheet remounted: ${retiredImport}`);
+  if (layout.includes(retiredImport)) fail(`retired/root-inappropriate stylesheet remounted: ${retiredImport}`);
 }
+if (!labLayout.includes('import "../interactive-v7.css"')) fail("Lab-only interactive stylesheet ownership missing");
 if (layout.includes("WaterSurface") || layout.includes("water-surface")) fail("global Water runtime remounted");
 
 for (const required of [
@@ -99,5 +102,5 @@ if (packageJson.includes('"three"') || packageJson.includes("@react-three") || p
 }
 
 console.log(
-  "RESPONSIVE_PERFORMANCE_V14_PASS root=DESTACKED v14-mobile=PASS touch=44px safe-area=PASS overflow=SAFE landscape=PASS coarse-pointer=PASS reduced-motion=PASS liquid=SCENE_BOUNDED offscreen-stop=PASS design=V14_ACTIVE",
+  "RESPONSIVE_PERFORMANCE_V14_PASS root=DESTACKED lab-css=ROUTE_SCOPED v14-mobile=PASS touch=44px safe-area=PASS overflow=SAFE landscape=PASS coarse-pointer=PASS reduced-motion=PASS liquid=SCENE_BOUNDED offscreen-stop=PASS design=V14_ACTIVE",
 );
