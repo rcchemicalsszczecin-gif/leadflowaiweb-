@@ -17,6 +17,7 @@ export function V14Hero() {
       <link rel="stylesheet" href="/v14-content.css" precedence="high" />
       <link rel="stylesheet" href="/v14-scenes.css" precedence="high" />
       <link rel="stylesheet" href="/v14-liquid-surface.css" precedence="high" />
+      <link rel="stylesheet" href="/v14-signature-boost.css" precedence="high" />
       <a className="v14-skip-link" href="#main-content">Przejdź do treści</a>
       <header className="v14-header">
         <div className="v14-shell v14-header-inner">
