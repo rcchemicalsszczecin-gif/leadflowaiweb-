@@ -12,7 +12,7 @@ const page = {
 
 export const metadata = {
   ...getExpandedServiceMetadata("bezpieczenstwo-stron"),
-  title: page.title,
+  title: "Bezpieczeństwo stron i aplikacji — ochrona danych i wdrożeń",
   description: page.lead,
 };
 
