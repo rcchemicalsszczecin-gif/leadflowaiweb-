@@ -106,7 +106,8 @@ if (JSON.stringify(runtimeDependencies) !== JSON.stringify(approvedRuntimeDepend
 }
 
 const jsonLd = readFileSync("components/json-ld.tsx", "utf8");
-if (!jsonLd.includes('JSON.stringify(data).replace(/</g, "\\u003c")')) {
+const safeJsonLdSerialization = /JSON\.stringify\(data\)\.replace\(\/<\/g,\s*["']\\\\u003c["']\)/;
+if (!safeJsonLdSerialization.test(jsonLd)) {
   fail("JSON-LD serialization lost less-than escaping");
 }
 
