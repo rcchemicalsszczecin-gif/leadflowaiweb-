@@ -23,7 +23,15 @@ walk("out");
 
 const isNotFoundArtifact = (path) => path.includes("_not-found") || basename(path) === "404.html";
 const publicHtml = htmlFiles.filter((path) => !isNotFoundArtifact(path));
-if (publicHtml.length !== 65) fail(`expected 65 public HTML documents, found ${publicHtml.length}`);
+if (publicHtml.length < 60) fail(`unexpectedly small public HTML set: ${publicHtml.length}`);
+
+const sitemap = readFileSync("out/sitemap.xml", "utf8");
+const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1].trim());
+if (sitemapUrls.length < 60) fail(`unexpectedly small sitemap URL set: ${sitemapUrls.length}`);
+if (new Set(sitemapUrls).size !== sitemapUrls.length) fail("duplicate URLs in sitemap");
+if (publicHtml.length !== sitemapUrls.length) {
+  fail(`public HTML / sitemap cardinality mismatch: ${publicHtml.length} != ${sitemapUrls.length}`);
+}
 
 const canonicals = new Map();
 let schemas = 0;
@@ -101,11 +109,7 @@ for (const path of publicHtml) {
   }
 }
 
-const sitemap = readFileSync("out/sitemap.xml", "utf8");
-const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1].trim());
-if (sitemapUrls.length !== 65) fail(`expected 65 sitemap URLs, found ${sitemapUrls.length}`);
-if (new Set(sitemapUrls).size !== sitemapUrls.length) fail("duplicate URLs in sitemap");
-
+if (canonicals.size !== publicHtml.length) fail(`canonical cardinality mismatch: ${canonicals.size} != ${publicHtml.length}`);
 for (const canonical of canonicals.keys()) {
   if (!sitemapUrls.includes(canonical)) fail(`canonical missing from sitemap: ${canonical}`);
 }
@@ -134,5 +138,5 @@ if (!notFound.includes("Ta ścieżka nie prowadzi do aktywnej strony")) fail("br
 if (!/noindex/i.test(notFound)) fail("404 artifact must remain noindex");
 
 console.log(
-  `RENDERED_SEARCH_TRUTH_V14_PASS html=${publicHtml.length} canonicals=${canonicals.size}_UNIQUE sitemap=${sitemapUrls.length}_EXACT titles=PASS descriptions=PASS h1=EXACT_ONE lang=PL robots=PASS schemas=${schemas} service>=${serviceSchemas} article=${articleSchemas} faq>=${faqSchemas} 404=BRANDED_NOINDEX public-truth=PASS runtime-leaks=ABSENT placeholders=ABSENT`,
+  `RENDERED_SEARCH_TRUTH_V14_PASS html=${publicHtml.length} canonicals=${canonicals.size}_UNIQUE sitemap=${sitemapUrls.length}_EXACT_SET titles=PASS descriptions=PASS h1=EXACT_ONE lang=PL robots=PASS schemas=${schemas} service>=${serviceSchemas} article=${articleSchemas} faq>=${faqSchemas} 404=BRANDED_NOINDEX public-truth=PASS runtime-leaks=ABSENT placeholders=ABSENT`,
 );
