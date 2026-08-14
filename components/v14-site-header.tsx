@@ -16,6 +16,7 @@ export function V14SiteHeader({ mode = "static", includeStyles = true }: V14Site
     <>
       {includeStyles ? (
         <>
+          <link rel="stylesheet" href="/v14-legacy-routes.css" precedence="high" />
           <link rel="stylesheet" href="/v14.css" precedence="high" />
           <link rel="stylesheet" href="/v14-shell.css" precedence="high" />
           <link rel="stylesheet" href="/v14-content.css" precedence="high" />
