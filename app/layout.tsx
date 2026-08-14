@@ -14,8 +14,6 @@ import "./hardware-board-v4.css";
 import "./realistic-board-v5.css";
 import "./content-frames-v6.css";
 import "./interactive-v7.css";
-import "./premium-composition-v8.css";
-import "./premium-composition-v8-themes.css";
 import "./premium-art-direction-v9.css";
 import "./premium-art-direction-v9-polish.css";
 import "./premium-calibration-v9-2.css";
