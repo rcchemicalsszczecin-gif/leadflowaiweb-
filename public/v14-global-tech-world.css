@@ -1,10 +1,10 @@
 /* Global submerged-compute art direction for LeadFlowAI. */
-html,
-body {
-  background: #02070a !important;
+html:has(.v14-global-tech-liquid),
+body:has(.v14-global-tech-liquid) {
+  background: #02070a;
 }
 
-body {
+body:has(.v14-global-tech-liquid) {
   color: #edf3ef;
 }
 
@@ -73,52 +73,71 @@ body {
   background-size: 42px 42px, 42px 42px, auto, auto, auto;
 }
 
-/* Public content is a translucent stack above the single global liquid field. */
-.v14-page,
-.service-page,
-main[id="main-content"] {
-  position: relative;
-  z-index: 1;
-  background: transparent !important;
+/* Owner-provided brand mark, vectorized without the screenshot background. */
+body:has(.v14-global-tech-liquid) .v14-brand .v14-brand-mark-logo {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  overflow: visible;
 }
 
-/* Accepted hero stays visually intact. */
-.v14-hero,
-.v14-hero-signature {
+body:has(.v14-global-tech-liquid) .v14-brand .v14-brand-mark-logo svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 14px rgba(184, 255, 56, 0.08));
+}
+
+/* Public content is a translucent stack above the single global liquid field. */
+body:has(.v14-global-tech-liquid) main#main-content,
+body:has(.v14-global-tech-liquid) main.v14-page,
+body:has(.v14-global-tech-liquid) main.service-page {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+}
+
+/* Accepted first screen stays visually intact. */
+body:has(.v14-global-tech-liquid) main.v14-page .v14-hero,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-hero-signature {
   isolation: isolate;
 }
 
-/* Homepage: no paper sections. */
-.v14-services,
-.v14-device-theater,
-.v14-liquid,
-.v14-st,
-.v14-pc,
-.v14-foundation,
-.v14-knowledge,
-.v14-brief,
-.v14-closing {
+/* Homepage: one dark submerged world, no paper sections. */
+body:has(.v14-global-tech-liquid) main.v14-page .v14-services,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-device-theater,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-liquid,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-st,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-pc,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-foundation,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-knowledge,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-brief,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-closing {
   position: relative;
-  background: linear-gradient(180deg, rgba(3, 9, 12, 0.68), rgba(3, 10, 14, 0.78)) !important;
-  color: #eef3ef !important;
+  background: linear-gradient(180deg, rgba(3, 9, 12, 0.68), rgba(3, 10, 14, 0.78));
+  color: #eef3ef;
 }
 
-.v14-device-theater,
-.v14-liquid,
-.v14-pc,
-.v14-brief,
-.v14-closing {
-  background: linear-gradient(180deg, rgba(2, 7, 10, 0.48), rgba(2, 8, 11, 0.68)) !important;
+body:has(.v14-global-tech-liquid) main.v14-page .v14-device-theater,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-liquid,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-pc,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-brief,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-closing {
+  background: linear-gradient(180deg, rgba(2, 7, 10, 0.48), rgba(2, 8, 11, 0.68));
 }
 
-.v14-services::before,
-.v14-device-theater::before,
-.v14-liquid::before,
-.v14-st::before,
-.v14-pc::before,
-.v14-foundation::before,
-.v14-knowledge::before,
-.v14-brief::before {
+body:has(.v14-global-tech-liquid) main.v14-page .v14-services::before,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-device-theater::before,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-liquid::before,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-st::before,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-pc::before,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-foundation::before,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-knowledge::before,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-brief::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -131,114 +150,113 @@ main[id="main-content"] {
   opacity: 0.70;
 }
 
-.v14-services > *,
-.v14-device-theater > *,
-.v14-liquid > *,
-.v14-st > *,
-.v14-pc > *,
-.v14-foundation > *,
-.v14-knowledge > *,
-.v14-brief > * {
+body:has(.v14-global-tech-liquid) main.v14-page .v14-services > *,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-device-theater > *,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-liquid > *,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-st > *,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-pc > *,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-foundation > *,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-knowledge > *,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-brief > * {
   position: relative;
   z-index: 1;
 }
 
-.v14-service-card,
-.v14-foundation-grid a,
-.v14-knowledge-grid article {
-  border-color: rgba(132, 183, 169, 0.20) !important;
-  background:
-    linear-gradient(145deg, rgba(13, 25, 29, 0.86), rgba(5, 14, 18, 0.70)) !important;
-  color: #f0f4f0 !important;
+body:has(.v14-global-tech-liquid) main.v14-page .v14-service-card,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-foundation-grid a,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-knowledge-grid article {
+  border-color: rgba(132, 183, 169, 0.20);
+  background: linear-gradient(145deg, rgba(13, 25, 29, 0.86), rgba(5, 14, 18, 0.70));
+  color: #f0f4f0;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.045),
     0 24px 70px rgba(0, 0, 0, 0.18);
   backdrop-filter: blur(6px);
 }
 
-.v14-service-card:hover,
-.v14-foundation-grid a:hover,
-.v14-knowledge-grid article:hover {
-  border-color: rgba(199, 255, 47, 0.40) !important;
+body:has(.v14-global-tech-liquid) main.v14-page .v14-service-card:hover,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-foundation-grid a:hover,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-knowledge-grid article:hover {
+  border-color: rgba(199, 255, 47, 0.40);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.06),
     0 30px 78px rgba(0, 0, 0, 0.30),
     0 0 34px rgba(59, 172, 188, 0.06);
 }
 
-.v14-section-head > p,
-.v14-section-head > span,
-.v14-service-meta span,
-.v14-service-meta small,
-.v14-page .v14-service-card p,
-.v14-page .v14-service-card em,
-.v14-foundation-grid small,
-.v14-st-k,
-.v14-st-lead,
-.v14-st-points li,
-.v14-knowledge-grid small,
-.v14-knowledge-grid p,
-.v14-faq-kicker,
-.v14-faq-list details p,
-.v14-foundation figcaption {
-  color: #91a39d !important;
+body:has(.v14-global-tech-liquid) main.v14-page .v14-section-head > p,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-section-head > span,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-service-meta span,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-service-meta small,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-service-card p,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-service-card em,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-foundation-grid small,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-st-k,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-st-lead,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-st-points li,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-knowledge-grid small,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-knowledge-grid p,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-faq-kicker,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-faq-list details p,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-foundation figcaption {
+  color: #91a39d;
 }
 
-.v14-service-card h3,
-.v14-foundation h2,
-.v14-foundation-grid strong,
-.v14-st h2,
-.v14-st-points b,
-.v14-st-link,
-.v14-knowledge h2,
-.v14-knowledge-grid h3,
-.v14-knowledge-grid a,
-.v14-faq-layout h2,
-.v14-faq-layout > div:first-child > a,
-.v14-faq-list summary {
-  color: #f0f4f0 !important;
+body:has(.v14-global-tech-liquid) main.v14-page .v14-service-card h3,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-foundation h2,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-foundation-grid strong,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-st h2,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-st-points b,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-st-link,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-knowledge h2,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-knowledge-grid h3,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-knowledge-grid a,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-faq-layout h2,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-faq-layout > div:first-child > a,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-faq-list summary {
+  color: #f0f4f0;
 }
 
-.v14-faq-layout,
-.v14-faq-list,
-.v14-faq-list details {
-  border-color: rgba(132, 183, 169, 0.18) !important;
+body:has(.v14-global-tech-liquid) main.v14-page .v14-faq-layout,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-faq-list,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-faq-list details {
+  border-color: rgba(132, 183, 169, 0.18);
 }
 
-.v14-st-img,
-.v14-foundation figure > img {
+body:has(.v14-global-tech-liquid) main.v14-page .v14-st-img,
+body:has(.v14-global-tech-liquid) main.v14-page .v14-foundation figure > img {
   border: 1px solid rgba(132, 183, 169, 0.18);
   box-shadow: 0 30px 90px rgba(0, 0, 0, 0.26);
 }
 
-/* Every detail/service route becomes dark submerged glass. */
-.section-light,
-.section-dark,
-.v14-service-page .service-answer,
-.v14-service-page .service-outcomes,
-.v14-service-page .service-process,
-.v14-service-page .service-faq,
-.v14-service-page .related-services,
-.v14-service-page .service-deliverables,
-.v14-service-page .service-decision-v13,
-.v14-service-page .contact-section,
-.v14-service-page .service-hero {
+/* Every detail route becomes dark submerged glass. */
+body:has(.v14-global-tech-liquid) main#main-content .section-light,
+body:has(.v14-global-tech-liquid) main#main-content .section-dark,
+body:has(.v14-global-tech-liquid) main.v14-service-page .service-answer,
+body:has(.v14-global-tech-liquid) main.v14-service-page .service-outcomes,
+body:has(.v14-global-tech-liquid) main.v14-service-page .service-process,
+body:has(.v14-global-tech-liquid) main.v14-service-page .service-faq,
+body:has(.v14-global-tech-liquid) main.v14-service-page .related-services,
+body:has(.v14-global-tech-liquid) main.v14-service-page .service-deliverables,
+body:has(.v14-global-tech-liquid) main.v14-service-page .service-decision-v13,
+body:has(.v14-global-tech-liquid) main.v14-service-page .contact-section,
+body:has(.v14-global-tech-liquid) main.v14-service-page .service-hero {
   position: relative;
-  background: linear-gradient(180deg, rgba(3, 9, 12, 0.68), rgba(3, 10, 14, 0.78)) !important;
-  color: #eef3ef !important;
+  background: linear-gradient(180deg, rgba(3, 9, 12, 0.68), rgba(3, 10, 14, 0.78));
+  color: #eef3ef;
 }
 
-.section-dark,
-.v14-service-page .service-deliverables,
-.v14-service-page .service-decision-v13,
-.v14-service-page .contact-section,
-.v14-service-page .service-hero {
-  background: linear-gradient(180deg, rgba(2, 7, 10, 0.50), rgba(2, 8, 11, 0.68)) !important;
+body:has(.v14-global-tech-liquid) main#main-content .section-dark,
+body:has(.v14-global-tech-liquid) main.v14-service-page .service-deliverables,
+body:has(.v14-global-tech-liquid) main.v14-service-page .service-decision-v13,
+body:has(.v14-global-tech-liquid) main.v14-service-page .contact-section,
+body:has(.v14-global-tech-liquid) main.v14-service-page .service-hero {
+  background: linear-gradient(180deg, rgba(2, 7, 10, 0.50), rgba(2, 8, 11, 0.68));
 }
 
-.section-light::before,
-.section-dark::before,
-.v14-service-page .service-hero::after {
+body:has(.v14-global-tech-liquid) main#main-content .section-light::before,
+body:has(.v14-global-tech-liquid) main#main-content .section-dark::before,
+body:has(.v14-global-tech-liquid) main.v14-service-page .service-hero::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -251,69 +269,71 @@ main[id="main-content"] {
   mask-image: linear-gradient(180deg, transparent, black 9%, black 91%, transparent);
 }
 
-.section-light > *,
-.section-dark > *,
-.v14-service-page .service-hero > * {
+body:has(.v14-global-tech-liquid) main#main-content .section-light > *,
+body:has(.v14-global-tech-liquid) main#main-content .section-dark > *,
+body:has(.v14-global-tech-liquid) main.v14-service-page .service-hero > * {
   position: relative;
   z-index: 1;
 }
 
-.v14-service-page .outcome-grid article,
-.v14-service-page .service-faq-grid details,
-.v14-service-page .related-grid a,
-.v14-service-page .service-process li,
-.service-capability-panel {
-  border-color: rgba(132, 183, 169, 0.20) !important;
-  background: linear-gradient(145deg, rgba(13, 25, 29, 0.84), rgba(5, 14, 18, 0.70)) !important;
-  color: #eef3ef !important;
+body:has(.v14-global-tech-liquid) main.v14-service-page .outcome-grid article,
+body:has(.v14-global-tech-liquid) main.v14-service-page .service-faq-grid details,
+body:has(.v14-global-tech-liquid) main.v14-service-page .related-grid a,
+body:has(.v14-global-tech-liquid) main.v14-service-page .service-process li,
+body:has(.v14-global-tech-liquid) main.v14-service-page .service-capability-panel,
+body:has(.v14-global-tech-liquid) main#main-content .knowledge-cards article {
+  border-color: rgba(132, 183, 169, 0.20);
+  background: linear-gradient(145deg, rgba(13, 25, 29, 0.84), rgba(5, 14, 18, 0.70));
+  color: #eef3ef;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035);
   backdrop-filter: blur(6px);
 }
 
-.v14-service-page .outcome-grid article p,
-.v14-service-page .service-faq-grid details p,
-.v14-service-page .service-process li p,
-.v14-service-page .related-grid a span,
-.service-answer p,
-.service-section-head p,
-.service-index,
-.service-lead {
-  color: #94a49f !important;
+body:has(.v14-global-tech-liquid) main.v14-service-page .outcome-grid article p,
+body:has(.v14-global-tech-liquid) main.v14-service-page .service-faq-grid details p,
+body:has(.v14-global-tech-liquid) main.v14-service-page .service-process li p,
+body:has(.v14-global-tech-liquid) main.v14-service-page .related-grid a span,
+body:has(.v14-global-tech-liquid) main.v14-service-page .service-answer p,
+body:has(.v14-global-tech-liquid) main.v14-service-page .service-section-head p,
+body:has(.v14-global-tech-liquid) main.v14-service-page .service-index,
+body:has(.v14-global-tech-liquid) main.v14-service-page .service-lead,
+body:has(.v14-global-tech-liquid) main#main-content .knowledge-cards article > p {
+  color: #94a49f;
 }
 
-.v14-service-page .outcome-grid article h3,
-.v14-service-page .service-process li h3,
-.v14-service-page .related-grid a strong,
-.service-answer h2,
-.service-section-head h2,
-.service-faq-grid summary {
-  color: #eff4f0 !important;
+body:has(.v14-global-tech-liquid) main.v14-service-page .outcome-grid article h3,
+body:has(.v14-global-tech-liquid) main.v14-service-page .service-process li h3,
+body:has(.v14-global-tech-liquid) main.v14-service-page .related-grid a strong,
+body:has(.v14-global-tech-liquid) main.v14-service-page .service-answer h2,
+body:has(.v14-global-tech-liquid) main.v14-service-page .service-section-head h2,
+body:has(.v14-global-tech-liquid) main.v14-service-page .service-faq-grid summary,
+body:has(.v14-global-tech-liquid) main#main-content .knowledge-cards article h3,
+body:has(.v14-global-tech-liquid) main#main-content .knowledge-cards article a {
+  color: #eff4f0;
 }
 
-.v14-service-page .deliverable-list article,
-.v14-service-page .service-process ol,
-.v14-service-page .service-faq-grid details,
-.v14-service-page .service-directory,
-.v14-service-page .related-grid a {
-  border-color: rgba(132, 183, 169, 0.17) !important;
+body:has(.v14-global-tech-liquid) main.v14-service-page .deliverable-list article,
+body:has(.v14-global-tech-liquid) main.v14-service-page .service-process ol,
+body:has(.v14-global-tech-liquid) main.v14-service-page .service-faq-grid details,
+body:has(.v14-global-tech-liquid) main.v14-service-page .service-directory,
+body:has(.v14-global-tech-liquid) main.v14-service-page .related-grid a {
+  border-color: rgba(132, 183, 169, 0.17);
 }
 
-.v14-header-static,
-.v14-route-footer {
-  background: rgba(2, 8, 11, 0.86) !important;
+body:has(.v14-global-tech-liquid) .v14-header-static,
+body:has(.v14-global-tech-liquid) .v14-route-footer {
+  background: rgba(2, 8, 11, 0.86);
   backdrop-filter: blur(18px);
 }
 
-/* Generic paper tokens are no longer allowed to produce white public panels. */
-body:has(main[id="main-content"]) .text-link-dark,
-body:has(main[id="main-content"]) .section-label:not(.section-label-inverted) {
-  color: #a2b0ab !important;
-  border-color: rgba(132, 183, 169, 0.22) !important;
+body:has(.v14-global-tech-liquid) main#main-content .text-link-dark,
+body:has(.v14-global-tech-liquid) main#main-content .section-label:not(.section-label-inverted) {
+  color: #a2b0ab;
+  border-color: rgba(132, 183, 169, 0.22);
 }
 
-/* Content/knowledge pages that use generic article surfaces. */
-body:has(main[id="main-content"]) article,
-body:has(main[id="main-content"]) details {
+body:has(.v14-global-tech-liquid) main#main-content article,
+body:has(.v14-global-tech-liquid) main#main-content details {
   --paper: rgba(9, 19, 22, 0.82);
   --paper-2: rgba(12, 24, 27, 0.86);
 }
@@ -327,17 +347,22 @@ body:has(main[id="main-content"]) details {
     display: none;
   }
 
-  .v14-services,
-  .v14-device-theater,
-  .v14-liquid,
-  .v14-st,
-  .v14-pc,
-  .v14-foundation,
-  .v14-knowledge,
-  .v14-brief,
-  .section-light,
-  .section-dark {
-    background: rgba(3, 10, 13, 0.80) !important;
+  body:has(.v14-global-tech-liquid) main.v14-page .v14-services,
+  body:has(.v14-global-tech-liquid) main.v14-page .v14-device-theater,
+  body:has(.v14-global-tech-liquid) main.v14-page .v14-liquid,
+  body:has(.v14-global-tech-liquid) main.v14-page .v14-st,
+  body:has(.v14-global-tech-liquid) main.v14-page .v14-pc,
+  body:has(.v14-global-tech-liquid) main.v14-page .v14-foundation,
+  body:has(.v14-global-tech-liquid) main.v14-page .v14-knowledge,
+  body:has(.v14-global-tech-liquid) main.v14-page .v14-brief,
+  body:has(.v14-global-tech-liquid) main#main-content .section-light,
+  body:has(.v14-global-tech-liquid) main#main-content .section-dark {
+    background: rgba(3, 10, 13, 0.80);
+  }
+
+  body:has(.v14-global-tech-liquid) .v14-brand .v14-brand-mark-logo {
+    width: 30px;
+    height: 30px;
   }
 }
 
