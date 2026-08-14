@@ -7,6 +7,8 @@ const COMPACT_FRAME_INTERVAL_MS = 1000 / 30;
 const MAX_DPR = 1.25;
 const COMPACT_DPR = 1;
 
+type LiquidVariant = "hero" | "constructor";
+
 const VERTEX_SHADER = `#version 300 es
 in vec2 aPosition;
 void main() {
@@ -20,42 +22,129 @@ uniform vec2 uResolution;
 uniform float uTime;
 uniform vec2 uPointer;
 uniform float uPointerActive;
+uniform float uHero;
 
-float ring(vec2 p, vec2 center, float radius, float width) {
-  float d = abs(length(p - center) - radius);
-  return 1.0 - smoothstep(width, width + 0.008, d);
+float waveHeight(vec2 p, float t, vec2 pointerWorld, float pointerActive) {
+  float h = 0.0;
+  h += sin(p.x * 1.48 + t * 1.15) * 0.085;
+  h += sin(p.y * 1.72 - t * 0.92) * 0.068;
+  h += sin((p.x + p.y) * 2.34 + t * 0.66) * 0.036;
+  h += sin((p.x * 0.72 - p.y * 1.36) * 3.1 - t * 1.28) * 0.021;
+
+  float pointerDistance = length(p - pointerWorld);
+  float pointerRipple = sin(pointerDistance * 13.0 - t * 4.6) * exp(-pointerDistance * 2.85);
+  h += pointerRipple * 0.085 * pointerActive;
+  return h;
+}
+
+vec3 waterNormal(vec2 p, float t, vec2 pointerWorld, float pointerActive) {
+  float e = 0.035;
+  float left = waveHeight(p - vec2(e, 0.0), t, pointerWorld, pointerActive);
+  float right = waveHeight(p + vec2(e, 0.0), t, pointerWorld, pointerActive);
+  float back = waveHeight(p - vec2(0.0, e), t, pointerWorld, pointerActive);
+  float front = waveHeight(p + vec2(0.0, e), t, pointerWorld, pointerActive);
+  return normalize(vec3(left - right, e * 2.0, back - front));
+}
+
+vec3 skyColor(vec3 direction) {
+  float horizon = smoothstep(-0.25, 0.62, direction.y);
+  vec3 low = vec3(0.015, 0.045, 0.065);
+  vec3 high = vec3(0.08, 0.34, 0.48);
+  vec3 sky = mix(low, high, horizon);
+  float cyanBand = exp(-abs(direction.y - 0.16) * 7.5) * 0.28;
+  sky += vec3(0.08, 0.58, 0.78) * cyanBand;
+  return sky;
+}
+
+float gridLine(float value, float scale) {
+  float cell = abs(fract(value * scale) - 0.5);
+  return 1.0 - smoothstep(0.465, 0.5, cell);
 }
 
 void main() {
   vec2 uv = gl_FragCoord.xy / max(uResolution, vec2(1.0));
   uv.y = 1.0 - uv.y;
-  float aspect = uResolution.x / max(uResolution.y, 1.0);
-  vec2 p = uv - vec2(0.5, 0.58);
-  p.x *= aspect;
+  vec2 screen = uv * 2.0 - 1.0;
+  screen.x *= uResolution.x / max(uResolution.y, 1.0);
 
-  float distanceField = length(p);
-  float wave = sin(distanceField * 44.0 - uTime * 2.4) * exp(-distanceField * 4.2);
-  float wave2 = sin((p.x * 2.2 + p.y) * 18.0 + uTime * 1.2) * 0.22;
-  float liquid = smoothstep(0.05, 0.72, abs(wave + wave2) * 0.58);
+  float hero = clamp(uHero, 0.0, 1.0);
+  float pointerInfluence = uPointerActive * (1.0 - smoothstep(0.0, 1.25, length(screen)) * 0.2);
+  vec2 pointerWorld = vec2(
+    (uPointer.x - 0.5) * mix(3.2, 4.6, hero),
+    mix(-3.0, 0.55, uPointer.y)
+  );
 
-  float gridX = 1.0 - smoothstep(0.0, 0.025, abs(fract(uv.x * 14.0) - 0.5));
-  float gridY = 1.0 - smoothstep(0.0, 0.025, abs(fract(uv.y * 10.0) - 0.5));
-  float grid = (gridX + gridY) * 0.08;
+  vec3 camera = mix(vec3(0.0, 1.18, 2.45), vec3(0.18, 1.48, 2.86), hero);
+  vec3 target = mix(vec3(0.0, -0.05, -1.15), vec3(0.36, -0.12, -1.62), hero);
+  target.x += (uPointer.x - 0.5) * 0.12 * pointerInfluence;
+  target.y += (0.5 - uPointer.y) * 0.07 * pointerInfluence;
 
-  vec2 pointer = uv - uPointer;
-  pointer.x *= aspect;
-  float pointerGlow = exp(-length(pointer) * 7.5) * uPointerActive;
+  vec3 forward = normalize(target - camera);
+  vec3 right = normalize(cross(forward, vec3(0.0, 1.0, 0.0)));
+  vec3 up = cross(right, forward);
+  float lens = mix(1.62, 1.48, hero);
+  vec3 ray = normalize(forward * lens + right * screen.x + up * screen.y);
 
-  float pulseA = ring(vec2(p.x, p.y * 0.82), vec2(-0.16, 0.05), 0.23 + 0.025 * sin(uTime), 0.012);
-  float pulseB = ring(vec2(p.x, p.y * 0.82), vec2(0.23, -0.03), 0.31 + 0.02 * cos(uTime * 0.8), 0.01);
+  vec3 background = skyColor(ray);
+  float atmosphere = exp(-length(screen - vec2(0.38 * hero, -0.08)) * 1.35);
+  background += vec3(0.10, 0.55, 0.72) * atmosphere * 0.045;
 
-  vec3 cyan = vec3(0.11, 0.66, 1.0);
-  vec3 green = vec3(0.78, 1.0, 0.18);
-  vec3 color = cyan * (liquid * 0.58 + grid);
-  color += green * (pulseA * 0.36 + pulseB * 0.18 + pointerGlow * 0.2);
-  color += vec3(0.72, 0.9, 1.0) * max(wave, 0.0) * 0.14;
+  if (ray.y > -0.025) {
+    float horizonGlow = exp(-abs(ray.y + 0.01) * 32.0);
+    background += vec3(0.74, 1.0, 0.18) * horizonGlow * 0.045;
+    outColor = vec4(background, mix(0.48, 0.72, hero));
+    return;
+  }
 
-  float alpha = clamp(liquid * 0.38 + grid * 0.45 + pulseA * 0.28 + pulseB * 0.15 + pointerGlow * 0.08, 0.0, 0.58);
+  float travel = max(0.01, camera.y / max(-ray.y, 0.025));
+  vec3 point = camera + ray * travel;
+
+  for (int i = 0; i < 4; i++) {
+    float surfaceHeight = waveHeight(point.xz, uTime, pointerWorld, pointerInfluence);
+    float error = point.y - surfaceHeight;
+    travel -= error / min(ray.y, -0.025);
+    point = camera + ray * travel;
+  }
+
+  vec3 normal = waterNormal(point.xz, uTime, pointerWorld, pointerInfluence);
+  vec3 viewDirection = normalize(-ray);
+  vec3 reflectedDirection = reflect(ray, normal);
+  float fresnel = pow(1.0 - max(dot(normal, viewDirection), 0.0), 3.2);
+
+  vec3 reflected = skyColor(reflectedDirection);
+  float depthFade = 1.0 - exp(-max(travel, 0.0) * 0.18);
+  vec3 deepWater = mix(vec3(0.008, 0.055, 0.075), vec3(0.015, 0.14, 0.17), 1.0 - depthFade);
+  vec3 color = mix(deepWater, reflected, 0.28 + fresnel * 0.58);
+
+  float gridX = gridLine(point.x, 0.58);
+  float gridZ = gridLine(point.z, 0.58);
+  float grid = max(gridX, gridZ);
+  float gridFade = exp(-max(travel - 1.2, 0.0) * 0.16);
+  color += vec3(0.08, 0.46, 0.58) * grid * gridFade * mix(0.09, 0.16, hero);
+
+  vec3 keyLight = normalize(vec3(-0.35, 0.88, 0.28));
+  vec3 rimLight = normalize(vec3(0.65, 0.58, -0.48));
+  float specular = pow(max(dot(reflect(-keyLight, normal), viewDirection), 0.0), 82.0);
+  float rim = pow(max(dot(reflect(-rimLight, normal), viewDirection), 0.0), 42.0);
+  color += vec3(0.88, 1.0, 0.72) * specular * 1.2;
+  color += vec3(0.12, 0.68, 0.9) * rim * 0.46;
+
+  float causticA = sin(point.x * 7.4 + point.z * 5.9 + uTime * 1.7);
+  float causticB = sin(point.x * 5.1 - point.z * 8.2 - uTime * 1.25);
+  float caustic = pow(max(0.0, causticA * causticB), 3.0);
+  color += vec3(0.20, 0.82, 0.88) * caustic * 0.11 * gridFade;
+
+  float pointerDistance = length(point.xz - pointerWorld);
+  float pointerGlow = exp(-pointerDistance * 2.9) * pointerInfluence;
+  color += vec3(0.78, 1.0, 0.18) * pointerGlow * 0.24;
+
+  float crest = smoothstep(0.055, 0.15, waveHeight(point.xz, uTime, pointerWorld, pointerInfluence));
+  color += vec3(0.58, 0.88, 1.0) * crest * 0.07;
+
+  float edgeVignette = 1.0 - smoothstep(0.68, 1.65, length(screen * vec2(0.76, 1.0)));
+  color *= 0.72 + edgeVignette * 0.28;
+
+  float alpha = mix(0.76, 0.94, hero);
   outColor = vec4(color, alpha);
 }`;
 
@@ -96,7 +185,7 @@ function getUniform(gl: WebGL2RenderingContext, program: WebGLProgram, name: str
   return location;
 }
 
-export function V14LiquidSurface() {
+export function V14LiquidSurface({ variant = "constructor" }: { variant?: LiquidVariant }) {
   const rootRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -152,18 +241,18 @@ export function V14LiquidSurface() {
       return;
     }
 
-    const bindProgram = gl.useProgram.bind(gl);
     const position = gl.getAttribLocation(program, "aPosition");
     const resolution = getUniform(gl, program, "uResolution");
     const time = getUniform(gl, program, "uTime");
     const pointer = getUniform(gl, program, "uPointer");
     const pointerActive = getUniform(gl, program, "uPointerActive");
+    const hero = getUniform(gl, program, "uHero");
     const buffer = gl.createBuffer();
     if (!buffer) return;
 
     gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
-    bindProgram(program);
+    gl.useProgram(program);
     gl.enableVertexAttribArray(position);
     gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
     gl.enable(gl.BLEND);
@@ -197,12 +286,13 @@ export function V14LiquidSurface() {
         return;
       }
       lastFrameAt = now;
-      bindProgram(program);
+      gl.useProgram(program);
       gl.clear(gl.COLOR_BUFFER_BIT);
       gl.uniform2f(resolution, canvas.width, canvas.height);
       gl.uniform1f(time, now / 1000);
       gl.uniform2f(pointer, pointerX, pointerY);
       gl.uniform1f(pointerActive, pointerIsActive);
+      gl.uniform1f(hero, variant === "hero" ? 1 : 0);
       gl.drawArrays(gl.TRIANGLES, 0, 3);
       frame = window.requestAnimationFrame(render);
     };
@@ -220,7 +310,11 @@ export function V14LiquidSurface() {
 
     const onPointerMove = (event: PointerEvent) => {
       const bounds = root.getBoundingClientRect();
-      const inside = event.clientX >= bounds.left && event.clientX <= bounds.right && event.clientY >= bounds.top && event.clientY <= bounds.bottom;
+      const inside =
+        event.clientX >= bounds.left &&
+        event.clientX <= bounds.right &&
+        event.clientY >= bounds.top &&
+        event.clientY <= bounds.bottom;
       if (!inside) {
         pointerIsActive = 0;
         return;
@@ -261,10 +355,10 @@ export function V14LiquidSurface() {
       gl.deleteBuffer(buffer);
       gl.deleteProgram(program);
     };
-  }, []);
+  }, [variant]);
 
   return (
-    <div ref={rootRef} className="v14-liquid-surface" aria-hidden="true">
+    <div ref={rootRef} className="v14-liquid-surface" data-variant={variant} aria-hidden="true">
       <div className="v14-liquid-surface-fallback" />
       <canvas ref={canvasRef} className="v14-liquid-surface-canvas" />
       <div className="v14-liquid-surface-glass" />
