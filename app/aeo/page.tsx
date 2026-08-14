@@ -22,15 +22,17 @@ const page = {
 };
 
 const baseMetadata = getSearchMetadata("aeo");
+const metaDescription =
+  "AEO porządkuje odpowiedzi, definicje i FAQ tak, by informacja była czytelna dla ludzi i systemów odpowiedzi. Bez obietnic AI i bez zastępowania SEO.";
 
 export const metadata = withV13SocialMetadata(
   {
     ...baseMetadata,
     title: page.title,
-    description: page.lead,
+    description: metaDescription,
   },
   page.title,
-  page.lead,
+  metaDescription,
 );
 
 export default function AeoPage() {
