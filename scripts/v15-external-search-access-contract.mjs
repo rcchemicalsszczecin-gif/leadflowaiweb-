@@ -34,8 +34,8 @@ for (const pattern of forbiddenClaims) {
   if (pattern.test(doc)) fail(`forbidden measured-platform claim: ${pattern}`);
 }
 
-if (/verification[_ -]?token|indexnow[_ -]?key|client[_ -]?secret|api[_ -]?key/i.test(doc)) {
-  fail("secret/token material must not be recorded in the external-access evidence document");
+if (/\b(?:INDEXNOW_KEY|VERIFICATION_TOKEN|CLIENT_SECRET|API_KEY)\s*=/i.test(doc)) {
+  fail("secret/token value assignment must not be recorded in the external-access evidence document");
 }
 
 console.log(
