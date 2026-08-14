@@ -105,6 +105,10 @@ export function V14LiquidSurface() {
     const canvas = canvasRef.current;
     if (!root || !canvas) return;
 
+    if (window.location.hash === "#liquid") {
+      window.requestAnimationFrame(() => root.closest("#liquid")?.scrollIntoView({ block: "start" }));
+    }
+
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const finePointer = window.matchMedia("(pointer: fine)");
     const compactRender = window.matchMedia("(max-width: 899px), (pointer: coarse)");
