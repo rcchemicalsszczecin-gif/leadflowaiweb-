@@ -10,7 +10,7 @@ const css = `.v14-pc{background:#0a0d10;color:#f5f7f2;padding:108px 0 120px}.v14
 
 export function V14ProcessCanvas() {
   return (
-    <section className="v14-pc" aria-labelledby="v14-process-title">
+    <section id="process" className="v14-pc" aria-labelledby="v14-process-title">
       <style>{css}</style>
       <div className="v14-shell v14-pc-grid">
         <div>
