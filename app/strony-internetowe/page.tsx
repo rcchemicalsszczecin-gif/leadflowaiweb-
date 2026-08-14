@@ -1,5 +1,6 @@
 import { ServicePage } from "@/components/service-page";
 import { getServiceMetadata, getServicePage } from "@/lib/services";
+import { withV13SocialMetadata } from "@/lib/social-metadata-v13";
 
 const basePage = getServicePage("strony-internetowe");
 const page = {
@@ -33,11 +34,15 @@ const page = {
   related: ["local-seo", ...basePage.related],
 };
 
-export const metadata = {
-  ...getServiceMetadata("strony-internetowe"),
-  title: page.title,
-  description: page.lead,
-};
+export const metadata = withV13SocialMetadata(
+  {
+    ...getServiceMetadata("strony-internetowe"),
+    title: page.title,
+    description: page.lead,
+  },
+  page.title,
+  page.lead,
+);
 
 export default function StronyInternetowePage() {
   return <ServicePage page={page} />;
