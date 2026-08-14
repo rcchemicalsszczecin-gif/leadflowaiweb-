@@ -20,7 +20,7 @@ if(!owner.includes("STATUS: COMPLETED OWNER AUTHORITY / PRODUCTION RELEASED")||!
 if(!home.includes("<V14Hero")||!home.includes('className="v14-page"'))fail("V14 homepage shell missing");
 for(const required of ["Wyceń projekt","Zobacz realizacje","pracują jak produkt","WEB PRODUCTS · SEARCH · AI",'variant="hero"',"V14SignatureStage","LIQUID WEBGL","SPATIAL 3D"])if(!hero.includes(required))fail(`buyer-first signature hero signal missing: ${required}`);
 for(const required of ["V14BrowserMockup","V14PhoneMockup","SEARCH LAYER","AI LAYER","DEPTH 240","REAL-TIME SURFACE · SPATIAL PRODUCT","--sig-rx","--sig-ry"])if(!signature.includes(required))fail(`spatial product proof missing: ${required}`);
-for(const required of ["waveHeight","waterNormal","fresnel","reflectedDirection","caustic","pointerRipple","canvas.getContext(\"webgl2\")"])if(!liquidSurface.includes(required))fail(`real-time Liquid shader proof missing: ${required}`);
+for(const required of ["waveHeight","waterNormal","fresnel","reflectedDirection","caustic","pointerRipple","canvas.getContext(\"webgl2\""])if(!liquidSurface.includes(required))fail(`real-time Liquid shader proof missing: ${required}`);
 for(const required of ['[data-variant="hero"]',".v14-signature-stage","perspective: 1900px","translateZ(310px)","transform-style: preserve-3d"])if(!liquidCss.includes(required))fail(`hero Liquid/spatial visual CSS missing: ${required}`);
 if(!visualCss.includes("background:var(--v14-paper)")||!visualCss.includes("v14-foundation"))fail("light/dark V14 rhythm missing");
 for(const required of ["01 / CZŁOWIEK","02 / GOOGLE","03 / SYSTEM AI","VISUAL ENTITY GRAPH","EDUKACYJNY AI SEARCH PREVIEW","nie gwarancja"])if(!searchEducation.includes(required))fail(`search education visual missing: ${required}`);
