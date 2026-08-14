@@ -17,6 +17,7 @@ const v14Hero = read("components/v14-hero.tsx");
 const v14Page = read("app/page.tsx");
 const v14Process = read("components/v14-process-canvas.tsx");
 const v14Shell = read("public/v14-shell.css");
+const briefBuilder = read("components/contact-brief-builder-v13.tsx");
 const knowledgeLinks = read("components/service-knowledge-links.tsx");
 
 if (!layout.includes('import "./v13-accessibility.css"')) fail("shared accessibility stylesheet is not mounted");
@@ -57,4 +58,8 @@ for (const required of [
   if (!v14Shell.includes(required)) fail(`V14 shell accessibility rule missing: ${required}`);
 }
 
-console.log("ACCESSIBILITY_V14_PASS legacy-routes=PASS v14-mobile-nav=PASS skip-link=PASS process-anchor=PASS focus=VISIBLE touch=44px reduced-motion=PASS navigation-labels=PASS");
+if ((briefBuilder.match(/aria-pressed=/g) ?? []).length < 3) {
+  fail("brief builder selected states are not exposed with aria-pressed");
+}
+
+console.log("ACCESSIBILITY_V14_PASS legacy-routes=PASS v14-mobile-nav=PASS skip-link=PASS process-anchor=PASS brief-state=PASS focus=VISIBLE touch=44px reduced-motion=PASS navigation-labels=PASS");
