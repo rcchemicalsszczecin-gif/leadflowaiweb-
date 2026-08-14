@@ -1,0 +1,72 @@
+.v14-liquid-stage {
+  overflow: hidden;
+  border-radius: 28px;
+  isolation: isolate;
+}
+
+.v14-liquid-surface {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 52% 72%, rgba(199, 255, 47, 0.09), transparent 42%),
+    radial-gradient(circle at 44% 38%, rgba(32, 164, 236, 0.1), transparent 46%),
+    #050a0d;
+}
+
+.v14-liquid-surface-fallback,
+.v14-liquid-surface-canvas,
+.v14-liquid-surface-glass {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.v14-liquid-surface-fallback {
+  z-index: 0;
+  background:
+    repeating-linear-gradient(90deg, rgba(97, 184, 221, 0.035) 0 1px, transparent 1px 54px),
+    repeating-linear-gradient(0deg, rgba(97, 184, 221, 0.035) 0 1px, transparent 1px 54px),
+    radial-gradient(ellipse at 50% 72%, rgba(199, 255, 47, 0.08), transparent 54%);
+}
+
+.v14-liquid-surface-canvas {
+  z-index: 1;
+  display: block;
+  pointer-events: none;
+}
+
+.v14-liquid-surface[data-render-fallback] .v14-liquid-surface-canvas {
+  opacity: 0;
+}
+
+.v14-liquid-surface-glass {
+  z-index: 2;
+  background:
+    linear-gradient(115deg, rgba(255, 255, 255, 0.018), transparent 30%, rgba(88, 194, 236, 0.025) 56%, transparent 80%),
+    linear-gradient(180deg, rgba(2, 7, 10, 0.04), rgba(2, 7, 10, 0.18));
+}
+
+.v14-liquid-wave {
+  z-index: 1;
+}
+
+.v14-liquid-layer {
+  z-index: 3;
+}
+
+.v14-liquid-caption {
+  z-index: 4;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v14-liquid-surface {
+    background:
+      radial-gradient(circle at 52% 72%, rgba(199, 255, 47, 0.1), transparent 42%),
+      radial-gradient(circle at 44% 38%, rgba(32, 164, 236, 0.11), transparent 46%),
+      #050a0d;
+  }
+}
