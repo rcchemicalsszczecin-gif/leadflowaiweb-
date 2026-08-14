@@ -1,7 +1,7 @@
 import { existsSync, readFileSync } from "node:fs";
 
 const fail = (message) => {
-  console.error(`RESPONSIVE_PERFORMANCE_V10_FAIL: ${message}`);
+  console.error(`RESPONSIVE_PERFORMANCE_V14_FAIL: ${message}`);
   process.exit(1);
 };
 
@@ -11,43 +11,54 @@ const read = (path) => {
 };
 
 const layout = read("app/layout.tsx");
-const responsiveCss = read("app/responsive-performance-v10.css");
-const runtimeCss = read("app/runtime-performance-v10.css");
-const header = read("components/site-header.tsx");
+const legacyResponsiveCss = read("app/responsive-performance-v10.css");
+const legacyHeader = read("components/site-header.tsx");
+const v14Hero = read("components/v14-hero.tsx");
+const v14Shell = read("public/v14-shell.css");
 const water = read("components/water-surface.tsx");
 const packageJson = read("package.json");
-const v5 = read("app/realistic-board-v5.css");
-const v92 = read("app/premium-calibration-v9-2.css");
 const agents = read("AGENTS.md");
-const qualityRecord = read("docs/quality/RESPONSIVE-PERFORMANCE-V10.md");
+const v14Plan = read("docs/plans/V14-VISUAL-REBUILD.md");
 
-const responsiveImport = layout.indexOf('import "./responsive-performance-v10.css"');
-const runtimeImport = layout.indexOf('import "./runtime-performance-v10.css"');
-if (responsiveImport < 0 || runtimeImport < 0 || runtimeImport < responsiveImport) {
-  fail("V10 responsive/runtime styles are not mounted last in order");
+if (!layout.includes('import "./responsive-performance-v10.css"')) {
+  fail("legacy-route responsive layer missing before V14 full route migration");
 }
 
-if (!header.includes('className="mobile-nav-v10"') || !header.includes('className="mobile-nav-panel-v10"')) {
-  fail("accessible mobile navigation shell missing");
-}
-if (!header.includes('aria-label="Nawigacja mobilna"') || !header.includes('aria-label="Otwórz nawigację"')) {
-  fail("mobile navigation accessible labels missing");
-}
-if (!responsiveCss.includes("min-height: 44px") || !responsiveCss.includes("safe-area-inset-left") || !responsiveCss.includes("safe-area-inset-bottom")) {
-  fail("touch target or safe-area contract missing");
-}
-if (!responsiveCss.includes("overflow-x: clip") || !responsiveCss.includes("orientation: landscape") || !responsiveCss.includes("pointer: coarse")) {
-  fail("overflow/landscape/coarse-pointer responsive safeguards missing");
-}
-if (!responsiveCss.includes(".site-header-v92 .header-cta-v92") || !responsiveCss.includes(".mobile-nav-v10")) {
-  fail("mobile header replacement behavior missing");
+for (const required of [
+  'className="mobile-nav-v10"',
+  'className="mobile-nav-panel-v10"',
+  'aria-label="Nawigacja mobilna"',
+  'aria-label="Otwórz nawigację"',
+]) {
+  if (!legacyHeader.includes(required)) fail(`legacy-route mobile navigation invariant missing: ${required}`);
 }
 
-if (!runtimeCss.includes("w=1600&q=72") || !runtimeCss.includes("w=1000&q=68")) {
-  fail("compact responsive hardware image variants missing");
+if (!legacyResponsiveCss.includes("min-height: 44px") || !legacyResponsiveCss.includes("safe-area-inset-left") || !legacyResponsiveCss.includes("safe-area-inset-bottom")) {
+  fail("legacy-route touch/safe-area safeguards missing");
 }
-if (!runtimeCss.includes("backdrop-filter: none")) {
-  fail("compact header blur optimization missing");
+if (!legacyResponsiveCss.includes("overflow-x: clip") || !legacyResponsiveCss.includes("orientation: landscape") || !legacyResponsiveCss.includes("pointer: coarse")) {
+  fail("legacy-route overflow/landscape/coarse-pointer safeguards missing");
+}
+
+for (const required of [
+  'href="/v14-shell.css"',
+  'className="v14-mobile-nav"',
+  'className="v14-mobile-nav-panel"',
+  'aria-label="Otwórz nawigację mobilną"',
+  'aria-label="Nawigacja mobilna"',
+]) {
+  if (!v14Hero.includes(required)) fail(`V14 responsive shell invariant missing: ${required}`);
+}
+
+for (const required of [
+  "@media (max-width: 980px)",
+  ".v14-mobile-nav",
+  "display: block",
+  "min-height: 44px",
+  "pointer: coarse",
+  "prefers-reduced-motion: reduce",
+]) {
+  if (!v14Shell.includes(required)) fail(`V14 responsive CSS invariant missing: ${required}`);
 }
 
 for (const invariant of [
@@ -67,7 +78,7 @@ for (const invariant of [
 const reducedGuard = water.indexOf("if (reducedMotion.matches)");
 const contextAllocation = water.indexOf('canvas.getContext("webgl2"');
 if (reducedGuard < 0 || contextAllocation < 0 || reducedGuard > contextAllocation) {
-  fail("reduced-motion must bypass WebGL allocation");
+  fail("reduced-motion must bypass WebGL allocation while WaterSurface remains in use");
 }
 if (!water.includes('if (finePointer.matches) window.addEventListener("pointermove"')) {
   fail("pointermove must be fine-pointer only");
@@ -79,19 +90,17 @@ if (!water.includes("compactRender.matches ? 1 : 1.15")) {
   fail("compact/desktop DPR bounds missing");
 }
 
-if (!v5.includes("images.unsplash.com/photo-1741392078190-d263a71291cd")) {
-  fail("approved V5 hardware source changed");
+if (!agents.includes("Current design authority — V14") || !agents.includes("V14 supersedes V9/V9.2 visual freeze")) {
+  fail("current V14 design authority missing");
 }
-if (!v92.includes("premium-page-v92") || !agents.includes("visual design after V9.2")) {
-  fail("V9.2 design freeze authority missing");
+if (!v14Plan.includes("R2 — CSS + RUNTIME DE-STACK") || !v14Plan.includes("route-level budgets")) {
+  fail("current V14 responsive/performance execution plan incomplete");
 }
-if (!qualityRecord.includes("Stage 1 — Responsive / Mobile QA") || !qualityRecord.includes("Stage 2 — Performance / CWV foundation")) {
-  fail("V10 quality record incomplete");
-}
+
 if (packageJson.includes('"three"') || packageJson.includes("@react-three") || packageJson.includes("babylon")) {
-  fail("heavy 3D dependency introduced during QA");
+  fail("heavy decorative 3D dependency introduced");
 }
 
 console.log(
-  "RESPONSIVE_PERFORMANCE_V10_PASS mobile-nav=PASS touch=44px safe-area=PASS overflow=SAFE landscape=PASS coarse-pointer=PASS water-desktop=45FPS water-compact=30FPS compact-ripples=5 hidden-tab=PAUSED reduced-motion=NO_WEBGL image-delivery=RESPONSIVE design=FROZEN",
+  "RESPONSIVE_PERFORMANCE_V14_PASS legacy-mobile=PASS v14-mobile=PASS touch=44px safe-area=PASS overflow=SAFE coarse-pointer=PASS reduced-motion=PASS water-runtime-bounds=PASS design=V14_ACTIVE",
 );
