@@ -17,11 +17,12 @@ const bridgeSources = [
   "app/content-frames-v6.css",
 ];
 
+const zeroDeadRequired = new Set(["app/services.css", "app/content-frames-v6.css"]);
 const runtimeRoots = ["app", "components", "lib", "hooks"].filter((path) => existsSync(path));
 const runtimeExtensions = new Set([".js", ".jsx", ".ts", ".tsx"]);
 
 const extensionOf = (path) => {
-  const match = path.match(/(\.[^.\/]+)$/);
+  const match = path.match(/(\.[^./]+)$/);
   return match ? match[1] : "";
 };
 
@@ -103,9 +104,11 @@ let renderedOverlapTotal = 0;
 let runtimeReferenceTotal = 0;
 let conservativeDeadTotal = 0;
 let globalSourceCount = 0;
+let sourceBytesTotal = 0;
 
 for (const path of bridgeSources) {
   const css = readFileSync(path, "utf8");
+  const bytes = Buffer.byteLength(css);
   const declared = [...extractClasses(css)].sort();
   const rendered = declared.filter((name) => renderedClasses.has(name));
   const runtimeReferenced = declared.filter((name) => runtimeMentionsClass(name));
@@ -114,16 +117,22 @@ for (const path of bridgeSources) {
   );
   const globals = extractGlobalSignals(css);
 
+  if (zeroDeadRequired.has(path) && conservativeDead.length > 0) {
+    fail(`${path} must remain zero-dead after its cleanup gate; found ${conservativeDead.join(",")}`);
+  }
+
   declaredTotal += declared.length;
   renderedOverlapTotal += rendered.length;
   runtimeReferenceTotal += runtimeReferenced.length;
   conservativeDeadTotal += conservativeDead.length;
+  sourceBytesTotal += bytes;
   if (globals.length > 0) globalSourceCount += 1;
 
   console.log(
     [
       "POST_V15_CSS_DESTACK_SOURCE",
       `path=${path}`,
+      `bytes=${bytes}`,
       `declared=${declared.length}`,
       `rendered=${rendered.length}`,
       `runtime-referenced=${runtimeReferenced.length}`,
@@ -141,6 +150,8 @@ console.log(
     `html=${htmlFiles.length}`,
     `runtime-files=${runtimeFiles.length}`,
     `rendered-classes=${renderedClasses.size}`,
+    `source-bytes=${sourceBytesTotal}`,
+    `bridge-bytes=${Buffer.byteLength(generatedBridge)}`,
     `declared=${declaredTotal}`,
     `rendered-overlap=${renderedOverlapTotal}`,
     `runtime-references=${runtimeReferenceTotal}`,
