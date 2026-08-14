@@ -39,7 +39,7 @@ export function getGlobalStructuredData(): Record<string, unknown> {
 }
 
 export function getPageStructuredData(page: ServicePageData): Record<string, unknown> {
-  const url = `${site.url}/${page.slug}`;
+  const url = `${site.url}/${page.slug}/`;
   const serviceId = `${url}#service`;
   const webPageId = `${url}#webpage`;
 
@@ -103,7 +103,7 @@ export function getPageStructuredData(page: ServicePageData): Record<string, unk
 }
 
 export function getArticleStructuredData(article: StructuredKnowledgeArticle): Record<string, unknown> {
-  const url = `${site.url}/wiedza/${article.slug}`;
+  const url = `${site.url}/wiedza/${article.slug}/`;
   const webPageId = `${url}#webpage`;
   const articleId = `${url}#article`;
   const dateModified = article.reviewedAt ?? knowledgeEditorialV13.reviewedAt;
@@ -147,7 +147,7 @@ export function getArticleStructuredData(article: StructuredKnowledgeArticle): R
             "@type": "ListItem",
             position: 2,
             name: "Wiedza",
-            item: `${site.url}/wiedza`,
+            item: `${site.url}/wiedza/`,
           },
           {
             "@type": "ListItem",
