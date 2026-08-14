@@ -72,6 +72,14 @@ jobs:
           test -s route-preview/service-mobile.png
           test -s route-preview/local-seo-desktop.png
           test -s route-preview/local-seo-mobile.png
+          test -s route-preview/aeo-desktop.png
+          test -s route-preview/aeo-mobile.png
+          test -s route-preview/geo-ai-search-desktop.png
+          test -s route-preview/geo-ai-search-mobile.png
+          test -s route-preview/seo-aeo-geo-desktop.png
+          test -s route-preview/seo-aeo-geo-mobile.png
+          test -s route-preview/ai-search-article-desktop.png
+          test -s route-preview/ai-search-article-mobile.png
           test -s route-preview/knowledge-desktop.png
           test -s route-preview/knowledge-mobile.png
           test -s route-preview/contact-desktop.png
@@ -80,4 +88,4 @@ jobs:
           test -s route-preview/lab-mobile.png
           grep -q '"webgl2": true' route-preview/route-webdriver-status.json
           ! grep -q '"fallback": "[^"]\+"' route-preview/route-webdriver-status.json
-          echo "V15_ROUTE_PREVIEW_PASS routes=5 viewports=2 captures=10 global-liquid=WEBGL2"
+          echo "V15_ROUTE_PREVIEW_PASS routes=9 viewports=2 captures=18 global-liquid=WEBGL2"
