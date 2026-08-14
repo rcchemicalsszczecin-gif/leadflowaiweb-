@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import json
-import math
 import shutil
 import subprocess
 import sys
@@ -10,7 +9,7 @@ import urllib.request
 
 SITE = "http://127.0.0.1:3000"
 FIREFOX_MIN_OUTER_WIDTH = 500
-FIREFOX_CHROME_HEIGHT = 86
+FIREFOX_CHROME_HEIGHT = 100
 
 VIEWPORTS = [
     (360, 800),
@@ -76,13 +75,7 @@ def start_driver(browser):
     return process, base
 
 
-def firefox_scale(css_width):
-    if css_width >= FIREFOX_MIN_OUTER_WIDTH:
-        return 1.0
-    return FIREFOX_MIN_OUTER_WIDTH / css_width
-
-
-def create_session(browser, base, css_width=None):
+def create_session(browser, base):
     if browser == "chromium":
         always_match = {
             "browserName": "chrome",
@@ -103,15 +96,10 @@ def create_session(browser, base, css_width=None):
             },
         }
     else:
-        scale = firefox_scale(css_width or FIREFOX_MIN_OUTER_WIDTH)
         always_match = {
             "browserName": "firefox",
-            "moz:firefoxOptions": {
-                "args": ["-headless"],
-                "prefs": {
-                    "layout.css.devPixelsPerPx": f"{scale:.6f}",
-                },
-            },
+            "webSocketUrl": True,
+            "moz:firefoxOptions": {"args": ["-headless"]},
         }
 
     response = http_json(
@@ -125,7 +113,12 @@ def create_session(browser, base, css_width=None):
     session_id = value.get("sessionId") or response.get("sessionId")
     if not session_id:
         raise RuntimeError(f"failed to create {browser} session: {response}")
-    return session_id
+
+    capabilities = value.get("capabilities", {}) if isinstance(value, dict) else {}
+    bidi_url = capabilities.get("webSocketUrl") if browser == "firefox" else None
+    if browser == "firefox" and not bidi_url:
+        raise RuntimeError(f"Firefox session did not expose webSocketUrl: {response}")
+    return session_id, bidi_url
 
 
 def delete_session(base, session_id):
@@ -156,11 +149,35 @@ def wait_ready(base, session_id):
     raise RuntimeError("document did not reach readyState=complete")
 
 
-def set_viewport(browser, base, session_id, width, height):
-    if browser == "firefox" and width < FIREFOX_MIN_OUTER_WIDTH:
-        scale = firefox_scale(width)
-        outer_width = FIREFOX_MIN_OUTER_WIDTH
-        outer_height = math.ceil(height * scale + FIREFOX_CHROME_HEIGHT)
+def set_firefox_bidi_viewport(bidi_url, width, height):
+    try:
+        result = subprocess.run(
+            [
+                "node",
+                "scripts/firefox-bidi-viewport-v14.mjs",
+                bidi_url,
+                str(width),
+                str(height),
+            ],
+            capture_output=True,
+            text=True,
+            check=True,
+            timeout=12,
+        )
+    except subprocess.CalledProcessError as error:
+        detail = (error.stderr or error.stdout or str(error)).strip()
+        raise RuntimeError(f"Firefox BiDi viewport failed for {width}x{height}: {detail}") from error
+    except subprocess.TimeoutExpired as error:
+        raise RuntimeError(f"Firefox BiDi viewport timed out for {width}x{height}") from error
+
+    if "FIREFOX_BIDI_VIEWPORT_PASS" not in result.stdout:
+        raise RuntimeError(f"Firefox BiDi viewport returned no PASS marker: {result.stdout.strip()}")
+
+
+def set_viewport(browser, base, session_id, bidi_url, width, height):
+    if browser == "firefox":
+        outer_width = max(width, FIREFOX_MIN_OUTER_WIDTH)
+        outer_height = max(height + FIREFOX_CHROME_HEIGHT, 600)
     else:
         outer_width = width
         outer_height = height
@@ -171,6 +188,12 @@ def set_viewport(browser, base, session_id, width, height):
         f"/session/{session_id}/window/rect",
         {"x": 0, "y": 0, "width": outer_width, "height": outer_height},
     )
+
+    if browser == "firefox":
+        if not bidi_url:
+            raise RuntimeError("Firefox BiDi URL missing")
+        set_firefox_bidi_viewport(bidi_url, width, height)
+        time.sleep(0.08)
 
 
 def navigate(base, session_id, path):
@@ -213,7 +236,7 @@ def inspect_page(base, session_id, truth):
 def validate(browser, path, width, expected_truth, state):
     if not isinstance(state, dict):
         raise RuntimeError(f"{browser} {path} {width}: invalid state {state}")
-    if abs(float(state.get("innerWidth", 0)) - width) > 24:
+    if abs(float(state.get("innerWidth", 0)) - width) > 2:
         raise RuntimeError(f"{browser} {path} {width}: CSS viewport mismatch {state}")
     if float(state.get("overflow", 999)) > 2:
         raise RuntimeError(f"{browser} {path} {width}: horizontal overflow {state}")
@@ -233,8 +256,8 @@ def validate(browser, path, width, expected_truth, state):
             raise RuntimeError(f"{browser} {path} {width}: desktop navigation hidden {state}")
 
 
-def run_case(browser, base, session_id, path, width, height, truth):
-    set_viewport(browser, base, session_id, width, height)
+def run_case(browser, base, session_id, bidi_url, path, width, height, truth):
+    set_viewport(browser, base, session_id, bidi_url, width, height)
     navigate(base, session_id, path)
     state = inspect_page(base, session_id, truth)
     validate(browser, path, width, truth, state)
@@ -246,42 +269,19 @@ def run_case(browser, base, session_id, path, width, height, truth):
 
 def run_browser(browser):
     process, base = start_driver(browser)
+    session_id = None
     checks = 0
     try:
-        if browser == "chromium":
-            session_id = create_session(browser, base)
-            try:
-                for width, height in VIEWPORTS:
-                    checks += run_case(browser, base, session_id, "/", width, height, "pracują jak produkt")
-                for path, truth in REPRESENTATIVE_ROUTES:
-                    for width, height in ((390, 844), (1440, 1000)):
-                        checks += run_case(browser, base, session_id, path, width, height, truth)
-            finally:
-                delete_session(base, session_id)
-        else:
-            # Firefox headless enforces an outer-window floor near 500 px. For 360/390 CSS px,
-            # use a per-session devPixelsPerPx scale so media queries and layout run at the real target width.
-            grouped_cases = {360: [], 390: [], "standard": []}
-            for width, height in VIEWPORTS:
-                key = width if width < FIREFOX_MIN_OUTER_WIDTH else "standard"
-                grouped_cases[key].append(("/", width, height, "pracują jak produkt"))
-            for path, truth in REPRESENTATIVE_ROUTES:
-                grouped_cases[390].append((path, 390, 844, truth))
-                grouped_cases["standard"].append((path, 1440, 1000, truth))
-
-            for key, cases in grouped_cases.items():
-                if not cases:
-                    continue
-                css_width = key if isinstance(key, int) else FIREFOX_MIN_OUTER_WIDTH
-                session_id = create_session(browser, base, css_width=css_width)
-                try:
-                    for path, width, height, truth in cases:
-                        checks += run_case(browser, base, session_id, path, width, height, truth)
-                finally:
-                    delete_session(base, session_id)
-
+        session_id, bidi_url = create_session(browser, base)
+        for width, height in VIEWPORTS:
+            checks += run_case(browser, base, session_id, bidi_url, "/", width, height, "pracują jak produkt")
+        for path, truth in REPRESENTATIVE_ROUTES:
+            for width, height in ((390, 844), (1440, 1000)):
+                checks += run_case(browser, base, session_id, bidi_url, path, width, height, truth)
         return checks
     finally:
+        if session_id:
+            delete_session(base, session_id)
         process.terminate()
         try:
             process.wait(timeout=5)
@@ -310,7 +310,7 @@ def main():
     if total != expected:
         raise RuntimeError(f"matrix coverage mismatch: {total} != {expected}")
     print(
-        f"BROWSER_MATRIX_V14_PASS browsers=2 cases={total} homepage-viewports=6 representative-routes=4x2 overflow=PASS navigation=PASS landmarks=PASS truth=PASS firefox-mobile=CSS_PIXEL_CALIBRATED"
+        f"BROWSER_MATRIX_V14_PASS browsers=2 cases={total} homepage-viewports=6 representative-routes=4x2 overflow=PASS navigation=PASS landmarks=PASS truth=PASS firefox-mobile=BIDI_TRUE_CSS_VIEWPORT"
     )
 
 
