@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { ContactBriefBuilderV13 } from "@/components/contact-brief-builder-v13";
 import { LeadForm } from "@/components/lead-form";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
+import { V14ContactBrief } from "@/components/v14-contact-brief";
+import { V14SiteFooter } from "@/components/v14-site-footer";
+import { V14SiteHeader } from "@/components/v14-site-header";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -22,10 +22,11 @@ export const metadata: Metadata = {
 
 export default function KontaktPage() {
   return (
-    <main className="contact-page">
+    <main id="main-content" className="contact-page v14-contact-page" tabIndex={-1}>
+      <V14SiteHeader mode="static" />
+
       <section className="contact-hero section-dark blueprint-surface">
         <div className="page-shell">
-          <SiteHeader />
           <div className="contact-hero-grid">
             <div>
               <p className="eyebrow">LEADFLOWAI / KONTAKT</p>
@@ -50,7 +51,7 @@ export default function KontaktPage() {
       <section className="section-light contact-form-section">
         <div className="page-shell section-pad contact-form-grid">
           <aside className="contact-aside">
-            <p className="service-index">00 / BRIEF</p>
+            <p className="service-index">00 / KONTAKT</p>
             <h2>Krótki opis projektu wystarczy, żeby zacząć.</h2>
             <p>
               Kontakt służy wyłącznie do rozpoczęcia rozmowy o projekcie. Nie wysyłaj haseł,
@@ -66,9 +67,7 @@ export default function KontaktPage() {
         </div>
       </section>
 
-      <div className="premium-command-zone-v9" data-v92-reveal="wipe">
-        <ContactBriefBuilderV13 />
-      </div>
+      <V14ContactBrief />
 
       <section className="contact-next section-dark">
         <div className="page-shell contact-next-grid">
@@ -79,10 +78,9 @@ export default function KontaktPage() {
             danych analitycznych, ustalamy to jako osobny bezpieczny etap — nie przez publiczną wiadomość.
           </p>
         </div>
-        <div className="page-shell">
-          <SiteFooter />
-        </div>
       </section>
+
+      <V14SiteFooter />
     </main>
   );
 }
