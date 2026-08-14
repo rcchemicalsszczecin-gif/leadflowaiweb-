@@ -96,10 +96,6 @@
       linear-gradient(180deg, rgba(2, 6, 10, 0.43), rgba(3, 8, 13, 0.61));
   }
 
-  .editorial-intro,
-  .process-section,
-  .proof-section,
-  .faq-section,
   .service-answer,
   .service-outcomes,
   .service-process,
@@ -108,12 +104,10 @@
   .contact-form-section,
   .knowledge-index,
   .portfolio-current,
-  .knowledge-article-body,
-  .stage-section {
+  .knowledge-article-body {
     background: rgba(3, 8, 13, 0.66);
   }
 
-  .stage-section:nth-child(even),
   .service-outcomes,
   .service-faq,
   .knowledge-index,
@@ -133,7 +127,6 @@
 
   .system-flow,
   .service-capability-panel,
-  .quality-item,
   .outcome-grid article,
   .knowledge-cards article,
   .portfolio-scope-grid article,
@@ -161,7 +154,6 @@
       0 24px 80px rgba(0, 0, 0, 0.18);
   }
 
-  .quality-grid,
   .outcome-grid,
   .knowledge-cards {
     background: rgba(130, 206, 236, 0.12);
@@ -195,7 +187,6 @@
     color: var(--circuit-signal);
   }
 
-  .quality-item:hover,
   .outcome-grid article:hover,
   .knowledge-cards article:hover,
   .related-grid a:hover {
@@ -203,19 +194,11 @@
     border-color: rgba(184, 255, 56, 0.24);
   }
 
-  .hero-copy,
   .service-hero-copy,
   .contact-hero-copy,
   .knowledge-hero-copy,
   .portfolio-hero-copy,
   .knowledge-article-head,
-  .stage-heading,
-  .stage-detail,
-  .editorial-grid,
-  .process-head,
-  .quality-head,
-  .proof-grid,
-  .faq-grid,
   .contact-grid {
     text-shadow: 0 2px 24px rgba(0, 0, 0, 0.2);
   }
@@ -236,7 +219,6 @@
   .service-index,
   .panel-label,
   .breadcrumb,
-  .proof-kicker,
   .form-kicker {
     color: rgba(160, 216, 238, 0.52);
   }
@@ -249,22 +231,12 @@
 
   .hero-lead,
   .service-lead,
-  .contact-hero-copy,
-  .editorial-copy,
-  .stage-detail > p,
-  .process-head p,
-  .quality-head p,
-  .proof-copy,
-  .faq-list details p {
+  .contact-hero-copy {
     color: rgba(224, 239, 246, 0.68);
   }
 
   .site-footer,
   .contact-section,
-  .process-list,
-  .process-list li,
-  .faq-list,
-  .faq-list details,
   .deliverable-list,
   .deliverable-list article,
   .service-process ol,
@@ -285,7 +257,6 @@
 
     .system-flow,
     .service-capability-panel,
-    .quality-item,
     .outcome-grid article,
     .knowledge-cards article,
     .lead-form {
@@ -307,7 +278,6 @@
 
     .system-flow,
     .service-capability-panel,
-    .quality-item,
     .outcome-grid article,
     .knowledge-cards article,
     .portfolio-scope-grid article,
