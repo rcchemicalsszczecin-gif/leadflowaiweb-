@@ -15,6 +15,7 @@ on:
       - design/premium-calibration-v9-2
       - qa/responsive-performance-v10
       - content/full-offer-v11
+      - v14/full-visual-rebuild
   pull_request:
     branches:
       - main
@@ -62,6 +63,8 @@ jobs:
           test -f out/.nojekyll
           test -f out/sitemap.xml
           test -f out/robots.txt
+          test -f out/v14.css
+          test -f out/v14-shell.css
           test ! -e out/api/leads
           test ! -e out/api/chat
           test ! -e out/api/health
@@ -111,12 +114,17 @@ jobs:
           grep -q 'LIQUID WEB CONSTRUCTOR' out/index.html
           grep -q 'Z płynnej powierzchni' out/index.html
           grep -q '/v14.css' out/index.html
+          grep -q '/v14-shell.css' out/index.html
+          grep -q 'v14-mobile-nav' out/index.html
+          grep -q 'Przejdź do treści' out/index.html
+          grep -q 'id="main-content"' out/index.html
+          grep -q 'id="process"' out/index.html
           grep -q 'Tervyxa Systems sp. z o.o.' out/o-nas/index.html
           if grep -Rqs 'api.leadflowai.pl/leads' out; then
             echo "Disabled lead endpoint leaked into static artifact"
             exit 1
           fi
-          echo "STATIC_ARTIFACT_PASS html=PASS homepage-v14=PASS services=PASS devices=PASS liquid=PASS full-offer-v13=PASS expanded-services=20 knowledge=20plus sources=PASS accessibility=PASS trust=PASS proof=REAL_ONLY contact-direct-email=PASS lead-api=ABSENT"
+          echo "STATIC_ARTIFACT_PASS html=PASS homepage-v14=PASS v14-shell=PASS mobile-nav=PASS process-anchor=PASS services=PASS devices=PASS liquid=PASS full-offer-v13=PASS expanded-services=20 knowledge=20plus sources=PASS accessibility=PASS trust=PASS proof=REAL_ONLY contact-direct-email=PASS lead-api=ABSENT"
 
       - name: Static route smoke
         shell: bash
@@ -200,4 +208,8 @@ jobs:
           grep -q 'Jedna marka. Trzy urządzenia' /tmp/home.html
           grep -q 'LIQUID WEB CONSTRUCTOR' /tmp/home.html
           grep -q '/v14.css' /tmp/home.html
-          echo "STATIC_ROUTE_SMOKE_PASS routes=44 sitemap=PASS homepage-v14=PASS services=PASS devices=PASS liquid=PASS full-offer-v13=PASS expanded-services=20 knowledge=20plus accessibility=PASS trust=PASS robots=PASS"
+          grep -q '/v14-shell.css' /tmp/home.html
+          grep -q 'v14-mobile-nav' /tmp/home.html
+          grep -q 'id="main-content"' /tmp/home.html
+          grep -q 'id="process"' /tmp/home.html
+          echo "STATIC_ROUTE_SMOKE_PASS routes=44 sitemap=PASS homepage-v14=PASS v14-shell=PASS mobile-nav=PASS process-anchor=PASS services=PASS devices=PASS liquid=PASS full-offer-v13=PASS expanded-services=20 knowledge=20plus accessibility=PASS trust=PASS robots=PASS"
