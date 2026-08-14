@@ -113,29 +113,37 @@ def capture(name: str, width: int, height: int, query: str):
         execute(
             session_id,
             "const section=document.getElementById('liquid');"
-            "if(!section) throw new Error('missing #liquid');"
-            "section.scrollIntoView({block:'start'}); return true;",
+            "const stage=document.querySelector('.v14-liquid-stage');"
+            "if(!section || !stage) throw new Error('missing Liquid QA target');"
+            "stage.scrollIntoView({block:'center', inline:'nearest'}); return true;",
         )
         time.sleep(0.45)
 
         state = execute(
             session_id,
             "const section=document.getElementById('liquid');"
+            "const stage=document.querySelector('.v14-liquid-stage');"
             "const surface=document.querySelector('.v14-liquid-surface');"
             "const canvas=document.querySelector('.v14-liquid-surface-canvas');"
+            "const rect=stage ? stage.getBoundingClientRect() : null;"
+            "const visible=rect ? Math.max(0, Math.min(rect.bottom, window.innerHeight)-Math.max(rect.top,0)) : 0;"
+            "const basis=rect ? Math.max(1, Math.min(rect.height, window.innerHeight)) : 1;"
             "let gl=false; try { gl=Boolean(canvas && canvas.getContext('webgl2')); } catch(e) {}"
             "return {"
-            "top: section ? section.getBoundingClientRect().top : null,"
-            "fallback: surface ? (surface.dataset.renderFallback || '') : 'missing-surface',"
-            "webgl2: gl,"
-            "innerWidth: window.innerWidth, innerHeight: window.innerHeight,"
-            "overflow: document.documentElement.scrollWidth-window.innerWidth"
+            "sectionPresent:Boolean(section), stagePresent:Boolean(stage),"
+            "top:rect?rect.top:null,bottom:rect?rect.bottom:null,height:rect?rect.height:null,"
+            "visible:visible,visibleRatio:visible/basis,"
+            "fallback:surface?(surface.dataset.renderFallback||''):'missing-surface',"
+            "webgl2:gl,innerWidth:window.innerWidth,innerHeight:window.innerHeight,"
+            "overflow:document.documentElement.scrollWidth-window.innerWidth"
             "};",
         )
         if not isinstance(state, dict):
             raise RuntimeError(f"invalid Liquid state: {state}")
-        if state.get("top") is None or abs(float(state["top"])) > 8:
-            raise RuntimeError(f"Liquid anchor did not align: {state}")
+        if not state.get("sectionPresent") or not state.get("stagePresent"):
+            raise RuntimeError(f"Liquid scene target missing: {state}")
+        if float(state.get("visibleRatio", 0)) < 0.55 or float(state.get("visible", 0)) < 420:
+            raise RuntimeError(f"Liquid stage is not sufficiently visible: {state}")
         if state.get("fallback"):
             raise RuntimeError(f"Liquid active render fell back: {state}")
         if not state.get("webgl2"):
@@ -179,7 +187,7 @@ def main():
             json.dumps(evidence, ensure_ascii=False, indent=2) + "\n",
             encoding="utf-8",
         )
-        print("V14_LIQUID_WEBDRIVER_PASS desktop=WEBGL2 mobile=WEBGL2 anchor=PASS overflow=PASS")
+        print("V14_LIQUID_WEBDRIVER_PASS desktop=WEBGL2 mobile=WEBGL2 stage-visible=PASS overflow=PASS")
     finally:
         process.terminate()
         try:
