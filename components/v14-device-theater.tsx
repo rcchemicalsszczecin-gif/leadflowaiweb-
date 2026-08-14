@@ -9,7 +9,7 @@ export function V14DeviceTheater() {
           <span>Responsywność nie oznacza pomniejszonego desktopu. Hierarchia, nawigacja i interakcje zmieniają się razem z kontekstem urządzenia.</span>
           <a href="/realizacje">Zobacz realizacje <b aria-hidden="true">↗</b></a>
         </div>
-        <div className="v14-device-stage" aria-label="Wizualizacja systemowa responsywnego produktu LeadFlowAI">
+        <figure className="v14-device-stage">
           <div className="v14-device-glow" aria-hidden="true" />
           <div className="v14-device-desktop" aria-hidden="true">
             <i className="v14-device-toolbar" /><div className="v14-device-screen"><small>LEADFLOW / DESKTOP</small><strong>WEB PRODUCT</strong><span /><span /><span /></div>
@@ -20,8 +20,8 @@ export function V14DeviceTheater() {
           <div className="v14-device-mobile" aria-hidden="true">
             <i /><div><small>MOBILE</small><strong>AI</strong><span /><span /></div>
           </div>
-          <div className="v14-device-caption"><span>WIZUALIZACJA SYSTEMOWA</span><b>RESPONSIVE / FIRST-PARTY</b></div>
-        </div>
+          <figcaption className="v14-device-caption"><span>WIZUALIZACJA SYSTEMOWA</span><b>RESPONSIVE / FIRST-PARTY</b></figcaption>
+        </figure>
       </div>
     </section>
   );
