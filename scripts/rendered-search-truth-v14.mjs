@@ -29,9 +29,6 @@ const sitemap = readFileSync("out/sitemap.xml", "utf8");
 const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1].trim());
 if (sitemapUrls.length < 60) fail(`unexpectedly small sitemap URL set: ${sitemapUrls.length}`);
 if (new Set(sitemapUrls).size !== sitemapUrls.length) fail("duplicate URLs in sitemap");
-if (publicHtml.length !== sitemapUrls.length) {
-  fail(`public HTML / sitemap cardinality mismatch: ${publicHtml.length} != ${sitemapUrls.length}`);
-}
 
 const canonicals = new Map();
 let schemas = 0;
@@ -110,11 +107,14 @@ for (const path of publicHtml) {
 }
 
 if (canonicals.size !== publicHtml.length) fail(`canonical cardinality mismatch: ${canonicals.size} != ${publicHtml.length}`);
-for (const canonical of canonicals.keys()) {
-  if (!sitemapUrls.includes(canonical)) fail(`canonical missing from sitemap: ${canonical}`);
-}
-for (const url of sitemapUrls) {
-  if (!canonicals.has(url)) fail(`sitemap URL has no public HTML canonical: ${url}`);
+const sitemapSet = new Set(sitemapUrls);
+const canonicalSet = new Set(canonicals.keys());
+const orphanCanonicals = [...canonicalSet].filter((url) => !sitemapSet.has(url));
+const orphanSitemapUrls = [...sitemapSet].filter((url) => !canonicalSet.has(url));
+if (orphanCanonicals.length || orphanSitemapUrls.length) {
+  const canonicalDetails = orphanCanonicals.map((url) => `${url}<=${canonicals.get(url)}`).join(",") || "NONE";
+  const sitemapDetails = orphanSitemapUrls.join(",") || "NONE";
+  fail(`canonical/sitemap set drift canonicals-only=[${canonicalDetails}] sitemap-only=[${sitemapDetails}]`);
 }
 
 const robots = readFileSync("out/robots.txt", "utf8");
