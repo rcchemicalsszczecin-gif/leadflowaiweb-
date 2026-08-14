@@ -2,8 +2,12 @@
 
 STATUS: CURRENT
 DATE: 2026-08-14
+OWNER: Paweł Niewiadomski
 
-## Locked identity / business boundaries
+This file records current product/business/runtime decisions. Historical execution detail remains in dedicated historical/decision/evidence files and must not override `CURRENT-STATE.md`.
+
+## 1. Locked identity / business boundaries
+
 - Legal/invoicing entity: Tervyxa Systems sp. z o.o.
 - Public brand name: LeadFlowAI.
 - Primary domain: leadflowai.pl.
@@ -11,92 +15,124 @@ DATE: 2026-08-14
 - Positioning: professional WWW production first.
 - Core: websites, landing pages, e-commerce, redesign/modernization, custom web development.
 - Interactive premium websites, 3D/WebGL experiences and motion design are explicit parts of the WWW offer.
-- SEO + AEO + GEO / AI Search are part of the WWW offer.
-- AI chatbots are part of the WWW offer.
-- CRO, analytics, integrations and website-connected automation are in scope.
-- Hosting, monitoring and maintenance are in scope.
+- SEO + local SEO + AEO + GEO / AI Search are explicit parts of the WWW offer.
+- AI chatbots are part of the WWW offer as a capability; public LeadFlowAI chatbot activation is separate.
+- CRO, analytics architecture, integrations and website-connected automation are in scope as capabilities.
+- Hosting, monitoring and maintenance are in scope when authorized.
 - Unrelated Tervyxa services remain separate verticals.
 
-## Runtime/public-feature decisions
-- Public chatbot widget on LeadFlowAI itself: DISABLED until explicit Owner configuration/enablement.
+## 2. Runtime/public-feature decisions
+
+- Public chatbot widget on LeadFlowAI itself: DISABLED until explicit Owner enablement/configuration.
 - Dormant chatbot implementation may remain for later local-AI integration, but it must not be rendered publicly before that decision.
 - Online lead/contact form delivery: DISABLED until explicit Owner reactivation.
-- Current contact path: direct e-mail only through kontakt@leadflowai.pl.
+- Current active contact path: direct e-mail through `kontakt@leadflowai.pl`.
 - Do not add Cloudflare Email Sending, Apps Script mail relay, webhook mail delivery or another outgoing-mail stack without explicit Owner decision.
 - Analytics/consent runtime activation requires a separate reviewed Owner-authorized stage.
 
-## Public truth
+ATTACHMENT != ACTIVATION.
+READY != ACTIVE.
+
+## 3. Public truth
+
 - Real evidence only; no fake case studies/testimonials.
 - No fabricated metrics, rankings, certifications, awards, offices, legal identifiers, AI citations or guarantees.
-- Live demonstrations and before/after concepts must be explicitly presented as first-party demos, not as client work.
+- Live demonstrations and before/after concepts must be explicitly presented as first-party demos, not client work.
 - Original research may not be published without a real auditable dataset, methodology, time range, sample criteria and limitations.
+- External Google/Bing/AI-search/field-performance claims require real external evidence.
 
-## Production / Git decisions
-- Production branch is `main`.
-- Current production authority is the V13 Polish Production Rebuild already merged and deployed on `main`.
-- V14 implementation occurs on `v14/full-visual-rebuild`.
-- V14 must not merge to `main` before explicit Owner visual acceptance of real preview/deployment evidence and explicit merge authorization.
-- Work may be executed as complete bounded stages.
-- No force-push/history rewrite.
+## 4. Current production / Git decisions
 
-## Current visual authority — V14 Full Visual Rebuild
-The later V14 Owner decision supersedes V9/V9.2 visual freeze for the approved redesign scope.
+- Production branch: `main`.
+- Current production repository HEAD at the current checkpoint: `67663b08c950de120a94ef8495b5cdc8c9bdecfe`.
+- Current production visual/runtime authority: V14 Global Liquid World.
+- V14 Global Liquid runtime merge milestone: `36ad3fd6130ce21e68a2c5e701a516fcb3703b65`.
+- Latest recorded current-main GitHub Pages deployment in `CURRENT-STATE.md`: run #38 / `31810716199`, exact current-main head `67663b08...`, SUCCESS.
+- V15 Search candidate `5925c553bae0d59ebb7cb10043f46453fb8da8b6`: NOT PRODUCTION.
+- Post-V15 CSS de-stack candidate `5c65435f2de5b2318c1c2585a478c9595f576f76`: NOT PRODUCTION.
+- Governance/Codex control-plane branch: isolated candidate, NOT PRODUCTION.
+- Candidate PASS does not authorize merge/deployment.
+- No force-push/history rewrite without an exact explicit Owner recovery decision.
 
-Current V14 direction:
-- LeadFlowAI must visually prove the level of a premium web/product studio.
-- Homepage and public routes are being migrated away from the V8/V9/V9.2 dashboard/cinematic system as the active design shell.
-- Use clear editorial typography, strong information hierarchy and a controlled grid.
-- Use deliberate light/dark scene rhythm rather than one permanent dark wallpaper.
-- Show real browser/product/device UI, search architecture, entity relationships and system behavior rather than decorative technical widgets without business meaning.
-- Liquid/Water remains the LeadFlowAI signature experience but should be selective and bounded, not an obligatory permanent page background.
-- The motherboard photograph is not protected as a current V14 asset.
-- Global fading/dimming of ordinary sections during scroll is prohibited.
-- Giant decorative headings must not replace information.
-- Motion/3D/WebGL must support narrative, remain performance-aware and preserve complete reduced-motion fallbacks.
-- Mobile must have its own navigation, touch ergonomics, composition and motion strategy.
+## 5. Current human / AI execution decision
+
+The current Owner operating model is:
+
+OWNER
+-> CHATGPT CONTROLLER / GUARDIAN / REVIEWER
+-> CODEX EXECUTOR
+-> CHATGPT STRICT REVIEW
+-> OWNER DECISION / GIT FINALIZATION.
+
+Current rules:
+- Codex prompts are English by default.
+- Codex may read/analyze by default.
+- Codex writes only in an explicitly authorized WRITE stage.
+- Codex does not stage, commit, push, merge or deploy in the normal Owner-controlled workflow.
+- Owner stages exact reviewed paths, authorizes/creates commits, authorizes push, merge and deployment.
+- Every stage ends with evidence and STOP before the next authority transition.
+- No opportunistic scope expansion.
+
+The detailed execution constitution is root `AGENTS.md` plus the current files indexed by `docs/governance/CONTROL-PLANE-INDEX.md`.
+
+## 6. Current visual authority — V14 Global Liquid World
+
+The earlier V14 light/dark selective-Liquid direction has been superseded within the accepted production visual scope by the later Owner-approved Global Liquid continuation.
+
+Current direction:
+- LeadFlowAI must visually demonstrate premium web/product capability.
+- The accepted first-screen hero remains protected as the lead composition.
+- Outside that protected hero viewport, a shared root-mounted first-party WebGL2 submerged-compute world is the site-wide signature substrate.
+- Public surfaces are dark/translucent over the global field rather than white/paper section art direction.
+- Recognizable PCB, CPU/socket/die, GPU, VRAM, traces/vias, capacitors and electronic-rail forms are preferred over meaningless decorative technical widgets.
+- Liquid refraction/caustics/depth are atmospheric and must not carry essential information.
+- Owner-provided LeadFlowAI mark is the active public shell identity mark.
+- Global fading/dimming of ordinary content during scroll is prohibited.
+- Giant decorative headings must not replace useful information.
+- Motion/3D/WebGL must preserve reduced-motion/no-WebGL usability and remain performance-bounded.
+- Mobile requires dedicated navigation, touch ergonomics and composition.
 - No heavyweight third-party 3D dependency solely for decorative effects.
 
-## V13 foundation preserved by V14
-V14 is not authorized to casually discard the production V13 search/content/public-truth system.
+`docs/governance/WEBSITE-OWNER-DECISION-V14.md` remains the completed V14/Global Liquid decision record.
 
-Preserve unless a separately justified change is approved:
-- public URLs;
+## 7. V13 foundation preserved through V14/V15 candidates
+
+Preserve unless a separately justified, evidenced and Owner-approved migration changes it:
+- public URL/canonical baseline;
 - 35 service/money pages;
 - 21 knowledge articles;
-- 63 dominant search intents;
-- Polish public language foundation;
-- metadata/canonical;
-- sitemap/robots;
+- 63 dominant public search intents/canonical set;
+- Polish public-language foundation;
+- metadata/canonical/sitemap/robots architecture;
 - visible direct answers and useful FAQ content;
 - decision guidance;
 - structured-data/public-truth consistency;
-- real-only portfolio;
+- real-only portfolio principle;
 - direct e-mail contact boundary.
 
-## Historical visual records
-- Premium Composition V8, Premium Art Direction V9 and Premium Calibration V9.2 remain recovery/history evidence only for the homepage.
-- V7 remains useful functional evidence for the dedicated `/lab` interactions, but its old V5/V6 visual dependencies are not current authority.
-- V5 motherboard-photo requirements are historical and must not block V14 CSS/runtime cleanup.
-- Historical contracts may remain callable for evidence but active Quality must not require superseded visual assumptions.
+V15 candidate work may improve this system where the accepted V15 evidence explicitly does so, but remains non-production until Owner promotion.
 
-## Current V14 execution authority
-The detailed active execution sequence is `docs/plans/V14-VISUAL-REBUILD.md`.
+## 8. Current candidate order
 
-Required order:
-1. source-of-truth/governance repair;
-2. P0 mobile/navigation/accessibility/anchor repair;
-3. CSS/runtime de-stack;
-4. literal completion of V14.1–V14.7;
-5. V14.8 full route migration;
-6. V14.9 QA;
-7. reliable preview evidence;
-8. Owner visual review;
-9. only after Owner PASS: final release hardening and merge authorization.
+Current bounded execution order is governed by `CURRENT-STATE.md` and the control plane rather than the completed historical V14 build sequence.
 
-## Pending business decisions
-- final wordmark/logo asset;
+Immediate sequence:
+1. establish the Codex control-plane candidate locally from the post-V15 base;
+2. establish a clean Point Zero containing that control plane;
+3. run full Codex read-only repository absorption;
+4. return the complete report to ChatGPT for strict review;
+5. execute only Owner-authorized bounded follow-up stages;
+6. keep production untouched until a separate promotion decision.
+
+## 9. Pending Owner / external decisions
+
+Still separate from automatic implementation:
 - public pricing model;
 - final legal identifiers when confirmed and appropriate for public use;
-- local chatbot runtime/model configuration if/when Owner enables the public chatbot;
-- optional online lead form only if Owner explicitly reopens that stage;
-- production analytics/consent tooling if separately authorized.
+- public chatbot runtime/model configuration if/when enabled;
+- optional online lead form if explicitly reopened;
+- production analytics/consent tooling;
+- repository branch protection / required checks;
+- Dependabot/repository security settings;
+- public/private/licensing/IP policy;
+- external Search Console/Bing evidence connection and interpretation.
