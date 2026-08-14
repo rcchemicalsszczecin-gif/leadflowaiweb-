@@ -28,6 +28,7 @@ const agents = read("AGENTS.md");
 const v14Plan = read("docs/plans/V14-VISUAL-REBUILD.md");
 
 for (const retiredImport of [
+  './services.css',
   './premium-art-direction-v9.css',
   './premium-calibration-v9-2.css',
   './responsive-performance-v10.css',
@@ -45,8 +46,10 @@ for (const retiredImport of [
   if (layout.includes(retiredImport)) fail(`retired/root-inappropriate stylesheet remounted: ${retiredImport}`);
 }
 
-for (const requiredRootImport of ['./globals.css', './services.css']) {
-  if (!layout.includes(requiredRootImport)) fail(`required root stylesheet missing: ${requiredRootImport}`);
+if (!layout.includes('./globals.css')) fail("globals.css missing from root");
+const rootCssImports = [...layout.matchAll(/import\s+["'](\.\/[^"']+\.css)["']/g)].map((match) => match[1]);
+if (rootCssImports.length !== 1 || rootCssImports[0] !== "./globals.css") {
+  fail(`root CSS ownership must be globals-only, found: ${rootCssImports.join(",")}`);
 }
 
 const routeStyles = [
@@ -71,6 +74,7 @@ if (!gitignore.includes("/public/v14-legacy-routes.css")) {
   fail("generated legacy route bridge must stay out of Git history");
 }
 for (const sourcePath of [
+  "app/services.css",
   "app/precision-water.css",
   "app/circuit-water-v3.css",
   "app/hardware-board-v4.css",
@@ -157,5 +161,5 @@ if (packageJson.includes('"three"') || packageJson.includes("@react-three") || p
 }
 
 console.log(
-  "RESPONSIVE_PERFORMANCE_V14_PASS root=V14_CLEAN legacy-v2-v6=ROUTE_BRIDGE route-css=SCOPED lab-css=ROUTE_SCOPED v14-mobile=PASS touch=44px safe-area=PASS overflow=SAFE landscape=PASS coarse-pointer=PASS reduced-motion=PASS liquid=SCENE_BOUNDED offscreen-stop=PASS design=V14_ACTIVE",
+  "RESPONSIVE_PERFORMANCE_V14_PASS root=GLOBALS_ONLY legacy-service-v2-v6=ROUTE_BRIDGE route-css=SCOPED lab-css=ROUTE_SCOPED v14-mobile=PASS touch=44px safe-area=PASS overflow=SAFE landscape=PASS coarse-pointer=PASS reduced-motion=PASS liquid=SCENE_BOUNDED offscreen-stop=PASS design=V14_ACTIVE",
 );
