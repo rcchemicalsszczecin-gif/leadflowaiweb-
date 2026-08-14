@@ -4,10 +4,7 @@ import { V14PhoneMockup } from "@/components/v14-phone-mockup";
 export function V14ProductStage() {
   return (
     <>
-      <link rel="stylesheet" href="/v14-base.css" precedence="high" />
-      <link rel="stylesheet" href="/v14-browser-core.css" precedence="high" />
-      <link rel="stylesheet" href="/v14-browser-content.css" precedence="high" />
-      <link rel="stylesheet" href="/v14-phone.css" precedence="high" />
+      <link rel="stylesheet" href="/v14.css" precedence="high" />
       <div className="v14-product-stage">
         <div className="v14-stage-glow" aria-hidden="true" />
         <V14BrowserMockup />
