@@ -1,5 +1,6 @@
 import { ServicePage } from "@/components/service-page";
 import { getServiceMetadata, getServicePage } from "@/lib/services";
+import { withV13SocialMetadata } from "@/lib/social-metadata-v13";
 
 const page = {
   ...getServicePage("audyt-strony"),
@@ -9,11 +10,15 @@ const page = {
   directAnswer: "Audyt ma odpowiedzieć na trzy pytania: co realnie nie działa, jaki ma to wpływ na użytkownika lub widoczność oraz co warto naprawić najpierw. Dlatego wynik dzielimy na problemy krytyczne, szybkie poprawki i większe decyzje architektoniczne zamiast tworzyć długą listę uwag bez priorytetów.",
 };
 
-export const metadata = {
-  ...getServiceMetadata("audyt-strony"),
-  title: page.title,
-  description: page.lead,
-};
+export const metadata = withV13SocialMetadata(
+  {
+    ...getServiceMetadata("audyt-strony"),
+    title: page.title,
+    description: page.lead,
+  },
+  page.title,
+  page.lead,
+);
 
 export default function AudytStronyPage() {
   return <ServicePage page={page} />;
