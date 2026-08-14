@@ -70,6 +70,8 @@ jobs:
         run: |
           test -s route-preview/service-desktop.png
           test -s route-preview/service-mobile.png
+          test -s route-preview/local-seo-desktop.png
+          test -s route-preview/local-seo-mobile.png
           test -s route-preview/knowledge-desktop.png
           test -s route-preview/knowledge-mobile.png
           test -s route-preview/contact-desktop.png
@@ -78,4 +80,4 @@ jobs:
           test -s route-preview/lab-mobile.png
           grep -q '"webgl2": true' route-preview/route-webdriver-status.json
           ! grep -q '"fallback": "[^"]\+"' route-preview/route-webdriver-status.json
-          echo "V14_ROUTE_PREVIEW_PASS routes=4 viewports=2 captures=8 global-liquid=WEBGL2"
+          echo "V15_ROUTE_PREVIEW_PASS routes=5 viewports=2 captures=10 global-liquid=WEBGL2"
