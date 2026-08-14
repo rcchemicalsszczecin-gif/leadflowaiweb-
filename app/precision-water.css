@@ -354,13 +354,13 @@
   .quality-head p,
   .quality-item p,
   .section-dark .stage-detail > p,
-  .knowledge-truth > .page-shell > p:last-child,
   .knowledge-hero-copy > p:last-child,
   .portfolio-hero-copy > p:last-child,
   .knowledge-article-head > p:last-child,
   .contact-hero-copy,
   .service-lead,
-  .service-answer > .page-shell > p:last-child {
+  .service-answer > .page-shell > p:last-child,
+  .knowledge-truth > .page-shell > p:last-child {
     color: rgba(248, 250, 252, 0.62);
   }
 
@@ -415,8 +415,8 @@
   .outcome-grid article > span,
   .knowledge-cards article > p:first-of-type,
   .portfolio-scope-grid article > span,
-  .form-section-head > span,
-  .contact-direct > span,
+  .contact-form-section .form-section-head > span,
+  .contact-section .contact-direct > span,
   .knowledge-cards article > span {
     color: rgba(248, 250, 252, 0.38);
   }
