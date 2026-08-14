@@ -19,7 +19,7 @@ const contentCss = read("public/v14-content.css");
 const liquidCss = read("public/v14-liquid-surface.css");
 const packageJson = read("package.json");
 
-if (!owner.includes("STATUS: ACTIVE OWNER AUTHORITY")) fail("V14 owner authority missing");
+if (!owner.includes("STATUS: COMPLETED OWNER AUTHORITY / PRODUCTION RELEASED") || !owner.includes("OWNER_MERGE_AUTHORIZATION=GRANTED_AND_EXERCISED")) fail("V14 completed owner authority/release evidence missing");
 if (!plan.includes("V14 UNIFIED VISUAL + REPAIR EXECUTION MASTER PLAN")) fail("current unified V14 execution plan missing");
 if (!home.includes('className="v14-page"') || !home.includes("<V14Hero")) fail("V14 homepage root missing");
 for (const retired of ["premium-page-v9", "premium-page-v92", "PremiumExperienceControllerV92", "PremiumStageJourneyV9", "ManifestSceneV92", "ScrollStoryV9", "WaterSurface"]) {
@@ -80,4 +80,4 @@ if (liquidSurface.includes("realistic-board-photo") || liquidCss.includes("image
 if (visualCss.includes("images.unsplash.com") || shellCss.includes("images.unsplash.com") || contentCss.includes("images.unsplash.com")) fail("V14 visual system depends on stock background");
 if (packageJson.includes('"three"') || packageJson.includes("@react-three") || packageJson.includes("babylon")) fail("heavy third-party 3D dependency introduced");
 
-console.log("DESIGN_V14_CONTRACT_PASS root=CLEAN shell=V14 hero=PRODUCT_STAGE browser=SPATIAL services=6_VARIANTS knowledge=PASS faq=PASS brief=PASS mobile=NAVIGABLE rhythm=LIGHT_DARK css=V14_OWNED reveal=ABSENT stock=ABSENT liquid=SCENE_BOUNDED visibility=BOUNDED heavy-3d=ABSENT");
+console.log("DESIGN_V14_CONTRACT_PASS authority=PRODUCTION_RELEASED root=CLEAN shell=V14 hero=PRODUCT_STAGE browser=SPATIAL services=6_VARIANTS knowledge=PASS faq=PASS brief=PASS mobile=NAVIGABLE rhythm=LIGHT_DARK css=V14_OWNED reveal=ABSENT stock=ABSENT liquid=SCENE_BOUNDED visibility=BOUNDED heavy-3d=ABSENT");
