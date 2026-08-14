@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { PortfolioProjectVisual } from "@/components/portfolio-project-visual";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
+import { V14SiteFooter } from "@/components/v14-site-footer";
+import { V14SiteHeader } from "@/components/v14-site-header";
 import { portfolioCases } from "@/lib/portfolio";
 
 export const metadata: Metadata = {
@@ -13,10 +13,11 @@ export const metadata: Metadata = {
 
 export default function PortfolioPage() {
   return (
-    <main className="portfolio-page">
+    <main id="main-content" className="portfolio-page v14-route-page v14-portfolio-page" tabIndex={-1}>
+      <V14SiteHeader mode="static" />
+
       <section className="portfolio-hero section-dark blueprint-surface">
         <div className="page-shell">
-          <SiteHeader />
           <div className="portfolio-hero-copy">
             <p className="eyebrow">LEADFLOWAI / REALNE PROJEKTY</p>
             <h1>Realne projekty. Jawny zakres. Jawny status.</h1>
@@ -83,8 +84,9 @@ export default function PortfolioPage() {
             <li><span>04</span><div><h3>Dowody</h3><p>Jakie testy, publiczne artefakty albo wyniki można realnie zweryfikować?</p></div></li>
           </ol>
         </div>
-        <div className="page-shell"><SiteFooter /></div>
       </section>
+
+      <V14SiteFooter />
     </main>
   );
 }

@@ -5,6 +5,9 @@
 /.next/
 /out/
 
+# generated V14 route bridge
+/public/v14-legacy-routes.css
+
 # production
 /build
 

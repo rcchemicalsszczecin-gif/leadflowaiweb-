@@ -1,7 +1,7 @@
 import { existsSync, readFileSync } from "node:fs";
 
 const fail = (message) => {
-  console.error(`RESPONSIVE_PERFORMANCE_V10_FAIL: ${message}`);
+  console.error(`RESPONSIVE_PERFORMANCE_V14_FAIL: ${message}`);
   process.exit(1);
 };
 
@@ -11,87 +11,155 @@ const read = (path) => {
 };
 
 const layout = read("app/layout.tsx");
-const responsiveCss = read("app/responsive-performance-v10.css");
-const runtimeCss = read("app/runtime-performance-v10.css");
-const header = read("components/site-header.tsx");
-const water = read("components/water-surface.tsx");
+const labLayout = read("app/lab/layout.tsx");
+const contactLayout = read("app/kontakt/layout.tsx");
+const knowledgeLayout = read("app/wiedza/layout.tsx");
+const portfolioLayout = read("app/realizacje/layout.tsx");
+const aboutLayout = read("app/o-nas/layout.tsx");
+const searchEducationLayout = read("app/seo-aeo-geo/layout.tsx");
+const v14Hero = read("components/v14-hero.tsx");
+const v14SiteHeader = read("components/v14-site-header.tsx");
+const v14Shell = read("public/v14-shell.css");
+const liquidSurface = read("components/v14-liquid-surface.tsx");
+const legacyGenerator = read("scripts/generate-v14-legacy-routes-css.mjs");
 const packageJson = read("package.json");
-const v5 = read("app/realistic-board-v5.css");
-const v92 = read("app/premium-calibration-v9-2.css");
+const gitignore = read(".gitignore");
 const agents = read("AGENTS.md");
-const qualityRecord = read("docs/quality/RESPONSIVE-PERFORMANCE-V10.md");
+const v14Plan = read("docs/plans/V14-VISUAL-REBUILD.md");
 
-const responsiveImport = layout.indexOf('import "./responsive-performance-v10.css"');
-const runtimeImport = layout.indexOf('import "./runtime-performance-v10.css"');
-if (responsiveImport < 0 || runtimeImport < 0 || runtimeImport < responsiveImport) {
-  fail("V10 responsive/runtime styles are not mounted last in order");
-}
-
-if (!header.includes('className="mobile-nav-v10"') || !header.includes('className="mobile-nav-panel-v10"')) {
-  fail("accessible mobile navigation shell missing");
-}
-if (!header.includes('aria-label="Nawigacja mobilna"') || !header.includes('aria-label="Otwórz nawigację"')) {
-  fail("mobile navigation accessible labels missing");
-}
-if (!responsiveCss.includes("min-height: 44px") || !responsiveCss.includes("safe-area-inset-left") || !responsiveCss.includes("safe-area-inset-bottom")) {
-  fail("touch target or safe-area contract missing");
-}
-if (!responsiveCss.includes("overflow-x: clip") || !responsiveCss.includes("orientation: landscape") || !responsiveCss.includes("pointer: coarse")) {
-  fail("overflow/landscape/coarse-pointer responsive safeguards missing");
-}
-if (!responsiveCss.includes(".site-header-v92 .header-cta-v92") || !responsiveCss.includes(".mobile-nav-v10")) {
-  fail("mobile header replacement behavior missing");
+for (const retiredImport of [
+  './services.css',
+  './premium-art-direction-v9.css',
+  './premium-calibration-v9-2.css',
+  './responsive-performance-v10.css',
+  './interactive-v7.css',
+  './contact.css',
+  './knowledge.css',
+  './v13-search-education.css',
+  './v13-visual-authority.css',
+  './precision-water.css',
+  './circuit-water-v3.css',
+  './hardware-board-v4.css',
+  './realistic-board-v5.css',
+  './content-frames-v6.css',
+]) {
+  if (layout.includes(retiredImport)) fail(`retired/root-inappropriate stylesheet remounted: ${retiredImport}`);
 }
 
-if (!runtimeCss.includes("w=1600&q=72") || !runtimeCss.includes("w=1000&q=68")) {
-  fail("compact responsive hardware image variants missing");
+if (!layout.includes('./globals.css')) fail("globals.css missing from root");
+const rootCssImports = [...layout.matchAll(/import\s+["'](\.\/[^"']+\.css)["']/g)].map((match) => match[1]);
+if (rootCssImports.length !== 1 || rootCssImports[0] !== "./globals.css") {
+  fail(`root CSS ownership must be globals-only, found: ${rootCssImports.join(",")}`);
 }
-if (!runtimeCss.includes("backdrop-filter: none")) {
-  fail("compact header blur optimization missing");
+
+const routeStyles = [
+  [labLayout, 'import "../interactive-v7.css"', "Lab interactive"],
+  [contactLayout, 'import "../contact.css"', "contact"],
+  [knowledgeLayout, 'import "../knowledge.css"', "knowledge"],
+  [portfolioLayout, 'import "../knowledge.css"', "portfolio"],
+  [aboutLayout, 'import "../knowledge.css"', "about"],
+  [searchEducationLayout, 'import "../v13-search-education.css"', "search education"],
+];
+for (const [source, token, label] of routeStyles) {
+  if (!source.includes(token)) fail(`${label} route stylesheet ownership missing`);
+}
+
+if (!v14SiteHeader.includes('href="/v14-legacy-routes.css"')) {
+  fail("migrated-route legacy bridge link missing from shared V14 header");
+}
+if (v14Hero.includes("v14-legacy-routes.css")) {
+  fail("homepage must not load the legacy route bridge");
+}
+if (!gitignore.includes("/public/v14-legacy-routes.css")) {
+  fail("generated legacy route bridge must stay out of Git history");
+}
+for (const sourcePath of [
+  "app/services.css",
+  "app/precision-water.css",
+  "app/circuit-water-v3.css",
+  "app/hardware-board-v4.css",
+  "app/realistic-board-v5.css",
+  "app/content-frames-v6.css",
+]) {
+  if (!legacyGenerator.includes(`"${sourcePath}"`)) fail(`legacy bridge source missing: ${sourcePath}`);
+}
+if (!packageJson.includes('"legacy-routes:css"') || !packageJson.includes("npm run legacy-routes:css && next build")) {
+  fail("legacy bridge generation is not wired into the build");
+}
+
+if (layout.includes("WaterSurface") || layout.includes("water-surface")) fail("global Water runtime remounted");
+
+for (const required of [
+  'href="/v14-shell.css"',
+  'className="v14-mobile-nav"',
+  'className="v14-mobile-nav-panel"',
+  'aria-label="Otwórz nawigację mobilną"',
+  'aria-label="Nawigacja mobilna"',
+]) {
+  if (!v14Hero.includes(required)) fail(`V14 responsive shell invariant missing: ${required}`);
+}
+
+for (const required of [
+  "overflow-x: clip",
+  "text-size-adjust: 100%",
+  "max-inline-size: 100%",
+  "safe-area-inset-left",
+  "safe-area-inset-right",
+  "safe-area-inset-top",
+  "@media (max-width: 980px)",
+  ".v14-mobile-nav",
+  "display: block",
+  "min-height: 44px",
+  "orientation: landscape",
+  "100svh",
+  "pointer: coarse",
+  "prefers-reduced-motion: reduce",
+]) {
+  if (!v14Shell.includes(required)) fail(`V14 responsive CSS invariant missing: ${required}`);
 }
 
 for (const invariant of [
-  "const MAX_RIPPLES = 8",
-  "const COMPACT_MAX_RIPPLES = 5",
   "const FRAME_INTERVAL_MS = 1000 / 45",
   "const COMPACT_FRAME_INTERVAL_MS = 1000 / 30",
+  "const MAX_DPR = 1.25",
+  "const COMPACT_DPR = 1",
+  "IntersectionObserver",
+  "ResizeObserver",
   'document.addEventListener("visibilitychange"',
   "document.hidden",
   'window.matchMedia("(pointer: fine)")',
   'window.matchMedia("(max-width: 899px), (pointer: coarse)")',
   'powerPreference: compactRender.matches ? "low-power" : "default"',
 ]) {
-  if (!water.includes(invariant)) fail(`water runtime invariant missing: ${invariant}`);
+  if (!liquidSurface.includes(invariant)) fail(`Liquid runtime invariant missing: ${invariant}`);
 }
 
-const reducedGuard = water.indexOf("if (reducedMotion.matches)");
-const contextAllocation = water.indexOf('canvas.getContext("webgl2"');
+const reducedGuard = liquidSurface.indexOf("if (reducedMotion.matches)");
+const contextAllocation = liquidSurface.indexOf('canvas.getContext("webgl2"');
 if (reducedGuard < 0 || contextAllocation < 0 || reducedGuard > contextAllocation) {
   fail("reduced-motion must bypass WebGL allocation");
 }
-if (!water.includes('if (finePointer.matches) window.addEventListener("pointermove"')) {
-  fail("pointermove must be fine-pointer only");
+if (!liquidSurface.includes('if (finePointer.matches) window.addEventListener("pointermove"')) {
+  fail("Liquid pointer tracking must be fine-pointer only");
 }
-if (water.includes('addEventListener("scroll"')) {
+if (liquidSurface.includes('addEventListener("scroll"')) {
   fail("global scroll event loop introduced");
 }
-if (!water.includes("compactRender.matches ? 1 : 1.15")) {
-  fail("compact/desktop DPR bounds missing");
+if (!liquidSurface.includes("sceneVisible") || !liquidSurface.includes("stopRendering")) {
+  fail("offscreen Liquid render suspension missing");
 }
 
-if (!v5.includes("images.unsplash.com/photo-1741392078190-d263a71291cd")) {
-  fail("approved V5 hardware source changed");
+if (!agents.includes("Current design authority — V14") || !agents.includes("V14 supersedes V9/V9.2 visual freeze")) {
+  fail("current V14 design authority missing");
 }
-if (!v92.includes("premium-page-v92") || !agents.includes("visual design after V9.2")) {
-  fail("V9.2 design freeze authority missing");
+if (!v14Plan.includes("R2 — CSS + RUNTIME DE-STACK") || !v14Plan.includes("route-level budgets")) {
+  fail("current V14 responsive/performance execution plan incomplete");
 }
-if (!qualityRecord.includes("Stage 1 — Responsive / Mobile QA") || !qualityRecord.includes("Stage 2 — Performance / CWV foundation")) {
-  fail("V10 quality record incomplete");
-}
+
 if (packageJson.includes('"three"') || packageJson.includes("@react-three") || packageJson.includes("babylon")) {
-  fail("heavy 3D dependency introduced during QA");
+  fail("heavy decorative 3D dependency introduced");
 }
 
 console.log(
-  "RESPONSIVE_PERFORMANCE_V10_PASS mobile-nav=PASS touch=44px safe-area=PASS overflow=SAFE landscape=PASS coarse-pointer=PASS water-desktop=45FPS water-compact=30FPS compact-ripples=5 hidden-tab=PAUSED reduced-motion=NO_WEBGL image-delivery=RESPONSIVE design=FROZEN",
+  "RESPONSIVE_PERFORMANCE_V14_PASS root=GLOBALS_ONLY legacy-service-v2-v6=ROUTE_BRIDGE route-css=SCOPED lab-css=ROUTE_SCOPED v14-mobile=PASS touch=44px safe-area=PASS overflow=SAFE landscape=PASS coarse-pointer=PASS reduced-motion=PASS liquid=SCENE_BOUNDED offscreen-stop=PASS design=V14_ACTIVE",
 );

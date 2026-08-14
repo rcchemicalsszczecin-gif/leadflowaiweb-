@@ -610,8 +610,8 @@
     align-items: start;
   }
 
-  .process-list span,
-  .process-list strong {
+  .process-list li span,
+  .process-list li strong {
     font: 0.75rem/1.4 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     letter-spacing: 0.08em;
   }
@@ -637,7 +637,7 @@
     border-bottom: 1px solid var(--line-dark);
   }
 
-  .quality-item > span {
+  .quality-grid .quality-item > span {
     color: var(--signal);
     font: 0.65rem/1 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   }

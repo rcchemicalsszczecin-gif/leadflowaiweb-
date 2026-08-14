@@ -9,8 +9,8 @@ import {
   SignalDivider,
   SystemAssembly,
 } from "@/components/interactive-experience";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
+import { V14SiteFooter } from "@/components/v14-site-footer";
+import { V14SiteHeader } from "@/components/v14-site-header";
 
 export const metadata: Metadata = {
   title: "Laboratorium — 3D, WebGL, ruch i interaktywne WWW",
@@ -21,8 +21,9 @@ export const metadata: Metadata = {
 
 export default function LabPage() {
   return (
-    <main className="lab-page">
-      <div className="page-shell"><SiteHeader /></div>
+    <main id="main-content" className="lab-page v14-route-page v14-lab-page" tabIndex={-1}>
+      <V14SiteHeader mode="static" />
+
       <header className="lab-hero">
         <p className="experience-kicker">LEADFLOWAI / LABORATORIUM</p>
         <h1>Nie slajdy. Działające doświadczenia.</h1>
@@ -43,7 +44,7 @@ export default function LabPage() {
       <CapabilityConstellation />
       <ProjectCommandCenter />
 
-      <div className="page-shell"><SiteFooter /></div>
+      <V14SiteFooter />
     </main>
   );
 }

@@ -25,9 +25,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...extraServiceLinks.map((item) => item.slug),
     ...knowledgeArticles.map((article) => `wiedza/${article.slug}`),
   ];
+  const baseUrl = site.url.replace(/\/$/, "");
 
   return routes.map((route) => ({
-    url: route ? `${site.url}/${route}` : site.url,
+    url: route ? `${baseUrl}/${route}/` : `${baseUrl}/`,
     changeFrequency: route === "" ? "weekly" : route === "lab" ? "monthly" : route.startsWith("wiedza/") ? "yearly" : "monthly",
     priority: route === "" ? 1 : route === "uslugi" ? 0.9 : route === "kontakt" ? 0.7 : route === "lab" ? 0.85 : route.startsWith("wiedza/") ? 0.65 : 0.8,
   }));

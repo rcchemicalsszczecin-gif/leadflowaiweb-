@@ -1,0 +1,66 @@
+name: V14 Browser Matrix
+
+on:
+  push:
+    branches:
+      - v14/full-visual-rebuild
+  workflow_dispatch:
+
+concurrency:
+  group: v14-browser-matrix-${{ github.ref_name }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  browser-matrix:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Build static V14
+        run: npm run build
+        env:
+          NEXT_PUBLIC_SITE_URL: https://leadflowai.pl
+          NEXT_PUBLIC_API_BASE_URL: https://api.leadflowai.pl
+
+      - name: Start static preview
+        shell: bash
+        run: |
+          python3 -m http.server 3000 -d out >/tmp/v14-browser-matrix.log 2>&1 &
+          echo $! > /tmp/v14-browser-matrix.pid
+          for attempt in $(seq 1 40); do
+            if curl -fsS http://127.0.0.1:3000/ >/dev/null; then
+              exit 0
+            fi
+            sleep 0.25
+          done
+          cat /tmp/v14-browser-matrix.log
+          exit 1
+
+      - name: Browser toolchain inventory
+        shell: bash
+        run: |
+          set -x
+          command -v google-chrome || command -v chromium || command -v chromium-browser
+          command -v chromedriver
+          command -v firefox
+          command -v geckodriver
+          (google-chrome --version || chromium --version || chromium-browser --version)
+          chromedriver --version
+          firefox --version
+          geckodriver --version
+
+      - name: Run Chromium and Firefox matrix
+        run: python3 scripts/browser-matrix-v14.py

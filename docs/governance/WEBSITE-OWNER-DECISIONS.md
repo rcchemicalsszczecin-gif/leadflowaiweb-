@@ -1,9 +1,9 @@
 # LEADFLOWAI — OWNER DECISIONS
 
 STATUS: CURRENT
-DATE: 2026-08-13
+DATE: 2026-08-14
 
-LOCKED:
+## Locked identity / business boundaries
 - Legal/invoicing entity: Tervyxa Systems sp. z o.o.
 - Public brand name: LeadFlowAI.
 - Primary domain: leadflowai.pl.
@@ -13,64 +13,90 @@ LOCKED:
 - Interactive premium websites, 3D/WebGL experiences and motion design are explicit parts of the WWW offer.
 - SEO + AEO + GEO / AI Search are part of the WWW offer.
 - AI chatbots are part of the WWW offer.
-- Public chatbot widget on LeadFlowAI itself: DISABLED until explicit Owner configuration/enablement.
-- Dormant chatbot implementation may remain in the repository for later local-AI integration, but it must not be rendered publicly before that decision.
-- Online lead/contact form delivery: DISABLED until explicit Owner reactivation.
-- Current contact path: direct e-mail only through kontakt@leadflowai.pl.
-- Do not add Cloudflare Email Sending, Apps Script mail relay, webhook mail delivery or another outgoing-mail stack without explicit Owner decision.
 - CRO, analytics, integrations and website-connected automation are in scope.
 - Hosting, monitoring and maintenance are in scope.
 - Unrelated Tervyxa services remain separate verticals.
+
+## Runtime/public-feature decisions
+- Public chatbot widget on LeadFlowAI itself: DISABLED until explicit Owner configuration/enablement.
+- Dormant chatbot implementation may remain for later local-AI integration, but it must not be rendered publicly before that decision.
+- Online lead/contact form delivery: DISABLED until explicit Owner reactivation.
+- Current contact path: direct e-mail only through kontakt@leadflowai.pl.
+- Do not add Cloudflare Email Sending, Apps Script mail relay, webhook mail delivery or another outgoing-mail stack without explicit Owner decision.
+- Analytics/consent runtime activation requires a separate reviewed Owner-authorized stage.
+
+## Public truth
 - Real evidence only; no fake case studies/testimonials.
+- No fabricated metrics, rankings, certifications, awards, offices, legal identifiers, AI citations or guarantees.
 - Live demonstrations and before/after concepts must be explicitly presented as first-party demos, not as client work.
+- Original research may not be published without a real auditable dataset, methodology, time range, sample criteria and limitations.
+
+## Production / Git decisions
+- Production branch is `main`.
+- Current production authority is the V13 Polish Production Rebuild already merged and deployed on `main`.
+- V14 implementation occurs on `v14/full-visual-rebuild`.
+- V14 must not merge to `main` before explicit Owner visual acceptance of real preview/deployment evidence and explicit merge authorization.
 - Work may be executed as complete bounded stages.
+- No force-push/history rewrite.
 
-## Current visual authority — Premium Art Direction V9
-- Current approved homepage art direction: `Premium Art Direction V9`, recorded in `docs/design/LEADFLOWAI-PREMIUM-ART-DIRECTION-V9.md`.
-- V9 moves LeadFlowAI away from a dashboard-heavy aesthetic toward a high-end digital experience studio aesthetic.
-- The homepage intentionally uses materially fewer closed frames; not every text/visual group receives a rectangle.
-- V9 hero uses one dominant live composition, fewer status labels, stronger editorial hierarchy and restrained pointer depth.
-- V9 typography uses a dedicated display/body hierarchy; mono is restricted to technical microcopy.
-- Signal green is reserved for active/important states. White, graphite and cyan form the primary visual language.
-- V9 uses three material roles: transparent glass, matte graphite and luminous technical surface.
-- Stages 01–06 remain distinct but are presented as cinematic open compositions rather than dashboard cards.
-- V9 stage visuals are: CREATE digital product/build, DISCOVER search/entity map, CONVERT journey/decision path, INTELLIGENCE AI/context field, CONNECT integration network and CARE monitoring/stability field.
-- V9 may reuse the same cached V5 hardware photograph in low-opacity local crops for art direction; this is not a replacement photographic source.
-- V9 uses slow ambient light and depth before adding more decorative widgets.
-- Stage transitions should visually connect one state to the next rather than ending as isolated boxes.
-- `What We Build` is a full-scale capability scene for WEB, 3D, SEARCH, AI and COMMERCE.
-- The homepage contains one scroll-driven storytelling scene using IntersectionObserver/sticky layout instead of a scroll event loop.
-- Context cursor appears only over intentional `data-cursor` interaction surfaces and is disabled on touch/reduced-motion contexts.
-- Primary actions may use restrained magnetic pointer response.
-- `LeadFlow Liquid Circuit` is the current LeadFlowAI signature first-party experience: water/hardware/data language reacts as one system.
-- First-party proof must use real LeadFlowAI demos only and explicitly identify them as demos.
-- Homepage V7 widget density is intentionally reduced; the dedicated `/lab` route remains the full demonstration laboratory.
-- Process, quality, FAQ and final CTA remain public content but use quieter/open V9 styling rather than repeated technical frames.
-- Mobile removes custom cursor, ambient pointer light and unnecessary depth effects while preserving content and interactions.
-- `prefers-reduced-motion` must disable continuous decorative V9 animation while preserving information and controls.
+## Current visual authority — V14 Full Visual Rebuild
+The later V14 Owner decision supersedes V9/V9.2 visual freeze for the approved redesign scope.
 
-## Preserved authority
-- `Premium Composition V8` remains a recovery checkpoint but is superseded by V9 for homepage composition and art direction.
-- `Interactive Experience V7` remains authoritative for the dedicated `/lab` route and public interactive-service routes.
-- The Project Command Center remains frontend-only and opens direct e-mail contact; it must not reactivate the disabled lead backend.
-- Public interactive offer routes include `/strony-3d-webgl`, `/interaktywne-strony`, `/motion-design` and `/chatboty-ai`.
-- `Content Frames V6` remains fallback frame grammar outside V9 overrides.
-- Oversized decorative stage numbers remain retired.
-- Bulk backdrop-filter remains prohibited; interactive expansion must not regress V5/V6 scroll performance.
-- `Realistic Hardware Water V5` remains authoritative for background realism, water interaction and rendering performance.
-- The successful water interaction remains authoritative: cursor movement creates subtle brush-like disturbance and click/tap creates a stronger multi-wave stone impact.
-- The motherboard background is photographic/realistic, not generated as illustrated procedural hardware.
-- The current photographic source is Brecht Corbeel / Unsplash (`https://unsplash.com/photos/Y2RuzisrEcs`), used under the Unsplash License.
-- WebGL renders a transparent water/highlight layer plus restrained cyan/green energy pulses over the real hardware photograph.
-- The background remains fixed through scrolling instead of moving in shader world-space; foreground text scrolls over a stable scene.
-- Maximum active ripple count is bounded to eight; WebGL DPR is capped; animation is capped near 45 FPS.
-- No new global WebGL context or heavyweight third-party 3D dependency may be added solely for decorative homepage effects.
-- Brand and domain are intentionally aligned: LeadFlowAI on leadflowai.pl.
-- Initial GitHub Pages production launch is complete; further visual releases still require normal branch validation and Owner-controlled promotion to main.
+Current V14 direction:
+- LeadFlowAI must visually prove the level of a premium web/product studio.
+- Homepage and public routes are being migrated away from the V8/V9/V9.2 dashboard/cinematic system as the active design shell.
+- Use clear editorial typography, strong information hierarchy and a controlled grid.
+- Use deliberate light/dark scene rhythm rather than one permanent dark wallpaper.
+- Show real browser/product/device UI, search architecture, entity relationships and system behavior rather than decorative technical widgets without business meaning.
+- Liquid/Water remains the LeadFlowAI signature experience but should be selective and bounded, not an obligatory permanent page background.
+- The motherboard photograph is not protected as a current V14 asset.
+- Global fading/dimming of ordinary sections during scroll is prohibited.
+- Giant decorative headings must not replace information.
+- Motion/3D/WebGL must support narrative, remain performance-aware and preserve complete reduced-motion fallbacks.
+- Mobile must have its own navigation, touch ergonomics, composition and motion strategy.
+- No heavyweight third-party 3D dependency solely for decorative effects.
 
-PENDING:
+## V13 foundation preserved by V14
+V14 is not authorized to casually discard the production V13 search/content/public-truth system.
+
+Preserve unless a separately justified change is approved:
+- public URLs;
+- 35 service/money pages;
+- 21 knowledge articles;
+- 63 dominant search intents;
+- Polish public language foundation;
+- metadata/canonical;
+- sitemap/robots;
+- visible direct answers and useful FAQ content;
+- decision guidance;
+- structured-data/public-truth consistency;
+- real-only portfolio;
+- direct e-mail contact boundary.
+
+## Historical visual records
+- Premium Composition V8, Premium Art Direction V9 and Premium Calibration V9.2 remain recovery/history evidence only for the homepage.
+- V7 remains useful functional evidence for the dedicated `/lab` interactions, but its old V5/V6 visual dependencies are not current authority.
+- V5 motherboard-photo requirements are historical and must not block V14 CSS/runtime cleanup.
+- Historical contracts may remain callable for evidence but active Quality must not require superseded visual assumptions.
+
+## Current V14 execution authority
+The detailed active execution sequence is `docs/plans/V14-VISUAL-REBUILD.md`.
+
+Required order:
+1. source-of-truth/governance repair;
+2. P0 mobile/navigation/accessibility/anchor repair;
+3. CSS/runtime de-stack;
+4. literal completion of V14.1–V14.7;
+5. V14.8 full route migration;
+6. V14.9 QA;
+7. reliable preview evidence;
+8. Owner visual review;
+9. only after Owner PASS: final release hardening and merge authorization.
+
+## Pending business decisions
 - final wordmark/logo asset;
 - public pricing model;
-- final legal identifiers when company registration data is complete;
+- final legal identifiers when confirmed and appropriate for public use;
 - local chatbot runtime/model configuration if/when Owner enables the public chatbot;
-- optional online lead form only if Owner explicitly reopens that stage.
+- optional online lead form only if Owner explicitly reopens that stage;
+- production analytics/consent tooling if separately authorized.

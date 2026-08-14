@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { AudiencePathsV13 } from "@/components/audience-paths-v13";
 import { OfferLevelsV13 } from "@/components/offer-levels-v13";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
+import { V14SiteFooter } from "@/components/v14-site-footer";
+import { V14SiteHeader } from "@/components/v14-site-header";
 import { experienceServiceLinks } from "@/lib/experience-services";
 import { expandedServiceLinks } from "@/lib/expanded-services";
 import { extraServiceLinks } from "@/lib/extra-services";
@@ -35,10 +35,11 @@ export default function UslugiPage() {
   ];
 
   return (
-    <main className="service-page">
+    <main id="main-content" className="service-page v14-route-page v14-services-hub" tabIndex={-1}>
+      <V14SiteHeader mode="static" />
+
       <section className="service-hero section-dark blueprint-surface">
         <div className="page-shell">
-          <SiteHeader />
           <div className="service-hero-grid">
             <div className="service-hero-copy">
               <p className="eyebrow">LEADFLOWAI / PEŁNA OFERTA</p>
@@ -86,8 +87,9 @@ export default function UslugiPage() {
             Nowa strona może zacząć się od architektury i wdrożenia. Istniejący serwis może potrzebować tylko audytu, CRO, wydajności, WCAG, SEO/AEO/GEO, RAG, integracji albo monitoringu. Moduły są projektowane tak, aby mogły później tworzyć większy system bez przepisywania wszystkiego od początku.
           </p>
         </div>
-        <div className="page-shell"><SiteFooter /></div>
       </section>
+
+      <V14SiteFooter />
     </main>
   );
 }

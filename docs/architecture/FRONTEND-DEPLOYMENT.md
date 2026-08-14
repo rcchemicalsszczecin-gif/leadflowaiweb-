@@ -1,67 +1,68 @@
-# LEADFLOWAI — STATIC FRONTEND DEPLOYMENT V1
+# LEADFLOWAI — STATIC FRONTEND DEPLOYMENT
 
-STATUS: IMPLEMENTED FOR VALIDATION
-DATE: 2026-08-12
+STATUS: PRODUCTION ARCHITECTURE
+DATE: 2026-08-14
 
-## Locked architecture
+## Current architecture
 
 Public website frontend:
 - domain: `https://leadflowai.pl`;
 - source: GitHub repository;
+- production branch: `main`;
+- current production V13 revision: `10627e2f18ccfc7ef86c76a695dab9cf7933cce9`;
 - build: Next.js static export (`output: "export"`);
 - artifact: `out/`;
-- hosting target: GitHub Pages;
-- deployment mechanism: GitHub Actions Pages workflow;
-- custom-domain artifact marker: `public/CNAME` -> `leadflowai.pl`;
+- hosting: GitHub Pages;
+- deployment: GitHub Actions Pages workflow;
+- custom-domain marker: `public/CNAME` -> `leadflowai.pl`;
 - Jekyll bypass marker: `public/.nojekyll`.
 
-Dynamic application backend is **not** hosted by GitHub Pages.
+GitHub Pages deployment for the current V13 production merge is PASS.
 
-Public API origin:
+## Dynamic application boundary
+
+GitHub Pages does not host dynamic application backend behavior for this project.
+
+Future public API origin remains:
 - `https://api.leadflowai.pl`;
-- frontend build-time source of truth: `NEXT_PUBLIC_API_BASE_URL`;
-- production default in code: `https://api.leadflowai.pl`.
+- build-time public origin helper: `NEXT_PUBLIC_API_BASE_URL`;
+- deployment/runtime remains separate and is not currently required by the public site because public chatbot and online lead delivery are OFF.
 
-## Why this split exists
+The static frontend must remain usable if any future API/local AI service is unavailable.
 
-GitHub Pages is a static host. Lead submission and chatbot requests require POST/server behavior and therefore belong to the separate local API service exposed later through Cloudflare Tunnel.
-
-The frontend must remain usable if the API or local AI service is unavailable. Contact e-mail fallback is `kontakt@leadflowai.pl`.
+Active public contact fallback/path: `kontakt@leadflowai.pl`.
 
 ## GitHub Pages workflow
 
 `.github/workflows/pages.yml`:
 1. checks out source;
-2. installs Node dependencies;
-3. runs the full repository verification contract;
-4. runs `next build`, producing `out/`;
+2. installs deterministic dependencies with the committed lockfile;
+3. runs the repository verification contract;
+4. builds the static export;
 5. verifies static artifact identity;
-6. uploads `out/` as the GitHub Pages artifact;
-7. deploys only from `main` or explicit workflow dispatch according to GitHub Pages environment controls.
+6. uploads `out/` as the Pages artifact;
+7. deploys production from `main` under GitHub Pages environment controls.
 
-No automatic deployment is triggered by pushes to `build/leadflowai`.
+V14 feature-branch work is not production deployment authority.
 
 ## Static export invariants
 
-- `app/api/**` must not exist in the frontend App Router.
-- server-only Route Handlers must not be required by the frontend build.
-- internal public routes must export to HTML.
-- knowledge dynamic slugs must use `generateStaticParams`.
-- sitemap and robots must be emitted as static files.
-- `out/CNAME` must contain `leadflowai.pl`.
-- `out/.nojekyll` must exist.
-- browser POST targets must resolve to `https://api.leadflowai.pl`.
+- dynamic `app/api/**` handlers must not be required by the frontend build;
+- internal public routes must export to HTML;
+- knowledge dynamic slugs use static generation;
+- sitemap and robots emit static files;
+- `out/CNAME` contains `leadflowai.pl`;
+- `out/.nojekyll` exists;
+- disabled public lead/chat functionality must not be represented as active static API endpoints.
 
 ## Security boundary
 
-Response-header enforcement is no longer implemented in `next.config.ts`, because static GitHub Pages output cannot provide the same Next.js server header behavior. Final HSTS/CSP and the production response-header layer belong to the Cloudflare stage after DNS/TLS is live and tested.
+Response-header enforcement is not owned by static Next.js server configuration because the deployed frontend is served by GitHub Pages/edge infrastructure rather than a persistent Next.js application server.
 
-## Explicit non-goals of this stage
+Final CSP/HSTS/response security policy must be validated and applied at the actual live edge/provider layer in a separately authorized configuration stage.
 
-- no Cloudflare DNS mutation;
-- no Pages custom-domain setting mutation;
-- no production deploy;
-- no local API deployment;
-- no Cloudflare Tunnel setup;
-- no HSTS/CSP activation;
-- no merge to `main`.
+## V14 boundary
+
+V14 changes presentation, route templates and CSS/runtime ownership while preserving this static deployment architecture unless the Owner explicitly authorizes a separate infrastructure change.
+
+V14 production promotion requires reliable preview evidence, final Quality on the exact release SHA, explicit Owner visual PASS and explicit Owner merge authorization.

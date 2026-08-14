@@ -1,7 +1,7 @@
 import { JsonLd } from "@/components/json-ld";
 import { ServiceKnowledgeLinks } from "@/components/service-knowledge-links";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
+import { V14SiteFooter } from "@/components/v14-site-footer";
+import { V14SiteHeader } from "@/components/v14-site-header";
 import { getPublicPage, primaryPublicLinks } from "@/lib/page-registry";
 import { publicCode } from "@/lib/public-language-v13";
 import { toPublicServicePage } from "@/lib/public-service-page";
@@ -30,13 +30,17 @@ export function ServicePage({ page }: ServicePageProps) {
   const template = templateFlow[decision.group];
 
   return (
-    <main className={`service-page service-template-${template.key}`} data-service-template={decision.group}>
+    <main
+      id="main-content"
+      className={`service-page v14-service-page service-template-${template.key}`}
+      data-service-template={decision.group}
+      tabIndex={-1}
+    >
       <JsonLd data={getPageStructuredData(publicPage)} />
+      <V14SiteHeader mode="static" />
 
       <section className="service-hero section-dark blueprint-surface">
         <div className="page-shell">
-          <SiteHeader />
-
           <div className="service-hero-grid">
             <div className="service-hero-copy">
               <nav className="breadcrumb" aria-label="Okruszki">
@@ -48,7 +52,10 @@ export function ServicePage({ page }: ServicePageProps) {
               <h1>{publicPage.title}</h1>
               <p className="service-lead">{publicPage.lead}</p>
               <div className="hero-actions">
-                <a className="button button-primary" href={`mailto:${site.email}?subject=${encodeURIComponent(`Wycena: ${publicPage.title}`)}`}>
+                <a
+                  className="button button-primary"
+                  href={`mailto:${site.email}?subject=${encodeURIComponent(`Wycena: ${publicPage.title}`)}`}
+                >
                   Wyceń projekt <span aria-hidden="true">↗</span>
                 </a>
                 <a className="text-link" href={template.href}>
@@ -113,9 +120,7 @@ export function ServicePage({ page }: ServicePageProps) {
                   <p>{item.description}</p>
                 </div>
                 <ul className="tag-list" aria-label={`Elementy: ${item.title}`}>
-                  {item.tags.map((tag) => (
-                    <li key={tag}>{tag}</li>
-                  ))}
+                  {item.tags.map((tag) => <li key={tag}>{tag}</li>)}
                 </ul>
               </article>
             ))}
@@ -241,10 +246,9 @@ export function ServicePage({ page }: ServicePageProps) {
             <p>WWW · SEO · AEO · GEO · CRO · Chatboty · Integracje</p>
           </div>
         </div>
-        <div className="page-shell">
-          <SiteFooter />
-        </div>
       </section>
+
+      <V14SiteFooter />
     </main>
   );
 }

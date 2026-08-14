@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
+import { V14SiteFooter } from "@/components/v14-site-footer";
+import { V14SiteHeader } from "@/components/v14-site-header";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -34,10 +34,11 @@ const methodology = [
 
 export default function AboutPage() {
   return (
-    <main className="about-page">
+    <main id="main-content" className="about-page v14-route-page v14-about-page" tabIndex={-1}>
+      <V14SiteHeader mode="static" />
+
       <section className="section-dark blueprint-surface">
         <div className="page-shell">
-          <SiteHeader />
           <div className="portfolio-hero-copy section-pad">
             <p className="eyebrow">LEADFLOWAI / O NAS</p>
             <h1>Budujemy strony internetowe jako system: dla użytkownika, sprzedaży, Google i systemów AI.</h1>
@@ -128,8 +129,9 @@ export default function AboutPage() {
             </a>
           </div>
         </div>
-        <div className="page-shell"><SiteFooter /></div>
       </section>
+
+      <V14SiteFooter />
     </main>
   );
 }

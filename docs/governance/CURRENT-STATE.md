@@ -1,110 +1,176 @@
 # LEADFLOWAI — CURRENT STATE
 
 STATUS: AUTHORITATIVE CURRENT-STATE CHECKPOINT
-DATE: 2026-08-13
+DATE: 2026-08-14
 OWNER: Paweł Niewiadomski
 LEGAL ENTITY: Tervyxa Systems sp. z o.o.
 PUBLIC BRAND: LeadFlowAI
 PRIMARY DOMAIN: leadflowai.pl
 
-## Purpose
+## Production authority
 
-This file is the authoritative current-state checkpoint for release status, active work, current validation and known operational blockers. Historical plans, stage records, validation reports and architecture documents remain evidence, but they do not override this checkpoint when they describe an older state.
+- Production branch: `main`.
+- Production revision: `10627e2f18ccfc7ef86c76a695dab9cf7933cce9` — `Merge V13 Polish Production Rebuild`.
+- GitHub Pages deployment for that production revision: SUCCESS.
+- V14 remains isolated on `v14/full-visual-rebuild` and is not merge-authorized.
 
-## Production baseline
+## Preserved V13 public foundation
 
-- Initial GitHub Pages production launch: COMPLETE.
-- Production/release branch: `main`.
-- Current production `main` commit: `f004d6624b037a138fc4d952d07ed0d0ca794753`.
-- PR #12 (`LeadFlowAI V11/V12 — full offer, knowledge, portfolio + release hardening`) was merged to `main` on 2026-08-13.
-- GitHub Pages workflow run #12 for merge commit `f004d6624b037a138fc4d952d07ed0d0ca794753`: BUILD PASS, DEPLOY PASS.
-- V11 Full Offer, V11 Knowledge, V12 Portfolio and bounded release-hardening changes are now production authority.
+V14 preserves:
+- 35 service/money pages;
+- 21 knowledge articles;
+- 63 dominant public search intents;
+- canonical/sitemap/robots and structured-data architecture;
+- direct answers, FAQ and service decision guidance;
+- reviewed/source-backed knowledge layer;
+- real-only portfolio;
+- direct contact through `kontakt@leadflowai.pl`.
 
-## Current validated product state
+Public chatbot UI remains OFF by Owner. Online lead delivery remains OFF by Owner. Analytics activation is not authorized by V14.
 
-The production merge is backed by the previously validated feature-branch Quality chain and by the successful GitHub Pages production build/deploy for the merge commit.
+## Completed / PASS
 
-Current validated state:
+- Full recovery audit: 231/231 tracked files.
+- R0 governance/source-of-truth synchronization: COMPLETE.
+- R1 mobile/accessibility P0 repair: COMPLETE.
+- V14.1–V14.7 homepage/product/search/process/portfolio/knowledge/contact visual foundation: COMPLETE for V14 delivery scope.
+- V14.8 route migration: COMPLETE for homepage, all 35 service pages, `/uslugi`, `/realizacje`, `/o-nas`, `/kontakt`, `/wiedza`, all 21 knowledge articles and `/lab`.
+- R2 runtime de-stack: COMPLETE.
+  - legacy global/page-wide `WaterSurface` is not mounted;
+  - active `V14LiquidSurface` is scene-bounded inside `V14LiquidConstructor`;
+  - reduced-motion exits before WebGL allocation;
+  - rendering is bounded by 45/30 FPS, DPR limits, hidden-tab suspension and IntersectionObserver offscreen suspension;
+  - fine-pointer tracking is local to the Liquid scene.
+- R2 root CSS de-stack: COMPLETE.
+  - root `app/layout.tsx` imports exactly one stylesheet: `globals.css`;
+  - V8/V9/V9.2/V10/V13 visual/accessibility layers are not mounted from root;
+  - legacy `services.css` plus V2→V6 cascade is generated deterministically as `/v14-legacy-routes.css` only for migrated non-home routes;
+  - homepage does not load the legacy route bridge;
+  - contact/knowledge/portfolio/about/search/Lab CSS is route-scoped;
+  - active legacy bridge contains no stock or external network asset URLs.
+- Next.js baseline: 16.3.1.
+- Runtime dependencies: Next/React/ReactDOM only.
+- `npm audit --omit=dev --audit-level=high`: 0 vulnerabilities.
+- Security contract: PASS — no raw HTML injection, eval/dynamic Function, browser storage/cookies, unapproved fetch/XHR, dynamic `app/api`, external scripts, external CSS assets or detected secrets in active public sources.
+- Dormant chatbot: NETWORK_OFF; public chatbot UI remains OFF.
+- Branded root-clean 404: PASS / noindex.
+- First-party `app/icon.svg`: PASS.
 
-- deterministic dependency installation: PASS with committed `package-lock.json` and `npm ci`;
-- search contract: PASS;
-- Full Offer V11: PASS, including 20 expanded services across six pillars;
-- Portfolio V12: PASS, three first-party/own projects, zero fabricated external client case studies;
-- lead/contact contract: PASS with online form delivery OFF by Owner and direct e-mail active;
-- chatbot contract: PASS with public UI OFF and dormant code bounded;
-- content/knowledge contract: PASS with 21 knowledge articles and supported-source boundary;
-- operations/static deployment contracts: PASS;
-- V9.2 design contract: PASS;
-- V10 responsive/performance contract: PASS;
-- TypeScript: PASS;
-- Biome lint gate: PASS with 21 non-blocking CSS specificity warnings;
-- Next.js production build/static export: PASS;
-- performance budget: PASS;
-- static artifact contract: PASS;
-- static route smoke: PASS;
-- GitHub Pages production build: PASS;
-- GitHub Pages production deploy: PASS.
+## V14.9 final QA — COMPLETE
 
-The validated build generates 66 static pages. Dynamic API routes are absent from the static artifact.
+Final governance checkpoint validated before Owner review:
+`31225c140483d50863b8262b4675d8d55caf124e`
 
-## Repository-hardening state
+The following three independent gates passed on that exact checkpoint:
 
-Completed and promoted to production:
+1. **Quality — PASS**
+   - full contracts: PASS;
+   - TypeScript: PASS;
+   - Biome active lint surface: PASS with 0 warnings;
+   - static build: 68/68 generated routes/artifacts;
+   - static artifact contract: PASS;
+   - 44-route HTTP smoke: PASS;
+   - npm dependency audit: 0 vulnerabilities;
+   - security contract: PASS;
+   - aggregate performance budgets: PASS;
+   - six route-level performance budgets: PASS;
+   - rendered Search/Public Truth: PASS.
 
-- Portfolio V12 optional-note TypeScript inference blocker fixed.
-- Source-of-truth/current-state governance synchronized with V9/V9.2 and current production reality.
-- Superseded 17-service V11 offer contract removed; the active V11 contract covers 20 expanded services.
-- Committed `tsconfig.json` normalized for Next.js 16 by including `.next/dev/types/**/*.ts`; subsequent validated builds no longer rewrite `tsconfig.json`.
-- CSS specificity debt in the new V11/V12 knowledge/portfolio layer reduced without changing visual values.
-- The `services.css` related-service selector warning was removed without altering visual declarations.
-- Biome specificity warnings were reduced from 35 to 21 while preserving the visual freeze boundary.
-- Repository scan returned no TODO/FIXME/HACK/XXX markers, no debug `console.*`/`debugger` residue and no hits for common secret-token variable names.
-- `package-lock.json` was generated under GitHub Actions Node 22.23.1 / npm 10.9.8 and committed.
-- Quality and GitHub Pages workflows use `npm ci --no-audit --no-fund`.
-- Temporary lockfile bootstrap logic and `contents: write` permission were removed; Quality is back to `contents: read`.
-- The inactive standalone `scripts/governance-contract.mjs` residue was removed.
+2. **Browser Matrix — PASS 28/28**
+   - Chrome 151 + Firefox 153;
+   - Firefox 360/390 uses WebDriver BiDi true CSS viewport override;
+   - homepage: 360 / 390 / 768 / 1366 / 1440 / 1920;
+   - representative service, knowledge, contact and Lab routes: mobile + desktop;
+   - navigation mode, landmarks, truth markers and horizontal overflow: PASS.
 
-## Current visual authority
+3. **V14 Visual Preview — PASS**
+   - desktop 1440: PASS;
+   - tablet 768: PASS;
+   - mobile 390: PASS;
+   - desktop long reduced-motion: PASS;
+   - mobile long reduced-motion: PASS;
+   - active Liquid desktop WebDriver capture: PASS;
+   - active Liquid mobile WebDriver capture: PASS.
 
-- Homepage visual authority: Premium Art Direction V9 plus Premium Calibration V9.2.
-- V9.2 is the current homepage calibration authority and supersedes V9 only for the bounded areas defined in `docs/design/LEADFLOWAI-PREMIUM-CALIBRATION-V9-2.md`.
-- V9 remains the underlying premium art-direction language.
-- V7 remains authoritative for the dedicated Live Lab and interactive service routes.
-- V6 remains fallback frame grammar outside premium overrides.
-- V5 remains authoritative for the realistic hardware background and bounded water renderer.
-- Visual design is frozen after V9.2 except for corrections explicitly allowed by V10 responsive/performance governance.
+Rendered Search/Public Truth on the exact checkpoint:
+- indexable HTML: 63;
+- noindex/error artifacts: 3;
+- canonical URLs: 63 unique;
+- sitemap URLs: 63 exact-set match;
+- title/description/H1/lang/robots: PASS;
+- JSON-LD script payloads evaluated: 119;
+- Service schema: >=35;
+- Article schema: 21;
+- FAQPage schema: >=35;
+- legal/contact truth: PASS;
+- runtime leaks/placeholders: ABSENT.
 
-## Current commercial/content state
+Final validated performance snapshot:
+- aggregate JS raw/gzip: 606313 / 188326 bytes;
+- aggregate CSS raw/gzip: 132736 / 30130 bytes;
+- homepage HTML raw/gzip: 64580 / 14524 bytes;
+- homepage route CSS raw/gzip: 48842 / 12760 bytes;
+- all configured aggregate and route-level ceilings: PASS.
 
-- Public positioning: professional WWW production first.
-- Full offer architecture: CREATE, DISCOVER, CONVERT, INTELLIGENCE, CONNECT, CARE.
-- SEO + AEO + GEO / AI Search: active offer and implemented architecture layer.
-- Public chatbot widget: OFF pending explicit Owner enablement and runtime configuration.
-- Online lead/contact form delivery: OFF by Owner.
-- Active contact path: `kontakt@leadflowai.pl` via direct e-mail.
-- Public evidence rule: real evidence only; no fabricated clients, case studies, metrics, rankings or guarantees.
+## V14.10 Owner visual acceptance — COMPLETE
 
-## Known technical/governance debt
+OWNER_VISUAL_PASS=ACCEPTED
+ACCEPTED_AT=2026-08-14T14:09:00+02:00
+ACCEPTED_CANDIDATE=31225c140483d50863b8262b4675d8d55caf124e
 
-The following are known and must not be misreported as resolved:
+Owner zaakceptował finalny kierunek wizualny po obejrzeniu V14 preview i polecił kontynuować do R9 release hardening.
 
-1. `main` is currently unprotected at GitHub repository settings level; required status checks are not enforced by branch protection.
-2. The latest fully validated Biome run reports 21 non-blocking CSS `noDescendingSpecificity` warnings. The remaining warnings are in `globals.css` plus legacy/frozen visual layers; V8/V9/V9.2 and the water layer must not be opportunistically rewritten merely to reach zero warnings.
-3. Performance remains within budget but has limited JavaScript headroom; future heavy dependencies/effects require explicit budget review.
-4. GitHub Actions currently specifies Node major `22`, not exact `22.23.1`; lockfile + `npm ci` are deterministic, but exact runtime-minor pinning remains a bounded follow-up improvement.
-5. Historical documents may contain superseded status statements. Their historical evidence remains valid, but current status is determined by this file plus higher-authority governance and Owner decisions.
-6. Independent public HTTP verification from the assistant environment was unavailable after deployment because the execution environment could not resolve the production domain; GitHub Pages build/deploy evidence is PASS, but this file does not claim an independent external smoke result.
+Visual PASS nie jest merge authorization.
 
-## Current release boundary
+MERGE_AUTHORIZATION=NOT_GRANTED
 
-The V11/V12 release itself is complete and production-promoted. This checkpoint does not authorize unrelated new production mutations.
+## R9 release hardening — PRE-MERGE PASS
 
-Still requires a separately authorized bounded stage or explicit Owner instruction:
+Validated R9 pre-merge evidence checkpoint:
+`686ca9dbb42b21cdec26b4301ca6040eac80f767`
 
-- public chatbot activation;
-- online lead form activation;
-- new credentials/secrets;
-- Cloudflare production mutations;
-- unrelated dependency upgrades;
-- visual redesign beyond the frozen V9.2/V10 boundary;
-- changes to repository protection/settings.
+Release-hardening evidence:
+- Quality: PASS;
+- Browser Matrix: PASS 28/28;
+- Visual Preview: PASS;
+- compare `main...v14/full-visual-rebuild`: 303 commits ahead / 0 behind;
+- merge base: exact production V13 `10627e2f18ccfc7ef86c76a695dab9cf7933cce9`;
+- PR #19: OPEN, Draft, mergeable=true, merged=false;
+- PR surface: 101 changed files, 6486 additions, 1804 deletions;
+- changed-path review: all paths remain inside expected workflow/app/components/docs/package/public/scripts domains;
+- temporary patch/write-helper workflows and scripts: ABSENT from final diff/current branch;
+- current workflow inventory: `pages.yml`, `quality.yml`, `v14-browser-matrix.yml`, `v14-preview.yml` only;
+- `contents: write` residue in current repository workflow search: ABSENT;
+- unresolved PR review threads: 0;
+- production `main` after R9 audit: unchanged at `10627e2f18ccfc7ef86c76a695dab9cf7933cce9`;
+- PR body synchronized to Owner PASS / R9 state while intentionally remaining Draft.
+
+R9_PREMERGE_HARDENING=PASS
+RELEASE_STATE=READY_FOR_SEPARATE_MERGE_AUTHORIZATION
+MERGE_AUTHORIZATION=NOT_GRANTED
+
+## Active / not complete
+
+- Production merge: **BLOCKED** pending separate explicit Owner `MERGE AUTHORIZED`.
+- Post-merge GitHub Pages deployment verification: NOT STARTED because merge is not authorized.
+- V15 Search Master Plan: starts only after stable V14 production.
+
+## Non-blocking repository-setting debt
+
+- `main` branch protection remains OFF at repository-settings level.
+- Dependabot alerts remain OFF at repository-settings level; npm audit is enforced in CI.
+- Isolated `/v14-legacy-routes.css` remains a bounded compatibility bridge for migrated non-home routes; further removal is optional post-V14 cleanup and must remain reference-proven.
+
+## Execution order from this checkpoint
+
+1. Stop before merge.
+2. Obtain separate explicit Owner `MERGE AUTHORIZED`.
+3. Only after authorization: merge PR #19 using an exact expected-head guard.
+4. Verify resulting `main` SHA and GitHub Pages deployment.
+5. Run post-deploy production smoke against the live static artifact/domain.
+6. Synchronize production authority from V13 to V14 only after deployment proof.
+7. Start V15 Search Master Plan only from stable production evidence.
+
+## Production protection
+
+Owner visual PASS and R9 PRE-MERGE PASS are necessary but insufficient for production mutation. `main` must not be mutated without separate explicit Owner `MERGE AUTHORIZED`.
