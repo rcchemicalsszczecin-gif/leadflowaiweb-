@@ -49,56 +49,14 @@ jobs:
           cat /tmp/v14-route-preview.log
           exit 1
 
-      - name: Capture representative public routes
+      - name: Capture active global Liquid routes with WebDriver
         shell: bash
         run: |
-          set -euo pipefail
-          mkdir -p route-preview
-          BROWSER="$(command -v google-chrome || command -v chromium || command -v chromium-browser || true)"
-          test -n "$BROWSER"
-
-          capture() {
-            name="$1"
-            path="$2"
-            width="$3"
-            height="$4"
-            profile="/tmp/v14-route-${name}"
-            rm -rf "$profile"
-            timeout --signal=TERM --kill-after=5s 35s "$BROWSER" \
-              --headless=new \
-              --no-sandbox \
-              --disable-dev-shm-usage \
-              --disable-background-networking \
-              --disable-component-update \
-              --no-first-run \
-              --no-default-browser-check \
-              --hide-scrollbars \
-              --use-gl=angle \
-              --use-angle=swiftshader-webgl \
-              --enable-webgl \
-              --ignore-gpu-blocklist \
-              --run-all-compositor-stages-before-draw \
-              --virtual-time-budget=3500 \
-              --user-data-dir="$profile" \
-              --window-size="${width},${height}" \
-              --screenshot="route-preview/${name}.png" \
-              "http://127.0.0.1:3000${path}"
-            test -s "route-preview/${name}.png"
-            rm -rf "$profile"
-          }
-
-          capture service-desktop /strony-internetowe/ 1440 1600
-          capture service-mobile /strony-internetowe/ 390 1200
-          capture knowledge-desktop /wiedza/ 1440 1600
-          capture knowledge-mobile /wiedza/ 390 1200
-          capture contact-desktop /kontakt/ 1440 1400
-          capture contact-mobile /kontakt/ 390 1100
-          capture lab-desktop /lab/ 1440 1400
-          capture lab-mobile /lab/ 390 1100
-
-          ls -lh route-preview
+          python3 scripts/capture-route-webdriver-v14.py
+          test -s route-preview/route-webdriver-status.json
 
       - name: Upload route visual preview
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: v14-route-preview-${{ github.sha }}
@@ -117,4 +75,6 @@ jobs:
           test -s route-preview/contact-mobile.png
           test -s route-preview/lab-desktop.png
           test -s route-preview/lab-mobile.png
-          echo "V14_ROUTE_PREVIEW_PASS routes=4 viewports=2 captures=8"
+          grep -q '"webgl2": true' route-preview/route-webdriver-status.json
+          ! grep -q '"fallback": "[^"]\+"' route-preview/route-webdriver-status.json
+          echo "V14_ROUTE_PREVIEW_PASS routes=4 viewports=2 captures=8 global-liquid=WEBGL2"
