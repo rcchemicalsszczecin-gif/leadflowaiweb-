@@ -1,3 +1,4 @@
+import { V14Closing } from "@/components/v14-closing";
 import { V14DeviceTheater } from "@/components/v14-device-theater";
 import { V14Hero } from "@/components/v14-hero";
 import { V14LiquidConstructor } from "@/components/v14-liquid-constructor";
@@ -16,6 +17,7 @@ export default function HomePage() {
       <V14SearchTrinity />
       <V14ProcessCanvas />
       <V14Portfolio />
+      <V14Closing />
     </main>
   );
 }
