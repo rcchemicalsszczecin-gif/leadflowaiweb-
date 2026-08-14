@@ -58,10 +58,10 @@ Public chatbot UI remains OFF by Owner. Online lead delivery remains OFF by Owne
 
 ## V14.9 final QA — COMPLETE
 
-Validated implementation candidate:
-`a5b63128f027179358fd50f04a6b4d374f58fce3`
+Final governance checkpoint validated before Owner review:
+`31225c140483d50863b8262b4675d8d55caf124e`
 
-The following three independent gates passed on that exact candidate:
+The following three independent gates passed on that exact checkpoint:
 
 1. **Quality — PASS**
    - full contracts: PASS;
@@ -90,35 +90,44 @@ The following three independent gates passed on that exact candidate:
    - desktop long reduced-motion: PASS;
    - mobile long reduced-motion: PASS;
    - active Liquid desktop WebDriver capture: PASS;
-   - active Liquid mobile WebDriver capture: PASS;
-   - Liquid desktop: WebGL2=true, fallback empty, overflow=0, visible ratio 0.8298;
-   - Liquid mobile: WebGL2=true, fallback empty, overflow=0, visible ratio 0.9064;
-   - preview artifact digest: `sha256:bc1e7928edb0d10744fc0d2b6f7b292922515bb75898b3aa4bfcc871cf4f877b`.
+   - active Liquid mobile WebDriver capture: PASS.
 
-Rendered Search/Public Truth on the validated candidate:
+Rendered Search/Public Truth on the exact checkpoint:
 - indexable HTML: 63;
-- noindex/error artifacts: 2;
+- noindex/error artifacts: 3;
 - canonical URLs: 63 unique;
 - sitemap URLs: 63 exact-set match;
 - title/description/H1/lang/robots: PASS;
-- rendered schemas: 270 total nodes/scripts evaluated by gate;
+- JSON-LD script payloads evaluated: 119;
 - Service schema: >=35;
 - Article schema: 21;
-- FAQPage schema: >=36;
+- FAQPage schema: >=35;
 - legal/contact truth: PASS;
 - runtime leaks/placeholders: ABSENT.
 
 Final validated performance snapshot:
-- aggregate JS raw/gzip: 671988 / 202044 bytes;
-- aggregate CSS raw/gzip: 126657 / 28650 bytes;
-- homepage HTML raw/gzip: 65183 / 14658 bytes;
-- homepage route CSS raw/gzip: 55098 / 13651 bytes;
+- aggregate JS raw/gzip: 606313 / 188326 bytes;
+- aggregate CSS raw/gzip: 132736 / 30130 bytes;
+- homepage HTML raw/gzip: 64580 / 14524 bytes;
+- homepage route CSS raw/gzip: 48842 / 12760 bytes;
 - all configured aggregate and route-level ceilings: PASS.
+
+## V14.10 Owner visual acceptance — COMPLETE
+
+OWNER_VISUAL_PASS=ACCEPTED
+ACCEPTED_AT=2026-08-14T14:09:00+02:00
+ACCEPTED_CANDIDATE=31225c140483d50863b8262b4675d8d55caf124e
+
+Owner zaakceptował finalny kierunek wizualny po obejrzeniu V14 preview i polecił kontynuować do R9 release hardening.
+
+Visual PASS nie jest merge authorization.
+
+MERGE_AUTHORIZATION=NOT_GRANTED
 
 ## Active / not complete
 
-- V14.10 Owner visual acceptance: **NOT COMPLETE**.
-- R9 merge/release: **BLOCKED** pending explicit Owner visual PASS and explicit Owner merge authorization.
+- R9 release hardening / pre-merge audit: **IN PROGRESS**.
+- Production merge: **BLOCKED** pending separate explicit Owner `MERGE AUTHORIZED` after R9 pre-merge PASS.
 - V15 Search Master Plan: starts only after stable V14 production.
 
 ## Non-blocking repository-setting debt
@@ -127,15 +136,17 @@ Final validated performance snapshot:
 - Dependabot alerts remain OFF at repository-settings level; npm audit is enforced in CI.
 - Isolated `/v14-legacy-routes.css` remains a bounded compatibility bridge for migrated non-home routes; further removal is optional post-V14 cleanup and must remain reference-proven.
 
-## Execution order from this checkpoint
+## R9 execution order
 
-1. V14.10 Owner visual review of the validated V14.9 candidate.
-2. If Owner finds visual issues: bounded V14.10 calibration pass, then repeat exact-candidate Quality + Browser Matrix + Preview.
-3. Only after explicit Owner visual PASS: R9 release hardening and explicit merge authorization.
-4. Merge V14 to `main` only after that authorization.
-5. Verify production Pages deploy and post-deploy smoke.
-6. Start V15 Search Master Plan only from stable production evidence.
+1. Audit the complete PR diff and exact lineage against production `main`.
+2. Verify no temporary write-helper workflows/scripts remain in the release diff/current branch.
+3. Verify branch is not behind `main`, PR remains mergeable and production `main` is unchanged.
+4. Re-run exact-head Quality + Browser Matrix + Preview after Owner-acceptance governance synchronization.
+5. Record R9 PRE-MERGE PASS only if every release-hardening gate is green.
+6. Stop before merge and require separate explicit Owner `MERGE AUTHORIZED`.
+7. After authorized merge: verify GitHub Pages deploy and post-deploy smoke.
+8. Start V15 Search Master Plan only from stable production evidence.
 
 ## Production protection
 
-No feature-branch Quality PASS, Preview PASS, Browser Matrix PASS, Draft PR state or automation result authorizes production merge by itself. `main` must not be mutated without explicit Owner merge authorization.
+Owner visual PASS authorizes R9 release hardening only. It does not authorize mutation of `main`. `main` must not be mutated without separate explicit Owner merge authorization.
