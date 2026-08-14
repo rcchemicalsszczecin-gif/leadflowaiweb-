@@ -1,0 +1,92 @@
+.v14-liquid-surface[data-variant="hero"] .v14-liquid-surface-canvas {
+  opacity: 1;
+  filter: saturate(1.6) brightness(1.38) contrast(1.08);
+}
+
+.v14-hero-signature::before {
+  background:
+    linear-gradient(90deg, rgba(2, 7, 10, 0.9) 0%, rgba(2, 7, 10, 0.7) 31%, rgba(2, 7, 10, 0.22) 55%, rgba(2, 7, 10, 0.08) 78%, rgba(2, 7, 10, 0.18) 100%),
+    linear-gradient(180deg, rgba(2, 7, 10, 0.34) 0%, transparent 24%, transparent 67%, rgba(2, 7, 10, 0.38) 100%);
+}
+
+.v14-hero-signature .v14-hero-depth-mask {
+  background:
+    radial-gradient(ellipse at 75% 47%, transparent 0 34%, rgba(1, 5, 8, 0.035) 54%, rgba(1, 5, 8, 0.16) 88%),
+    linear-gradient(180deg, transparent 74%, rgba(0, 4, 7, 0.24));
+}
+
+.v14-liquid-surface[data-variant="hero"] .v14-liquid-surface-glass {
+  background:
+    linear-gradient(90deg, rgba(2, 6, 9, 0.82) 0%, rgba(2, 6, 9, 0.48) 28%, rgba(2, 6, 9, 0.08) 52%, transparent 72%),
+    radial-gradient(ellipse at 78% 63%, rgba(94, 218, 255, 0.09), transparent 42%),
+    radial-gradient(circle at 82% 30%, rgba(199, 255, 47, 0.055), transparent 20%),
+    linear-gradient(180deg, rgba(0, 4, 7, 0.02), rgba(0, 4, 7, 0.12));
+}
+
+.v14-signature-browser-layer .v14-browser {
+  background: rgba(5, 13, 17, 0.64);
+  border-color: rgba(146, 229, 255, 0.34);
+  box-shadow:
+    0 44px 126px rgba(0, 0, 0, 0.48),
+    0 0 0 1px rgba(199, 255, 47, 0.05) inset,
+    0 0 96px rgba(38, 179, 227, 0.11) inset;
+}
+
+.v14-signature-browser-layer .v14-browser-canvas {
+  background: linear-gradient(135deg, rgba(7, 17, 21, 0.64), rgba(3, 10, 14, 0.34));
+}
+
+.v14-signature-phone-layer .v14-phone {
+  background: rgba(5, 13, 16, 0.78);
+  border-color: rgba(199, 255, 47, 0.38);
+}
+
+.v14-signature-grid-plane {
+  border-color: rgba(104, 213, 245, 0.2);
+  background:
+    repeating-linear-gradient(90deg, rgba(93, 203, 236, 0.15) 0 1px, transparent 1px 42px),
+    repeating-linear-gradient(0deg, rgba(93, 203, 236, 0.13) 0 1px, transparent 1px 42px),
+    linear-gradient(180deg, rgba(5, 27, 36, 0.22), rgba(4, 19, 26, 0.02));
+}
+
+.v14-signature-horizon {
+  height: 2px;
+  background: linear-gradient(90deg, transparent 3%, rgba(82, 203, 242, 0.72) 30%, rgba(207, 255, 90, 0.62) 63%, rgba(87, 208, 245, 0.5) 80%, transparent 98%);
+  box-shadow: 0 0 48px rgba(74, 198, 239, 0.48), 0 0 96px rgba(199, 255, 47, 0.12);
+}
+
+.v14-signature-stage::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 5%;
+  right: -2%;
+  bottom: 7%;
+  height: 36%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(65, 196, 238, 0.13), rgba(199, 255, 47, 0.045) 36%, transparent 72%);
+  filter: blur(24px);
+  transform: translateZ(-160px) rotateX(66deg);
+  pointer-events: none;
+}
+
+@media (max-width: 720px) {
+  .v14-liquid-surface[data-variant="hero"] .v14-liquid-surface-canvas {
+    filter: saturate(1.45) brightness(1.24) contrast(1.06);
+  }
+
+  .v14-hero-signature::before {
+    background:
+      linear-gradient(180deg, rgba(2, 7, 10, 0.82) 0%, rgba(2, 7, 10, 0.54) 38%, rgba(2, 7, 10, 0.16) 68%, rgba(2, 7, 10, 0.38) 100%);
+  }
+
+  .v14-liquid-surface[data-variant="hero"] .v14-liquid-surface-glass {
+    background: linear-gradient(180deg, rgba(2, 7, 10, 0.48), transparent 40%, rgba(2, 7, 10, 0.18));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v14-liquid-surface[data-variant="hero"] .v14-liquid-surface-canvas {
+    filter: none;
+  }
+}
