@@ -17,6 +17,7 @@
     "content:contract": "node scripts/content-contract.mjs",
     "operations:contract": "node scripts/operations-contract.mjs",
     "static:contract": "node scripts/static-deploy-contract.mjs",
+    "security:contract": "node scripts/security-v14-contract.mjs",
     "design:contract": "node scripts/design-v14-contract.mjs",
     "responsive:contract": "node scripts/responsive-performance-v10-contract.mjs",
     "language:contract": "node scripts/public-language-v14-contract.mjs",
@@ -29,7 +30,7 @@
     "route-performance:budget": "node scripts/route-performance-v14.mjs",
     "historical:design:v9-2": "node scripts/design-v9-2-contract.mjs",
     "check": "npm run typecheck && npm run lint",
-    "verify": "npm run plan:contract && npm run search:contract && npm run offer:contract && npm run portfolio:contract && npm run lead:contract && npm run chat:contract && npm run content:contract && npm run operations:contract && npm run static:contract && npm run design:contract && npm run responsive:contract && npm run language:contract && npm run service-language:contract && npm run knowledge-language:contract && npm run visual:contract && npm run accessibility:contract && npm run check && npm run build && npm run public-artifact:contract && npm run performance:budget && npm run route-performance:budget"
+    "verify": "npm run plan:contract && npm run search:contract && npm run offer:contract && npm run portfolio:contract && npm run lead:contract && npm run chat:contract && npm run content:contract && npm run operations:contract && npm run static:contract && npm run security:contract && npm run design:contract && npm run responsive:contract && npm run language:contract && npm run service-language:contract && npm run knowledge-language:contract && npm run visual:contract && npm run accessibility:contract && npm run check && npm run build && npm run public-artifact:contract && npm run performance:budget && npm run route-performance:budget"
   },
   "engines": {
     "node": ">=20.9.0"
