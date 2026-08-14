@@ -27,15 +27,17 @@ const page = {
 };
 
 const baseMetadata = getSearchMetadata("geo-ai-search");
+const metaDescription =
+  "GEO i AI Search: encje, publiczne fakty, dowody i źródłowa treść. Dla Google fundamentem pozostaje SEO — bez llms.txt, specjalnego AI schema i gwarancji cytowania.";
 
 export const metadata = withV13SocialMetadata(
   {
     ...baseMetadata,
     title: page.title,
-    description: page.lead,
+    description: metaDescription,
   },
   page.title,
-  page.lead,
+  metaDescription,
 );
 
 export default function GeoAiSearchPage() {
