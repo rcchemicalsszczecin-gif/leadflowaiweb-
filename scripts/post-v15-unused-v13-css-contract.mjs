@@ -51,7 +51,7 @@ for (const path of runtimeFiles) {
   const hits = targetClasses.filter((name) => classBoundary(name).test(text));
   if (hits.length > 0) {
     runtimeClassHits.push(`${path}:${hits.join(",")}`);
-    hits.forEach((name) => runtimeClassNames.add(name));
+    for (const name of hits) runtimeClassNames.add(name);
   }
 }
 
