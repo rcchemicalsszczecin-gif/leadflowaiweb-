@@ -7,127 +7,271 @@ LEGAL ENTITY: Tervyxa Systems sp. z o.o.
 PUBLIC BRAND: LeadFlowAI
 PRIMARY DOMAIN: leadflowai.pl
 
-## Production authority
+## 1. Current production authority
 
 - Production branch: `main`.
-- Production authority: V14 Global Liquid World.
-- Production merge revision: `36ad3fd6130ce21e68a2c5e701a516fcb3703b65` — `Merge V14 Global Liquid World`.
+- Current production repository HEAD: `67663b08c950de120a94ef8495b5cdc8c9bdecfe`.
+- Current production visual/runtime authority: V14 Global Liquid World.
+- V14 Global Liquid runtime merge milestone: `36ad3fd6130ce21e68a2c5e701a516fcb3703b65` — `Merge V14 Global Liquid World`.
 - Merged Global Liquid candidate: `50b71632c687e032311556371108ce3f8d989650`.
-- Previous production baseline: `5bba6a6c963fa61ea3920bb4fcefff65ff9376cc`.
-- Initial V14 release merge (historical): `39c9b304eff42a71ea36aee871dce569d8f374f0` from release candidate `242263ffe1593d1a80890b7f6bc1514316ed2656`.
-- V13 `10627e2f18ccfc7ef86c76a695dab9cf7933cce9` remains the older major rollback reference.
-- Owner Global Liquid production authorization: GRANTED and exercised on 2026-08-14 by explicit instruction to load the accepted candidate to `main`.
-- PR #21: merged.
+- Previous production baseline before Global Liquid: `5bba6a6c963fa61ea3920bb4fcefff65ff9376cc`.
+- Initial V14 release merge (historical): `39c9b304eff42a71ea36aee871dce569d8f374f0` from candidate `242263ffe1593d1a80890b7f6bc1514316ed2656`.
+- V13 `10627e2f18ccfc7ef86c76a695dab9cf7933cce9` remains an older major rollback/reference checkpoint.
 
-## Production deployment proof
+The later `main` commits through `67663b08...` preserve the V14 production visual/runtime authority. Production state must be identified by current `main` plus deployment evidence, not by the older runtime merge milestone alone.
 
-GitHub Pages deployment run #36 / run id `31809931666`:
-- head SHA: `36ad3fd6130ce21e68a2c5e701a516fcb3703b65`;
-- full verify/static build: PASS;
-- Pages artifact identity: PASS;
-- artifact upload: PASS;
-- deploy job: PASS;
-- workflow conclusion: SUCCESS.
+## 2. Current production deployment proof
 
-GitHub Pages deployment: PASS.
+Latest GitHub Pages deployment for current `main`:
 
-GitHub Pages repository state after deployment:
-- status: `built`;
-- source: `main`;
-- CNAME: `leadflowai.pl`;
-- public Pages URL: `https://leadflowai.pl/`;
-- HTTPS certificate: approved;
-- HTTPS enforcement: enabled.
+- workflow: `Deploy GitHub Pages`;
+- run number: `38`;
+- run id: `31810716199`;
+- head branch: `main`;
+- head SHA: `67663b08c950de120a94ef8495b5cdc8c9bdecfe`;
+- status: `completed`;
+- conclusion: `success`.
 
-## Preserved public foundation
+Therefore the exact current `main` HEAD is proven to have passed the configured Pages deployment workflow and been deployed by that workflow.
 
-Production still preserves:
+Historical Global Liquid deployment run #36 / run id `31809931666` remains milestone evidence for `36ad3fd...`, but it is no longer the latest production deployment identity.
+
+Known Pages/public configuration remains:
+- custom domain: `leadflowai.pl`;
+- HTTPS-enabled public frontend;
+- GitHub Pages deployment from the repository workflow.
+
+## 3. Preserved production public foundation
+
+Current production continues to preserve the established public model including:
 - 35 service/money pages;
 - 21 knowledge articles;
-- 63 dominant public search intents;
+- 63 dominant public search intents/canonical baseline;
 - canonical/sitemap/robots and structured-data architecture;
 - direct answers, FAQ and service decision guidance;
 - reviewed/source-backed knowledge layer;
-- first-party/real-only portfolio;
+- first-party/real-only portfolio principle;
 - direct contact through `kontakt@leadflowai.pl`.
 
-Public chatbot UI remains OFF by Owner. Online lead delivery remains OFF by Owner. Analytics activation is not authorized by V14.
+Current functional boundaries:
+- public chatbot UI: OFF by Owner;
+- online lead delivery: OFF by Owner;
+- analytics/consent runtime: NOT AUTHORIZED;
+- direct email: ACTIVE.
 
-## Historical V14 delivery status
+READY != ACTIVE.
+CANDIDATE != PRODUCTION.
 
-- R0 governance/source-of-truth synchronization: COMPLETE.
-- R1 mobile/accessibility repair: COMPLETE.
-- R2 runtime and root CSS de-stack: COMPLETE.
-- V14.8 route migration: COMPLETE.
-- V14.9 final QA: COMPLETE.
-- V14.10 Owner Visual PASS: ACCEPTED.
-- R9 pre-merge hardening: PASS.
-- Initial V14 production merge: COMPLETE.
-- Global Liquid World production merge: COMPLETE.
-- Production merge: COMPLETE.
+## 4. Current V14 production visual/runtime authority
 
-## Current visual/runtime authority
+The accepted first-screen hero remains the lead visual composition.
 
-The accepted first-screen hero remains the lead visual composition. The post-release Global Liquid World extends the signature system across the remaining public site without replacing that hero.
+V14 Global Liquid World extends the signature visual system across the remaining public site while protecting that hero from duplicate canvas/GPU competition.
 
-Current visual/runtime invariants:
+Current production visual/runtime invariants include:
 - no white/paper public section art direction;
-- one root-mounted first-party WebGL2 submerged-compute field for public routes outside the protected hero viewport;
+- one root-mounted first-party WebGL2 submerged-compute field outside the protected hero viewport;
 - explicit PCB traces/vias, CPU/socket/die, GPU package, VRAM modules, capacitors and rail-like hardware forms;
-- liquid refraction, caustics, specular bands, ripples and bubbles;
-- pointer/scroll response with frame caps of 36 FPS desktop and 24 FPS compact;
+- liquid refraction, caustics, specular bands, ripples and depth as atmosphere rather than essential meaning;
+- pointer/scroll response with frame caps;
 - DPR caps, document-visibility suspension and reduced-motion fallback;
-- hero guard suppresses the global field while the accepted hero covers the viewport, preventing redundant visual/GPU competition;
-- existing `V14LiquidSurface` remains the dedicated hero/constructor Liquid runtime;
-- Owner-provided LeadFlowAI brand mark is active in the public shell;
-- homepage Search/Google/AI visual uses the dark variant;
-- service, knowledge, contact and Lab public surfaces are dark/translucent over the global field.
+- hero guard preventing redundant global-field competition with the accepted hero;
+- `V14LiquidSurface` retained for dedicated hero/constructor signature scenes;
+- Owner-provided LeadFlowAI brand mark in the public shell;
+- dark/translucent service, knowledge, contact and Lab surfaces over the shared world;
+- essential navigation/content usable without WebGL/animation.
 
-## Release evidence
+## 5. Production architecture
 
-Exact Global Liquid candidate `50b71632c687e032311556371108ce3f8d989650` passed before merge:
-- Quality: PASS;
-- required Global Liquid World contract: PASS;
-- active Biome lint warnings: 0;
-- TypeScript: PASS;
-- static build: PASS;
-- security contract: PASS;
-- `npm audit --omit=dev --audit-level=high`: 0 vulnerabilities;
-- aggregate performance budgets: PASS;
-- six route-level performance budgets: PASS;
-- rendered Search/Public Truth: PASS with 63 canonical URLs exactly matching 63 sitemap URLs;
-- Browser Matrix: PASS 28/28 across Chrome and Firefox;
-- homepage Visual Preview: PASS;
-- Route Visual Preview: PASS with active WebGL2 on `/strony-internetowe/`, `/wiedza/`, `/kontakt/` and `/lab/`, desktop + mobile = 8/8 captures;
-- horizontal overflow checks: PASS.
+Current production foundation:
+- Next.js `16.3.1`;
+- React `19.2.4`;
+- static export;
+- GitHub Pages public frontend;
+- centralized service/knowledge/metadata/structured-data foundations;
+- first-party visual runtime without a heavyweight third-party decorative 3D dependency;
+- dormant chatbot/lead-delivery code does not imply public activation.
 
-## Production architecture
+The production line still contains bounded legacy/compatibility styling on migrated inner routes. Homepage remains bridge-free according to the accepted post-V14 architecture and later maintenance evidence.
 
-- Next.js 16.3.1 static export.
-- GitHub Pages hosts the public frontend.
-- Root module CSS import remains `globals.css` only; the Global Liquid World stylesheet is a first-party static public asset mounted by the root layout.
-- Legacy service + V2→V6 compatibility CSS remains isolated in `/v14-legacy-routes.css` for migrated non-home routes.
-- Homepage does not load that compatibility bridge.
-- Legacy global `WaterSurface` is not mounted.
-- `V14GlobalTechLiquid` is the global background runtime; `V14GlobalTechHeroGuard` protects the accepted hero.
-- `V14LiquidSurface` remains dedicated to the hero/constructor signature scenes.
-- No stock/external-network visual dependency is required by the active Liquid runtime.
-- Branded noindex 404 and first-party app icon remain present.
+## 6. V15 Search candidate — NOT PRODUCTION
 
-## Remaining non-blocking debt
+Branch:
+`v15/search-master-plan`
 
-- `main` branch protection remains OFF at repository-settings level.
-- Dependabot alerts remain OFF at repository-settings level; npm audit is enforced in CI.
-- `/v14-legacy-routes.css` remains a bounded compatibility bridge; removal is separate reference-proven maintenance.
-- Independent search-engine indexing/field performance evidence still belongs to the upcoming production-search phase.
+Exact Draft candidate head:
+`5925c553bae0d59ebb7cb10043f46453fb8da8b6`
 
-## Next execution order
+PR #22:
+- state: open;
+- Draft: yes;
+- merged: no;
+- base: `main` at `67663b08...`.
 
-1. Keep the Global Liquid World production release stable and collect real production evidence.
-2. Perform legacy route-bridge cleanup only as separately bounded maintenance.
-3. Consider enabling `main` branch protection and Dependabot alerts.
-4. Start V15 Search Master Plan from stable production evidence and real search data.
+V15 is the evidence-driven Search / SEO / AEO / GEO / AI Search candidate built on top of production V14.
 
-## Production protection
+Important exact-head candidate evidence includes:
+- 63 indexable canonical URLs;
+- 35 service pages;
+- 21 knowledge articles;
+- canonical/sitemap parity;
+- repaired Open Graph/canonical ownership;
+- expanded Service <-> knowledge graph;
+- corrected structured-data trailing-slash/canonical parity;
+- corrected social image inheritance;
+- Quality exact-head PASS;
+- Browser Matrix exact-head PASS;
+- Route Visual Preview exact-head PASS;
+- static build and npm audit PASS at the recorded candidate checkpoint.
 
-Further production mutations require normal Owner/governance authority. The current production rollback point immediately before Global Liquid World is `5bba6a6c963fa61ea3920bb4fcefff65ff9376cc`; the initial V14 and V13 revisions remain deeper historical recovery references.
+V15 explicitly does NOT prove external Google/Bing/index/ranking/CTR/field-CWV/conversion/AI-citation performance.
+
+External states such as Google Search Console and Bing Webmaster remain evidence-gated.
+
+No V15 PASS authorizes merge or deployment by itself.
+
+## 7. Post-V15 CSS de-stack candidate — NOT PRODUCTION
+
+Branch:
+`post-v15/css-destack`
+
+Exact head:
+`5c65435f2de5b2318c1c2585a478c9595f576f76`
+
+PR #26:
+- state: open;
+- Draft: yes;
+- merged: no;
+- base: `v15/search-master-plan` at `5925c553...`;
+- targets V15, not `main`.
+
+The branch performs reference-proven legacy CSS/component maintenance without changing production/search/canonical authority.
+
+Latest exact-head Post-V15 Maintenance QA evidence:
+- workflow: `Post-V15 Maintenance QA`;
+- run #48;
+- run id: `31833697190`;
+- head SHA: `5c65435f2de5b2318c1c2585a478c9595f576f76`;
+- status: completed;
+- conclusion: success.
+
+At this candidate checkpoint:
+- retired V13 visual authority stylesheet is absent from runtime loading;
+- known retired components are removed;
+- protected dormant chatbot/contact helper components remain explicitly classified rather than opportunistically deleted;
+- homepage remains compatibility-bridge-free;
+- inner-route compatibility CSS remains only where current evidence does not yet justify blanket deletion;
+- post-V15 CSS/component maintenance contracts are green.
+
+This branch is technically ahead of V15 but remains non-production.
+
+## 8. Local SSD Point Zero before Codex
+
+Owner-established local working environment:
+
+- base storage: SSD-backed local filesystem;
+- local working branch before control-plane import: `codex/post-v15-hardening`;
+- base/upstream: `origin/post-v15/css-destack`;
+- exact base HEAD: `5c65435f2de5b2318c1c2585a478c9595f576f76`;
+- tracked files at that base: 292;
+- `npm run verify`: PASS;
+- static export: PASS;
+- tracked files after verification were returned byte-for-byte to the pre-verification baseline;
+- worktree: CLEAN.
+
+A local verification exposed a Next.js-generated mutation of tracked `next-env.d.ts`; the mutation was captured as evidence and the file restored exactly to HEAD. This is maintenance/audit evidence, not an authorized source change.
+
+## 9. Codex control-plane candidate — NOT PRODUCTION
+
+Branch:
+`governance/codex-control-plane-v1`
+
+Base:
+`post-v15/css-destack` at `5c65435f2de5b2318c1c2585a478c9595f576f76`.
+
+Purpose:
+- install a strict Owner -> ChatGPT Controller -> Codex Executor -> ChatGPT Strict Review -> Owner workflow;
+- make Codex read/write/Git boundaries explicit;
+- enforce bounded stages/gates;
+- enforce exact-path scope;
+- enforce evidence-backed PASS;
+- make staging/commit/push/merge/deployment Owner-controlled;
+- define prompt/report contracts;
+- reconcile governance that previously allowed agent feature-branch commits.
+
+This branch is an isolated governance candidate. It does not modify `main`, does not merge V15/post-V15, and does not authorize deployment.
+
+## 10. Current governance execution model
+
+The intended control-plane lifecycle is:
+
+READ / STATUS / INVENTORY
+-> PREWRITE
+-> OWNER AUTHORIZATION
+-> IMPLEMENTATION
+-> VALIDATION
+-> CODEX FINAL REPORT
+-> CHATGPT STRICT REVIEW
+-> OWNER REVIEW
+-> OWNER EXACT-PATH STAGING
+-> OWNER COMMIT
+-> OWNER PUSH
+-> POST-PUSH VALIDATION
+-> NEXT-STAGE DECISION.
+
+Codex does not stage, commit, push, merge or deploy under the normal workflow.
+
+Prompts to Codex are English by default.
+ChatGPT reviews/translates the Codex report for the Owner.
+
+## 11. Repository settings / IP debt
+
+Current known repository-level debt includes:
+- `main` branch protection is OFF at repository-settings level;
+- required status checks are not enforced by branch protection;
+- Dependabot alerts/settings hardening remains unresolved;
+- repository is public;
+- licensing/IP/public-private policy remains a separate Owner decision;
+- no release/tag model is relied upon as the primary deployment identity.
+
+These are governance/repository-setting concerns and are not automatically runtime defects.
+
+## 12. External evidence gaps
+
+Repository code/evidence cannot by itself prove:
+- Google indexing/rankings/CTR;
+- Search Console performance;
+- Bing Webmaster external state;
+- field Core Web Vitals/CrUX;
+- analytics/conversion data;
+- real AI-search citations;
+- backlink/business-profile state.
+
+Classify these as `BLOCKED_EXTERNAL_EVIDENCE` unless current external evidence is actually obtained.
+
+## 13. Current next execution order
+
+Until the Owner authorizes a different sequence:
+
+1. Finalize and locally import the Codex control-plane candidate without mutating production.
+2. Establish a new clean local Point Zero containing the control-plane files.
+3. Run Codex Prompt 01 as a complete read-only repository absorption under that control plane.
+4. Return the entire Codex report to ChatGPT for strict review.
+5. Reconcile any proven governance/architecture/current-state defects in bounded Owner-authorized stages.
+6. Continue technical/content/search/design hardening only through bounded stages.
+7. Keep V15/post-V15/control-plane work non-production until separate Owner review, merge and deployment authority.
+8. Treat external Search Console/Bing/field evidence as separate evidence tracks.
+9. Address branch protection/Dependabot/public-repo/licensing decisions as a separate Owner-controlled repository-hardening stage.
+
+## 14. Production protection
+
+No candidate branch, successful CI run, Codex report or local PASS automatically authorizes:
+- merge to `main`;
+- production deployment;
+- public runtime activation;
+- canonical-set migration;
+- analytics;
+- chatbot;
+- online lead delivery.
+
+Further production mutation requires explicit Owner authority and current evidence.
