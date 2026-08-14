@@ -1,17 +1,43 @@
 import { V14ProductStage } from "@/components/v14-product-stage";
 
+const navItems = [
+  { href: "/uslugi", label: "Usługi" },
+  { href: "/realizacje", label: "Realizacje" },
+  { href: "/#process", label: "Jak pracujemy" },
+  { href: "/wiedza", label: "Wiedza" },
+  { href: "/o-nas", label: "O nas" },
+] as const;
+
 export function V14Hero() {
   return (
     <>
+      <link rel="stylesheet" href="/v14.css" precedence="high" />
+      <link rel="stylesheet" href="/v14-shell.css" precedence="high" />
+      <a className="v14-skip-link" href="#main-content">Przejdź do treści</a>
       <header className="v14-header">
         <div className="v14-shell v14-header-inner">
           <a className="v14-brand" href="/" aria-label="LeadFlowAI — strona główna">
             <span className="v14-brand-mark" aria-hidden="true"><i /><i /></span><span>LEADFLOWAI</span>
           </a>
           <nav className="v14-nav" aria-label="Główna nawigacja">
-            <a href="/uslugi">Usługi</a><a href="/realizacje">Realizacje</a><a href="/wiedza">Wiedza</a><a href="/o-nas">O nas</a>
+            {navItems.map((item) => <a key={item.href} href={item.href}>{item.label}</a>)}
           </nav>
-          <a className="v14-header-cta" href="/kontakt">Wyceń projekt <span aria-hidden="true">↗</span></a>
+          <div className="v14-header-actions">
+            <details className="v14-mobile-nav">
+              <summary aria-label="Otwórz nawigację mobilną">
+                <span>MENU</span><i aria-hidden="true" />
+              </summary>
+              <nav className="v14-mobile-nav-panel" aria-label="Nawigacja mobilna">
+                {navItems.map((item, index) => (
+                  <a key={item.href} href={item.href}>
+                    <span>{item.label}</span><span aria-hidden="true">0{index + 1}</span>
+                  </a>
+                ))}
+                <a href="/kontakt"><span>Wyceń projekt</span><span aria-hidden="true">↗</span></a>
+              </nav>
+            </details>
+            <a className="v14-header-cta" href="/kontakt">Wyceń projekt <span aria-hidden="true">↗</span></a>
+          </div>
         </div>
       </header>
       <section className="v14-hero" aria-labelledby="v14-hero-title">
