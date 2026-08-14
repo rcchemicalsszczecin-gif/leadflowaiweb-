@@ -62,7 +62,7 @@ for (const [url, queries] of Object.entries(candidates)) {
 
 const forbiddenMetricKeys = ["impressions", "clicks", "ctr", "averagePosition", "indexedUrls"];
 for (const key of forbiddenMetricKeys) {
-  if (Object.prototype.hasOwnProperty.call(map, key)) fail(`first-party metric must not be populated yet: ${key}`);
+  if (Object.hasOwn(map, key)) fail(`first-party metric must not be populated yet: ${key}`);
 }
 
 if (!summary.includes("`V15_4_QUERY_PAGE_FOUNDATION=PASS`")) fail("summary PASS marker missing");
