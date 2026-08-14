@@ -1,43 +1,48 @@
 # WEBSITE OWNER DECISION — V14 FULL VISUAL REBUILD
 
-STATUS: ACTIVE OWNER AUTHORITY
+STATUS: COMPLETED OWNER AUTHORITY / PRODUCTION RELEASED
+DATE: 2026-08-14
 
-## Cel
-LeadFlowAI ma wizualnie udowadniać poziom firmy projektującej i produkującej nowoczesne WWW. V14 przebudowuje warstwę wizualną bez cofania V13 content/search/public-truth foundation.
+## Decision
 
-## Nienaruszalne zasady
-- `main` pozostaje stabilnym baseline do osobnej decyzji Ownera.
-- V14 pracuje na `v14/full-visual-rebuild`.
-- Zachować istniejące publiczne URL-e, 35 usług, knowledge, metadata, schema, sitemap, robots, public truth i search-intent architecture.
-- Nie tworzyć fikcyjnych klientów, wyników, KPI, rankingów, certyfikatów ani cytowań AI.
-- Public chatbot, analytics i online lead delivery pozostają OFF do osobnej decyzji.
-
-## Visual authority
-- Liquid / water engine zostaje signature assetem LeadFlowAI.
-- Globalne przygaszanie sekcji podczas scrolla jest zabronione.
-- Homepage V14 nie może używać Premium V8/V9/V9.2 jako głównego layout/design systemu.
-- Płyta główna / motherboard nie może być stałym tłem strony.
-- Gigantyczne nagłówki pełniące funkcję dekoracji zamiast informacji są zabronione.
-- Sekcje mają mieć kontrolowaną wysokość i wspólną siatkę 12-kolumnową.
-- Jasne i ciemne sceny mają być używane celowo dla rytmu, nie jako jedna ciemna tapeta.
-- Grafiki mają pokazywać realny produkt WWW, UI, urządzenia, dane, search architecture albo działanie systemu.
-- Efekty 3D/WebGL/motion muszą wspierać narrację i pozostawać dostępne oraz wydajne.
-- Mobile ma mieć własny art direction, nie być tylko skalowanym desktopem.
-
-## V14 visual signature
-LeadFlowAI = premium web/product studio z własnym Liquid Engine. Czysta typografia, realne browser/product mockupy, spatial UI, selektywny WebGL, precyzyjny motion i bardzo czytelna warstwa sprzedażowa.
-
-## V14.10 Owner visual acceptance
+LeadFlowAI V14 Full Visual Rebuild is accepted and released to production.
 
 OWNER_VISUAL_PASS=ACCEPTED
-ACCEPTED_AT=2026-08-14T14:09:00+02:00
-ACCEPTED_CANDIDATE=31225c140483d50863b8262b4675d8d55caf124e
+OWNER_MERGE_AUTHORIZATION=GRANTED_AND_EXERCISED
+V14_RELEASE_CANDIDATE=242263ffe1593d1a80890b7f6bc1514316ed2656
+V14_PRODUCTION_MERGE=39c9b304eff42a71ea36aee871dce569d8f374f0
+GITHUB_PAGES_DEPLOYMENT=PASS
 
-Owner po obejrzeniu finalnego V14 preview zaakceptował kierunek wizualny i polecił kontynuować do R9 release hardening.
+## Preserved boundaries
 
-Ta akceptacja kończy V14.10 i pozwala rozpocząć pre-merge release hardening. Nie jest zgodą na mutację `main`.
+- Existing public URLs, 35 services, knowledge, metadata, schema, sitemap, robots, public truth and search-intent architecture remain preserved.
+- No fabricated clients, results, KPI, rankings, certifications or AI citations.
+- Public chatbot remains OFF.
+- Analytics remains OFF until separately authorized.
+- Online lead delivery remains OFF; direct e-mail remains active.
 
-MERGE_AUTHORIZATION=NOT_GRANTED
+## Visual authority
 
-## STOP
-V14.10 visual gate jest zaliczony. Nadal nie merge’ować V14 do `main` bez osobnego, jawnego Owner `MERGE AUTHORIZED` po zakończeniu R9 pre-merge hardening.
+- V14 is the current production visual authority.
+- Liquid remains the LeadFlowAI signature asset but is scene-bounded.
+- Premium V8/V9/V9.2 is not the homepage design system.
+- Motherboard imagery is not a permanent background.
+- Mobile has dedicated navigation/art direction.
+- Motion/WebGL remains non-essential, bounded and reduced-motion safe.
+
+## Release evidence
+
+Before merge, the exact candidate passed:
+- V14.9 final QA;
+- Owner Visual PASS;
+- R9 pre-merge hardening;
+- Quality;
+- Browser Matrix 28/28;
+- Visual Preview;
+- security/dependency/performance/search/public-truth gates.
+
+The Owner then explicitly issued `MERGE AUTHORIZED`. PR #19 was merged using an exact expected-head guard. GitHub Pages run `31800348526` passed build and deploy for the resulting merge commit.
+
+## Post-release rule
+
+V14 is now the production baseline. V13 `10627e2f18ccfc7ef86c76a695dab9cf7933cce9` remains the immediate rollback reference. Further production changes require normal Owner/governance authority.
