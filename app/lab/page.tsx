@@ -12,16 +12,24 @@ import {
 import { V14SiteFooter } from "@/components/v14-site-footer";
 import { V14SiteHeader } from "@/components/v14-site-header";
 import { site } from "@/lib/site";
+import { withV13SocialMetadata } from "@/lib/social-metadata-v13";
 
-export const metadata: Metadata = {
-  title: "Laboratorium — 3D, WebGL, ruch i interaktywne WWW",
-  description:
-    "Laboratorium LeadFlowAI: działające w przeglądarce demonstracje 3D, interakcji, narracji przewijanej, UI, przebudowy stron i architektury doświadczenia.",
-  alternates: { canonical: "/lab" },
-  openGraph: {
-    url: `${site.url}/lab/`,
+const pageTitle = "Laboratorium — 3D, WebGL, ruch i interaktywne WWW";
+const pageDescription =
+  "Laboratorium LeadFlowAI: działające w przeglądarce demonstracje 3D, interakcji, narracji przewijanej, UI, przebudowy stron i architektury doświadczenia.";
+
+export const metadata: Metadata = withV13SocialMetadata(
+  {
+    title: pageTitle,
+    description: pageDescription,
+    alternates: { canonical: "/lab" },
+    openGraph: {
+      url: `${site.url}/lab/`,
+    },
   },
-};
+  pageTitle,
+  pageDescription,
+);
 
 export default function LabPage() {
   return (
