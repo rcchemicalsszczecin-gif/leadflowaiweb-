@@ -84,6 +84,35 @@ for (const path of sourceFiles) {
   }
 }
 
+const activeCssFiles = [
+  "app/globals.css",
+  "app/services.css",
+  "app/precision-water.css",
+  "app/circuit-water-v3.css",
+  "app/hardware-board-v4.css",
+  "app/realistic-board-v5.css",
+  "app/content-frames-v6.css",
+  "app/contact.css",
+  "app/knowledge.css",
+  "app/interactive-v7.css",
+  "app/v13-search-education.css",
+  "public/v14.css",
+  "public/v14-shell.css",
+  "public/v14-content.css",
+  "public/v14-routes.css",
+  "public/v14-scenes.css",
+];
+for (const path of activeCssFiles) {
+  if (!existsSync(path)) fail(`active CSS source missing: ${path}`);
+  const css = readFileSync(path, "utf8");
+  if (/url\(\s*["']?https?:\/\//i.test(css)) {
+    fail(`${path} contains an external network asset URL`);
+  }
+  if (/\bunsplash\b/i.test(css)) {
+    fail(`${path} contains retired stock-provider residue`);
+  }
+}
+
 if (existsSync("app/api")) {
   const apiFiles = [];
   const collectApi = (dir) => {
@@ -118,5 +147,5 @@ if (!leadContract.includes("delivery=OFF_BY_OWNER") || !chatContract.includes("p
 }
 
 console.log(
-  `SECURITY_V14_PASS sources=${sourceFiles.length} raw-html=ABSENT eval=ABSENT storage=ABSENT cookies=ABSENT network-fetch=ABSENT dynamic-api=ABSENT external-scripts=ABSENT jsonld-scripts=${jsonLdScripts} blank-links=${externalBlankLinks}_SAFE secrets=ABSENT runtime-deps=3_APPROVED lead=OFF chat=OFF`,
+  `SECURITY_V14_PASS sources=${sourceFiles.length} active-css=${activeCssFiles.length}_FIRST_PARTY raw-html=ABSENT eval=ABSENT storage=ABSENT cookies=ABSENT network-fetch=ABSENT dynamic-api=ABSENT external-scripts=ABSENT external-css-assets=ABSENT jsonld-scripts=${jsonLdScripts} blank-links=${externalBlankLinks}_SAFE secrets=ABSENT runtime-deps=3_APPROVED lead=OFF chat=OFF`,
 );
