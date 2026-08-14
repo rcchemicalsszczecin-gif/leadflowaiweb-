@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 
 const FRAME_INTERVAL_MS = 1000 / 45;
 const COMPACT_FRAME_INTERVAL_MS = 1000 / 30;
@@ -100,14 +100,27 @@ export function V14LiquidSurface() {
   const rootRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
+  useLayoutEffect(() => {
+    const root = rootRef.current;
+    if (!root || window.location.hash !== "#liquid") return;
+    const section = root.closest("#liquid");
+    if (!section) return;
+
+    const align = () => section.scrollIntoView({ block: "start" });
+    align();
+    const animationFrame = window.requestAnimationFrame(align);
+    const timer = window.setTimeout(align, 250);
+
+    return () => {
+      window.cancelAnimationFrame(animationFrame);
+      window.clearTimeout(timer);
+    };
+  }, []);
+
   useEffect(() => {
     const root = rootRef.current;
     const canvas = canvasRef.current;
     if (!root || !canvas) return;
-
-    if (window.location.hash === "#liquid") {
-      window.requestAnimationFrame(() => root.closest("#liquid")?.scrollIntoView({ block: "start" }));
-    }
 
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const finePointer = window.matchMedia("(pointer: fine)");
