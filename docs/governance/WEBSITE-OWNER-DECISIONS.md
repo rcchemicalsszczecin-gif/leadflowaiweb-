@@ -1,7 +1,7 @@
 # LEADFLOWAI — OWNER DECISIONS
 
 STATUS: CURRENT
-DATE: 2026-08-14
+DATE: 2026-08-15
 OWNER: Paweł Niewiadomski
 
 This file records current product/business/runtime decisions. Historical execution detail remains in dedicated historical/decision/evidence files and must not override `CURRENT-STATE.md`.
@@ -112,19 +112,68 @@ Preserve unless a separately justified, evidenced and Owner-approved migration c
 
 V15 candidate work may improve this system where the accepted V15 evidence explicitly does so, but remains non-production until Owner promotion.
 
-## 8. Current candidate order
+## 8. Current Master Plan and product-completion decision
 
-Current bounded execution order is governed by `CURRENT-STATE.md` and the control plane rather than the completed historical V14 build sequence.
+The Owner approves `docs/plans/LEADFLOWAI_AUTHORITATIVE_MASTER_PLAN_V2.md` as the single current top-level product-completion roadmap.
 
-Immediate sequence:
-1. establish the Codex control-plane candidate locally from the post-V15 base;
-2. establish a clean Point Zero containing that control plane;
-3. run full Codex read-only repository absorption;
-4. return the complete report to ChatGPT for strict review;
-5. execute only Owner-authorized bounded follow-up stages;
-6. keep production untouched until a separate promotion decision.
+`MASTER_PLAN_V2=OWNER_APPROVED_CURRENT_TOP_LEVEL_PRODUCT_ROADMAP`
 
-## 9. Pending Owner / external decisions
+Current classifications:
+
+- `CURRENT_SITE_STATUS=NOT_FINISHED`;
+- `TECHNICAL_PASS_DOES_NOT_EQUAL_PRODUCT_COMPLETION=YES`;
+- `MASTER_PLAN_V2=OWNER_APPROVED_CURRENT_TOP_LEVEL_PRODUCT_ROADMAP`;
+- V1: superseded top-level authority retained as historical product/delivery provenance;
+- V15: active subordinate Search / SEO / AEO / GEO / AI Search domain plan and candidate evidence program;
+- current completion program: A→Z / C01–C27;
+- next macro stage: C01 Operations Truth Reconciliation;
+- `C01_IMPLEMENTATION_AUTHORIZED=NO`.
+
+C01 and every later macro stage require separately bounded Owner-authorized execution gates. No stage authorizes its successor automatically. Candidate and governance work remain non-production until separate Owner promotion, merge and deployment decisions.
+
+## 9. Current Owner brand and Liquid inputs
+
+The Owner confirms:
+
+- `OWNER_LIQUID_VERTICAL_ORIENTATION_DEFECT=CONFIRMED`;
+- the current Liquid/water presentation is visually wrong in its top/bottom orientation or perception;
+- future C07 must diagnose coordinate/shader/camera/CSS ownership rather than apply a blind visual inversion;
+- final correction requires `OWNER_LIQUID_ORIENTATION_PASS`.
+
+The following immutable Owner-approved masters remain outside the repository:
+
+### Primary logo master
+
+- path: `/home/leadflowai/LeadFlowAI-SSD/owner-assets/leadflowai-brand/leadflowai-primary-logo-owner-approved.png`;
+- dimensions: 1536×1024 RGBA;
+- SHA256: `4a5736eae07fbd166deec6567c907fe7b809697d45cf6f647399cbdaba1652ba`.
+
+### Compact mark master
+
+- path: `/home/leadflowai/LeadFlowAI-SSD/owner-assets/leadflowai-brand/leadflowai-brand-mark-owner-approved.png`;
+- dimensions: 400×400 RGBA;
+- SHA256: `1c7b5a4c27eb4ccf22f089183e6bd5f072ffed3cc16ea0fd056cd53da777cbf5`.
+
+### Hero visual master
+
+- path: `/home/leadflowai/LeadFlowAI-SSD/owner-assets/leadflowai-brand/leadflowai-hero-owner-approved.png`;
+- dimensions: 1536×585 RGBA;
+- SHA256: `dc0e64dbd7fc56179c086b1860926a9821b139ef15afb735be2ce0f8c4405ba9`.
+
+Owner asset rules:
+
+- `OWNER_APPROVED_PRIMARY_LOGO=YES`;
+- `OWNER_APPROVED_COMPACT_MARK=YES`;
+- `OWNER_APPROVED_HERO_VISUAL=YES`;
+- `IMMUTABLE_MASTER_ASSETS=YES`;
+- `DO_NOT_REGENERATE=YES`;
+- `DO_NOT_RESTYLE_WITHOUT_OWNER_AUTHORITY=YES`;
+- `DO_NOT_REPLACE_WITH_PLACEHOLDER=YES`;
+- `MASTER_ASSETS_REMAIN_OUTSIDE_REPOSITORY_PENDING_IP_ASSET_ADMISSION_STAGE=YES`.
+
+Future web derivatives require the separate C02/C04 authority defined by V2. These decisions do not claim that the assets are already implemented or deployed.
+
+## 10. Pending Owner / external decisions
 
 Still separate from automatic implementation:
 - public pricing model;

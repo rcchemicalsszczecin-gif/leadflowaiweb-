@@ -12,7 +12,7 @@ This document is the index for the repository execution control plane. It does n
 3. Applicable nested `AGENTS.md` plus current normative governance files indexed here.
 4. `docs/governance/CURRENT-STATE.md` for current production/candidate state.
 5. `docs/governance/WEBSITE-OWNER-DECISIONS.md` for current product/business/runtime Owner decisions.
-6. Current Owner-approved Master Plan / active stage plan.
+6. Current Owner-approved top-level Master Plan (`docs/plans/LEADFLOWAI_AUTHORITATIVE_MASTER_PLAN_V2.md`) / active bounded stage plan.
 7. Current implementation, architecture, quality contracts and exact evidence.
 8. Historical/reference material.
 9. Conversation/model memory.
@@ -85,9 +85,10 @@ Do not rewrite historical decision evidence merely to make history look like the
 Product plans, visual decisions, search plans, architecture and quality evidence are subordinate to the execution constitution but authoritative inside their domain when they do not conflict with higher authority.
 
 Important current families include:
-- `docs/plans/LEADFLOWAI_AUTHORITATIVE_MASTER_PLAN_V1.md`
+- `docs/plans/LEADFLOWAI_AUTHORITATIVE_MASTER_PLAN_V2.md` — current Owner-approved single top-level product-completion roadmap.
+- `docs/plans/LEADFLOWAI_AUTHORITATIVE_MASTER_PLAN_V1.md` — superseded top-level authority retained as historical product/delivery provenance.
 - `docs/plans/V14-VISUAL-REBUILD.md` as historical/completed V14 execution evidence where so classified by current authority
-- `docs/plans/V15-SEARCH-MASTER-PLAN.md`
+- `docs/plans/V15-SEARCH-MASTER-PLAN.md` — active subordinate Search / SEO / AEO / GEO / AI Search domain plan and candidate evidence program.
 - `docs/quality/V15-*`
 - `docs/architecture/*`
 - current scripts/contracts and implementation.
@@ -122,7 +123,7 @@ Before a Codex write stage in a fresh session:
 16. Project Boundaries
 17. Current State
 18. current Owner Decisions
-19. exact current Master Plan / stage-specific authorities named by the prompt.
+19. `docs/plans/LEADFLOWAI_AUTHORITATIVE_MASTER_PLAN_V2.md` plus exact stage-specific/subordinate authorities named by the prompt.
 
 For a full-repository absorption pass, Codex must then read and account for the complete tracked repository before concluding.
 

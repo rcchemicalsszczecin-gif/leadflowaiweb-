@@ -1,10 +1,12 @@
 # LEADFLOWAI — AUTHORITATIVE MASTER PLAN V1
 
-STATUS: ACTIVE
+STATUS: SUPERSEDED AS CURRENT TOP-LEVEL MASTER PLAN BY V2 — RETAINED AS HISTORICAL PRODUCT / DELIVERY PROVENANCE
 DATE: 2026-08-14
 LEGAL ENTITY: Tervyxa Systems sp. z o.o.
 PUBLIC BRAND: LeadFlowAI
 PRIMARY DOMAIN: leadflowai.pl
+
+> **Supersession notice:** The current top-level product-completion authority is `docs/plans/LEADFLOWAI_AUTHORITATIVE_MASTER_PLAN_V2.md`. This V1 document remains historical product and delivery evidence, including its V14/V15 provenance, but does not control current execution after V2 promotion. Current execution is governed by V2 plus the higher repository Control Plane.
 
 ## Mission
 Build LeadFlowAI as the specialized Tervyxa web-production brand for designing, building, optimizing and growing professional websites and web systems.

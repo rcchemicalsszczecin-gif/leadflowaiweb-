@@ -1,6 +1,6 @@
 # LEADFLOWAI — V15 SEARCH MASTER PLAN
 
-STATUS: ACTIVE EXECUTION PLAN
+STATUS: ACTIVE SUBORDINATE SEARCH / SEO / AEO / GEO / AI SEARCH DOMAIN PLAN — CANDIDATE EVIDENCE PROGRAM
 OWNER: Paweł Niewiadomski
 LEGAL ENTITY: Tervyxa Systems sp. z o.o.
 PUBLIC BRAND: LeadFlowAI
@@ -10,6 +10,8 @@ VISUAL_PRODUCTION_AUTHORITY: `V14_GLOBAL_LIQUID_WORLD`
 VISUAL_PRODUCTION_MERGE: `36ad3fd6130ce21e68a2c5e701a516fcb3703b65`
 V14_GLOBAL_LIQUID_CANDIDATE: `50b71632c687e032311556371108ce3f8d989650`
 WORK_BRANCH: `v15/search-master-plan`
+
+> **Authority notice:** V15 is subordinate to `docs/plans/LEADFLOWAI_AUTHORITATIVE_MASTER_PLAN_V2.md`. It remains the detailed search-domain and candidate-evidence program, and its technical evidence remains valid only for the tested SHAs it identifies. V15 does not override V2 product sequencing, authorize production promotion or convert missing external evidence into PASS.
 
 ## 1. Purpose
 

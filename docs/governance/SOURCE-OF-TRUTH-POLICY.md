@@ -82,13 +82,24 @@ The `governance/codex-control-plane-v1` branch is an isolated governance candida
 
 ## 5. Product/search authority
 
-Product plan:
-- `docs/plans/LEADFLOWAI_AUTHORITATIVE_MASTER_PLAN_V1.md`, interpreted through higher current governance and exact Git evidence.
+```text
+TOP_LEVEL_PRODUCT_AUTHORITY=docs/plans/LEADFLOWAI_AUTHORITATIVE_MASTER_PLAN_V2.md
+V1=HISTORICAL_SUPERSEDED_PRODUCT_PROVENANCE
+V15=SUBORDINATE_SEARCH_DOMAIN_PLAN_AND_CANDIDATE_EVIDENCE
+```
 
-V15 search/evidence program:
-- `docs/plans/V15-SEARCH-MASTER-PLAN.md` and its accepted V15 quality evidence on the V15 candidate lineage.
+Top-level product authority:
+- `docs/plans/LEADFLOWAI_AUTHORITATIVE_MASTER_PLAN_V2.md`, interpreted through higher current governance, Owner decisions and exact Git evidence.
+
+Historical superseded product provenance:
+- `docs/plans/LEADFLOWAI_AUTHORITATIVE_MASTER_PLAN_V1.md`. V1 preserves product/delivery history but no longer controls current top-level execution.
+
+Subordinate V15 search/evidence program:
+- `docs/plans/V15-SEARCH-MASTER-PLAN.md` and its accepted V15 quality evidence on the V15 candidate lineage. V15 remains the active subordinate Search / SEO / AEO / GEO / AI Search domain plan and candidate evidence program.
 
 V15 may supersede earlier search/content decisions only where evidence and the accepted stage explicitly establish that supersession.
+
+V15 does not override V2 product sequencing or create a second top-level product roadmap.
 
 V15 technical readiness does not fabricate external Google/Bing/AI-search evidence and does not authorize production promotion by itself.
 

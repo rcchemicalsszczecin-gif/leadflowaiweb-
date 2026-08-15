@@ -1,7 +1,7 @@
 # LEADFLOWAI — CURRENT STATE
 
 STATUS: AUTHORITATIVE CURRENT-STATE CHECKPOINT
-DATE: 2026-08-14
+DATE: 2026-08-15
 OWNER: Paweł Niewiadomski
 LEGAL ENTITY: Tervyxa Systems sp. z o.o.
 PUBLIC BRAND: LeadFlowAI
@@ -249,19 +249,42 @@ Repository code/evidence cannot by itself prove:
 
 Classify these as `BLOCKED_EXTERNAL_EVIDENCE` unless current external evidence is actually obtained.
 
-## 13. Current next execution order
+## 13. Current product-completion authority and next macro stage
 
-Until the Owner authorizes a different sequence:
+Current top-level product-completion authority:
 
-1. Finalize and locally import the Codex control-plane candidate without mutating production.
-2. Establish a new clean local Point Zero containing the control-plane files.
-3. Run Codex Prompt 01 as a complete read-only repository absorption under that control plane.
-4. Return the entire Codex report to ChatGPT for strict review.
-5. Reconcile any proven governance/architecture/current-state defects in bounded Owner-authorized stages.
-6. Continue technical/content/search/design hardening only through bounded stages.
-7. Keep V15/post-V15/control-plane work non-production until separate Owner review, merge and deployment authority.
-8. Treat external Search Console/Bing/field evidence as separate evidence tracks.
-9. Address branch protection/Dependabot/public-repo/licensing decisions as a separate Owner-controlled repository-hardening stage.
+`docs/plans/LEADFLOWAI_AUTHORITATIVE_MASTER_PLAN_V2.md`
+
+```text
+AUTHORITATIVE_TOP_LEVEL_MASTER_PLAN=docs/plans/LEADFLOWAI_AUTHORITATIVE_MASTER_PLAN_V2.md
+CURRENT_SITE_STATUS=NOT_FINISHED
+CURRENT_PRODUCT_COMPLETION_PROGRAM=A→Z / C01–C27
+NEXT_MACRO_STAGE=C01
+C01_IMPLEMENTATION_AUTHORIZED=NO
+```
+
+Current product status and program:
+
+- `CURRENT_SITE_STATUS=NOT_FINISHED`;
+- `TECHNICAL_PASS_DOES_NOT_EQUAL_PRODUCT_COMPLETION=YES`;
+- `CURRENT_PRODUCT_COMPLETION_PROGRAM=A→Z / C01–C27`;
+- `NEXT_MACRO_STAGE=C01`;
+- `C01_IMPLEMENTATION_AUTHORIZED=NO`.
+
+V1 is superseded as the current top-level Master Plan and retained as historical product/delivery provenance. V15 remains the active subordinate Search / SEO / AEO / GEO / AI Search domain plan and candidate evidence program. Neither classification promotes candidate code to production.
+
+The control-plane import, clean Point Zero, complete 301-file Codex absorption, repository audit, Full Product Completion Plan and Master Plan V2 synthesis are completed milestones. They are not future execution steps.
+
+Current Owner-controlled planning inputs for future bounded stages include:
+
+- `OWNER_LIQUID_VERTICAL_ORIENTATION_DEFECT=CONFIRMED`; the defect is not fixed by this documentation promotion;
+- external immutable primary logo master: `/home/leadflowai/LeadFlowAI-SSD/owner-assets/leadflowai-brand/leadflowai-primary-logo-owner-approved.png`, 1536×1024 RGBA, SHA256 `4a5736eae07fbd166deec6567c907fe7b809697d45cf6f647399cbdaba1652ba`;
+- external immutable compact mark master: `/home/leadflowai/LeadFlowAI-SSD/owner-assets/leadflowai-brand/leadflowai-brand-mark-owner-approved.png`, 400×400 RGBA, SHA256 `1c7b5a4c27eb4ccf22f089183e6bd5f072ffed3cc16ea0fd056cd53da777cbf5`;
+- external immutable hero visual master: `/home/leadflowai/LeadFlowAI-SSD/owner-assets/leadflowai-brand/leadflowai-hero-owner-approved.png`, 1536×585 RGBA, SHA256 `dc0e64dbd7fc56179c086b1860926a9821b139ef15afb735be2ce0f8c4405ba9`.
+
+These assets remain outside the repository pending C02/C04 IP and asset-admission authority. They are not attached, implemented or deployed.
+
+C01 is Operations Truth Reconciliation. It may begin only through a separate exact Owner-authorized implementation gate after the current Codex report, ChatGPT strict review, Owner review, Owner exact-path Git finalization, post-push validation and synchronization. No later C-stage is authorized automatically.
 
 ## 14. Production protection
 
