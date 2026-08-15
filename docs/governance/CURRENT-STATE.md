@@ -226,15 +226,46 @@ ChatGPT reviews/translates the Codex report for the Owner.
 
 ## 11. Repository settings / IP debt
 
-Current known repository-level debt includes:
+Current repository/settings state remains:
 - `main` branch protection is OFF at repository-settings level;
 - required status checks are not enforced by branch protection;
 - Dependabot alerts/settings hardening remains unresolved;
-- repository is public;
-- licensing/IP/public-private policy remains a separate Owner decision;
+- the repository is PUBLIC and current production hosting is GitHub Pages;
+- no final repository `LICENSE` / `NOTICE` implementation exists;
 - no release/tag model is relied upon as the primary deployment identity.
 
-These are governance/repository-setting concerns and are not automatically runtime defects.
+The C02A inventory is complete and the Owner has recorded the C02B target policy:
+
+```text
+C02A_REPOSITORY_IP_GITHUB_INVENTORY=COMPLETE
+C02B_OWNER_VISIBILITY_LICENSING_DECISION=RECORDED
+
+CURRENT_REPOSITORY_VISIBILITY=PUBLIC
+TARGET_SOURCE_REPOSITORY_VISIBILITY=PRIVATE
+CURRENT_PRODUCTION_HOSTING=GITHUB_PAGES
+TARGET_PRODUCTION_HOSTING=CLOUDFLARE
+CURRENT_GITHUB_PAGES_ROLE=TRANSITIONAL_UNTIL_CLOUDFLARE_CONTINUITY_PROVEN
+SITE_CONTINUITY_REQUIRED=YES
+IMMEDIATE_VISIBILITY_CHANGE=NO
+VISIBILITY_SWITCH_AUTHORIZED=NO
+CLOUDFLARE_MIGRATION_EXECUTION_AUTHORIZED=NO
+GITHUB_PAGES_DECOMMISSION_AUTHORIZED=NO
+HISTORICAL_PUBLIC_EXPOSURE_REVERSIBLE=NO
+
+REPOSITORY_LICENSE_POLICY=PROPRIETARY_FIRST_PARTY_PLUS_THIRD_PARTY_NOTICES
+FIRST_PARTY_SOURCE_POLICY=PROPRIETARY
+OPEN_SOURCE_GRANT_FOR_LEADFLOWAI_FIRST_PARTY_SOURCE=NO
+OWNER_BRAND_ASSETS_POLICY=PROPRIETARY_SEPARATE_FROM_CODE_LICENSE
+THIRD_PARTY_COMPONENTS_POLICY=RETAIN_ORIGINAL_LICENSES_AND_NOTICES
+FINAL_LICENSE_TEXT_STATUS=LEGAL_REVIEW_REQUIRED
+THIRD_PARTY_NOTICE_TEXT_STATUS=LEGAL_REVIEW_REQUIRED
+LICENSE_FILE_CREATION_AUTHORIZED=NO
+NOTICE_FILE_CREATION_AUTHORIZED=NO
+```
+
+The target is a private source repository with public production hosting through Cloudflare. Current public repository visibility and GitHub Pages production hosting remain transitional until Cloudflare continuity is independently proven and a later Owner gate authorizes execution. This policy decision does not select a Cloudflare product, project, deployment API, DNS change or TLS change. It does not erase historical public exposure or authorize copying Owner master assets into Git.
+
+These remaining implementation, legal-review and repository-setting concerns are not automatically runtime defects.
 
 ## 12. External evidence gaps
 
@@ -269,8 +300,15 @@ OPERATIONS_NEGATIVE_TESTS=8_OF_8
 C01_CORE_CONTRACTS=3_OF_3_PASS
 CURRENT_IMMEDIATE_ROLLBACK_TARGET=NOT_PROVEN
 C01_RESIDUAL_OPEN_BACKLOG=OPS-03,OPS-04
-NEXT_MACRO_STAGE=C02
-C02_IMPLEMENTATION_AUTHORIZED=NO
+CURRENT_PRODUCT_COMPLETION_MACRO_STAGE=C02_REPOSITORY_IP_GITHUB_DECISION
+C02A_INVENTORY=COMPLETE
+C02B_OWNER_VISIBILITY_LICENSING_DECISION=RECORDED
+NEXT_C02_GATE=C02B2_CLOUDFLARE_VISIBILITY_CONTINUITY
+C02B2_IMPLEMENTATION_AUTHORIZED=NO
+C02C_STARTED=NO
+C02D_STARTED=NO
+C02E_STARTED=NO
+C03_STARTED=NO
 ```
 
 Current product status and program:
@@ -280,8 +318,11 @@ Current product status and program:
 - `CURRENT_PRODUCT_COMPLETION_PROGRAM=A→Z / C01–C27`;
 - `C01_TRUTH_RECONCILIATION=COMPLETE`;
 - `C01_RESIDUAL_OPEN_BACKLOG=OPS-03,OPS-04`;
-- `NEXT_MACRO_STAGE=C02`;
-- `C02_IMPLEMENTATION_AUTHORIZED=NO`.
+- `CURRENT_PRODUCT_COMPLETION_MACRO_STAGE=C02_REPOSITORY_IP_GITHUB_DECISION`;
+- `C02A_INVENTORY=COMPLETE`;
+- `C02B_OWNER_VISIBILITY_LICENSING_DECISION=RECORDED`;
+- `NEXT_C02_GATE=C02B2_CLOUDFLARE_VISIBILITY_CONTINUITY`;
+- `C02B2_IMPLEMENTATION_AUTHORIZED=NO`.
 
 V1 is superseded as the current top-level Master Plan and retained as historical product/delivery provenance. V15 remains the active subordinate Search / SEO / AEO / GEO / AI Search domain plan and candidate evidence program. Neither classification promotes candidate code to production.
 
@@ -298,7 +339,7 @@ These assets remain outside the repository pending C02/C04 IP and asset-admissio
 
 C01 Operations Truth Reconciliation was completed through separately bounded Owner-authorized gates. Its per-file operational truth is 6/6, negative tests are 8/8 and the three core contracts pass. This truth-reconciliation closeout does not close OPS-03 or OPS-04, establish an immediate rollback SHA, prove production release readiness or change the production branch, Pages deployment or public runtime.
 
-C02 Repository, IP and GitHub Decision is the next macro stage. `C02_IMPLEMENTATION_AUTHORIZED=NO`; it requires a separate exact Owner-authorized gate, and no later C-stage is authorized automatically.
+C02 Repository, IP and GitHub Decision is in progress through bounded gates. C02A inventory is complete and C02B records the Owner visibility/hosting/licensing policy, but no repository, hosting, legal-file, asset or provider implementation is complete. C02B2, C02C, C02D and C02E each require separate exact Owner authorization, and no later C-stage is authorized automatically.
 
 ## 14. Production protection
 

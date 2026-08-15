@@ -130,10 +130,50 @@ Current classifications:
 - `C01_ALL_OPERATIONS_BACKLOG_CLOSED=NO`;
 - `C01_RESIDUAL_OPEN_BACKLOG=OPS-03,OPS-04`;
 - `CURRENT_IMMEDIATE_ROLLBACK_TARGET=NOT_PROVEN`;
-- next macro stage: C02 Repository, IP and GitHub Decision;
-- `C02_IMPLEMENTATION_AUTHORIZED=NO`.
+- current macro stage: C02 Repository, IP and GitHub Decision;
+- `C02A_REPOSITORY_IP_GITHUB_INVENTORY=COMPLETE`;
+- `C02B_OWNER_VISIBILITY_LICENSING_DECISION=RECORDED`;
+- `NEXT_C02_GATE=C02B2_CLOUDFLARE_VISIBILITY_CONTINUITY`;
+- `C02B2_IMPLEMENTATION_AUTHORIZED=NO`.
 
-C01 truth reconciliation is complete, but OPS-03 and OPS-04 remain open until separately satisfied. C01 completion does not authorize C02 or any production mutation. C02 and every later macro stage require separately bounded Owner-authorized execution gates; no stage authorizes its successor automatically. Candidate and governance work remain non-production until separate Owner promotion, merge and deployment decisions.
+C01 truth reconciliation is complete, but OPS-03 and OPS-04 remain open until separately satisfied. C02 is in progress only through separately bounded Owner-authorized gates; C02A and this C02B decision record do not authorize C02B2, C02C, C02D, C02E or production mutation. Candidate and governance work remain non-production until separate Owner promotion, merge and deployment decisions.
+
+### C02 repository, hosting and licensing policy
+
+```text
+TARGET_POLICY_DECIDED=YES
+IMPLEMENTATION_COMPLETED=NO
+
+CURRENT_REPOSITORY_VISIBILITY=PUBLIC
+TARGET_SOURCE_REPOSITORY_VISIBILITY=PRIVATE
+CURRENT_PRODUCTION_HOSTING=GITHUB_PAGES
+TARGET_PRODUCTION_HOSTING=CLOUDFLARE
+CURRENT_GITHUB_PAGES_ROLE=TRANSITIONAL_UNTIL_CLOUDFLARE_CONTINUITY_PROVEN
+SITE_CONTINUITY_REQUIRED=YES
+NO_BLIND_PUBLIC_TO_PRIVATE_SWITCH=YES
+IMMEDIATE_VISIBILITY_CHANGE=NO
+VISIBILITY_SWITCH_AUTHORIZED=NO
+CLOUDFLARE_MIGRATION_EXECUTION_AUTHORIZED=NO
+GITHUB_PAGES_DECOMMISSION_AUTHORIZED=NO
+HISTORICAL_PUBLIC_EXPOSURE_REVERSIBLE=NO
+
+LICENSE_POLICY_OWNER_DECISION=APPROVED
+REPOSITORY_LICENSE_POLICY=PROPRIETARY_FIRST_PARTY_PLUS_THIRD_PARTY_NOTICES
+FIRST_PARTY_SOURCE_POLICY=PROPRIETARY
+OPEN_SOURCE_GRANT_FOR_LEADFLOWAI_FIRST_PARTY_SOURCE=NO
+OWNER_BRAND_ASSETS_POLICY=PROPRIETARY_SEPARATE_FROM_CODE_LICENSE
+THIRD_PARTY_COMPONENTS_POLICY=RETAIN_ORIGINAL_LICENSES_AND_NOTICES
+FINAL_LICENSE_TEXT_STATUS=LEGAL_REVIEW_REQUIRED
+THIRD_PARTY_NOTICE_TEXT_STATUS=LEGAL_REVIEW_REQUIRED
+LICENSE_FILE_CREATION_AUTHORIZED=NO
+NOTICE_FILE_CREATION_AUTHORIZED=NO
+```
+
+The Owner selects a private source repository with public production hosting through Cloudflare as the target architecture. The current repository remains public and GitHub Pages remains the transitional production host until Cloudflare continuity for `leadflowai.pl` is independently proven and a later explicit Owner gate authorizes execution. No Cloudflare product, project, deployment API, DNS mutation or TLS mutation is selected or authorized by this decision record.
+
+Changing visibility later can reduce future source exposure but cannot undo historical public access, clones, downloads, caches, Actions evidence, issue/PR history or third-party copies.
+
+LeadFlowAI first-party source is proprietary and receives no intentional open-source grant. Owner brand assets are proprietary and separate from code-license scope. Third-party code, dependencies and assets retain their own licenses, notices and attribution requirements and are not relicensed as LeadFlowAI first-party work. Final `LICENSE` and `NOTICE` wording remains subject to legal review; this policy decision does not authorize creating either file or admitting Owner master assets to Git.
 
 ## 9. Current Owner brand and Liquid inputs
 
@@ -187,5 +227,7 @@ Still separate from automatic implementation:
 - production analytics/consent tooling;
 - repository branch protection / required checks;
 - Dependabot/repository security settings;
-- public/private/licensing/IP policy;
+- Cloudflare/visibility continuity planning and separately authorized implementation;
+- final `LICENSE` / `NOTICE` legal drafting and implementation;
+- Owner asset admission, derivative and provenance policy;
 - external Search Console/Bing evidence connection and interpretation.

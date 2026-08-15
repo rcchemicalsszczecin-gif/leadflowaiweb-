@@ -1012,6 +1012,32 @@ Owner-decision stage must cover:
 
 Consequences must be presented before selection. V2 does not make the IP decision for the Owner.
 
+Current C02 Owner decision receipt:
+
+```text
+C02A_INVENTORY=COMPLETE
+OWNER_REPOSITORY_VISIBILITY_TARGET=PRIVATE
+OWNER_HOSTING_TARGET=CLOUDFLARE
+CURRENT_PUBLIC_REPOSITORY_TRANSITIONAL=YES
+CURRENT_GITHUB_PAGES_TRANSITIONAL=YES
+VISIBILITY_EXECUTION_PENDING_CONTINUITY_PROOF=YES
+IMMEDIATE_VISIBILITY_CHANGE=NO
+VISIBILITY_SWITCH_AUTHORIZED=NO
+CLOUDFLARE_MIGRATION_EXECUTION_AUTHORIZED=NO
+GITHUB_PAGES_DECOMMISSION_AUTHORIZED=NO
+SITE_CONTINUITY_REQUIRED=YES
+HISTORICAL_PUBLIC_EXPOSURE_REVERSIBLE=NO
+OWNER_FIRST_PARTY_LICENSE_POLICY=PROPRIETARY
+OPEN_SOURCE_GRANT_FOR_LEADFLOWAI_FIRST_PARTY_SOURCE=NO
+OWNER_THIRD_PARTY_POLICY=RETAIN_LICENSES_AND_NOTICES
+OWNER_BRAND_ASSET_POLICY=PROPRIETARY_SEPARATE
+FINAL_LICENSE_TEXT=LEGAL_REVIEW_REQUIRED
+LICENSE_FILE_CREATION_AUTHORIZED=NO
+NOTICE_FILE_CREATION_AUTHORIZED=NO
+```
+
+The Owner policy decision is recorded: the target is a private source repository with public production hosting through Cloudflare, proprietary first-party source, separately proprietary Owner brand assets and preserved third-party licenses/notices. Repository visibility, hosting, provider settings, legal files and asset admission have not been implemented by C02B. The repository remains public and GitHub Pages remains the transitional production host until continuity is proven and later Owner authority is granted. No specific Cloudflare product or migration mechanism is selected here.
+
 ## 29. Operations and recovery
 
 Current authoritative production identity:
@@ -2169,8 +2195,15 @@ C01_PER_FILE_OPERATIONAL_TRUTH=6_OF_6
 C01_NEGATIVE_TESTS=8_OF_8
 C01_CORE_CONTRACTS=3_OF_3_PASS
 C01_RESIDUAL_OPEN_BACKLOG=OPS-03,OPS-04
-NEXT_MACRO_STAGE=C02
-C02_IMPLEMENTATION_AUTHORIZED=NO
+CURRENT_PRODUCT_COMPLETION_MACRO_STAGE=C02_REPOSITORY_IP_GITHUB_DECISION
+C02A_REPOSITORY_IP_GITHUB_INVENTORY=COMPLETE
+C02B_OWNER_VISIBILITY_LICENSING_DECISION=RECORDED
+NEXT_C02_GATE=C02B2_CLOUDFLARE_VISIBILITY_CONTINUITY
+C02B2_IMPLEMENTATION_AUTHORIZED=NO
+C02C_STARTED=NO
+C02D_STARTED=NO
+C02E_STARTED=NO
+C03_STARTED=NO
 ```
 
 C01 Operations Truth Reconciliation was executed through separately bounded Owner-authorized gates. Current production identity is validated independently in six operational documents, eight deliberate stale-condition tests pass and all three core C01 contracts pass. OPS-03 and OPS-04 remain open, and the current immediate rollback target remains `NOT_PROVEN`.
@@ -2191,7 +2224,7 @@ CODEX FINAL REPORT
 → OWNER NEXT-GATE DECISION
 ```
 
-This C01 closeout does not change production, deploy brand assets, fix the Liquid defect or authorize C02. C02 Repository, IP and GitHub Decision is the next macro stage and requires a separate exact Owner-authorized gate.
+This C01 closeout did not change production, deploy brand assets or fix the Liquid defect. C02 Repository, IP and GitHub Decision is now in progress through bounded gates: C02A inventory is complete and C02B records the Owner visibility/hosting/licensing policy. C02 remains incomplete; C02B2, C02C, C02D and C02E are unstarted and require separate exact Owner-authorized gates. No C03 authority exists.
 
 # Appendix A — Page / Route Completion Matrix
 
@@ -2234,8 +2267,8 @@ This is the durable V2 backlog recovered from the completed Full Product Complet
 | OPS-02 | P1 | Deployment evidence | C01 reconciled the deployment/run receipt with the exact production revision and domain evidence | Exact deployment receipt tied to production SHA and domain | `docs/operations/DEPLOYMENT-READINESS.md`; `.github/workflows/pages.yml`; Pages run evidence | Unsafe promotion and weak auditability | OPS-01; external run evidence | C01 | C01B deployment-truth reconciliation | Production SHA, Pages run, artifact and domain evidence reconcile | CLOSED |
 | OPS-03 | P1 | Rollback/recovery | Rollback predecessor and recovery chain require current proof | Tested, dated rollback identity and bounded recovery procedure | `docs/operations/BACKUP-RECOVERY.md`; `docs/operations/RUNBOOK.md` | Longer outage and irreversible release error | OPS-01/02 | C01 | C01C rollback and recovery reconciliation | Exact rollback target, trigger, owner and validation are recorded and testable | OPEN |
 | OPS-04 | P1 | Monitoring/incident | Monitoring and incident ownership are incompletely synchronized with current production | Current health checks, ownership, escalation and incident evidence model | `docs/operations/MONITORING.md`; `docs/operations/RUNBOOK.md` | Failures may remain invisible or unmanaged | OPS-01 | C01 | C01D monitoring and validator hardening | Each critical signal has source, threshold, owner and recovery link; stale fixtures fail | OPEN |
-| IP-01 | P1 | Repository visibility | Repository is public without a completed Owner IP decision | Explicit public/private decision with consequences recorded | Repository/GitHub visibility evidence; V2 section 28 | Source and commercial IP exposure | Owner decision; legal input if needed | C02 | C02A repository visibility decision | Owner-approved visibility policy is documented and verified in settings | OPEN |
-| IP-02 | P1 | License | No license metadata defines reuse rights | Owner/legal-approved proprietary or open-license position | Repository root; GitHub license metadata | Ambiguous reuse and enforcement rights | IP-01; `LEGAL_REVIEW_REQUIRED` | C02 | C02B license/IP policy | Exact license/notice state matches Owner decision and repository visibility | OPEN |
+| IP-01 | P1 | Repository visibility | Owner target is private source plus Cloudflare hosting; the current public repository/Pages topology remains transitional pending continuity proof and separately authorized execution | Explicit public/private decision with consequences recorded | Repository/GitHub visibility evidence; V2 section 28 | Source and commercial IP exposure | Owner decision; legal input if needed | C02 | C02A repository visibility decision | Owner-approved visibility policy is documented and verified in settings | OPEN |
+| IP-02 | P1 | License | Owner selected proprietary first-party source plus retained third-party licenses/notices; final legal text and repository license/notice state remain unimplemented | Owner/legal-approved proprietary or open-license position | Repository root; GitHub license metadata | Ambiguous reuse and enforcement rights | IP-01; `LEGAL_REVIEW_REQUIRED` | C02 | C02B license/IP policy | Exact license/notice state matches Owner decision and repository visibility | OPEN |
 | IP-03 | P1 | Brand asset admission | Approved masters are outside the repo and admission rights/derivative policy are undecided | Provenance-controlled master/derivative policy | Owner asset paths and hashes; V2 sections 14/28 | Brand leakage, uncontrolled copies or inability to ship assets | IP-01/02; Owner asset decision | C02/C04 | C02C asset/IP decision, then C04A provenance | Owner approves storage, exposure, derivative and retention rules | OPEN |
 | IP-04 | P1 | Branch protection | Main protection and required checks are off | Protected production branch with approved required checks/deploy controls | GitHub settings evidence; `.github/workflows/**` | Unreviewed or failing code can reach production | Owner settings authority; CI-01 | C02 | C02D branch and deployment protection | Direct unsafe promotion is blocked and required checks are enforced | OPEN |
 | IP-05 | P2 | Ownership/dependency governance | CODEOWNERS, security policy, Dependabot and release/tag policy are incomplete or absent | Owner-approved ownership, reporting, dependency and release policy | `.github/**`; repository root; V2 sections 28/49 | Slow review/security response and weak release traceability | IP-01/02/04 | C02 | C02E repository governance controls | Policies exist, settings match them and no authority is delegated beyond Owner decisions | OPEN |
