@@ -1,20 +1,13 @@
 # LEADFLOWAI — STATIC FRONTEND DEPLOYMENT
 
-STATUS: PRODUCTION V14 ARCHITECTURE
-DATE: 2026-08-14
+STATUS: PRODUCTION V14 ARCHITECTURE — CURRENT REPOSITORY/DEPLOYMENT IDENTITY IS DEFINED BELOW
+DATE: 2026-08-15
 
 ## Current architecture
 
 Public website frontend:
 - domain: `https://leadflowai.pl`;
 - source: GitHub repository;
-- production branch: `main`;
-- production authority: V14 Global Liquid World;
-- production merge revision: `36ad3fd6130ce21e68a2c5e701a516fcb3703b65`;
-- validated Global Liquid candidate: `50b71632c687e032311556371108ce3f8d989650`;
-- previous production revision: `5bba6a6c963fa61ea3920bb4fcefff65ff9376cc`;
-- initial V14 merge (historical): `39c9b304eff42a71ea36aee871dce569d8f374f0`;
-- previous V13 rollback reference: `10627e2f18ccfc7ef86c76a695dab9cf7933cce9`;
 - build: Next.js static export (`output: "export"`);
 - artifact: `out/`;
 - hosting: GitHub Pages;
@@ -22,7 +15,31 @@ Public website frontend:
 - custom-domain marker: `public/CNAME` -> `leadflowai.pl`;
 - Jekyll bypass marker: `public/.nojekyll`.
 
-GitHub Pages run `31809931666` passed full verification/build, artifact identity, upload and deploy for the current production merge. Pages reports status `built`, CNAME `leadflowai.pl`, approved TLS certificate and HTTPS enforcement.
+```text
+CURRENT_PRODUCTION_BRANCH=main
+CURRENT_PRODUCTION_REPOSITORY_HEAD=67663b08c950de120a94ef8495b5cdc8c9bdecfe
+CURRENT_VISUAL_RUNTIME_AUTHORITY=V14_GLOBAL_LIQUID_WORLD
+LATEST_SUCCESSFUL_PAGES_RUN_ID=31810716199
+LATEST_DEPLOYED_HEAD_SHA=67663b08c950de120a94ef8495b5cdc8c9bdecfe
+CURRENT_IMMEDIATE_ROLLBACK_TARGET=NOT_PROVEN
+```
+
+Historical visual/runtime release identity:
+
+```text
+V14_GLOBAL_LIQUID_MERGE_MILESTONE=36ad3fd6130ce21e68a2c5e701a516fcb3703b65
+V14_GLOBAL_LIQUID_ACCEPTED_CANDIDATE=50b71632c687e032311556371108ce3f8d989650
+V14_GLOBAL_LIQUID_MILESTONE_PAGES_RUN=31809931666
+PRE_GLOBAL_LIQUID_PRODUCTION_REVISION=5bba6a6c963fa61ea3920bb4fcefff65ff9376cc
+INITIAL_V14_PRODUCTION_MERGE=39c9b304eff42a71ea36aee871dce569d8f374f0
+INITIAL_V14_RELEASE_CANDIDATE=242263ffe1593d1a80890b7f6bc1514316ed2656
+INITIAL_V14_DEPLOYMENT_RUN=31800348526
+OLDER_V13_REFERENCE=10627e2f18ccfc7ef86c76a695dab9cf7933cce9
+```
+
+The latest Pages checkpoint is `CONTROLLER_VERIFIED_EXTERNAL_EVIDENCE`, last reconciled on `2026-08-15`. Pages reports status `built`, source branch `main`, source path `/`, build type `workflow`, latest run status/conclusion `completed` / `success`, CNAME `leadflowai.pl`, approved TLS certificate and HTTPS enforcement `true`.
+
+Run `31809931666` remains historical deployment evidence for the Global Liquid merge milestone; it is not the current deployment identity.
 
 ## Visual/runtime delivery boundary
 
@@ -73,4 +90,4 @@ Response-header enforcement belongs to the actual edge/provider layer because pr
 
 ## Release baseline
 
-V14 Global Liquid World is now production. The initial V14 Owner Visual PASS/merge remains historical release evidence, and the Global Liquid production authorization plus exact candidate validation are the current release evidence. Further production changes require normal Owner/governance authority.
+V14 Global Liquid World is the current production visual/runtime authority. Current repository/deployment identity is the exact HEAD and latest Pages run recorded above. The initial V14 Owner Visual PASS/merge and the Global Liquid authorization, candidate, merge and milestone deployment remain historical release evidence. Further production changes require normal Owner/governance authority.

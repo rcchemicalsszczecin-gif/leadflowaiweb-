@@ -16,6 +16,7 @@ const env = read(".env.example");
 const pages = read(".github/workflows/pages.yml");
 const frontend = read("docs/architecture/FRONTEND-DEPLOYMENT.md");
 const currentState = read("docs/governance/CURRENT-STATE.md");
+const ownerV14 = read("docs/governance/WEBSITE-OWNER-DECISION-V14.md");
 const cname = read("public/CNAME").trim();
 
 if (!nextConfig.includes('output: "export"') || !nextConfig.includes("trailingSlash: true")) fail("Next static export is not enabled");
@@ -50,13 +51,19 @@ for (const required of [
 }
 
 for (const required of [
-  "Production authority: V14 Global Liquid World",
+  "Current production visual/runtime authority: V14 Global Liquid World",
   "36ad3fd6130ce21e68a2c5e701a516fcb3703b65",
   "50b71632c687e032311556371108ce3f8d989650",
-  "Owner Global Liquid production authorization: GRANTED and exercised",
-  "GitHub Pages deployment: PASS",
+  "67663b08c950de120a94ef8495b5cdc8c9bdecfe",
+  "31810716199",
+  "status: `completed`",
+  "conclusion: `success`",
 ]) {
   if (!currentState.includes(required)) fail(`current production boundary missing: ${required}`);
+}
+
+if (!ownerV14.includes("V14_GLOBAL_LIQUID_OWNER_AUTHORIZATION=GRANTED_AND_EXERCISED")) {
+  fail("Owner V14 release authorization missing");
 }
 
 console.log("STATIC_DEPLOY_CONTRACT_PASS export=PASS pages-workflow=PASS cname=PASS api-split=PASS production=V14_GLOBAL_LIQUID_WORLD deployment=PASS");

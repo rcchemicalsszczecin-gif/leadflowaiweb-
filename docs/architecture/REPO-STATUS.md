@@ -1,20 +1,32 @@
 # LEADFLOWAI — REPOSITORY STATUS
 
 STATUS: CURRENT ARCHITECTURE CHECKPOINT
-DATE: 2026-08-14
+DATE: 2026-08-15
 
 BRAND=LEADFLOWAI
 DOMAIN=leadflowai.pl
 PUBLIC_EMAIL=kontakt@leadflowai.pl
 PRODUCTION_BRANCH=main
-PRODUCTION_REVISION=36ad3fd6130ce21e68a2c5e701a516fcb3703b65
+CURRENT_PRODUCTION_BRANCH=main
+PRODUCTION_REPOSITORY_HEAD=67663b08c950de120a94ef8495b5cdc8c9bdecfe
+CURRENT_PRODUCTION_REPOSITORY_HEAD=67663b08c950de120a94ef8495b5cdc8c9bdecfe
 PRODUCTION_AUTHORITY=V14_GLOBAL_LIQUID_WORLD
+CURRENT_VISUAL_RUNTIME_AUTHORITY=V14_GLOBAL_LIQUID_WORLD
 PRODUCTION_DEPLOY=PASS
-PREVIOUS_PRODUCTION_REVISION=5bba6a6c963fa61ea3920bb4fcefff65ff9376cc
+LATEST_SUCCESSFUL_PAGES_RUN=31810716199
+LATEST_SUCCESSFUL_PAGES_RUN_ID=31810716199
+LATEST_DEPLOYED_HEAD_SHA=67663b08c950de120a94ef8495b5cdc8c9bdecfe
+CURRENT_IMMEDIATE_ROLLBACK_TARGET=NOT_PROVEN
+CURRENT_EXTERNAL_EVIDENCE_CLASS=CONTROLLER_VERIFIED_EXTERNAL_EVIDENCE
+LAST_RECONCILED_DATE=2026-08-15
+PRE_GLOBAL_LIQUID_REVISION=5bba6a6c963fa61ea3920bb4fcefff65ff9376cc
 INITIAL_V14_RELEASE_CANDIDATE=242263ffe1593d1a80890b7f6bc1514316ed2656
 INITIAL_V14_PRODUCTION_MERGE=39c9b304eff42a71ea36aee871dce569d8f374f0
+INITIAL_V14_DEPLOYMENT_RUN=31800348526
+OLDER_V13_REFERENCE=10627e2f18ccfc7ef86c76a695dab9cf7933cce9
 V14_GLOBAL_LIQUID_CANDIDATE=50b71632c687e032311556371108ce3f8d989650
 V14_GLOBAL_LIQUID_MERGE=36ad3fd6130ce21e68a2c5e701a516fcb3703b65
+V14_GLOBAL_LIQUID_MILESTONE_PAGES_RUN=31809931666_SUCCESS
 V14_GLOBAL_LIQUID_OWNER_AUTHORIZATION=GRANTED_AND_EXERCISED
 V14_GLOBAL_LIQUID_CONTRACT=PASS
 V14_GLOBAL_LIQUID_BROWSER_MATRIX=PASS_28_OF_28
@@ -54,7 +66,11 @@ CHATBOT_PUBLIC_UI=OFF
 CHATBOT_CODE=DORMANT_NETWORK_OFF
 STATIC_FRONTEND=PASS
 GITHUB_PAGES=PRODUCTION
-GITHUB_PAGES_RUN=31809931666_SUCCESS
+GITHUB_PAGES_STATUS=BUILT
+GITHUB_PAGES_SOURCE=MAIN_ROOT
+GITHUB_PAGES_BUILD_TYPE=WORKFLOW
+LATEST_PAGES_RUN_STATUS=COMPLETED
+LATEST_PAGES_RUN_CONCLUSION=SUCCESS
 CUSTOM_DOMAIN=leadflowai.pl
 HTTPS=APPROVED_AND_ENFORCED
 ANALYTICS_RUNTIME=NOT_AUTHORIZED_IN_V14
@@ -63,11 +79,13 @@ DEPENDABOT_ALERTS=OFF
 
 ## Production architecture
 
-V14 Global Liquid World is the current production visual/runtime authority on `main`. The Owner-authorized production merge is `36ad3fd6130ce21e68a2c5e701a516fcb3703b65`, produced from exact validated candidate `50b71632c687e032311556371108ce3f8d989650`.
+V14 Global Liquid World is the current production visual/runtime authority on `main`. The current production repository HEAD is `67663b08c950de120a94ef8495b5cdc8c9bdecfe`, and the latest reconciled successful Pages run is `31810716199` with deployed head `67663b08c950de120a94ef8495b5cdc8c9bdecfe`.
 
-The immediately previous production revision is `5bba6a6c963fa61ea3920bb4fcefff65ff9376cc`. The original V14 merge `39c9b304eff42a71ea36aee871dce569d8f374f0` and V13 `10627e2f18ccfc7ef86c76a695dab9cf7933cce9` remain historical recovery references.
+The Owner-authorized Global Liquid merge milestone is `36ad3fd6130ce21e68a2c5e701a516fcb3703b65`, produced from validated candidate `50b71632c687e032311556371108ce3f8d989650`. Its pre-Global-Liquid predecessor is `5bba6a6c963fa61ea3920bb4fcefff65ff9376cc`. The initial V14 merge `39c9b304eff42a71ea36aee871dce569d8f374f0`, initial candidate `242263ffe1593d1a80890b7f6bc1514316ed2656`, initial deployment run `31800348526`, and V13 `10627e2f18ccfc7ef86c76a695dab9cf7933cce9` remain older historical recovery references.
 
-The public frontend remains a Next.js 16.3.1 static export deployed by GitHub Pages. GitHub Pages run `31809931666` passed full verification/build, Pages artifact identity, upload and deployment for the current production merge SHA.
+The current immediate rollback target is `NOT_PROVEN`. An incident-specific target must be selected from verified known-good evidence under normal Owner recovery/release authority.
+
+The public frontend remains a Next.js 16.3.1 static export deployed by GitHub Pages. The external service checkpoint is `CONTROLLER_VERIFIED_EXTERNAL_EVIDENCE`, last reconciled on `2026-08-15`: Pages status `built`, source branch `main`, source path `/`, build type `workflow`, latest run status/conclusion `completed` / `success`, CNAME `leadflowai.pl`, approved certificate and HTTPS enforcement `true`.
 
 ## Current frontend invariants
 
@@ -87,7 +105,7 @@ The public frontend remains a Next.js 16.3.1 static export deployed by GitHub Pa
 
 Candidate `50b71632c687e032311556371108ce3f8d989650` passed Quality, the Global Liquid World contract, Browser Matrix 28/28, homepage Visual Preview, Route Preview 8/8 with active WebGL2, rendered Search/Public Truth, security, dependency audit, accessibility and performance budgets before merge.
 
-Production merge `36ad3fd6130ce21e68a2c5e701a516fcb3703b65` was deployed by GitHub Pages run `31809931666`, which concluded SUCCESS.
+Historical Global Liquid merge milestone `36ad3fd6130ce21e68a2c5e701a516fcb3703b65` was deployed by GitHub Pages run `31809931666`, which concluded SUCCESS.
 
 GitHub Pages reports status `built`, CNAME `leadflowai.pl`, approved certificate and HTTPS enforcement.
 
@@ -99,4 +117,16 @@ GitHub Pages reports status `built`, CNAME `leadflowai.pl`, approved certificate
 
 ## Next phase
 
-Production stabilization/monitoring comes first. V15 Search Master Plan starts from stable current production evidence and real search data.
+```text
+TOP_LEVEL_MASTER_PLAN=LEADFLOWAI_AUTHORITATIVE_MASTER_PLAN_V2
+V15=SUBORDINATE_NON_PRODUCTION_SEARCH_DOMAIN_PLAN
+C01_TRUTH_RECONCILIATION=COMPLETE
+C01_PER_FILE_OPERATIONAL_TRUTH=PASS_6_OF_6
+C01_NEGATIVE_TESTS=PASS_8_OF_8
+C01_CORE_CONTRACTS=PASS_3_OF_3
+C01_RESIDUAL_OPEN_BACKLOG=OPS_03_OPS_04
+CURRENT_PRODUCT_COMPLETION_MACRO_STAGE=C02_REPOSITORY_IP_GITHUB_DECISION
+C02_IMPLEMENTATION_AUTHORIZED=NO
+```
+
+C01 operational-truth reconciliation is complete. OPS-03 and OPS-04 remain open, the current immediate rollback target remains `NOT_PROVEN`, and this closeout does not establish production release readiness. C02 has not started and requires a separate Owner-authorized gate. C01 changed no production branch, deployment or public runtime.

@@ -302,19 +302,25 @@ V15 Search:
 Post-V15 CSS de-stack:
 5c65435f2de5b2318c1c2585a478c9595f576f76
 
-Governance control plane:
+CONTROL_PLANE_PRE_C00_BASELINE:
 8f8a0f15782565b532a6feb0693fa6a3c471d38b
 
-Local promotion baseline:
+C00_MASTER_PLAN_V2_PROMOTION_COMMIT:
+a65783f3a8fe56f14031712b1a4fc9c43cf1a9d1
+
+C01_WORKTREE_BASE:
 codex/control-plane-audit
-8f8a0f15782565b532a6feb0693fa6a3c471d38b
+a65783f3a8fe56f14031712b1a4fc9c43cf1a9d1
+
+C01_FINALIZATION_COMMIT_IDENTITY:
+OWNER_CREATED_GIT_HISTORY_IS_AUTHORITATIVE
 ```
 
 V15 and post-V15 contain accepted candidate evidence but are not production.
 
 Historical V14 milestones remain provenance, not the complete current production identity.
 
-`docs/architecture/REPO-STATUS.md` currently reflects an older production milestone and must be reconciled in C01.
+`docs/architecture/REPO-STATUS.md` operational identity was reconciled by C01. The exact C01 finalization commit identity is determined by Owner-created Git history; this plan intentionally does not hard-code a future or self-referential commit SHA.
 
 ## 11. Current product verdict
 
@@ -2157,11 +2163,19 @@ AUTHORITATIVE_TOP_LEVEL_MASTER_PLAN=docs/plans/LEADFLOWAI_AUTHORITATIVE_MASTER_P
 
 CURRENT_PRODUCT_COMPLETION_PROGRAM=A→Z / C01–C27
 
-NEXT_MACRO_STAGE=C01
-C01_IMPLEMENTATION_AUTHORIZED=NO
+C01_TRUTH_RECONCILIATION=COMPLETE
+C01_TECHNICAL_TRUTH_RECONCILIATION=PASS
+C01_PER_FILE_OPERATIONAL_TRUTH=6_OF_6
+C01_NEGATIVE_TESTS=8_OF_8
+C01_CORE_CONTRACTS=3_OF_3_PASS
+C01_RESIDUAL_OPEN_BACKLOG=OPS-03,OPS-04
+NEXT_MACRO_STAGE=C02
+C02_IMPLEMENTATION_AUTHORIZED=NO
 ```
 
-C01 is Operations Truth Reconciliation. It requires a separate exact Owner-authorized implementation gate after this Master Plan promotion has completed the full review and Owner-controlled Git-finalization sequence:
+C01 Operations Truth Reconciliation was executed through separately bounded Owner-authorized gates. Current production identity is validated independently in six operational documents, eight deliberate stale-condition tests pass and all three core C01 contracts pass. OPS-03 and OPS-04 remain open, and the current immediate rollback target remains `NOT_PROVEN`.
+
+C01 source changes are finalized only through the normal Owner-controlled Git lifecycle below. Git history, rather than a self-referential literal in this plan, is authoritative for the C01 finalization commit identity:
 
 ```text
 CODEX FINAL REPORT
@@ -2177,7 +2191,7 @@ CODEX FINAL REPORT
 → OWNER NEXT-GATE DECISION
 ```
 
-This plan does not start C01, change production, deploy brand assets, fix the Liquid defect or authorize any later macro stage.
+This C01 closeout does not change production, deploy brand assets, fix the Liquid defect or authorize C02. C02 Repository, IP and GitHub Decision is the next macro stage and requires a separate exact Owner-authorized gate.
 
 # Appendix A — Page / Route Completion Matrix
 
@@ -2216,8 +2230,8 @@ This is the durable V2 backlog recovered from the completed Full Product Complet
 
 | ID | PRIORITY | DOMAIN | CURRENT_PROBLEM | TARGET_STATE | EVIDENCE_OR_PATHS | USER_OR_BUSINESS_IMPACT | DEPENDENCIES | CURRENT_V2_MACRO_STAGE | PROPOSED_BOUNDED_GATE_OR_GATE_FAMILY | ACCEPTANCE_CRITERIA | STATUS |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| OPS-01 | P1 | Operations truth | Recorded production, candidate and deployment identifiers are not enforced uniformly across operational sources | One current per-file validated production/candidate source of truth | `docs/governance/CURRENT-STATE.md`; `docs/operations/**`; `scripts/operations-contract.mjs` | Wrong release or rollback decisions | Current Git/Pages evidence | C01 | C01A operations inventory and authority map | Every current source agrees on production HEAD, candidates and deployment identity | OPEN |
-| OPS-02 | P1 | Deployment evidence | Deployment/run truth can drift from the exact production revision | Exact deployment receipt tied to production SHA and domain | `docs/operations/DEPLOYMENT-READINESS.md`; `.github/workflows/pages.yml`; Pages run evidence | Unsafe promotion and weak auditability | OPS-01; external run evidence | C01 | C01B deployment-truth reconciliation | Production SHA, Pages run, artifact and domain evidence reconcile | OPEN |
+| OPS-01 | P1 | Operations truth | C01 reconciled and per-file validated production, candidate and deployment identifiers across current operational sources | One current per-file validated production/candidate source of truth | `docs/governance/CURRENT-STATE.md`; `docs/operations/**`; `scripts/operations-contract.mjs` | Wrong release or rollback decisions | Current Git/Pages evidence | C01 | C01A operations inventory and authority map | Every current source agrees on production HEAD, candidates and deployment identity | CLOSED |
+| OPS-02 | P1 | Deployment evidence | C01 reconciled the deployment/run receipt with the exact production revision and domain evidence | Exact deployment receipt tied to production SHA and domain | `docs/operations/DEPLOYMENT-READINESS.md`; `.github/workflows/pages.yml`; Pages run evidence | Unsafe promotion and weak auditability | OPS-01; external run evidence | C01 | C01B deployment-truth reconciliation | Production SHA, Pages run, artifact and domain evidence reconcile | CLOSED |
 | OPS-03 | P1 | Rollback/recovery | Rollback predecessor and recovery chain require current proof | Tested, dated rollback identity and bounded recovery procedure | `docs/operations/BACKUP-RECOVERY.md`; `docs/operations/RUNBOOK.md` | Longer outage and irreversible release error | OPS-01/02 | C01 | C01C rollback and recovery reconciliation | Exact rollback target, trigger, owner and validation are recorded and testable | OPEN |
 | OPS-04 | P1 | Monitoring/incident | Monitoring and incident ownership are incompletely synchronized with current production | Current health checks, ownership, escalation and incident evidence model | `docs/operations/MONITORING.md`; `docs/operations/RUNBOOK.md` | Failures may remain invisible or unmanaged | OPS-01 | C01 | C01D monitoring and validator hardening | Each critical signal has source, threshold, owner and recovery link; stale fixtures fail | OPEN |
 | IP-01 | P1 | Repository visibility | Repository is public without a completed Owner IP decision | Explicit public/private decision with consequences recorded | Repository/GitHub visibility evidence; V2 section 28 | Source and commercial IP exposure | Owner decision; legal input if needed | C02 | C02A repository visibility decision | Owner-approved visibility policy is documented and verified in settings | OPEN |

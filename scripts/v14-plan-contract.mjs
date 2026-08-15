@@ -31,20 +31,19 @@ const packageJson = read("package.json");
 const browserMatrix = read("scripts/browser-matrix-v14.py");
 const renderedSearch = read("scripts/rendered-search-truth-v14.mjs");
 
-for (const required of ["Current design authority — V14", "35 service/money pages", "21 knowledge articles", "63 dominant search intents"]) {
+for (const required of ["## 13. Current product/design authority", "Current production visual authority is V14 Global Liquid World", "35 service/money pages", "21 knowledge articles", "63 dominant search intents"]) {
   if (!agents.includes(required)) fail(`AGENTS invariant missing: ${required}`);
 }
 
 for (const required of [
-  "Production authority: V14 Global Liquid World",
+  "Current production visual/runtime authority: V14 Global Liquid World",
   "36ad3fd6130ce21e68a2c5e701a516fcb3703b65",
   "50b71632c687e032311556371108ce3f8d989650",
   "31809931666",
-  "GitHub Pages deployment: PASS",
-  "V14.9 final QA: COMPLETE",
-  "V14.10 Owner Visual PASS: ACCEPTED",
-  "R9 pre-merge hardening: PASS",
-  "Production merge: COMPLETE",
+  "67663b08c950de120a94ef8495b5cdc8c9bdecfe",
+  "31810716199",
+  "status: `completed`",
+  "conclusion: `success`",
 ]) {
   if (!currentState.includes(required)) fail(`CURRENT-STATE invariant missing: ${required}`);
 }
@@ -60,10 +59,20 @@ for (const required of [
   if (!ownerV14.includes(required)) fail(`Owner V14 release evidence missing: ${required}`);
 }
 
-if (!sourceOfTruth.includes("Current visual authority") || !sourceOfTruth.includes("V14")) fail("source-of-truth map is not V14-aware");
-if (!masterPlan.includes("Active V14 execution sequence") || !masterPlan.includes("R2 — CSS/runtime de-stack")) fail("Master Plan lost V14 execution history");
-for (const phase of ["R0 — SOURCE OF TRUTH + GOVERNANCE REPAIR", "R1 — P0 V14 UX / ACCESSIBILITY REPAIR", "R2 — CSS + RUNTIME DE-STACK", "V14.8 — FULL ROUTE MIGRATION", "V14.9 — MOBILE / PERFORMANCE / ACCESSIBILITY / SECURITY QA", "V14.10 — OWNER VISUAL ACCEPTANCE", "R9 — RELEASE HARDENING + MERGE", "R10 — POST-V14 V15 SEARCH MASTER PLAN"]) {
+if (!sourceOfTruth.includes("The production visual/runtime authority remains V14 Global Liquid World.")) fail("source-of-truth map is not V14-aware");
+if (!masterPlan.includes("Completed V14 delivery sequence") || !masterPlan.includes("R2 — CSS/runtime de-stack")) fail("Master Plan lost V14 execution history");
+for (const phase of ["R0 — SOURCE OF TRUTH + GOVERNANCE REPAIR", "R1 — P0 V14 UX / ACCESSIBILITY REPAIR", "R2 — CSS + RUNTIME DE-STACK", "V14.8 — FULL ROUTE MIGRATION", "V14.9 — MOBILE / PERFORMANCE / ACCESSIBILITY / SECURITY QA", "V14.10 — OWNER VISUAL ACCEPTANCE", "R9 — RELEASE HARDENING + MERGE"]) {
   if (!v14Plan.includes(phase)) fail(`V14 plan phase missing: ${phase}`);
+}
+for (const required of [
+  "STATUS: COMPLETED / HISTORICAL PRODUCTION DELIVERY RECORD",
+  "## 4. Post-release signature upgrade — Global Liquid World",
+  "## 6. Remaining debt handed to V15 / maintenance",
+  "## 7. V14 DONE verdict",
+  "Current work continues under V15 Search Master Plan.",
+  "The active post-release search/growth plan is `docs/plans/V15-SEARCH-MASTER-PLAN.md`.",
+]) {
+  if (!v14Plan.includes(required)) fail(`V14 completion/handoff invariant missing: ${required}`);
 }
 
 for (const required of ['className="v14-mobile-nav"', 'href: "/#process"', 'href="#main-content"', 'variant="hero"', "V14SignatureStage"]) {
@@ -98,17 +107,20 @@ if (!browserMatrix.includes("firefox-bidi-viewport-v14.mjs") || !browserMatrix.i
 if (!renderedSearch.includes("_EXACT_SET")) fail("rendered Search/Public Truth exact-set gate missing");
 
 for (const required of [
-  "PRODUCTION_REVISION=36ad3fd6130ce21e68a2c5e701a516fcb3703b65",
+  "PRODUCTION_REPOSITORY_HEAD=67663b08c950de120a94ef8495b5cdc8c9bdecfe",
   "PRODUCTION_AUTHORITY=V14_GLOBAL_LIQUID_WORLD",
+  "LATEST_SUCCESSFUL_PAGES_RUN=31810716199",
+  "LATEST_DEPLOYED_HEAD_SHA=67663b08c950de120a94ef8495b5cdc8c9bdecfe",
+  "CURRENT_IMMEDIATE_ROLLBACK_TARGET=NOT_PROVEN",
   "V14_GLOBAL_LIQUID_CANDIDATE=50b71632c687e032311556371108ce3f8d989650",
   "V14_GLOBAL_LIQUID_MERGE=36ad3fd6130ce21e68a2c5e701a516fcb3703b65",
+  "V14_GLOBAL_LIQUID_MILESTONE_PAGES_RUN=31809931666_SUCCESS",
   "V14_GLOBAL_LIQUID_OWNER_AUTHORIZATION=GRANTED_AND_EXERCISED",
   "V14_GLOBAL_LIQUID_CONTRACT=PASS",
   "V14_GLOBAL_LIQUID_ROUTE_PREVIEW=PASS_8_OF_8",
   "V14_GLOBAL_LIQUID_BROWSER_MATRIX=PASS_28_OF_28",
-  "GITHUB_PAGES_RUN=31809931666_SUCCESS",
 ]) {
   if (!repoStatus.includes(required)) fail(`repository status invariant missing: ${required}`);
 }
 
-console.log("V14_PLAN_CONTRACT_PASS production=V14_GLOBAL_LIQUID_WORLD main=36ad3fd6 candidate=50b71632 initial-v14=39c9b304 global-world=PASS hero-liquid=WEBGL2 spatial-3d=PASS constructor-liquid=PASS routes=8_PREVIEW browser=28_OF_28 search=63_EXACT next=16.3.1");
+console.log("V14_PLAN_CONTRACT_PASS production=V14_GLOBAL_LIQUID_WORLD current-main=67663b08 v14-milestone=36ad3fd6 candidate=50b71632 latest-pages=31810716199 initial-v14=39c9b304 global-world=PASS hero-liquid=WEBGL2 spatial-3d=PASS constructor-liquid=PASS routes=8_PREVIEW browser=28_OF_28 search=63_EXACT next=16.3.1");

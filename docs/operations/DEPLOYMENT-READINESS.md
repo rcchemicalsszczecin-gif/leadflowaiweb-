@@ -1,20 +1,40 @@
 # LEADFLOWAI — DEPLOYMENT READINESS
 
-STATUS: PRODUCTION V14 LIVE / DEPLOYMENT PASS
-DATE: 2026-08-14
+STATUS: PRODUCTION V14 LIVE / DEPLOYMENT PASS — CURRENT REPOSITORY/DEPLOYMENT IDENTITY IS DEFINED BELOW
+DATE: 2026-08-15
 
 ## Current production
 
-- production branch: `main`;
-- production authority: V14 Full Visual Rebuild;
-- production merge revision: `39c9b304eff42a71ea36aee871dce569d8f374f0`;
-- validated release candidate: `242263ffe1593d1a80890b7f6bc1514316ed2656`;
-- previous V13 rollback baseline: `10627e2f18ccfc7ef86c76a695dab9cf7933cce9`;
+```text
+CURRENT_PRODUCTION_BRANCH=main
+CURRENT_PRODUCTION_REPOSITORY_HEAD=67663b08c950de120a94ef8495b5cdc8c9bdecfe
+CURRENT_VISUAL_RUNTIME_AUTHORITY=V14_GLOBAL_LIQUID_WORLD
+LATEST_SUCCESSFUL_PAGES_RUN_NUMBER=38
+LATEST_SUCCESSFUL_PAGES_RUN_ID=31810716199
+LATEST_DEPLOYED_HEAD_SHA=67663b08c950de120a94ef8495b5cdc8c9bdecfe
+CURRENT_IMMEDIATE_ROLLBACK_TARGET=NOT_PROVEN
+```
+
+Current production properties:
+- production visual/runtime authority: V14 Global Liquid World;
 - framework: Next.js 16.3.1 static export;
 - hosting: GitHub Pages;
 - public domain: `https://leadflowai.pl`.
 
-GitHub Pages run `31800348526` completed successfully for the V14 merge SHA. Build, full verify, artifact identity and deploy all passed.
+The latest Pages checkpoint is `CONTROLLER_VERIFIED_EXTERNAL_EVIDENCE`, last reconciled on `2026-08-15`: status `built`, source branch `main`, source path `/`, build type `workflow`, run status/conclusion `completed` / `success`, CNAME `leadflowai.pl`, approved HTTPS certificate and HTTPS enforcement `true`.
+
+## Historical release milestones
+
+- Global Liquid merge milestone: `36ad3fd6130ce21e68a2c5e701a516fcb3703b65`;
+- accepted Global Liquid candidate: `50b71632c687e032311556371108ce3f8d989650`;
+- Global Liquid milestone Pages run: `31809931666`;
+- pre-Global-Liquid production revision: `5bba6a6c963fa61ea3920bb4fcefff65ff9376cc`;
+- initial V14 production merge: `39c9b304eff42a71ea36aee871dce569d8f374f0`;
+- initial V14 release candidate: `242263ffe1593d1a80890b7f6bc1514316ed2656`;
+- initial V14 deployment run: `31800348526`;
+- older V13 reference: `10627e2f18ccfc7ef86c76a695dab9cf7933cce9`.
+
+These identifiers retain historical evidence value. None is declared the current repository HEAD or current immediate rollback target.
 
 ## Public boundaries
 
@@ -49,4 +69,4 @@ The static frontend does not own persistent Next.js server headers. Edge securit
 
 ## Launch decision
 
-V14 is released and is the current production baseline. V13 remains the immediate rollback reference.
+V14 Global Liquid World remains the current production visual/runtime authority. The current immediate rollback target is `NOT_PROVEN`; any rollback revision must be selected from verified known-good evidence under normal Owner recovery/release authority.

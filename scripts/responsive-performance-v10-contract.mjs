@@ -150,8 +150,9 @@ if (!liquidSurface.includes("sceneVisible") || !liquidSurface.includes("stopRend
 }
 
 if (
-  !agents.includes("Current design authority — V14 Global Liquid World") ||
-  !agents.includes("V14 Full Visual Rebuild and the later Owner-authorized Global Liquid World supersede V9/V9.2 visual freeze")
+  !agents.includes("## 13. Current product/design authority") ||
+  !agents.includes("Current production visual authority is V14 Global Liquid World") ||
+  !agents.includes("no white/paper public section art direction")
 ) {
   fail("current V14 Global Liquid World design authority missing");
 }

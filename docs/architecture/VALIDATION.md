@@ -44,12 +44,12 @@ Validated at that historical checkpoint:
 
 The old unresolved/pre-launch lists below were subsequently superseded by later production releases and Owner decisions.
 
-Current facts must not be inferred from this historical record. In particular:
-- production is now live on `main`;
-- V13 Polish Production Rebuild is current production authority;
-- V14 is the current feature-branch visual rebuild;
+Current facts must not be inferred from this historical record. Current context:
+- production is live on `main` at repository HEAD `67663b08c950de120a94ef8495b5cdc8c9bdecfe` at the current evidence checkpoint;
+- current production visual/runtime authority is V14 Global Liquid World;
+- current product/release truth comes from `docs/governance/CURRENT-STATE.md` and `docs/plans/LEADFLOWAI_AUTHORITATIVE_MASTER_PLAN_V2.md`;
 - public chatbot remains OFF;
 - online lead delivery remains OFF;
 - direct e-mail is active.
 
-Historical PASS proves the referenced historical revision only. It does not prove current V14 state.
+Historical PASS proves the referenced historical revision only. It does not prove the current release state.

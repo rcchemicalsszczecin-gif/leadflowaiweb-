@@ -1,7 +1,7 @@
 # LEADFLOWAI — MONITORING BASELINE
 
-STATUS: PRODUCTION V14 BASELINE
-DATE: 2026-08-14
+STATUS: PRODUCTION V14 BASELINE — VISUAL/RUNTIME AUTHORITY; CURRENT MONITORED DEPLOYMENT IDENTITY IS DEFINED BELOW
+DATE: 2026-08-15
 
 ## Principles
 
@@ -9,11 +9,22 @@ Monitoring and release verification must detect user-impacting failures without 
 
 ## Current production identity
 
-- production merge: `39c9b304eff42a71ea36aee871dce569d8f374f0`;
-- validated release candidate: `242263ffe1593d1a80890b7f6bc1514316ed2656`;
-- GitHub Pages run `31800348526`: PASS;
-- domain: `https://leadflowai.pl`;
-- previous rollback baseline: V13 `10627e2f18ccfc7ef86c76a695dab9cf7933cce9`.
+```text
+CURRENT_PRODUCTION_BRANCH=main
+CURRENT_PRODUCTION_REPOSITORY_HEAD=67663b08c950de120a94ef8495b5cdc8c9bdecfe
+CURRENT_VISUAL_RUNTIME_AUTHORITY=V14_GLOBAL_LIQUID_WORLD
+LATEST_SUCCESSFUL_PAGES_RUN_ID=31810716199
+LATEST_DEPLOYED_HEAD_SHA=67663b08c950de120a94ef8495b5cdc8c9bdecfe
+CURRENT_IMMEDIATE_ROLLBACK_TARGET=NOT_PROVEN
+```
+
+- current visual/runtime authority: V14 Global Liquid World;
+- domain: `https://leadflowai.pl/`;
+- latest run status/conclusion: `completed` / `success`.
+
+The Pages checkpoint is `CONTROLLER_VERIFIED_EXTERNAL_EVIDENCE`, last reconciled on `2026-08-15`. Current service evidence reports status `built`, source branch `main`, source path `/`, build type `workflow`, CNAME `leadflowai.pl`, approved HTTPS certificate and HTTPS enforcement `true`. Provider state requires current external revalidation at future release/incident checkpoints.
+
+Historical monitoring/recovery evidence includes Global Liquid milestone `36ad3fd6130ce21e68a2c5e701a516fcb3703b65`, accepted candidate `50b71632c687e032311556371108ce3f8d989650`, milestone run `31809931666`, pre-Global-Liquid predecessor `5bba6a6c963fa61ea3920bb4fcefff65ff9376cc`, initial V14 merge/candidate/run `39c9b304eff42a71ea36aee871dce569d8f374f0` / `242263ffe1593d1a80890b7f6bc1514316ed2656` / `31800348526`, and older V13 reference `10627e2f18ccfc7ef86c76a695dab9cf7933cce9`. They are not the monitored current deployment identity.
 
 ## Required production checks
 

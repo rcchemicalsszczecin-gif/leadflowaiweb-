@@ -259,8 +259,18 @@ Current top-level product-completion authority:
 AUTHORITATIVE_TOP_LEVEL_MASTER_PLAN=docs/plans/LEADFLOWAI_AUTHORITATIVE_MASTER_PLAN_V2.md
 CURRENT_SITE_STATUS=NOT_FINISHED
 CURRENT_PRODUCT_COMPLETION_PROGRAM=A→Z / C01–C27
-NEXT_MACRO_STAGE=C01
-C01_IMPLEMENTATION_AUTHORIZED=NO
+C01_TRUTH_RECONCILIATION=COMPLETE
+C01A_INVENTORY=COMPLETE
+C01B_OPERATIONAL_DOCUMENT_CORRECTION=COMPLETE
+C01C_VALIDATOR_HARDENING=COMPLETE
+C01D_FINAL_CONTRADICTION_REVIEW=PASS_WITH_WARNINGS_OUTCOME_B
+OPERATIONS_CURRENT_TRUTH_PER_FILE=6_OF_6
+OPERATIONS_NEGATIVE_TESTS=8_OF_8
+C01_CORE_CONTRACTS=3_OF_3_PASS
+CURRENT_IMMEDIATE_ROLLBACK_TARGET=NOT_PROVEN
+C01_RESIDUAL_OPEN_BACKLOG=OPS-03,OPS-04
+NEXT_MACRO_STAGE=C02
+C02_IMPLEMENTATION_AUTHORIZED=NO
 ```
 
 Current product status and program:
@@ -268,8 +278,10 @@ Current product status and program:
 - `CURRENT_SITE_STATUS=NOT_FINISHED`;
 - `TECHNICAL_PASS_DOES_NOT_EQUAL_PRODUCT_COMPLETION=YES`;
 - `CURRENT_PRODUCT_COMPLETION_PROGRAM=A→Z / C01–C27`;
-- `NEXT_MACRO_STAGE=C01`;
-- `C01_IMPLEMENTATION_AUTHORIZED=NO`.
+- `C01_TRUTH_RECONCILIATION=COMPLETE`;
+- `C01_RESIDUAL_OPEN_BACKLOG=OPS-03,OPS-04`;
+- `NEXT_MACRO_STAGE=C02`;
+- `C02_IMPLEMENTATION_AUTHORIZED=NO`.
 
 V1 is superseded as the current top-level Master Plan and retained as historical product/delivery provenance. V15 remains the active subordinate Search / SEO / AEO / GEO / AI Search domain plan and candidate evidence program. Neither classification promotes candidate code to production.
 
@@ -284,7 +296,9 @@ Current Owner-controlled planning inputs for future bounded stages include:
 
 These assets remain outside the repository pending C02/C04 IP and asset-admission authority. They are not attached, implemented or deployed.
 
-C01 is Operations Truth Reconciliation. It may begin only through a separate exact Owner-authorized implementation gate after the current Codex report, ChatGPT strict review, Owner review, Owner exact-path Git finalization, post-push validation and synchronization. No later C-stage is authorized automatically.
+C01 Operations Truth Reconciliation was completed through separately bounded Owner-authorized gates. Its per-file operational truth is 6/6, negative tests are 8/8 and the three core contracts pass. This truth-reconciliation closeout does not close OPS-03 or OPS-04, establish an immediate rollback SHA, prove production release readiness or change the production branch, Pages deployment or public runtime.
+
+C02 Repository, IP and GitHub Decision is the next macro stage. `C02_IMPLEMENTATION_AUTHORIZED=NO`; it requires a separate exact Owner-authorized gate, and no later C-stage is authorized automatically.
 
 ## 14. Production protection
 

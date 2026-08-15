@@ -126,10 +126,14 @@ Current classifications:
 - V1: superseded top-level authority retained as historical product/delivery provenance;
 - V15: active subordinate Search / SEO / AEO / GEO / AI Search domain plan and candidate evidence program;
 - current completion program: A→Z / C01–C27;
-- next macro stage: C01 Operations Truth Reconciliation;
-- `C01_IMPLEMENTATION_AUTHORIZED=NO`.
+- `C01_TRUTH_RECONCILIATION=COMPLETE`;
+- `C01_ALL_OPERATIONS_BACKLOG_CLOSED=NO`;
+- `C01_RESIDUAL_OPEN_BACKLOG=OPS-03,OPS-04`;
+- `CURRENT_IMMEDIATE_ROLLBACK_TARGET=NOT_PROVEN`;
+- next macro stage: C02 Repository, IP and GitHub Decision;
+- `C02_IMPLEMENTATION_AUTHORIZED=NO`.
 
-C01 and every later macro stage require separately bounded Owner-authorized execution gates. No stage authorizes its successor automatically. Candidate and governance work remain non-production until separate Owner promotion, merge and deployment decisions.
+C01 truth reconciliation is complete, but OPS-03 and OPS-04 remain open until separately satisfied. C01 completion does not authorize C02 or any production mutation. C02 and every later macro stage require separately bounded Owner-authorized execution gates; no stage authorizes its successor automatically. Candidate and governance work remain non-production until separate Owner promotion, merge and deployment decisions.
 
 ## 9. Current Owner brand and Liquid inputs
 

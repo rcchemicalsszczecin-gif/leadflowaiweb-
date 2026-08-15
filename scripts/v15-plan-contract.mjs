@@ -14,7 +14,7 @@ const agents = read("AGENTS.md");
 const currentState = read("docs/governance/CURRENT-STATE.md");
 const ownerV14 = read("docs/governance/WEBSITE-OWNER-DECISION-V14.md");
 const sourceOfTruth = read("docs/governance/SOURCE-OF-TRUTH-POLICY.md");
-const masterPlan = read("docs/plans/LEADFLOWAI_AUTHORITATIVE_MASTER_PLAN_V1.md");
+const masterPlanV2 = read("docs/plans/LEADFLOWAI_AUTHORITATIVE_MASTER_PLAN_V2.md");
 const v14Plan = read("docs/plans/V14-VISUAL-REBUILD.md");
 const v15Plan = read("docs/plans/V15-SEARCH-MASTER-PLAN.md");
 const repoStatus = read("docs/architecture/REPO-STATUS.md");
@@ -22,9 +22,9 @@ const packageJson = read("package.json");
 const globalWorldContract = read("scripts/global-liquid-world-v14-contract.mjs");
 
 for (const required of [
-  "Current design authority — V14 Global Liquid World",
-  "Active search authority — V15",
-  "v15/search-master-plan",
+  "## 13. Current product/design authority",
+  "Current production visual authority is V14 Global Liquid World",
+  "V15 is a search/evidence candidate program, not automatic production authority.",
   "35 service/money pages",
   "21 knowledge articles",
   "63 dominant search intents",
@@ -35,12 +35,14 @@ for (const required of [
 }
 
 for (const required of [
-  "Production authority: V14 Global Liquid World",
+  "Current production visual/runtime authority: V14 Global Liquid World",
+  "67663b08c950de120a94ef8495b5cdc8c9bdecfe",
+  "31810716199",
+  "head SHA: `67663b08c950de120a94ef8495b5cdc8c9bdecfe`",
+  "status: `completed`",
+  "conclusion: `success`",
   "36ad3fd6130ce21e68a2c5e701a516fcb3703b65",
   "50b71632c687e032311556371108ce3f8d989650",
-  "GitHub Pages deployment: PASS",
-  "V14.10 Owner Visual PASS: ACCEPTED",
-  "Global Liquid World production merge: COMPLETE",
 ]) {
   if (!currentState.includes(required)) fail(`CURRENT-STATE invariant missing: ${required}`);
 }
@@ -54,19 +56,22 @@ for (const required of [
   if (!ownerV14.includes(required)) fail(`Owner V14 production evidence missing: ${required}`);
 }
 
-if (!sourceOfTruth.includes("Current visual authority") || !sourceOfTruth.includes("V14")) {
-  fail("source-of-truth map is not V14-aware");
+for (const required of [
+  "TOP_LEVEL_PRODUCT_AUTHORITY=docs/plans/LEADFLOWAI_AUTHORITATIVE_MASTER_PLAN_V2.md",
+  "V15=SUBORDINATE_SEARCH_DOMAIN_PLAN_AND_CANDIDATE_EVIDENCE",
+  "The production visual/runtime authority remains V14 Global Liquid World.",
+]) {
+  if (!sourceOfTruth.includes(required)) fail(`source-of-truth invariant missing: ${required}`);
 }
 
 for (const required of [
-  "Approved design — V14 Global Liquid World",
-  "Active V15 execution sequence",
-  "V15.0 — authority, evidence model and production baseline",
-  "V15.20 — 30/60/90-day iterative search program",
-  "V15 Search Master Plan: ACTIVE CURRENT PROGRAM",
+  "STATUS: ACTIVE / OWNER-APPROVED TOP-LEVEL PRODUCT COMPLETION ROADMAP",
+  "V1_SUPERSEDED_AS_TOP_LEVEL_AUTHORITY=YES",
+  "V15_RETAINED_AS_SUBORDINATE_SEARCH_DOMAIN_PLAN=YES",
+  "CURRENT_PRODUCT_COMPLETION_PROGRAM=A→Z / C01–C27",
   "67663b08c950de120a94ef8495b5cdc8c9bdecfe",
 ]) {
-  if (!masterPlan.includes(required)) fail(`Master Plan invariant missing: ${required}`);
+  if (!masterPlanV2.includes(required)) fail(`Master Plan V2 invariant missing: ${required}`);
 }
 
 if (!v14Plan.includes("STATUS: COMPLETED / HISTORICAL PRODUCTION DELIVERY RECORD")) {
@@ -91,7 +96,8 @@ for (const required of [
 }
 
 for (const required of [
-  "STATUS: ACTIVE EXECUTION PLAN",
+  "STATUS: ACTIVE SUBORDINATE SEARCH / SEO / AEO / GEO / AI SEARCH DOMAIN PLAN — CANDIDATE EVIDENCE PROGRAM",
+  "V15 is subordinate to `docs/plans/LEADFLOWAI_AUTHORITATIVE_MASTER_PLAN_V2.md`",
   "BASELINE_MAIN_HEAD: `67663b08c950de120a94ef8495b5cdc8c9bdecfe`",
   "VISUAL_PRODUCTION_AUTHORITY: `V14_GLOBAL_LIQUID_WORLD`",
   "V15.0 — AUTHORITY / BASELINE / DATA MODEL",
@@ -136,6 +142,8 @@ for (const required of [
   "DOMINANT_SEARCH_INTENTS=63",
   "MAIN_BRANCH_PROTECTION=OFF",
   "DEPENDABOT_ALERTS=OFF",
+  "TOP_LEVEL_MASTER_PLAN=LEADFLOWAI_AUTHORITATIVE_MASTER_PLAN_V2",
+  "V15=SUBORDINATE_NON_PRODUCTION_SEARCH_DOMAIN_PLAN",
 ]) {
   if (!repoStatus.includes(required)) fail(`repository status invariant missing: ${required}`);
 }

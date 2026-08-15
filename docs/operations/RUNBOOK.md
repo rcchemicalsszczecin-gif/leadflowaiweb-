@@ -1,20 +1,26 @@
 # LEADFLOWAI — OPERATIONS RUNBOOK
 
-STATUS: PRODUCTION V14 OPERATING BASELINE
-DATE: 2026-08-14
+STATUS: PRODUCTION V14 OPERATING BASELINE — CURRENT REPOSITORY/DEPLOYMENT IDENTITY IS DEFINED BELOW
+DATE: 2026-08-15
 
 ## Current architecture
 
 - Public frontend: GitHub Pages static export at `https://leadflowai.pl`.
-- Production branch: `main`.
-- Production V14 merge revision: `39c9b304eff42a71ea36aee871dce569d8f374f0`.
-- Validated V14 release candidate: `242263ffe1593d1a80890b7f6bc1514316ed2656`.
-- Previous V13 rollback baseline: `10627e2f18ccfc7ef86c76a695dab9cf7933cce9`.
-- GitHub Pages deployment run `31800348526`: PASS.
 - Public contact: `kontakt@leadflowai.pl`.
 - Online lead delivery: OFF by Owner.
 - Public chatbot: OFF by Owner.
 - Future dynamic API boundary: `https://api.leadflowai.pl`, only when separately authorized.
+
+```text
+CURRENT_PRODUCTION_BRANCH=main
+CURRENT_PRODUCTION_REPOSITORY_HEAD=67663b08c950de120a94ef8495b5cdc8c9bdecfe
+CURRENT_VISUAL_RUNTIME_AUTHORITY=V14_GLOBAL_LIQUID_WORLD
+LATEST_SUCCESSFUL_PAGES_RUN_ID=31810716199
+LATEST_DEPLOYED_HEAD_SHA=67663b08c950de120a94ef8495b5cdc8c9bdecfe
+CURRENT_IMMEDIATE_ROLLBACK_TARGET=NOT_PROVEN
+```
+
+The current visual/runtime authority is V14 Global Liquid World. The Pages checkpoint is `CONTROLLER_VERIFIED_EXTERNAL_EVIDENCE`, last reconciled on `2026-08-15`: run #38, status/conclusion `completed` / `success`, service status `built`, source `main` at `/`, build type `workflow`, CNAME `leadflowai.pl`, approved certificate and HTTPS enforcement `true`.
 
 ## Frontend health
 
@@ -52,8 +58,10 @@ V14 production was promoted only after:
 ### Static site unavailable
 - check GitHub Pages workflow/deployment;
 - check DNS/TLS/edge status;
-- compare current production against `39c9b304eff42a71ea36aee871dce569d8f374f0`;
-- if necessary roll back through normal Git history to V13 `10627e2f18ccfc7ef86c76a695dab9cf7933cce9` or another verified known-good release;
+- compare current production against `67663b08c950de120a94ef8495b5cdc8c9bdecfe` and Pages run `31810716199`;
+- inspect the incident and identify an exact known-good revision from release/deployment evidence;
+- obtain normal Owner recovery/release authority for the incident-specific rollback target;
+- restore/redeploy through normal Git/Pages history and validate the exact selected revision;
 - do not rewrite history.
 
 ### Contact path problem
@@ -80,4 +88,12 @@ V14 production was promoted only after:
 
 ## Rollback principle
 
-Current production baseline is V14 `39c9b304eff42a71ea36aee871dce569d8f374f0`. Immediate known-good historical rollback baseline is V13 `10627e2f18ccfc7ef86c76a695dab9cf7933cce9`. Restore through normal Git/Pages history and re-run production verification.
+The current immediate rollback target is `NOT_PROVEN`. Select it for the specific incident from verified known-good evidence under normal Owner recovery/release authority, restore through normal Git/Pages history, and re-run production verification.
+
+Historical checkpoints, by role:
+- Global Liquid merge milestone: `36ad3fd6130ce21e68a2c5e701a516fcb3703b65`;
+- accepted Global Liquid candidate: `50b71632c687e032311556371108ce3f8d989650`;
+- Global Liquid milestone Pages run: `31809931666`;
+- pre-Global-Liquid predecessor: `5bba6a6c963fa61ea3920bb4fcefff65ff9376cc`;
+- initial V14 merge/candidate/deployment: `39c9b304eff42a71ea36aee871dce569d8f374f0` / `242263ffe1593d1a80890b7f6bc1514316ed2656` / `31800348526`;
+- older V13 reference: `10627e2f18ccfc7ef86c76a695dab9cf7933cce9`.
