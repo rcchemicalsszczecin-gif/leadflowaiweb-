@@ -244,12 +244,27 @@ CURRENT_REPOSITORY_VISIBILITY=PUBLIC
 TARGET_SOURCE_REPOSITORY_VISIBILITY=PRIVATE
 CURRENT_PRODUCTION_HOSTING=GITHUB_PAGES
 TARGET_PRODUCTION_HOSTING=CLOUDFLARE
-CURRENT_GITHUB_PAGES_ROLE=TRANSITIONAL_UNTIL_CLOUDFLARE_CONTINUITY_PROVEN
+KEEP_CURRENT_PRODUCTION_RUNNING_DURING_PRODUCT_COMPLETION=YES
+CURRENT_GITHUB_PAGES_ROLE=ACTIVE_PRODUCTION_UNTIL_FINAL_RELEASE_PROMOTION
+TARGET_CLOUDFLARE_ROLE=FUTURE_PRODUCTION_HOST_AFTER_ACCEPTED_RELEASE_CANDIDATE
 SITE_CONTINUITY_REQUIRED=YES
 IMMEDIATE_VISIBILITY_CHANGE=NO
 VISIBILITY_SWITCH_AUTHORIZED=NO
 CLOUDFLARE_MIGRATION_EXECUTION_AUTHORIZED=NO
 GITHUB_PAGES_DECOMMISSION_AUTHORIZED=NO
+CLOUDFLARE_CUTOVER_NOW=NO
+REPOSITORY_PRIVATE_SWITCH_NOW=NO
+GITHUB_PAGES_DECOMMISSION_NOW=NO
+CLOUDFLARE_EXECUTION_DEFERRED=YES
+CLOUDFLARE_EXECUTION_EARLIEST_MACRO_GATE=C26_OWNER_CONTROLLED_PRODUCTION_PROMOTION
+CLOUDFLARE_EXECUTION_PREREQUISITE=C25_ACCEPTED_IMMUTABLE_RELEASE_CANDIDATE
+REPOSITORY_PRIVATE_EXECUTION_DEFERRED=YES
+PRIVATE_REPOSITORY_SWITCH_PREREQUISITE=CLOUDFLARE_PRODUCTION_CONTINUITY_PROVEN
+VISIBILITY_SWITCH_AUTHORIZED_NOW=NO
+PRIVATE_REPOSITORY_SWITCH_EXECUTION_GATE=C26_POST_CLOUDFLARE_CONTINUITY_PROOF
+GITHUB_PAGES_DECOMMISSION_DEFERRED=YES
+GITHUB_PAGES_DECOMMISSION_AUTHORIZED_NOW=NO
+GITHUB_PAGES_DECOMMISSION_PREREQUISITE=CLOUDFLARE_PRODUCTION_CONTINUITY_PROVEN_AND_OWNER_AUTHORIZED
 HISTORICAL_PUBLIC_EXPOSURE_REVERSIBLE=NO
 
 REPOSITORY_LICENSE_POLICY=PROPRIETARY_FIRST_PARTY_PLUS_THIRD_PARTY_NOTICES
@@ -263,7 +278,9 @@ LICENSE_FILE_CREATION_AUTHORIZED=NO
 NOTICE_FILE_CREATION_AUTHORIZED=NO
 ```
 
-The target is a private source repository with public production hosting through Cloudflare. Current public repository visibility and GitHub Pages production hosting remain transitional until Cloudflare continuity is independently proven and a later Owner gate authorizes execution. This policy decision does not select a Cloudflare product, project, deployment API, DNS change or TLS change. It does not erase historical public exposure or authorize copying Owner master assets into Git.
+The target remains a private source repository with public production hosting through Cloudflare. The site is not finished, so the repository remains public and GitHub Pages remains the active production host throughout product completion. Infrastructure cutover before the product-completion sequence and an accepted immutable release candidate would be premature.
+
+C25 must first produce the accepted immutable release candidate. C26 is the earliest macro gate that may perform a separately Owner-authorized Cloudflare production promotion. Proven Cloudflare continuity must precede both the repository-private switch and any GitHub Pages decommission; Pages decommission additionally requires separate Owner authorization and review of rollback implications. C02B2 records architecture and sequencing only. It performs no provider change and does not select a Cloudflare product, project, deployment API, DNS change or TLS change. It does not erase historical public exposure or authorize copying Owner master assets into Git.
 
 These remaining implementation, legal-review and repository-setting concerns are not automatically runtime defects.
 
@@ -303,9 +320,10 @@ C01_RESIDUAL_OPEN_BACKLOG=OPS-03,OPS-04
 CURRENT_PRODUCT_COMPLETION_MACRO_STAGE=C02_REPOSITORY_IP_GITHUB_DECISION
 C02A_INVENTORY=COMPLETE
 C02B_OWNER_VISIBILITY_LICENSING_DECISION=RECORDED
-NEXT_C02_GATE=C02B2_CLOUDFLARE_VISIBILITY_CONTINUITY
-C02B2_IMPLEMENTATION_AUTHORIZED=NO
-C02C_STARTED=NO
+C02B2_CONTINUITY_ARCHITECTURE_DECISION=RECORDED
+C02B2_PROVIDER_EXECUTION=DEFERRED_TO_C26
+NEXT_C02_GATE=C02C_OWNER_ASSET_IP_ADMISSION_POLICY
+C02C_IMPLEMENTATION_AUTHORIZED=NO
 C02D_STARTED=NO
 C02E_STARTED=NO
 C03_STARTED=NO
@@ -321,8 +339,10 @@ Current product status and program:
 - `CURRENT_PRODUCT_COMPLETION_MACRO_STAGE=C02_REPOSITORY_IP_GITHUB_DECISION`;
 - `C02A_INVENTORY=COMPLETE`;
 - `C02B_OWNER_VISIBILITY_LICENSING_DECISION=RECORDED`;
-- `NEXT_C02_GATE=C02B2_CLOUDFLARE_VISIBILITY_CONTINUITY`;
-- `C02B2_IMPLEMENTATION_AUTHORIZED=NO`.
+- `C02B2_CONTINUITY_ARCHITECTURE_DECISION=RECORDED`;
+- `C02B2_PROVIDER_EXECUTION=DEFERRED_TO_C26`;
+- `NEXT_C02_GATE=C02C_OWNER_ASSET_IP_ADMISSION_POLICY`;
+- `C02C_IMPLEMENTATION_AUTHORIZED=NO`.
 
 V1 is superseded as the current top-level Master Plan and retained as historical product/delivery provenance. V15 remains the active subordinate Search / SEO / AEO / GEO / AI Search domain plan and candidate evidence program. Neither classification promotes candidate code to production.
 
@@ -339,7 +359,7 @@ These assets remain outside the repository pending C02/C04 IP and asset-admissio
 
 C01 Operations Truth Reconciliation was completed through separately bounded Owner-authorized gates. Its per-file operational truth is 6/6, negative tests are 8/8 and the three core contracts pass. This truth-reconciliation closeout does not close OPS-03 or OPS-04, establish an immediate rollback SHA, prove production release readiness or change the production branch, Pages deployment or public runtime.
 
-C02 Repository, IP and GitHub Decision is in progress through bounded gates. C02A inventory is complete and C02B records the Owner visibility/hosting/licensing policy, but no repository, hosting, legal-file, asset or provider implementation is complete. C02B2, C02C, C02D and C02E each require separate exact Owner authorization, and no later C-stage is authorized automatically.
+C02 Repository, IP and GitHub Decision is in progress through bounded gates. C02A inventory is complete, C02B records the Owner visibility/hosting/licensing policy and C02B2 records the corrected continuity sequence. Provider execution is deferred to C26 after C25 produces an accepted immutable release candidate; C02C is the next C02 policy gate and is not authorized. No repository, hosting, legal-file, asset or provider implementation is complete, and no later C-stage is authorized automatically.
 
 ## 14. Production protection
 
