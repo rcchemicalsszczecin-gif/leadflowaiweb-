@@ -1,87 +1,86 @@
 # LeadFlowAI Portfolio Evidence Register
 
-STATUS: C05 EVIDENCE FOUNDATION / PUBLIC WORDING PENDING OWNER
+STATUS: C05 EVIDENCE ADMISSION COMPLETE / OWNER-APPROVED EVIDENCE LIMITS ACTIVE
 
-This public-repository-safe register narrows current project claims to exact
-repository evidence. It does not publish a new case study, approve public
-claim wording, assert client outcomes, or authorize media use.
-
-## 1. Evidence rule
+Public wording is limited by:
 
 `CLAIM -> EXACT EVIDENCE -> LIMITATION -> OWNER REVIEW -> PUBLIC STATUS`
 
-Claims are `PROVEN`, `PROVEN_WITH_LIMITATION`, `NOT_PROVEN`, `WITHHOLD`, or
-`OWNER_DECISION_REQUIRED`. Repository existence never proves deployment,
-commercial outcome, external ranking, client status, or current production.
+Only `PROVEN` and `PROVEN_WITH_LIMITATION` rows may be published. `WITHHOLD`
+never becomes public copy. The three entries are first-party or Owner-related
+ecosystem projects, not external-client case studies.
 
-## 2. LeadFlowAI receipt
+## 1. LeadFlowAI receipt
 
-Evidence identity for this checkpoint is governance candidate commit
-`e04a4c19edb1ec0457642e3ca12d5526806727ad`; production remains commit
+Candidate evidence identity is commit
+`854d8220df090d73587053757b5fc4f05640d212`; production remains commit
 `67663b08c950de120a94ef8495b5cdc8c9bdecfe` on GitHub Pages.
 
-| Claim ID | Narrow evidence-backed claim | Evidence | Status / limitation |
+| Claim ID | Approved public claim | Exact evidence | Status / limitation |
 |---|---|---|---|
-| `LFA-01` | The candidate is a Next.js App Router static-export website | `package.json`, `next.config.ts`, static-deploy contract | `PROVEN`; candidate and production identities differ |
-| `LFA-02` | The governed information architecture contains 35 service/money routes | service registries and V15 contracts | `PROVEN`; route count is not traffic or sales evidence |
-| `LFA-03` | The knowledge architecture contains 21 articles | knowledge registries and contracts | `PROVEN`; editorial completeness remains staged work |
-| `LFA-04` | The search model maps 63 dominant/indexable intents | V15 query map and contracts | `PROVEN_WITH_LIMITATION`; no ranking or external search outcome is implied |
-| `LFA-05` | The current production visual authority includes a first-party WebGL2 Liquid substrate with fallbacks | V14 source, contracts and production receipt | `PROVEN_WITH_LIMITATION`; the Owner-reported vertical-orientation defect remains open |
-| `LFA-06` | The candidate has deterministic CI, whole-tracked secret scanning and immutable action pins | Quality workflow, C03 contracts and exact-HEAD CI evidence | `PROVEN`; does not establish total system security |
-| `LFA-07` | `main` has classic branch protection with required `verify` check and administrator enforcement | GitHub provider readback | `PROVEN`; provider state is time-sensitive |
-| `LFA-08` | The public site is deployed through GitHub Pages at `leadflowai.pl` | Pages provider state and production deployment receipt | `PROVEN`; no new deployment occurs in C05 |
-| `LFA-09` | Accessibility, responsive and performance safeguards are represented by deterministic contracts | repository contracts and prior browser evidence | `PROVEN_WITH_LIMITATION`; not current field CWV or universal device proof |
+| `LFA-01` | LeadFlowAI uses Next.js App Router, TypeScript and static export | `package.json`, `next.config.ts`, static/export contracts | `PROVEN`; candidate and production identities differ |
+| `LFA-02` | The governed information architecture contains 35 service routes | service registry and route contracts | `PROVEN`; route count is not demand or sales evidence |
+| `LFA-03` | The knowledge architecture contains 21 articles | knowledge registry and contracts | `PROVEN`; publication count is not readership evidence |
+| `LFA-04` | The search model maps 63 indexable intents | query map, rendered search and crawl contracts | `PROVEN_WITH_LIMITATION`; no ranking or AI citation is implied |
+| `LFA-05` | The candidate uses a first-party WebGL2 Liquid substrate with reduced-motion and no-WebGL fallbacks | Liquid source and deterministic contracts | `PROVEN_WITH_LIMITATION`; candidate technical correction awaits final Owner visual acceptance |
+| `LFA-06` | Candidate CI includes deterministic verification and whole-tracked secret scanning | Quality workflow and C03 contracts | `PROVEN`; not a guarantee of complete security |
+| `LFA-07` | Production `main` is protected by required `verify` and administrator enforcement | GitHub provider readback | `PROVEN_WITH_LIMITATION`; provider state is time-sensitive |
+| `LFA-08` | The public site is served by GitHub Pages at `leadflowai.pl` | Pages metadata and deployment receipt | `PROVEN`; this package does not deploy the candidate |
+| `LFA-09` | Accessibility, responsive and performance safeguards are deterministic repository contracts | accessibility, browser, responsive and performance contracts | `PROVEN_WITH_LIMITATION`; no universal device or field-CWV result is claimed |
 
-Withhold claims of product completion, client outcomes, conversion uplift,
-rankings, external AI citations, final visual acceptance, or guaranteed
-performance.
+## 2. TranskrypcjaAI receipt
 
-## 3. TranskrypcjaAI receipt
+Read-only GitHub provider receipt on 2026-08-16 proves private repository
+`rcchemicalsszczecin-gif/TranskrypcjeAI`, default branch `main`, current main
+commit `e4c5e4aaa4d90387dc1e2291a7d2b860608b779b`, and 384 tracked files. The
+repository public-truth registry identifies TranskrypcjaAI as a brand of
+Tervyxa Systems sp. z o.o. Live `https://transkrypcjaai.pl/` returned HTTP
+200 through Cloudflare during the receipt.
 
-No local Git repository with a name or remote clearly corresponding to
-TranskrypcjaAI/TranskrypcjeAI was found in the bounded `/home/leadflowai`
-discovery. The current `lib/portfolio.ts` entry is therefore candidate public
-copy rather than sufficient cross-project proof.
+| Claim ID | Approved public claim | Exact evidence | Status / limitation |
+|---|---|---|---|
+| `TAI-01` | TranskrypcjaAI is a brand of Tervyxa Systems sp. z o.o. | private repository README, public-truth registry and brand-relationship decision at exact main SHA | `PROVEN`; not a separate client or legal entity |
+| `TAI-02` | Private GitHub source builds a public static site through Cloudflare Pages | private-repository metadata and current hosting checkpoints | `PROVEN_WITH_LIMITATION`; source remains private and is not reproduced here |
+| `TAI-03` | The current project contract contains 27 canonical public routes | current README and Cloudflare production checkpoint | `PROVEN_WITH_LIMITATION`; count does not imply traffic or rankings |
+| `TAI-04` | The service architecture covers transcription, subtitles and structured outputs without binding fulfilment to one model | authoritative public-truth registry | `PROVEN`; no accuracy KPI or model superiority is claimed |
+| `TAI-05` | A bounded public trial is separate from the inactive order portal | current README and Phase 27/28 boundaries | `PROVEN_WITH_LIMITATION`; full self-service ordering remains off |
+| `TAI-06` | The repository carries browser, accessibility and resource-budget acceptance evidence | Phase 18 and Phase 19 checkpoints | `PROVEN_WITH_LIMITATION`; historical CI evidence is not current field telemetry |
 
 ```text
-TRANSKRYPCJAAI_REPOSITORY_EVIDENCE=BLOCKED_EXTERNAL_EVIDENCE
-TRANSKRYPCJAAI_DEPLOYMENT_EVIDENCE=NOT_PROVEN
-TRANSKRYPCJAAI_PUBLIC_CLAIMS=WITHHOLD_PENDING_EXACT_REPOSITORY_OR_PROVIDER_RECEIPT
+TRANSKRYPCJAAI_REPOSITORY_VISIBILITY=PRIVATE
+TRANSKRYPCJAAI_PRIVATE_SOURCE_EXPOSED=NO
+TRANSKRYPCJAAI_PUBLIC_DOMAIN_LIVE_RECEIPT=HTTP_200_CLOUDFLARE
 ```
 
-No memory-derived product facts are admitted into this register.
+## 3. Tervyxa receipt
 
-## 4. Tervyxa receipt
+Read-only committed evidence remains repository
+`rcchemicalsszczecin-gif/Tervyxawebsite` at
+`00b0bd41edae2d927ecbaa891c6f2591ce019444`. The local checkout contains
+uncommitted work, which is excluded. Live `https://tervyxa.pl/` returned HTTP
+200 and exposed Polish canonical plus English hreflang during this receipt.
 
-Read-only inspection of repository `rcchemicalsszczecin-gif/Tervyxawebsite`
-at commit `00b0bd41edae2d927ecbaa891c6f2591ce019444` proves a unified architecture
-repository and a Next.js website workspace with governance for public truth,
-frontend composition, search/AEO/GEO architecture, and bounded visual/R&D
-tracks.
-
-| Claim ID | Narrow evidence-backed claim | Evidence | Status / limitation |
+| Claim ID | Approved public claim | Exact evidence | Status / limitation |
 |---|---|---|---|
-| `TVX-01` | Tervyxa maintains a governed Next.js web-platform candidate inside a broader systems repository | committed repository architecture and website package | `PROVEN_WITH_LIMITATION`; production promotion is not proven by repository existence |
-| `TVX-02` | The repository contains explicit claim/evidence/publication and portfolio disclosure governance | committed public-truth policy | `PROVEN`; policy is not a delivered client result |
-| `TVX-03` | The repository defines search, answer, entity and AI-search architecture | committed search/AEO/GEO architecture | `PROVEN_WITH_LIMITATION`; architecture does not prove rankings or citations |
-| `TVX-04` | Visual and compute-core work is represented by bounded candidate tracks | committed architecture and recent commit history | `PROVEN_WITH_LIMITATION`; current local visual work is dirty/unpromoted and excluded from this receipt |
+| `TVX-01` | Tervyxa operates a public Polish/English website at `tervyxa.pl` | live HTTP 200, canonical and hreflang receipt | `PROVEN_WITH_LIMITATION`; no commercial outcome is inferred |
+| `TVX-02` | A governed Next.js web-platform candidate exists in a broader systems repository | exact committed repository architecture | `PROVEN_WITH_LIMITATION`; candidate existence is not production promotion |
+| `TVX-03` | The repository defines claim/evidence/publication governance | committed public-truth policies | `PROVEN`; governance is not a delivered client result |
+| `TVX-04` | The repository defines search, answer, entity and AI-search architecture | committed architecture documents | `PROVEN_WITH_LIMITATION`; no rankings or citations are claimed |
+| `TVX-05` | Visual and compute-core work is maintained as bounded candidate tracks | committed design architecture and history | `PROVEN_WITH_LIMITATION`; dirty local visual work is excluded |
 
-The Tervyxa checkout had local uncommitted work during inspection. This
-register uses committed `HEAD` evidence only and does not expose or adopt the
-unpromoted candidate.
+## 4. Withheld claims
 
-## 5. Publication boundary
-
-All three projects are first-party/internal ecosystem projects in current
-LeadFlowAI copy; none is represented here as an external client case. Public
-relationship wording, screenshots, project status, and any claim beyond the
-narrow receipts above require Owner/Controller review. No KPI, testimonial,
-client logo, or new `/realizacje` content is admitted in this checkpoint.
+The public portfolio withholds product-completion claims, client outcomes,
+conversion or revenue uplift, rankings, external AI citations, accuracy/WER,
+throughput, testimonials, universal accessibility, field Core Web Vitals,
+private implementation details, and any representation of these projects as
+unrelated paying-client case studies.
 
 ```text
 LEADFLOWAI_PORTFOLIO_RECEIPT=PASS
-TRANSKRYPCJAAI_PORTFOLIO_RECEIPT=BLOCKED_EXTERNAL_EVIDENCE
+TRANSKRYPCJAAI_PORTFOLIO_RECEIPT=PASS_WITH_LIMITATIONS
 TERVYXA_PORTFOLIO_RECEIPT=PASS_WITH_LIMITATIONS
-C05_EVIDENCE_FOUNDATION=PASS
-C05_PUBLIC_CLAIM_APPROVAL=PENDING_OWNER
+PUBLIC_CLAIM_WITHOUT_RECEIPT_COUNT=0
+C05_EVIDENCE_ADMISSION=COMPLETE
+C05_PUBLIC_CLAIM_APPROVAL=OWNER_APPROVED_WITH_EVIDENCE_LIMITS
 ```

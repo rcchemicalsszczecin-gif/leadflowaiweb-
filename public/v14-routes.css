@@ -44,12 +44,12 @@
 }
 
 .v14-route-footer-grid nav a:hover {
-  color: #c7ff2f;
+  color: #5bdcff;
 }
 
 .v14-service-page .service-hero {
   background:
-    radial-gradient(circle at 78% 25%, rgba(199, 255, 47, 0.07), transparent 30rem),
+    radial-gradient(circle at 78% 25%, rgba(91, 220, 255, 0.07), transparent 30rem),
     #090c0f;
 }
 

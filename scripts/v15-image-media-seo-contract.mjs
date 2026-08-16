@@ -7,7 +7,7 @@ const fail = (message) => {
 };
 
 if (!existsSync("out")) fail("static export out/ missing");
-if (!existsSync("out/og-leadflowai.svg")) fail("first-party OG asset out/og-leadflowai.svg missing");
+if (!existsSync("out/brand/og-leadflowai-brand.png")) fail("approved brand-led OG asset missing from static export");
 
 const htmlFiles = [];
 const walk = (dir) => {
@@ -118,8 +118,8 @@ for (const path of htmlFiles) {
 }
 
 if (indexableCount !== 63) violations.push(`GLOBAL: expected 63 indexable pages, found ${indexableCount}`);
-if (!uniqueSocialAssets.has("/og-leadflowai.svg")) {
-  violations.push("GLOBAL: first-party /og-leadflowai.svg is not used by rendered social metadata");
+if (!uniqueSocialAssets.has("/brand/og-leadflowai-brand.png")) {
+  violations.push("GLOBAL: approved /brand/og-leadflowai-brand.png is not used by rendered social metadata");
 }
 
 if (violations.length) {

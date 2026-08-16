@@ -18,7 +18,10 @@ const portfolioLayout = read("app/realizacje/layout.tsx");
 const aboutLayout = read("app/o-nas/layout.tsx");
 const searchEducationLayout = read("app/seo-aeo-geo/layout.tsx");
 const v14Hero = read("components/v14-hero.tsx");
-const v14SiteHeader = read("components/v14-site-header.tsx");
+const v14SiteHeader = read("components/v14-route-site-header.tsx");
+const v14OverlayHeader = read("components/v14-overlay-site-header.tsx");
+const v14Navigation = read("components/v14-site-navigation.tsx");
+const responsiveShell = `${v14Hero}\n${v14OverlayHeader}\n${v14Navigation}`;
 const v14Shell = read("public/v14-shell.css");
 const liquidSurface = read("components/v14-liquid-surface.tsx");
 const legacyGenerator = read("scripts/generate-v14-legacy-routes-css.mjs");
@@ -93,10 +96,10 @@ for (const required of [
   'href="/v14-shell.css"',
   'className="v14-mobile-nav"',
   'className="v14-mobile-nav-panel"',
-  'aria-label="Otwórz nawigację mobilną"',
+  '"Otwórz nawigację mobilną"',
   'aria-label="Nawigacja mobilna"',
 ]) {
-  if (!v14Hero.includes(required)) fail(`V14 responsive shell invariant missing: ${required}`);
+  if (!responsiveShell.includes(required)) fail(`V14 responsive shell invariant missing: ${required}`);
 }
 
 for (const required of [

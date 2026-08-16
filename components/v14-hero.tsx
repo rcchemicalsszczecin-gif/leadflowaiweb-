@@ -1,14 +1,6 @@
-import { V14BrandMark } from "@/components/v14-brand-mark";
 import { V14LiquidSurface } from "@/components/v14-liquid-surface";
+import { V14OverlaySiteHeader } from "@/components/v14-overlay-site-header";
 import { V14SignatureStage } from "@/components/v14-signature-stage";
-
-const navItems = [
-  { href: "/uslugi", label: "Usługi" },
-  { href: "/realizacje", label: "Realizacje" },
-  { href: "/#process", label: "Jak pracujemy" },
-  { href: "/wiedza", label: "Wiedza" },
-  { href: "/o-nas", label: "O nas" },
-] as const;
 
 export function V14Hero() {
   return (
@@ -19,33 +11,7 @@ export function V14Hero() {
       <link rel="stylesheet" href="/v14-scenes.css" precedence="high" />
       <link rel="stylesheet" href="/v14-liquid-surface.css" precedence="high" />
       <link rel="stylesheet" href="/v14-signature-boost.css" precedence="high" />
-      <a className="v14-skip-link" href="#main-content">Przejdź do treści</a>
-      <header className="v14-header">
-        <div className="v14-shell v14-header-inner">
-          <a className="v14-brand" href="/" aria-label="LeadFlowAI — strona główna">
-            <V14BrandMark /><span>LEADFLOWAI</span>
-          </a>
-          <nav className="v14-nav" aria-label="Główna nawigacja">
-            {navItems.map((item) => <a key={item.href} href={item.href}>{item.label}</a>)}
-          </nav>
-          <div className="v14-header-actions">
-            <details className="v14-mobile-nav">
-              <summary aria-label="Otwórz nawigację mobilną">
-                <span>MENU</span><i aria-hidden="true" />
-              </summary>
-              <nav className="v14-mobile-nav-panel" aria-label="Nawigacja mobilna">
-                {navItems.map((item, index) => (
-                  <a key={item.href} href={item.href}>
-                    <span>{item.label}</span><span aria-hidden="true">0{index + 1}</span>
-                  </a>
-                ))}
-                <a href="/kontakt"><span>Wyceń projekt</span><span aria-hidden="true">↗</span></a>
-              </nav>
-            </details>
-            <a className="v14-header-cta" href="/kontakt">Wyceń projekt <span aria-hidden="true">↗</span></a>
-          </div>
-        </div>
-      </header>
+      <V14OverlaySiteHeader />
       <section className="v14-hero v14-hero-signature" aria-labelledby="v14-hero-title">
         <V14LiquidSurface variant="hero" />
         <div className="v14-hero-depth-mask" aria-hidden="true" />

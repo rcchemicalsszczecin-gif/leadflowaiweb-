@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { PortfolioProjectVisual } from "@/components/portfolio-project-visual";
 import { V14SiteFooter } from "@/components/v14-site-footer";
-import { V14SiteHeader } from "@/components/v14-site-header";
+import { V14RouteSiteHeader } from "@/components/v14-route-site-header";
 import { portfolioCases } from "@/lib/portfolio";
 import { site } from "@/lib/site";
 import { withV13SocialMetadata } from "@/lib/social-metadata-v13";
@@ -26,7 +26,7 @@ export const metadata: Metadata = withV13SocialMetadata(
 export default function PortfolioPage() {
   return (
     <main id="main-content" className="portfolio-page v14-route-page v14-portfolio-page" tabIndex={-1}>
-      <V14SiteHeader mode="static" />
+      <V14RouteSiteHeader />
 
       <section className="portfolio-hero section-dark blueprint-surface">
         <div className="page-shell">

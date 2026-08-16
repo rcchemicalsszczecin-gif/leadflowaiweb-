@@ -19,7 +19,8 @@ const worldCss = read("public/v14-global-tech-world.css");
 const hero = read("components/v14-hero.tsx");
 const header = read("components/v14-site-header.tsx");
 const footer = read("components/v14-site-footer.tsx");
-const brand = read("components/v14-brand-mark.tsx");
+const brand = read("components/brand-identity.tsx");
+const navigation = read("components/v14-site-navigation.tsx");
 const trinity = read("components/v14-search-trinity.tsx");
 const routePreview = read(".github/workflows/v14-route-preview.yml");
 const routeDriver = read("scripts/capture-route-webdriver-v14.py");
@@ -49,11 +50,13 @@ requireText(worldCss, "main#main-content :is(.section-light,.section-dark)", "de
 requireText(worldCss, "main.v14-service-page :is(.outcome-grid article,.service-faq-grid details,.related-grid a,.service-process li,.service-capability-panel)", "service glass modules");
 rejectText(worldCss, "!important", "world CSS specificity");
 
-requireText(hero, "<V14BrandMark />", "hero owner logo");
-requireText(header, "<V14BrandMark />", "route header owner logo");
-requireText(footer, "<V14BrandMark />", "footer owner logo");
-requireText(brand, 'stroke="#b8ff38"', "owner lime logo stroke");
-requireText(brand, 'stroke="#f5f7f2"', "owner white logo stroke");
+requireText(hero, "<V14OverlaySiteHeader", "hero shared shell identity");
+requireText(header, "<HeaderBrandIdentity />", "route header owner derivative");
+requireText(footer, "<FooterBrandIdentity />", "footer owner derivative");
+requireText(brand, '/brand/leadflowai-compact-header.png', "approved compact derivative");
+requireText(brand, '/brand/leadflowai-primary-footer.webp', "approved primary-logo derivative");
+requireText(brand, "LeadFlowAI", "live DOM brand text");
+requireText(navigation, 'event.key !== "Escape"', "mobile Escape behavior");
 requireText(trinity, 'src="/v14-search-trinity-dark.svg"', "dark Search/AI artwork");
 
 requireText(routePreview, "Capture active global Liquid routes with WebDriver", "route visual evidence workflow");
@@ -64,5 +67,5 @@ requireText(routeDriver, '("lab-desktop", "/lab/", 1440, 1400)', "lab visual pro
 requireText(routeDriver, 'state.get("webgl2")', "route WebGL2 proof");
 
 console.log(
-  "GLOBAL_LIQUID_WORLD_V14_PASS root=GLOBAL_WEBGL2 hero=PRESERVED_GPU_GUARDED world=PCB_CPU_GPU liquid=REFRACTION_CAUSTICS_BUBBLES routes=ALL_ROOT_MOUNT cards=DARK_GLASS logo=OWNER_MARK search-art=DARK route-preview=8_CAPTURES performance=36_24_FPS reduced-motion=PASS",
+  "GLOBAL_LIQUID_WORLD_V14_PASS root=GLOBAL_WEBGL2 hero=PRESERVED_GPU_GUARDED world=PCB_CPU_GPU liquid=REFRACTION_CAUSTICS_BUBBLES routes=ALL_ROOT_MOUNT cards=DARK_GLASS logo=APPROVED_DERIVATIVES search-art=DARK route-preview=8_CAPTURES performance=36_24_FPS reduced-motion=PASS",
 );

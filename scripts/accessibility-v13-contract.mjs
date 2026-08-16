@@ -13,6 +13,7 @@ const read = (path) => {
 const layout = read("app/layout.tsx");
 const hero = read("components/v14-hero.tsx");
 const sharedHeader = read("components/v14-site-header.tsx");
+const navigation = read("components/v14-site-navigation.tsx");
 const homepage = read("app/page.tsx");
 const processComponent = read("components/v14-process-canvas.tsx");
 const shell = read("public/v14-shell.css");
@@ -22,18 +23,19 @@ const liquidSurface = read("components/v14-liquid-surface.tsx");
 
 if (layout.includes('import "./v13-accessibility.css"')) fail("retired V13 accessibility layer remounted globally");
 
-for (const source of [hero, sharedHeader]) {
-  for (const required of [
-    'className="v14-skip-link"',
-    'href="#main-content"',
-    'className="v14-mobile-nav"',
-    'aria-label="Otwórz nawigację mobilną"',
-    'aria-label="Nawigacja mobilna"',
-  ]) {
-    if (!source.includes(required)) fail(`V14 navigation accessibility invariant missing: ${required}`);
-  }
+for (const required of ['className="v14-skip-link"', 'href="#main-content"']) {
+  if (!sharedHeader.includes(required)) fail(`V14 shared-header accessibility invariant missing: ${required}`);
 }
-if (!hero.includes('href: "/#process"') || !sharedHeader.includes('href: "/#process"')) fail("V14 process navigation target missing");
+if (!hero.includes("V14OverlaySiteHeader")) fail("hero does not use the shared accessible header");
+for (const required of [
+  'className="v14-mobile-nav"',
+  'aria-label={open ? "Zamknij nawigację mobilną" : "Otwórz nawigację mobilną"}',
+  'aria-label="Nawigacja mobilna"',
+  'event.key !== "Escape"',
+  "summaryRef.current?.focus()",
+  'aria-current={isCurrent(pathname, item.href) ? "page" : undefined}',
+]) if (!navigation.includes(required)) fail(`V14 navigation accessibility invariant missing: ${required}`);
+if (!navigation.includes('href: "/#process"')) fail("V14 process navigation target missing");
 if (!homepage.includes('id="main-content"') || !homepage.includes('tabIndex={-1}')) fail("V14 main-content keyboard target missing");
 if (!processComponent.includes('id="process"')) fail("V14 process anchor missing");
 

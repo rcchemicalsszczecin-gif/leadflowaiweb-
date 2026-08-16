@@ -92,16 +92,16 @@ vec3 chip(vec2 p, vec2 center, vec2 halfSize, float kind) {
   float coreEdge = aaMask(abs(sdBox(q, halfSize * vec2(0.60, 0.56))) - 0.010, 0.012);
   float pins = pinBank(q, halfSize, mix(19.0, 30.0, kind));
 
-  vec3 base = mix(vec3(0.018, 0.052, 0.054), vec3(0.042, 0.082, 0.086), bevel);
-  vec3 coreTint = mix(vec3(0.034, 0.145, 0.102), vec3(0.036, 0.120, 0.185), kind);
+  vec3 base = mix(vec3(0.015, 0.025, 0.070), vec3(0.034, 0.064, 0.135), bevel);
+  vec3 coreTint = mix(vec3(0.18, 0.065, 0.38), vec3(0.025, 0.18, 0.38), kind);
   vec3 result = base * body;
   result += coreTint * core * 0.95;
-  result += vec3(0.22, 0.68, 0.64) * coreEdge * 0.28;
-  result += vec3(0.69, 0.91, 0.38) * pins * 0.58;
+  result += vec3(0.35, 0.78, 0.96) * coreEdge * 0.32;
+  result += vec3(0.76, 0.84, 0.98) * pins * 0.52;
 
   float dieGridX = lineMask(fract((q.x + 1.0) * 16.0), 0.5, 0.030);
   float dieGridY = lineMask(fract((q.y + 1.0) * 16.0), 0.5, 0.030);
-  result += mix(vec3(0.10, 0.40, 0.30), vec3(0.08, 0.30, 0.48), kind) * core * max(dieGridX, dieGridY) * 0.25;
+  result += mix(vec3(0.38, 0.16, 0.72), vec3(0.08, 0.38, 0.72), kind) * core * max(dieGridX, dieGridY) * 0.25;
   return result;
 }
 
@@ -110,9 +110,9 @@ vec3 memoryChip(vec2 p, vec2 center, vec2 halfSize) {
   float body = aaMask(sdBox(q, halfSize), 0.012);
   float inner = aaMask(sdBox(q, halfSize * 0.78), 0.012);
   float edge = aaMask(abs(sdBox(q, halfSize)) - 0.008, 0.010);
-  vec3 result = vec3(0.018, 0.048, 0.054) * body;
-  result += vec3(0.030, 0.105, 0.115) * inner * 0.82;
-  result += vec3(0.22, 0.60, 0.56) * edge * 0.30;
+  vec3 result = vec3(0.014, 0.032, 0.076) * body;
+  result += vec3(0.028, 0.105, 0.22) * inner * 0.82;
+  result += vec3(0.30, 0.64, 0.88) * edge * 0.30;
   return result;
 }
 
@@ -120,17 +120,17 @@ vec3 capacitor(vec2 p, vec2 center, float radius) {
   float d = length(p - center);
   float body = 1.0 - smoothstep(radius, radius + 0.012, d);
   float rim = 1.0 - smoothstep(0.008, 0.020, abs(d - radius * 0.78));
-  return vec3(0.026, 0.065, 0.070) * body + vec3(0.30, 0.57, 0.48) * rim * 0.20;
+  return vec3(0.025, 0.045, 0.090) * body + vec3(0.58, 0.69, 0.90) * rim * 0.20;
 }
 
 vec3 pcb(vec2 p) {
-  vec3 board = vec3(0.010, 0.038, 0.038);
+  vec3 board = vec3(0.008, 0.019, 0.058);
   float fine = traceLayer(p + vec2(0.15, -0.08), 3.2, 1.1);
   float coarse = traceLayer(p + vec2(-0.31, 0.19), 1.65, 8.7);
   float micro = traceLayer(p + vec2(0.08, 0.12), 6.6, 17.0);
-  board += vec3(0.20, 0.55, 0.28) * fine * 0.38;
-  board += vec3(0.07, 0.48, 0.64) * coarse * 0.34;
-  board += vec3(0.39, 0.62, 0.19) * micro * 0.16;
+  board += vec3(0.20, 0.52, 0.92) * fine * 0.38;
+  board += vec3(0.10, 0.64, 0.88) * coarse * 0.34;
+  board += vec3(0.52, 0.24, 0.92) * micro * 0.16;
 
   vec2 cpuCenter = vec2(-0.48, 0.18);
   vec2 gpuCenter = vec2(0.48, -0.18);
@@ -139,8 +139,8 @@ vec3 pcb(vec2 p) {
 
   float cpuSocket = aaMask(abs(sdBox(p - cpuCenter, vec2(0.43, 0.34))) - 0.012, 0.014);
   float cpuLatch = aaMask(sdBox(p - cpuCenter - vec2(0.39, 0.0), vec2(0.018, 0.20)), 0.010);
-  board += vec3(0.58, 0.82, 0.33) * cpuSocket * 0.34;
-  board += vec3(0.42, 0.62, 0.52) * cpuLatch * 0.26;
+  board += vec3(0.58, 0.76, 0.98) * cpuSocket * 0.34;
+  board += vec3(0.55, 0.46, 0.88) * cpuLatch * 0.26;
 
   board += memoryChip(p, gpuCenter + vec2(-0.31, 0.31), vec2(0.12, 0.055));
   board += memoryChip(p, gpuCenter + vec2(0.00, 0.31), vec2(0.12, 0.055));
@@ -158,7 +158,7 @@ vec3 pcb(vec2 p) {
   float gpuRail = aaMask(abs(p.y + 0.57) - 0.010, 0.013) * step(abs(p.x - 0.42), 0.82);
   float pciePins = lineMask(fract((p.x + 2.0) * 34.0), 0.5, 0.15) * gpuRail;
   board += vec3(0.08, 0.48, 0.62) * gpuRail * 0.26;
-  board += vec3(0.75, 0.88, 0.38) * pciePins * 0.28;
+  board += vec3(0.72, 0.84, 1.0) * pciePins * 0.28;
 
   float groundA = aaMask(sdBox(p - vec2(-1.03, 0.24), vec2(0.18, 0.07)), 0.012);
   float groundB = aaMask(sdBox(p - vec2(1.08, -0.55), vec2(0.16, 0.06)), 0.012);
@@ -168,7 +168,6 @@ vec3 pcb(vec2 p) {
 
 void main() {
   vec2 uv = gl_FragCoord.xy / max(uResolution, vec2(1.0));
-  uv.y = 1.0 - uv.y;
   vec2 p = uv * 2.0 - 1.0;
   float aspect = uResolution.x / max(uResolution.y, 1.0);
   p.x *= aspect;
@@ -195,8 +194,8 @@ void main() {
   float bandA = pow(0.5 + 0.5 * sin(world.x * 2.9 + world.y * 1.2 + uTime * 0.92 + gradient.x * 2.2), 10.0);
   float bandB = pow(0.5 + 0.5 * sin(world.x * 1.6 - world.y * 2.4 - uTime * 0.66 + gradient.y * 1.8), 12.0);
 
-  vec3 deep = vec3(0.004, 0.018, 0.026);
-  vec3 waterTint = vec3(0.012, 0.145, 0.225);
+  vec3 deep = vec3(0.004, 0.010, 0.038);
+  vec3 waterTint = vec3(0.025, 0.105, 0.285);
   vec3 color = mix(deep, board, 0.84);
   color = mix(color, waterTint, 0.22 + 0.13 * (1.0 - diffuse));
   color += vec3(0.05, 0.38, 0.58) * diffuse * 0.18;
@@ -215,7 +214,7 @@ void main() {
   float scan = 0.5 + 0.5 * sin((uv.y + uScroll * 0.00004) * 460.0);
   color += vec3(0.01, 0.055, 0.07) * scan * 0.08;
   float pointerGlow = exp(-length(world - pointerWorld) * 2.4) * uPointerActive;
-  color += vec3(0.55, 0.85, 0.18) * pointerGlow * 0.05;
+  color += vec3(0.30, 0.78, 1.0) * pointerGlow * 0.06;
 
   float vignette = 1.0 - smoothstep(0.52, 1.48, length(p * vec2(0.62, 0.88)));
   color *= 0.68 + vignette * 0.32;

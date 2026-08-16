@@ -9,38 +9,40 @@ const fail = (message) => {
 
 if (!existsSync("out")) fail("missing static export directory: out");
 
-// Baseline measured on the scene-bounded V14 candidate on 2026-08-14.
+// Byte ceilings originate from the scene-bounded V14 candidate on 2026-08-14.
+// Asset-count ceilings were remeasured on the C04-C08 candidate on 2026-08-16:
+// one Option A stylesheet and one accessible navigation chunk are intentional.
 // Ceilings intentionally leave only a small regression margin; they are not generic web targets.
 const routes = [
   {
     name: "homepage",
     html: "out/index.html",
-    limits: { htmlRaw: 70000, htmlGzip: 16000, jsRaw: 667000, jsGzip: 201000, cssRaw: 130000, cssGzip: 28000, totalRaw: 860000, totalGzip: 242000, assets: 16 },
+    limits: { htmlRaw: 70000, htmlGzip: 16000, jsRaw: 667000, jsGzip: 201000, cssRaw: 130000, cssGzip: 28000, totalRaw: 860000, totalGzip: 242000, assets: 17 },
   },
   {
     name: "service",
     html: "out/strony-internetowe/index.html",
-    limits: { htmlRaw: 100000, htmlGzip: 24000, jsRaw: 645000, jsGzip: 192000, cssRaw: 125000, cssGzip: 27000, totalRaw: 830000, totalGzip: 228000, assets: 14 },
+    limits: { htmlRaw: 100000, htmlGzip: 24000, jsRaw: 645000, jsGzip: 192000, cssRaw: 125000, cssGzip: 27000, totalRaw: 830000, totalGzip: 228000, assets: 16 },
   },
   {
     name: "knowledge-hub",
     html: "out/wiedza/index.html",
-    limits: { htmlRaw: 100000, htmlGzip: 24000, jsRaw: 645000, jsGzip: 192000, cssRaw: 125000, cssGzip: 27000, totalRaw: 820000, totalGzip: 226000, assets: 14 },
+    limits: { htmlRaw: 100000, htmlGzip: 24000, jsRaw: 645000, jsGzip: 192000, cssRaw: 125000, cssGzip: 27000, totalRaw: 820000, totalGzip: 226000, assets: 17 },
   },
   {
     name: "knowledge-article",
     html: "out/wiedza/wcag-22-co-sprawdzic-na-stronie/index.html",
-    limits: { htmlRaw: 100000, htmlGzip: 24000, jsRaw: 645000, jsGzip: 192000, cssRaw: 125000, cssGzip: 27000, totalRaw: 805000, totalGzip: 223000, assets: 14 },
+    limits: { htmlRaw: 100000, htmlGzip: 24000, jsRaw: 645000, jsGzip: 192000, cssRaw: 125000, cssGzip: 27000, totalRaw: 805000, totalGzip: 223000, assets: 17 },
   },
   {
     name: "contact",
     html: "out/kontakt/index.html",
-    limits: { htmlRaw: 100000, htmlGzip: 24000, jsRaw: 648000, jsGzip: 193000, cssRaw: 125000, cssGzip: 27000, totalRaw: 805000, totalGzip: 225000, assets: 15 },
+    limits: { htmlRaw: 100000, htmlGzip: 24000, jsRaw: 648000, jsGzip: 193000, cssRaw: 125000, cssGzip: 27000, totalRaw: 805000, totalGzip: 225000, assets: 17 },
   },
   {
     name: "lab",
     html: "out/lab/index.html",
-    limits: { htmlRaw: 120000, htmlGzip: 26000, jsRaw: 660000, jsGzip: 197000, cssRaw: 125000, cssGzip: 27000, totalRaw: 820000, totalGzip: 230000, assets: 15 },
+    limits: { htmlRaw: 120000, htmlGzip: 26000, jsRaw: 660000, jsGzip: 197000, cssRaw: 125000, cssGzip: 27000, totalRaw: 820000, totalGzip: 230000, assets: 17 },
   },
 ];
 

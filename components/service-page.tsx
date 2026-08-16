@@ -1,7 +1,7 @@
 import { JsonLd } from "@/components/json-ld";
 import { ServiceKnowledgeLinks } from "@/components/service-knowledge-links";
 import { V14SiteFooter } from "@/components/v14-site-footer";
-import { V14SiteHeader } from "@/components/v14-site-header";
+import { V14RouteSiteHeader } from "@/components/v14-route-site-header";
 import { getPublicPage, primaryPublicLinks } from "@/lib/page-registry";
 import { publicCode } from "@/lib/public-language-v13";
 import { toPublicServicePage } from "@/lib/public-service-page";
@@ -37,7 +37,7 @@ export function ServicePage({ page }: ServicePageProps) {
       tabIndex={-1}
     >
       <JsonLd data={getPageStructuredData(publicPage)} />
-      <V14SiteHeader mode="static" />
+      <V14RouteSiteHeader />
 
       <section className="service-hero section-dark blueprint-surface">
         <div className="page-shell">

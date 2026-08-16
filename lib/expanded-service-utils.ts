@@ -3,7 +3,7 @@ import { expandedServicePages, type ExpandedServiceSlug } from "@/lib/expanded-s
 import { site } from "@/lib/site";
 
 const SOCIAL_IMAGE = {
-  url: "/og-leadflowai.svg",
+  url: "/brand/og-leadflowai-brand.png",
   width: 1200,
   height: 630,
   alt: "LeadFlowAI — strony internetowe, SEO, AEO i GEO",

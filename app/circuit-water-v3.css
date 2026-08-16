@@ -4,7 +4,7 @@
     --circuit-panel: rgba(7, 13, 20, 0.7);
     --circuit-panel-strong: rgba(7, 13, 20, 0.84);
     --circuit-line: rgba(130, 206, 236, 0.14);
-    --circuit-signal: #b8ff38;
+    --circuit-signal: #5bdcff;
   }
 }
 
@@ -68,12 +68,6 @@
     opacity: 0.12;
   }
 
-  .site-header {
-    background: linear-gradient(180deg, rgba(3, 8, 13, 0.72), rgba(3, 8, 13, 0.38));
-    border-color: rgba(130, 206, 236, 0.14);
-    backdrop-filter: blur(16px) saturate(1.2);
-  }
-
   .service-capability-panel,
   .outcome-grid article,
   .knowledge-cards article,
@@ -118,14 +112,14 @@
   .button-primary {
     background: var(--circuit-signal);
     box-shadow:
-      0 0 0 1px rgba(184, 255, 56, 0.12),
-      0 0 36px rgba(184, 255, 56, 0.08);
+      0 0 0 1px rgba(91, 220, 255, 0.12),
+      0 0 36px rgba(91, 220, 255, 0.08);
   }
 
   .button-primary:hover {
     box-shadow:
-      0 0 0 1px rgba(184, 255, 56, 0.3),
-      0 0 48px rgba(184, 255, 56, 0.18);
+      0 0 0 1px rgba(91, 220, 255, 0.3),
+      0 0 48px rgba(91, 220, 255, 0.18);
   }
 
   details summary:hover,
@@ -137,7 +131,7 @@
   .knowledge-cards article:hover,
   .related-grid a:hover {
     background: linear-gradient(145deg, rgba(21, 48, 55, 0.72), rgba(5, 13, 20, 0.66));
-    border-color: rgba(184, 255, 56, 0.24);
+    border-color: rgba(91, 220, 255, 0.24);
   }
 
   .service-hero-copy,
@@ -172,10 +166,9 @@
   .eyebrow,
   .contact-kicker {
     color: var(--circuit-signal);
-    text-shadow: 0 0 22px rgba(184, 255, 56, 0.18);
+    text-shadow: 0 0 22px rgba(91, 220, 255, 0.18);
   }
 
-  .hero-lead,
   .service-lead,
   .contact-hero-copy {
     color: rgba(224, 239, 246, 0.68);

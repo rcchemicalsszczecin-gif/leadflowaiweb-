@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     description: site.description,
     images: [
       {
-        url: "/og-leadflowai.svg",
+        url: "/brand/og-leadflowai-brand.png",
         width: 1200,
         height: 630,
         alt: "LeadFlowAI — strony internetowe, SEO, AEO i GEO",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "LeadFlowAI — strony internetowe zaprojektowane do wzrostu",
     description: site.description,
-    images: ["/og-leadflowai.svg"],
+    images: ["/brand/og-leadflowai-brand.png"],
   },
   robots: {
     index: true,
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#03070c",
+  themeColor: "#050816",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {

@@ -1,6 +1,6 @@
 import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -34,7 +34,9 @@ export function scanRepository(scanRoot = root) {
   let scanned = 0;
 
   for (const path of tracked) {
-    const content = readFileSync(resolve(scanRoot, path));
+    const absolutePath = resolve(scanRoot, path);
+    if (!existsSync(absolutePath)) continue;
+    const content = readFileSync(absolutePath);
     if (content.subarray(0, 8192).includes(0)) {
       binarySkipped += 1;
       continue;

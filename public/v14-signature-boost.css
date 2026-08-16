@@ -19,7 +19,7 @@
   background:
     linear-gradient(90deg, rgba(2, 6, 9, 0.82) 0%, rgba(2, 6, 9, 0.48) 28%, rgba(2, 6, 9, 0.08) 52%, transparent 72%),
     radial-gradient(ellipse at 78% 63%, rgba(94, 218, 255, 0.09), transparent 42%),
-    radial-gradient(circle at 82% 30%, rgba(199, 255, 47, 0.055), transparent 20%),
+    radial-gradient(circle at 82% 30%, rgba(91, 220, 255, 0.055), transparent 20%),
     linear-gradient(180deg, rgba(0, 4, 7, 0.02), rgba(0, 4, 7, 0.12));
 }
 
@@ -28,7 +28,7 @@
   border-color: rgba(146, 229, 255, 0.34);
   box-shadow:
     0 44px 126px rgba(0, 0, 0, 0.48),
-    0 0 0 1px rgba(199, 255, 47, 0.05) inset,
+    0 0 0 1px rgba(91, 220, 255, 0.05) inset,
     0 0 96px rgba(38, 179, 227, 0.11) inset;
 }
 
@@ -38,7 +38,7 @@
 
 .v14-signature-phone-layer .v14-phone {
   background: rgba(5, 13, 16, 0.78);
-  border-color: rgba(199, 255, 47, 0.38);
+  border-color: rgba(91, 220, 255, 0.38);
 }
 
 .v14-signature-grid-plane {
@@ -52,7 +52,7 @@
 .v14-signature-horizon {
   height: 2px;
   background: linear-gradient(90deg, transparent 3%, rgba(82, 203, 242, 0.72) 30%, rgba(207, 255, 90, 0.62) 63%, rgba(87, 208, 245, 0.5) 80%, transparent 98%);
-  box-shadow: 0 0 48px rgba(74, 198, 239, 0.48), 0 0 96px rgba(199, 255, 47, 0.12);
+  box-shadow: 0 0 48px rgba(74, 198, 239, 0.48), 0 0 96px rgba(91, 220, 255, 0.12);
 }
 
 .v14-signature-stage::after {
@@ -64,7 +64,7 @@
   bottom: 7%;
   height: 36%;
   border-radius: 50%;
-  background: radial-gradient(ellipse at center, rgba(65, 196, 238, 0.13), rgba(199, 255, 47, 0.045) 36%, transparent 72%);
+  background: radial-gradient(ellipse at center, rgba(65, 196, 238, 0.13), rgba(91, 220, 255, 0.045) 36%, transparent 72%);
   filter: blur(24px);
   transform: translateZ(-160px) rotateX(66deg);
   pointer-events: none;

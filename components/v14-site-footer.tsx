@@ -1,4 +1,4 @@
-import { V14BrandMark } from "@/components/v14-brand-mark";
+import { FooterBrandIdentity } from "@/components/brand-identity";
 import { site } from "@/lib/site";
 
 export function V14SiteFooter() {
@@ -6,10 +6,7 @@ export function V14SiteFooter() {
     <footer className="v14-route-footer">
       <div className="v14-shell v14-route-footer-grid">
         <div>
-          <a className="v14-brand" href="/" aria-label="LeadFlowAI — strona główna">
-            <V14BrandMark />
-            <span>LEADFLOWAI</span>
-          </a>
+          <FooterBrandIdentity />
           <p>LeadFlowAI jest marką {site.legalName}</p>
           <small>Strony WWW · SEO/AEO/GEO · AI · integracje · opieka</small>
         </div>

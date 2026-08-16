@@ -56,10 +56,6 @@
     opacity: 0.045;
   }
 
-  .site-header {
-    background: linear-gradient(180deg, rgba(2, 7, 12, 0.68), rgba(2, 7, 12, 0.22));
-  }
-
   .service-capability-panel,
   .outcome-grid article,
   .knowledge-cards article,

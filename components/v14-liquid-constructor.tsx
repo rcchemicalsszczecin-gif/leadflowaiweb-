@@ -29,11 +29,11 @@ export function V14LiquidConstructor() {
           <V14LiquidSurface variant="constructor" />
 
           <svg viewBox="0 0 700 560" aria-hidden="true" className="v14-liquid-wave">
-            <defs><radialGradient id="liquidGlow"><stop offset="0" stopColor="#c7ff2f" stopOpacity=".2"/><stop offset="1" stopColor="#c7ff2f" stopOpacity="0"/></radialGradient></defs>
+            <defs><radialGradient id="liquidGlow"><stop offset="0" stopColor="#5bdcff" stopOpacity=".2"/><stop offset="1" stopColor="#5bdcff" stopOpacity="0"/></radialGradient></defs>
             <ellipse cx="350" cy="430" rx="300" ry="104" fill="url(#liquidGlow)"/>
-            <ellipse cx="350" cy="430" rx="250" ry="72" fill="none" stroke="#c7ff2f" strokeOpacity=".28"/>
-            <ellipse cx="350" cy="430" rx="170" ry="48" fill="none" stroke="#c7ff2f" strokeOpacity=".15"/>
-            <path d="M80 430 Q180 380 280 428 T480 426 T640 430" fill="none" stroke="#c7ff2f" strokeOpacity=".2"/>
+            <ellipse cx="350" cy="430" rx="250" ry="72" fill="none" stroke="#5bdcff" strokeOpacity=".28"/>
+            <ellipse cx="350" cy="430" rx="170" ry="48" fill="none" stroke="#5bdcff" strokeOpacity=".15"/>
+            <path d="M80 430 Q180 380 280 428 T480 426 T640 430" fill="none" stroke="#5bdcff" strokeOpacity=".2"/>
           </svg>
 
           <div className="v14-liquid-layer v14-liquid-layer-grid"><span>02 / GRID</span></div>

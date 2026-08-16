@@ -8,13 +8,13 @@ export function withV13SocialMetadata(metadata: Metadata, title: string, descrip
       ...(metadata.openGraph ?? {}),
       title,
       description,
-      images: [{ url: `${site.url}/og-leadflowai.svg`, width: 1200, height: 630, alt: `${site.name} — ${title}` }],
+      images: [{ url: `${site.url}/brand/og-leadflowai-brand.png`, width: 1200, height: 630, alt: `${site.name} — ${title}` }],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: [`${site.url}/og-leadflowai.svg`],
+      images: [`${site.url}/brand/og-leadflowai-brand.png`],
     },
   };
 }

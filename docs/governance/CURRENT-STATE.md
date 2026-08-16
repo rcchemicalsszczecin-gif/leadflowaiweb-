@@ -315,25 +315,25 @@ DO_NOT_COMMIT_MASTER_TO_REPOSITORY=YES
 
 ANY_FILE_COMMITTED_NOW_IS_PUBLICLY_EXPOSED=YES
 WEB_DERIVATIVES_ALLOWED_IN_FUTURE=YES
-WEB_DERIVATIVE_CREATION_AUTHORIZED_NOW=EXTERNAL_TECHNICAL_C04_CANDIDATES_ONLY
-WEB_DERIVATIVE_REPOSITORY_ADMISSION_AUTHORIZED_NOW=NO
+WEB_DERIVATIVE_CREATION_AUTHORIZED_NOW=C04_APPROVED_PUBLIC_ROLE_DERIVATIVES_ONLY
+WEB_DERIVATIVE_REPOSITORY_ADMISSION_AUTHORIZED_NOW=YES_EXACT_C04_PACKAGE_ROLES
 ONLY_PUBLIC_SERVING_DERIVATIVES_MAY_BE_ADMITTED_WHILE_REPOSITORY_IS_PUBLIC=YES
 ASSET_PROVENANCE_MANIFEST_REQUIRED_BEFORE_C04_ADMISSION=YES
 TECHNICAL_WEB_OPTIMIZATION_ALLOWED_IN_C04=YES
 CREATIVE_RESTYLE_REQUIRES_SEPARATE_OWNER_AUTHORITY=YES
-CURRENT_APPROVED_DERIVATIVE_COUNT=DO_NOT_INFER
+CURRENT_APPROVED_DERIVATIVE_COUNT=4
 
 BRAND_ASSETS_COVERED_BY_FUTURE_CODE_LICENSE=NO
 PUBLIC_ACCESS_DOES_NOT_GRANT_BRAND_REUSE_LICENSE=YES
 BRAND_ASSET_OPEN_SOURCE_GRANT=NO
-EXISTING_TRACKED_BRAND_ASSET_PROVENANCE=CLASSIFIED_C04A_PUBLIC_ROLE_RECONCILIATION_PENDING_OWNER
+EXISTING_TRACKED_BRAND_ASSET_PROVENANCE=RECONCILED_C04_CANDIDATE
 THIRD_PARTY_ASSETS_RETAIN_ORIGINAL_RIGHTS_AND_REQUIREMENTS=YES
 THIRD_PARTY_ASSET_PROVENANCE_REQUIRED=YES
 UNKNOWN_PROVENANCE_DEFAULT_ADMISSION=BLOCKED
-ASSET_DELETION_AUTHORIZED_NOW=NO
+ASSET_DELETION_AUTHORIZED_NOW=SUPERSEDED_IDENTITY_ONLY_WITH_ZERO_CONSUMER_PROOF
 LEGACY_BRAND_ASSET_RETIREMENT_REQUIRES_EVIDENCE=YES
 C04_FOUNDATION_AUTHORIZED_AND_EXECUTED=YES
-C04_PUBLIC_ASSET_ADMISSION_AUTHORIZED=NO
+C04_PUBLIC_ASSET_ADMISSION_AUTHORIZED=YES_EXACT_OWNER_SELECTED_ROLES
 
 MAIN_PROTECTED=YES
 PROTECTION_MECHANISM=CLASSIC_BRANCH_PROTECTION
@@ -429,7 +429,7 @@ OPERATIONS_NEGATIVE_TESTS=8_OF_8
 C01_CORE_CONTRACTS=3_OF_3_PASS
 CURRENT_IMMEDIATE_ROLLBACK_TARGET=NOT_PROVEN
 C01_RESIDUAL_OPEN_BACKLOG=OPS-03,OPS-04
-CURRENT_PRODUCT_COMPLETION_MACRO_STAGE=C04_C05_C06A_FOUNDATION_AND_OWNER_DECISION_PREPARATION
+CURRENT_PRODUCT_COMPLETION_MACRO_STAGE=C04_C05_C06_C07_C08_CANDIDATE_INTEGRATION
 C02A_INVENTORY=COMPLETE
 C02B_OWNER_VISIBILITY_LICENSING_DECISION=RECORDED
 C02B2_CONTINUITY_ARCHITECTURE_DECISION=RECORDED
@@ -445,14 +445,21 @@ IP_05_STATUS=OPEN_DEFERRED_ACTIVATION
 C03_FOUNDATION=COMPLETE
 C03_FINAL_CLASSIFICATION=COMPLETE
 C04A_PROVENANCE=COMPLETE
-C04_DERIVATIVE_PREPARATION=COMPLETE_EXTERNAL_TECHNICAL_CANDIDATES
-C04_PUBLIC_ADMISSION=PENDING_OWNER
-IP_03_STATUS=OPEN_PENDING_OWNER_DERIVATIVE_ADMISSION
-C05_EVIDENCE_FOUNDATION=PASS
-C05_PUBLIC_CLAIM_APPROVAL=PENDING_OWNER
+C04_DERIVATIVE_PREPARATION=COMPLETE
+C04_PUBLIC_ADMISSION=COMPLETE_CANDIDATE
+C04_STATUS=COMPLETE_CANDIDATE
+IP_03_STATUS=CLOSED
+C05_EVIDENCE_FOUNDATION=COMPLETE
+C05_PUBLIC_CLAIM_APPROVAL=OWNER_APPROVED_WITH_EVIDENCE_LIMITS
+C05_STATUS=COMPLETE_CANDIDATE
 C06A_VISUAL_BASELINE=COMPLETE
-C06_OWNER_ART_DIRECTION_DECISION=PENDING
-NEXT_WORK_PACKAGE=OWNER_CONTROLLER_VISUAL_AND_PUBLIC_CLAIM_DECISION_REQUIRED
+C06_OWNER_ART_DIRECTION_DECISION=APPROVED_OPTION_A
+C06_VISUAL_SYSTEM_FOUNDATION=IMPLEMENTED_CANDIDATE
+C07_TECHNICAL_CORRECTION=PASS
+OWNER_LIQUID_ORIENTATION_PASS=PENDING_FINAL_OWNER_VISUAL_ACCEPTANCE
+C07_STATUS=TECHNICAL_CORRECTION_COMPLETE_PENDING_OWNER_VISUAL_ACCEPTANCE
+C08_STATUS=COMPLETE_CANDIDATE
+NEXT_WORK_PACKAGE=C09_REQUIRES_SEPARATE_OWNER_CONTROLLER_AUTHORITY
 ```
 
 Current product status and program:
@@ -462,7 +469,7 @@ Current product status and program:
 - `CURRENT_PRODUCT_COMPLETION_PROGRAM=A→Z / C01–C27`;
 - `C01_TRUTH_RECONCILIATION=COMPLETE`;
 - `C01_RESIDUAL_OPEN_BACKLOG=OPS-03,OPS-04`;
-- `CURRENT_PRODUCT_COMPLETION_MACRO_STAGE=C04_C05_C06A_FOUNDATION_AND_OWNER_DECISION_PREPARATION`;
+- `CURRENT_PRODUCT_COMPLETION_MACRO_STAGE=C04_C05_C06_C07_C08_CANDIDATE_INTEGRATION`;
 - `C02A_INVENTORY=COMPLETE`;
 - `C02B_OWNER_VISIBILITY_LICENSING_DECISION=RECORDED`;
 - `C02B2_CONTINUITY_ARCHITECTURE_DECISION=RECORDED`;
@@ -475,22 +482,29 @@ Current product status and program:
 - `IP_05_STATUS=OPEN_DEFERRED_ACTIVATION`;
 - `C03_FINAL_CLASSIFICATION=COMPLETE`;
 - `C04A_PROVENANCE=COMPLETE`;
-- `C04_DERIVATIVE_PREPARATION=COMPLETE_EXTERNAL_TECHNICAL_CANDIDATES`;
-- `C04_PUBLIC_ADMISSION=PENDING_OWNER`;
-- `IP_03_STATUS=OPEN_PENDING_OWNER_DERIVATIVE_ADMISSION`;
-- `C05_EVIDENCE_FOUNDATION=PASS`;
-- `C05_PUBLIC_CLAIM_APPROVAL=PENDING_OWNER`;
+- `C04_DERIVATIVE_PREPARATION=COMPLETE`;
+- `C04_PUBLIC_ADMISSION=COMPLETE_CANDIDATE`;
+- `C04_STATUS=COMPLETE_CANDIDATE`;
+- `IP_03_STATUS=CLOSED`;
+- `C05_EVIDENCE_FOUNDATION=COMPLETE`;
+- `C05_PUBLIC_CLAIM_APPROVAL=OWNER_APPROVED_WITH_EVIDENCE_LIMITS`;
+- `C05_STATUS=COMPLETE_CANDIDATE`;
 - `C06A_VISUAL_BASELINE=COMPLETE`;
-- `C06_OWNER_ART_DIRECTION_DECISION=PENDING`;
-- `NEXT_WORK_PACKAGE=OWNER_CONTROLLER_VISUAL_AND_PUBLIC_CLAIM_DECISION_REQUIRED`.
+- `C06_OWNER_ART_DIRECTION_DECISION=APPROVED_OPTION_A`;
+- `C06_VISUAL_SYSTEM_FOUNDATION=IMPLEMENTED_CANDIDATE`;
+- `C07_TECHNICAL_CORRECTION=PASS`;
+- `OWNER_LIQUID_ORIENTATION_PASS=PENDING_FINAL_OWNER_VISUAL_ACCEPTANCE`;
+- `C07_STATUS=TECHNICAL_CORRECTION_COMPLETE_PENDING_OWNER_VISUAL_ACCEPTANCE`;
+- `C08_STATUS=COMPLETE_CANDIDATE`;
+- `NEXT_WORK_PACKAGE=C09_REQUIRES_SEPARATE_OWNER_CONTROLLER_AUTHORITY`.
 
 V1 is superseded as the current top-level Master Plan and retained as historical product/delivery provenance. V15 remains the active subordinate Search / SEO / AEO / GEO / AI Search domain plan and candidate evidence program. Neither classification promotes candidate code to production.
 
 The control-plane import, clean Point Zero, complete 301-file Codex absorption, repository audit, Full Product Completion Plan and Master Plan V2 synthesis are completed milestones. They are not future execution steps.
 
-Current Owner-controlled planning inputs for future bounded stages include:
+Current Owner-controlled implementation evidence includes:
 
-- `OWNER_LIQUID_VERTICAL_ORIENTATION_DEFECT=CONFIRMED`; the defect is not fixed by this documentation promotion;
+- `OWNER_LIQUID_VERTICAL_ORIENTATION_DEFECT=CONFIRMED`; the candidate correction removes the duplicate shader-space Y inversion at its owning UV boundary and normalizes local pointer mapping, while final Owner visual acceptance remains pending;
 - external immutable primary logo master: `/home/leadflowai/LeadFlowAI-SSD/owner-assets/leadflowai-brand/leadflowai-primary-logo-owner-approved.png`, 1536×1024 RGBA, SHA256 `4a5736eae07fbd166deec6567c907fe7b809697d45cf6f647399cbdaba1652ba`;
 - external immutable compact mark master: `/home/leadflowai/LeadFlowAI-SSD/owner-assets/leadflowai-brand/leadflowai-brand-mark-owner-approved.png`, 400×400 RGBA, SHA256 `1c7b5a4c27eb4ccf22f089183e6bd5f072ffed3cc16ea0fd056cd53da777cbf5`;
 - external immutable hero visual master: `/home/leadflowai/LeadFlowAI-SSD/owner-assets/leadflowai-brand/leadflowai-hero-owner-approved.png`, 1536×585 RGBA, SHA256 `dc0e64dbd7fc56179c086b1860926a9821b139ef15afb735be2ce0f8c4405ba9`.
@@ -503,28 +517,32 @@ C02 Repository, IP and GitHub Decision remains open only across explicitly defer
 
 C03 Determinism, Security and CI Foundation is complete for this governance candidate: the exact Node/npm toolchain is pinned, the tracked Next declaration and generated outputs have an explicit contract, clean build state is byte-stable, whole-tracked secret scanning is redacted and seeded-failure tested, Quality covers all non-production pushes and every PR to `main`, and all external Actions are immutable-SHA pinned under least privilege. `SEC-02` remains open because its acceptance spans later hosting/release/runtime gates.
 
-## 14. C04/C05/C06A foundation and decision boundary
+## 14. C04–C08 candidate integration state
 
-`docs/architecture/BRAND-ASSET-PROVENANCE.md` now records the three external
-immutable master identities and classifies seven tracked identity/media
-artifacts with exact hashes and consumer states. No tracked file matches a raw
-master, no binary derivative was admitted, and fourteen deterministic
-technical resize/PNG/WebP candidates remain outside the repository for Owner
-review. The public shell, icon/social roles, and obsolete 404 identity remain
-unchanged pending exact Owner derivative and role decisions. IP-03 therefore
-remains open.
+The Owner approved Option A, the exact public identity roles and evidence-only
+portfolio publication for this candidate package. Four public-serving
+derivatives are provenance-bound to immutable external masters: compact
+header/mobile identity, primary footer identity, a small-scale simplified app
+icon, and a factual 1200×630 social image. Raw masters remain external and
+unchanged; the hero master remains approved only for a future C09 supporting
+role. The obsolete code mark, SVG icon and old social image are superseded.
+The C04 candidate and IP-03 acceptance criteria are therefore satisfied.
 
-`docs/architecture/PORTFOLIO-EVIDENCE-REGISTER.md` establishes narrowed
-LeadFlowAI and Tervyxa receipts and withholds TranskrypcjaAI claims pending an
-exact repository or provider receipt. No public `/realizacje` copy was changed,
-and all candidate public wording remains pending Owner/Controller review.
+`docs/architecture/PORTFOLIO-EVIDENCE-REGISTER.md` now contains current,
+public-safe LeadFlowAI, Tervyxa and private-provider-derived TranskrypcjaAI
+receipts. Public portfolio wording is restricted to proven or
+proven-with-limitation claims and continues to identify all three as
+Owner-related first-party work rather than external client outcomes. C05 is
+complete for the candidate; deeper case-study composition remains C19.
 
-The current V14 visual baseline, seven homepage viewports, representative
-secondary routes, master color/material analysis, technical role previews and
-two implementable art-direction options are captured as external Owner
-decision evidence. C06A is complete, but no option is Owner-approved. The
-current green/cyan V14 authority and reported Liquid-orientation defect remain
-unchanged; C07 has not started.
+Option A establishes the approved blue/purple/cyan/navy/silver visual
+foundation. Green is limited to functional status. The Liquid diagnosis found
+duplicate shader-space Y inversion and global/local coordinate disagreement;
+the candidate removes that inversion at the UV boundary and normalizes pointer
+mapping while preserving one root-mounted world, reduced-motion and no-WebGL
+fallbacks. Technical C07 correction passes, but final Owner visual acceptance
+is still required. The shared header, accessible mobile navigation, footer,
+404 and shell fallbacks satisfy C08 at candidate level. C09 has not started.
 
 ## 15. Production protection
 

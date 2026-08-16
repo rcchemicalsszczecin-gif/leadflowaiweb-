@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { V14SiteFooter } from "@/components/v14-site-footer";
-import { V14SiteHeader } from "@/components/v14-site-header";
+import { V14RouteSiteHeader } from "@/components/v14-route-site-header";
 import { knowledgeArticles } from "@/lib/knowledge-registry";
 import { knowledgeTopicsV13 } from "@/lib/knowledge-topics-v13";
 import { toPublicKnowledgeArticle } from "@/lib/public-knowledge-article";
@@ -21,13 +21,13 @@ export const metadata: Metadata = {
     siteName: site.name,
     title,
     description,
-    images: [{ url: `${site.url}/og-leadflowai.svg`, width: 1200, height: 630, alt: `${site.name} — baza wiedzy` }],
+    images: [{ url: `${site.url}/brand/og-leadflowai-brand.png`, width: 1200, height: 630, alt: `${site.name} — baza wiedzy` }],
   },
   twitter: {
     card: "summary_large_image",
     title,
     description,
-    images: [`${site.url}/og-leadflowai.svg`],
+    images: [`${site.url}/brand/og-leadflowai-brand.png`],
   },
 };
 
@@ -36,7 +36,7 @@ export default function KnowledgePage() {
 
   return (
     <main id="main-content" className="knowledge-page v14-route-page v14-knowledge-page" tabIndex={-1}>
-      <V14SiteHeader mode="static" />
+      <V14RouteSiteHeader />
 
       <section className="knowledge-hero section-dark blueprint-surface">
         <div className="page-shell">

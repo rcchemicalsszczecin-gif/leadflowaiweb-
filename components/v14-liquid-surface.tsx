@@ -48,8 +48,8 @@ vec3 waterNormal(vec2 p, float t, vec2 pointerWorld, float pointerActive) {
 
 vec3 skyColor(vec3 direction) {
   float horizon = smoothstep(-0.25, 0.62, direction.y);
-  vec3 low = vec3(0.015, 0.045, 0.065);
-  vec3 high = vec3(0.08, 0.34, 0.48);
+  vec3 low = vec3(0.012, 0.025, 0.075);
+  vec3 high = vec3(0.12, 0.24, 0.58);
   vec3 sky = mix(low, high, horizon);
   float cyanBand = exp(-abs(direction.y - 0.16) * 7.5) * 0.28;
   sky += vec3(0.08, 0.58, 0.78) * cyanBand;
@@ -63,7 +63,6 @@ float gridLine(float value, float scale) {
 
 void main() {
   vec2 uv = gl_FragCoord.xy / max(uResolution, vec2(1.0));
-  uv.y = 1.0 - uv.y;
   vec2 screen = uv * 2.0 - 1.0;
   screen.x *= uResolution.x / max(uResolution.y, 1.0);
 
@@ -71,7 +70,7 @@ void main() {
   float pointerInfluence = uPointerActive * (1.0 - smoothstep(0.0, 1.25, length(screen)) * 0.2);
   vec2 pointerWorld = vec2(
     (uPointer.x - 0.5) * mix(3.2, 4.6, hero),
-    mix(-3.0, 0.55, uPointer.y)
+    mix(0.55, -3.0, uPointer.y)
   );
 
   vec3 camera = mix(vec3(0.0, 1.18, 2.45), vec3(0.18, 1.48, 2.86), hero);
@@ -91,7 +90,7 @@ void main() {
 
   if (ray.y > -0.025) {
     float horizonGlow = exp(-abs(ray.y + 0.01) * 32.0);
-    background += vec3(0.74, 1.0, 0.18) * horizonGlow * 0.045;
+    background += vec3(0.58, 0.34, 1.0) * horizonGlow * 0.055;
     outColor = vec4(background, mix(0.48, 0.72, hero));
     return;
   }
@@ -113,7 +112,7 @@ void main() {
 
   vec3 reflected = skyColor(reflectedDirection);
   float depthFade = 1.0 - exp(-max(travel, 0.0) * 0.18);
-  vec3 deepWater = mix(vec3(0.008, 0.055, 0.075), vec3(0.015, 0.14, 0.17), 1.0 - depthFade);
+  vec3 deepWater = mix(vec3(0.006, 0.025, 0.085), vec3(0.018, 0.11, 0.24), 1.0 - depthFade);
   vec3 color = mix(deepWater, reflected, 0.28 + fresnel * 0.58);
 
   float gridX = gridLine(point.x, 0.58);
@@ -126,7 +125,7 @@ void main() {
   vec3 rimLight = normalize(vec3(0.65, 0.58, -0.48));
   float specular = pow(max(dot(reflect(-keyLight, normal), viewDirection), 0.0), 82.0);
   float rim = pow(max(dot(reflect(-rimLight, normal), viewDirection), 0.0), 42.0);
-  color += vec3(0.88, 1.0, 0.72) * specular * 1.2;
+  color += vec3(0.84, 0.91, 1.0) * specular * 1.2;
   color += vec3(0.12, 0.68, 0.9) * rim * 0.46;
 
   float causticA = sin(point.x * 7.4 + point.z * 5.9 + uTime * 1.7);
@@ -136,7 +135,7 @@ void main() {
 
   float pointerDistance = length(point.xz - pointerWorld);
   float pointerGlow = exp(-pointerDistance * 2.9) * pointerInfluence;
-  color += vec3(0.78, 1.0, 0.18) * pointerGlow * 0.24;
+  color += vec3(0.38, 0.72, 1.0) * pointerGlow * 0.25;
 
   float crest = smoothstep(0.055, 0.15, waveHeight(point.xz, uTime, pointerWorld, pointerInfluence));
   color += vec3(0.58, 0.88, 1.0) * crest * 0.07;

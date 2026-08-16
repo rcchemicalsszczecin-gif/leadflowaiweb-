@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { V14SiteFooter } from "@/components/v14-site-footer";
-import { V14SiteHeader } from "@/components/v14-site-header";
+import { V14RouteSiteHeader } from "@/components/v14-route-site-header";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     description:
       "Jak pracujemy, jak weryfikujemy publiczne twierdzenia i dlaczego łączymy projektowanie WWW, kod, widoczność oraz konwersję w jeden system.",
     url: "/o-nas",
-    images: ["/og-leadflowai.svg"],
+    images: ["/brand/og-leadflowai-brand.png"],
   },
 };
 
@@ -35,7 +35,7 @@ const methodology = [
 export default function AboutPage() {
   return (
     <main id="main-content" className="about-page v14-route-page v14-about-page" tabIndex={-1}>
-      <V14SiteHeader mode="static" />
+      <V14RouteSiteHeader />
 
       <section className="section-dark blueprint-surface">
         <div className="page-shell">

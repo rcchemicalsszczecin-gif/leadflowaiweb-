@@ -26,7 +26,7 @@ for (const retired of ["premium-page-v9", "premium-page-v92", "PremiumExperience
   if (home.includes(retired)) fail(`legacy homepage visual/runtime dependency remains: ${retired}`);
 }
 if (home.includes("data-v92-reveal")) fail("legacy reveal/fade language remains on V14 homepage");
-for (const required of ["v14-header", "v14-hero", "pracują jak produkt", "Wyceń projekt", "Zobacz realizacje", "V14LiquidSurface", 'variant="hero"', "V14SignatureStage", "/v14-liquid-surface.css"]) {
+for (const required of ["V14OverlaySiteHeader", "v14-hero", "pracują jak produkt", "Wyceń projekt", "Zobacz realizacje", "V14LiquidSurface", 'variant="hero"', "V14SignatureStage", "/v14-liquid-surface.css"]) {
   if (!hero.includes(required)) fail(`hero/signature signal missing: ${required}`);
 }
 for (const required of ["V14BrowserMockup", "V14PhoneMockup", "v14-signature-stage", "v14-signature-browser-layer", "v14-signature-phone-layer", "v14-signature-node-search", "v14-signature-node-ai", "--sig-rx", "--sig-ry", "requestAnimationFrame"]) {

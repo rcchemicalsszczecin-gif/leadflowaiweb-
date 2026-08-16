@@ -20,7 +20,7 @@ const registry = read("lib/knowledge-registry.ts");
 const schema = read("lib/structured-data.ts");
 
 for (const source of [indexPage, page]) {
-  for (const required of ["V14SiteHeader", "V14SiteFooter", 'id="main-content"', "tabIndex={-1}"]) {
+  for (const required of ["V14RouteSiteHeader", "V14SiteFooter", 'id="main-content"', "tabIndex={-1}"]) {
     if (!source.includes(required)) fail(`knowledge V14 shell invariant missing: ${required}`);
   }
   if (source.includes("<SiteHeader") || source.includes("<SiteFooter")) fail("legacy knowledge shell still mounted");

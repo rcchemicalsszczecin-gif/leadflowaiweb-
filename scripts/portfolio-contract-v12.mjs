@@ -20,13 +20,13 @@ for (const project of ["LeadFlowAI.pl", "TranskrypcjaAI.pl", "Tervyxa.pl"]) {
 
 for (const phrase of [
   "PROJEKT WŁASNY",
-  "publiczne przesyłanie plików wyłączone",
-  "Marketing działa · publiczne przesyłanie plików wyłączone",
+  "portal zamówień wyłączony",
+  "Ograniczona publiczna próba działa",
   "Tervyxa Systems sp. z o.o.",
   "tervyxa.pl",
   "transkrypcjaai.pl",
   "leadflowai.pl",
-  "DEKLARACJA → DOWÓD → WERYFIKACJA → STATUS PUBLICZNY",
+  "Publiczna prawda",
 ]) {
   if (!combined.includes(phrase)) fail(`missing evidence boundary: ${phrase}`);
 }
@@ -46,4 +46,4 @@ for (const forbidden of [
   if (combined.toLowerCase().includes(forbidden.toLowerCase())) fail(`unsupported portfolio claim: ${forbidden}`);
 }
 
-console.log("PORTFOLIO_V12_PASS projects=3 own-projects=3 external-client-case-studies=0 transkrypcja-upload=OFF evidence-boundary=PASS language=PL");
+console.log("PORTFOLIO_V12_PASS projects=3 owner-related=3 external-client-case-studies=0 transkrypcja-order-portal=OFF evidence-boundary=PASS language=PL");

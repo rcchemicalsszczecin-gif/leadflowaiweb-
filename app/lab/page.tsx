@@ -10,7 +10,7 @@ import {
   SystemAssembly,
 } from "@/components/interactive-experience";
 import { V14SiteFooter } from "@/components/v14-site-footer";
-import { V14SiteHeader } from "@/components/v14-site-header";
+import { V14RouteSiteHeader } from "@/components/v14-route-site-header";
 import { site } from "@/lib/site";
 import { withV13SocialMetadata } from "@/lib/social-metadata-v13";
 
@@ -34,7 +34,7 @@ export const metadata: Metadata = withV13SocialMetadata(
 export default function LabPage() {
   return (
     <main id="main-content" className="lab-page v14-route-page v14-lab-page" tabIndex={-1}>
-      <V14SiteHeader mode="static" />
+      <V14RouteSiteHeader />
 
       <header className="lab-hero">
         <p className="experience-kicker">LEADFLOWAI / LABORATORIUM</p>

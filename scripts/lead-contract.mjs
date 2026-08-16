@@ -14,10 +14,10 @@ const contactPage = read("app/kontakt/page.tsx");
 const contactPanel = read("components/lead-form.tsx");
 const briefBuilder = read("components/v14-contact-brief.tsx");
 const sitemap = read("app/sitemap.ts");
-const header = read("components/v14-site-header.tsx");
+const header = `${read("components/v14-site-header.tsx")}\n${read("components/v14-site-navigation.tsx")}`;
 const site = read("lib/site.ts");
 
-for (const required of ["LeadForm", "V14ContactBrief", "V14SiteHeader", "V14SiteFooter", "metadata", 'id="main-content"']) {
+for (const required of ["LeadForm", "V14ContactBrief", "V14RouteSiteHeader", "V14SiteFooter", "metadata", 'id="main-content"']) {
   if (!contactPage.includes(required)) fail(`contact route contract incomplete: ${required}`);
 }
 if (!contactPanel.includes("Formularz online jest obecnie wyłączony")) fail("owner-disabled form state missing");

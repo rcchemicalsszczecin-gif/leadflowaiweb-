@@ -168,10 +168,14 @@ Current classifications:
 - `C02E_FINAL_CLASSIFICATION=POLICY_COMPLETE_ACTIVATION_DEFERRED`;
 - `IP_05_STATUS=OPEN_DEFERRED_ACTIVATION`;
 - `C03_FINAL_CLASSIFICATION=COMPLETE`;
-- `C04_IMPLEMENTATION_AUTHORIZED=NO`;
-- `C04_STARTED=NO`.
+- `C04_IMPLEMENTATION_AUTHORIZED=YES_WITHIN_C04_C08_INTEGRATION_PACKAGE`;
+- `C04_STATUS=COMPLETE_CANDIDATE`;
+- `C05_STATUS=COMPLETE_CANDIDATE`;
+- `C06_OWNER_ART_DIRECTION_DECISION=APPROVED_OPTION_A`;
+- `C07_STATUS=TECHNICAL_CORRECTION_COMPLETE_PENDING_OWNER_VISUAL_ACCEPTANCE`;
+- `C08_STATUS=COMPLETE_CANDIDATE`.
 
-C01 truth reconciliation is complete, but OPS-03 and OPS-04 remain open until separately satisfied. C02A–C02D are recorded or complete; C02E policy is complete while default-branch activation of its candidate files remains deferred. C03 foundation is complete on the governance candidate. C04 remains unstarted and unauthorized. Candidate and governance work remain non-production until separate Owner promotion, merge and deployment decisions.
+C01 truth reconciliation is complete, but OPS-03 and OPS-04 remain open until separately satisfied. C02A–C02D are recorded or complete; C02E policy is complete while default-branch activation of its candidate files remains deferred. C03 foundation is complete. The Owner-authorized C04–C08 candidate integration establishes the exact brand roles, evidence-limited portfolio publication, Option A foundation, technical Liquid correction and shared shell. Candidate and governance work remain non-production until separate Owner promotion, merge and deployment decisions.
 
 ### C02 repository, hosting and licensing policy
 
@@ -285,7 +289,7 @@ THIRD_PARTY_ASSET_PROVENANCE_REQUIRED=YES
 UNKNOWN_PROVENANCE_DEFAULT_ADMISSION=BLOCKED
 ASSET_DELETION_AUTHORIZED_NOW=NO
 LEGACY_BRAND_ASSET_RETIREMENT_REQUIRES_EVIDENCE=YES
-C04_IMPLEMENTATION_AUTHORIZED=NO
+C04_IMPLEMENTATION_AUTHORIZED=YES_WITHIN_C04_C08_INTEGRATION_PACKAGE
 ```
 
 An immutable master may not be overwritten, cropped, resized, recompressed, converted, stripped of alpha, recolored, geometrically altered, retyped, recomposed, AI-regenerated, reconstructed, vectorized, redrawn or otherwise “improved” in place without separate explicit Owner authority. Raw masters remain outside Git and may not be published as repository artifacts.
@@ -344,17 +348,25 @@ IP_05_DEFAULT_BRANCH_FILE_ACTIVATION=DEFERRED_TO_C26_OR_EXACT_PROMOTION
 IP_05_STATUS=OPEN_DEFERRED_ACTIVATION
 C02E_FINAL_CLASSIFICATION=POLICY_COMPLETE_ACTIVATION_DEFERRED
 C03_FINAL_CLASSIFICATION=COMPLETE
-C04_IMPLEMENTATION_AUTHORIZED=NO
+C04_IMPLEMENTATION_AUTHORIZED=YES_WITHIN_C04_C08_INTEGRATION_PACKAGE
 ```
 
 ## 9. Current Owner brand and Liquid inputs
 
-The Owner confirms:
+The Owner confirms and selects:
 
 - `OWNER_LIQUID_VERTICAL_ORIENTATION_DEFECT=CONFIRMED`;
 - the current Liquid/water presentation is visually wrong in its top/bottom orientation or perception;
-- future C07 must diagnose coordinate/shader/camera/CSS ownership rather than apply a blind visual inversion;
-- final correction requires `OWNER_LIQUID_ORIENTATION_PASS`.
+- `OWNER_ART_DIRECTION_SELECTION=OPTION_A`;
+- `BRAND_VISUAL_AUTHORITY=BLUE_PURPLE_CYAN`;
+- `GREEN_ROLE=FUNCTIONAL_STATUS_ONLY`;
+- header/mobile identity: compact mark plus live DOM `LeadFlowAI`;
+- footer identity: primary-logo derivative;
+- favicon strategy: bounded faithful simplification of the compact mark;
+- OG/social: factual brand-led public-serving derivative;
+- hero master role: `APPROVED_FUTURE_ROLE_NOT_YET_ADMITTED` for C09;
+- C07 must diagnose coordinate/shader/camera/CSS ownership rather than apply a blind visual inversion;
+- the technical candidate correction is authorized, while final correction acceptance still requires `OWNER_LIQUID_ORIENTATION_PASS`.
 
 The following immutable Owner-approved masters remain outside the repository:
 
@@ -388,7 +400,7 @@ Owner asset rules:
 - `MASTER_ASSETS_REMAIN_OUTSIDE_REPOSITORY=YES`;
 - `OWNER_ASSET_MASTER_REPOSITORY_ADMISSION=FORBIDDEN`.
 
-Future web derivatives require the separate C02/C04 authority defined by V2. These decisions do not claim that the assets are already implemented or deployed.
+The C04–C08 integration package supplies the bounded derivative and visual authority for the exact roles above. Four admitted public-serving derivatives are recorded in `docs/architecture/BRAND-ASSET-PROVENANCE.md`; raw masters remain external. These decisions and candidate implementation do not claim production deployment.
 
 ## 10. Pending Owner / external decisions
 
@@ -401,5 +413,6 @@ Still separate from automatic implementation:
 - default-branch activation of candidate CODEOWNERS/Dependabot files through a separately authorized promotion;
 - Cloudflare/visibility continuity planning and separately authorized implementation;
 - final `LICENSE` / `NOTICE` legal drafting and implementation;
-- C04 asset provenance, derivative creation/admission and existing-asset reconciliation;
+- final production acceptance of the candidate Liquid orientation;
+- C09 hero composition and any exact hero-master derivative admission;
 - external Search Console/Bing evidence connection and interpretation.

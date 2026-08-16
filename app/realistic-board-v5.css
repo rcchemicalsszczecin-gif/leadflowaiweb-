@@ -57,11 +57,6 @@
     opacity: 0.018;
   }
 
-  .site-header {
-    background: linear-gradient(180deg, rgba(2, 8, 13, 0.9), rgba(2, 8, 13, 0.72));
-    backdrop-filter: blur(8px) saturate(1.08);
-  }
-
   .service-hero-copy,
   .contact-hero-copy,
   .knowledge-hero-copy,
@@ -90,7 +85,6 @@
     color: rgba(248, 250, 252, 0.58);
   }
 
-  .hero-lead,
   .service-lead,
   .contact-hero-copy {
     color: rgba(234, 244, 248, 0.78);

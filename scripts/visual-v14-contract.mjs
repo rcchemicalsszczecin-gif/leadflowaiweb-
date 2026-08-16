@@ -25,8 +25,8 @@ for(const required of ['[data-variant="hero"]',".v14-signature-stage","perspecti
 if(!visualCss.includes("background:var(--v14-paper)")||!visualCss.includes("v14-foundation"))fail("light/dark V14 rhythm missing");
 for(const required of ["01 / CZŁOWIEK","02 / GOOGLE","03 / SYSTEM AI","VISUAL ENTITY GRAPH","EDUKACYJNY AI SEARCH PREVIEW","nie gwarancja"])if(!searchEducation.includes(required))fail(`search education visual missing: ${required}`);
 if(!visibilityHub.includes("<SearchVisibilityExplainerV13 />"))fail("search education module not active on visibility hub");
-if(!layout.includes('/og-leadflowai.svg'))fail("first-party OG asset not wired");
-if(!existsSync("public/og-leadflowai.svg"))fail("first-party OG asset missing");
+if(!layout.includes('/brand/og-leadflowai-brand.png'))fail("approved brand-led OG asset not wired");
+if(!existsSync("public/brand/og-leadflowai-brand.png"))fail("approved brand-led OG asset missing");
 if(!existsSync("app/o-nas/page.tsx")||!sitemap.includes('"o-nas"'))fail("trust/about route incomplete");
 if(!portfolio.includes("PortfolioProjectVisual")||!existsSync("components/portfolio-project-visual.tsx"))fail("visual portfolio proof missing");
 if(visualCss.includes("images.unsplash.com")||liquidCss.includes("images.unsplash.com"))fail("V14 public visual layer depends on stock background");

@@ -1,16 +1,12 @@
 import { HeaderBrandIdentity } from "@/components/brand-identity";
 import { V14SiteNavigation } from "@/components/v14-site-navigation";
 
-type V14SiteHeaderProps = {
-  mode?: "overlay" | "static";
-};
-
-export function V14SiteHeader({ mode = "static" }: V14SiteHeaderProps) {
+export function V14OverlaySiteHeader() {
   return (
     <>
       <link rel="stylesheet" href="/v14-option-a.css" precedence="high" />
       <a className="v14-skip-link" href="#main-content">Przejdź do treści</a>
-      <header className={`v14-header ${mode === "static" ? "v14-header-static" : ""}`}>
+      <header className="v14-header">
         <div className="v14-shell v14-header-inner">
           <HeaderBrandIdentity />
           <V14SiteNavigation />

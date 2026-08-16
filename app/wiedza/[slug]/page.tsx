@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/json-ld";
 import { V14SiteFooter } from "@/components/v14-site-footer";
-import { V14SiteHeader } from "@/components/v14-site-header";
+import { V14RouteSiteHeader } from "@/components/v14-route-site-header";
 import { getKnowledgeMethodology, knowledgeEditorialV13 } from "@/lib/knowledge-editorial-v13";
 import { getKnowledgeArticle, knowledgeArticles } from "@/lib/knowledge-registry";
 import { toPublicKnowledgeArticle } from "@/lib/public-knowledge-article";
@@ -33,13 +33,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: article.description,
       url: `/wiedza/${article.slug}`,
       modifiedTime: reviewedAt,
-      images: ["/og-leadflowai.svg"],
+      images: ["/brand/og-leadflowai-brand.png"],
     },
     twitter: {
       card: "summary_large_image",
       title: article.title,
       description: article.description,
-      images: ["/og-leadflowai.svg"],
+      images: ["/brand/og-leadflowai-brand.png"],
     },
   };
 }
@@ -55,7 +55,7 @@ export default async function KnowledgeArticlePage({ params }: PageProps) {
   return (
     <main id="main-content" className="knowledge-article-page v14-route-page v14-knowledge-article-page" tabIndex={-1}>
       <JsonLd data={getArticleStructuredData(article)} />
-      <V14SiteHeader mode="static" />
+      <V14RouteSiteHeader />
 
       <section className="knowledge-article-hero section-dark blueprint-surface">
         <div className="page-shell">

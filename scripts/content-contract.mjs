@@ -28,7 +28,7 @@ for (const phrase of [
   "TranskrypcjaAI.pl",
   "Tervyxa.pl",
   "PROJEKT WŁASNY",
-  "publiczne przesyłanie plików wyłączone",
+  "portal zamówień i pełna ścieżka samoobsługowa pozostają wyłączone",
   "DEKLARACJA → DOWÓD → WERYFIKACJA → STATUS PUBLICZNY",
 ]) {
   if (!portfolioData.includes(phrase)) fail(`portfolio data missing ${phrase}`);

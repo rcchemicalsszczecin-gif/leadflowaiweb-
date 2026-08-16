@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { LeadForm } from "@/components/lead-form";
 import { V14ContactBrief } from "@/components/v14-contact-brief";
 import { V14SiteFooter } from "@/components/v14-site-footer";
-import { V14SiteHeader } from "@/components/v14-site-header";
+import { V14RouteSiteHeader } from "@/components/v14-route-site-header";
 import { site } from "@/lib/site";
 import { withV13SocialMetadata } from "@/lib/social-metadata-v13";
 
@@ -29,7 +29,7 @@ export const metadata: Metadata = withV13SocialMetadata(
 export default function KontaktPage() {
   return (
     <main id="main-content" className="contact-page v14-contact-page" tabIndex={-1}>
-      <V14SiteHeader mode="static" />
+      <V14RouteSiteHeader />
 
       <section className="contact-hero section-dark blueprint-surface">
         <div className="page-shell">

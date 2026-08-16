@@ -13,7 +13,7 @@ const guidance = readFileSync("lib/service-decision-guidance.ts", "utf8");
 for (const required of [
   "toPublicServicePage(page)",
   "getPageStructuredData(publicPage)",
-  "V14SiteHeader",
+  "V14RouteSiteHeader",
   "V14SiteFooter",
   'id="main-content"',
   "v14-service-page",
