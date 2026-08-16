@@ -135,10 +135,14 @@ Current classifications:
 - `C02B_OWNER_VISIBILITY_LICENSING_DECISION=RECORDED`;
 - `C02B2_CONTINUITY_ARCHITECTURE_DECISION=RECORDED`;
 - `C02B2_PROVIDER_EXECUTION=DEFERRED_TO_C26`;
-- `NEXT_C02_GATE=C02C_OWNER_ASSET_IP_ADMISSION_POLICY`;
-- `C02C_IMPLEMENTATION_AUTHORIZED=NO`.
+- `C02C_OWNER_ASSET_IP_ADMISSION_POLICY=RECORDED`;
+- `C02C_ASSET_IMPLEMENTATION=DEFERRED_TO_C04`;
+- `NEXT_C02_GATE=C02D_PRODUCTION_BRANCH_AND_PROMOTION_PROTECTION`;
+- `C02D_IMPLEMENTATION_AUTHORIZED=NO`;
+- `C02E_STARTED=NO`;
+- `C03_STARTED=NO`.
 
-C01 truth reconciliation is complete, but OPS-03 and OPS-04 remain open until separately satisfied. C02 is in progress only through separately bounded Owner-authorized gates; C02A, C02B and the C02B2 architecture record do not authorize C02C, C02D, C02E or production mutation. Candidate and governance work remain non-production until separate Owner promotion, merge and deployment decisions.
+C01 truth reconciliation is complete, but OPS-03 and OPS-04 remain open until separately satisfied. C02 is in progress only through separately bounded Owner-authorized gates; C02A, C02B, C02B2 and the C02C policy record do not authorize C02D, C02E, C04 or production mutation. Candidate and governance work remain non-production until separate Owner promotion, merge and deployment decisions.
 
 ### C02 repository, hosting and licensing policy
 
@@ -198,6 +202,71 @@ Changing visibility later can reduce future source exposure but cannot undo hist
 
 LeadFlowAI first-party source is proprietary and receives no intentional open-source grant. Owner brand assets are proprietary and separate from code-license scope. Third-party code, dependencies and assets retain their own licenses, notices and attribution requirements and are not relicensed as LeadFlowAI first-party work. Final `LICENSE` and `NOTICE` wording remains subject to legal review; this policy decision does not authorize creating either file or admitting Owner master assets to Git.
 
+### C02C Owner asset / IP admission policy
+
+The approved source authority consists of exactly three immutable external masters:
+
+- primary logo master — SHA256 `4a5736eae07fbd166deec6567c907fe7b809697d45cf6f647399cbdaba1652ba`;
+- compact mark master — SHA256 `1c7b5a4c27eb4ccf22f089183e6bd5f072ffed3cc16ea0fd056cd53da777cbf5`;
+- hero visual master — SHA256 `dc0e64dbd7fc56179c086b1860926a9821b139ef15afb735be2ce0f8c4405ba9`.
+
+```text
+OWNER_ASSET_MASTER_COUNT=3
+OWNER_ASSET_MASTERS_IMMUTABLE=YES
+OWNER_ASSET_MASTERS_EXTERNAL_TO_REPOSITORY=YES
+OWNER_ASSET_MASTER_REPOSITORY_ADMISSION=FORBIDDEN
+OWNER_ASSET_MASTER_PUBLICATION_AS_RAW_MASTER=FORBIDDEN
+OWNER_APPROVED_MASTER=YES
+DO_NOT_REGENERATE=YES
+DO_NOT_REPLACE_WITH_PLACEHOLDER=YES
+DO_NOT_RESTYLE_WITHOUT_OWNER_AUTHORITY=YES
+DO_NOT_MUTATE_MASTER_IN_PLACE=YES
+DO_NOT_COMMIT_MASTER_TO_REPOSITORY=YES
+
+ANY_FILE_COMMITTED_NOW_IS_PUBLICLY_EXPOSED=YES
+WEB_DERIVATIVES_ALLOWED_IN_FUTURE=YES
+WEB_DERIVATIVE_CREATION_AUTHORIZED_NOW=NO
+WEB_DERIVATIVE_REPOSITORY_ADMISSION_AUTHORIZED_NOW=NO
+ONLY_PUBLIC_SERVING_DERIVATIVES_MAY_BE_ADMITTED_WHILE_REPOSITORY_IS_PUBLIC=YES
+ASSET_PROVENANCE_MANIFEST_REQUIRED_BEFORE_C04_ADMISSION=YES
+TECHNICAL_WEB_OPTIMIZATION_ALLOWED_IN_C04=YES
+CREATIVE_RESTYLE_REQUIRES_SEPARATE_OWNER_AUTHORITY=YES
+CURRENT_APPROVED_DERIVATIVE_COUNT=DO_NOT_INFER
+
+FUTURE_DERIVATIVE_ADMISSION_REQUIRES_ALL=YES
+DERIVATIVE_SOURCE_MASTER_PROVEN=YES
+SOURCE_MASTER_SHA256_RECORDED=YES
+DERIVATIVE_SHA256_RECORDED=YES
+DERIVATIVE_DIMENSIONS_RECORDED=YES
+DERIVATIVE_FORMAT_RECORDED=YES
+DERIVATIVE_PUBLIC_PURPOSE_RECORDED=YES
+DERIVATIVE_CONSUMER_RECORDED=YES
+DERIVATIVE_TRANSFORM_RECORDED=YES
+DERIVATIVE_OWNER_APPROVAL_RECORDED=YES
+DERIVATIVE_LICENSE_CLASS_RECORDED=YES
+DERIVATIVE_PUBLIC_EXPOSURE_CLASS_RECORDED=YES
+
+OWNER_BRAND_ASSETS_POLICY=PROPRIETARY_SEPARATE_FROM_CODE_LICENSE
+BRAND_ASSETS_COVERED_BY_FUTURE_CODE_LICENSE=NO
+PUBLIC_ACCESS_DOES_NOT_GRANT_BRAND_REUSE_LICENSE=YES
+BRAND_ASSET_OPEN_SOURCE_GRANT=NO
+EXISTING_TRACKED_BRAND_ASSET_PROVENANCE=PENDING_C04_RECONCILIATION
+THIRD_PARTY_ASSETS_RETAIN_ORIGINAL_RIGHTS_AND_REQUIREMENTS=YES
+THIRD_PARTY_ASSET_PROVENANCE_REQUIRED=YES
+UNKNOWN_PROVENANCE_DEFAULT_ADMISSION=BLOCKED
+ASSET_DELETION_AUTHORIZED_NOW=NO
+LEGACY_BRAND_ASSET_RETIREMENT_REQUIRES_EVIDENCE=YES
+C04_IMPLEMENTATION_AUTHORIZED=NO
+```
+
+An immutable master may not be overwritten, cropped, resized, recompressed, converted, stripped of alpha, recolored, geometrically altered, retyped, recomposed, AI-regenerated, reconstructed, vectorized, redrawn or otherwise “improved” in place without separate explicit Owner authority. Raw masters remain outside Git and may not be published as repository artifacts.
+
+A future web derivative is a distinct public/runtime artifact for an exact consumer, not a master. C04 may later create a favicon, header/navigation/footer mark, social/Open Graph asset, optimized hero, responsive raster, format conversion, approved crop or resolution variant only under a separate Owner-authorized gate. Technical resizing, conversion, compression, metadata stripping, responsive variants and approved crops must preserve the accepted identity; creative redesign, recoloring, geometry reconstruction, typography changes, new symbols, AI regeneration and placeholder substitution require separate Owner/visual authority.
+
+Before any derivative admission, C04 must record its repository path and SHA256, source-master identifier/SHA256/dimensions, derivative dimensions/format, exact transform/tool description, intended public consumer and purpose, exposure and proprietary/third-party class, Owner approval state, admission checkpoint and later supersession/retirement state. Approval states are `APPROVED_EXACT_DERIVATIVE`, `APPROVED_DERIVATIVE_FAMILY`, `NOT_APPROVED`, `SUPERSEDED` or `RETIRED`. Existence, generation, admission and activation are distinct states.
+
+The repository is currently public, so only assets intentionally downloadable as public website-serving derivatives may later be admitted. Existing tracked LeadFlowAI identity assets remain `PENDING_C04_RECONCILIATION`; they are not declared masters, invalid, approved replacements or retirement candidates by C02C. Third-party assets retain their original rights, license and attribution requirements, and unknown provenance is blocked from admission rather than silently converted into first-party ownership. Deletion or retirement requires consumer/reachability, replacement, visual/public-artifact and Owner-review evidence.
+
 ## 9. Current Owner brand and Liquid inputs
 
 The Owner confirms:
@@ -236,7 +305,8 @@ Owner asset rules:
 - `DO_NOT_REGENERATE=YES`;
 - `DO_NOT_RESTYLE_WITHOUT_OWNER_AUTHORITY=YES`;
 - `DO_NOT_REPLACE_WITH_PLACEHOLDER=YES`;
-- `MASTER_ASSETS_REMAIN_OUTSIDE_REPOSITORY_PENDING_IP_ASSET_ADMISSION_STAGE=YES`.
+- `MASTER_ASSETS_REMAIN_OUTSIDE_REPOSITORY=YES`;
+- `OWNER_ASSET_MASTER_REPOSITORY_ADMISSION=FORBIDDEN`.
 
 Future web derivatives require the separate C02/C04 authority defined by V2. These decisions do not claim that the assets are already implemented or deployed.
 
@@ -252,5 +322,5 @@ Still separate from automatic implementation:
 - Dependabot/repository security settings;
 - Cloudflare/visibility continuity planning and separately authorized implementation;
 - final `LICENSE` / `NOTICE` legal drafting and implementation;
-- Owner asset admission, derivative and provenance policy;
+- C04 asset provenance, derivative creation/admission and existing-asset reconciliation;
 - external Search Console/Bing evidence connection and interpretation.

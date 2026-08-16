@@ -1055,6 +1055,33 @@ Before a future C26 Cloudflare promotion may be authorized, its bounded evidence
 
 Repository visibility may change only after Cloudflare production is proven operational for `leadflowai.pl`, TLS and critical routes pass, canonical/sitemap/robots parity passes, production release identity and rollback are recorded, source/deployment compatibility is confirmed and the Owner separately authorizes the visibility change. GitHub Pages remains enabled until Cloudflare continuity is proven, rollback implications are reviewed and the Owner separately authorizes decommission. C02B2 records requirements and sequencing only; it selects no Cloudflare product or migration mechanism and performs no provider action.
 
+Current C02C asset/IP decision receipt:
+
+```text
+C02C_OWNER_ASSET_IP_ADMISSION_POLICY=RECORDED
+OWNER_ASSET_MASTER_COUNT=3
+OWNER_MASTER_REPOSITORY_ADMISSION=FORBIDDEN
+OWNER_ASSET_MASTER_PUBLICATION_AS_RAW_MASTER=FORBIDDEN
+PUBLIC_WEB_DERIVATIVE_ADMISSION=FUTURE_C04_ONLY_AFTER_PROVENANCE_AND_OWNER_APPROVAL
+WEB_DERIVATIVE_CREATION_AUTHORIZED_NOW=NO
+WEB_DERIVATIVE_REPOSITORY_ADMISSION_AUTHORIZED_NOW=NO
+ONLY_PUBLIC_SERVING_DERIVATIVES_MAY_BE_ADMITTED_WHILE_REPOSITORY_IS_PUBLIC=YES
+ASSET_PROVENANCE_MANIFEST_REQUIRED_BEFORE_C04_ADMISSION=YES
+BRAND_ASSET_LICENSE_CLASS=PROPRIETARY_SEPARATE_FROM_CODE_LICENSE
+BRAND_ASSETS_COVERED_BY_FUTURE_CODE_LICENSE=NO
+BRAND_ASSET_OPEN_SOURCE_GRANT=NO
+EXISTING_TRACKED_ASSET_PROVENANCE=PENDING_C04_RECONCILIATION
+UNKNOWN_PROVENANCE_ADMISSION=BLOCKED
+ASSET_DELETION_AUTHORIZED_NOW=NO
+IP_03_POLICY_DECISION=COMPLETE
+IP_03_IMPLEMENTATION=DEFERRED_TO_C04
+C04_IMPLEMENTATION_AUTHORIZED=NO
+```
+
+The three approved masters remain immutable and external to Git. They may not be admitted or published as raw masters. Future public-serving derivatives are distinct artifacts and require a separately authorized C04 gate, source and derivative hashes, dimensions, format and bounded transform, intended public consumer/purpose, exposure and license classifications, provenance-manifest entry and recorded Owner approval. The public repository offers no confidentiality boundary for admitted files.
+
+Technical web optimization may resize, convert, compress, preserve required alpha, strip appropriate delivery metadata or create responsive variants and explicitly approved crops. It does not authorize creative redesign, recoloring, geometry or typography reconstruction, new symbols, AI regeneration or placeholder substitution. Existing tracked identity assets remain pending C04 reconciliation; third-party rights and attribution remain their own; unknown provenance is blocked. No derivative, retirement, deletion or C04 implementation is authorized by C02C.
+
 ## 29. Operations and recovery
 
 Current authoritative production identity:
@@ -1610,6 +1637,8 @@ No macro stage authorizes its sub-gates automatically.
 - **Owner review:** Every materially distinct crop/derivative.
 - **Exit:** No obsolete public graphical identity and every derivative traces to a master.
 - **STOP/next:** Stop on unresolved public-repository permission or required restyling; next C06/C08/C09.
+
+C02C policy prerequisites for C04 are binding: verify the three immutable external masters and hashes; inventory every existing tracked identity asset and consumer; create provenance before any admission; record derivative hashes, dimensions, formats, transforms, exposure/license classes and exact consumers; obtain Owner approval for materially distinct derivatives; and reconcile legacy/current assets without mutating masters. C04 may perform bounded technical web optimization only. Creative redesign, recoloring or recomposition requires separate Owner/visual authority under C06 or another explicit gate.
 
 ### C05 — Portfolio Evidence Admission
 
@@ -2231,9 +2260,10 @@ C02A_REPOSITORY_IP_GITHUB_INVENTORY=COMPLETE
 C02B_OWNER_VISIBILITY_LICENSING_DECISION=RECORDED
 C02B2_CONTINUITY_ARCHITECTURE_DECISION=RECORDED
 C02B2_PROVIDER_EXECUTION=DEFERRED_TO_C26
-NEXT_C02_GATE=C02C_OWNER_ASSET_IP_ADMISSION_POLICY
-C02C_IMPLEMENTATION_AUTHORIZED=NO
-C02D_STARTED=NO
+C02C_OWNER_ASSET_IP_ADMISSION_POLICY=RECORDED
+C02C_ASSET_IMPLEMENTATION=DEFERRED_TO_C04
+NEXT_C02_GATE=C02D_PRODUCTION_BRANCH_AND_PROMOTION_PROTECTION
+C02D_IMPLEMENTATION_AUTHORIZED=NO
 C02E_STARTED=NO
 C03_STARTED=NO
 ```
@@ -2256,7 +2286,7 @@ CODEX FINAL REPORT
 → OWNER NEXT-GATE DECISION
 ```
 
-This C01 closeout did not change production, deploy brand assets or fix the Liquid defect. C02 Repository, IP and GitHub Decision is in progress through bounded gates: C02A inventory is complete, C02B records the Owner visibility/hosting/licensing policy and C02B2 records the continuity architecture while deferring provider execution to C26 after an accepted C25 release candidate. C02 remains incomplete. C02C Owner Asset / IP Admission Policy is the next C02 gate and is not authorized; C02D and C02E remain unstarted. No C03 authority exists.
+This C01 closeout did not change production, deploy brand assets or fix the Liquid defect. C02 Repository, IP and GitHub Decision is in progress through bounded gates: C02A inventory is complete, C02B records the Owner visibility/hosting/licensing policy, C02B2 records the deferred continuity architecture and C02C records the Owner asset/IP admission policy while deferring implementation to C04. C02 remains incomplete. C02D Production Branch and Promotion Protection is the next C02 gate and is not authorized; C02E remains unstarted. No C03 or C04 implementation authority exists.
 
 # Appendix A — Page / Route Completion Matrix
 
@@ -2301,7 +2331,7 @@ This is the durable V2 backlog recovered from the completed Full Product Complet
 | OPS-04 | P1 | Monitoring/incident | Monitoring and incident ownership are incompletely synchronized with current production | Current health checks, ownership, escalation and incident evidence model | `docs/operations/MONITORING.md`; `docs/operations/RUNBOOK.md` | Failures may remain invisible or unmanaged | OPS-01 | C01 | C01D monitoring and validator hardening | Each critical signal has source, threshold, owner and recovery link; stale fixtures fail | OPEN |
 | IP-01 | P1 | Repository visibility | Owner policy is decided; the current public repository and active GitHub Pages production topology are intentional during product completion, with execution deferred to C26 after Cloudflare continuity proof | Explicit public/private decision with consequences recorded | Repository/GitHub visibility evidence; V2 section 28 | Source and commercial IP exposure | Owner decision; legal input if needed | C02 | C02A repository visibility decision | Owner-approved visibility policy is documented and verified in settings | OPEN |
 | IP-02 | P1 | License | Owner selected proprietary first-party source plus retained third-party licenses/notices; final legal text and repository license/notice state remain unimplemented | Owner/legal-approved proprietary or open-license position | Repository root; GitHub license metadata | Ambiguous reuse and enforcement rights | IP-01; `LEGAL_REVIEW_REQUIRED` | C02 | C02B license/IP policy | Exact license/notice state matches Owner decision and repository visibility | OPEN |
-| IP-03 | P1 | Brand asset admission | Approved masters are outside the repo and admission rights/derivative policy are undecided | Provenance-controlled master/derivative policy | Owner asset paths and hashes; V2 sections 14/28 | Brand leakage, uncontrolled copies or inability to ship assets | IP-01/02; Owner asset decision | C02/C04 | C02C asset/IP decision, then C04A provenance | Owner approves storage, exposure, derivative and retention rules | OPEN |
+| IP-03 | P1 | Brand asset admission | Owner asset policy is decided and immutable masters are protected externally; provenance, approved derivatives and existing-asset reconciliation remain pending C04 | Provenance-controlled master/derivative policy | Owner asset paths and hashes; V2 sections 14/28 | Brand leakage, uncontrolled copies or inability to ship assets | IP-01/02; Owner asset decision | C02/C04 | C02C asset/IP decision, then C04A provenance | Owner approves storage, exposure, derivative and retention rules | OPEN |
 | IP-04 | P1 | Branch protection | Main protection and required checks are off | Protected production branch with approved required checks/deploy controls | GitHub settings evidence; `.github/workflows/**` | Unreviewed or failing code can reach production | Owner settings authority; CI-01 | C02 | C02D branch and deployment protection | Direct unsafe promotion is blocked and required checks are enforced | OPEN |
 | IP-05 | P2 | Ownership/dependency governance | CODEOWNERS, security policy, Dependabot and release/tag policy are incomplete or absent | Owner-approved ownership, reporting, dependency and release policy | `.github/**`; repository root; V2 sections 28/49 | Slow review/security response and weak release traceability | IP-01/02/04 | C02 | C02E repository governance controls | Policies exist, settings match them and no authority is delegated beyond Owner decisions | OPEN |
 | BUILD-01 | P1 | Generated state | Next tooling can mutate tracked `next-env.d.ts` | Explicit stable tracking/generation policy with no unexplained drift | `next-env.d.ts`; Next configuration; prior clean-build evidence | Dirty builds and non-reproducible validation | C01; exact framework behavior | C03 | C03A1 `next-env.d.ts` determinism | Clean authorized build leaves the expected tracked state byte-stable | OPEN |

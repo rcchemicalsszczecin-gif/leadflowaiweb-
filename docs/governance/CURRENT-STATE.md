@@ -276,6 +276,39 @@ FINAL_LICENSE_TEXT_STATUS=LEGAL_REVIEW_REQUIRED
 THIRD_PARTY_NOTICE_TEXT_STATUS=LEGAL_REVIEW_REQUIRED
 LICENSE_FILE_CREATION_AUTHORIZED=NO
 NOTICE_FILE_CREATION_AUTHORIZED=NO
+
+OWNER_ASSET_MASTER_COUNT=3
+OWNER_ASSET_MASTERS_IMMUTABLE=YES
+OWNER_ASSET_MASTERS_EXTERNAL_TO_REPOSITORY=YES
+OWNER_ASSET_MASTER_REPOSITORY_ADMISSION=FORBIDDEN
+OWNER_ASSET_MASTER_PUBLICATION_AS_RAW_MASTER=FORBIDDEN
+OWNER_APPROVED_MASTER=YES
+DO_NOT_REGENERATE=YES
+DO_NOT_REPLACE_WITH_PLACEHOLDER=YES
+DO_NOT_RESTYLE_WITHOUT_OWNER_AUTHORITY=YES
+DO_NOT_MUTATE_MASTER_IN_PLACE=YES
+DO_NOT_COMMIT_MASTER_TO_REPOSITORY=YES
+
+ANY_FILE_COMMITTED_NOW_IS_PUBLICLY_EXPOSED=YES
+WEB_DERIVATIVES_ALLOWED_IN_FUTURE=YES
+WEB_DERIVATIVE_CREATION_AUTHORIZED_NOW=NO
+WEB_DERIVATIVE_REPOSITORY_ADMISSION_AUTHORIZED_NOW=NO
+ONLY_PUBLIC_SERVING_DERIVATIVES_MAY_BE_ADMITTED_WHILE_REPOSITORY_IS_PUBLIC=YES
+ASSET_PROVENANCE_MANIFEST_REQUIRED_BEFORE_C04_ADMISSION=YES
+TECHNICAL_WEB_OPTIMIZATION_ALLOWED_IN_C04=YES
+CREATIVE_RESTYLE_REQUIRES_SEPARATE_OWNER_AUTHORITY=YES
+CURRENT_APPROVED_DERIVATIVE_COUNT=DO_NOT_INFER
+
+BRAND_ASSETS_COVERED_BY_FUTURE_CODE_LICENSE=NO
+PUBLIC_ACCESS_DOES_NOT_GRANT_BRAND_REUSE_LICENSE=YES
+BRAND_ASSET_OPEN_SOURCE_GRANT=NO
+EXISTING_TRACKED_BRAND_ASSET_PROVENANCE=PENDING_C04_RECONCILIATION
+THIRD_PARTY_ASSETS_RETAIN_ORIGINAL_RIGHTS_AND_REQUIREMENTS=YES
+THIRD_PARTY_ASSET_PROVENANCE_REQUIRED=YES
+UNKNOWN_PROVENANCE_DEFAULT_ADMISSION=BLOCKED
+ASSET_DELETION_AUTHORIZED_NOW=NO
+LEGACY_BRAND_ASSET_RETIREMENT_REQUIRES_EVIDENCE=YES
+C04_IMPLEMENTATION_AUTHORIZED=NO
 ```
 
 The target remains a private source repository with public production hosting through Cloudflare. The site is not finished, so the repository remains public and GitHub Pages remains the active production host throughout product completion. Infrastructure cutover before the product-completion sequence and an accepted immutable release candidate would be premature.
@@ -322,9 +355,10 @@ C02A_INVENTORY=COMPLETE
 C02B_OWNER_VISIBILITY_LICENSING_DECISION=RECORDED
 C02B2_CONTINUITY_ARCHITECTURE_DECISION=RECORDED
 C02B2_PROVIDER_EXECUTION=DEFERRED_TO_C26
-NEXT_C02_GATE=C02C_OWNER_ASSET_IP_ADMISSION_POLICY
-C02C_IMPLEMENTATION_AUTHORIZED=NO
-C02D_STARTED=NO
+C02C_OWNER_ASSET_IP_ADMISSION_POLICY=RECORDED
+C02C_ASSET_IMPLEMENTATION=DEFERRED_TO_C04
+NEXT_C02_GATE=C02D_PRODUCTION_BRANCH_AND_PROMOTION_PROTECTION
+C02D_IMPLEMENTATION_AUTHORIZED=NO
 C02E_STARTED=NO
 C03_STARTED=NO
 ```
@@ -341,8 +375,10 @@ Current product status and program:
 - `C02B_OWNER_VISIBILITY_LICENSING_DECISION=RECORDED`;
 - `C02B2_CONTINUITY_ARCHITECTURE_DECISION=RECORDED`;
 - `C02B2_PROVIDER_EXECUTION=DEFERRED_TO_C26`;
-- `NEXT_C02_GATE=C02C_OWNER_ASSET_IP_ADMISSION_POLICY`;
-- `C02C_IMPLEMENTATION_AUTHORIZED=NO`.
+- `C02C_OWNER_ASSET_IP_ADMISSION_POLICY=RECORDED`;
+- `C02C_ASSET_IMPLEMENTATION=DEFERRED_TO_C04`;
+- `NEXT_C02_GATE=C02D_PRODUCTION_BRANCH_AND_PROMOTION_PROTECTION`;
+- `C02D_IMPLEMENTATION_AUTHORIZED=NO`.
 
 V1 is superseded as the current top-level Master Plan and retained as historical product/delivery provenance. V15 remains the active subordinate Search / SEO / AEO / GEO / AI Search domain plan and candidate evidence program. Neither classification promotes candidate code to production.
 
@@ -355,11 +391,11 @@ Current Owner-controlled planning inputs for future bounded stages include:
 - external immutable compact mark master: `/home/leadflowai/LeadFlowAI-SSD/owner-assets/leadflowai-brand/leadflowai-brand-mark-owner-approved.png`, 400×400 RGBA, SHA256 `1c7b5a4c27eb4ccf22f089183e6bd5f072ffed3cc16ea0fd056cd53da777cbf5`;
 - external immutable hero visual master: `/home/leadflowai/LeadFlowAI-SSD/owner-assets/leadflowai-brand/leadflowai-hero-owner-approved.png`, 1536×585 RGBA, SHA256 `dc0e64dbd7fc56179c086b1860926a9821b139ef15afb735be2ce0f8c4405ba9`.
 
-These assets remain outside the repository pending C02/C04 IP and asset-admission authority. They are not attached, implemented or deployed.
+These immutable masters remain outside the repository and are forbidden from repository admission or raw-master publication. C02C permits only future public-serving web derivatives through separately Owner-authorized C04 gates after provenance, transform, consumer, exposure, license-class, hash/dimension and Owner-approval evidence is recorded. A derivative is not a master, and no current tracked asset gains master or approved-derivative status by existence alone.
 
 C01 Operations Truth Reconciliation was completed through separately bounded Owner-authorized gates. Its per-file operational truth is 6/6, negative tests are 8/8 and the three core contracts pass. This truth-reconciliation closeout does not close OPS-03 or OPS-04, establish an immediate rollback SHA, prove production release readiness or change the production branch, Pages deployment or public runtime.
 
-C02 Repository, IP and GitHub Decision is in progress through bounded gates. C02A inventory is complete, C02B records the Owner visibility/hosting/licensing policy and C02B2 records the corrected continuity sequence. Provider execution is deferred to C26 after C25 produces an accepted immutable release candidate; C02C is the next C02 policy gate and is not authorized. No repository, hosting, legal-file, asset or provider implementation is complete, and no later C-stage is authorized automatically.
+C02 Repository, IP and GitHub Decision is in progress through bounded gates. C02A inventory is complete, C02B records the Owner visibility/hosting/licensing policy, C02B2 records the corrected continuity sequence and C02C records the Owner asset/IP admission policy. Asset implementation and provenance reconciliation are deferred to C04, which is not authorized. C02D Production Branch and Promotion Protection is the next C02 gate and is not authorized. No repository, hosting, legal-file, asset or provider implementation is complete, and no later C-stage is authorized automatically.
 
 ## 14. Production protection
 
