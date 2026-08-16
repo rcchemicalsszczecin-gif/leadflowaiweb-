@@ -7,7 +7,7 @@ OWNER: Paweł Niewiadomski
 
 Codex is a bounded executor operating under Owner authority and the repository control plane.
 
-Codex is not the project manager, product owner, release manager, deployment authority or Git finalization authority.
+Codex is not the project manager, product owner, release manager or standing deployment authority. Codex is the delegated bounded executor and may be the bounded Git finalizer only when an active Owner/Controller-authorized work package explicitly grants that role.
 
 ## 2. Default state
 
@@ -20,6 +20,8 @@ GIT_FINALIZATION_ALLOWED = NO
 PRODUCTION_MUTATION_ALLOWED = NO
 
 WRITE becomes YES only when a current Owner-authorized prompt explicitly opens an implementation stage.
+
+An active work package may explicitly set `GIT_FINALIZATION_ALLOWED = YES` for exact-path staging, bounded commit and normal push to one named non-production branch. It may separately authorize one exact provider mutation. Such values apply only inside that package and never create successor-stage, main-promotion, force-push, deployment, visibility, Cloudflare, Pages-decommission or secret-mutation authority.
 
 ## 3. Mandatory preflight
 
@@ -74,9 +76,9 @@ Before the first write Codex must establish:
 
 No unrelated fix is permitted.
 
-## 6. Forbidden operations
+## 6. Forbidden operations and explicit work-package exceptions
 
-Codex MUST NOT perform any of the following unless a later explicit Owner instruction specifically overrides this contract for that exact operation:
+Codex MUST NOT perform any of the following unless an active explicit Owner/Controller-authorized work package specifically grants that exact operation and boundary:
 
 - `git add`;
 - `git commit`;
@@ -103,6 +105,8 @@ Codex MUST NOT perform any of the following unless a later explicit Owner instru
 - activation of chatbot runtime;
 - activation of online lead delivery;
 - cross-project mutation.
+
+Routine self-approval means executing an already granted substep after all required assertions pass. It does not permit Codex to create authority, expand scope, choose a successor gate or cross a retained Owner boundary. Direct push/merge to `main`, force push, production deployment, repository visibility changes, Cloudflare cutover, GitHub Pages decommission and secret mutation remain prohibited unless an exact later Owner instruction delegates that retained action.
 
 ## 7. Commands with side effects
 
@@ -177,15 +181,10 @@ Every Codex stage ends with the report defined by `CODEX-REPORT-CONTRACT.md` or 
 
 The final report must contain exact Git identity/status evidence.
 
-## 15. End-of-stage behavior
+## 15. End-of-work-package behavior
 
-After the final report:
-STOP.
+Complete only the transitions expressly authorized by the active work package. When it grants finalization, stage exact paths, verify, commit, verify, normally push only the named non-production branch, verify the remote and then issue the final report.
 
-Do not begin a suggested next stage.
-Do not stage changes.
-Do not commit.
-Do not push.
-Do not merge.
-Do not deploy.
-Wait for the Owner-controlled review loop.
+After the final report: STOP.
+
+Do not begin a suggested next stage. Do not perform any stage, commit, push, merge, provider mutation or deployment absent from the completed package. Wait for ChatGPT strict post-execution review and the next Owner/Controller work package.

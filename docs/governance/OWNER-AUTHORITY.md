@@ -17,9 +17,7 @@ The Owner controls:
 - final design selection;
 - activation of dormant commercial/runtime features;
 - repository/branch strategy changes;
-- staging approval;
-- commit approval;
-- push approval;
+- delegation of staging, commit and push authority through an exact active work package;
 - merge to `main`;
 - production deployment;
 - destructive Git/history changes;
@@ -27,7 +25,9 @@ The Owner controls:
 
 ## Delegation model
 
-Authority is delegated per bounded action/stage, not permanently inferred from previous work.
+Authority is delegated per bounded work package/action/stage, not inferred from previous work.
+
+The standing operating model permits an active Owner/Controller-authorized work package to delegate routine bounded execution, validation, exact-path staging, bounded commit, normal push to one explicitly named non-production branch, external evidence creation and exact provider mutations. The work package must state each granted capability and its prerequisites, write set, branch or endpoint, recovery boundary and STOP conditions.
 
 Silence is not authorization.
 
@@ -45,7 +45,7 @@ Codex may inspect/analyze by default.
 
 Codex may write only during an explicitly authorized WRITE stage.
 
-Under the normal Owner-controlled workflow Codex may not:
+By default, and whenever an active work package does not explicitly grant the operation, Codex may not:
 - stage;
 - commit;
 - push;
@@ -58,11 +58,11 @@ Under the normal Owner-controlled workflow Codex may not:
 
 ## Git finalization
 
-Owner-controlled default:
+Delegated work-package model:
 
-REVIEW -> EXACT-PATH STAGE -> OWNER COMMIT -> OWNER PUSH -> POST-PUSH PROOF.
+OWNER/CONTROLLER WORK PACKAGE -> CODEX EXECUTION -> CODEX VALIDATION -> CODEX EXACT-PATH STAGE -> CODEX BOUNDED COMMIT -> CODEX NORMAL PUSH TO AUTHORIZED NON-PRODUCTION BRANCH -> CODEX EVIDENCE REPORT -> CHATGPT STRICT POST-EXECUTION REVIEW -> NEXT OWNER/CONTROLLER WORK PACKAGE.
 
-Implementation authority never implies Git-finalization authority.
+Implementation authority never implies Git-finalization authority. Exact-path staging, commit and push must each be explicitly granted by the active work package. The Owner retains main promotion, merge, production deployment, force push and scope-expansion authority unless an exact later Owner instruction says otherwise.
 
 ## Production
 

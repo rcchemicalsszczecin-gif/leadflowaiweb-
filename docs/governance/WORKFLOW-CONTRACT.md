@@ -7,17 +7,16 @@ OWNER: Paweł Niewiadomski
 
 READ / STATUS / INVENTORY
 -> PREWRITE
--> OWNER AUTHORIZATION
+-> OWNER / CONTROLLER WORK-PACKAGE AUTHORIZATION
 -> IMPLEMENTATION
 -> VALIDATION
--> CODEX FINAL REPORT
--> CHATGPT STRICT REVIEW
--> OWNER REVIEW
--> OWNER EXACT-PATH STAGING
--> OWNER COMMIT AUTHORIZATION + COMMIT
--> OWNER PUSH AUTHORIZATION + PUSH
+-> CODEX EXACT-PATH STAGING WHEN AUTHORIZED
+-> CODEX BOUNDED COMMIT WHEN AUTHORIZED
+-> CODEX NORMAL PUSH TO AUTHORIZED NON-PRODUCTION BRANCH WHEN AUTHORIZED
 -> POST-PUSH VALIDATION
--> NEXT-STAGE DECISION
+-> CODEX FINAL REPORT
+-> CHATGPT STRICT POST-EXECUTION REVIEW
+-> OWNER / CONTROLLER NEXT-WORK-PACKAGE DECISION
 
 No transition is implicit.
 
@@ -89,17 +88,17 @@ A validation command known to mutate tracked state must be explicitly accounted 
 
 Codex self-report is not final acceptance.
 
-ChatGPT performs strict review before Owner Git finalization.
+ChatGPT performs strict post-execution review after the bounded execution and any Git finalization explicitly delegated by the active work package.
 
-The Owner makes the final stage decision.
+The Owner remains final authority; the Owner/Controller defines any next work package.
 
 ## 8. Git finalization
 
-Codex does not stage, commit or push in the normal workflow.
+Codex does not stage, commit or push by default. An active work package may delegate exact-path staging, bounded commit and normal push to an exact non-production branch after its prerequisite validations pass.
 
-Owner-controlled finalization occurs only after review and uses exact-path staging by default.
+Delegated finalization uses exact-path staging, staged-diff verification, truthful bounded commits, pre-push remote-drift checks and post-push proof.
 
-Commit, push, merge and deployment are separate authority transitions.
+Staging, commit, push, merge and deployment remain separate authority transitions. Package authority for one does not imply another; merge to `main` and deployment remain retained Owner decisions unless separately and exactly authorized.
 
 ## 9. Statuses
 

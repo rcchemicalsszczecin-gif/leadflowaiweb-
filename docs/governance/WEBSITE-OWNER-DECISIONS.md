@@ -59,19 +59,45 @@ READY != ACTIVE.
 The current Owner operating model is:
 
 OWNER
--> CHATGPT CONTROLLER / GUARDIAN / REVIEWER
--> CODEX EXECUTOR
--> CHATGPT STRICT REVIEW
--> OWNER DECISION / GIT FINALIZATION.
+-> CHATGPT CONTROLLER / ARCHITECT / REVIEWER
+-> CODEX DELEGATED EXECUTOR + BOUNDED GIT FINALIZER
+-> CHATGPT STRICT POST-EXECUTION REVIEW
+-> OWNER / CONTROLLER NEXT WORK PACKAGE.
 
 Current rules:
 - Codex prompts are English by default.
 - Codex may read/analyze by default.
 - Codex writes only in an explicitly authorized WRITE stage.
-- Codex does not stage, commit, push, merge or deploy in the normal Owner-controlled workflow.
-- Owner stages exact reviewed paths, authorizes/creates commits, authorizes push, merge and deployment.
+- An active Owner/Controller-authorized work package may delegate routine self-approved execution, exact-path staging, bounded commit, normal push to an exact non-production branch, external evidence and exact provider mutation after declared prerequisites pass.
+- `SELF_APPROVAL` means execute preauthorized substeps without human micro-confirmation; it never means create new authority.
+- Codex never gains scope-expansion, successor-gate, direct-main-push, main-merge, force-push, production-deployment, repository-visibility, Cloudflare-cutover, Pages-decommission or secret-mutation authority by implication.
+- The Owner remains final authority and retains main promotion, merge, deployment and other non-delegated powers.
 - Every stage ends with evidence and STOP before the next authority transition.
 - No opportunistic scope expansion.
+
+```text
+OWNER_FINAL_AUTHORITY=YES
+CHATGPT_CONTROLLER_ARCHITECT_ROLE=YES
+CODEX_DELEGATED_EXECUTION_AUTHORITY=YES
+CODEX_ROUTINE_SELF_APPROVAL_WITHIN_ACTIVE_WORK_PACKAGE=YES
+CODEX_EXACT_PATH_STAGING_AUTHORITY=YES
+CODEX_EXACT_PATH_STAGING_SCOPE=ACTIVE_WORK_PACKAGE_ONLY
+CODEX_BOUNDED_COMMIT_AUTHORITY=YES
+CODEX_BOUNDED_COMMIT_SCOPE=ACTIVE_WORK_PACKAGE_ONLY
+CODEX_BOUNDED_PUSH_AUTHORITY=YES
+CODEX_BOUNDED_PUSH_SCOPE=ACTIVE_WORK_PACKAGE_EXACT_NON_PRODUCTION_BRANCH_ONLY
+CODEX_AUTHORIZED_PROVIDER_MUTATION_AUTHORITY=ONLY_WHEN_EXPLICITLY_GRANTED_BY_ACTIVE_WORK_PACKAGE
+CODEX_SCOPE_EXPANSION_AUTHORITY=NO
+CODEX_SUCCESSOR_GATE_SELF_AUTHORIZATION=NO
+CODEX_MAIN_DIRECT_PUSH_AUTHORITY=NO
+CODEX_MAIN_MERGE_AUTHORITY=NO
+CODEX_FORCE_PUSH_AUTHORITY=NO
+CODEX_PRODUCTION_DEPLOY_AUTHORITY=NO
+CODEX_REPOSITORY_VISIBILITY_CHANGE_AUTHORITY=NO
+CODEX_CLOUDFLARE_CUTOVER_AUTHORITY=NO
+CODEX_GITHUB_PAGES_DECOMMISSION_AUTHORITY=NO
+CODEX_SECRET_MUTATION_AUTHORITY=NO
+```
 
 The detailed execution constitution is root `AGENTS.md` plus the current files indexed by `docs/governance/CONTROL-PLANE-INDEX.md`.
 
@@ -137,12 +163,14 @@ Current classifications:
 - `C02B2_PROVIDER_EXECUTION=DEFERRED_TO_C26`;
 - `C02C_OWNER_ASSET_IP_ADMISSION_POLICY=RECORDED`;
 - `C02C_ASSET_IMPLEMENTATION=DEFERRED_TO_C04`;
-- `NEXT_C02_GATE=C02D_PRODUCTION_BRANCH_AND_PROMOTION_PROTECTION`;
-- `C02D_IMPLEMENTATION_AUTHORIZED=NO`;
+- `C02D_PROVIDER_PROTECTION_EXECUTION=PASS`;
+- `IP_04_STATUS=CLOSED`;
+- `NEXT_C02_GATE=C02E_REPOSITORY_GOVERNANCE_CONTROLS`;
+- `C02E_IMPLEMENTATION_AUTHORIZED=NO`;
 - `C02E_STARTED=NO`;
 - `C03_STARTED=NO`.
 
-C01 truth reconciliation is complete, but OPS-03 and OPS-04 remain open until separately satisfied. C02 is in progress only through separately bounded Owner-authorized gates; C02A, C02B, C02B2 and the C02C policy record do not authorize C02D, C02E, C04 or production mutation. Candidate and governance work remain non-production until separate Owner promotion, merge and deployment decisions.
+C01 truth reconciliation is complete, but OPS-03 and OPS-04 remain open until separately satisfied. C02 is in progress only through bounded Owner/Controller-authorized work packages; C02A, C02B, C02B2 and C02C are recorded, and C02D classic protection is now active and verified. C02E, C03 and C04 remain unstarted and unauthorized. Candidate and governance work remain non-production until separate Owner promotion, merge and deployment decisions.
 
 ### C02 repository, hosting and licensing policy
 
@@ -267,6 +295,33 @@ Before any derivative admission, C04 must record its repository path and SHA256,
 
 The repository is currently public, so only assets intentionally downloadable as public website-serving derivatives may later be admitted. Existing tracked LeadFlowAI identity assets remain `PENDING_C04_RECONCILIATION`; they are not declared masters, invalid, approved replacements or retirement candidates by C02C. Third-party assets retain their original rights, license and attribution requirements, and unknown provenance is blocked from admission rather than silently converted into first-party ownership. Deletion or retirement requires consumer/reachability, replacement, visual/public-artifact and Owner-review evidence.
 
+### C02D production branch / promotion protection
+
+The Owner-authorized C02D recovery applied classic branch protection to `main` after the corrected GitHub payload omitted the mutually exclusive legacy `contexts` request key and used the exact app-bound check object. Live readback proves:
+
+```text
+MAIN_PROTECTED=YES
+PROTECTION_MECHANISM=CLASSIC_BRANCH_PROTECTION
+REQUIRE_PULL_REQUEST_BEFORE_MERGE=YES
+REQUIRED_APPROVING_REVIEW_COUNT=0
+REQUIRED_CHECK_CONTEXT=verify
+REQUIRED_CHECK_APP_ID=15368
+STRICT_STATUS_CHECKS=YES
+ENFORCE_ADMINS=YES
+REQUIRE_CONVERSATION_RESOLUTION=YES
+ALLOW_FORCE_PUSHES=NO
+ALLOW_DELETIONS=NO
+REQUIRE_CODE_OWNER_REVIEW=NO
+REQUIRE_SIGNED_COMMITS=NO
+RULESET_COUNT=0
+PRODUCTION_MAIN_SHA=67663b08c950de120a94ef8495b5cdc8c9bdecfe
+PRODUCTION_CHANGED=NO
+C02D_PROVIDER_PROTECTION_EXECUTION=PASS
+IP_04_STATUS=CLOSED
+```
+
+Zero approving reviews prevents a single-Owner review deadlock; it does not bypass the pull-request, strict `verify`, administrator-enforcement or conversation-resolution controls. C02D did not change `main`, Pages, workflows or production. C02E ownership, security, dependency and signing controls remain separate and unauthorized.
+
 ## 9. Current Owner brand and Liquid inputs
 
 The Owner confirms:
@@ -318,7 +373,6 @@ Still separate from automatic implementation:
 - public chatbot runtime/model configuration if/when enabled;
 - optional online lead form if explicitly reopened;
 - production analytics/consent tooling;
-- repository branch protection / required checks;
 - Dependabot/repository security settings;
 - Cloudflare/visibility continuity planning and separately authorized implementation;
 - final `LICENSE` / `NOTICE` legal drafting and implementation;

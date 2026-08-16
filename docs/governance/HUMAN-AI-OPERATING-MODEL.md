@@ -12,10 +12,10 @@ The goal is controlled high-throughput engineering with explicit authority, boun
 ## 2. Operating chain
 
 PAWEŁ (OWNER)
--> CHATGPT (GUARDIAN + HELPER + REVIEWER)
--> CODEX (EXECUTOR)
--> CHATGPT (STRICT REVIEW)
--> PAWEŁ (DECISION / GIT FINALIZATION)
+-> CHATGPT (CONTROLLER + ARCHITECT + REVIEWER)
+-> CODEX (DELEGATED EXECUTOR + BOUNDED GIT FINALIZER)
+-> CHATGPT (STRICT POST-EXECUTION REVIEW)
+-> PAWEŁ / CHATGPT (NEXT WORK PACKAGE)
 
 No lower role may silently assume authority belonging to a higher role.
 
@@ -28,9 +28,7 @@ The Owner:
 - decides unresolved product/design/business questions;
 - controls public/legal claims;
 - reviews implementation outcomes;
-- authorizes staging;
-- authorizes commit;
-- authorizes push;
+- delegates staging, commit and push only through an exact active work package;
 - authorizes merge to `main`;
 - authorizes deployment;
 - controls credentials and repository settings.
@@ -78,6 +76,8 @@ Codex must:
 - collect evidence;
 - report unexpected findings without opportunistically fixing them;
 - provide final Git proof;
+- execute routine preauthorized substeps without human micro-confirmation after their required assertions pass;
+- stage exact paths, create bounded commits and push only to the exact non-production branch when the active work package grants those operations;
 - STOP after the requested report.
 
 Codex must not:
@@ -85,7 +85,8 @@ Codex must not:
 - silently reinterpret Owner intent;
 - broaden scope;
 - continue to another stage after reporting;
-- stage/commit/push/merge/deploy;
+- stage/commit/push unless the active work package explicitly grants those exact transitions;
+- push or merge `main`, force push or deploy without separate exact Owner authority;
 - activate dormant functionality without a separate Owner decision.
 
 ## 6. Standard conversation loop
@@ -94,11 +95,10 @@ Codex must not:
 2. ChatGPT inspects/reconstructs enough evidence to define a safe next stage.
 3. ChatGPT gives the Owner an English Codex prompt.
 4. Owner pastes that prompt to Codex.
-5. Codex executes only that stage and returns evidence/report.
-6. Owner pastes the complete Codex report back to ChatGPT.
-7. ChatGPT performs strict review and explains the result to the Owner.
-8. Owner decides whether to accept, reject, revise, stage, commit, push, merge, deploy or authorize the next stage.
-9. ChatGPT prepares the next exact prompt only after that decision.
+5. Codex executes the work package, validates, and—only when explicitly delegated—stages exact paths, commits and normally pushes the named non-production branch.
+6. Codex returns complete execution, provider and Git evidence.
+7. ChatGPT performs strict post-execution review and explains the result to the Owner.
+8. The Owner/Controller decides whether to accept, reject, revise or authorize a next work package. Merge to `main` and deployment remain separate retained Owner decisions.
 
 ## 7. Prompt language convention
 
@@ -137,9 +137,9 @@ If Codex finds a real problem outside the current scope:
 
 ## 10. Review independence
 
-Codex implementation and Codex self-review are not sufficient by themselves.
+Codex implementation and Codex self-review are not sufficient final acceptance by themselves.
 
-The expected control loop includes independent ChatGPT strict review before Owner Git finalization.
+The delegated control loop includes independent ChatGPT strict post-execution review after any work-package-authorized Git finalization. That review does not retroactively authorize an action that was absent from the work package.
 
 ## 11. Emergency stop
 

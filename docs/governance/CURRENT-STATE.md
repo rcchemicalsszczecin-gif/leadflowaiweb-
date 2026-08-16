@@ -190,12 +190,12 @@ Base:
 `post-v15/css-destack` at `5c65435f2de5b2318c1c2585a478c9595f576f76`.
 
 Purpose:
-- install a strict Owner -> ChatGPT Controller -> Codex Executor -> ChatGPT Strict Review -> Owner workflow;
+- install a strict Owner -> ChatGPT Controller/Architect -> Codex Delegated Executor + Bounded Git Finalizer -> ChatGPT Strict Post-Execution Review workflow;
 - make Codex read/write/Git boundaries explicit;
 - enforce bounded stages/gates;
 - enforce exact-path scope;
 - enforce evidence-backed PASS;
-- make staging/commit/push/merge/deployment Owner-controlled;
+- make routine exact-path staging/commit/non-production push delegable only through an exact active work package while retaining Owner control of main merge/deployment and other reserved powers;
 - define prompt/report contracts;
 - reconcile governance that previously allowed agent feature-branch commits.
 
@@ -207,28 +207,51 @@ The intended control-plane lifecycle is:
 
 READ / STATUS / INVENTORY
 -> PREWRITE
--> OWNER AUTHORIZATION
+-> OWNER / CONTROLLER WORK-PACKAGE AUTHORIZATION
 -> IMPLEMENTATION
 -> VALIDATION
--> CODEX FINAL REPORT
--> CHATGPT STRICT REVIEW
--> OWNER REVIEW
--> OWNER EXACT-PATH STAGING
--> OWNER COMMIT
--> OWNER PUSH
+-> CODEX EXACT-PATH STAGING WHEN AUTHORIZED
+-> CODEX BOUNDED COMMIT WHEN AUTHORIZED
+-> CODEX NORMAL PUSH TO THE AUTHORIZED NON-PRODUCTION BRANCH WHEN AUTHORIZED
 -> POST-PUSH VALIDATION
--> NEXT-STAGE DECISION.
+-> CODEX FINAL REPORT
+-> CHATGPT STRICT POST-EXECUTION REVIEW
+-> OWNER / CONTROLLER NEXT-WORK-PACKAGE DECISION.
 
-Codex does not stage, commit, push, merge or deploy under the normal workflow.
+Codex may self-approve routine preauthorized substeps only within the active work package after all prerequisites pass. An active package may delegate exact-path staging, bounded commit, normal push to one named non-production branch, external evidence and an exact provider mutation. This never creates scope-expansion, successor-gate, main push/merge, force-push, production-deployment, repository-visibility, Cloudflare-cutover, Pages-decommission or secret-mutation authority.
+
+```text
+OWNER_FINAL_AUTHORITY=YES
+CHATGPT_CONTROLLER_ARCHITECT_ROLE=YES
+CODEX_DELEGATED_EXECUTION_AUTHORITY=YES
+CODEX_ROUTINE_SELF_APPROVAL_WITHIN_ACTIVE_WORK_PACKAGE=YES
+CODEX_EXACT_PATH_STAGING_AUTHORITY=YES
+CODEX_EXACT_PATH_STAGING_SCOPE=ACTIVE_WORK_PACKAGE_ONLY
+CODEX_BOUNDED_COMMIT_AUTHORITY=YES
+CODEX_BOUNDED_COMMIT_SCOPE=ACTIVE_WORK_PACKAGE_ONLY
+CODEX_BOUNDED_PUSH_AUTHORITY=YES
+CODEX_BOUNDED_PUSH_SCOPE=ACTIVE_WORK_PACKAGE_EXACT_NON_PRODUCTION_BRANCH_ONLY
+CODEX_AUTHORIZED_PROVIDER_MUTATION_AUTHORITY=ONLY_WHEN_EXPLICITLY_GRANTED_BY_ACTIVE_WORK_PACKAGE
+CODEX_SCOPE_EXPANSION_AUTHORITY=NO
+CODEX_SUCCESSOR_GATE_SELF_AUTHORIZATION=NO
+CODEX_MAIN_DIRECT_PUSH_AUTHORITY=NO
+CODEX_MAIN_MERGE_AUTHORITY=NO
+CODEX_FORCE_PUSH_AUTHORITY=NO
+CODEX_PRODUCTION_DEPLOY_AUTHORITY=NO
+CODEX_REPOSITORY_VISIBILITY_CHANGE_AUTHORITY=NO
+CODEX_CLOUDFLARE_CUTOVER_AUTHORITY=NO
+CODEX_GITHUB_PAGES_DECOMMISSION_AUTHORITY=NO
+CODEX_SECRET_MUTATION_AUTHORITY=NO
+```
 
 Prompts to Codex are English by default.
 ChatGPT reviews/translates the Codex report for the Owner.
 
-## 11. Repository settings / IP debt
+## 11. Repository settings / IP state
 
 Current repository/settings state remains:
-- `main` branch protection is OFF at repository-settings level;
-- required status checks are not enforced by branch protection;
+- `main` is protected by classic branch protection;
+- pull requests, the strict app-bound `verify` check and resolved review conversations are required before merge, including for administrators;
 - Dependabot alerts/settings hardening remains unresolved;
 - the repository is PUBLIC and current production hosting is GitHub Pages;
 - no final repository `LICENSE` / `NOTICE` implementation exists;
@@ -309,6 +332,25 @@ UNKNOWN_PROVENANCE_DEFAULT_ADMISSION=BLOCKED
 ASSET_DELETION_AUTHORIZED_NOW=NO
 LEGACY_BRAND_ASSET_RETIREMENT_REQUIRES_EVIDENCE=YES
 C04_IMPLEMENTATION_AUTHORIZED=NO
+
+MAIN_PROTECTED=YES
+PROTECTION_MECHANISM=CLASSIC_BRANCH_PROTECTION
+REQUIRE_PULL_REQUEST_BEFORE_MERGE=YES
+REQUIRED_APPROVING_REVIEW_COUNT=0
+REQUIRED_CHECK_CONTEXT=verify
+REQUIRED_CHECK_APP_ID=15368
+STRICT_STATUS_CHECKS=YES
+ENFORCE_ADMINS=YES
+REQUIRE_CONVERSATION_RESOLUTION=YES
+ALLOW_FORCE_PUSHES=NO
+ALLOW_DELETIONS=NO
+REQUIRE_CODE_OWNER_REVIEW=NO
+REQUIRE_SIGNED_COMMITS=NO
+RULESET_COUNT=0
+PRODUCTION_MAIN_SHA=67663b08c950de120a94ef8495b5cdc8c9bdecfe
+PRODUCTION_CHANGED=NO
+C02D_PROVIDER_PROTECTION_EXECUTION=PASS
+IP_04_STATUS=CLOSED
 ```
 
 The target remains a private source repository with public production hosting through Cloudflare. The site is not finished, so the repository remains public and GitHub Pages remains the active production host throughout product completion. Infrastructure cutover before the product-completion sequence and an accepted immutable release candidate would be premature.
@@ -357,8 +399,11 @@ C02B2_CONTINUITY_ARCHITECTURE_DECISION=RECORDED
 C02B2_PROVIDER_EXECUTION=DEFERRED_TO_C26
 C02C_OWNER_ASSET_IP_ADMISSION_POLICY=RECORDED
 C02C_ASSET_IMPLEMENTATION=DEFERRED_TO_C04
-NEXT_C02_GATE=C02D_PRODUCTION_BRANCH_AND_PROMOTION_PROTECTION
-C02D_IMPLEMENTATION_AUTHORIZED=NO
+C02D_PROVIDER_PROTECTION_EXECUTION=PASS
+C02D_DOCUMENTATION_RECONCILIATION=COMPLETE
+IP_04_STATUS=CLOSED
+NEXT_C02_GATE=C02E_REPOSITORY_GOVERNANCE_CONTROLS
+C02E_IMPLEMENTATION_AUTHORIZED=NO
 C02E_STARTED=NO
 C03_STARTED=NO
 ```
@@ -377,8 +422,10 @@ Current product status and program:
 - `C02B2_PROVIDER_EXECUTION=DEFERRED_TO_C26`;
 - `C02C_OWNER_ASSET_IP_ADMISSION_POLICY=RECORDED`;
 - `C02C_ASSET_IMPLEMENTATION=DEFERRED_TO_C04`;
-- `NEXT_C02_GATE=C02D_PRODUCTION_BRANCH_AND_PROMOTION_PROTECTION`;
-- `C02D_IMPLEMENTATION_AUTHORIZED=NO`.
+- `C02D_PROVIDER_PROTECTION_EXECUTION=PASS`;
+- `IP_04_STATUS=CLOSED`;
+- `NEXT_C02_GATE=C02E_REPOSITORY_GOVERNANCE_CONTROLS`;
+- `C02E_IMPLEMENTATION_AUTHORIZED=NO`.
 
 V1 is superseded as the current top-level Master Plan and retained as historical product/delivery provenance. V15 remains the active subordinate Search / SEO / AEO / GEO / AI Search domain plan and candidate evidence program. Neither classification promotes candidate code to production.
 
@@ -395,7 +442,7 @@ These immutable masters remain outside the repository and are forbidden from rep
 
 C01 Operations Truth Reconciliation was completed through separately bounded Owner-authorized gates. Its per-file operational truth is 6/6, negative tests are 8/8 and the three core contracts pass. This truth-reconciliation closeout does not close OPS-03 or OPS-04, establish an immediate rollback SHA, prove production release readiness or change the production branch, Pages deployment or public runtime.
 
-C02 Repository, IP and GitHub Decision is in progress through bounded gates. C02A inventory is complete, C02B records the Owner visibility/hosting/licensing policy, C02B2 records the corrected continuity sequence and C02C records the Owner asset/IP admission policy. Asset implementation and provenance reconciliation are deferred to C04, which is not authorized. C02D Production Branch and Promotion Protection is the next C02 gate and is not authorized. No repository, hosting, legal-file, asset or provider implementation is complete, and no later C-stage is authorized automatically.
+C02 Repository, IP and GitHub Decision remains in progress through bounded gates. C02A inventory is complete, C02B records the Owner visibility/hosting/licensing policy, C02B2 records the corrected continuity sequence, C02C records the Owner asset/IP admission policy and C02D has applied and verified classic protection for `main`. IP-04 is closed because direct unsafe promotion is technically blocked and the exact approved `verify` check is enforced. C02E repository governance controls remain unstarted and unauthorized; asset implementation, legal files, visibility/hosting transition and later C-stages remain separate.
 
 ## 14. Production protection
 

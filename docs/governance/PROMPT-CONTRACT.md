@@ -53,6 +53,9 @@ Produces a proposed implementation/specification. No repository writes by defaul
 ### WRITE
 May modify only the exact authorized write set/domain.
 
+### DELEGATED_WORK_PACKAGE
+May combine bounded write, validation, exact-path staging, bounded commit, normal push to one named non-production branch, external evidence and an exact provider mutation only when each capability, prerequisite and recovery boundary is explicitly stated.
+
 ### VALIDATION
 May run explicitly authorized validation. Mutating validators must be declared before execution.
 
@@ -113,11 +116,11 @@ Common non-scope includes:
 - analytics/chat/lead activation;
 - CI changes;
 - deployment;
-- Git finalization.
+- Git finalization unless the active work package explicitly delegates exact-path staging, bounded commit and a named non-production push target.
 
 ## 9. Forbidden operations
 
-The prompt must preserve at least the restrictions of `CODEX-EXECUTION-CONTRACT.md`.
+The prompt must preserve at least the restrictions of `CODEX-EXECUTION-CONTRACT.md` and explicitly identify any exact Owner-authorized work-package exception.
 
 A prompt cannot silently weaken higher authority.
 
@@ -178,9 +181,9 @@ Typical stop conditions:
 - destructive action would be required;
 - external evidence unavailable for a claim.
 
-## 14. No intermediate self-authorization
+## 14. Bounded self-approval; no new authority
 
-Codex must not ask mid-run for permission to broaden scope and then continue automatically.
+Codex may self-approve routine work-package substeps only by proving their declared prerequisites. It must not ask mid-run for permission to broaden scope and then continue automatically, and it may never create new authority, select a successor gate or cross a retained Owner boundary.
 
 If a new stage is required, finish/stop the current stage and return evidence to the Owner-controlled loop.
 

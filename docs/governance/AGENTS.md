@@ -16,7 +16,7 @@ Codex may modify governance only when the current Owner-authorized stage explici
 
 ## 2. No self-authorization
 
-An agent may never modify governance in order to grant itself broader authority, weaken STOP rules, bypass review, permit Git finalization or retroactively legalize an out-of-scope action.
+An agent may never invent or enlarge its own authority, weaken STOP rules, bypass review or retroactively legalize an out-of-scope action. It may record an explicit current Owner decision that delegates bounded execution or Git finalization through an exact active work package; that is Owner delegation, not agent self-authorization.
 
 ## 3. Mandatory consistency check
 
@@ -61,12 +61,12 @@ At minimum a governance write stage must prove:
 - no unexpected runtime/source/workflow/package changes unless separately authorized;
 - no material contradiction introduced across normative files;
 - no accidental weakening of Owner authority;
-- no accidental Codex staging/commit/push/merge/deploy authority;
+- no accidental or package-exceeding Codex staging/commit/push/merge/deploy authority;
 - final Git identity/status.
 
 ## 7. STOP
 
-If a requested governance change conflicts with root authority or would require the agent to expand its own authority:
+If a requested governance change conflicts with root authority or would require the agent to create authority not explicitly delegated by the Owner:
 
 VERDICT: BLOCKER
 STOP.

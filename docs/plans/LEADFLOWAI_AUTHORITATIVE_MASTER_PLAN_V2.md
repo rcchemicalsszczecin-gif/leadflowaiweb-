@@ -41,11 +41,13 @@ STAGE-SPECIFIC OWNER PROMPT
     ↓
 VALIDATION
     ↓
+CODEX EXACT-PATH FINALIZATION WHEN THE ACTIVE WORK PACKAGE AUTHORIZES IT
+    ↓
 CODEX REPORT
     ↓
-CHATGPT STRICT REVIEW
+CHATGPT STRICT POST-EXECUTION REVIEW
     ↓
-OWNER ACCEPTANCE / GIT / RELEASE DECISION
+OWNER / CONTROLLER NEXT-WORK-PACKAGE OR RETAINED RELEASE DECISION
 ```
 
 The operating chain remains:
@@ -53,18 +55,18 @@ The operating chain remains:
 ```text
 OWNER
 → CHATGPT CONTROLLER / ARCHITECT / GUARDIAN / REVIEWER
-→ CODEX BOUNDED EXECUTOR
-→ CHATGPT STRICT REVIEW
-→ OWNER DECISION / GIT FINALIZATION
+→ CODEX DELEGATED EXECUTOR + BOUNDED GIT FINALIZER
+→ CHATGPT STRICT POST-EXECUTION REVIEW
+→ OWNER / CONTROLLER NEXT WORK PACKAGE
 ```
 
-Codex may read, inventory, implement only an exact authorized gate, validate, report and stop. Codex does not select the next stage, expand scope, stage, commit, push, merge or deploy. ChatGPT designs prompts, reviews evidence and prepares exact terminal blocks; it does not perform Owner Git finalization. The Owner authorizes stages and controls staging, commit, push, merge, deployment, public claims, secrets and activation decisions.
+Codex may read, inventory, implement only an exact authorized work package, validate and report. When that active package explicitly delegates Git finalization, Codex may stage exact paths, create a bounded commit and normally push only the named non-production branch before reporting. It may also perform an exact provider mutation only when the package explicitly grants the endpoint, payload, prerequisites and rollback boundary. Codex does not select the next stage, expand scope, push or merge `main`, force push, deploy, change repository visibility, cut over Cloudflare, decommission Pages or mutate secrets. ChatGPT designs work packages and performs strict post-execution review. The Owner remains final authority and retains all non-delegated powers.
 
 `MACRO_STAGE != SINGLE_WRITE_GATE`.
 
 This plan covers the complete commercial website: governance, product, brand, visual design, content, services, knowledge, proof, conversion, search, accessibility, performance, security, operations, release and measurement.
 
-This plan does not change production, authorize C01 implementation, authorize Git finalization or activate any dormant runtime feature.
+This plan does not itself change production, authorize C01 implementation or activate any dormant runtime feature. Git finalization exists only when an active Owner/Controller-authorized work package grants its exact bounded transitions.
 
 ## 2. Mission
 
@@ -991,8 +993,8 @@ Current external state:
 
 ```text
 REPOSITORY_PUBLIC=YES
-MAIN_PROTECTION=OFF
-REQUIRED_CHECKS=OFF
+MAIN_PROTECTION=ON_CLASSIC
+REQUIRED_CHECKS=ON_VERIFY_APP_15368_STRICT
 LICENSE_METADATA=NONE
 ```
 
@@ -1081,6 +1083,31 @@ C04_IMPLEMENTATION_AUTHORIZED=NO
 The three approved masters remain immutable and external to Git. They may not be admitted or published as raw masters. Future public-serving derivatives are distinct artifacts and require a separately authorized C04 gate, source and derivative hashes, dimensions, format and bounded transform, intended public consumer/purpose, exposure and license classifications, provenance-manifest entry and recorded Owner approval. The public repository offers no confidentiality boundary for admitted files.
 
 Technical web optimization may resize, convert, compress, preserve required alpha, strip appropriate delivery metadata or create responsive variants and explicitly approved crops. It does not authorize creative redesign, recoloring, geometry or typography reconstruction, new symbols, AI regeneration or placeholder substitution. Existing tracked identity assets remain pending C04 reconciliation; third-party rights and attribution remain their own; unknown provenance is blocked. No derivative, retirement, deletion or C04 implementation is authorized by C02C.
+
+Current C02D production-protection receipt:
+
+```text
+MAIN_PROTECTED=YES
+PROTECTION_MECHANISM=CLASSIC_BRANCH_PROTECTION
+REQUIRE_PULL_REQUEST_BEFORE_MERGE=YES
+REQUIRED_APPROVING_REVIEW_COUNT=0
+REQUIRED_CHECK_CONTEXT=verify
+REQUIRED_CHECK_APP_ID=15368
+STRICT_STATUS_CHECKS=YES
+ENFORCE_ADMINS=YES
+REQUIRE_CONVERSATION_RESOLUTION=YES
+ALLOW_FORCE_PUSHES=NO
+ALLOW_DELETIONS=NO
+REQUIRE_CODE_OWNER_REVIEW=NO
+REQUIRE_SIGNED_COMMITS=NO
+RULESET_COUNT=0
+PRODUCTION_MAIN_SHA=67663b08c950de120a94ef8495b5cdc8c9bdecfe
+PRODUCTION_CHANGED=NO
+C02D_PROVIDER_PROTECTION_EXECUTION=PASS
+IP_04_STATUS=CLOSED
+```
+
+The provider readback proves that direct unsafe promotion is blocked for administrators as well as ordinary actors, while the zero-review-count model avoids an unproven second-reviewer deadlock. The strict `verify` check is bound to GitHub Actions app ID `15368`, review conversations must be resolved, and force push/deletion are disabled. C02D changed no production SHA, Pages configuration, workflow, ruleset or source. C02E controls remain separate and unauthorized.
 
 ## 29. Operations and recovery
 
@@ -2262,31 +2289,32 @@ C02B2_CONTINUITY_ARCHITECTURE_DECISION=RECORDED
 C02B2_PROVIDER_EXECUTION=DEFERRED_TO_C26
 C02C_OWNER_ASSET_IP_ADMISSION_POLICY=RECORDED
 C02C_ASSET_IMPLEMENTATION=DEFERRED_TO_C04
-NEXT_C02_GATE=C02D_PRODUCTION_BRANCH_AND_PROMOTION_PROTECTION
-C02D_IMPLEMENTATION_AUTHORIZED=NO
+C02D_PROVIDER_PROTECTION_EXECUTION=PASS
+C02D_DOCUMENTATION_RECONCILIATION=COMPLETE
+IP_04_STATUS=CLOSED
+NEXT_C02_GATE=C02E_REPOSITORY_GOVERNANCE_CONTROLS
+C02E_IMPLEMENTATION_AUTHORIZED=NO
 C02E_STARTED=NO
 C03_STARTED=NO
 ```
 
 C01 Operations Truth Reconciliation was executed through separately bounded Owner-authorized gates. Current production identity is validated independently in six operational documents, eight deliberate stale-condition tests pass and all three core C01 contracts pass. OPS-03 and OPS-04 remain open, and the current immediate rollback target remains `NOT_PROVEN`.
 
-C01 source changes are finalized only through the normal Owner-controlled Git lifecycle below. Git history, rather than a self-referential literal in this plan, is authoritative for the C01 finalization commit identity:
+C01 source changes were finalized under the Owner-controlled lifecycle current at that historical checkpoint. Future bounded work packages use the delegated model below; Git history, rather than a self-referential literal in this plan, remains authoritative for finalization identity:
 
 ```text
-CODEX FINAL REPORT
-→ CHATGPT STRICT REVIEW
-→ OWNER REVIEW
-→ OWNER EXACT-PATH STAGING
-→ STAGED DIFF REVIEW
-→ OWNER COMMIT
-→ COMMIT REVIEW
-→ OWNER PUSH
+OWNER / CONTROLLER WORK-PACKAGE AUTHORIZATION
+→ CODEX EXECUTION AND VALIDATION
+→ CODEX EXACT-PATH STAGING WHEN AUTHORIZED
+→ CODEX BOUNDED COMMIT WHEN AUTHORIZED
+→ CODEX NORMAL PUSH TO THE AUTHORIZED NON-PRODUCTION BRANCH WHEN AUTHORIZED
 → POST-PUSH VALIDATION
-→ SYNCHRONIZATION
-→ OWNER NEXT-GATE DECISION
+→ CODEX EVIDENCE REPORT
+→ CHATGPT STRICT POST-EXECUTION REVIEW
+→ OWNER / CONTROLLER NEXT-WORK-PACKAGE DECISION
 ```
 
-This C01 closeout did not change production, deploy brand assets or fix the Liquid defect. C02 Repository, IP and GitHub Decision is in progress through bounded gates: C02A inventory is complete, C02B records the Owner visibility/hosting/licensing policy, C02B2 records the deferred continuity architecture and C02C records the Owner asset/IP admission policy while deferring implementation to C04. C02 remains incomplete. C02D Production Branch and Promotion Protection is the next C02 gate and is not authorized; C02E remains unstarted. No C03 or C04 implementation authority exists.
+This C01 closeout did not change production, deploy brand assets or fix the Liquid defect. C02 Repository, IP and GitHub Decision is in progress through bounded gates: C02A inventory is complete, C02B records the Owner visibility/hosting/licensing policy, C02B2 records the deferred continuity architecture, C02C records the Owner asset/IP admission policy while deferring implementation to C04 and C02D has applied and verified classic protection for `main`. IP-04 is closed against its existing acceptance criterion. C02 remains incomplete because C02E repository governance controls are unstarted and unauthorized. No C03 or C04 implementation authority exists.
 
 # Appendix A — Page / Route Completion Matrix
 
@@ -2332,7 +2360,7 @@ This is the durable V2 backlog recovered from the completed Full Product Complet
 | IP-01 | P1 | Repository visibility | Owner policy is decided; the current public repository and active GitHub Pages production topology are intentional during product completion, with execution deferred to C26 after Cloudflare continuity proof | Explicit public/private decision with consequences recorded | Repository/GitHub visibility evidence; V2 section 28 | Source and commercial IP exposure | Owner decision; legal input if needed | C02 | C02A repository visibility decision | Owner-approved visibility policy is documented and verified in settings | OPEN |
 | IP-02 | P1 | License | Owner selected proprietary first-party source plus retained third-party licenses/notices; final legal text and repository license/notice state remain unimplemented | Owner/legal-approved proprietary or open-license position | Repository root; GitHub license metadata | Ambiguous reuse and enforcement rights | IP-01; `LEGAL_REVIEW_REQUIRED` | C02 | C02B license/IP policy | Exact license/notice state matches Owner decision and repository visibility | OPEN |
 | IP-03 | P1 | Brand asset admission | Owner asset policy is decided and immutable masters are protected externally; provenance, approved derivatives and existing-asset reconciliation remain pending C04 | Provenance-controlled master/derivative policy | Owner asset paths and hashes; V2 sections 14/28 | Brand leakage, uncontrolled copies or inability to ship assets | IP-01/02; Owner asset decision | C02/C04 | C02C asset/IP decision, then C04A provenance | Owner approves storage, exposure, derivative and retention rules | OPEN |
-| IP-04 | P1 | Branch protection | Main protection and required checks are off | Protected production branch with approved required checks/deploy controls | GitHub settings evidence; `.github/workflows/**` | Unreviewed or failing code can reach production | Owner settings authority; CI-01 | C02 | C02D branch and deployment protection | Direct unsafe promotion is blocked and required checks are enforced | OPEN |
+| IP-04 | P1 | Branch protection | Classic protection is active on `main`; PR promotion, strict app-bound `verify`, administrator enforcement and conversation resolution are required, with force push/deletion disabled | Protected production branch with approved required checks/deploy controls | GitHub settings evidence; `.github/workflows/**` | Unreviewed or failing code can reach production | Owner settings authority; CI-01 | C02 | C02D branch and deployment protection | Direct unsafe promotion is blocked and required checks are enforced | CLOSED |
 | IP-05 | P2 | Ownership/dependency governance | CODEOWNERS, security policy, Dependabot and release/tag policy are incomplete or absent | Owner-approved ownership, reporting, dependency and release policy | `.github/**`; repository root; V2 sections 28/49 | Slow review/security response and weak release traceability | IP-01/02/04 | C02 | C02E repository governance controls | Policies exist, settings match them and no authority is delegated beyond Owner decisions | OPEN |
 | BUILD-01 | P1 | Generated state | Next tooling can mutate tracked `next-env.d.ts` | Explicit stable tracking/generation policy with no unexplained drift | `next-env.d.ts`; Next configuration; prior clean-build evidence | Dirty builds and non-reproducible validation | C01; exact framework behavior | C03 | C03A1 `next-env.d.ts` determinism | Clean authorized build leaves the expected tracked state byte-stable | OPEN |
 | BUILD-02 | P1 | Generated artifacts | Generated bridge CSS and ignored/public artifacts have incomplete ownership rules | Each generated artifact classified, reproducible and validated | `.gitignore`; generation scripts; public/generated CSS contracts | Stale or environment-specific release content | BUILD-01 | C03 | C03A2 generated-artifact ownership | Every generated path has source, command, tracking class and dirty-check coverage | OPEN |
@@ -2561,11 +2589,17 @@ Control-plane invariants preserved by this checklist:
 ```text
 OWNER_IS_FINAL_AUTHORITY=YES
 CHATGPT_IS_CONTROLLER_REVIEWER=YES
-CODEX_IS_BOUNDED_EXECUTOR=YES
-CODEX_CAN_STAGE=NO
-CODEX_CAN_COMMIT=NO
-CODEX_CAN_PUSH=NO
+CODEX_IS_DELEGATED_BOUNDED_EXECUTOR=YES
+CODEX_ROUTINE_SELF_APPROVAL_WITHIN_ACTIVE_WORK_PACKAGE=YES
+CODEX_EXACT_PATH_STAGING_AUTHORITY=YES
+CODEX_BOUNDED_COMMIT_AUTHORITY=YES
+CODEX_BOUNDED_PUSH_AUTHORITY=YES
+CODEX_CAN_STAGE=ONLY_WHEN_ACTIVE_WORK_PACKAGE_GRANTS_EXACT_PATHS
+CODEX_CAN_COMMIT=ONLY_WHEN_ACTIVE_WORK_PACKAGE_GRANTS_BOUNDED_COMMIT
+CODEX_CAN_PUSH=ONLY_WHEN_ACTIVE_WORK_PACKAGE_GRANTS_EXACT_NON_PRODUCTION_BRANCH
 CODEX_CAN_MERGE=NO
 CODEX_CAN_DEPLOY=NO
-OWNER_GIT_FINALIZATION=YES
+CODEX_SCOPE_EXPANSION_AUTHORITY=NO
+CODEX_SUCCESSOR_GATE_SELF_AUTHORIZATION=NO
+OWNER_RETAINS_MAIN_MERGE_AND_PRODUCTION_AUTHORITY=YES
 ```

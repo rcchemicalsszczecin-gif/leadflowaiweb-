@@ -14,7 +14,7 @@ The repository is governed as a controlled engineering system, not as an open-en
 
 The operating chain is:
 
-OWNER -> CHATGPT CONTROLLER -> CODEX EXECUTOR -> CHATGPT STRICT REVIEW -> OWNER DECISION
+OWNER -> CHATGPT CONTROLLER / ARCHITECT -> CODEX DELEGATED EXECUTOR + BOUNDED GIT FINALIZER -> CHATGPT STRICT POST-EXECUTION REVIEW -> OWNER / CONTROLLER NEXT WORK PACKAGE
 
 Roles are intentionally separated.
 
@@ -22,7 +22,7 @@ Roles are intentionally separated.
 
 Paweł Niewiadomski is the final authority.
 
-The Owner alone controls:
+The Owner retains final control of:
 - product direction;
 - stage authorization;
 - scope expansion;
@@ -30,9 +30,7 @@ The Owner alone controls:
 - business/legal identity;
 - final design choices;
 - activation of dormant commercial/runtime features;
-- staging approval;
-- commit approval;
-- push approval;
+- delegation of staging, commit and push authority through an exact active work package;
 - merge to `main`;
 - production deployment;
 - destructive Git/history operations;
@@ -59,6 +57,8 @@ ChatGPT does not gain standing authority to mutate the repository merely by acti
 Codex is an execution engine, not a project authority.
 
 Codex may only perform actions explicitly authorized by the current prompt and this control plane.
+
+An active Owner/Controller-authorized work package may delegate routine bounded execution, validation, exact-path staging, one or more explicitly bounded commits, normal push to an explicitly named non-production branch, external evidence creation and an exact provider mutation. Codex may execute those preauthorized substeps without human micro-confirmation when every package prerequisite passes. This delegation creates no authority outside that package.
 
 By default Codex MUST NOT:
 - choose the next stage;
@@ -121,29 +121,26 @@ A task-specific prompt may require additional mandatory reads.
 
 ## 4. Standard work lifecycle
 
-The normal lifecycle is:
+The delegated work-package lifecycle is:
 
 READ / STATUS / INVENTORY
 -> PREWRITE / PROPOSED EXACT TARGET
--> OWNER AUTHORIZATION
+-> OWNER / CONTROLLER WORK-PACKAGE AUTHORIZATION
 -> IMPLEMENTATION
 -> VALIDATION
--> CODEX FINAL REPORT
--> CHATGPT STRICT REVIEW
--> OWNER REVIEW
--> OWNER EXACT-PATH STAGING
--> OWNER COMMIT APPROVAL
--> OWNER COMMIT
--> OWNER PUSH APPROVAL
--> OWNER PUSH
+-> CODEX EXACT-PATH STAGING WHEN AUTHORIZED
+-> CODEX BOUNDED COMMIT WHEN AUTHORIZED
+-> CODEX NORMAL PUSH TO THE AUTHORIZED NON-PRODUCTION BRANCH WHEN AUTHORIZED
 -> POST-PUSH VALIDATION
--> NEXT STAGE DECISION
+-> CODEX FINAL REPORT
+-> CHATGPT STRICT POST-EXECUTION REVIEW
+-> OWNER / CONTROLLER NEXT WORK-PACKAGE DECISION
 
 No phase automatically authorizes the next phase.
 
-A successful implementation does not authorize staging.
-Staging does not authorize commit.
-Commit does not authorize push.
+A successful implementation does not authorize staging unless the same active work package explicitly grants staging after its validation gate.
+Staging does not authorize commit unless that package explicitly grants commit.
+Commit does not authorize push unless that package explicitly grants push to an exact branch.
 Push does not authorize merge.
 Merge does not authorize deployment unless the Owner explicitly says so.
 
@@ -201,9 +198,9 @@ DO NOT FIX IT.
 
 ## 7. Git authority
 
-Codex must never stage, commit, push, merge or deploy in the normal Owner-controlled workflow.
+By default Codex does not stage, commit or push. An active Owner/Controller-authorized work package may explicitly delegate exact-path staging, bounded commit and normal push to one named non-production branch. Codex then acts as the bounded Git finalizer for that package and must validate each transition before executing it.
 
-The Owner performs Git finalization after review.
+This delegation never includes direct push to `main`, merge to `main`, force push, published-history rewrite or deployment unless a later explicit Owner instruction authorizes that exact retained action.
 
 Default staging policy:
 - use exact paths;
@@ -214,7 +211,11 @@ Default staging policy:
 
 Direct mutation of `main`, force-push, history rewrite, destructive reset, branch deletion and tag deletion require explicit Owner authority and are otherwise forbidden.
 
-No agent may infer Git authority from the fact that implementation was authorized.
+No agent may infer Git authority from implementation alone. The active work package must grant each permitted Git transition and name its branch boundary.
+
+`SELF_APPROVAL` means executing already authorized substeps after their assertions pass. It never means creating new authority, expanding scope or selecting a successor gate.
+
+Lower governance clauses that describe Owner staging or unperformed Codex Git finalization as the expected normal result define the default non-delegated case. They do not override an exact active work package issued under this constitution; outside that package, their default restrictions remain fully operative.
 
 ## 8. Dirty-worktree rule
 

@@ -13,16 +13,16 @@ A stage is one bounded outcome. A gate is one authorization/evidence transition 
 
 G0 — READ / STATUS / INVENTORY
 G1 — PREWRITE / PROPOSED TARGET
-G2 — OWNER AUTHORIZATION TO IMPLEMENT
+G2 — OWNER / CONTROLLER WORK-PACKAGE AUTHORIZATION
 G3 — IMPLEMENTATION
 G4 — VALIDATION
-G5 — CODEX FINAL REPORT
-G6 — CHATGPT STRICT REVIEW
-G7 — OWNER REVIEW
-G8 — OWNER EXACT-PATH STAGING
-G9 — OWNER COMMIT AUTHORIZATION + COMMIT
-G10 — OWNER PUSH AUTHORIZATION + PUSH
-G11 — POST-PUSH VALIDATION
+G5 — CODEX EXACT-PATH STAGING WHEN AUTHORIZED
+G6 — CODEX BOUNDED COMMIT WHEN AUTHORIZED
+G7 — CODEX NORMAL PUSH TO AUTHORIZED NON-PRODUCTION BRANCH WHEN AUTHORIZED
+G8 — POST-PUSH VALIDATION
+G9 — CODEX FINAL REPORT
+G10 — CHATGPT STRICT POST-EXECUTION REVIEW
+G11 — OWNER / CONTROLLER REVIEW
 G12 — NEXT-STAGE DECISION
 
 Not every stage requires every gate, but any skipped gate must be explicitly irrelevant or explicitly waived by the Owner.
@@ -33,7 +33,7 @@ Passing one gate never authorizes the next.
 
 Examples:
 - READ PASS does not authorize WRITE.
-- WRITE PASS does not authorize `git add`.
+- WRITE PASS does not authorize `git add` unless the active work package separately grants staging after validation.
 - validation PASS does not authorize commit.
 - commit does not authorize push.
 - push does not authorize merge.
@@ -77,7 +77,7 @@ A prewrite should define:
 
 Prewrite is not implementation authority.
 
-## 6. G2 — Owner authorization
+## 6. G2 — Owner / Controller work-package authorization
 
 The Owner authorizes one bounded implementation target.
 
@@ -95,7 +95,7 @@ Codex may write only inside the approved target.
 
 During implementation:
 - preserve unrelated state;
-- do not stage/commit/push;
+- do not stage/commit/push unless and until the active work package's separate finalization prerequisites pass;
 - do not opportunistically fix other findings;
 - stop on unexpected changed paths;
 - preserve public-truth/security boundaries.
@@ -110,64 +110,42 @@ Validation may be targeted plus cross-cutting/full checks when required.
 
 If a validator itself mutates tracked state, that mutation must be anticipated and handled under the stage contract; otherwise STOP.
 
-## 9. G5 — Codex final report
+## 9. G5–G8 — Delegated Git finalization and post-push proof
 
-Codex returns exact evidence using `CODEX-REPORT-CONTRACT.md`.
+When expressly authorized by the active work package, Codex:
+- stages exact reviewed paths only and verifies the staged set;
+- creates the bounded truthful commit;
+- proves remote fast-forward safety;
+- normally pushes only the named non-production branch;
+- validates the remote and any package-required provider state.
 
-Codex then stops.
+No skipped transition is inferred. Broad staging and force push remain prohibited.
 
-## 10. G6 — ChatGPT strict review
+## 10. G9 — Codex final report
 
-ChatGPT independently checks:
-- scope compliance;
-- report consistency;
-- evidence quality;
-- suspicious omissions;
-- overclaims;
-- validation sufficiency;
-- whether the next gate is legal.
+Codex returns exact evidence using `CODEX-REPORT-CONTRACT.md` or the stricter active-package report and then stops.
 
-ChatGPT may return PASS, PASS_WITH_WARNINGS, FAIL or BLOCKER to the Owner.
+## 11. G10 — ChatGPT strict post-execution review
 
-## 11. G7 — Owner review
+ChatGPT independently checks scope compliance, report consistency, evidence quality, suspicious omissions, overclaims, validation sufficiency and whether a next gate is legal. ChatGPT may return PASS, PASS_WITH_WARNINGS, FAIL or BLOCKER to the Owner.
 
-The Owner decides whether the implementation is accepted for Git finalization.
+## 12. G11 — Owner / Controller review
 
-Owner may:
-- accept;
-- reject;
-- request corrections;
-- hold;
-- abandon;
-- authorize exact staging.
+The Owner remains final authority. The Owner/Controller may accept, reject, request corrections, hold, abandon or authorize a new bounded work package. Main merge and deployment remain separate retained Owner decisions.
 
-## 12. G8 — Owner exact-path staging
+## 13. Exact-path staging requirements
 
-Default:
-- stage only exact reviewed paths;
-- inspect staged diff;
-- verify no unrelated paths.
+When delegated, stage only exact reviewed paths, inspect the staged diff and verify no unrelated paths. Broad staging is prohibited by default.
 
-Broad staging is prohibited by default.
+## 14. Commit requirements
 
-## 13. G9 — Commit
+Commit occurs only when explicitly delegated by the active work package. The message identifies the bounded outcome, and post-commit proof covers HEAD, worktree and committed paths.
 
-Commit occurs only after explicit Owner commit authority.
+## 15. Push requirements
 
-Commit message should identify the bounded stage outcome.
+Push occurs only when explicitly delegated to one named non-production branch by the active work package. No force push unless explicitly authorized for one exact recovery operation.
 
-Post-commit verify:
-- HEAD changed as expected;
-- worktree status;
-- committed path set.
-
-## 14. G10 — Push
-
-Push occurs only after explicit Owner push authority.
-
-No force push unless explicitly authorized for a specific recovery operation.
-
-## 15. G11 — Post-push validation
+## 16. G8 — Post-push validation
 
 Verify as applicable:
 - remote branch identity;
@@ -177,11 +155,11 @@ Verify as applicable:
 - no accidental deployment;
 - production unchanged unless deployment was separately authorized.
 
-## 16. G12 — Next-stage decision
+## 17. G12 — Next-stage decision
 
-Only after current-stage review/finalization does ChatGPT propose the next bounded stage and the Owner decide whether to authorize it.
+Codex never self-authorizes a successor. Only after current-package execution and strict review may the Owner/Controller authorize the next bounded work package.
 
-## 17. Failure behavior
+## 18. Failure behavior
 
 FAIL or BLOCKER does not authorize cleanup by improvisation.
 
@@ -192,7 +170,7 @@ Return:
 - safe recovery options;
 - STOP.
 
-## 18. 1000% rule
+## 19. 1000% rule
 
 Maximum completeness is required inside the authorized gate/stage.
 
