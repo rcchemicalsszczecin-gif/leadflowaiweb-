@@ -503,7 +503,7 @@ C02 Repository, IP and GitHub Decision remains open only across explicitly defer
 
 C03 Determinism, Security and CI Foundation is complete for this governance candidate: the exact Node/npm toolchain is pinned, the tracked Next declaration and generated outputs have an explicit contract, clean build state is byte-stable, whole-tracked secret scanning is redacted and seeded-failure tested, Quality covers all non-production pushes and every PR to `main`, and all external Actions are immutable-SHA pinned under least privilege. `SEC-02` remains open because its acceptance spans later hosting/release/runtime gates.
 
-## 15. C04/C05/C06A foundation and decision boundary
+## 14. C04/C05/C06A foundation and decision boundary
 
 `docs/architecture/BRAND-ASSET-PROVENANCE.md` now records the three external
 immutable master identities and classifies seven tracked identity/media
@@ -526,7 +526,7 @@ decision evidence. C06A is complete, but no option is Owner-approved. The
 current green/cyan V14 authority and reported Liquid-orientation defect remain
 unchanged; C07 has not started.
 
-## 14. Production protection
+## 15. Production protection
 
 No candidate branch, successful CI run, Codex report or local PASS automatically authorizes:
 - merge to `main`;
