@@ -315,7 +315,7 @@ DO_NOT_COMMIT_MASTER_TO_REPOSITORY=YES
 
 ANY_FILE_COMMITTED_NOW_IS_PUBLICLY_EXPOSED=YES
 WEB_DERIVATIVES_ALLOWED_IN_FUTURE=YES
-WEB_DERIVATIVE_CREATION_AUTHORIZED_NOW=NO
+WEB_DERIVATIVE_CREATION_AUTHORIZED_NOW=EXTERNAL_TECHNICAL_C04_CANDIDATES_ONLY
 WEB_DERIVATIVE_REPOSITORY_ADMISSION_AUTHORIZED_NOW=NO
 ONLY_PUBLIC_SERVING_DERIVATIVES_MAY_BE_ADMITTED_WHILE_REPOSITORY_IS_PUBLIC=YES
 ASSET_PROVENANCE_MANIFEST_REQUIRED_BEFORE_C04_ADMISSION=YES
@@ -326,13 +326,14 @@ CURRENT_APPROVED_DERIVATIVE_COUNT=DO_NOT_INFER
 BRAND_ASSETS_COVERED_BY_FUTURE_CODE_LICENSE=NO
 PUBLIC_ACCESS_DOES_NOT_GRANT_BRAND_REUSE_LICENSE=YES
 BRAND_ASSET_OPEN_SOURCE_GRANT=NO
-EXISTING_TRACKED_BRAND_ASSET_PROVENANCE=PENDING_C04_RECONCILIATION
+EXISTING_TRACKED_BRAND_ASSET_PROVENANCE=CLASSIFIED_C04A_PUBLIC_ROLE_RECONCILIATION_PENDING_OWNER
 THIRD_PARTY_ASSETS_RETAIN_ORIGINAL_RIGHTS_AND_REQUIREMENTS=YES
 THIRD_PARTY_ASSET_PROVENANCE_REQUIRED=YES
 UNKNOWN_PROVENANCE_DEFAULT_ADMISSION=BLOCKED
 ASSET_DELETION_AUTHORIZED_NOW=NO
 LEGACY_BRAND_ASSET_RETIREMENT_REQUIRES_EVIDENCE=YES
-C04_IMPLEMENTATION_AUTHORIZED=NO
+C04_FOUNDATION_AUTHORIZED_AND_EXECUTED=YES
+C04_PUBLIC_ASSET_ADMISSION_AUTHORIZED=NO
 
 MAIN_PROTECTED=YES
 PROTECTION_MECHANISM=CLASSIC_BRANCH_PROTECTION
@@ -428,7 +429,7 @@ OPERATIONS_NEGATIVE_TESTS=8_OF_8
 C01_CORE_CONTRACTS=3_OF_3_PASS
 CURRENT_IMMEDIATE_ROLLBACK_TARGET=NOT_PROVEN
 C01_RESIDUAL_OPEN_BACKLOG=OPS-03,OPS-04
-CURRENT_PRODUCT_COMPLETION_MACRO_STAGE=C03_DETERMINISM_SECURITY_CI_FOUNDATION
+CURRENT_PRODUCT_COMPLETION_MACRO_STAGE=C04_C05_C06A_FOUNDATION_AND_OWNER_DECISION_PREPARATION
 C02A_INVENTORY=COMPLETE
 C02B_OWNER_VISIBILITY_LICENSING_DECISION=RECORDED
 C02B2_CONTINUITY_ARCHITECTURE_DECISION=RECORDED
@@ -443,9 +444,15 @@ C02E_FINAL_CLASSIFICATION=POLICY_COMPLETE_ACTIVATION_DEFERRED
 IP_05_STATUS=OPEN_DEFERRED_ACTIVATION
 C03_FOUNDATION=COMPLETE
 C03_FINAL_CLASSIFICATION=COMPLETE
-NEXT_WORK_PACKAGE=OWNER_CONTROLLER_AUTHORIZATION_REQUIRED
-C04_IMPLEMENTATION_AUTHORIZED=NO
-C04_STARTED=NO
+C04A_PROVENANCE=COMPLETE
+C04_DERIVATIVE_PREPARATION=COMPLETE_EXTERNAL_TECHNICAL_CANDIDATES
+C04_PUBLIC_ADMISSION=PENDING_OWNER
+IP_03_STATUS=OPEN_PENDING_OWNER_DERIVATIVE_ADMISSION
+C05_EVIDENCE_FOUNDATION=PASS
+C05_PUBLIC_CLAIM_APPROVAL=PENDING_OWNER
+C06A_VISUAL_BASELINE=COMPLETE
+C06_OWNER_ART_DIRECTION_DECISION=PENDING
+NEXT_WORK_PACKAGE=OWNER_CONTROLLER_VISUAL_AND_PUBLIC_CLAIM_DECISION_REQUIRED
 ```
 
 Current product status and program:
@@ -455,7 +462,7 @@ Current product status and program:
 - `CURRENT_PRODUCT_COMPLETION_PROGRAM=A→Z / C01–C27`;
 - `C01_TRUTH_RECONCILIATION=COMPLETE`;
 - `C01_RESIDUAL_OPEN_BACKLOG=OPS-03,OPS-04`;
-- `CURRENT_PRODUCT_COMPLETION_MACRO_STAGE=C03_DETERMINISM_SECURITY_CI_FOUNDATION`;
+- `CURRENT_PRODUCT_COMPLETION_MACRO_STAGE=C04_C05_C06A_FOUNDATION_AND_OWNER_DECISION_PREPARATION`;
 - `C02A_INVENTORY=COMPLETE`;
 - `C02B_OWNER_VISIBILITY_LICENSING_DECISION=RECORDED`;
 - `C02B2_CONTINUITY_ARCHITECTURE_DECISION=RECORDED`;
@@ -467,8 +474,15 @@ Current product status and program:
 - `C02E_FINAL_CLASSIFICATION=POLICY_COMPLETE_ACTIVATION_DEFERRED`;
 - `IP_05_STATUS=OPEN_DEFERRED_ACTIVATION`;
 - `C03_FINAL_CLASSIFICATION=COMPLETE`;
-- `NEXT_WORK_PACKAGE=OWNER_CONTROLLER_AUTHORIZATION_REQUIRED`;
-- `C04_IMPLEMENTATION_AUTHORIZED=NO`.
+- `C04A_PROVENANCE=COMPLETE`;
+- `C04_DERIVATIVE_PREPARATION=COMPLETE_EXTERNAL_TECHNICAL_CANDIDATES`;
+- `C04_PUBLIC_ADMISSION=PENDING_OWNER`;
+- `IP_03_STATUS=OPEN_PENDING_OWNER_DERIVATIVE_ADMISSION`;
+- `C05_EVIDENCE_FOUNDATION=PASS`;
+- `C05_PUBLIC_CLAIM_APPROVAL=PENDING_OWNER`;
+- `C06A_VISUAL_BASELINE=COMPLETE`;
+- `C06_OWNER_ART_DIRECTION_DECISION=PENDING`;
+- `NEXT_WORK_PACKAGE=OWNER_CONTROLLER_VISUAL_AND_PUBLIC_CLAIM_DECISION_REQUIRED`.
 
 V1 is superseded as the current top-level Master Plan and retained as historical product/delivery provenance. V15 remains the active subordinate Search / SEO / AEO / GEO / AI Search domain plan and candidate evidence program. Neither classification promotes candidate code to production.
 
@@ -487,7 +501,30 @@ C01 Operations Truth Reconciliation was completed through separately bounded Own
 
 C02 Repository, IP and GitHub Decision remains open only across explicitly deferred activation/legal/asset/continuity boundaries. C02E now provides candidate ownership, security-reporting, dependency and release/tag policy; vulnerability alerts and automated security fixes are live. Because GitHub reads CODEOWNERS and Dependabot configuration from the default branch, their candidate files are not represented as active before a separately authorized promotion; IP-05 is therefore `OPEN_DEFERRED_ACTIVATION`.
 
-C03 Determinism, Security and CI Foundation is complete for this governance candidate: the exact Node/npm toolchain is pinned, the tracked Next declaration and generated outputs have an explicit contract, clean build state is byte-stable, whole-tracked secret scanning is redacted and seeded-failure tested, Quality covers all non-production pushes and every PR to `main`, and all external Actions are immutable-SHA pinned under least privilege. `SEC-02` remains open because its acceptance spans later hosting/release/runtime gates. No C04 authority is created.
+C03 Determinism, Security and CI Foundation is complete for this governance candidate: the exact Node/npm toolchain is pinned, the tracked Next declaration and generated outputs have an explicit contract, clean build state is byte-stable, whole-tracked secret scanning is redacted and seeded-failure tested, Quality covers all non-production pushes and every PR to `main`, and all external Actions are immutable-SHA pinned under least privilege. `SEC-02` remains open because its acceptance spans later hosting/release/runtime gates.
+
+## 15. C04/C05/C06A foundation and decision boundary
+
+`docs/architecture/BRAND-ASSET-PROVENANCE.md` now records the three external
+immutable master identities and classifies seven tracked identity/media
+artifacts with exact hashes and consumer states. No tracked file matches a raw
+master, no binary derivative was admitted, and fourteen deterministic
+technical resize/PNG/WebP candidates remain outside the repository for Owner
+review. The public shell, icon/social roles, and obsolete 404 identity remain
+unchanged pending exact Owner derivative and role decisions. IP-03 therefore
+remains open.
+
+`docs/architecture/PORTFOLIO-EVIDENCE-REGISTER.md` establishes narrowed
+LeadFlowAI and Tervyxa receipts and withholds TranskrypcjaAI claims pending an
+exact repository or provider receipt. No public `/realizacje` copy was changed,
+and all candidate public wording remains pending Owner/Controller review.
+
+The current V14 visual baseline, seven homepage viewports, representative
+secondary routes, master color/material analysis, technical role previews and
+two implementable art-direction options are captured as external Owner
+decision evidence. C06A is complete, but no option is Owner-approved. The
+current green/cyan V14 authority and reported Liquid-orientation defect remain
+unchanged; C07 has not started.
 
 ## 14. Production protection
 
