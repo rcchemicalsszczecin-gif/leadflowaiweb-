@@ -2,23 +2,12 @@ name: Quality
 
 on:
   push:
-    branches:
-      - build/leadflowai
-      - design/precision-water-v2
-      - design/circuit-water-v3
-      - design/hardware-board-v4
-      - performance/realistic-board-v5
-      - design/content-frames-v6
-      - experience/interactive-v7
-      - design/premium-composition-v8
-      - design/premium-art-direction-v9
-      - design/premium-calibration-v9-2
-      - qa/responsive-performance-v10
-      - content/full-offer-v11
-      - 'v14/**'
+    branches-ignore:
+      - main
   pull_request:
     branches:
       - main
+  workflow_dispatch:
 
 concurrency:
   group: quality-${{ github.head_ref || github.ref_name }}
@@ -33,7 +22,7 @@ jobs:
     timeout-minutes: 15
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
 
       - name: Reject retired brand residue
         shell: bash
@@ -45,9 +34,9 @@ jobs:
           fi
 
       - name: Setup Node
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
-          node-version: 22
+          node-version-file: .node-version
 
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
@@ -57,6 +46,13 @@ jobs:
         env:
           NEXT_PUBLIC_SITE_URL: https://leadflowai.pl
           NEXT_PUBLIC_API_BASE_URL: https://api.leadflowai.pl
+
+      - name: Verify tracked generated-state stability
+        shell: bash
+        run: |
+          git diff --exit-code --
+          test -z "$(git status --porcelain=v1 --untracked-files=all)"
+          echo "GENERATED_TRACKED_STATE_STABLE"
 
       - name: Static export artifact contract
         shell: bash

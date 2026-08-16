@@ -70,6 +70,9 @@ Authoritative current repository/release checkpoint. It must distinguish product
 ### `docs/governance/WEBSITE-OWNER-DECISIONS.md`
 Current Owner-approved product/business/runtime decisions. It is subordinate to a later explicit Owner instruction and interpreted with `CURRENT-STATE.md` for exact release identity.
 
+### `docs/governance/RELEASE-TAG-POLICY.md`
+Defines immutable tag/release identity, retained Owner publication authority, C25/C26 sequencing and rollback without tag rewriting.
+
 ## 3. Completed / historical Owner decision records
 
 These files preserve real historical Owner decisions and recovery/provenance context. Their historical decision scope remains evidence, but they do not override later current authority outside that scope:

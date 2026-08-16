@@ -1,7 +1,7 @@
 # LEADFLOWAI — CURRENT STATE
 
 STATUS: AUTHORITATIVE CURRENT-STATE CHECKPOINT
-DATE: 2026-08-15
+DATE: 2026-08-16
 OWNER: Paweł Niewiadomski
 LEGAL ENTITY: Tervyxa Systems sp. z o.o.
 PUBLIC BRAND: LeadFlowAI
@@ -252,10 +252,11 @@ ChatGPT reviews/translates the Codex report for the Owner.
 Current repository/settings state remains:
 - `main` is protected by classic branch protection;
 - pull requests, the strict app-bound `verify` check and resolved review conversations are required before merge, including for administrators;
-- Dependabot alerts/settings hardening remains unresolved;
+- Dependabot vulnerability alerts and automated security fixes are enabled; provider secret scanning and push protection remain enabled;
+- candidate `.github/CODEOWNERS`, `.github/SECURITY.md` and `.github/dependabot.yml` controls exist on the governance branch but are not default-branch active before an Owner-controlled promotion;
 - the repository is PUBLIC and current production hosting is GitHub Pages;
 - no final repository `LICENSE` / `NOTICE` implementation exists;
-- no release/tag model is relied upon as the primary deployment identity.
+- the normative release/tag policy preserves C25/C26 sequencing and does not treat a tag as deployment evidence.
 
 The C02A inventory is complete and the Owner has recorded the C02B target policy:
 
@@ -351,6 +352,41 @@ PRODUCTION_MAIN_SHA=67663b08c950de120a94ef8495b5cdc8c9bdecfe
 PRODUCTION_CHANGED=NO
 C02D_PROVIDER_PROTECTION_EXECUTION=PASS
 IP_04_STATUS=CLOSED
+C02E_POLICY_STATE=COMPLETE
+C02E_PROVIDER_SETTINGS_STATE=DEPENDABOT_ALERTS_AND_AUTOMATED_SECURITY_FIXES_ENABLED_SECRET_SCANNING_ACTIVE
+CODEOWNERS_CANDIDATE_IMPLEMENTED=YES
+CODEOWNERS_DEFAULT_BRANCH_ACTIVE=NO
+DEPENDABOT_CONFIG_CANDIDATE_IMPLEMENTED=YES
+DEPENDABOT_CONFIG_DEFAULT_BRANCH_ACTIVE=NO
+IP_05_DEFAULT_BRANCH_FILE_ACTIVATION=DEFERRED_TO_C26_OR_EXACT_PROMOTION
+IP_05_STATUS=OPEN_DEFERRED_ACTIVATION
+C02E_FINAL_CLASSIFICATION=POLICY_COMPLETE_ACTIVATION_DEFERRED
+
+EXACT_NODE_VERSION=22.23.1
+EXACT_NPM_VERSION=10.9.8
+NEXT_ENV_DETERMINISM=PASS
+GENERATED_ARTIFACT_OWNERSHIP=PASS
+WHOLE_REPOSITORY_SECRET_SCANNER=PASS
+SECRET_SCANNER_OUTPUT_REDACTED=YES
+SEEDED_SECRET_NEGATIVE_TESTS=PASS
+SECURITY_SOURCE_AUDIT=PASS
+QUALITY_WORKFLOW_NAME=Quality
+QUALITY_JOB_CONTEXT=verify
+QUALITY_PR_TO_MAIN=YES
+QUALITY_NON_PRODUCTION_PUSH_COVERAGE=YES
+FLOATING_EXTERNAL_ACTION_REF_COUNT=0
+C03A_RESULT=PASS
+C03B_RESULT=PASS
+C03C_RESULT=PASS
+C03D_RESULT=PASS
+C03_FINAL_CLASSIFICATION=COMPLETE
+BUILD_01_STATUS=CLOSED
+BUILD_02_STATUS=CLOSED
+BUILD_03_STATUS=CLOSED
+CI_01_STATUS=CLOSED
+CI_02_STATUS=CLOSED
+SEC_01_STATUS=CLOSED
+SEC_02_STATUS=OPEN_WITH_C03_SOURCE_AUDIT_COMPLETE
 ```
 
 The target remains a private source repository with public production hosting through Cloudflare. The site is not finished, so the repository remains public and GitHub Pages remains the active production host throughout product completion. Infrastructure cutover before the product-completion sequence and an accepted immutable release candidate would be premature.
@@ -392,7 +428,7 @@ OPERATIONS_NEGATIVE_TESTS=8_OF_8
 C01_CORE_CONTRACTS=3_OF_3_PASS
 CURRENT_IMMEDIATE_ROLLBACK_TARGET=NOT_PROVEN
 C01_RESIDUAL_OPEN_BACKLOG=OPS-03,OPS-04
-CURRENT_PRODUCT_COMPLETION_MACRO_STAGE=C02_REPOSITORY_IP_GITHUB_DECISION
+CURRENT_PRODUCT_COMPLETION_MACRO_STAGE=C03_DETERMINISM_SECURITY_CI_FOUNDATION
 C02A_INVENTORY=COMPLETE
 C02B_OWNER_VISIBILITY_LICENSING_DECISION=RECORDED
 C02B2_CONTINUITY_ARCHITECTURE_DECISION=RECORDED
@@ -402,10 +438,14 @@ C02C_ASSET_IMPLEMENTATION=DEFERRED_TO_C04
 C02D_PROVIDER_PROTECTION_EXECUTION=PASS
 C02D_DOCUMENTATION_RECONCILIATION=COMPLETE
 IP_04_STATUS=CLOSED
-NEXT_C02_GATE=C02E_REPOSITORY_GOVERNANCE_CONTROLS
-C02E_IMPLEMENTATION_AUTHORIZED=NO
-C02E_STARTED=NO
-C03_STARTED=NO
+C02E_POLICY_STATE=COMPLETE
+C02E_FINAL_CLASSIFICATION=POLICY_COMPLETE_ACTIVATION_DEFERRED
+IP_05_STATUS=OPEN_DEFERRED_ACTIVATION
+C03_FOUNDATION=COMPLETE
+C03_FINAL_CLASSIFICATION=COMPLETE
+NEXT_WORK_PACKAGE=OWNER_CONTROLLER_AUTHORIZATION_REQUIRED
+C04_IMPLEMENTATION_AUTHORIZED=NO
+C04_STARTED=NO
 ```
 
 Current product status and program:
@@ -415,7 +455,7 @@ Current product status and program:
 - `CURRENT_PRODUCT_COMPLETION_PROGRAM=A→Z / C01–C27`;
 - `C01_TRUTH_RECONCILIATION=COMPLETE`;
 - `C01_RESIDUAL_OPEN_BACKLOG=OPS-03,OPS-04`;
-- `CURRENT_PRODUCT_COMPLETION_MACRO_STAGE=C02_REPOSITORY_IP_GITHUB_DECISION`;
+- `CURRENT_PRODUCT_COMPLETION_MACRO_STAGE=C03_DETERMINISM_SECURITY_CI_FOUNDATION`;
 - `C02A_INVENTORY=COMPLETE`;
 - `C02B_OWNER_VISIBILITY_LICENSING_DECISION=RECORDED`;
 - `C02B2_CONTINUITY_ARCHITECTURE_DECISION=RECORDED`;
@@ -424,8 +464,11 @@ Current product status and program:
 - `C02C_ASSET_IMPLEMENTATION=DEFERRED_TO_C04`;
 - `C02D_PROVIDER_PROTECTION_EXECUTION=PASS`;
 - `IP_04_STATUS=CLOSED`;
-- `NEXT_C02_GATE=C02E_REPOSITORY_GOVERNANCE_CONTROLS`;
-- `C02E_IMPLEMENTATION_AUTHORIZED=NO`.
+- `C02E_FINAL_CLASSIFICATION=POLICY_COMPLETE_ACTIVATION_DEFERRED`;
+- `IP_05_STATUS=OPEN_DEFERRED_ACTIVATION`;
+- `C03_FINAL_CLASSIFICATION=COMPLETE`;
+- `NEXT_WORK_PACKAGE=OWNER_CONTROLLER_AUTHORIZATION_REQUIRED`;
+- `C04_IMPLEMENTATION_AUTHORIZED=NO`.
 
 V1 is superseded as the current top-level Master Plan and retained as historical product/delivery provenance. V15 remains the active subordinate Search / SEO / AEO / GEO / AI Search domain plan and candidate evidence program. Neither classification promotes candidate code to production.
 
@@ -442,7 +485,9 @@ These immutable masters remain outside the repository and are forbidden from rep
 
 C01 Operations Truth Reconciliation was completed through separately bounded Owner-authorized gates. Its per-file operational truth is 6/6, negative tests are 8/8 and the three core contracts pass. This truth-reconciliation closeout does not close OPS-03 or OPS-04, establish an immediate rollback SHA, prove production release readiness or change the production branch, Pages deployment or public runtime.
 
-C02 Repository, IP and GitHub Decision remains in progress through bounded gates. C02A inventory is complete, C02B records the Owner visibility/hosting/licensing policy, C02B2 records the corrected continuity sequence, C02C records the Owner asset/IP admission policy and C02D has applied and verified classic protection for `main`. IP-04 is closed because direct unsafe promotion is technically blocked and the exact approved `verify` check is enforced. C02E repository governance controls remain unstarted and unauthorized; asset implementation, legal files, visibility/hosting transition and later C-stages remain separate.
+C02 Repository, IP and GitHub Decision remains open only across explicitly deferred activation/legal/asset/continuity boundaries. C02E now provides candidate ownership, security-reporting, dependency and release/tag policy; vulnerability alerts and automated security fixes are live. Because GitHub reads CODEOWNERS and Dependabot configuration from the default branch, their candidate files are not represented as active before a separately authorized promotion; IP-05 is therefore `OPEN_DEFERRED_ACTIVATION`.
+
+C03 Determinism, Security and CI Foundation is complete for this governance candidate: the exact Node/npm toolchain is pinned, the tracked Next declaration and generated outputs have an explicit contract, clean build state is byte-stable, whole-tracked secret scanning is redacted and seeded-failure tested, Quality covers all non-production pushes and every PR to `main`, and all external Actions are immutable-SHA pinned under least privilege. `SEC-02` remains open because its acceptance spans later hosting/release/runtime gates. No C04 authority is created.
 
 ## 14. Production protection
 

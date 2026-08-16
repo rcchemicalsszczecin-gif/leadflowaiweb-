@@ -1107,7 +1107,27 @@ C02D_PROVIDER_PROTECTION_EXECUTION=PASS
 IP_04_STATUS=CLOSED
 ```
 
-The provider readback proves that direct unsafe promotion is blocked for administrators as well as ordinary actors, while the zero-review-count model avoids an unproven second-reviewer deadlock. The strict `verify` check is bound to GitHub Actions app ID `15368`, review conversations must be resolved, and force push/deletion are disabled. C02D changed no production SHA, Pages configuration, workflow, ruleset or source. C02E controls remain separate and unauthorized.
+The provider readback proves that direct unsafe promotion is blocked for administrators as well as ordinary actors, while the zero-review-count model avoids an unproven second-reviewer deadlock. The strict `verify` check is bound to GitHub Actions app ID `15368`, review conversations must be resolved, and force push/deletion are disabled. C02D changed no production SHA, Pages configuration, workflow, ruleset or source.
+
+Current C02E receipt:
+
+```text
+CODEOWNERS_CANDIDATE_IMPLEMENTED=YES
+CODEOWNERS_DEFAULT_BRANCH_ACTIVE=NO
+SECURITY_POLICY_IMPLEMENTED=YES
+DEPENDABOT_CONFIG_CANDIDATE_IMPLEMENTED=YES
+DEPENDABOT_ALERTS_PROVIDER_STATE=ENABLED
+DEPENDABOT_AUTOMATED_SECURITY_FIXES_PROVIDER_STATE=ENABLED
+SECRET_SCANNING_PROVIDER_STATE=ENABLED
+SECRET_SCANNING_PUSH_PROTECTION_PROVIDER_STATE=ENABLED
+RELEASE_TAG_POLICY_IMPLEMENTED=YES
+IP_05_POLICY_STATE=COMPLETE
+IP_05_DEFAULT_BRANCH_FILE_ACTIVATION=DEFERRED_TO_C26_OR_EXACT_PROMOTION
+IP_05_STATUS=OPEN_DEFERRED_ACTIVATION
+C02E_FINAL_CLASSIFICATION=POLICY_COMPLETE_ACTIVATION_DEFERRED
+```
+
+Ownership, private security reporting, dependency configuration and immutable release/tag policy now exist without adding an independent reviewer or expanding Codex authority. Vulnerability alerts and automated security fixes are live provider settings. GitHub default-branch file discovery is not falsely inferred: CODEOWNERS and Dependabot version-update configuration remain candidate-only until a separately authorized promotion reaches `main`.
 
 ## 29. Operations and recovery
 
@@ -1190,6 +1210,32 @@ CI must eventually:
 - use required checks.
 
 CI PASS does not replace content, visual or Owner PASS.
+
+Current C03 foundation receipt:
+
+```text
+EXACT_NODE_VERSION=22.23.1
+EXACT_NPM_VERSION=10.9.8
+NEXT_ENV_DETERMINISM=PASS
+GENERATED_ARTIFACT_OWNERSHIP=PASS
+WHOLE_REPOSITORY_SECRET_SCANNER=PASS
+SECRET_SCANNER_OUTPUT_REDACTED=YES
+SEEDED_SECRET_NEGATIVE_TESTS=PASS
+SECURITY_SOURCE_AUDIT=PASS
+QUALITY_WORKFLOW_NAME=Quality
+QUALITY_JOB_CONTEXT=verify
+QUALITY_PR_TO_MAIN=YES
+QUALITY_NON_PRODUCTION_PUSH_COVERAGE=YES
+FLOATING_EXTERNAL_ACTION_REF_COUNT=0
+WORKFLOW_PERMISSION_AUDIT=PASS
+C03A_RESULT=PASS
+C03B_RESULT=PASS
+C03C_RESULT=PASS
+C03D_RESULT=PASS
+C03_FINAL_CLASSIFICATION=COMPLETE
+```
+
+The generated-state contract owns the tracked Next declaration and ignored build/export/cache outputs. Whole-tracked secret scanning emits only path, line, class and redacted fingerprint, with seeded runtime-only failures. Quality retains the required `verify` identity for every PR to `main` and now runs on every non-production push. All 22 external Action uses are pinned to reviewed immutable SHAs, validation workflows use `contents: read`, and only Pages retains its required deployment writes.
 
 ## 33. SEO
 
@@ -2282,7 +2328,7 @@ C01_PER_FILE_OPERATIONAL_TRUTH=6_OF_6
 C01_NEGATIVE_TESTS=8_OF_8
 C01_CORE_CONTRACTS=3_OF_3_PASS
 C01_RESIDUAL_OPEN_BACKLOG=OPS-03,OPS-04
-CURRENT_PRODUCT_COMPLETION_MACRO_STAGE=C02_REPOSITORY_IP_GITHUB_DECISION
+CURRENT_PRODUCT_COMPLETION_MACRO_STAGE=C03_DETERMINISM_SECURITY_CI_FOUNDATION
 C02A_REPOSITORY_IP_GITHUB_INVENTORY=COMPLETE
 C02B_OWNER_VISIBILITY_LICENSING_DECISION=RECORDED
 C02B2_CONTINUITY_ARCHITECTURE_DECISION=RECORDED
@@ -2292,10 +2338,14 @@ C02C_ASSET_IMPLEMENTATION=DEFERRED_TO_C04
 C02D_PROVIDER_PROTECTION_EXECUTION=PASS
 C02D_DOCUMENTATION_RECONCILIATION=COMPLETE
 IP_04_STATUS=CLOSED
-NEXT_C02_GATE=C02E_REPOSITORY_GOVERNANCE_CONTROLS
-C02E_IMPLEMENTATION_AUTHORIZED=NO
-C02E_STARTED=NO
-C03_STARTED=NO
+C02E_POLICY_STATE=COMPLETE
+C02E_FINAL_CLASSIFICATION=POLICY_COMPLETE_ACTIVATION_DEFERRED
+IP_05_STATUS=OPEN_DEFERRED_ACTIVATION
+C03_FOUNDATION=COMPLETE
+C03_FINAL_CLASSIFICATION=COMPLETE
+NEXT_WORK_PACKAGE=OWNER_CONTROLLER_AUTHORIZATION_REQUIRED
+C04_IMPLEMENTATION_AUTHORIZED=NO
+C04_STARTED=NO
 ```
 
 C01 Operations Truth Reconciliation was executed through separately bounded Owner-authorized gates. Current production identity is validated independently in six operational documents, eight deliberate stale-condition tests pass and all three core C01 contracts pass. OPS-03 and OPS-04 remain open, and the current immediate rollback target remains `NOT_PROVEN`.
@@ -2314,7 +2364,7 @@ OWNER / CONTROLLER WORK-PACKAGE AUTHORIZATION
 → OWNER / CONTROLLER NEXT-WORK-PACKAGE DECISION
 ```
 
-This C01 closeout did not change production, deploy brand assets or fix the Liquid defect. C02 Repository, IP and GitHub Decision is in progress through bounded gates: C02A inventory is complete, C02B records the Owner visibility/hosting/licensing policy, C02B2 records the deferred continuity architecture, C02C records the Owner asset/IP admission policy while deferring implementation to C04 and C02D has applied and verified classic protection for `main`. IP-04 is closed against its existing acceptance criterion. C02 remains incomplete because C02E repository governance controls are unstarted and unauthorized. No C03 or C04 implementation authority exists.
+This package did not change production, deploy brand assets or fix the Liquid defect. C02E policy is complete while default-branch activation of candidate CODEOWNERS/Dependabot files remains deferred, so IP-05 remains open in that exact state. C03 determinism, whole-tracked security scanning, universal candidate Quality coverage and Action/toolchain immutability are complete. `SEC-02` remains a later hosting/release/runtime item. No C04 implementation authority exists.
 
 # Appendix A — Page / Route Completion Matrix
 
@@ -2361,14 +2411,14 @@ This is the durable V2 backlog recovered from the completed Full Product Complet
 | IP-02 | P1 | License | Owner selected proprietary first-party source plus retained third-party licenses/notices; final legal text and repository license/notice state remain unimplemented | Owner/legal-approved proprietary or open-license position | Repository root; GitHub license metadata | Ambiguous reuse and enforcement rights | IP-01; `LEGAL_REVIEW_REQUIRED` | C02 | C02B license/IP policy | Exact license/notice state matches Owner decision and repository visibility | OPEN |
 | IP-03 | P1 | Brand asset admission | Owner asset policy is decided and immutable masters are protected externally; provenance, approved derivatives and existing-asset reconciliation remain pending C04 | Provenance-controlled master/derivative policy | Owner asset paths and hashes; V2 sections 14/28 | Brand leakage, uncontrolled copies or inability to ship assets | IP-01/02; Owner asset decision | C02/C04 | C02C asset/IP decision, then C04A provenance | Owner approves storage, exposure, derivative and retention rules | OPEN |
 | IP-04 | P1 | Branch protection | Classic protection is active on `main`; PR promotion, strict app-bound `verify`, administrator enforcement and conversation resolution are required, with force push/deletion disabled | Protected production branch with approved required checks/deploy controls | GitHub settings evidence; `.github/workflows/**` | Unreviewed or failing code can reach production | Owner settings authority; CI-01 | C02 | C02D branch and deployment protection | Direct unsafe promotion is blocked and required checks are enforced | CLOSED |
-| IP-05 | P2 | Ownership/dependency governance | CODEOWNERS, security policy, Dependabot and release/tag policy are incomplete or absent | Owner-approved ownership, reporting, dependency and release policy | `.github/**`; repository root; V2 sections 28/49 | Slow review/security response and weak release traceability | IP-01/02/04 | C02 | C02E repository governance controls | Policies exist, settings match them and no authority is delegated beyond Owner decisions | OPEN |
-| BUILD-01 | P1 | Generated state | Next tooling can mutate tracked `next-env.d.ts` | Explicit stable tracking/generation policy with no unexplained drift | `next-env.d.ts`; Next configuration; prior clean-build evidence | Dirty builds and non-reproducible validation | C01; exact framework behavior | C03 | C03A1 `next-env.d.ts` determinism | Clean authorized build leaves the expected tracked state byte-stable | OPEN |
-| BUILD-02 | P1 | Generated artifacts | Generated bridge CSS and ignored/public artifacts have incomplete ownership rules | Each generated artifact classified, reproducible and validated | `.gitignore`; generation scripts; public/generated CSS contracts | Stale or environment-specific release content | BUILD-01 | C03 | C03A2 generated-artifact ownership | Every generated path has source, command, tracking class and dirty-check coverage | OPEN |
-| BUILD-03 | P1 | Clean reproducibility | Exact dependency installation and current-HEAD clean build are not fully proven | Clean-clone/install/build/verify recipe with empty post-build diff | `package.json`; `package-lock.json`; `next.config.ts`; workflows | Candidate evidence may not reproduce | BUILD-01/02 | C03 | C03A3 clean-environment reproducibility | Exact pinned environment produces expected export and empty Git diff | OPEN |
-| CI-01 | P1 | Candidate CI coverage | Important local checks are not uniformly enforced on current candidate branches | Current candidate Quality gate covers required deterministic/security/route predicates | `.github/workflows/quality.yml`; `post-v15-maintenance.yml`; scripts | False readiness and regressions after review | BUILD-03; TEST-01 | C03/C24 | C03C candidate coverage, finalized in C24 | Required checks run on governed branches and fail on seeded defects | OPEN |
-| CI-02 | P1 | CI supply chain | Node/tool versions and third-party Action refs require stronger immutability | Pinned runtime/toolchain and immutable reviewed Action references | `.github/workflows/**`; package engines/tool config | Non-determinism and workflow supply-chain exposure | BUILD-03; IP-04 | C03 | C03D CI supply-chain hardening | Exact versions/SHAs are documented, enforced and reproducible | OPEN |
-| SEC-01 | P1 | Secret scanning | Existing security contract does not prove whole-repository secret coverage | Whole-tracked-repository scan with redacted reporting and seeded fixtures | `scripts/security-v14-contract.mjs`; all tracked files | Credential exposure may escape current validator | C03 foundation | C03 | C03B1 whole-repository secret scanner | Representative secret patterns in every scoped family fail without exposing values | OPEN |
-| SEC-02 | P1 | Runtime/security boundaries | JSON-LD, external assets, future APIs/forms/chat and hosting controls need explicit end-to-end ownership | Verified safe serialization, external-resource policy and dormant-feature/hosting boundaries | `app/**`; `components/**`; `lib/**`; hosting configuration; V2 section 27 | XSS, privacy, endpoint or policy exposure | SEC-01; legal/hosting evidence | C03/C19/C25 | C03B2 code scan plus later hosting/release security gate | Unsafe sinks/resources are absent or justified; future runtime features remain inactive | OPEN |
+| IP-05 | P2 | Ownership/dependency governance | Policy and provider settings are complete; candidate CODEOWNERS/Dependabot files await default-branch activation | Owner-approved ownership, reporting, dependency and release policy | `.github/**`; repository root; V2 sections 28/49 | Slow review/security response and weak release traceability | IP-01/02/04 | C02 | C02E repository governance controls | Policies exist, settings match them and no authority is delegated beyond Owner decisions | OPEN_DEFERRED_ACTIVATION |
+| BUILD-01 | P1 | Generated state | Tracked `next-env.d.ts` is the exact pinned Next build/typegen canonical form and is build-byte-stable | Explicit stable tracking/generation policy with no unexplained drift | `next-env.d.ts`; Next configuration; generated-state contract | Dirty builds and non-reproducible validation | C01; exact framework behavior | C03 | C03A1 `next-env.d.ts` determinism | Clean authorized build leaves the expected tracked state byte-stable | CLOSED |
+| BUILD-02 | P1 | Generated artifacts | Active generated paths have source, command, tracking, consumer and dirty-check ownership | Each generated artifact classified, reproducible and validated | `.gitignore`; generation scripts; `docs/architecture/GENERATED-STATE.md` | Stale or environment-specific release content | BUILD-01 | C03 | C03A2 generated-artifact ownership | Every generated path has source, command, tracking class and dirty-check coverage | CLOSED |
+| BUILD-03 | P1 | Clean reproducibility | Pinned clean install/build/verify produces the static export with empty tracked/untracked candidate drift | Clean-clone/install/build/verify recipe with empty post-build diff | `package.json`; `package-lock.json`; `.node-version`; workflows | Candidate evidence may not reproduce | BUILD-01/02 | C03 | C03A3 clean-environment reproducibility | Exact pinned environment produces expected export and empty Git diff | CLOSED |
+| CI-01 | P1 | Candidate CI coverage | Quality runs on every non-production push and every PR to `main`, retaining the protected `verify` context | Current candidate Quality gate covers required deterministic/security/route predicates | `.github/workflows/quality.yml`; scripts | False readiness and regressions after review | BUILD-03; TEST-01 | C03/C24 | C03C candidate coverage, finalized in C24 | Required checks run on governed branches and fail on seeded defects | CLOSED |
+| CI-02 | P1 | CI supply chain | Node is exact-pinned and every external Action reference is an immutable reviewed SHA under least privilege | Pinned runtime/toolchain and immutable reviewed Action references | `.github/workflows/**`; `.node-version`; workflow contract | Non-determinism and workflow supply-chain exposure | BUILD-03; IP-04 | C03 | C03D CI supply-chain hardening | Exact versions/SHAs are documented, enforced and reproducible | CLOSED |
+| SEC-01 | P1 | Secret scanning | Whole-tracked scanner redacts values and runtime-only seeded tests prove all representative classes fail | Whole-tracked-repository scan with redacted reporting and seeded fixtures | `scripts/repository-secret-*.mjs`; all tracked files | Credential exposure may escape current validator | C03 foundation | C03 | C03B1 whole-repository secret scanner | Representative secret patterns in every scoped family fail without exposing values | CLOSED |
+| SEC-02 | P1 | Runtime/security boundaries | C03 source audit is complete with no P0/P1 finding; hosting/release/runtime activation evidence remains later-stage | Verified safe serialization, external-resource policy and dormant-feature/hosting boundaries | `docs/architecture/SECURITY-SOURCE-AUDIT.md`; hosting configuration; V2 section 27 | XSS, privacy, endpoint or policy exposure | SEC-01; legal/hosting evidence | C03/C19/C25 | C03B2 code scan plus later hosting/release security gate | Unsafe sinks/resources are absent or justified; future runtime features remain inactive | OPEN_WITH_C03_SOURCE_AUDIT_COMPLETE |
 
 ## B.2 Brand, Liquid and global visual system
 

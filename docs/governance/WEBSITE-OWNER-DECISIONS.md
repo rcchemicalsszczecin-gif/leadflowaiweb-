@@ -1,7 +1,7 @@
 # LEADFLOWAI — OWNER DECISIONS
 
 STATUS: CURRENT
-DATE: 2026-08-15
+DATE: 2026-08-16
 OWNER: Paweł Niewiadomski
 
 This file records current product/business/runtime decisions. Historical execution detail remains in dedicated historical/decision/evidence files and must not override `CURRENT-STATE.md`.
@@ -165,12 +165,13 @@ Current classifications:
 - `C02C_ASSET_IMPLEMENTATION=DEFERRED_TO_C04`;
 - `C02D_PROVIDER_PROTECTION_EXECUTION=PASS`;
 - `IP_04_STATUS=CLOSED`;
-- `NEXT_C02_GATE=C02E_REPOSITORY_GOVERNANCE_CONTROLS`;
-- `C02E_IMPLEMENTATION_AUTHORIZED=NO`;
-- `C02E_STARTED=NO`;
-- `C03_STARTED=NO`.
+- `C02E_FINAL_CLASSIFICATION=POLICY_COMPLETE_ACTIVATION_DEFERRED`;
+- `IP_05_STATUS=OPEN_DEFERRED_ACTIVATION`;
+- `C03_FINAL_CLASSIFICATION=COMPLETE`;
+- `C04_IMPLEMENTATION_AUTHORIZED=NO`;
+- `C04_STARTED=NO`.
 
-C01 truth reconciliation is complete, but OPS-03 and OPS-04 remain open until separately satisfied. C02 is in progress only through bounded Owner/Controller-authorized work packages; C02A, C02B, C02B2 and C02C are recorded, and C02D classic protection is now active and verified. C02E, C03 and C04 remain unstarted and unauthorized. Candidate and governance work remain non-production until separate Owner promotion, merge and deployment decisions.
+C01 truth reconciliation is complete, but OPS-03 and OPS-04 remain open until separately satisfied. C02A–C02D are recorded or complete; C02E policy is complete while default-branch activation of its candidate files remains deferred. C03 foundation is complete on the governance candidate. C04 remains unstarted and unauthorized. Candidate and governance work remain non-production until separate Owner promotion, merge and deployment decisions.
 
 ### C02 repository, hosting and licensing policy
 
@@ -320,7 +321,31 @@ C02D_PROVIDER_PROTECTION_EXECUTION=PASS
 IP_04_STATUS=CLOSED
 ```
 
-Zero approving reviews prevents a single-Owner review deadlock; it does not bypass the pull-request, strict `verify`, administrator-enforcement or conversation-resolution controls. C02D did not change `main`, Pages, workflows or production. C02E ownership, security, dependency and signing controls remain separate and unauthorized.
+Zero approving reviews prevents a single-Owner review deadlock; it does not bypass the pull-request, strict `verify`, administrator-enforcement or conversation-resolution controls. C02D did not change `main`, Pages, workflows or production. C02D did not itself authorize C02E; the later bounded C02E/C03 package recorded below supplies that separate authority.
+
+### C02E repository governance and C03 foundation decision
+
+The Owner-authorized C02E/C03 package establishes repository-wide ownership by `@rcchemicalsszczecin-gif`, private vulnerability reporting through `kontakt@leadflowai.pl`, conservative weekly npm/GitHub Actions Dependabot candidate configuration, and immutable release/tag governance. CODEOWNERS does not enable required code-owner review or add a second reviewer requirement.
+
+GitHub vulnerability alerts and automated security fixes are enabled. Existing provider secret scanning and push protection remain enabled. `.github/CODEOWNERS` and `.github/dependabot.yml` are candidate controls until they reach the default branch through a separately authorized promotion; this package does not merge `main`.
+
+The C03 foundation pins Node `22.23.1` / npm `10.9.8`, treats `next-env.d.ts` as the tracked Next.js build-canonical form, classifies generated outputs, scans every tracked file for representative secret classes with redacted output and runtime-only seeded tests, gives Quality universal non-production-push and PR-to-main coverage, and pins every external Action to an immutable reviewed SHA. These controls do not change product copy, routes, visual design, brand masters, runtime activation, Pages, or production.
+
+```text
+CODEOWNERS_CANDIDATE_IMPLEMENTED=YES
+CODEOWNERS_DEFAULT_BRANCH_ACTIVE=NO
+REQUIRE_CODE_OWNER_REVIEW=NO
+DEPENDABOT_CONFIG_CANDIDATE_IMPLEMENTED=YES
+DEPENDABOT_ALERTS_PROVIDER_STATE=ENABLED
+DEPENDABOT_AUTOMATED_SECURITY_FIXES_PROVIDER_STATE=ENABLED
+RELEASE_TAG_POLICY_IMPLEMENTED=YES
+IP_05_POLICY_STATE=COMPLETE
+IP_05_DEFAULT_BRANCH_FILE_ACTIVATION=DEFERRED_TO_C26_OR_EXACT_PROMOTION
+IP_05_STATUS=OPEN_DEFERRED_ACTIVATION
+C02E_FINAL_CLASSIFICATION=POLICY_COMPLETE_ACTIVATION_DEFERRED
+C03_FINAL_CLASSIFICATION=COMPLETE
+C04_IMPLEMENTATION_AUTHORIZED=NO
+```
 
 ## 9. Current Owner brand and Liquid inputs
 
@@ -373,7 +398,7 @@ Still separate from automatic implementation:
 - public chatbot runtime/model configuration if/when enabled;
 - optional online lead form if explicitly reopened;
 - production analytics/consent tooling;
-- Dependabot/repository security settings;
+- default-branch activation of candidate CODEOWNERS/Dependabot files through a separately authorized promotion;
 - Cloudflare/visibility continuity planning and separately authorized implementation;
 - final `LICENSE` / `NOTICE` legal drafting and implementation;
 - C04 asset provenance, derivative creation/admission and existing-asset reconciliation;

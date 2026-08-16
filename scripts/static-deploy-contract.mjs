@@ -33,7 +33,14 @@ if (!runtime.includes("https://api.leadflowai.pl") || !env.includes("NEXT_PUBLIC
 if (cname !== "leadflowai.pl") fail("CNAME artifact identity mismatch");
 if (!existsSync("public/.nojekyll")) fail(".nojekyll marker missing");
 
-for (const token of ["actions/configure-pages@v5", "actions/upload-pages-artifact@v4", "actions/deploy-pages@v4", "path: ./out", "branches:", "- main"]) {
+for (const token of [
+  "actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b",
+  "actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b",
+  "actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e",
+  "path: ./out",
+  "branches:",
+  "- main",
+]) {
   if (!pages.includes(token)) fail(`Pages workflow missing ${token}`);
 }
 
