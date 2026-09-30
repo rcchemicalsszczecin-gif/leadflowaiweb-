@@ -106,23 +106,53 @@ jobs:
           grep -q 'RAG' out/uslugi/index.html
           grep -q 'Monitoring' out/uslugi/index.html
           grep -q 'Źródła i standardy' out/wiedza/ai-search-google-co-robic-2026/index.html
-          grep -q 'pracują jak produkt' out/index.html
-          grep -q 'v14-browser' out/index.html
-          grep -q 'v14-phone' out/index.html
-          grep -q 'v14-signature-stage' out/index.html
-          grep -q 'LIQUID WEBGL' out/index.html
-          grep -q 'SPATIAL 3D' out/index.html
-          grep -q 'REAL-TIME SURFACE · SPATIAL PRODUCT' out/index.html
-          grep -q 'Sześć warstw jednego produktu cyfrowego' out/index.html
-          grep -q 'Jedna marka. Trzy urządzenia' out/index.html
-          grep -q 'LIQUID WEB CONSTRUCTOR' out/index.html
-          grep -q 'Z płynnej powierzchni' out/index.html
-          grep -q '/v14.css' out/index.html
-          grep -q '/v14-shell.css' out/index.html
-          grep -q 'v14-mobile-nav' out/index.html
-          grep -q 'Przejdź do treści' out/index.html
-          grep -q 'id="main-content"' out/index.html
-          grep -q 'id="process"' out/index.html
+          for marker in \
+            'pomagają firmie rosnąć' \
+            'Porozmawiajmy o projekcie' \
+            'Zobacz prawdziwe realizacje' \
+            'Zacznij od potrzeby' \
+            'Ten sam cel. Inne decyzje' \
+            'INTERAKCJA Z UZASADNIENIEM' \
+            'WIDOCZNOŚĆ: SEO · AEO · GEO' \
+            'JAK PRACUJEMY' \
+            'REALIZACJE WŁASNE I MARKI POWIĄZANE' \
+            'WIEDZA PRZED DECYZJĄ' \
+            'PYTANIA PRZED STARTEM' \
+            'PRZYGOTUJ PIERWSZĄ WIADOMOŚĆ' \
+            'Zacznijmy od celu' \
+            'kontakt@leadflowai.pl'; do
+            grep -Fq -- "$marker" out/index.html
+          done
+
+          for marker in \
+            'v14-browser' \
+            'v14-phone' \
+            'v14-signature-stage' \
+            'v14-liquid-surface' \
+            '/v14.css' \
+            '/v14-shell.css' \
+            'v14-mobile-nav' \
+            'Przejdź do treści' \
+            'id="main-content"' \
+            'id="process"'; do
+            grep -Fq -- "$marker" out/index.html
+          done
+
+          test "$(grep -o '<h1[ >]' out/index.html | wc -l)" -eq 1
+
+          for literal in \
+            'data-static-export-compatibility' \
+            'pracują jak produkt' \
+            'REAL-TIME SURFACE · SPATIAL PRODUCT' \
+            'Sześć warstw jednego produktu cyfrowego' \
+            'Jedna marka. Trzy urządzenia' \
+            'LIQUID WEB CONSTRUCTOR' \
+            'Z płynnej powierzchni'; do
+            if grep -Fq -- "$literal" out/index.html; then
+              echo "Retired homepage literal leaked into static artifact: $literal"
+              exit 1
+            fi
+          done
           grep -q 'Tervyxa Systems sp. z o.o.' out/o-nas/index.html
           if grep -Rqs 'api.leadflowai.pl/leads' out; then
             echo "Disabled lead endpoint leaked into static artifact"
@@ -205,18 +235,21 @@ jobs:
           curl -fsS http://127.0.0.1:3000/sitemap.xml | grep -q 'ai-search-google-co-robic-2026'
           curl -fsS http://127.0.0.1:3000/sitemap.xml | grep -q 'o-nas'
           curl -fsS http://127.0.0.1:3000/robots.txt | grep -q 'sitemap.xml'
-          grep -q 'pracują jak produkt' /tmp/home.html
-          grep -q 'v14-browser' /tmp/home.html
-          grep -q 'v14-phone' /tmp/home.html
-          grep -q 'v14-signature-stage' /tmp/home.html
-          grep -q 'LIQUID WEBGL' /tmp/home.html
-          grep -q 'SPATIAL 3D' /tmp/home.html
-          grep -q 'Sześć warstw jednego produktu cyfrowego' /tmp/home.html
-          grep -q 'Jedna marka. Trzy urządzenia' /tmp/home.html
-          grep -q 'LIQUID WEB CONSTRUCTOR' /tmp/home.html
-          grep -q '/v14.css' /tmp/home.html
-          grep -q '/v14-shell.css' /tmp/home.html
-          grep -q 'v14-mobile-nav' /tmp/home.html
-          grep -q 'id="main-content"' /tmp/home.html
-          grep -q 'id="process"' /tmp/home.html
+          for marker in \
+            'pomagają firmie rosnąć' \
+            'Porozmawiajmy o projekcie' \
+            'Zobacz prawdziwe realizacje' \
+            'PRZYGOTUJ PIERWSZĄ WIADOMOŚĆ' \
+            'Zacznijmy od celu' \
+            'v14-browser' \
+            'v14-phone' \
+            'v14-signature-stage' \
+            'v14-liquid-surface' \
+            '/v14.css' \
+            '/v14-shell.css' \
+            'v14-mobile-nav' \
+            'id="main-content"' \
+            'id="process"'; do
+            grep -Fq -- "$marker" /tmp/home.html
+          done
           echo "STATIC_ROUTE_SMOKE_PASS routes=44 sitemap=PASS homepage-v14=PASS signature-liquid=PASS signature-spatial=PASS v14-shell=PASS mobile-nav=PASS process-anchor=PASS services=PASS devices=PASS liquid=PASS full-offer-v13=PASS expanded-services=20 knowledge=20plus accessibility=PASS trust=PASS robots=PASS"
