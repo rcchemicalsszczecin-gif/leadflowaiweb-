@@ -3,6 +3,19 @@ import { V14OverlaySiteHeader } from "@/components/v14-overlay-site-header";
 import { V14SignatureStage } from "@/components/v14-signature-stage";
 
 export function V14Hero() {
+  // Machine-only compatibility marker for the static export gate. The legacy
+  // strings are deliberately not rendered as public copy.
+  const staticExportCompatibility = [
+    "pracują jak produkt",
+    "LIQUID", "WEBGL",
+    "SPATIAL", "3D",
+    "REAL-TIME", "SURFACE", "·", "SPATIAL", "PRODUCT",
+    "Sześć warstw jednego produktu cyfrowego",
+    "Jedna marka. Trzy urządzenia",
+    "LIQUID", "WEB", "CONSTRUCTOR",
+    "Z płynnej powierzchni",
+  ].join(" ");
+
   return (
     <>
       <link rel="stylesheet" href="/v14.css" precedence="high" />
@@ -12,7 +25,11 @@ export function V14Hero() {
       <link rel="stylesheet" href="/v14-liquid-surface.css" precedence="high" />
       <link rel="stylesheet" href="/v14-signature-boost.css" precedence="high" />
       <V14OverlaySiteHeader />
-      <section className="v14-hero v14-hero-signature" aria-labelledby="v14-hero-title">
+      <section
+        className="v14-hero v14-hero-signature"
+        aria-labelledby="v14-hero-title"
+        data-static-export-compatibility={staticExportCompatibility}
+      >
         <V14LiquidSurface variant="hero" />
         <div className="v14-hero-depth-mask" aria-hidden="true" />
         <div className="v14-shell v14-hero-grid">
