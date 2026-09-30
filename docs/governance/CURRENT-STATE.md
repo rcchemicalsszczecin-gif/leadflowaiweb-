@@ -429,7 +429,7 @@ OPERATIONS_NEGATIVE_TESTS=8_OF_8
 C01_CORE_CONTRACTS=3_OF_3_PASS
 CURRENT_IMMEDIATE_ROLLBACK_TARGET=NOT_PROVEN
 C01_RESIDUAL_OPEN_BACKLOG=OPS-03,OPS-04
-CURRENT_PRODUCT_COMPLETION_MACRO_STAGE=C04_C05_C06_C07_C08_CANDIDATE_INTEGRATION
+CURRENT_PRODUCT_COMPLETION_MACRO_STAGE=C07F_C09_C10_C11_HOMEPAGE_CANDIDATE
 C02A_INVENTORY=COMPLETE
 C02B_OWNER_VISIBILITY_LICENSING_DECISION=RECORDED
 C02B2_CONTINUITY_ARCHITECTURE_DECISION=RECORDED
@@ -455,11 +455,15 @@ C05_STATUS=COMPLETE_CANDIDATE
 C06A_VISUAL_BASELINE=COMPLETE
 C06_OWNER_ART_DIRECTION_DECISION=APPROVED_OPTION_A
 C06_VISUAL_SYSTEM_FOUNDATION=IMPLEMENTED_CANDIDATE
-C07_TECHNICAL_CORRECTION=PASS
-OWNER_LIQUID_ORIENTATION_PASS=PENDING_FINAL_OWNER_VISUAL_ACCEPTANCE
-C07_STATUS=TECHNICAL_CORRECTION_COMPLETE_PENDING_OWNER_VISUAL_ACCEPTANCE
+C07_TECHNICAL_CORRECTION=HISTORICAL_PASS_REOPENED_BY_OWNER_VISUAL_REVIEW
+OWNER_LIQUID_ORIENTATION_PASS=PENDING_OWNER_RECHECK
+C07_STATUS=C07F_CORRECTION_CANDIDATE_READY_FOR_OWNER_RECHECK
 C08_STATUS=COMPLETE_CANDIDATE
-NEXT_WORK_PACKAGE=C09_REQUIRES_SEPARATE_OWNER_CONTROLLER_AUTHORITY
+C09_STATUS=READY_FOR_OWNER_REVIEW
+C10_STATUS=COMPLETE_CANDIDATE
+C11_STATUS=COMPLETE_CANDIDATE
+OWNER_COMPLETE_HOMEPAGE_PASS=PENDING_OWNER_REVIEW
+NEXT_WORK_PACKAGE=OWNER_CONTROLLER_REVIEW_REQUIRED_BEFORE_C12
 ```
 
 Current product status and program:
@@ -469,7 +473,7 @@ Current product status and program:
 - `CURRENT_PRODUCT_COMPLETION_PROGRAM=A→Z / C01–C27`;
 - `C01_TRUTH_RECONCILIATION=COMPLETE`;
 - `C01_RESIDUAL_OPEN_BACKLOG=OPS-03,OPS-04`;
-- `CURRENT_PRODUCT_COMPLETION_MACRO_STAGE=C04_C05_C06_C07_C08_CANDIDATE_INTEGRATION`;
+- `CURRENT_PRODUCT_COMPLETION_MACRO_STAGE=C07F_C09_C10_C11_HOMEPAGE_CANDIDATE`;
 - `C02A_INVENTORY=COMPLETE`;
 - `C02B_OWNER_VISIBILITY_LICENSING_DECISION=RECORDED`;
 - `C02B2_CONTINUITY_ARCHITECTURE_DECISION=RECORDED`;
@@ -492,11 +496,15 @@ Current product status and program:
 - `C06A_VISUAL_BASELINE=COMPLETE`;
 - `C06_OWNER_ART_DIRECTION_DECISION=APPROVED_OPTION_A`;
 - `C06_VISUAL_SYSTEM_FOUNDATION=IMPLEMENTED_CANDIDATE`;
-- `C07_TECHNICAL_CORRECTION=PASS`;
-- `OWNER_LIQUID_ORIENTATION_PASS=PENDING_FINAL_OWNER_VISUAL_ACCEPTANCE`;
-- `C07_STATUS=TECHNICAL_CORRECTION_COMPLETE_PENDING_OWNER_VISUAL_ACCEPTANCE`;
+- `C07_TECHNICAL_CORRECTION=HISTORICAL_PASS_REOPENED_BY_OWNER_VISUAL_REVIEW`;
+- `OWNER_LIQUID_ORIENTATION_PASS=PENDING_OWNER_RECHECK`;
+- `C07_STATUS=C07F_CORRECTION_CANDIDATE_READY_FOR_OWNER_RECHECK`;
 - `C08_STATUS=COMPLETE_CANDIDATE`;
-- `NEXT_WORK_PACKAGE=C09_REQUIRES_SEPARATE_OWNER_CONTROLLER_AUTHORITY`.
+- `C09_STATUS=READY_FOR_OWNER_REVIEW`;
+- `C10_STATUS=COMPLETE_CANDIDATE`;
+- `C11_STATUS=COMPLETE_CANDIDATE`;
+- `OWNER_COMPLETE_HOMEPAGE_PASS=PENDING_OWNER_REVIEW`;
+- `NEXT_WORK_PACKAGE=OWNER_CONTROLLER_REVIEW_REQUIRED_BEFORE_C12`.
 
 V1 is superseded as the current top-level Master Plan and retained as historical product/delivery provenance. V15 remains the active subordinate Search / SEO / AEO / GEO / AI Search domain plan and candidate evidence program. Neither classification promotes candidate code to production.
 
@@ -536,15 +544,48 @@ Owner-related first-party work rather than external client outcomes. C05 is
 complete for the candidate; deeper case-study composition remains C19.
 
 Option A establishes the approved blue/purple/cyan/navy/silver visual
-foundation. Green is limited to functional status. The Liquid diagnosis found
-duplicate shader-space Y inversion and global/local coordinate disagreement;
-the candidate removes that inversion at the UV boundary and normalizes pointer
-mapping while preserving one root-mounted world, reduced-motion and no-WebGL
-fallbacks. Technical C07 correction passes, but final Owner visual acceptance
-is still required. The shared header, accessible mobile navigation, footer,
-404 and shell fallbacks satisfy C08 at candidate level. C09 has not started.
+foundation. Green is limited to functional status. The first technical Liquid
+correction was later rejected by the Owner's visual review and is preserved as
+history, not final acceptance. The shared header, accessible mobile
+navigation, footer, 404 and shell fallbacks satisfy C08 at candidate level.
+The later C07F/C09-C11 package now owns the reopened hero correction and the
+homepage completion candidate described below.
 
-## 15. Production protection
+## 15. C07F and C09-C11 homepage completion candidate
+
+The Owner's later visual review of `16152483d745d3756fd2575f1059b726161755a0`
+reopened the hero-specific Liquid diagnostic. The new candidate maps DOM
+pointer Y to the perspective water plane at the correct ownership boundary:
+visual top maps to the far plane and visual bottom to the near plane. A stable
+near-field depth cue reinforces the physical reading. No canvas, DOM content
+or overlay is blindly flipped.
+
+The homepage candidate now includes a buyer-first hero, early fit/evidence,
+six natural-Polish service pathways, labeled first-party responsive proof,
+purpose-led interaction, a direct SEO/AEO/GEO explanation, client-facing
+delivery stages, evidence-led ecosystem projects, company trust, curated
+knowledge, seven buyer questions, honest direct-email preparation and one
+closing action. Optional future media roles are governed by
+`docs/architecture/HOMEPAGE-MEDIA-SLOTS.md`; none is required for meaning.
+
+```text
+C07F_HERO_LIQUID_CORRECTION_CANDIDATE=READY_FOR_OWNER_RECHECK
+OWNER_LIQUID_ORIENTATION_PASS=PENDING_OWNER_RECHECK
+C09_STATUS=READY_FOR_OWNER_REVIEW
+C10_STATUS=COMPLETE_CANDIDATE
+C11_STATUS=COMPLETE_CANDIDATE
+OWNER_HOMEPAGE_HERO_PASS=PENDING_OWNER_REVIEW
+OWNER_COMPLETE_HOMEPAGE_PASS=PENDING_OWNER_REVIEW
+PUBLIC_HOMEPAGE_LANGUAGE=POLISH
+DECORATIVE_TECHNICAL_ENGLISH_COUNT=0
+NEXT_SECURITY_VERSION=16.3.7
+SHARP_SECURITY_RESOLUTION=0.35.5
+DEPENDENCY_AUDIT=PASS
+DEPENDENCY_SECURITY_STATE=CANDIDATE_ONLY_NOT_PRODUCTION
+C12_STARTED=NO
+```
+
+## 16. Production protection
 
 No candidate branch, successful CI run, Codex report or local PASS automatically authorizes:
 - merge to `main`;

@@ -94,6 +94,7 @@ Important current families include:
 - `docs/plans/V15-SEARCH-MASTER-PLAN.md` — active subordinate Search / SEO / AEO / GEO / AI Search domain plan and candidate evidence program.
 - `docs/quality/V15-*`
 - `docs/architecture/*`
+- `docs/architecture/HOMEPAGE-MEDIA-SLOTS.md` — optional Owner-media roles and responsive, alt and crop boundaries for the C09-C11 homepage candidate.
 - current scripts/contracts and implementation.
 
 A plan marked ACTIVE/CURRENT in historical text does not override a later completed production/candidate checkpoint.

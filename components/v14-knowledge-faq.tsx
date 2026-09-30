@@ -3,7 +3,6 @@ import { knowledgeArticles } from "@/lib/knowledge-registry";
 const featuredSlugs = [
   "jak-zaplanowac-strone-firmowa",
   "seo-aeo-geo-jedna-architektura",
-  "ai-search-google-co-robic-2026",
 ] as const;
 
 const featured = featuredSlugs
@@ -12,24 +11,39 @@ const featured = featuredSlugs
 
 const faqs = [
   {
-    question: "Czy SEO, AEO i GEO są częścią budowy strony?",
+    question: "Ile trwa realizacja strony?",
     answer:
-      "Tak — fundament techniczny, struktura informacji, semantyka, metadata i dane strukturalne najlepiej projektować razem ze stroną. Rozbudowany research i stały rozwój widoczności mogą być osobnym zakresem.",
+      "Termin zależy od zakresu, materiałów i integracji. Po diagnozie przedstawiamy etapy oraz założenia.",
   },
   {
-    question: "Czy każda strona potrzebuje AI, chatbota albo WebGL?",
+    question: "Jak wygląda wycena?",
     answer:
-      "Nie. Te moduły mają sens tylko wtedy, gdy rozwiązują konkretny problem. Podstawą pozostaje czytelna, szybka i dostępna strona, która działa także bez efektów i dodatkowych usług.",
+      "Najpierw ustalamy cel i stan obecny. Wycena opisuje zakres, etapy oraz wyłączenia.",
+  },
+  {
+    question: "Czy SEO, AEO i GEO są częścią budowy strony?",
+    answer:
+      "Tak. Fundament techniczny, struktura informacji i semantyka powstają razem ze stroną. Stały rozwój widoczności może być osobnym zakresem.",
+  },
+  {
+    question: "Co dzieje się po publikacji?",
+    answer:
+      "Możemy objąć serwis opieką, monitoringiem i rozwojem. Zakres utrzymania ustalamy oddzielnie.",
+  },
+  {
+    question: "Czy można zacząć od audytu?",
+    answer:
+      "Tak. Audyt może być samodzielnym pierwszym krokiem. Porządkuje problemy, ryzyka i kolejność decyzji.",
   },
   {
     question: "Czy modernizujecie istniejące strony bez utraty ważnych URL-i?",
     answer:
-      "Tak. Modernizacja powinna zaczynać się od audytu adresów, treści, linkowania i indeksowalności. Wartościowych elementów nie usuwa się tylko dlatego, że zmienia się design lub technologia.",
+      "Tak. Zaczynamy od audytu adresów, treści, linkowania i indeksowalności, aby chronić wartościowe elementy.",
   },
   {
     question: "Jak wygląda pierwszy krok, jeśli nie mam gotowej specyfikacji?",
     answer:
-      "Wystarczy opisać rodzaj projektu, główny cel i obecny stan. Zakres, ryzyka, technologię i kolejność prac można uporządkować przed rozpoczęciem produkcji.",
+      "Wystarczy opisać projekt, cel i obecny stan. Zakres, ryzyka i kolejność prac ustalimy przed rozpoczęciem.",
   },
 ] as const;
 
@@ -38,17 +52,15 @@ export function V14KnowledgeFaq() {
     <section className="v14-knowledge" aria-labelledby="v14-knowledge-title">
       <div className="v14-shell">
         <div className="v14-section-head v14-knowledge-head">
-          <p>07 / WIEDZA I DECYZJE</p>
-          <h2 id="v14-knowledge-title">Najpierw odpowiedź. Potem kontekst i dowody.</h2>
-          <span>Wiedza ma pomagać podjąć decyzję, a nie tylko zwiększać liczbę tekstów w serwisie.</span>
+          <p>WIEDZA PRZED DECYZJĄ</p>
+          <h2 id="v14-knowledge-title">Konkretny temat, krótka odpowiedź, potem pełny kontekst.</h2>
+          <span>Wybraliśmy trzy materiały, które pomagają uporządkować projekt, widoczność i zmiany w wyszukiwaniu.</span>
         </div>
 
         <div className="v14-knowledge-grid">
-          {featured.map((article, index) => (
+          {featured.map((article) => (
             <article key={article.slug}>
-              <small>0{index + 1} / WIEDZA</small>
               <h3>{article.title}</h3>
-              <p>{article.summary}</p>
               <a href={`/wiedza/${article.slug}`}>Czytaj dalej <span aria-hidden="true">↗</span></a>
             </article>
           ))}
@@ -56,8 +68,8 @@ export function V14KnowledgeFaq() {
 
         <div className="v14-faq-layout">
           <div>
-            <p className="v14-faq-kicker">FAQ / PRZED STARTEM</p>
-            <h2>Najczęstsze pytania przed decyzją o projekcie.</h2>
+            <p className="v14-faq-kicker">PYTANIA PRZED STARTEM</p>
+            <h2>Co warto ustalić, zanim zaczniemy.</h2>
             <a href="/wiedza">Przejdź do całej bazy wiedzy <span aria-hidden="true">↗</span></a>
           </div>
           <div className="v14-faq-list">

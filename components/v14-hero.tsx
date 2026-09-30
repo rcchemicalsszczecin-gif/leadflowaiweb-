@@ -17,20 +17,20 @@ export function V14Hero() {
         <div className="v14-hero-depth-mask" aria-hidden="true" />
         <div className="v14-shell v14-hero-grid">
           <div className="v14-hero-copy">
-            <p className="v14-kicker"><span>LEADFLOWAI</span> / WEB PRODUCTS · SEARCH · AI</p>
-            <h1 id="v14-hero-title">Strony internetowe, które <em>pracują jak produkt.</em></h1>
-            <p className="v14-hero-lead">Projektujemy premium WWW i systemy webowe. Design, kod, SEO/AEO/GEO, konwersja i AI działają jako jeden spójny produkt — nie przypadkowe dodatki.</p>
+            <p className="v14-kicker"><span>LEADFLOWAI</span> / STRONY I SYSTEMY WWW</p>
+            <h1 id="v14-hero-title">Wyraziste strony, które <em>pomagają firmie rosnąć.</em></h1>
+            <p className="v14-hero-lead">Projektujemy strony i systemy WWW, które łączą mocny wizerunek, czytelną ofertę, widoczność oraz technologię gotową do dalszego rozwoju.</p>
             <div className="v14-hero-actions">
-              <a className="v14-button v14-button-primary" href="/kontakt">Wyceń projekt <span aria-hidden="true">↗</span></a>
-              <a className="v14-button v14-button-ghost" href="/realizacje">Zobacz realizacje</a>
+              <a className="v14-button v14-button-primary" href="#kontakt">Porozmawiajmy o projekcie <span aria-hidden="true">↗</span></a>
+              <a className="v14-button v14-button-ghost" href="#realizacje">Zobacz prawdziwe realizacje</a>
             </div>
             <ul className="v14-hero-signals" aria-label="Standard projektu">
-              <li><strong>01</strong><span>PRODUCT UI</span></li><li><strong>02</strong><span>SEO / AEO / GEO</span></li><li><strong>03</strong><span>LIQUID WEBGL</span></li><li><strong>04</strong><span>SPATIAL 3D</span></li>
+              <li><strong>01</strong><span>STRATEGIA I UX</span></li><li><strong>02</strong><span>SEO / AEO / GEO</span></li><li><strong>03</strong><span>INTERAKCJA WEBGL</span></li><li><strong>04</strong><span>ROZWÓJ I OPIEKA</span></li>
             </ul>
           </div>
           <V14SignatureStage />
         </div>
-        <div className="v14-hero-water-label" aria-hidden="true"><span>REAL-TIME LIQUID</span><b>WEBGL2 / 45 FPS CAP</b></div>
+        <div className="v14-hero-water-label" aria-hidden="true"><span>INTERAKTYWNA POWIERZCHNIA</span><b>WEBGL2 / LIMIT 45 KL./S</b></div>
       </section>
     </>
   );

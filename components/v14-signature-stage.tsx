@@ -76,27 +76,27 @@ export function V14SignatureStage() {
         </div>
 
         <div className="v14-signature-node v14-signature-node-search">
-          <small>SEARCH LAYER</small>
+          <small>WARSTWA WIDOCZNOŚCI</small>
           <strong>SEO · AEO · GEO</strong>
-          <span>ENTITY / INTENT / ANSWER</span>
+          <span>ENCJE / INTENCJE / ODPOWIEDZI</span>
         </div>
         <div className="v14-signature-node v14-signature-node-ai">
-          <small>AI LAYER</small>
-          <strong>RAG · API · AGENT</strong>
-          <span>CONTEXT / ACTION</span>
+          <small>WARSTWA AI</small>
+          <strong>RAG · API · AGENT AI</strong>
+          <span>KONTEKST / DZIAŁANIE</span>
         </div>
         <div className="v14-signature-node v14-signature-node-runtime">
-          <small>LIVE PRODUCT</small>
-          <strong>UI / DATA / FLOW</strong>
-          <span>PRODUCTION READY</span>
+          <small>DZIAŁAJĄCY PRODUKT</small>
+          <strong>UI / DANE / PRZEPŁYW</strong>
+          <span>GOTOWY DO WERYFIKACJI</span>
         </div>
 
         <div className="v14-signature-depth-scale">
-          <span>DEPTH 00</span><span>DEPTH 80</span><span>DEPTH 160</span><span>DEPTH 240</span>
+          <span>GŁĘBIA 00</span><span>GŁĘBIA 80</span><span>GŁĘBIA 160</span><span>GŁĘBIA 240</span>
         </div>
         <div className="v14-signature-hud">
-          <small>LIQUID ENGINE / WEBGL2</small>
-          <strong>REAL-TIME SURFACE · SPATIAL PRODUCT</strong>
+          <small>INTERAKTYWNA POWIERZCHNIA / WEBGL2</small>
+          <strong>RUCH · GŁĘBIA · PRODUKT WWW</strong>
         </div>
       </div>
     </div>

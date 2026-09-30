@@ -2328,7 +2328,7 @@ C01_PER_FILE_OPERATIONAL_TRUTH=6_OF_6
 C01_NEGATIVE_TESTS=8_OF_8
 C01_CORE_CONTRACTS=3_OF_3_PASS
 C01_RESIDUAL_OPEN_BACKLOG=OPS-03,OPS-04
-CURRENT_PRODUCT_COMPLETION_MACRO_STAGE=C04_C05_C06_C07_C08_CANDIDATE_INTEGRATION
+CURRENT_PRODUCT_COMPLETION_MACRO_STAGE=C07F_C09_C10_C11_HOMEPAGE_CANDIDATE
 C02A_REPOSITORY_IP_GITHUB_INVENTORY=COMPLETE
 C02B_OWNER_VISIBILITY_LICENSING_DECISION=RECORDED
 C02B2_CONTINUITY_ARCHITECTURE_DECISION=RECORDED
@@ -2354,11 +2354,19 @@ C05_STATUS=COMPLETE_CANDIDATE
 C06A_VISUAL_BASELINE=COMPLETE
 C06_OWNER_ART_DIRECTION_DECISION=APPROVED_OPTION_A
 C06_VISUAL_SYSTEM_FOUNDATION=IMPLEMENTED_CANDIDATE
-C07_TECHNICAL_CORRECTION=PASS
-OWNER_LIQUID_ORIENTATION_PASS=PENDING_FINAL_OWNER_VISUAL_ACCEPTANCE
-C07_STATUS=TECHNICAL_CORRECTION_COMPLETE_PENDING_OWNER_VISUAL_ACCEPTANCE
+C07_TECHNICAL_CORRECTION=HISTORICAL_PASS_REOPENED_BY_OWNER_VISUAL_REVIEW
+OWNER_LIQUID_ORIENTATION_PASS=PENDING_OWNER_RECHECK
+C07_STATUS=C07F_CORRECTION_CANDIDATE_READY_FOR_OWNER_RECHECK
 C08_STATUS=COMPLETE_CANDIDATE
-NEXT_WORK_PACKAGE=C09_REQUIRES_SEPARATE_OWNER_CONTROLLER_AUTHORITY
+C09_STATUS=READY_FOR_OWNER_REVIEW
+C10_STATUS=COMPLETE_CANDIDATE
+C11_STATUS=COMPLETE_CANDIDATE
+NEXT_SECURITY_VERSION=16.3.7
+SHARP_SECURITY_RESOLUTION=0.35.5
+DEPENDENCY_AUDIT=PASS
+DEPENDENCY_SECURITY_STATE=CANDIDATE_ONLY_NOT_PRODUCTION
+OWNER_COMPLETE_HOMEPAGE_PASS=PENDING_OWNER_REVIEW
+NEXT_WORK_PACKAGE=OWNER_CONTROLLER_REVIEW_REQUIRED_BEFORE_C12
 ```
 
 C01 Operations Truth Reconciliation was executed through separately bounded Owner-authorized gates. Current production identity is validated independently in six operational documents, eight deliberate stale-condition tests pass and all three core C01 contracts pass. OPS-03 and OPS-04 remain open, and the current immediate rollback target remains `NOT_PROVEN`.
@@ -2379,7 +2387,20 @@ OWNER / CONTROLLER WORK-PACKAGE AUTHORIZATION
 
 This candidate package did not change production. C02E policy is complete while default-branch activation of candidate CODEOWNERS/Dependabot files remains deferred, so IP-05 remains open in that exact state. C03 determinism, whole-tracked security scanning, universal candidate Quality coverage and Action/toolchain immutability are complete. `SEC-02` remains a later hosting/release/runtime item.
 
-C04 now has four exact, public-serving, provenance-controlled derivatives for the Owner-approved header/mobile, footer, icon and social roles; raw masters remain external and the hero remains deferred to C09. Superseded identity consumers are retired, C04 is complete for the candidate and IP-03 is closed. C05 now carries current public-safe receipts for LeadFlowAI, Tervyxa and private-repository-derived TranskrypcjaAI evidence; only proven or proven-with-limitation claims are public, so C05 is complete for the candidate. The Owner selected Option A blue/purple/cyan with green limited to functional status. Its shared token/surface foundation is implemented. C07 isolated a duplicate shader-space Y inversion and global/local coordinate disagreement, then normalized the owning UV/pointer boundaries while retaining one root world and fallbacks. Technical correction passes but final Owner visual acceptance remains pending. C08 shared header, mobile navigation, footer, 404 and fallbacks are complete at candidate level. C09 has not started.
+C04 has four exact, public-serving, provenance-controlled derivatives for the Owner-approved header/mobile, footer, icon and social roles; raw masters remain external and IP-03 is closed. C05 carries public-safe receipts for LeadFlowAI, Tervyxa and TranskrypcjaAI. Option A remains the accepted blue/purple/cyan visual foundation with green limited to functional status. The Owner later rejected visual acceptance of the first C07 correction, so C07F reclassified the hero defect as a pointer-to-perspective-plane depth mapping inversion and prepared a new candidate without a blind canvas flip. C08 remains complete at candidate level. C09 now has a buyer-first hero and early proof; C10 has buyer pathways, labeled first-party device proof, purposeful interaction, search explanation and process; C11 has evidence-led portfolio, company trust, curated knowledge, FAQ, honest direct-email preparation and a single closing. C09 and the complete homepage remain pending direct Owner review; C12 is not authorized.
+
+```text
+HOME_01_STATUS=OPEN_PENDING_OWNER_HERO_REVIEW
+HOME_02_STATUS=CLOSED_CANDIDATE
+HOME_03_STATUS=CLOSED_CANDIDATE
+HOME_04_STATUS=CLOSED_CANDIDATE_WITH_LABELED_FIRST_PARTY_DEMONSTRATOR
+HOME_05_STATUS=CLOSED_CANDIDATE
+HOME_06_STATUS=CLOSED_CANDIDATE
+HOME_07_STATUS=CLOSED_CANDIDATE
+HOME_08_STATUS=CLOSED_CANDIDATE
+HOME_09_STATUS=CLOSED_CANDIDATE
+NON_TARGET_BACKLOG_STATUS_CHANGE_COUNT=0
+```
 
 # Appendix A — Page / Route Completion Matrix
 

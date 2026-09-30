@@ -14,28 +14,28 @@ if(!owner.includes("STATUS: COMPLETED OWNER AUTHORITY / PRODUCTION RELEASED")||!
 const home=read("app/page.tsx");
 for(const required of ["V14Hero","V14Services","V14DeviceTheater","V14LiquidConstructor","V14SearchTrinity","V14ProcessCanvas","V14Portfolio","V14KnowledgeFaq","V14ContactBrief","V14Closing"])if(!home.includes(required))fail(`V14 homepage composition missing: ${required}`);
 const hero=read("components/v14-hero.tsx");
-for(const required of ["LEADFLOWAI","pracują jak produkt","Wyceń projekt","Zobacz realizacje","LIQUID WEBGL","SPATIAL 3D","V14SignatureStage",'variant="hero"',"/v14-content.css","/v14-liquid-surface.css"])if(!hero.includes(required))fail(`V14 hero missing public/signature label: ${required}`);
+for(const required of ["LEADFLOWAI","pomagają firmie rosnąć","Porozmawiajmy o projekcie","Zobacz prawdziwe realizacje","INTERAKCJA WEBGL","ROZWÓJ I OPIEKA","V14SignatureStage",'variant="hero"',"/v14-content.css","/v14-liquid-surface.css"])if(!hero.includes(required))fail(`V14 hero missing public/signature label: ${required}`);
 const signature=read("components/v14-signature-stage.tsx");
-for(const required of ["SEARCH LAYER","AI LAYER","LIVE PRODUCT","LIQUID ENGINE / WEBGL2","REAL-TIME SURFACE · SPATIAL PRODUCT"])if(!signature.includes(required))fail(`V14 signature stage missing label: ${required}`);
+for(const required of ["WARSTWA WIDOCZNOŚCI","WARSTWA AI","DZIAŁAJĄCY PRODUKT","INTERAKTYWNA POWIERZCHNIA / WEBGL2","RUCH · GŁĘBIA · PRODUKT WWW"])if(!signature.includes(required))fail(`V14 signature stage missing label: ${required}`);
 const services=read("components/v14-services.tsx");
-for(const required of ["PROJEKT I BUDOWA","WIDOCZNOŚĆ","KONWERSJA","INTELIGENCJA","INTEGRACJE","OPIEKA","Chatboty","RAG"])if(!services.includes(required))fail(`V14 offer missing public label: ${required}`);
+for(const required of ["ZBUDUJ","DAJ SIĘ ZNALEŹĆ","PROWADŹ DO DECYZJI","DODAJ INTELIGENCJĘ","POŁĄCZ","ROZWIJAJ","Chatboty","RAG"])if(!services.includes(required))fail(`V14 offer missing public label: ${required}`);
 const liquid=read("components/v14-liquid-constructor.tsx");
-for(const required of ["LIQUID WEB CONSTRUCTOR","Z płynnej powierzchni","aktywną, przestrzenną warstwą LeadFlowAI","PRODUCT UI","SEO · AEO · GEO","RAG · encje · integracje","V14LiquidSurface"])if(!liquid.includes(required))fail(`V14 Liquid Constructor missing public/runtime label: ${required}`);
+for(const required of ["INTERAKCJA Z UZASADNIENIEM","Efekt ma sens","także bez WebGL","INTERFEJS","SEO · AEO · GEO","RAG · encje · integracje","V14LiquidSurface"])if(!liquid.includes(required))fail(`V14 Liquid Constructor missing public/runtime label: ${required}`);
 const liquidSurface=read("components/v14-liquid-surface.tsx");
 for(const forbidden of ["realistic-board-photo","images.unsplash.com"]){if(liquidSurface.includes(forbidden))fail(`V14 Liquid runtime exposes retired stock dependency: ${forbidden}`)}
 const trinity=read("components/v14-search-trinity.tsx");
-for(const required of ["CZŁOWIEK · GOOGLE · SYSTEM AI","Człowiek:","Google:","System AI:"])if(!trinity.includes(required))fail(`V14 search trinity missing public label: ${required}`);
+for(const required of ["WIDOCZNOŚĆ: SEO · AEO · GEO","Dla człowieka:","Dla Google:","Dla systemów AI:"])if(!trinity.includes(required))fail(`V14 search trinity missing public label: ${required}`);
 const processCanvas=read("components/v14-process-canvas.tsx");
-for(const required of ["METODOLOGIA","Diagnoza","Architektura","Walidacja","v14-quality-canvas.svg"])if(!processCanvas.includes(required))fail(`V14 process canvas missing: ${required}`);
+for(const required of ["JAK PRACUJEMY","Diagnoza","Architektura","Sprawdzenie","v14-quality-canvas.svg"])if(!processCanvas.includes(required))fail(`V14 process canvas missing: ${required}`);
 const portfolio=read("components/v14-portfolio.tsx");
-for(const required of ["REALIZACJE WŁASNE","LeadFlowAI.pl","Tervyxa.pl","TranskrypcjaAI.pl","nie screenshoty klientów"])if(!portfolio.includes(required))fail(`V14 portfolio missing public truth: ${required}`);
+for(const required of ["REALIZACJE WŁASNE I MARKI POWIĄZANE","portfolioCases","projekty własne ekosystemu Tervyxa Systems","Otwórz publiczny serwis"])if(!portfolio.includes(required))fail(`V14 portfolio missing public truth: ${required}`);
 const knowledgeFaq=read("components/v14-knowledge-faq.tsx");
-for(const required of ["WIEDZA I DECYZJE","FAQ / PRZED STARTEM","SEO, AEO i GEO","bazy wiedzy"])if(!knowledgeFaq.includes(required))fail(`V14 knowledge/FAQ layer missing: ${required}`);
+for(const required of ["WIEDZA PRZED DECYZJĄ","PYTANIA PRZED STARTEM","SEO, AEO i GEO","bazy wiedzy","Ile trwa realizacja strony?","Jak wygląda wycena?"])if(!knowledgeFaq.includes(required))fail(`V14 knowledge/FAQ layer missing: ${required}`);
 const brief=read("components/v14-contact-brief.tsx");
-for(const required of ["BRIEF PROJEKTU","Strona niczego nie zapisuje","nie wysyła","aria-pressed"])if(!brief.includes(required))fail(`V14 brief boundary missing: ${required}`);
+for(const required of ["PRZYGOTUJ PIERWSZĄ WIADOMOŚĆ","Strona niczego nie zapisuje","nie wysyła","aria-pressed"])if(!brief.includes(required))fail(`V14 brief boundary missing: ${required}`);
 if(!brief.includes("mailto:")||!brief.includes("site.email"))fail("V14 brief mailto boundary missing");
 const closing=read("components/v14-closing.tsx");
-for(const required of ["KONTAKT","Wyceń projekt","site.email","Tervyxa Systems sp. z o.o."])if(!closing.includes(required))fail(`V14 closing missing: ${required}`);
+for(const required of ["NASTĘPNY KROK","Napisz do LeadFlowAI","site.email","Tervyxa Systems sp. z o.o."])if(!closing.includes(required))fail(`V14 closing missing: ${required}`);
 const about=read("app/o-nas/page.tsx");
 for(const required of ["O LeadFlowAI","Tervyxa Systems sp. z o.o.","Dowód przed deklaracją","METODOLOGIA LEADFLOW"])if(!about.includes(required))fail(`about page missing trust/methodology label: ${required}`);
 

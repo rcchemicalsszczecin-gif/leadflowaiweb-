@@ -18,11 +18,11 @@ export function V14ContactBrief() {
   );
 
   return (
-    <section className="v14-brief" aria-labelledby="v14-brief-title">
+    <section id="kontakt" className="v14-brief" aria-labelledby="v14-brief-title">
       <div className="v14-shell v14-brief-grid">
         <div className="v14-brief-copy">
-          <p>08 / BRIEF PROJEKTU</p>
-          <h2 id="v14-brief-title">Trzy decyzje wystarczą, żeby zacząć rozmowę.</h2>
+          <p>PRZYGOTUJ PIERWSZĄ WIADOMOŚĆ</p>
+          <h2 id="v14-brief-title">Nie potrzebujesz gotowej specyfikacji.</h2>
           <span>
             Wybory pozostają w przeglądarce. Strona niczego nie zapisuje ani nie wysyła
             samodzielnie — przycisk otwiera przygotowaną wiadomość e-mail.
@@ -35,7 +35,7 @@ export function V14ContactBrief() {
           <OptionGroup label="STAN OBECNY" options={stateOptions} value={state} onChange={setState} />
 
           <div className="v14-brief-result" aria-live="polite">
-            <small>BRIEF / GOTOWY</small>
+            <small>PODSUMOWANIE GOTOWE</small>
             <strong>{project} → {goal}</strong>
           </div>
 
@@ -43,7 +43,7 @@ export function V14ContactBrief() {
             className="v14-button v14-button-primary v14-brief-action"
             href={`mailto:${site.email}?subject=${subject}&body=${body}`}
           >
-            Otwórz wiadomość <span aria-hidden="true">↗</span>
+            Otwórz przygotowany e-mail <span aria-hidden="true">↗</span>
           </a>
         </div>
       </div>

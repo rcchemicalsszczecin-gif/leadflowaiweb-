@@ -368,6 +368,38 @@ The Owner confirms and selects:
 - C07 must diagnose coordinate/shader/camera/CSS ownership rather than apply a blind visual inversion;
 - the technical candidate correction is authorized, while final correction acceptance still requires `OWNER_LIQUID_ORIENTATION_PASS`.
 
+### 9.1 Later Owner homepage review and C07F reopening
+
+After personally inspecting candidate `16152483d745d3756fd2575f1059b726161755a0`,
+the Owner accepted Option A, the global shell, header and footer as directions
+for continuation, but explicitly rejected final visual acceptance of the hero
+Liquid orientation. The same review found too much decorative technical
+English and confirmed that final marketing media must be Owner-supplied or
+Owner-approved.
+
+```text
+OWNER_OPTION_A_DIRECTION=ACCEPTED_FOR_CONTINUATION
+OWNER_GLOBAL_SHELL_DIRECTION=ACCEPTED_FOR_CONTINUATION
+OWNER_HEADER_DIRECTION=ACCEPTED_FOR_CONTINUATION
+OWNER_FOOTER_DIRECTION=ACCEPTED_FOR_CONTINUATION
+OWNER_PREVIOUS_HERO_LIQUID_ORIENTATION_PASS=NO
+PUBLIC_HOMEPAGE_LANGUAGE=POLISH
+FINAL_MARKETING_MEDIA=OWNER_SUPPLIED_OR_OWNER_APPROVED
+```
+
+No candidate implementation may change `OWNER_LIQUID_ORIENTATION_PASS` to
+`YES`. A technically and visually evidenced correction returns to the Owner
+as `PENDING_OWNER_RECHECK`.
+
+### 9.2 Candidate dependency-security remediation
+
+The Owner authorized a bounded candidate-only upgrade from Next.js `16.3.1`
+to exactly `16.3.7`. Its natural optional dependency graph resolves Sharp to
+`0.35.5`; React and ReactDOM remain exactly `19.2.4`. The high/critical npm
+audit gate passes without an override or direct Sharp dependency. Production
+remains on its existing immutable commit until a later Owner-controlled
+promotion.
+
 The following immutable Owner-approved masters remain outside the repository:
 
 ### Primary logo master

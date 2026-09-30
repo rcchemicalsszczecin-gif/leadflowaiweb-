@@ -3,19 +3,19 @@ import { site } from "@/lib/site";
 
 export function V14Closing() {
   return (
-    <section className="v14-device-theater" aria-labelledby="v14-closing-title">
+    <section className="v14-device-theater v14-closing-home" aria-labelledby="v14-closing-title">
       <div className="v14-shell v14-device-layout">
         <div className="v14-device-copy">
-          <p>07 / KONTAKT</p>
-          <h2 id="v14-closing-title">Zbudujmy WWW, które samo pokazuje poziom Twojej firmy.</h2>
-          <span>Najpierw cel i architektura. Potem design, kod, widoczność i interakcje, które naprawdę mają po co istnieć.</span>
+          <p>NASTĘPNY KROK</p>
+          <h2 id="v14-closing-title">Zacznijmy od celu, nie od listy funkcji.</h2>
+          <span>Napisz, co dziś nie działa i dokąd ma prowadzić nowa strona. Odpowiemy propozycją dalszej rozmowy — bez udawania automatycznego formularza.</span>
         </div>
         <div>
           <div className="v14-hero-actions">
-            <a className="v14-button v14-button-primary" href="/kontakt">Wyceń projekt <span aria-hidden="true">↗</span></a>
-            <a className="v14-button v14-button-ghost" href={`mailto:${site.email}`}>{site.email}</a>
+            <a className="v14-button v14-button-primary" href={`mailto:${site.email}`}>Napisz do LeadFlowAI <span aria-hidden="true">↗</span></a>
+            <a className="v14-button v14-button-ghost" href="/realizacje">Sprawdź realizacje</a>
           </div>
-          <p style={{ margin: "24px 0 0", color: "var(--brand-text-muted)", fontSize: 11, letterSpacing: ".12em" }}>WWW · SEARCH · AI · SYSTEMS · LIQUID ENGINE</p>
+          <p style={{ margin: "24px 0 0", color: "var(--brand-text-muted)", fontSize: 11, letterSpacing: ".12em" }}>STRONY WWW · WIDOCZNOŚĆ · AI · INTEGRACJE</p>
         </div>
       </div>
       <footer className="v14-shell" style={{ display: "flex", flexWrap: "wrap", gap: 18, justifyContent: "space-between", alignItems: "center", marginTop: 76, paddingTop: 24, borderTop: "1px solid rgba(255,255,255,.1)" }}>

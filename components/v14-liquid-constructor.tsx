@@ -1,10 +1,10 @@
 import { V14LiquidSurface } from "@/components/v14-liquid-surface";
 
 const steps = [
-  ["01", "LIQUID", "signature interaction"],
-  ["02", "GRID", "architektura informacji"],
-  ["03", "PRODUCT UI", "interfejs i komponenty"],
-  ["04", "SEARCH", "SEO · AEO · GEO"],
+  ["01", "RUCH", "interakcja z konkretną rolą"],
+  ["02", "STRUKTURA", "architektura informacji"],
+  ["03", "INTERFEJS", "komponenty i działanie"],
+  ["04", "WIDOCZNOŚĆ", "SEO · AEO · GEO"],
   ["05", "AI", "RAG · encje · integracje"],
 ] as const;
 
@@ -13,9 +13,9 @@ export function V14LiquidConstructor() {
     <section id="liquid" className="v14-foundation v14-liquid" aria-labelledby="v14-liquid-title">
       <div className="v14-shell v14-liquid-grid">
         <div>
-          <p className="v14-liquid-kicker">03 / LIQUID WEB CONSTRUCTOR</p>
-          <h2 id="v14-liquid-title">Z płynnej powierzchni do kompletnego produktu WWW.</h2>
-          <p className="v14-liquid-lead">Liquid Engine jest aktywną, przestrzenną warstwą LeadFlowAI — nie dekoracyjnym obrazkiem. Ta sama powierzchnia łączy ruch, grid, interfejs produktu, Search i AI w jeden system wizualny.</p>
+          <p className="v14-liquid-kicker">INTERAKCJA Z UZASADNIENIEM</p>
+          <h2 id="v14-liquid-title">Efekt ma sens wtedy, gdy wspiera doświadczenie marki.</h2>
+          <p className="v14-liquid-lead">Interaktywna powierzchnia pokazuje, jak budujemy ruch i głębię bez ukrywania treści. Gdy urządzenie lub preferencje użytkownika tego wymagają, strona zachowuje znaczenie także bez WebGL.</p>
           <ol className="v14-liquid-steps">
             {steps.map(([n, title, copy]) => (
               <li key={n}>
@@ -36,13 +36,13 @@ export function V14LiquidConstructor() {
             <path d="M80 430 Q180 380 280 428 T480 426 T640 430" fill="none" stroke="#5bdcff" strokeOpacity=".2"/>
           </svg>
 
-          <div className="v14-liquid-layer v14-liquid-layer-grid"><span>02 / GRID</span></div>
+          <div className="v14-liquid-layer v14-liquid-layer-grid"><span>02 / STRUKTURA</span></div>
 
           <div className="v14-liquid-layer v14-liquid-layer-product">
-            <div className="v14-liquid-windowbar"><i /><small>leadflowai / product-ui</small></div>
+              <div className="v14-liquid-windowbar"><i /><small>leadflowai / interfejs</small></div>
             <div className="v14-liquid-product-body">
               <div>
-                <small>03 / PRODUCT UI</small>
+                <small>03 / INTERFEJS</small>
                 <strong>Interfejs gotowy do działania.</strong>
                 <span className="v14-liquid-copyline" />
                 <span className="v14-liquid-copyline v14-liquid-copyline-short" />
@@ -52,13 +52,13 @@ export function V14LiquidConstructor() {
           </div>
 
           <div className="v14-liquid-layer v14-liquid-layer-search">
-            <span>04 / SEARCH</span><b>SEO</b><b>AEO</b><b>GEO</b>
+            <span>04 / WIDOCZNOŚĆ</span><b>SEO</b><b>AEO</b><b>GEO</b>
           </div>
           <div className="v14-liquid-layer v14-liquid-layer-ai">
             <span>05 / AI</span><b>RAG</b><b>ENCJE</b><b>API</b><b>AGENT</b>
           </div>
 
-          <figcaption className="v14-liquid-caption">LIQUID → GRID → PRODUCT → SEARCH → AI</figcaption>
+          <figcaption className="v14-liquid-caption">RUCH → STRUKTURA → INTERFEJS → WIDOCZNOŚĆ → AI</figcaption>
         </figure>
       </div>
     </section>

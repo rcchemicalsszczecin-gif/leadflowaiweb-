@@ -1,6 +1,6 @@
 # LeadFlowAI Brand Asset Provenance and Admission Contract
 
-STATUS: C04 PUBLIC IDENTITY ADMISSION COMPLETE / HERO ROLE DEFERRED TO C09
+STATUS: C04 PUBLIC IDENTITY ADMISSION COMPLETE / HERO MASTER NOT NEEDED BY C09 CANDIDATE
 
 This file is the repository authority for immutable Owner masters, admitted
 public-serving derivatives, current consumers, and superseded identity
@@ -78,9 +78,10 @@ not reactivate a retired consumer.
 
 ## 6. Hero boundary
 
-The immutable `HERO` master has Owner-approved role
-`APPROVED_FUTURE_ROLE_NOT_YET_ADMITTED`. C09 owns its exact supporting-media
-composition. No hero derivative is tracked or consumed by this checkpoint.
+The immutable `HERO` master has Owner-approved supporting-media authority, but
+the C09 candidate does not need it to communicate the buyer proposition. Its
+current state is `DEFERRED_NOT_NEEDED_FOR_C09_CANDIDATE`. No hero derivative
+is tracked or consumed, and the raw master remains external.
 
 ## 7. Third-party boundary
 

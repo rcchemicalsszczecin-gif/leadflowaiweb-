@@ -319,7 +319,7 @@ def run_browser(browser):
     checks = 0
     try:
         for width, height in VIEWPORTS:
-            checks += run_case(browser, base, session_id, bidi_url, "/", width, height, "pracują jak produkt")
+            checks += run_case(browser, base, session_id, bidi_url, "/", width, height, "pomagają firmie rosnąć")
         for path, truth in REPRESENTATIVE_ROUTES:
             for width, height in ((390, 844), (1440, 1000)):
                 checks += run_case(browser, base, session_id, bidi_url, path, width, height, truth)

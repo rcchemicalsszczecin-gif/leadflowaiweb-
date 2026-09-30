@@ -1,23 +1,21 @@
-import Image from "next/image";
+import { portfolioCases } from "@/lib/portfolio";
 
 export function V14Portfolio() {
   return (
-    <section className="v14-foundation" aria-labelledby="v14-portfolio-title">
+    <section id="realizacje" className="v14-foundation v15-portfolio" aria-labelledby="v14-portfolio-title">
       <div className="v14-shell">
-        <p>06 / REALIZACJE WŁASNE</p>
-        <h2 id="v14-portfolio-title">Najpierw pokazujemy własne produkty. Dopiero potem składamy deklaracje.</h2>
-        <figure style={{ margin: "0 0 24px" }}>
-          <Image
-            src="/v14-portfolio-stage.svg"
-            alt="Wizualizacja systemowa projektów własnych LeadFlowAI, Tervyxa i TranskrypcjaAI"
-            width={1200}
-            height={620}
-            sizes="(max-width: 768px) 100vw, 1360px"
-            style={{ display: "block", width: "100%", height: "auto", borderRadius: 24 }}
-          />
-          <figcaption style={{ marginTop: 10, fontSize: 10, color: "#697069" }}>LeadFlowAI.pl · Tervyxa.pl · TranskrypcjaAI.pl · wizualizacje systemowe, nie screenshoty klientów.</figcaption>
-        </figure>
-        <a className="v14-button v14-button-primary" href="/realizacje">Zobacz pełne realizacje <span aria-hidden="true">↗</span></a>
+        <div className="v15-portfolio-head"><p>REALIZACJE WŁASNE I MARKI POWIĄZANE</p><h2 id="v14-portfolio-title">Pokazujemy zakres, stan i ograniczenia — nie wymyślone wyniki.</h2><span>To projekty własne ekosystemu Tervyxa Systems, a nie lista zewnętrznych klientów.</span></div>
+        <div className="v15-portfolio-list">
+          {portfolioCases.map((project, index) => (
+            <article key={project.name}>
+              <div><small>0{index + 1}</small><span>PROJEKT WŁASNY / MARKA POWIĄZANA</span></div>
+              <h3>{project.name}</h3><p>{project.scope[0].description}</p>
+              <a href={project.url} target="_blank" rel="noreferrer">Otwórz publiczny serwis <span aria-hidden="true">↗</span></a>
+            </article>
+          ))}
+        </div>
+        <a className="v14-button v14-button-ghost v15-portfolio-more" href="/realizacje">Zobacz pełny zakres i ograniczenia</a>
+        <aside className="v15-trust-line"><strong>MARKA I ODPOWIEDZIALNOŚĆ.</strong> LeadFlowAI to marka Tervyxa Systems sp. z o.o. Nie obiecujemy pozycji ani wyników sprzedażowych. <a href="/o-nas">Poznaj sposób pracy <span aria-hidden="true">↗</span></a></aside>
       </div>
     </section>
   );

@@ -412,8 +412,8 @@ export function V14GlobalTechLiquid() {
       <canvas ref={canvasRef} />
       <div className="v14-global-tech-liquid__depth" />
       <div className="v14-global-tech-liquid__label">
-        <span>SUBMERGED COMPUTE FIELD</span>
-        <b>PCB / CPU / GPU / LIQUID</b>
+        <span>CYFROWA WARSTWA W TLE</span>
+        <b>PCB / CPU / GPU / PŁYNNA POWIERZCHNIA</b>
       </div>
     </div>
   );

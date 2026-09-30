@@ -72,7 +72,7 @@ for (const required of [
   "HERO_DERIVATIVE_REPOSITORY_ADMISSION_COUNT=0",
   "UNKNOWN_CONSUMER_COUNT=0",
   "UNCLASSIFIED_ADMITTED_BRAND_ASSET_COUNT=0",
-  "APPROVED_FUTURE_ROLE_NOT_YET_ADMITTED",
+  "DEFERRED_NOT_NEEDED_FOR_C09_CANDIDATE",
   "PENDING_EVIDENCE_BASED_RETIREMENT",
 ]) if (!provenance.includes(required)) fail(`required provenance invariant missing: ${required}`);
 

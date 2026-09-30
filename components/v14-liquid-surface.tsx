@@ -70,7 +70,7 @@ void main() {
   float pointerInfluence = uPointerActive * (1.0 - smoothstep(0.0, 1.25, length(screen)) * 0.2);
   vec2 pointerWorld = vec2(
     (uPointer.x - 0.5) * mix(3.2, 4.6, hero),
-    mix(0.55, -3.0, uPointer.y)
+    mix(-3.0, 0.55, uPointer.y)
   );
 
   vec3 camera = mix(vec3(0.0, 1.18, 2.45), vec3(0.18, 1.48, 2.86), hero);
@@ -112,8 +112,10 @@ void main() {
 
   vec3 reflected = skyColor(reflectedDirection);
   float depthFade = 1.0 - exp(-max(travel, 0.0) * 0.18);
+  float nearField = 1.0 - depthFade;
   vec3 deepWater = mix(vec3(0.006, 0.025, 0.085), vec3(0.018, 0.11, 0.24), 1.0 - depthFade);
   vec3 color = mix(deepWater, reflected, 0.28 + fresnel * 0.58);
+  color += vec3(0.04, 0.18, 0.34) * nearField * mix(0.05, 0.11, hero);
 
   float gridX = gridLine(point.x, 0.58);
   float gridZ = gridLine(point.z, 0.58);

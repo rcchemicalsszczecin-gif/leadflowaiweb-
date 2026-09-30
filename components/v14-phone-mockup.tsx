@@ -3,8 +3,8 @@ export function V14PhoneMockup() {
     <div className="v14-phone" aria-hidden="true">
       <div className="v14-phone-speaker" />
       <span>LF</span>
-      <small>MOBILE PRODUCT</small>
-      <strong>Ta sama marka. Inny art direction.</strong>
+      <small>WERSJA MOBILNA</small>
+      <strong>Ta sama marka. Układ dopasowany do telefonu.</strong>
       <i /><i /><i />
     </div>
   );
