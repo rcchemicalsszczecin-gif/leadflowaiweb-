@@ -28,7 +28,7 @@ export const metadata: Metadata = withV13SocialMetadata(
 
 export default function KontaktPage() {
   return (
-    <main id="main-content" className="contact-page v14-contact-page" tabIndex={-1}>
+    <main id="main-content" className="contact-page v14-route-page v14-contact-page" tabIndex={-1}>
       <V14RouteSiteHeader />
 
       <section className="contact-hero section-dark blueprint-surface">
@@ -57,10 +57,10 @@ export default function KontaktPage() {
       <section className="section-light contact-form-section">
         <div className="page-shell section-pad contact-form-grid">
           <aside className="contact-aside">
-            <p className="service-index">00 / KONTAKT</p>
+            <p className="service-index">KONTAKT</p>
             <h2>Krótki opis projektu wystarczy, żeby zacząć.</h2>
             <p>
-              Kontakt służy wyłącznie do rozpoczęcia rozmowy o projekcie. Nie wysyłaj haseł,
+              Realizujemy projekty dla firm w całej Polsce. Kontakt służy wyłącznie do rozpoczęcia rozmowy o projekcie. Nie wysyłaj haseł,
               danych kart płatniczych ani innych poufnych sekretów technicznych.
             </p>
             <div className="contact-direct">
@@ -77,7 +77,7 @@ export default function KontaktPage() {
 
       <section className="contact-next section-dark">
         <div className="page-shell contact-next-grid">
-          <p className="section-label section-label-inverted"><span>03</span><span>LEADFLOWAI / CO DALEJ</span></p>
+          <p className="section-label section-label-inverted"><span>LEADFLOWAI / CO DALEJ</span></p>
           <h2>Najpierw ustalamy cel, zakres i ryzyka. Dopiero potem dobieramy rozwiązanie.</h2>
           <p>
             Jeżeli projekt wymaga dodatkowych integracji, hostingu, dostępu do obecnej strony lub

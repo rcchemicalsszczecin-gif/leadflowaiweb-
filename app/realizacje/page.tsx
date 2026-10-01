@@ -46,7 +46,6 @@ export default function PortfolioPage() {
           key={project.name}
         >
           <div className="page-shell section-pad">
-            <p className="service-index">{project.id}</p>
             <div className="portfolio-case-grid">
               <div>
                 <p className="portfolio-status">{project.status}</p>
@@ -73,9 +72,8 @@ export default function PortfolioPage() {
             </div>
 
             <div className="portfolio-scope-grid">
-              {project.scope.map((item, index) => (
+              {project.scope.map((item) => (
                 <article key={item.title}>
-                  <span>{String(index + 1).padStart(2, "0")}</span>
                   <h3>{item.title}</h3>
                   <p>{item.description}</p>
                 </article>
@@ -87,13 +85,13 @@ export default function PortfolioPage() {
 
       <section className="section-dark portfolio-method">
         <div className="page-shell section-pad">
-          <p className="service-index">04 / ZASADA REALIZACJI</p>
+          <p className="service-index">ZASADA REALIZACJI</p>
           <h2>Dowód przed deklaracją. Status przed marketingiem.</h2>
           <ol>
-            <li><span>01</span><div><h3>Problem</h3><p>Co rzeczywiście miało zostać rozwiązane i dla kogo?</p></div></li>
-            <li><span>02</span><div><h3>Zakres</h3><p>Co zostało zaprojektowane, zbudowane albo wdrożone?</p></div></li>
-            <li><span>03</span><div><h3>Technologia</h3><p>Jakie decyzje techniczne są potwierdzone przez kod lub wdrożenie?</p></div></li>
-            <li><span>04</span><div><h3>Dowody</h3><p>Jakie testy, publiczne artefakty albo wyniki można realnie zweryfikować?</p></div></li>
+            <li><span>1</span><div><h3>Problem</h3><p>Co rzeczywiście miało zostać rozwiązane i dla kogo?</p></div></li>
+            <li><span>2</span><div><h3>Zakres</h3><p>Co zostało zaprojektowane, zbudowane albo wdrożone?</p></div></li>
+            <li><span>3</span><div><h3>Technologia</h3><p>Jakie decyzje techniczne są potwierdzone przez kod lub wdrożenie?</p></div></li>
+            <li><span>4</span><div><h3>Dowody</h3><p>Jakie testy, publiczne artefakty albo wyniki można realnie zweryfikować?</p></div></li>
           </ol>
         </div>
       </section>

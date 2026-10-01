@@ -32,7 +32,7 @@ export function PortfolioProjectVisual({ index, name }: ProjectVisualProps) {
             gap: "0.45rem",
             padding: "0.8rem 1rem",
             borderBottom: "1px solid rgba(174, 227, 243, 0.12)",
-            fontSize: "0.72rem",
+            fontSize: "0.75rem",
             letterSpacing: "0.08em",
           }}
         >

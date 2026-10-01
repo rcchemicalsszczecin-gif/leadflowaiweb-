@@ -51,9 +51,9 @@ const visualMedia = [
   ["public/v14-quality-canvas.svg", "0fc05ced16e313de487f5c39e62c0b5c644f59291609dc76bdc31ec80b39ddf5"],
   ["public/v14-search-trinity-dark.svg", "43c9e587ddf2e5e5c445372f8b9b8f4fbbe60af0569da4dce4aff2e92b1fce27"],
   ["public/v14-search-trinity.svg", "7aa2803c8ab0f917882771acf5ba4c0ff748e21b8100b9a0d4c984bbc87307ef"],
-  ["public/proof/leadflowai-service-desktop.webp", "ce2a593d353ef72bcfdaba0f2f3b9d88a6e1ec28bebac7c388c5918b69cda32c"],
-  ["public/proof/leadflowai-service-tablet.webp", "a9c30dc36678e0c457d32eaee605dfd3360cc4c2e1b2666e4281e4750d567540"],
-  ["public/proof/leadflowai-service-mobile.webp", "608375f2ce40b16e6918541d94d4859bd16c3ca37270e9b69485833e46312c33"],
+  ["public/proof/leadflowai-service-desktop.webp", "b95403d1987ac76d6c5807a38d84db1ae5679a13a69b9c4f704b07a83053838c"],
+  ["public/proof/leadflowai-service-tablet.webp", "80aac203f755bd4ca0f65f067708fd16b5f0ebbfea7fec86d4207725919797b4"],
+  ["public/proof/leadflowai-service-mobile.webp", "52905732a912f3b2af9125ce67de06bfdab397f0488b17e4e4baa7b2506664d5"],
 ];
 for (const [path, expectedHash] of visualMedia) {
   if (!tracked.includes(path) || hash(path) !== expectedHash || !provenance.includes(`\`${expectedHash}\``)) {

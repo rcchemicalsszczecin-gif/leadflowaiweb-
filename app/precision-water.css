@@ -6,7 +6,7 @@
     --paper-2: #0d1219;
     --line-light: rgba(255, 255, 255, 0.13);
     --line-dark: rgba(255, 255, 255, 0.13);
-    --section: clamp(4rem, 7vw, 6.5rem);
+    --section: clamp(3.5rem, 6vw, 5.5rem);
     --display: clamp(3.4rem, 6.35vw, 6.8rem);
     --heading: clamp(2.05rem, 3.9vw, 4.2rem);
     --body-lg: clamp(1rem, 1.25vw, 1.17rem);
@@ -201,17 +201,17 @@
   }
 
   .service-hero {
-    min-height: 68svh;
+    min-height: 0;
   }
 
   .service-hero-grid {
-    min-height: calc(68svh - 5.25rem);
-    padding-block: clamp(3.8rem, 6.2vw, 5.8rem);
+    min-height: 0;
+    padding-block: clamp(3.5rem, 6vw, 5.5rem);
   }
 
   .service-hero h1 {
     max-width: 15ch;
-    font-size: clamp(2.8rem, 5.25vw, 5.7rem);
+    font-size: clamp(2.75rem, 5vw, 4.5rem);
     line-height: 0.94;
   }
 
@@ -308,20 +308,20 @@
   .knowledge-hero,
   .portfolio-hero,
   .knowledge-article-hero {
-    min-height: 46svh;
+    min-height: 0;
   }
 
   .knowledge-hero-copy,
   .portfolio-hero-copy,
   .knowledge-article-head {
-    padding-block: clamp(4rem, 7vw, 6.3rem);
+    padding-block: clamp(3.5rem, 6vw, 5.5rem);
   }
 
   .knowledge-hero h1,
   .portfolio-hero h1,
   .knowledge-article-head h1 {
     max-width: 15ch;
-    font-size: clamp(2.8rem, 5.3vw, 5.6rem);
+    font-size: clamp(2.75rem, 5vw, 4.5rem);
     line-height: 0.95;
   }
 
@@ -377,7 +377,7 @@
     :root {
       --display: clamp(3rem, 14.5vw, 5.1rem);
       --heading: clamp(2rem, 9.5vw, 3.5rem);
-      --section: clamp(3.5rem, 12vw, 5rem);
+      --section: clamp(3rem, 10vw, 4.25rem);
     }
 
     .hero {

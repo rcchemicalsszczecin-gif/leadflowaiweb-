@@ -5,21 +5,21 @@ import { site } from "@/lib/site";
 
 const serviceCards = [
   {
-    code: "01 / BUDOWA",
+    code: "BUDOWA",
     title: "Strony 3D / WebGL",
     description: "Interaktywne sceny, produkty i przestrzenie, które pracują na realną narrację marki zamiast być dekoracją.",
     tags: ["3D", "WebGL", "Shadery"],
     href: "/strony-3d-webgl",
   },
   {
-    code: "02 / INTERAKCJA",
+    code: "INTERAKCJA",
     title: "Interaktywne strony premium",
     description: "Narracje przewijane, konfiguratory, mikrointerakcje i dedykowany interfejs projektowane jako część doświadczenia produktu.",
     tags: ["Ruch", "UX", "Interakcja"],
     href: "/interaktywne-strony",
   },
   {
-    code: "03 / INTELIGENCJA",
+    code: "INTELIGENCJA",
     title: "AI na stronie",
     description: "Chatboty, RAG i inteligentne funkcje z określoną rolą, trybem awaryjnym i kontrolą publicznie potwierdzonych informacji.",
     tags: ["AI", "RAG", "Automatyzacja"],
@@ -122,7 +122,7 @@ export function InteractiveServiceCards() {
   return (
     <section className="experience-services" aria-labelledby="experience-services-title">
       <div className="experience-heading">
-        <p className="experience-kicker">MOŻLIWOŚCI NA ŻYWO / 02</p>
+        <p className="experience-kicker">MOŻLIWOŚCI NA ŻYWO</p>
         <h2 id="experience-services-title">Usługi, które można poczuć na stronie.</h2>
       </div>
       <div className="experience-card-grid">
@@ -185,7 +185,7 @@ export function SystemAssembly() {
         <div className="assembly-steps">
           {assembly.map(([name, description], index) => (
             <article key={name} data-assembly-step={index} className={index === active ? "is-current" : index < active ? "is-complete" : ""}>
-              <span>0{index + 1}</span><div><h3>{name}</h3><p>{description}</p></div>
+              <span>{index + 1}</span><div><h3>{name}</h3><p>{description}</p></div>
             </article>
           ))}
         </div>
@@ -224,7 +224,7 @@ export function BrowserDemo() {
           <button type="button" onClick={() => setViewport(viewport === "desktop" ? "mobile" : "desktop")}>{viewport === "desktop" ? "TELEFON" : "DESKTOP"}</button>
         </div>
         <div className={`browser-canvas browser-panel-${panel}`}>
-          <div className="demo-nav"><strong>DEMO.</strong><span>01</span><span>02</span><span>03</span></div>
+          <div className="demo-nav"><strong>DEMO</strong></div>
           <div className="demo-hero"><small>{panelLabels[panel]} / NA ŻYWO</small><h3>{panel === "landing" ? "Jedna oferta. Jedna akcja." : panel === "commerce" ? "Produkt bez tarcia." : "Dane, które prowadzą do decyzji."}</h3><button type="button">DZIAŁAJ ↗</button></div>
           <div className="demo-cards"><i /><i /><i /></div>
         </div>

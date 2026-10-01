@@ -53,25 +53,24 @@ export default function KnowledgePage() {
       <section className="section-light">
         <div className="page-shell section-pad knowledge-index">
           <div className="knowledge-index-head">
-            <p className="service-index">01 / KLASTRY TEMATYCZNE</p>
+            <p className="service-index">KLASTRY TEMATYCZNE</p>
             <h2>Najpierw problem i decyzja. Potem technologia.</h2>
             <p>Materiały są pogrupowane według pytania, które pomagają rozwiązać. Nie tworzymy osobnych, cienkich hubów tylko po to, żeby zwiększać liczbę adresów URL.</p>
           </div>
 
-          {knowledgeTopicsV13.map((topic, topicIndex) => {
+          {knowledgeTopicsV13.map((topic) => {
             const articles = publicArticles.filter((article) => topic.slugs.some((slug) => slug === article.slug));
 
             return (
               <section key={topic.key} className="knowledge-topic-v13" aria-labelledby={`knowledge-topic-${topic.key.toLowerCase()}`}>
                 <div className="service-section-head">
-                  <p className="service-index">{String(topicIndex + 1).padStart(2, "0")} / {topic.label}</p>
+                  <p className="service-index">{topic.label}</p>
                   <h2 id={`knowledge-topic-${topic.key.toLowerCase()}`}>{topic.label}</h2>
                   <p>{topic.description}</p>
                 </div>
                 <div className="knowledge-cards">
-                  {articles.map((article, index) => (
+                  {articles.map((article) => (
                     <article key={article.slug}>
-                      <span>{String(index + 1).padStart(2, "0")}</span>
                       <p>{article.eyebrow}</p>
                       <h3>{article.title}</h3>
                       <p>{article.description}</p>
@@ -89,7 +88,7 @@ export default function KnowledgePage() {
 
       <section className="section-dark knowledge-truth">
         <div className="page-shell section-pad">
-          <p className="service-index">02 / ZASADA REDAKCYJNA</p>
+          <p className="service-index">ZASADA REDAKCYJNA</p>
           <h2>Publikujemy treści, które mają pomagać użytkownikowi i dają się obronić źródłami lub rzeczywistą praktyką.</h2>
           <p>
             Materiały opisują nasze podejście, praktyki projektowe i możliwe do zweryfikowania standardy. Gdy temat wymaga danych klienta, wyników, prawa albo regulowanych twierdzeń, informacja musi pochodzić z rzeczywistego źródła i przejść odpowiednią weryfikację.

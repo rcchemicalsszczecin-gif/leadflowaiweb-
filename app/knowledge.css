@@ -2,22 +2,22 @@
   .knowledge-hero,
   .portfolio-hero,
   .knowledge-article-hero {
-    min-height: 52svh;
+    min-height: 0;
   }
 
   .knowledge-hero-copy,
   .portfolio-hero-copy,
   .knowledge-article-head {
     max-width: 68rem;
-    padding-block: clamp(5rem, 10vw, 9rem);
+    padding-block: clamp(3.5rem, 6vw, 5.5rem);
   }
 
   .knowledge-hero h1,
   .portfolio-hero h1,
   .knowledge-article-head h1 {
     max-width: 13ch;
-    font-size: clamp(3.2rem, 8vw, 7.4rem);
-    line-height: 0.92;
+    font-size: clamp(2.75rem, 5vw, 4.5rem);
+    line-height: 0.96;
     letter-spacing: -0.065em;
     font-weight: 630;
   }
@@ -61,7 +61,7 @@
   }
 
   .knowledge-cards article {
-    min-height: 28rem;
+    min-height: 0;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -69,28 +69,21 @@
     background: var(--paper);
   }
 
-  .knowledge-cards article > span,
   .knowledge-cards article > p:first-of-type,
-  .portfolio-scope-grid article > span,
   .portfolio-status {
-    font: 0.65rem/1.4 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    letter-spacing: 0.09em;
-  }
-
-  .knowledge-cards article > span,
-  .portfolio-scope-grid article > span {
-    color: rgba(11, 16, 22, 0.42);
+    font: 600 0.75rem/1.4 "Helvetica Neue", Helvetica, Arial, sans-serif;
+    letter-spacing: 0.06em;
   }
 
   .knowledge-cards article > p:first-of-type {
-    margin-top: 4rem;
+    margin-top: 0;
     color: rgba(11, 16, 22, 0.46);
   }
 
   .knowledge-cards h2 {
     margin-top: 1rem;
     max-width: 18ch;
-    font-size: clamp(1.7rem, 3vw, 2.7rem);
+    font-size: clamp(1.55rem, 2.4vw, 2.25rem);
     line-height: 1.02;
     letter-spacing: -0.04em;
   }
@@ -151,7 +144,7 @@
   }
 
   .knowledge-prose > section {
-    padding-block: clamp(2.5rem, 5vw, 4.5rem);
+    padding-block: clamp(2rem, 4vw, 3.5rem);
     border-top: 1px solid var(--line-light);
   }
 
@@ -162,7 +155,7 @@
 
   .knowledge-prose h2 {
     max-width: 22ch;
-    font-size: clamp(2rem, 4vw, 3.6rem);
+    font-size: clamp(1.9rem, 3.2vw, 3rem);
     line-height: 1;
     letter-spacing: -0.045em;
   }
@@ -210,9 +203,9 @@
   .portfolio-case-grid {
     display: grid;
     grid-template-columns: minmax(0, 1.2fr) minmax(20rem, 0.8fr);
-    gap: clamp(3rem, 8vw, 8rem);
+    gap: clamp(2.5rem, 6vw, 6rem);
     margin-top: 2rem;
-    padding-bottom: clamp(4rem, 8vw, 7rem);
+    padding-bottom: clamp(3rem, 6vw, 5rem);
   }
 
   .portfolio-case-grid h2 {
@@ -241,7 +234,7 @@
 
   .portfolio-case-grid dt {
     color: rgba(11, 16, 22, 0.48);
-    font: 0.67rem/1.4 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font: 600 0.75rem/1.4 "Helvetica Neue", Helvetica, Arial, sans-serif;
     text-transform: uppercase;
   }
 
@@ -259,13 +252,13 @@
   }
 
   .portfolio-scope-grid article {
-    min-height: 18rem;
+    min-height: 0;
     padding: 1.6rem;
     background: var(--paper);
   }
 
   .portfolio-scope-grid h3 {
-    margin-top: 4rem;
+    margin-top: 0;
     font-size: 1.5rem;
   }
 
@@ -278,7 +271,7 @@
   .portfolio-method ol {
     list-style: none;
     display: grid;
-    margin-top: 4rem;
+    margin-top: 2.5rem;
     border-top: 1px solid var(--line-dark);
   }
 
@@ -292,7 +285,7 @@
 
   .portfolio-method li > span {
     color: var(--signal);
-    font: 0.7rem/1.4 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font: 600 0.8rem/1.4 "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
 
   .portfolio-method h3 {
@@ -318,6 +311,13 @@
     line-height: 1.6;
   }
 }
+
+.v14-route-page .section-pad{padding-block:clamp(3.5rem,6vw,5.5rem)}
+.v14-route-page :is(.portfolio-hero-copy,.knowledge-hero,.knowledge-article-head) h1{max-width:19ch;font-size:clamp(2.75rem,4.5vw,4rem);line-height:.96}
+.v14-route-page :is(.portfolio-hero-copy,.knowledge-hero-copy,.knowledge-article-head){padding-block:clamp(3rem,5vw,4.5rem)}
+.v14-about-page .portfolio-hero-copy h1{max-width:20ch}
+.v14-about-page .outcome-grid article{padding-block:.5rem}
+@media(max-width:640px){.v14-route-page :is(.portfolio-hero-copy,.knowledge-hero,.knowledge-article-head) h1{font-size:clamp(2.35rem,10vw,3rem)}}
 
 @media (max-width: 860px) {
   .knowledge-cards,

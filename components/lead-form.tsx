@@ -12,7 +12,6 @@ export function LeadForm() {
   return (
     <section className="lead-form" aria-labelledby="direct-contact-title">
       <div className="form-section-head">
-        <span>01</span>
         <div>
           <p className="form-kicker">KONTAKT</p>
           <h2 id="direct-contact-title">Napisz bezpośrednio na e-mail.</h2>
@@ -33,7 +32,6 @@ export function LeadForm() {
       </div>
 
       <div className="form-section-head">
-        <span>02</span>
         <div>
           <p className="form-kicker">BRIEF</p>
           <h2>Co warto podać w pierwszej wiadomości?</h2>
