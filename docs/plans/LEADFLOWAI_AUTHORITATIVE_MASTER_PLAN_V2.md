@@ -1280,12 +1280,13 @@ Repository correctness does not prove search success.
 
 ## 34. Local SEO
 
-Target legitimate Szczecin relevance while preserving Poland-wide positioning.
+Offer Local SEO nationally in Poland to businesses whose customers search by
+place. LeadFlowAI itself is not positioned as a Szczecin-local business.
 
 Repository work:
 
-- factual local references;
-- genuine local buyer relevance;
+- factual descriptions of local intent;
+- genuine buyer relevance for locally searched businesses across Poland;
 - verified company/contact facts;
 - local evidence where available.
 
@@ -1845,6 +1846,16 @@ C02C policy prerequisites for C04 are binding: verify the three immutable extern
 - **Exit:** Stable composition system exists without route divergence.
 - **STOP/next:** Stop if registry changes threaten canonicals; next C13–C15.
 
+### C12R — Global Public Route Corrective Stage
+
+- **Phase/priority:** J corrective / P1.
+- **Objective:** Apply Poland-national public positioning, sitewide numbering truth, compact editorial route scale, coherent density and element-level text fit without starting route-content waves.
+- **Protected:** Homepage composition, Liquid implementation, canonical route set, service and knowledge body content, production.
+- **Validation:** All 63 canonical routes at mobile and desktop, seven viewports for deep representatives, generated geography and numbering contracts, accessibility, performance and clean-environment verification.
+- **Owner review:** Mandatory for homepage integration, six service families, knowledge, portfolio, About, contact, Lab, mobile typography, density and national positioning.
+- **Exit:** Technical candidate is complete and explicitly pending Owner visual acceptance.
+- **STOP/next:** C13–C20 remain unstarted until the Owner reviews C12R and authorizes a successor package.
+
 ### C13 — Web/Product and Experience Service Wave
 
 - **Phase/priority:** K / P2.
@@ -2328,7 +2339,7 @@ C01_PER_FILE_OPERATIONAL_TRUTH=6_OF_6
 C01_NEGATIVE_TESTS=8_OF_8
 C01_CORE_CONTRACTS=3_OF_3_PASS
 C01_RESIDUAL_OPEN_BACKLOG=OPS-03,OPS-04
-CURRENT_PRODUCT_COMPLETION_MACRO_STAGE=C12_SERVICE_COMPOSITION_DEVICE_PROOF_CANDIDATE
+CURRENT_PRODUCT_COMPLETION_MACRO_STAGE=C12R_GLOBAL_ROUTE_POLISH_CANDIDATE
 C02A_REPOSITORY_IP_GITHUB_INVENTORY=COMPLETE
 C02B_OWNER_VISIBILITY_LICENSING_DECISION=RECORDED
 C02B2_CONTINUITY_ARCHITECTURE_DECISION=RECORDED
@@ -2361,14 +2372,16 @@ C08_STATUS=COMPLETE_CANDIDATE
 C09_STATUS=OWNER_ACCEPTED_EXCEPT_FINAL_DEVICE_PROOF_RECHECK
 C10_STATUS=COMPLETE_CANDIDATE_PENDING_OWNER_DEVICE_PROOF_REVIEW
 C11_STATUS=OWNER_DIRECTION_ACCEPTED
-C12_STATUS=COMPOSITION_SYSTEM_CANDIDATE_PENDING_OWNER_REVIEW
+C12_STATUS=TECHNICALLY_COMPLETE_OWNER_VISUAL_REVIEW_REJECTED_AND_CORRECTED_BY_C12R
+C12R_STATUS=GLOBAL_ROUTE_POLISH_CANDIDATE_PENDING_OWNER_REVIEW
 NEXT_SECURITY_VERSION=16.3.7
 SHARP_SECURITY_RESOLUTION=0.35.5
 DEPENDENCY_AUDIT=PASS
 DEPENDENCY_SECURITY_STATE=CANDIDATE_ONLY_NOT_PRODUCTION
 OWNER_COMPLETE_HOMEPAGE_PASS=PENDING_OWNER_REVIEW
 OWNER_SERVICE_COMPOSITION_PASS=PENDING_OWNER_REVIEW
-NEXT_WORK_PACKAGE=OWNER_VISUAL_REVIEW_OF_C12_CANDIDATE
+OWNER_ALL_ROUTE_VISUAL_PASS=PENDING_OWNER_REVIEW
+NEXT_WORK_PACKAGE=OWNER_VISUAL_REVIEW_OF_C12R_CANDIDATE
 ```
 
 C01 Operations Truth Reconciliation was executed through separately bounded Owner-authorized gates. Current production identity is validated independently in six operational documents, eight deliberate stale-condition tests pass and all three core C01 contracts pass. OPS-03 and OPS-04 remain open, and the current immediate rollback target remains `NOT_PROVEN`.
@@ -2389,7 +2402,7 @@ OWNER / CONTROLLER WORK-PACKAGE AUTHORIZATION
 
 This candidate package did not change production. C02E policy is complete while default-branch activation of candidate CODEOWNERS/Dependabot files remains deferred, so IP-05 remains open in that exact state. C03 determinism, whole-tracked security scanning, universal candidate Quality coverage and Action/toolchain immutability are complete. `SEC-02` remains a later hosting/release/runtime item.
 
-C04 has four exact, public-serving, provenance-controlled derivatives for the Owner-approved header/mobile, footer, icon and social roles; raw masters remain external and IP-03 is closed. C05 carries public-safe receipts for LeadFlowAI, Tervyxa and TranskrypcjaAI. Option A remains the accepted blue/purple/cyan visual foundation with green limited to functional status. The Owner has accepted the corrected C07F Liquid orientation, water direction, Option A palette and general hero direction. C08 remains complete at candidate level. C09–C11 retain the approved homepage direction while C12 replaces the remaining simulated device interiors with exact first-party responsive captures and establishes six governed service-composition families across all 35 canonical service routes. Public decorative leading-zero service numbering is removed, genuine process numbering uses plain integers, and no later service-copy wave is started. Complete homepage and service-system acceptance remain pending direct Owner review.
+C04 has four exact, public-serving, provenance-controlled derivatives for the Owner-approved header/mobile, footer, icon and social roles; raw masters remain external and IP-03 is closed. C05 carries public-safe receipts for LeadFlowAI, Tervyxa and TranskrypcjaAI. Option A remains the accepted blue/purple/cyan visual foundation with green limited to functional status. The Owner has accepted the corrected C07F Liquid orientation, water direction, Option A palette and general hero direction. C08 remains complete at candidate level. C09–C11 retain the approved homepage direction while C12 replaces the remaining simulated device interiors with exact first-party responsive captures and establishes six governed service-composition families across all 35 canonical service routes. The Owner's subsequent review rejected C12's global route scale, density, text fit and residual sitewide numbering; C12R corrects those layers without reopening the accepted homepage or Liquid. Public positioning is Poland-national, decorative public numbering is removed sitewide, genuine process numbering uses plain integers and all 63 canonical routes receive browser element-fit coverage. No later content wave is started. Complete homepage, service-system and all-route visual acceptance remain pending direct Owner review.
 
 ```text
 HOME_01_STATUS=OPEN_PENDING_OWNER_HERO_REVIEW

@@ -444,6 +444,39 @@ product evidence and must never imply a client project. C13, C14 and C15 remain
 unstarted until the Owner reviews the six representative service families and
 the replacement homepage device proof.
 
+### 9.1.3 Owner C12R global-route corrective review
+
+After reviewing the post-C12 candidate, the Owner kept the homepage direction,
+Option A palette, Liquid orientation and water behavior approved, but rejected
+final acceptance of the service composition, all-route visual scale, global
+numbering, text fit and subpage density. LeadFlowAI public commercial
+positioning is national for Poland. Szczecin and West Pomerania marketing
+positioning are forbidden; the Local SEO service remains a valid national
+offer for businesses whose customers search locally.
+
+```text
+OWNER_OPTION_A_COLOR_DIRECTION=PASS
+OWNER_LIQUID_ORIENTATION_PASS=PASS
+OWNER_WATER_VISUAL_DIRECTION=PASS
+OWNER_HOMEPAGE_GENERAL_DIRECTION=PASS
+OWNER_SERVICE_COMPOSITION_PASS=NO
+OWNER_ALL_ROUTE_VISUAL_PASS=NO
+OWNER_GLOBAL_NUMBERING_PASS=NO
+OWNER_TEXT_FIT_PASS=NO
+OWNER_SUBPAGE_SCALE_DENSITY_PASS=NO
+OWNER_PUBLIC_GEOGRAPHIC_POSITIONING=POLAND_NATIONAL
+OWNER_SZCZECIN_MARKETING_POSITIONING=REMOVE
+OWNER_VISIBLE_LEADING_ZERO_RULE=GLOBAL_PUBLIC_SITE
+```
+
+C12R is authorized to normalize geography and visible numbering, establish a
+compact premium editorial subpage scale, correct route density and enforce
+element-level browser text fit across all 63 canonical public routes. It may
+refresh the three existing first-party device captures from the final
+`/strony-internetowe/` candidate. It does not authorize a homepage redesign,
+Liquid changes, new location routes, service or knowledge content waves,
+production promotion, or C13 through C20.
+
 ### 9.2 Candidate dependency-security remediation
 
 The Owner authorized a bounded candidate-only upgrade from Next.js `16.3.1`
