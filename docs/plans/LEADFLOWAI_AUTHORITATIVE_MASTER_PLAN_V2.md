@@ -2354,13 +2354,13 @@ C05_STATUS=COMPLETE_CANDIDATE
 C06A_VISUAL_BASELINE=COMPLETE
 C06_OWNER_ART_DIRECTION_DECISION=APPROVED_OPTION_A
 C06_VISUAL_SYSTEM_FOUNDATION=IMPLEMENTED_CANDIDATE
-C07_TECHNICAL_CORRECTION=HISTORICAL_PASS_REOPENED_BY_OWNER_VISUAL_REVIEW
-OWNER_LIQUID_ORIENTATION_PASS=PENDING_OWNER_RECHECK
-C07_STATUS=C07F_CORRECTION_CANDIDATE_READY_FOR_OWNER_RECHECK
+C07_TECHNICAL_CORRECTION=PASS
+OWNER_LIQUID_ORIENTATION_PASS=PASS
+C07_STATUS=COMPLETE_OWNER_ACCEPTED
 C08_STATUS=COMPLETE_CANDIDATE
-C09_STATUS=READY_FOR_OWNER_REVIEW
-C10_STATUS=COMPLETE_CANDIDATE
-C11_STATUS=COMPLETE_CANDIDATE
+C09_STATUS=PREMIUM_POLISH_CANDIDATE_PENDING_OWNER_REVIEW
+C10_STATUS=PREMIUM_POLISH_CANDIDATE_PENDING_OWNER_REVIEW
+C11_STATUS=PREMIUM_POLISH_CANDIDATE_PENDING_OWNER_REVIEW
 NEXT_SECURITY_VERSION=16.3.7
 SHARP_SECURITY_RESOLUTION=0.35.5
 DEPENDENCY_AUDIT=PASS
@@ -2387,7 +2387,7 @@ OWNER / CONTROLLER WORK-PACKAGE AUTHORIZATION
 
 This candidate package did not change production. C02E policy is complete while default-branch activation of candidate CODEOWNERS/Dependabot files remains deferred, so IP-05 remains open in that exact state. C03 determinism, whole-tracked security scanning, universal candidate Quality coverage and Action/toolchain immutability are complete. `SEC-02` remains a later hosting/release/runtime item.
 
-C04 has four exact, public-serving, provenance-controlled derivatives for the Owner-approved header/mobile, footer, icon and social roles; raw masters remain external and IP-03 is closed. C05 carries public-safe receipts for LeadFlowAI, Tervyxa and TranskrypcjaAI. Option A remains the accepted blue/purple/cyan visual foundation with green limited to functional status. The Owner later rejected visual acceptance of the first C07 correction, so C07F reclassified the hero defect as a pointer-to-perspective-plane depth mapping inversion and prepared a new candidate without a blind canvas flip. C08 remains complete at candidate level. C09 now has a buyer-first hero and early proof; C10 has buyer pathways, labeled first-party device proof, purposeful interaction, search explanation and process; C11 has evidence-led portfolio, company trust, curated knowledge, FAQ, honest direct-email preparation and a single closing. C09 and the complete homepage remain pending direct Owner review; C12 is not authorized.
+C04 has four exact, public-serving, provenance-controlled derivatives for the Owner-approved header/mobile, footer, icon and social roles; raw masters remain external and IP-03 is closed. C05 carries public-safe receipts for LeadFlowAI, Tervyxa and TranskrypcjaAI. Option A remains the accepted blue/purple/cyan visual foundation with green limited to functional status. The Owner has now accepted the corrected C07F Liquid orientation, water direction, Option A palette and general hero direction. C08 remains complete at candidate level. C09–C11 now carry a premium-polish candidate that removes decorative numbering, repairs public SVG language coverage, raises useful microtype and rebuilds the first-party service, device, discovery and verification proof systems without new runtime dependencies. Final complete-homepage acceptance remains pending direct Owner review; C12 is not authorized.
 
 ```text
 HOME_01_STATUS=OPEN_PENDING_OWNER_HERO_REVIEW
@@ -2466,8 +2466,8 @@ This is the durable V2 backlog recovered from the completed Full Product Complet
 | BRAND-04 | P2 | Social/icon identity | Owner-approved simplified icon and factual 1200×630 social derivative are active candidate consumers | Provenance-controlled compact/social/icon/OG assets | metadata/icon consumers; compact master | Weak or inconsistent off-site recognition | BRAND-01/02; art direction | C04 | C04D social and icon assets | Owner-approved previews, crops, accessibility and payloads pass | CLOSED |
 | LIQ-01 | P1 | Liquid orientation | Root cause classified as duplicate shader-space Y inversion plus global/local coordinate disagreement | Physically coherent orientation across global, hero and constructor Liquid | Liquid components; C04–C08 evidence | Primary visual signature appears defective | C06 art direction | C07 | C07A diagnostic and root-cause isolation | Captures isolate UV/pointer/scroll/camera/refraction/CSS ownership without blind inversion | CLOSED |
 | LIQ-02 | P1 | Coordinate consistency | UV and pointer ownership are normalized and enforced by a deterministic contract | One documented coordinate/orientation contract | Liquid components; `scripts/liquid-orientation-contract.mjs` | Pointer, ripple and depth behavior can feel physically wrong | LIQ-01 | C07 | C07B coordinate normalization | Pointer, scroll, UV and ray-plane tests agree at desktop/mobile orientations | CLOSED |
-| LIQ-03 | P1 | Scene parity | Global, hero and constructor share the normalized orientation and Option A material family | Coherent transitions, horizon, overlays and foreground readability | Liquid/hero components; scene CSS; browser evidence | Visual discontinuity weakens brand and comprehension | LIQ-01/02 | C07 | C07C global scene plus C07D hero/constructor parity | No transition inversion; readable content and Owner-approved physical direction | CLOSED_TECHNICAL_PENDING_OWNER_VISUAL_ACCEPTANCE |
-| LIQ-04 | P1 | Liquid fallback/performance | Reduced-motion/no-WebGL/visibility/mobile controls remain intact; final performance and Owner acceptance continue in later gates | Equivalent usable fallback with bounded DPR/FPS and suspension | Liquid runtime/CSS; performance and browser evidence | Motion sickness, battery cost or unusable content | LIQ-02/03 | C07/C23 | C07E fallback/performance, finalized C23 | Reduced-motion/no-WebGL/hidden-tab/mobile states pass and `OWNER_LIQUID_ORIENTATION_PASS` is recorded | OPEN_PENDING_OWNER_AND_C23 |
+| LIQ-03 | P1 | Scene parity | Global, hero and constructor share the normalized orientation and Option A material family | Coherent transitions, horizon, overlays and foreground readability | Liquid/hero components; scene CSS; browser evidence | Visual discontinuity weakens brand and comprehension | LIQ-01/02 | C07 | C07C global scene plus C07D hero/constructor parity | No transition inversion; readable content and Owner-approved physical direction | CLOSED_OWNER_ACCEPTED |
+| LIQ-04 | P1 | Liquid fallback/performance | Reduced-motion/no-WebGL/visibility/mobile controls remain intact; final performance continues in later gates | Equivalent usable fallback with bounded DPR/FPS and suspension | Liquid runtime/CSS; performance and browser evidence | Motion sickness, battery cost or unusable content | LIQ-02/03 | C07/C23 | C07E fallback/performance, finalized C23 | Reduced-motion/no-WebGL/hidden-tab/mobile states pass; final C23 budgets remain | OPEN_PENDING_C23 |
 
 ## B.3 Art direction, homepage and commercial content systems
 

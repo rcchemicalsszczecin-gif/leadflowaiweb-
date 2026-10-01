@@ -56,8 +56,8 @@ masters.
 | Path | SHA-256 | Consumer state | Provenance / retirement state |
 |---|---|---|---|
 | `public/v14-portfolio-stage.svg` | `a535ee0b36442837daccdc722fd3d2bb524178491df901e2b41516dca9f2ee1e` | `ACTIVE_PUBLIC_CONSUMER` through homepage portfolio | `FIRST_PARTY_EXISTING_ASSET`; Option A palette-aligned; `NOT_AUTHORIZED_FOR_RETIREMENT` |
-| `public/v14-quality-canvas.svg` | `7c8b5596d5b9aafc0ef6159c0c9e4f37bd9f9829045fbee7426c7252f74ebf2e` | `ACTIVE_PUBLIC_CONSUMER` through process canvas | `FIRST_PARTY_EXISTING_ASSET`; Option A palette-aligned; `NOT_AUTHORIZED_FOR_RETIREMENT` |
-| `public/v14-search-trinity-dark.svg` | `87c330733e3161619ee0877c11760a98356d94380c25a4008fc361ea06928c90` | `ACTIVE_PUBLIC_CONSUMER` through search trinity | `FIRST_PARTY_EXISTING_ASSET`; Option A palette-aligned; `NOT_AUTHORIZED_FOR_RETIREMENT` |
+| `public/v14-quality-canvas.svg` | `0fc05ced16e313de487f5c39e62c0b5c644f59291609dc76bdc31ec80b39ddf5` | `ACTIVE_PUBLIC_CONSUMER` through process canvas | `FIRST_PARTY_REBUILT_VISUAL_ASSET`; rebuilt during Owner-authorized homepage premium polish to remove placeholder/dashboard residue and align Polish public language and meaningful numbering; consumer role unchanged; Option A palette-aligned; `NOT_AUTHORIZED_FOR_RETIREMENT` |
+| `public/v14-search-trinity-dark.svg` | `43c9e587ddf2e5e5c445372f8b9b8f4fbbe60af0569da4dce4aff2e92b1fce27` | `ACTIVE_PUBLIC_CONSUMER` through search trinity | `FIRST_PARTY_REBUILT_VISUAL_ASSET`; rebuilt during Owner-authorized homepage premium polish to remove placeholder/panel residue and align Polish public language and meaningful numbering; consumer role unchanged; Option A palette-aligned; `NOT_AUTHORIZED_FOR_RETIREMENT` |
 | `public/v14-search-trinity.svg` | `7aa2803c8ab0f917882771acf5ba4c0ff748e21b8100b9a0d4c984bbc87307ef` | `UNREFERENCED_TRACKED` | `LEGACY_ASSET`; `PENDING_EVIDENCE_BASED_RETIREMENT` |
 
 Current inventory has `UNKNOWN_CONSUMER_COUNT=0` and

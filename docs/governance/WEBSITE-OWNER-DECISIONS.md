@@ -387,9 +387,35 @@ PUBLIC_HOMEPAGE_LANGUAGE=POLISH
 FINAL_MARKETING_MEDIA=OWNER_SUPPLIED_OR_OWNER_APPROVED
 ```
 
-No candidate implementation may change `OWNER_LIQUID_ORIENTATION_PASS` to
-`YES`. A technically and visually evidenced correction returns to the Owner
-as `PENDING_OWNER_RECHECK`.
+At that review point, no candidate implementation could self-assign
+`OWNER_LIQUID_ORIENTATION_PASS=YES`; the correction therefore returned as
+`PENDING_OWNER_RECHECK`. Section 9.1.1 records the later direct Owner review
+that supersedes that pending state.
+
+### 9.1.1 Owner premium-polish review
+
+The Owner subsequently reviewed the corrected homepage candidate locally and
+superseded the pending Liquid decision for this exact candidate. The approved
+foundation is protected while the remaining microtypography and proof-diagram
+quality is returned for bounded polish.
+
+```text
+OWNER_OPTION_A_COLOR_DIRECTION=PASS
+OWNER_LIQUID_ORIENTATION_PASS=PASS
+OWNER_WATER_VISUAL_DIRECTION=PASS
+OWNER_HERO_GENERAL_DIRECTION=PASS
+OWNER_COLOR_PALETTE_REDESIGN_AUTHORIZED=NO
+OWNER_WATER_REDESIGN_AUTHORIZED=NO
+OWNER_LIQUID_REARCHITECTURE_AUTHORIZED=NO
+OWNER_MICROTYPOGRAPHY_PREVIOUS_REVIEW=REJECTED_FOR_POLISH
+OWNER_PLACEHOLDER_DIAGRAM_VISUALS_PREVIOUS_REVIEW=REJECTED
+OWNER_NUMBERING_RULE=NO_LEADING_ZERO_PUBLIC_SEQUENCE_LABELS
+OWNER_COMPLETE_HOMEPAGE_PASS=PENDING_OWNER_REVIEW
+```
+
+Decorative homepage numbering is removed. Genuine sequences use ordinary
+human integers (`1`, `2`, `3`, ...) and never leading-zero identifiers.
+Final marketing media remains Owner-supplied or Owner-approved.
 
 ### 9.2 Candidate dependency-security remediation
 
