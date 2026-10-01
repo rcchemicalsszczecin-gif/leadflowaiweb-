@@ -59,9 +59,18 @@ masters.
 | `public/v14-quality-canvas.svg` | `0fc05ced16e313de487f5c39e62c0b5c644f59291609dc76bdc31ec80b39ddf5` | `ACTIVE_PUBLIC_CONSUMER` through process canvas | `FIRST_PARTY_REBUILT_VISUAL_ASSET`; rebuilt during Owner-authorized homepage premium polish to remove placeholder/dashboard residue and align Polish public language and meaningful numbering; consumer role unchanged; Option A palette-aligned; `NOT_AUTHORIZED_FOR_RETIREMENT` |
 | `public/v14-search-trinity-dark.svg` | `43c9e587ddf2e5e5c445372f8b9b8f4fbbe60af0569da4dce4aff2e92b1fce27` | `ACTIVE_PUBLIC_CONSUMER` through search trinity | `FIRST_PARTY_REBUILT_VISUAL_ASSET`; rebuilt during Owner-authorized homepage premium polish to remove placeholder/panel residue and align Polish public language and meaningful numbering; consumer role unchanged; Option A palette-aligned; `NOT_AUTHORIZED_FOR_RETIREMENT` |
 | `public/v14-search-trinity.svg` | `7aa2803c8ab0f917882771acf5ba4c0ff748e21b8100b9a0d4c984bbc87307ef` | `UNREFERENCED_TRACKED` | `LEGACY_ASSET`; `PENDING_EVIDENCE_BASED_RETIREMENT` |
+| `public/proof/leadflowai-service-desktop.webp` | `ce2a593d353ef72bcfdaba0f2f3b9d88a6e1ec28bebac7c388c5918b69cda32c` | `ACTIVE_PUBLIC_CONSUMER` through homepage hero browser proof and Device Theater | `FIRST_PARTY_LEADFLOWAI_RENDER_CAPTURE`; `/strony-internetowe/`; Firefox WebDriver; 1440x900; captured from the C12 pre-commit candidate based on `4cdb0f50e32a522c0baeca432e06dc3179b2d6e6`; no client implication; `NOT_AUTHORIZED_FOR_RETIREMENT` |
+| `public/proof/leadflowai-service-tablet.webp` | `a9c30dc36678e0c457d32eaee605dfd3360cc4c2e1b2666e4281e4750d567540` | `ACTIVE_PUBLIC_CONSUMER` through homepage Device Theater | `FIRST_PARTY_LEADFLOWAI_RENDER_CAPTURE`; `/strony-internetowe/`; Firefox WebDriver; 768x1024; captured from the C12 pre-commit candidate based on `4cdb0f50e32a522c0baeca432e06dc3179b2d6e6`; no client implication; `NOT_AUTHORIZED_FOR_RETIREMENT` |
+| `public/proof/leadflowai-service-mobile.webp` | `608375f2ce40b16e6918541d94d4859bd16c3ca37270e9b69485833e46312c33` | `ACTIVE_PUBLIC_CONSUMER` through homepage hero phone proof and Device Theater | `FIRST_PARTY_LEADFLOWAI_RENDER_CAPTURE`; `/strony-internetowe/`; Firefox WebDriver; 390x844; captured from the C12 pre-commit candidate based on `4cdb0f50e32a522c0baeca432e06dc3179b2d6e6`; no client implication; `NOT_AUTHORIZED_FOR_RETIREMENT` |
 
 Current inventory has `UNKNOWN_CONSUMER_COUNT=0` and
 `UNCLASSIFIED_ADMITTED_BRAND_ASSET_COUNT=0`.
+
+The three responsive proof captures are truthful first-party page renders, not
+Owner-master derivatives, client evidence or invented interfaces. Their exact
+source route, viewport, tool, dimensions, consumer and hash are recorded above.
+Cropping and CSS masking by the named homepage consumers may change framing but
+must not repaint or alter the captured page content.
 
 ## 5. Superseded identity artifacts
 

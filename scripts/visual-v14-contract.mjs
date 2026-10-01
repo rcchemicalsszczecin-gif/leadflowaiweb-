@@ -24,7 +24,8 @@ for(const removed of ["GŁĘBIA 00","GŁĘBIA 80","GŁĘBIA 160","GŁĘBIA 240",
 for(const required of ["waveHeight","waterNormal","fresnel","reflectedDirection","caustic","pointerRipple","canvas.getContext(\"webgl2\""])if(!liquidSurface.includes(required))fail(`real-time Liquid shader proof missing: ${required}`);
 for(const required of ['[data-variant="hero"]',".v14-signature-stage","perspective: 1900px","translateZ(310px)","transform-style: preserve-3d"])if(!liquidCss.includes(required))fail(`hero Liquid/spatial visual CSS missing: ${required}`);
 if(!visualCss.includes("v14-foundation")||!read("public/v14-scenes.css").includes(".v15-proof-line"))fail("homepage rhythm ownership missing");
-for(const required of ["01 / CZŁOWIEK","02 / GOOGLE","03 / SYSTEM AI","VISUAL ENTITY GRAPH","EDUKACYJNY AI SEARCH PREVIEW","nie gwarancja"])if(!searchEducation.includes(required))fail(`search education visual missing: ${required}`);
+for(const required of ["CZŁOWIEK","WYSZUKIWARKA","SYSTEM AI","MAPA RELACJI ENCJI","PRZYKŁADOWA ODPOWIEDŹ SYSTEMU AI","nie gwarancja"])if(!searchEducation.includes(required))fail(`search education visual missing: ${required}`);
+for(const retired of ["01 / CZŁOWIEK","02 / GOOGLE","03 / SYSTEM AI","VISUAL ENTITY GRAPH","EDUKACYJNY AI SEARCH PREVIEW"])if(searchEducation.includes(retired))fail(`retired search education label remains: ${retired}`);
 if(!visibilityHub.includes("<SearchVisibilityExplainerV13 />"))fail("search education module not active on visibility hub");
 if(!layout.includes('/brand/og-leadflowai-brand.png'))fail("approved brand-led OG asset not wired");
 if(!existsSync("public/brand/og-leadflowai-brand.png"))fail("approved brand-led OG asset missing");

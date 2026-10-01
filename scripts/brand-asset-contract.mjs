@@ -51,10 +51,24 @@ const visualMedia = [
   ["public/v14-quality-canvas.svg", "0fc05ced16e313de487f5c39e62c0b5c644f59291609dc76bdc31ec80b39ddf5"],
   ["public/v14-search-trinity-dark.svg", "43c9e587ddf2e5e5c445372f8b9b8f4fbbe60af0569da4dce4aff2e92b1fce27"],
   ["public/v14-search-trinity.svg", "7aa2803c8ab0f917882771acf5ba4c0ff748e21b8100b9a0d4c984bbc87307ef"],
+  ["public/proof/leadflowai-service-desktop.webp", "ce2a593d353ef72bcfdaba0f2f3b9d88a6e1ec28bebac7c388c5918b69cda32c"],
+  ["public/proof/leadflowai-service-tablet.webp", "a9c30dc36678e0c457d32eaee605dfd3360cc4c2e1b2666e4281e4750d567540"],
+  ["public/proof/leadflowai-service-mobile.webp", "608375f2ce40b16e6918541d94d4859bd16c3ca37270e9b69485833e46312c33"],
 ];
 for (const [path, expectedHash] of visualMedia) {
   if (!tracked.includes(path) || hash(path) !== expectedHash || !provenance.includes(`\`${expectedHash}\``)) {
     fail(`tracked visual media unclassified or stale: ${path}`);
+  }
+}
+
+const deviceProofConsumers = `${readFileSync("components/v14-device-theater.tsx", "utf8")}\n${readFileSync("components/v14-browser-mockup.tsx", "utf8")}\n${readFileSync("components/v14-phone-mockup.tsx", "utf8")}`;
+for (const [path] of visualMedia.slice(-3)) {
+  const publicPath = path.replace(/^public/, "");
+  const bytes = statSync(path).size;
+  if (!deviceProofConsumers.includes(publicPath)) fail(`first-party device proof has no consumer: ${path}`);
+  if (bytes < 10_000 || bytes > 200_000) fail(`first-party device proof byte budget failed: ${path} bytes=${bytes}`);
+  for (const marker of ["FIRST_PARTY_LEADFLOWAI_RENDER_CAPTURE", "no client implication"]) {
+    if (!provenance.includes(marker)) fail(`first-party device proof provenance missing ${marker}`);
   }
 }
 
@@ -77,4 +91,4 @@ for (const required of [
 ]) if (!provenance.includes(required)) fail(`required provenance invariant missing: ${required}`);
 
 if (/^\|[^\n]*UNKNOWN_PROVENANCE[^\n]*APPROVED_(?:EXACT_DERIVATIVE|DERIVATIVE_FAMILY)/m.test(provenance)) fail("unknown provenance is represented as approved");
-console.log("BRAND_ASSET_CONTRACT_PASS masters=3 tracked-master-matches=0 admitted-derivatives=4 retired-identities=3 unknown-consumers=0 hero-admission=0");
+console.log("BRAND_ASSET_CONTRACT_PASS masters=3 tracked-master-matches=0 admitted-derivatives=4 first-party-device-proof=3 retired-identities=3 unknown-consumers=0 hero-admission=0");
