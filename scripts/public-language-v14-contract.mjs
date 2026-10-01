@@ -16,7 +16,7 @@ for(const required of ["V14Hero","V14Services","V14DeviceTheater","V14LiquidCons
 const hero=read("components/v14-hero.tsx");
 for(const required of ["LEADFLOWAI","pomagają firmie rosnąć","Porozmawiajmy o projekcie","Zobacz prawdziwe realizacje","INTERAKCJA WEBGL","ROZWÓJ I OPIEKA","V14SignatureStage",'variant="hero"',"/v14-content.css","/v14-liquid-surface.css"])if(!hero.includes(required))fail(`V14 hero missing public/signature label: ${required}`);
 const signature=read("components/v14-signature-stage.tsx");
-for(const required of ["WARSTWA WIDOCZNOŚCI","WARSTWA AI","DZIAŁAJĄCY PRODUKT","INTERAKTYWNA POWIERZCHNIA / WEBGL2","RUCH · GŁĘBIA · PRODUKT WWW"])if(!signature.includes(required))fail(`V14 signature stage missing label: ${required}`);
+for(const required of ["WIDOCZNOŚĆ","INTELIGENCJA","PRODUKT WWW","SEO · AEO · GEO","RAG · API · AI","INTERFEJS · DANE"])if(!signature.includes(required))fail(`V14 signature stage missing label: ${required}`);
 const services=read("components/v14-services.tsx");
 for(const required of ["ZBUDUJ","DAJ SIĘ ZNALEŹĆ","PROWADŹ DO DECYZJI","DODAJ INTELIGENCJĘ","POŁĄCZ","ROZWIJAJ","Chatboty","RAG"])if(!services.includes(required))fail(`V14 offer missing public label: ${required}`);
 const liquid=read("components/v14-liquid-constructor.tsx");

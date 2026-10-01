@@ -6,9 +6,9 @@ export function V14Portfolio() {
       <div className="v14-shell">
         <div className="v15-portfolio-head"><p>REALIZACJE WŁASNE I MARKI POWIĄZANE</p><h2 id="v14-portfolio-title">Pokazujemy zakres, stan i ograniczenia — nie wymyślone wyniki.</h2><span>To projekty własne ekosystemu Tervyxa Systems, a nie lista zewnętrznych klientów.</span></div>
         <div className="v15-portfolio-list">
-          {portfolioCases.map((project, index) => (
+          {portfolioCases.map((project) => (
             <article key={project.name}>
-              <div><small>0{index + 1}</small><span>PROJEKT WŁASNY / MARKA POWIĄZANA</span></div>
+              <div><span>PROJEKT WŁASNY / MARKA POWIĄZANA</span></div>
               <h3>{project.name}</h3><p>{project.scope[0].description}</p>
               <a href={project.url} target="_blank" rel="noreferrer">Otwórz publiczny serwis <span aria-hidden="true">↗</span></a>
             </article>

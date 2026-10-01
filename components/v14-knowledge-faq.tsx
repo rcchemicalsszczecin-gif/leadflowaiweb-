@@ -1,13 +1,16 @@
 import { knowledgeArticles } from "@/lib/knowledge-registry";
 
 const featuredSlugs = [
-  "jak-zaplanowac-strone-firmowa",
-  "seo-aeo-geo-jedna-architektura",
+  { slug: "jak-zaplanowac-strone-firmowa", label: "PLANOWANIE STRONY" },
+  { slug: "seo-aeo-geo-jedna-architektura", label: "WIDOCZNOŚĆ I TREŚĆ" },
 ] as const;
 
 const featured = featuredSlugs
-  .map((slug) => knowledgeArticles.find((article) => article.slug === slug))
-  .filter((article): article is NonNullable<typeof article> => Boolean(article));
+  .map(({ slug, label }) => {
+    const article = knowledgeArticles.find((candidate) => candidate.slug === slug);
+    return article ? { article, label } : null;
+  })
+  .filter((entry): entry is NonNullable<typeof entry> => Boolean(entry));
 
 const faqs = [
   {
@@ -54,13 +57,15 @@ export function V14KnowledgeFaq() {
         <div className="v14-section-head v14-knowledge-head">
           <p>WIEDZA PRZED DECYZJĄ</p>
           <h2 id="v14-knowledge-title">Konkretny temat, krótka odpowiedź, potem pełny kontekst.</h2>
-          <span>Wybraliśmy trzy materiały, które pomagają uporządkować projekt, widoczność i zmiany w wyszukiwaniu.</span>
+          <span>Wybraliśmy materiały, które pomagają uporządkować projekt, widoczność i zmiany w wyszukiwaniu.</span>
         </div>
 
         <div className="v14-knowledge-grid">
-          {featured.map((article) => (
+          {featured.map(({ article, label }) => (
             <article key={article.slug}>
+              <small>{label}</small>
               <h3>{article.title}</h3>
+              <p>{article.summary}</p>
               <a href={`/wiedza/${article.slug}`}>Czytaj dalej <span aria-hidden="true">↗</span></a>
             </article>
           ))}

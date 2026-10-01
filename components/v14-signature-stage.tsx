@@ -76,27 +76,16 @@ export function V14SignatureStage() {
         </div>
 
         <div className="v14-signature-node v14-signature-node-search">
-          <small>WARSTWA WIDOCZNOŚCI</small>
+          <small>WIDOCZNOŚĆ</small>
           <strong>SEO · AEO · GEO</strong>
-          <span>ENCJE / INTENCJE / ODPOWIEDZI</span>
         </div>
         <div className="v14-signature-node v14-signature-node-ai">
-          <small>WARSTWA AI</small>
-          <strong>RAG · API · AGENT AI</strong>
-          <span>KONTEKST / DZIAŁANIE</span>
+          <small>INTELIGENCJA</small>
+          <strong>RAG · API · AI</strong>
         </div>
         <div className="v14-signature-node v14-signature-node-runtime">
-          <small>DZIAŁAJĄCY PRODUKT</small>
-          <strong>UI / DANE / PRZEPŁYW</strong>
-          <span>GOTOWY DO WERYFIKACJI</span>
-        </div>
-
-        <div className="v14-signature-depth-scale">
-          <span>GŁĘBIA 00</span><span>GŁĘBIA 80</span><span>GŁĘBIA 160</span><span>GŁĘBIA 240</span>
-        </div>
-        <div className="v14-signature-hud">
-          <small>INTERAKTYWNA POWIERZCHNIA / WEBGL2</small>
-          <strong>RUCH · GŁĘBIA · PRODUKT WWW</strong>
+          <small>PRODUKT WWW</small>
+          <strong>INTERFEJS · DANE</strong>
         </div>
       </div>
     </div>

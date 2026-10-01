@@ -5,7 +5,8 @@ export function V14PhoneMockup() {
       <span>LF</span>
       <small>WERSJA MOBILNA</small>
       <strong>Ta sama marka. Układ dopasowany do telefonu.</strong>
-      <i /><i /><i />
+      <div className="v14-phone-paths"><b>OFERTA</b><b>REALIZACJE</b></div>
+      <em>NAPISZ DO NAS ↗</em>
     </div>
   );
 }

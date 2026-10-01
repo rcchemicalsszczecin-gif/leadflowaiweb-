@@ -25,12 +25,11 @@ export function V14Hero() {
               <a className="v14-button v14-button-ghost" href="#realizacje">Zobacz prawdziwe realizacje</a>
             </div>
             <ul className="v14-hero-signals" aria-label="Standard projektu">
-              <li><strong>01</strong><span>STRATEGIA I UX</span></li><li><strong>02</strong><span>SEO / AEO / GEO</span></li><li><strong>03</strong><span>INTERAKCJA WEBGL</span></li><li><strong>04</strong><span>ROZWÓJ I OPIEKA</span></li>
+              <li><span>STRATEGIA I UX</span></li><li><span>SEO / AEO / GEO</span></li><li><span>INTERAKCJA WEBGL</span></li><li><span>ROZWÓJ I OPIEKA</span></li>
             </ul>
           </div>
           <V14SignatureStage />
         </div>
-        <div className="v14-hero-water-label" aria-hidden="true"><span>INTERAKTYWNA POWIERZCHNIA</span><b>WEBGL2 / LIMIT 45 KL./S</b></div>
       </section>
     </>
   );

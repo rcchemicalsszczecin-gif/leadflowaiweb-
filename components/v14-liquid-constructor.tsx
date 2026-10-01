@@ -1,11 +1,11 @@
 import { V14LiquidSurface } from "@/components/v14-liquid-surface";
 
 const steps = [
-  ["01", "RUCH", "interakcja z konkretną rolą"],
-  ["02", "STRUKTURA", "architektura informacji"],
-  ["03", "INTERFEJS", "komponenty i działanie"],
-  ["04", "WIDOCZNOŚĆ", "SEO · AEO · GEO"],
-  ["05", "AI", "RAG · encje · integracje"],
+  ["1", "RUCH", "interakcja z konkretną rolą"],
+  ["2", "STRUKTURA", "architektura informacji"],
+  ["3", "INTERFEJS", "komponenty i działanie"],
+  ["4", "WIDOCZNOŚĆ", "SEO · AEO · GEO"],
+  ["5", "AI", "RAG · encje · integracje"],
 ] as const;
 
 export function V14LiquidConstructor() {
@@ -36,26 +36,25 @@ export function V14LiquidConstructor() {
             <path d="M80 430 Q180 380 280 428 T480 426 T640 430" fill="none" stroke="#5bdcff" strokeOpacity=".2"/>
           </svg>
 
-          <div className="v14-liquid-layer v14-liquid-layer-grid"><span>02 / STRUKTURA</span></div>
+          <div className="v14-liquid-layer v14-liquid-layer-grid"><span>2 / STRUKTURA</span></div>
 
           <div className="v14-liquid-layer v14-liquid-layer-product">
               <div className="v14-liquid-windowbar"><i /><small>leadflowai / interfejs</small></div>
             <div className="v14-liquid-product-body">
               <div>
-                <small>03 / INTERFEJS</small>
+                <small>3 / INTERFEJS</small>
                 <strong>Interfejs gotowy do działania.</strong>
-                <span className="v14-liquid-copyline" />
-                <span className="v14-liquid-copyline v14-liquid-copyline-short" />
+                <span className="v14-liquid-product-note">Treść prowadzi do jasnego kolejnego kroku.</span>
               </div>
-              <div className="v14-liquid-product-art" />
+              <div className="v14-liquid-product-art"><span>CEL</span><i>→</i><strong>KONTAKT</strong></div>
             </div>
           </div>
 
           <div className="v14-liquid-layer v14-liquid-layer-search">
-            <span>04 / WIDOCZNOŚĆ</span><b>SEO</b><b>AEO</b><b>GEO</b>
+            <span>4 / WIDOCZNOŚĆ</span><b>SEO</b><b>AEO</b><b>GEO</b>
           </div>
           <div className="v14-liquid-layer v14-liquid-layer-ai">
-            <span>05 / AI</span><b>RAG</b><b>ENCJE</b><b>API</b><b>AGENT</b>
+            <span>5 / AI</span><b>RAG</b><b>ENCJE</b><b>API</b><b>AGENT</b>
           </div>
 
           <figcaption className="v14-liquid-caption">RUCH → STRUKTURA → INTERFEJS → WIDOCZNOŚĆ → AI</figcaption>

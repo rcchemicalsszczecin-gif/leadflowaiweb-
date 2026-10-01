@@ -1,11 +1,11 @@
 import Image from "next/image";
 
 const steps = [
-  ["01", "Diagnoza", "Cel, odbiorca i wynik biznesowy."],
-  ["02", "Architektura", "Informacja, UX, content, search i dane."],
-  ["03", "Projekt i budowa", "Kierunek wizualny, komponenty i kod."],
-  ["04", "Sprawdzenie", "Telefon, dostępność, wydajność i bezpieczeństwo."],
-  ["05", "Publikacja + rozwój", "Wdrożenie, monitoring i dalsze decyzje."],
+  ["1", "Diagnoza", "Cel, odbiorca i wynik biznesowy."],
+  ["2", "Architektura", "Informacja, UX, treść, widoczność i dane."],
+  ["3", "Projekt i budowa", "Kierunek wizualny, komponenty i kod."],
+  ["4", "Sprawdzenie", "Telefon, dostępność, wydajność i bezpieczeństwo."],
+  ["5", "Publikacja + rozwój", "Wdrożenie, monitoring i dalsze decyzje."],
 ] as const;
 
 export function V14ProcessCanvas() {

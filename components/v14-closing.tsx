@@ -15,13 +15,13 @@ export function V14Closing() {
             <a className="v14-button v14-button-primary" href={`mailto:${site.email}`}>Napisz do LeadFlowAI <span aria-hidden="true">↗</span></a>
             <a className="v14-button v14-button-ghost" href="/realizacje">Sprawdź realizacje</a>
           </div>
-          <p style={{ margin: "24px 0 0", color: "var(--brand-text-muted)", fontSize: 11, letterSpacing: ".12em" }}>STRONY WWW · WIDOCZNOŚĆ · AI · INTEGRACJE</p>
+          <p className="v14-closing-taxonomy">STRONY WWW · WIDOCZNOŚĆ · AI · INTEGRACJE</p>
         </div>
       </div>
-      <footer className="v14-shell" style={{ display: "flex", flexWrap: "wrap", gap: 18, justifyContent: "space-between", alignItems: "center", marginTop: 76, paddingTop: 24, borderTop: "1px solid rgba(255,255,255,.1)" }}>
-        <div style={{ display: "grid", gap: 8 }}><FooterBrandIdentity /><small style={{ color: "var(--brand-text-muted)" }}>marka Tervyxa Systems sp. z o.o.</small></div>
-        <nav aria-label="Stopka" style={{ display: "flex", flexWrap: "wrap", gap: 18 }}><a href="/uslugi">Usługi</a><a href="/realizacje">Realizacje</a><a href="/wiedza">Wiedza</a><a href="/o-nas">O nas</a></nav>
-        <small style={{ color: "var(--brand-text-muted)" }}>© 2026 LeadFlowAI</small>
+      <footer className="v14-shell v14-home-footer">
+        <div className="v14-home-footer-brand"><FooterBrandIdentity /><small>marka Tervyxa Systems sp. z o.o.</small></div>
+        <nav aria-label="Stopka"><a href="/uslugi">Usługi</a><a href="/realizacje">Realizacje</a><a href="/wiedza">Wiedza</a><a href="/o-nas">O nas</a></nav>
+        <small>© 2026 LeadFlowAI</small>
       </footer>
     </section>
   );
