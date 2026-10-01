@@ -29,20 +29,26 @@ const extract = (html, tag) => {
 
 const websiteText = stripHtml(websiteHtml);
 const localSeoText = stripHtml(localSeoHtml);
-const websiteH1 = extract(websiteHtml, "h1");
-const localSeoH1 = extract(localSeoHtml, "h1");
 const websiteTitle = extract(websiteHtml, "title");
 const localSeoTitle = extract(localSeoHtml, "title");
 
 for (const [label, value, required] of [
-  ["website H1", websiteH1, "Szczecina"],
-  ["website title", websiteTitle, "Szczecina"],
   ["website visible copy", websiteText, "całej Polski"],
-  ["local SEO H1", localSeoH1, "Szczecina"],
-  ["local SEO title", localSeoTitle, "Szczecina"],
+  ["local SEO visible copy", localSeoText, "lokalną intencję"],
   ["local SEO visible copy", localSeoText, "fikcyjnych danych adresowych"],
 ]) {
   if (!value.includes(required)) fail(`${label} missing required local-intent phrase: ${required}`);
+}
+
+const forbiddenGeography = /\b(?:szczecin(?:a|ie)?|szczeciń(?:ski|ska|skie|skich)|zachodniopomorsk(?:ie|i|a)|pomorze\s+zachodnie)\b/giu;
+for (const [label, value] of [
+  ["website public output", websiteText],
+  ["local SEO public output", localSeoText],
+  ["website title", websiteTitle],
+  ["local SEO title", localSeoTitle],
+]) {
+  const matches = value.match(forbiddenGeography) ?? [];
+  if (matches.length) fail(`${label} contains forbidden city/region positioning: ${matches.join(", ")}`);
 }
 
 if (!/href=["']\/local-seo\/?["']/i.test(websiteHtml)) {
@@ -67,5 +73,5 @@ if (/streetAddress/i.test(combined)) {
 }
 
 console.log(
-  "V15_LOCAL_INTENT_PASS pages=strony-internetowe,local-seo market=Szczecin+nationwide crosslinks=BIDIRECTIONAL sitemap=63_PRESERVED new-szczecin-url=NO localbusiness=NO address-claim=NO",
+  "V15_LOCAL_INTENT_PASS pages=strony-internetowe,local-seo market=Poland-national local-service=VALID crosslinks=BIDIRECTIONAL sitemap=63_PRESERVED new-city-url=NO localbusiness=NO address-claim=NO",
 );

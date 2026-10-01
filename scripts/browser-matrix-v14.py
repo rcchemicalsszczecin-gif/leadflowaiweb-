@@ -21,8 +21,8 @@ VIEWPORTS = [
 ]
 
 REPRESENTATIVE_ROUTES = [
-    ("/strony-internetowe/", "Tworzenie stron internetowych dla firm ze Szczecina"),
-    ("/local-seo/", "SEO lokalne dla firm ze Szczecina"),
+    ("/strony-internetowe/", "Tworzenie stron internetowych dla firm w całej Polsce"),
+    ("/local-seo/", "SEO lokalne dla firm działających na rynkach lokalnych"),
     ("/aeo/", "AEO: architektura odpowiedzi"),
     ("/geo-ai-search/", "GEO i AI Search: źródłowa architektura"),
     ("/seo-aeo-geo/", "trzy jasno rozdzielone role"),
