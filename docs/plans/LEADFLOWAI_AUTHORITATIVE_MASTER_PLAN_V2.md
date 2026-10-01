@@ -2328,7 +2328,7 @@ C01_PER_FILE_OPERATIONAL_TRUTH=6_OF_6
 C01_NEGATIVE_TESTS=8_OF_8
 C01_CORE_CONTRACTS=3_OF_3_PASS
 C01_RESIDUAL_OPEN_BACKLOG=OPS-03,OPS-04
-CURRENT_PRODUCT_COMPLETION_MACRO_STAGE=C07F_C09_C10_C11_HOMEPAGE_CANDIDATE
+CURRENT_PRODUCT_COMPLETION_MACRO_STAGE=C12_SERVICE_COMPOSITION_DEVICE_PROOF_CANDIDATE
 C02A_REPOSITORY_IP_GITHUB_INVENTORY=COMPLETE
 C02B_OWNER_VISIBILITY_LICENSING_DECISION=RECORDED
 C02B2_CONTINUITY_ARCHITECTURE_DECISION=RECORDED
@@ -2358,15 +2358,17 @@ C07_TECHNICAL_CORRECTION=PASS
 OWNER_LIQUID_ORIENTATION_PASS=PASS
 C07_STATUS=COMPLETE_OWNER_ACCEPTED
 C08_STATUS=COMPLETE_CANDIDATE
-C09_STATUS=PREMIUM_POLISH_CANDIDATE_PENDING_OWNER_REVIEW
-C10_STATUS=PREMIUM_POLISH_CANDIDATE_PENDING_OWNER_REVIEW
-C11_STATUS=PREMIUM_POLISH_CANDIDATE_PENDING_OWNER_REVIEW
+C09_STATUS=OWNER_ACCEPTED_EXCEPT_FINAL_DEVICE_PROOF_RECHECK
+C10_STATUS=COMPLETE_CANDIDATE_PENDING_OWNER_DEVICE_PROOF_REVIEW
+C11_STATUS=OWNER_DIRECTION_ACCEPTED
+C12_STATUS=COMPOSITION_SYSTEM_CANDIDATE_PENDING_OWNER_REVIEW
 NEXT_SECURITY_VERSION=16.3.7
 SHARP_SECURITY_RESOLUTION=0.35.5
 DEPENDENCY_AUDIT=PASS
 DEPENDENCY_SECURITY_STATE=CANDIDATE_ONLY_NOT_PRODUCTION
 OWNER_COMPLETE_HOMEPAGE_PASS=PENDING_OWNER_REVIEW
-NEXT_WORK_PACKAGE=OWNER_CONTROLLER_REVIEW_REQUIRED_BEFORE_C12
+OWNER_SERVICE_COMPOSITION_PASS=PENDING_OWNER_REVIEW
+NEXT_WORK_PACKAGE=OWNER_VISUAL_REVIEW_OF_C12_CANDIDATE
 ```
 
 C01 Operations Truth Reconciliation was executed through separately bounded Owner-authorized gates. Current production identity is validated independently in six operational documents, eight deliberate stale-condition tests pass and all three core C01 contracts pass. OPS-03 and OPS-04 remain open, and the current immediate rollback target remains `NOT_PROVEN`.
@@ -2387,13 +2389,13 @@ OWNER / CONTROLLER WORK-PACKAGE AUTHORIZATION
 
 This candidate package did not change production. C02E policy is complete while default-branch activation of candidate CODEOWNERS/Dependabot files remains deferred, so IP-05 remains open in that exact state. C03 determinism, whole-tracked security scanning, universal candidate Quality coverage and Action/toolchain immutability are complete. `SEC-02` remains a later hosting/release/runtime item.
 
-C04 has four exact, public-serving, provenance-controlled derivatives for the Owner-approved header/mobile, footer, icon and social roles; raw masters remain external and IP-03 is closed. C05 carries public-safe receipts for LeadFlowAI, Tervyxa and TranskrypcjaAI. Option A remains the accepted blue/purple/cyan visual foundation with green limited to functional status. The Owner has now accepted the corrected C07F Liquid orientation, water direction, Option A palette and general hero direction. C08 remains complete at candidate level. C09–C11 now carry a premium-polish candidate that removes decorative numbering, repairs public SVG language coverage, raises useful microtype and rebuilds the first-party service, device, discovery and verification proof systems without new runtime dependencies. Final complete-homepage acceptance remains pending direct Owner review; C12 is not authorized.
+C04 has four exact, public-serving, provenance-controlled derivatives for the Owner-approved header/mobile, footer, icon and social roles; raw masters remain external and IP-03 is closed. C05 carries public-safe receipts for LeadFlowAI, Tervyxa and TranskrypcjaAI. Option A remains the accepted blue/purple/cyan visual foundation with green limited to functional status. The Owner has accepted the corrected C07F Liquid orientation, water direction, Option A palette and general hero direction. C08 remains complete at candidate level. C09–C11 retain the approved homepage direction while C12 replaces the remaining simulated device interiors with exact first-party responsive captures and establishes six governed service-composition families across all 35 canonical service routes. Public decorative leading-zero service numbering is removed, genuine process numbering uses plain integers, and no later service-copy wave is started. Complete homepage and service-system acceptance remain pending direct Owner review.
 
 ```text
 HOME_01_STATUS=OPEN_PENDING_OWNER_HERO_REVIEW
 HOME_02_STATUS=CLOSED_CANDIDATE
 HOME_03_STATUS=CLOSED_CANDIDATE
-HOME_04_STATUS=CLOSED_CANDIDATE_WITH_LABELED_FIRST_PARTY_DEMONSTRATOR
+HOME_04_STATUS=C12_REAL_FIRST_PARTY_CAPTURE_CANDIDATE_PENDING_OWNER_REVIEW
 HOME_05_STATUS=CLOSED_CANDIDATE
 HOME_06_STATUS=CLOSED_CANDIDATE
 HOME_07_STATUS=CLOSED_CANDIDATE

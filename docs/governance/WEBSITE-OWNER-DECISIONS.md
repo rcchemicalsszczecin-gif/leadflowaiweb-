@@ -417,6 +417,33 @@ Decorative homepage numbering is removed. Genuine sequences use ordinary
 human integers (`1`, `2`, `3`, ...) and never leading-zero identifiers.
 Final marketing media remains Owner-supplied or Owner-approved.
 
+### 9.1.2 Owner C12 service and device-proof review
+
+The Owner subsequently accepted the homepage's overall direction while
+rejecting simulated device interiors, the repetitive shared service-page
+composition and leading-zero public numbering. This decision authorizes C12
+as a system stage without authorizing the later service-copy waves.
+
+```text
+OWNER_OPTION_A_COLOR_DIRECTION=PASS
+OWNER_LIQUID_ORIENTATION_PASS=PASS
+OWNER_WATER_VISUAL_DIRECTION=PASS
+OWNER_HOMEPAGE_GENERAL_DIRECTION=PASS
+OWNER_HOMEPAGE_DEVICE_PROOF_PASS=NO
+OWNER_SERVICE_ROUTE_VISUAL_SYSTEM_PASS=NO
+OWNER_LEADING_ZERO_NUMBERING_GLOBAL_PASS=NO
+OWNER_NUMBERING_RULE=DECORATIVE_REMOVE_SEQUENCE_USE_PLAIN_INTEGER
+FIRST_PARTY_DEVICE_PROOF_SOURCE=/strony-internetowe/
+OWNER_COMPLETE_HOMEPAGE_PASS=PENDING_OWNER_REVIEW
+OWNER_SERVICE_COMPOSITION_PASS=PENDING_OWNER_REVIEW
+```
+
+The C12 candidate may use deterministic captures of the exact LeadFlowAI
+candidate across desktop, tablet and mobile. Those captures are first-party
+product evidence and must never imply a client project. C13, C14 and C15 remain
+unstarted until the Owner reviews the six representative service families and
+the replacement homepage device proof.
+
 ### 9.2 Candidate dependency-security remediation
 
 The Owner authorized a bounded candidate-only upgrade from Next.js `16.3.1`
