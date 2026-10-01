@@ -74,13 +74,14 @@ export default function UslugiPage() {
       <AudiencePathsV13 />
       <OfferLevelsV13 />
 
+      <div className="services-family-directory">
       {pillars.map((pillar, index) => {
         const items = all.filter((item) => item.pillar === pillar.key);
         return (
-          <section key={pillar.key} className={index % 2 === 0 ? "section-light service-outcomes" : "section-dark service-deliverables"}>
+          <section key={pillar.key} className={`services-hub-family services-hub-family-${pillar.key.toLowerCase()} ${index % 2 === 0 ? "section-light" : "section-dark"}`}>
             <div className="page-shell section-pad">
               <div className={index % 2 === 0 ? "service-section-head" : "service-section-head service-section-head-dark"}>
-                <p className="service-index">{String(index + 1).padStart(2, "0")} / {pillar.label}</p>
+                <p className="service-index">{pillar.label}</p>
                 <h2>{pillar.title}</h2>
                 <p>{pillar.description}</p>
               </div>
@@ -97,10 +98,11 @@ export default function UslugiPage() {
           </section>
         );
       })}
+      </div>
 
       <section className="section-dark portfolio-method">
         <div className="page-shell section-pad">
-          <p className="service-index">07 / ZAKRES</p>
+          <p className="service-index">ELASTYCZNY ZAKRES</p>
           <h2>Zakres dobieramy do problemu. Nie trzeba kupować całego systemu naraz.</h2>
           <p>
             Nowa strona może zacząć się od architektury i wdrożenia. Istniejący serwis może potrzebować tylko audytu, CRO, wydajności, WCAG, SEO/AEO/GEO, RAG, integracji albo monitoringu. Moduły są projektowane tak, aby mogły później tworzyć większy system bez przepisywania wszystkiego od początku.

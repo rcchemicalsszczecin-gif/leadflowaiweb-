@@ -63,6 +63,7 @@ let serviceMailtoCount = 0;
 let articleCount = 0;
 let reviewedArticleCount = 0;
 let articleContactCount = 0;
+const retiredServiceMarkers = ["00 / ODPOWIEDŹ WPROST", "04 / PYTANIA", "05 / DECYZJA"];
 
 for (const path of htmlFiles) {
   const html = readFileSync(path, "utf8");
@@ -97,17 +98,21 @@ for (const path of htmlFiles) {
   if (service) {
     serviceCount += 1;
     const directAnswer = normalize(String(service.description ?? ""));
-    if (!text.includes("00 / ODPOWIEDŹ WPROST")) violations.push(`${display}: direct-answer section marker missing`);
+    if (!text.includes("ODPOWIEDŹ WPROST")) violations.push(`${display}: direct-answer section marker missing`);
     if (!directAnswer || !text.includes(directAnswer)) violations.push(`${display}: Service description/direct answer is not visibly rendered`);
     else serviceDirectAnswerCount += 1;
 
-    if (!/\bid=["']decision["']/i.test(html) || !text.includes("05 / DECYZJA")) {
+    if (!/\bid=["']decision["']/i.test(html) || !text.includes("DECYZJA")) {
       violations.push(`${display}: service decision layer missing`);
     } else serviceDecisionCount += 1;
 
     const detailsCount = (html.match(/<details\b/gi) ?? []).length;
-    if (detailsCount < 1 || !text.includes("04 / PYTANIA")) violations.push(`${display}: visible service FAQ missing`);
+    if (detailsCount < 1 || !text.includes("PYTANIA")) violations.push(`${display}: visible service FAQ missing`);
     else serviceFaqCount += 1;
+
+    for (const marker of retiredServiceMarkers) {
+      if (text.includes(marker)) violations.push(`${display}: retired numbered service marker remains visible: ${marker}`);
+    }
 
     if (!/href=["']mailto:kontakt@leadflowai\.pl/i.test(html)) violations.push(`${display}: direct contact path missing`);
     else serviceMailtoCount += 1;

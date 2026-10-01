@@ -9,12 +9,19 @@ const renderer = readFileSync("components/service-page.tsx", "utf8");
 const adapter = readFileSync("lib/public-service-page.ts", "utf8");
 const text = readFileSync("lib/public-text.ts", "utf8");
 const guidance = readFileSync("lib/service-decision-guidance.ts", "utf8");
+const familyComposition = readFileSync("components/service-composition-v15.tsx", "utf8");
+const servicesHub = readFileSync("app/uslugi/page.tsx", "utf8");
+const audiencePaths = readFileSync("components/audience-paths-v13.tsx", "utf8");
+const offerLevels = readFileSync("components/offer-levels-v13.tsx", "utf8");
+const knowledgeLinks = readFileSync("components/service-knowledge-links.tsx", "utf8");
+const searchExplainer = readFileSync("components/search-visibility-explainer-v13.tsx", "utf8");
 
 for (const required of [
   "toPublicServicePage(page)",
   "getPageStructuredData(publicPage)",
   "V14RouteSiteHeader",
   "V14SiteFooter",
+  "ServiceCompositionV15",
   'id="main-content"',
   "v14-service-page",
   "tabIndex={-1}",
@@ -49,4 +56,22 @@ for (const required of ["getServiceDecisionGuidance(publicPage.slug)", "Ma sens,
 if (!guidance.includes("gwarancja pozycji")) fail("search guidance must reject ranking guarantees");
 if (/\b\d+\s*(zł|PLN|dni|tygodni)\b/i.test(guidance)) fail("unapproved price or duration promise detected");
 
-console.log(`PUBLIC_SERVICE_MODEL_V14_PASS renderer=NORMALIZED shell=V14 schema=NORMALIZED taxonomy=PL descriptions=PL decisions=${decisionSlugs.length} groups=6 pricing=UNPUBLISHED`);
+if (decisionSlugs.length !== 35) fail(`service route count drift: ${decisionSlugs.length}`);
+
+for (const group of ["BUILD", "EXPERIENCE", "SEARCH", "AI", "PLATFORM", "CARE"]) {
+  if (!familyComposition.includes(`group === "${group}"`)) fail(`composition family missing ${group}`);
+}
+
+const visibleServiceSources = [renderer, servicesHub, audiencePaths, offerLevels, familyComposition, knowledgeLinks, searchExplainer].join("\n");
+if (/padStart\(2\s*,\s*["']0["']\)/.test(visibleServiceSources)) {
+  fail("public service renderer still pads visible numbering with a leading zero");
+}
+if (/\b0[0-9]\s*\//.test(visibleServiceSources)) {
+  fail("public service source still contains a leading-zero section label");
+}
+if (!renderer.includes("<span>{index + 1}</span>")) fail("service process does not use plain integer numbering");
+if (renderer.includes("deliverable-index")) fail("non-sequential deliverable numbering remains visible");
+if (/\bcode:\s*["']0[0-9]["']/.test(audiencePaths)) fail("audience alternatives still expose decorative numbering");
+if (/\[\s*["']0[0-9]["']\s*,/.test(offerLevels)) fail("offer profiles still expose decorative numbering");
+
+console.log(`PUBLIC_SERVICE_MODEL_V14_PASS renderer=NORMALIZED shell=V14 schema=NORMALIZED taxonomy=PL descriptions=PL decisions=${decisionSlugs.length} groups=6 compositions=6 leading-zero=ABSENT process-numbering=INTEGER pricing=UNPUBLISHED`);

@@ -1,20 +1,20 @@
 const views = [
   {
-    code: "01 / CZŁOWIEK",
+    code: "CZŁOWIEK",
     title: "Widzę ofertę i wiem, co zrobić dalej.",
     description:
       "Hierarchia treści, język korzyści, dowody i CTA mają pozwolić szybko zrozumieć zakres oraz następny krok.",
     signals: ["oferta", "dowody", "CTA"],
   },
   {
-    code: "02 / GOOGLE",
+    code: "WYSZUKIWARKA",
     title: "Rozumiem temat, strukturę i relacje strony.",
     description:
       "Semantyczny HTML, linkowanie, canonicale, dane strukturalne i architektura treści pomagają odkrywać oraz interpretować serwis.",
     signals: ["semantyka", "linki", "schema"],
   },
   {
-    code: "03 / SYSTEM AI",
+    code: "SYSTEM AI",
     title: "Mogę odczytać jednoznaczne fakty i kontekst.",
     description:
       "Spójne encje, odpowiedzi wprost, źródła i publicznie potwierdzalne informacje zwiększają czytelność treści dla systemów generatywnych.",
@@ -35,7 +35,7 @@ export function SearchVisibilityExplainerV13() {
     <section className="search-explainer-v13" aria-labelledby="search-explainer-title" data-v92-reveal="rise">
       <div className="page-shell section-pad">
         <div className="search-explainer-head-v13">
-          <p className="service-index">V13 / CZŁOWIEK · GOOGLE · AI</p>
+          <p className="service-index">CZŁOWIEK · WYSZUKIWARKA · SYSTEM AI</p>
           <h2 id="search-explainer-title">Ta sama strona musi być czytelna na trzy sposoby.</h2>
           <p>
             Nie projektujemy osobnej wersji dla robotów. Jedna publiczna prawda, dobra struktura i
@@ -59,7 +59,7 @@ export function SearchVisibilityExplainerV13() {
         <div className="entity-search-grid-v13">
           <article className="entity-graph-v13" aria-labelledby="entity-graph-title-v13">
             <div>
-              <p className="service-index">VISUAL ENTITY GRAPH</p>
+              <p className="service-index">MAPA RELACJI ENCJI</p>
               <h3 id="entity-graph-title-v13">Encje nie powinny istnieć jako przypadkowe wzmianki.</h3>
               <p>Marka, organizacja, oferta, wiedza i dowody tworzą kontrolowaną sieć relacji.</p>
             </div>
@@ -76,7 +76,7 @@ export function SearchVisibilityExplainerV13() {
           </article>
 
           <article className="ai-search-preview-v13" aria-labelledby="ai-search-preview-title-v13">
-            <p className="service-index">EDUKACYJNY AI SEARCH PREVIEW</p>
+            <p className="service-index">PRZYKŁADOWA ODPOWIEDŹ SYSTEMU AI</p>
             <h3 id="ai-search-preview-title-v13">Jak system może złożyć odpowiedź z publicznych informacji.</h3>
             <div className="ai-preview-window-v13">
               <small>PYTANIE</small>

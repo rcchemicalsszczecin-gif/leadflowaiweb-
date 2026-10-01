@@ -1,5 +1,6 @@
 import { JsonLd } from "@/components/json-ld";
 import { ServiceKnowledgeLinks } from "@/components/service-knowledge-links";
+import { ServiceCompositionV15 } from "@/components/service-composition-v15";
 import { V14SiteFooter } from "@/components/v14-site-footer";
 import { V14RouteSiteHeader } from "@/components/v14-route-site-header";
 import { getPublicPage, primaryPublicLinks } from "@/lib/page-registry";
@@ -67,9 +68,8 @@ export function ServicePage({ page }: ServicePageProps) {
             <aside className="service-capability-panel" aria-label="Zakres usługi">
               <p className="panel-label">{decision.label}</p>
               <ul>
-                {publicPage.capabilities.map((item, index) => (
+                {publicPage.capabilities.map((item) => (
                   <li key={item}>
-                    <span>{String(index + 1).padStart(2, "0")}</span>
                     <strong>{item}</strong>
                   </li>
                 ))}
@@ -81,22 +81,27 @@ export function ServicePage({ page }: ServicePageProps) {
 
       <section className="section-light service-answer">
         <div className="page-shell service-answer-grid">
-          <p className="service-index">00 / ODPOWIEDŹ WPROST</p>
+          <p className="service-index">ODPOWIEDŹ WPROST</p>
           <h2>Co dokładnie dostajesz?</h2>
           <p>{publicPage.directAnswer}</p>
         </div>
       </section>
 
+      <ServiceCompositionV15
+        group={decision.group}
+        capabilities={publicPage.capabilities}
+        deliverables={publicPage.deliverables}
+      />
+
       <section className="section-light service-outcomes">
         <div className="page-shell section-pad">
           <div className="service-section-head">
-            <p className="service-index">01 / WARTOŚĆ DLA BIZNESU</p>
+            <p className="service-index">WARTOŚĆ DLA BIZNESU</p>
             <h2>Projekt ma rozwiązywać konkretny problem, nie tylko wyglądać nowocześnie.</h2>
           </div>
           <div className="outcome-grid">
-            {publicPage.outcomes.map((item, index) => (
+            {publicPage.outcomes.map((item) => (
               <article key={item.title}>
-                <span>0{index + 1}</span>
                 <h3>{item.title}</h3>
                 <p>{item.description}</p>
               </article>
@@ -108,13 +113,12 @@ export function ServicePage({ page }: ServicePageProps) {
       <section id="scope" className="section-dark service-deliverables">
         <div className="page-shell section-pad">
           <div className="service-section-head service-section-head-dark">
-            <p className="service-index">02 / ZAKRES</p>
+            <p className="service-index">ZAKRES</p>
             <h2>Zakres projektujemy jako spójny system.</h2>
           </div>
           <div className="deliverable-list">
             {publicPage.deliverables.map((item) => (
               <article key={item.index}>
-                <span className="deliverable-index">{item.index}</span>
                 <div>
                   <h3>{item.title}</h3>
                   <p>{item.description}</p>
@@ -131,13 +135,13 @@ export function ServicePage({ page }: ServicePageProps) {
       <section id="process" className="section-light service-process">
         <div className="page-shell section-pad">
           <div className="service-section-head">
-            <p className="service-index">03 / PROCES</p>
+            <p className="service-index">PROCES</p>
             <h2>Proces bez ukrywania ryzyk i zależności.</h2>
           </div>
           <ol>
             {publicPage.process.map((item, index) => (
               <li key={item.title}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
+                <span>{index + 1}</span>
                 <div>
                   <h3>{item.title}</h3>
                   <p>{item.description}</p>
@@ -151,7 +155,7 @@ export function ServicePage({ page }: ServicePageProps) {
       <section className="section-light service-faq">
         <div className="page-shell section-pad">
           <div className="service-section-head">
-            <p className="service-index">04 / PYTANIA</p>
+            <p className="service-index">PYTANIA</p>
             <h2>Pytania, które warto wyjaśnić przed startem.</h2>
           </div>
           <div className="service-faq-grid">
@@ -168,32 +172,27 @@ export function ServicePage({ page }: ServicePageProps) {
       <section id="decision" className="section-dark service-deliverables service-decision-v13">
         <div className="page-shell section-pad">
           <div className="service-section-head service-section-head-dark">
-            <p className="service-index">05 / DECYZJA</p>
+            <p className="service-index">DECYZJA</p>
             <h2>Czy ten zakres pasuje do Twojego projektu?</h2>
           </div>
           <div className="deliverable-list">
             <article>
-              <span className="deliverable-index">01</span>
               <div><h3>Ma sens, gdy</h3><p>{decision.fit[0]}</p></div>
               <ul className="tag-list" aria-label="Drugi warunek dopasowania"><li>{decision.fit[1]}</li></ul>
             </article>
             <article>
-              <span className="deliverable-index">02</span>
               <div><h3>Nie musi mieć sensu, gdy</h3><p>{decision.noFit[0]}</p></div>
               <ul className="tag-list" aria-label="Drugi warunek niedopasowania"><li>{decision.noFit[1]}</li></ul>
             </article>
             <article>
-              <span className="deliverable-index">03</span>
               <div><h3>Co wpływa na koszt</h3><p>Nie publikujemy jednej ceny dla wszystkich projektów.</p></div>
               <ul className="tag-list" aria-label="Czynniki kosztu">{decision.cost.map((item) => <li key={item}>{item}</li>)}</ul>
             </article>
             <article>
-              <span className="deliverable-index">04</span>
               <div><h3>Co wpływa na czas</h3><p>Harmonogram wynika z rzeczywistego zakresu i zależności.</p></div>
               <ul className="tag-list" aria-label="Czynniki czasu">{decision.time.map((item) => <li key={item}>{item}</li>)}</ul>
             </article>
             <article>
-              <span className="deliverable-index">05</span>
               <div><h3>{comparisonTitle}</h3><p>{comparisonA}</p></div>
               <ul className="tag-list" aria-label="Alternatywa"><li>{comparisonB}</li></ul>
             </article>
@@ -206,7 +205,7 @@ export function ServicePage({ page }: ServicePageProps) {
       <section className="section-light related-services">
         <div className="page-shell section-pad">
           <div className="service-section-head">
-            <p className="service-index">07 / POWIĄZANE</p>
+            <p className="service-index">POWIĄZANE OBSZARY</p>
             <h2>Zobacz powiązane usługi i obszary rozwoju.</h2>
           </div>
           <nav className="related-grid" aria-label="Powiązane usługi">
@@ -234,7 +233,7 @@ export function ServicePage({ page }: ServicePageProps) {
 
       <section className="contact-section section-dark">
         <div className="page-shell contact-grid">
-          <p className="section-label section-label-inverted"><span>08</span><span>LEADFLOWAI / KONTAKT</span></p>
+          <p className="section-label section-label-inverted"><span>LEADFLOWAI / KONTAKT</span></p>
           <div>
             <p className="contact-kicker">MASZ PROJEKT?</p>
             <h2>Opisz cel. Dobierzemy zakres strony do realnej pracy, którą ma wykonywać.</h2>
