@@ -477,6 +477,37 @@ refresh the three existing first-party device captures from the final
 Liquid changes, new location routes, service or knowledge content waves,
 production promotion, or C13 through C20.
 
+### 9.1.4 Owner C12R2 pointer and ambience corrective review
+
+The Owner accepts the C12R Poland-national positioning, global no-leading-zero
+rule, compact route scale, homepage direction and vertical water orientation.
+The Owner does not accept the current pointer-to-water alignment or the uneven
+ambient quality between public routes. The visual reference envelope is the
+bright Contact state and the depth/energy of Lab, expressed through the
+existing Option A navy, blue, cyan and violet language rather than Lab's
+green/lime demo accent.
+
+```text
+OWNER_OPTION_A_COLOR_DIRECTION=PASS
+OWNER_LIQUID_VERTICAL_ORIENTATION=PASS
+OWNER_WATER_GENERAL_VISUAL_DIRECTION=PASS
+OWNER_HOMEPAGE_GENERAL_DIRECTION=PASS
+OWNER_POLAND_NATIONAL_POSITIONING=PASS
+OWNER_GLOBAL_NO_LEADING_ZERO_RULE=PASS
+OWNER_C12R_ROUTE_SCALE_DIRECTION=PASS
+OWNER_LIQUID_POINTER_ALIGNMENT_PASS=NO
+OWNER_GLOBAL_AMBIENCE_CONSISTENCY_PASS=NO
+OWNER_GLOBAL_BACKGROUND_BRIGHTNESS_PASS=NO
+OWNER_ROUTE_TO_ROUTE_WATER_VISUAL_PARITY_PASS=NO
+```
+
+C12R2 is limited to exact pointer-coordinate correction, coherent ambience,
+microcopy contrast, section continuity, truthful device-proof legibility and
+their regressions. It does not authorize content waves, a new palette, new
+rendering runtimes, production promotion, or C13 through C20. Technical
+completion produces a candidate for direct Owner visual review; it does not
+self-assign Owner acceptance.
+
 ### 9.2 Candidate dependency-security remediation
 
 The Owner authorized a bounded candidate-only upgrade from Next.js `16.3.1`
