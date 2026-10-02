@@ -1,6 +1,11 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useRef } from "react";
+import {
+  createPerspectiveWaterProjection,
+  normalizePointerToRect,
+  updatePerspectiveWaterProjection,
+} from "@/lib/liquid-pointer-projection";
 
 const FRAME_INTERVAL_MS = 1000 / 45;
 const COMPACT_FRAME_INTERVAL_MS = 1000 / 30;
@@ -20,7 +25,12 @@ precision highp float;
 out vec4 outColor;
 uniform vec2 uResolution;
 uniform float uTime;
-uniform vec2 uPointer;
+uniform vec3 uCamera;
+uniform vec3 uForward;
+uniform vec3 uRight;
+uniform vec3 uUp;
+uniform float uLens;
+uniform vec2 uPointerWorld;
 uniform float uPointerActive;
 uniform float uHero;
 
@@ -67,22 +77,10 @@ void main() {
   screen.x *= uResolution.x / max(uResolution.y, 1.0);
 
   float hero = clamp(uHero, 0.0, 1.0);
-  float pointerInfluence = uPointerActive * (1.0 - smoothstep(0.0, 1.25, length(screen)) * 0.2);
-  vec2 pointerWorld = vec2(
-    (uPointer.x - 0.5) * mix(3.2, 4.6, hero),
-    mix(-3.0, 0.55, uPointer.y)
-  );
-
-  vec3 camera = mix(vec3(0.0, 1.18, 2.45), vec3(0.18, 1.48, 2.86), hero);
-  vec3 target = mix(vec3(0.0, -0.05, -1.15), vec3(0.36, -0.12, -1.62), hero);
-  target.x += (uPointer.x - 0.5) * 0.12 * pointerInfluence;
-  target.y += (0.5 - uPointer.y) * 0.07 * pointerInfluence;
-
-  vec3 forward = normalize(target - camera);
-  vec3 right = normalize(cross(forward, vec3(0.0, 1.0, 0.0)));
-  vec3 up = cross(right, forward);
-  float lens = mix(1.62, 1.48, hero);
-  vec3 ray = normalize(forward * lens + right * screen.x + up * screen.y);
+  float pointerInfluence = uPointerActive;
+  vec2 pointerWorld = uPointerWorld;
+  vec3 camera = uCamera;
+  vec3 ray = normalize(uForward * uLens + uRight * screen.x + uUp * screen.y);
 
   vec3 background = skyColor(ray);
   float atmosphere = exp(-length(screen - vec2(0.38 * hero, -0.08)) * 1.35);
@@ -137,7 +135,8 @@ void main() {
 
   float pointerDistance = length(point.xz - pointerWorld);
   float pointerGlow = exp(-pointerDistance * 2.9) * pointerInfluence;
-  color += vec3(0.38, 0.72, 1.0) * pointerGlow * 0.25;
+  float pointerCore = exp(-pointerDistance * 7.2) * pointerInfluence;
+  color += vec3(0.38, 0.72, 1.0) * (pointerGlow * 0.22 + pointerCore * 0.18);
 
   float crest = smoothstep(0.055, 0.15, waveHeight(point.xz, uTime, pointerWorld, pointerInfluence));
   color += vec3(0.58, 0.88, 1.0) * crest * 0.07;
@@ -246,7 +245,12 @@ export function V14LiquidSurface({ variant = "constructor" }: { variant?: Liquid
     const position = gl.getAttribLocation(program, "aPosition");
     const resolution = getUniform(gl, program, "uResolution");
     const time = getUniform(gl, program, "uTime");
-    const pointer = getUniform(gl, program, "uPointer");
+    const cameraUniform = getUniform(gl, program, "uCamera");
+    const forwardUniform = getUniform(gl, program, "uForward");
+    const rightUniform = getUniform(gl, program, "uRight");
+    const upUniform = getUniform(gl, program, "uUp");
+    const lensUniform = getUniform(gl, program, "uLens");
+    const pointerWorldUniform = getUniform(gl, program, "uPointerWorld");
     const pointerActive = getUniform(gl, program, "uPointerActive");
     const hero = getUniform(gl, program, "uHero");
     const buffer = gl.createBuffer();
@@ -268,11 +272,13 @@ export function V14LiquidSurface({ variant = "constructor" }: { variant?: Liquid
     let pointerX = 0.5;
     let pointerY = 0.5;
     let pointerIsActive = 0;
+    let renderRect = root.getBoundingClientRect();
+    const projection = createPerspectiveWaterProjection();
 
     const resize = () => {
-      const bounds = root.getBoundingClientRect();
-      const width = Math.max(1, bounds.width);
-      const height = Math.max(1, bounds.height);
+      renderRect = root.getBoundingClientRect();
+      const width = Math.max(1, renderRect.width);
+      const height = Math.max(1, renderRect.height);
       const dpr = Math.min(window.devicePixelRatio || 1, compactRender.matches ? COMPACT_DPR : MAX_DPR);
       canvas.width = Math.max(1, Math.round(width * dpr));
       canvas.height = Math.max(1, Math.round(height * dpr));
@@ -290,11 +296,27 @@ export function V14LiquidSurface({ variant = "constructor" }: { variant?: Liquid
       lastFrameAt = now;
       bindProgram(program);
       gl.clear(gl.COLOR_BUFFER_BIT);
+      const seconds = now / 1000;
+      const heroAmount = variant === "hero" ? 1 : 0;
+      updatePerspectiveWaterProjection(
+        projection,
+        pointerX,
+        pointerY,
+        canvas.width / Math.max(canvas.height, 1),
+        heroAmount,
+        seconds,
+        pointerIsActive,
+      );
       gl.uniform2f(resolution, canvas.width, canvas.height);
-      gl.uniform1f(time, now / 1000);
-      gl.uniform2f(pointer, pointerX, pointerY);
-      gl.uniform1f(pointerActive, pointerIsActive);
-      gl.uniform1f(hero, variant === "hero" ? 1 : 0);
+      gl.uniform1f(time, seconds);
+      gl.uniform3fv(cameraUniform, projection.camera);
+      gl.uniform3fv(forwardUniform, projection.forward);
+      gl.uniform3fv(rightUniform, projection.right);
+      gl.uniform3fv(upUniform, projection.up);
+      gl.uniform1f(lensUniform, projection.lens);
+      gl.uniform2fv(pointerWorldUniform, projection.pointerWorld);
+      gl.uniform1f(pointerActive, projection.valid ? pointerIsActive : 0);
+      gl.uniform1f(hero, heroAmount);
       gl.drawArrays(gl.TRIANGLES, 0, 3);
       frame = window.requestAnimationFrame(render);
     };
@@ -311,19 +333,18 @@ export function V14LiquidSurface({ variant = "constructor" }: { variant?: Liquid
     };
 
     const onPointerMove = (event: PointerEvent) => {
-      const bounds = root.getBoundingClientRect();
-      const inside =
-        event.clientX >= bounds.left &&
-        event.clientX <= bounds.right &&
-        event.clientY >= bounds.top &&
-        event.clientY <= bounds.bottom;
-      if (!inside) {
+      const normalized = normalizePointerToRect(event.clientX, event.clientY, renderRect);
+      if (!normalized.inside) {
         pointerIsActive = 0;
         return;
       }
-      pointerX = (event.clientX - bounds.left) / Math.max(bounds.width, 1);
-      pointerY = (event.clientY - bounds.top) / Math.max(bounds.height, 1);
+      pointerX = normalized.x;
+      pointerY = normalized.y;
       pointerIsActive = 1;
+    };
+
+    const onPointerLeave = () => {
+      pointerIsActive = 0;
     };
 
     const onVisibilityChange = () => {
@@ -346,6 +367,7 @@ export function V14LiquidSurface({ variant = "constructor" }: { variant?: Liquid
     resizeObserver.observe(root);
     intersectionObserver.observe(root);
     if (finePointer.matches) window.addEventListener("pointermove", onPointerMove, { passive: true });
+    document.documentElement.addEventListener("pointerleave", onPointerLeave);
     document.addEventListener("visibilitychange", onVisibilityChange);
 
     return () => {
@@ -353,6 +375,7 @@ export function V14LiquidSurface({ variant = "constructor" }: { variant?: Liquid
       resizeObserver.disconnect();
       intersectionObserver.disconnect();
       if (finePointer.matches) window.removeEventListener("pointermove", onPointerMove);
+      document.documentElement.removeEventListener("pointerleave", onPointerLeave);
       document.removeEventListener("visibilitychange", onVisibilityChange);
       gl.deleteBuffer(buffer);
       gl.deleteProgram(program);

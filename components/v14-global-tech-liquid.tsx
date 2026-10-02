@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { normalizePointerToRect, writeGlobalPointerWorld } from "@/lib/liquid-pointer-projection";
 
 const DESKTOP_FRAME_INTERVAL = 1000 / 36;
 const COMPACT_FRAME_INTERVAL = 1000 / 24;
@@ -19,7 +20,7 @@ out vec4 outColor;
 uniform vec2 uResolution;
 uniform float uTime;
 uniform float uScroll;
-uniform vec2 uPointer;
+uniform vec2 uPointerWorld;
 uniform float uPointerActive;
 
 float hash21(vec2 p) {
@@ -174,7 +175,7 @@ void main() {
 
   float scrollPhase = mod(uScroll * 0.00022, 2.0);
   vec2 world = p * 1.10 + vec2(scrollPhase * 0.24, -scrollPhase * 0.13);
-  vec2 pointerWorld = vec2((uPointer.x * 2.0 - 1.0) * aspect, 1.0 - uPointer.y * 2.0) * 1.10;
+  vec2 pointerWorld = uPointerWorld;
 
   vec2 gradient = waterGradient(world, uTime, pointerWorld, uPointerActive);
   vec2 refracted = world + gradient * 0.086;
@@ -195,15 +196,15 @@ void main() {
   float bandB = pow(0.5 + 0.5 * sin(world.x * 1.6 - world.y * 2.4 - uTime * 0.66 + gradient.y * 1.8), 12.0);
 
   vec3 deep = vec3(0.004, 0.010, 0.038);
-  vec3 waterTint = vec3(0.025, 0.105, 0.285);
-  vec3 color = mix(deep, board, 0.84);
-  color = mix(color, waterTint, 0.22 + 0.13 * (1.0 - diffuse));
-  color += vec3(0.05, 0.38, 0.58) * diffuse * 0.18;
-  color += vec3(0.68, 0.92, 1.0) * specular * 0.66;
-  color += vec3(0.20, 0.80, 0.82) * caustic * 0.17;
-  color += vec3(0.34, 0.76, 0.94) * crest * 0.10;
-  color += vec3(0.08, 0.48, 0.72) * (bandA * 0.13 + bandB * 0.08);
-  color += vec3(0.10, 0.36, 0.52) * slope * 0.10;
+  vec3 waterTint = vec3(0.030, 0.140, 0.340);
+  vec3 color = mix(deep, board, 0.88);
+  color = mix(color, waterTint, 0.20 + 0.10 * (1.0 - diffuse));
+  color += vec3(0.05, 0.38, 0.58) * diffuse * 0.24;
+  color += vec3(0.68, 0.92, 1.0) * specular * 0.72;
+  color += vec3(0.20, 0.80, 0.82) * caustic * 0.24;
+  color += vec3(0.34, 0.76, 0.94) * crest * 0.14;
+  color += vec3(0.08, 0.48, 0.72) * (bandA * 0.16 + bandB * 0.11);
+  color += vec3(0.10, 0.36, 0.52) * slope * 0.13;
 
   vec2 bubbleCell = fract(world * vec2(4.2, 3.7)) - 0.5;
   vec2 bubbleId = floor(world * vec2(4.2, 3.7));
@@ -214,10 +215,10 @@ void main() {
   float scan = 0.5 + 0.5 * sin((uv.y + uScroll * 0.00004) * 460.0);
   color += vec3(0.01, 0.055, 0.07) * scan * 0.08;
   float pointerGlow = exp(-length(world - pointerWorld) * 2.4) * uPointerActive;
-  color += vec3(0.30, 0.78, 1.0) * pointerGlow * 0.06;
+  color += vec3(0.30, 0.78, 1.0) * pointerGlow * 0.10;
 
   float vignette = 1.0 - smoothstep(0.52, 1.48, length(p * vec2(0.62, 0.88)));
-  color *= 0.68 + vignette * 0.32;
+  color *= 0.78 + vignette * 0.22;
   outColor = vec4(color, 1.0);
 }`;
 
@@ -301,7 +302,7 @@ export function V14GlobalTechLiquid() {
     const resolution = uniform(gl, program, "uResolution");
     const time = uniform(gl, program, "uTime");
     const scroll = uniform(gl, program, "uScroll");
-    const pointer = uniform(gl, program, "uPointer");
+    const pointerWorldUniform = uniform(gl, program, "uPointerWorld");
     const pointerActive = uniform(gl, program, "uPointerActive");
     const buffer = gl.createBuffer();
     if (!buffer) return;
@@ -320,10 +321,13 @@ export function V14GlobalTechLiquid() {
     let pointerY = 0.5;
     let pointerIsActive = 0;
     let scrollY = window.scrollY;
+    let renderRect = root.getBoundingClientRect();
+    const pointerWorld = new Float32Array(2);
 
     const resize = () => {
-      const width = Math.max(1, window.innerWidth);
-      const height = Math.max(1, window.innerHeight);
+      renderRect = root.getBoundingClientRect();
+      const width = Math.max(1, renderRect.width);
+      const height = Math.max(1, renderRect.height);
       const dpr = Math.min(window.devicePixelRatio || 1, compact.matches ? COMPACT_DPR : DESKTOP_DPR);
       canvas.width = Math.max(1, Math.round(width * dpr));
       canvas.height = Math.max(1, Math.round(height * dpr));
@@ -348,7 +352,8 @@ export function V14GlobalTechLiquid() {
       gl.uniform2f(resolution, canvas.width, canvas.height);
       gl.uniform1f(time, now / 1000);
       gl.uniform1f(scroll, scrollY);
-      gl.uniform2f(pointer, pointerX, pointerY);
+      writeGlobalPointerWorld(pointerWorld, pointerX, pointerY, canvas.width / Math.max(canvas.height, 1), scrollY);
+      gl.uniform2fv(pointerWorldUniform, pointerWorld);
       gl.uniform1f(pointerActive, pointerIsActive);
       gl.drawArrays(gl.TRIANGLES, 0, 3);
       frame = window.requestAnimationFrame(render);
@@ -377,16 +382,19 @@ export function V14GlobalTechLiquid() {
 
     const onPointerMove = (event: PointerEvent) => {
       if (!finePointer.matches) return;
-      pointerX = event.clientX / Math.max(window.innerWidth, 1);
-      pointerY = event.clientY / Math.max(window.innerHeight, 1);
-      pointerIsActive = 1;
+      const normalized = normalizePointerToRect(event.clientX, event.clientY, renderRect);
+      pointerX = normalized.x;
+      pointerY = normalized.y;
+      pointerIsActive = normalized.inside ? 1 : 0;
     };
 
     const onPointerLeave = () => {
       pointerIsActive = 0;
     };
 
+    const resizeObserver = new ResizeObserver(resize);
     resize();
+    resizeObserver.observe(root);
     window.addEventListener("resize", resize, { passive: true });
     window.addEventListener("scroll", onScroll, { passive: true });
     document.addEventListener("visibilitychange", onVisibility);
@@ -397,6 +405,7 @@ export function V14GlobalTechLiquid() {
 
     return () => {
       stop();
+      resizeObserver.disconnect();
       window.removeEventListener("resize", resize);
       window.removeEventListener("scroll", onScroll);
       document.removeEventListener("visibilitychange", onVisibility);
