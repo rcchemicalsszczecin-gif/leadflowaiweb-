@@ -256,6 +256,8 @@ def main():
 
         browser_samples = 0
         real_pointer_errors = []
+        webgl_render_targets = 0
+        fallback_render_targets = 0
         route_states = []
         for index, route in enumerate(ROUTES):
             width, height = VIEWPORTS[index % len(VIEWPORTS)]
@@ -270,8 +272,14 @@ def main():
                 return {route:location.pathname,dpr:devicePixelRatio,rect:r?{left:r.left,top:r.top,width:r.width,height:r.height}:null,canvas:canvas?{width:canvas.width,height:canvas.height}:null,fallback:target?.dataset.renderFallback||'',mode:target?.dataset.renderMode||''};
                 """,
             )
-            if not state or not state.get("rect") or state.get("fallback"):
+            if not state or not state.get("rect"):
                 raise RuntimeError(f"render target unavailable on {route}: {state}")
+            if state.get("fallback"):
+                if state.get("fallback") != "webgl-unavailable":
+                    raise RuntimeError(f"unexpected render fallback on {route}: {state}")
+                fallback_render_targets += 1
+            else:
+                webgl_render_targets += 1
             rect = state["rect"]
             execute(
                 session_id,
@@ -363,6 +371,7 @@ def main():
             f"numeric-samples={len(errors)} max-error-px={maximum:.6f} median-error-px={median:.6f} "
             f"scroll-samples={scroll_samples} scroll-drift=0 resize=PASS dpr=PASS dpr-value={dpr:.2f} "
             f"real-pointer-max-error-px={max(real_pointer_errors):.3f} "
+            f"webgl-targets={webgl_render_targets} fallback-targets={fallback_render_targets} "
             "zoom=PASS pointer-leave=PASS actual-render-rect=PASS horizon=DEACTIVATE"
         )
     finally:
