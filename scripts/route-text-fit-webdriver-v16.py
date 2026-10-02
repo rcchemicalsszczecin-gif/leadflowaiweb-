@@ -27,6 +27,7 @@ REPORT_PATH = os.environ.get("C12R_TEXT_FIT_REPORT")
 DIAGNOSTIC_ONLY = os.environ.get("C12R_DIAGNOSTIC_ONLY") == "1"
 STABLE_CAPTURE = os.environ.get("C12R_STABLE_CAPTURE") == "1"
 SCROLL_SELECTOR = os.environ.get("C12R_SCROLL_SELECTOR")
+CAPTURE_DELAY = float(os.environ.get("C12R_CAPTURE_DELAY", "0.18"))
 
 
 def request(method, base, path, payload=None, timeout=20):
@@ -79,7 +80,13 @@ const visible=(el)=>{const s=getComputedStyle(el),r=el.getBoundingClientRect();r
 const meaningful=(text)=>text.replace(/\s+/g,' ').trim();
 const selector=(el)=>{if(el.id)return '#'+CSS.escape(el.id);let out=el.tagName.toLowerCase();if(el.classList.length)out+='.'+[...el.classList].slice(0,3).map(CSS.escape).join('.');return out};
 const clipAncestor=(el)=>{for(let p=el.parentElement;p;p=p.parentElement){const s=getComputedStyle(p);if(/hidden|clip/.test(s.overflowX+s.overflowY))return p}return null};
-const defects=[];const microExamples=[];let usefulBelow12=0,h1=0,h1px=0,h2max=0,h2maxExample=null,controls=0,headings=0,svgTexts=0;
+const rgba=(value)=>{const m=value.match(/[\d.]+/g);if(!m||m.length<3)return null;return [Number(m[0]),Number(m[1]),Number(m[2]),m[3]===undefined?1:Number(m[3])]};
+const composite=(fg,bg)=>[fg[0]*fg[3]+bg[0]*(1-fg[3]),fg[1]*fg[3]+bg[1]*(1-fg[3]),fg[2]*fg[3]+bg[2]*(1-fg[3])];
+const lum=(rgb)=>{const c=rgb.map(v=>{v/=255;return v<=.04045?v/12.92:Math.pow((v+.055)/1.055,2.4)});return .2126*c[0]+.7152*c[1]+.0722*c[2]};
+const contrast=(a,b)=>{const l1=lum(a),l2=lum(b);return (Math.max(l1,l2)+.05)/(Math.min(l1,l2)+.05)};
+const stableSurface=(el)=>{for(let p=el.parentElement;p&&p!==document.body&&p!==document.documentElement;p=p.parentElement){const s=getComputedStyle(p),bg=rgba(s.backgroundColor);if((bg&&bg[3]>=.45)||s.backgroundImage!=='none')return true}return false};
+const ambientBase=[5,8,22];
+const defects=[];const microExamples=[];const microContrastExamples=[];let usefulBelow12=0,microContrastFailures=0,unstableDynamicText=0,h1=0,h1px=0,h2max=0,h2maxExample=null,controls=0,headings=0,svgTexts=0;
 const main=document.querySelector('main')||document.body;
 for(const el of main.querySelectorAll('*')){
  if(!visible(el))continue;
@@ -91,6 +98,8 @@ for(const el of main.querySelectorAll('*')){
  const text=direct.join(' ');const style=getComputedStyle(el);const rect=el.getBoundingClientRect();
  const useful=!el.matches('sup,sub,.v14-global-tech-liquid__label')&&text.length>1;
  if(useful&&parseFloat(style.fontSize)<11.95){usefulBelow12++;if(microExamples.length<20)microExamples.push({selector:selector(el),text:text.slice(0,100),px:parseFloat(style.fontSize)})}
+ const px=parseFloat(style.fontSize),weight=parseFloat(style.fontWeight)||400;
+ if(useful&&px<=14.1&&!el.matches('button,[role="button"],.button,.v14-button-primary,.v14-button-ghost')){const color=rgba(style.color);if(color&&lum(color)>.35){const resolved=composite(color,ambientBase),ratio=contrast(resolved,ambientBase),threshold=(px>=18||px>=14&&weight>=700)?3:4.5;const stable=stableSurface(el);if(ratio+0.01<threshold){microContrastFailures++;if(microContrastExamples.length<30)microContrastExamples.push({selector:selector(el),text:text.slice(0,100),px,weight,ratio:Number(ratio.toFixed(2)),color:style.color,stableSurface:stable})}if(!stable&&ratio<5.5)unstableDynamicText++}}
  const clippedX=el.scrollWidth>el.clientWidth+2&&/hidden|clip/.test(style.overflowX);
  const clippedY=el.scrollHeight>el.clientHeight+2&&/hidden|clip/.test(style.overflowY);
  const ancestor=clipAncestor(el);let rangeOutsideX=false,rangeOutsideY=false;
@@ -102,7 +111,7 @@ for(const el of main.querySelectorAll('*')){
 const sparse=[...main.querySelectorAll('section')].filter(el=>visible(el)&&el.getBoundingClientRect().height>650&&meaningful(el.innerText||'').length<140).length;
 const underfilled=[...main.querySelectorAll('article')].filter(el=>visible(el)&&el.getBoundingClientRect().height>340&&meaningful(el.innerText||'').length<100).length;
 const template=main.getAttribute('data-service-template')||'';
-return {width:innerWidth,height:innerHeight,documentHeight:document.documentElement.scrollHeight,globalOverflow:document.documentElement.scrollWidth-innerWidth,h1,h1px,h2max,h2maxExample,usefulBelow12,microExamples,controls,headings,svgTexts,sparse,underfilled,template,defects};
+return {width:innerWidth,height:innerHeight,documentHeight:document.documentElement.scrollHeight,globalOverflow:document.documentElement.scrollWidth-innerWidth,h1,h1px,h2max,h2maxExample,usefulBelow12,microExamples,microContrastFailures,microContrastExamples,unstableDynamicText,controls,headings,svgTexts,sparse,underfilled,template,defects};
 """
 
 
@@ -202,6 +211,10 @@ def main():
                     route_failures.append({"kind": "H2_SCALE", "value": state.get("h2max")})
                 if state.get("usefulBelow12", 0):
                     route_failures.append({"kind": "MICROTYPE", "value": state.get("usefulBelow12"), "examples": state.get("microExamples", [])})
+                if state.get("microContrastFailures", 0):
+                    route_failures.append({"kind": "MICROCOPY_CONTRAST", "value": state.get("microContrastFailures"), "examples": state.get("microContrastExamples", [])})
+                if state.get("unstableDynamicText", 0):
+                    route_failures.append({"kind": "DYNAMIC_BACKGROUND_MICROCOPY", "value": state.get("unstableDynamicText")})
                 route_failures.extend(state.get("defects", []))
                 if route_failures:
                     failures.append({"route": route, "viewport": f"{width}x{height}", "defects": route_failures})
@@ -210,9 +223,11 @@ def main():
                     if SCROLL_SELECTOR:
                         execute(
                             session_id,
-                            f"document.querySelector({json.dumps(SCROLL_SELECTOR)})?.scrollIntoView({{block:'center'}}); return true;",
+                            f"const target=document.querySelector({json.dumps(SCROLL_SELECTOR)});if(target){{document.documentElement.style.scrollBehavior='auto';document.scrollingElement.scrollTop=target.getBoundingClientRect().top+scrollY-Math.max(24,innerHeight*.12)}}return target?{{found:true,top:document.scrollingElement.scrollTop}}:{{found:false}};",
                         )
-                        time.sleep(0.1)
+                        time.sleep(CAPTURE_DELAY)
+                    elif CAPTURE_DELAY:
+                        time.sleep(CAPTURE_DELAY)
                     shot = request("GET", DRIVER, f"/session/{session_id}/screenshot", timeout=20).get("value")
                     if shot:
                         import base64
@@ -229,7 +244,7 @@ def main():
             print(f"ROUTE_TEXT_FIT_V16_DIAGNOSTIC routes={len(routes)} viewport-runs={len(metrics)} failure-route-viewports={len(failures)}")
             return
         print(
-            f"ROUTE_TEXT_FIT_V16_PASS routes={len(routes)} viewport-runs={len(metrics)} horizontal=0 vertical=0 controls=0 headings=0 svg-clipping=0 svg-overlap=0 microtype-below-12=0"
+            f"ROUTE_TEXT_FIT_V16_PASS routes={len(routes)} viewport-runs={len(metrics)} horizontal=0 vertical=0 controls=0 headings=0 svg-clipping=0 svg-overlap=0 microtype-below-12=0 microcopy-contrast=0 dynamic-background-unstable=0"
         )
     finally:
         if session_id:

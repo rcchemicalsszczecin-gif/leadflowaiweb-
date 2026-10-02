@@ -175,7 +175,7 @@
   }
 
   .chip-front small {
-    color: rgba(224, 240, 247, 0.48);
+    color: rgba(224, 240, 247, 0.72);
     font: 0.55rem/1 ui-monospace, monospace;
     letter-spacing: 0.14em;
   }
@@ -236,7 +236,7 @@
     bottom: 1rem;
     display: flex;
     justify-content: space-between;
-    color: rgba(218, 237, 245, 0.38);
+    color: rgba(218, 237, 245, 0.72);
     font: 0.75rem/1 ui-monospace, monospace;
     letter-spacing: 0.1em;
   }
@@ -564,7 +564,7 @@
   .browser-toolbar b {
     flex: 1;
     margin-left: 0.5rem;
-    color: rgba(220, 235, 242, 0.34);
+    color: rgba(220, 235, 242, 0.72);
     font: 0.75rem/1 ui-monospace, monospace;
   }
 
@@ -582,7 +582,7 @@
     display: flex;
     align-items: center;
     gap: 1.2rem;
-    color: rgba(223, 240, 247, 0.36);
+    color: rgba(223, 240, 247, 0.72);
     font: 0.75rem/1 ui-monospace, monospace;
   }
 
@@ -775,7 +775,7 @@
   .command-row > span,
   .command-status > span {
     padding-top: 0.65rem;
-    color: rgba(218, 236, 244, 0.42);
+    color: rgba(218, 236, 244, 0.72);
     font: 0.75rem/1.2 ui-monospace, monospace;
     letter-spacing: 0.09em;
   }

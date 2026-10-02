@@ -22,9 +22,9 @@
 
 body:has(.v14-global-tech-liquid) {
   background: var(--brand-background-primary);
-  --world: linear-gradient(180deg, rgba(5, 10, 29, 0.76), rgba(7, 14, 37, 0.84));
-  --world-deep: linear-gradient(180deg, rgba(2, 5, 16, 0.74), rgba(5, 9, 28, 0.84));
-  --world-card: linear-gradient(145deg, rgba(14, 29, 66, 0.86), rgba(6, 13, 37, 0.76));
+  --world: linear-gradient(180deg, rgba(5, 10, 29, 0.62), rgba(7, 14, 37, 0.7));
+  --world-deep: linear-gradient(180deg, rgba(2, 5, 16, 0.7), rgba(5, 9, 28, 0.76));
+  --world-card: linear-gradient(145deg, rgba(14, 29, 66, 0.82), rgba(6, 13, 37, 0.72));
   --world-line: var(--brand-border-subtle);
   --world-muted: var(--brand-text-muted);
   --world-text: var(--brand-text-primary);
@@ -97,15 +97,15 @@ body:has(.v14-global-tech-liquid) {
 
 .v14-global-tech-liquid {
   background:
-    radial-gradient(circle at 78% 16%, rgba(73, 96, 255, 0.28), transparent 34rem),
-    radial-gradient(circle at 18% 72%, rgba(142, 71, 255, 0.2), transparent 31rem),
-    radial-gradient(circle at 55% 54%, rgba(47, 192, 255, 0.1), transparent 37rem),
+    radial-gradient(circle at 78% 16%, rgba(73, 96, 255, 0.32), transparent 34rem),
+    radial-gradient(circle at 18% 72%, rgba(142, 71, 255, 0.24), transparent 31rem),
+    radial-gradient(circle at 55% 54%, rgba(47, 192, 255, 0.16), transparent 37rem),
     var(--brand-background-deep);
 }
 
 .v14-header-static,
 .v14-route-footer {
-  background: rgba(4, 8, 24, 0.9);
+  background: rgba(4, 8, 24, 0.82);
   border-color: var(--brand-border-subtle);
 }
 
